@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
   final autoSizeGroup = AutoSizeGroup();
   var _bottomNavIndex = 0;
+  OverlayEntry? _overlayEntry;
+
 
   late AnimationController _fabAnimationController;
   late AnimationController _borderRadiusAnimationController;
@@ -69,6 +72,77 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
     );
   }
 
+  void _toggleOverlay(bool show) {
+    if (show) {
+      _overlayEntry = OverlayEntry(builder: (context) {
+        return Stack(
+          children: [
+            // Darkens only the main body background
+            Positioned(
+              top: 0,
+              bottom: 65,  // Leaving space for the navbar
+              left: 0,
+              right: 0,
+              child: AnimatedBuilder(
+                animation: _fabAnimationController,
+                builder: (BuildContext context, _) {
+                  return GestureDetector(
+                    onTap: () => _toggleOverlay(false),
+                    child: Container(
+                      color: Colors.black.withOpacity(0.5 * _fabAnimationController.value),
+                    ),
+                  );
+                },
+              ),
+            ),
+            // Animated container
+            AnimatedBuilder(
+              animation: _fabAnimationController,
+              builder: (BuildContext context, _) {
+                return Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Transform.translate(
+                    offset: Offset(0, 200 * (1 - _fabAnimationController.value)), // height of the container is 200
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Container(
+                        height: 200,
+                        color: Colors.white,
+                        child: Center(
+                          child: Text("Hello"),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        );
+      });
+
+      Overlay.of(context)!.insert(_overlayEntry!);
+      _fabAnimationController.forward();
+    } else {
+      _fabAnimationController.reverse().then((_) {
+        _overlayEntry?.remove();
+        _overlayEntry = null;
+      });
+    }
+  }
+
+
+  @override
+  void dispose() {
+    _fabAnimationController.dispose();
+    _borderRadiusAnimationController.dispose();
+    _overlayEntry?.remove();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,13 +153,20 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xffFE8BD1),
         child: Image.asset(
-          'assets/icons/floatingaction.png', // Path to your custom FAB icon
+          'assets/icons/floatingaction.png',
           width: 24,
           height: 24,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          if (_overlayEntry == null) {
+            _toggleOverlay(true);
+          } else {
+            _toggleOverlay(false);
+          }
+        },
       ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
         height: 65,

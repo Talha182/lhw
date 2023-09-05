@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/home_page/custom_navbar.dart';
+import 'package:lhw/custom_widgets/custom_navbar.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 
