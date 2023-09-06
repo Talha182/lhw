@@ -77,7 +77,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
       _overlayEntry = OverlayEntry(builder: (context) {
         return Stack(
           children: [
-            // Darkens only the main body background
+            // Darkens only the main body background, but not the navbar and FAB
             Positioned(
               top: 0,
               bottom: 65,  // Leaving space for the navbar
@@ -95,12 +95,12 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
                 },
               ),
             ),
-            // Animated container
+            // Animated container below the FAB and navbar
             AnimatedBuilder(
               animation: _fabAnimationController,
               builder: (BuildContext context, _) {
                 return Positioned(
-                  bottom: 0,
+                  bottom: 65,  // Start position at the navbar's top
                   left: 0,
                   right: 0,
                   child: Transform.translate(

@@ -51,7 +51,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                               onTap: () {},
                             ),
-                            SizedBox(width: 20,),
+                            SizedBox(
+                              width: 20,
+                            ),
                             InkWell(
                               child: Image.asset(
                                 'assets/icons/bell.png',
@@ -335,6 +337,75 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
+                              Column(
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 10, right: 10, top: 30),
+                                      child: Container(
+                                        width: 340,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                            color: Color(0xffE5E5E5),
+                                            width: 2.0,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            // 3D looking circle container
+                                            Container(
+                                              width: 40,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.blue,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.blue.shade700,
+                                                    offset: Offset(4.0, 4.0),
+                                                    blurRadius: 5.0,
+                                                  ),
+                                                  BoxShadow(
+                                                    color: Colors.blue.shade200,
+                                                    offset: Offset(-2.0, -2.0),
+                                                    blurRadius: 5.0,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            // Icon in between
+
+                                            // Column of text
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("Title",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                  Text("Subtitle"),
+                                                ],
+                                              ),
+                                            ),
+                                            // Icon button on the right
+                                            IconButton(
+                                              icon: Icon(Icons.arrow_forward_ios),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ))
+                                ],
+                              )
                             ],
                           ),
                         ),
