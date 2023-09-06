@@ -27,11 +27,12 @@ class ProgressPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = min(size.width / 2, size.height / 2);
 
-    // Draw the outer circular progress bar
+    // Draw the outer circular progress bar with rounded edges
     final outerPaint = Paint()
       ..color = Color(0xffEEECEC)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 4.0;
+      ..strokeWidth = 4.0
+      ..strokeCap = StrokeCap.round; // Set the strokeCap to round
     canvas.drawCircle(center, radius, outerPaint);
 
     // Calculate the sweep angle based on the progress percentage
@@ -41,16 +42,17 @@ class ProgressPainter extends CustomPainter {
     final gradient = LinearGradient(
       colors: [
         Color(0xffF4D6A9),
-        Color(0xffEAAF58), // You can modify this to include multiple gradient colors
+        Color(0xffEAAF58),
       ],
       stops: [0.0, 1.0],
     );
 
-    // Draw the progress arc with the gradient
+    // Draw the progress arc with rounded edges and the gradient
     final progressPaint = Paint()
       ..shader = gradient.createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 10.0;
+      ..strokeWidth = 10.0
+      ..strokeCap = StrokeCap.round; // Set the strokeCap to round
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
       -90 * (pi / 180),
@@ -58,7 +60,6 @@ class ProgressPainter extends CustomPainter {
       false,
       progressPaint,
     );
-
     // Create a gradient for the inner circle to give it a 3D effect
     final innerCircleGradient = LinearGradient(
       colors: [

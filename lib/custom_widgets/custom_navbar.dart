@@ -1,8 +1,6 @@
-import 'dart:async';
-import 'dart:ui';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:lhw/courses_page/courses_page.dart';
 import 'package:lhw/home_page/home_page.dart';
 
 class Navbar extends StatefulWidget {
@@ -11,162 +9,86 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
-  final autoSizeGroup = AutoSizeGroup();
   var _bottomNavIndex = 0;
-  OverlayEntry? _overlayEntry;
+  bool showSheet = false;
 
-
-  late AnimationController _fabAnimationController;
-  late AnimationController _borderRadiusAnimationController;
-  late Animation<double> fabAnimation;
-  late Animation<double> borderRadiusAnimation;
-
-  final iconList = <String>[
+  final iconList = [
     'assets/icons/home.png',
     'assets/icons/courses.png',
     'assets/icons/groups.png',
     'assets/icons/report.png',
   ];
 
-  // List of pages
   final List<Widget> pages = [
     HomePage(),
-    HomePage(),
+    CoursesPage(),
     HomePage(),
     HomePage(),
   ];
 
-  // Different words for each icon
-  final textList = <String>['گھر', 'کورسز', 'گروپس', 'رپورٹ  '];
-
-  @override
-  void initState() {
-    super.initState();
-    _fabAnimationController = AnimationController(
-      duration: Duration(milliseconds: 500),
-      vsync: this,
-    );
-    _borderRadiusAnimationController = AnimationController(
-      duration: Duration(milliseconds: 500),
-      vsync: this,
-    );
-    fabAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _fabAnimationController,
-        curve: Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
-      ),
-    );
-    borderRadiusAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _borderRadiusAnimationController,
-        curve: Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
-      ),
-    );
-    Future.delayed(
-      Duration(seconds: 1),
-      () => _fabAnimationController.forward(),
-    );
-    Future.delayed(
-      Duration(seconds: 1),
-      () => _borderRadiusAnimationController.forward(),
-    );
-  }
-
-  void _toggleOverlay(bool show) {
-    if (show) {
-      _overlayEntry = OverlayEntry(builder: (context) {
-        return Stack(
-          children: [
-            // Darkens only the main body background, but not the navbar and FAB
-            Positioned(
-              top: 0,
-              bottom: 65,  // Leaving space for the navbar
-              left: 0,
-              right: 0,
-              child: AnimatedBuilder(
-                animation: _fabAnimationController,
-                builder: (BuildContext context, _) {
-                  return GestureDetector(
-                    onTap: () => _toggleOverlay(false),
-                    child: Container(
-                      color: Colors.black.withOpacity(0.5 * _fabAnimationController.value),
-                    ),
-                  );
-                },
-              ),
-            ),
-            // Animated container below the FAB and navbar
-            AnimatedBuilder(
-              animation: _fabAnimationController,
-              builder: (BuildContext context, _) {
-                return Positioned(
-                  bottom: 65,  // Start position at the navbar's top
-                  left: 0,
-                  right: 0,
-                  child: Transform.translate(
-                    offset: Offset(0, 200 * (1 - _fabAnimationController.value)), // height of the container is 200
-                    child: Material(
-                      color: Colors.transparent,
-                      child: Container(
-                        height: 200,
-                        color: Colors.white,
-                        child: Center(
-                          child: Text("Hello"),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
-        );
-      });
-
-      Overlay.of(context)!.insert(_overlayEntry!);
-      _fabAnimationController.forward();
-    } else {
-      _fabAnimationController.reverse().then((_) {
-        _overlayEntry?.remove();
-        _overlayEntry = null;
-      });
-    }
-  }
-
-
-  @override
-  void dispose() {
-    _fabAnimationController.dispose();
-    _borderRadiusAnimationController.dispose();
-    _overlayEntry?.remove();
-    super.dispose();
-  }
-
+  final textList = ['Home', 'Courses', 'Groups', 'Report'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: NotificationListener<ScrollNotification>(
-        child: pages[_bottomNavIndex], // Navigate to the respective page
+      body: Stack(
+        children: [
+          NotificationListener<ScrollNotification>(
+            child: pages[_bottomNavIndex],
+          ),
+          AnimatedOpacity(
+            duration: Duration(milliseconds: 300),
+            opacity: showSheet ? 0.5 : 0.0,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  showSheet = false;
+                });
+              },
+              child: Container(
+                color: Colors.black,
+              ),
+            ),
+          ),
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 300),
+            bottom: showSheet ? 28 : -300,
+            left: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: () {},
+              child: Container(
+                height: 350,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Center(child: Text('Your Content Here')),
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xffFE8BD1),
-        child: Image.asset(
+        child: showSheet
+            ? Icon(Icons.close, color: Colors.white)
+            : Image.asset(
           'assets/icons/floatingaction.png',
           width: 24,
           height: 24,
           color: Colors.white,
         ),
         onPressed: () {
-          if (_overlayEntry == null) {
-            _toggleOverlay(true);
-          } else {
-            _toggleOverlay(false);
-          }
+          setState(() {
+            showSheet = !showSheet;
+          });
         },
       ),
-
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
         height: 65,
@@ -183,14 +105,13 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
                 height: 24,
                 color: color,
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: AutoSizeText(
-                  textList[index], // Different word for each icon
+                child: Text(
+                  textList[index],
                   maxLines: 1,
                   style: TextStyle(color: color),
-                  group: autoSizeGroup,
                 ),
               ),
             ],
@@ -199,7 +120,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
         backgroundColor: Colors.white,
         activeIndex: _bottomNavIndex,
         splashColor: Color(0xffFE8BD1),
-        notchAndCornersAnimation: borderRadiusAnimation,
+        notchAndCornersAnimation: null,
         splashSpeedInMilliseconds: 300,
         notchSmoothness: NotchSmoothness.defaultEdge,
         gapLocation: GapLocation.center,

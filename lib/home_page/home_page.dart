@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lhw/custom_widgets/Line_chart.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
 import '../custom_widgets/progress_bar.dart';
@@ -452,21 +453,15 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          // 3D looking circle container
-                                          Container(
+                                          GradientCircle(
                                             width: 45,
                                             height: 45,
-                                            decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xffF4B9E1),
-                                                  Color(0xffED8DCE)
-                                                ],
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                              ),
-                                              shape: BoxShape.circle,
+                                            gradient: LinearGradient(
+                                              colors: [Color(0xffF4B9E1), Color(0xffED8DCE)],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
                                             ),
+                                            imagePath: 'assets/icons/person_card.png', // Replace with your image path
                                           ),
 
                                           SizedBox(
@@ -527,7 +522,7 @@ class _HomePageState extends State<HomePage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
-                                      "جاری کورس",
+                                      "مہارت کا درجہ",
                                       style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600),
@@ -642,7 +637,7 @@ class _HomePageState extends State<HomePage> {
                                       '4380',
                                       style: GoogleFonts.raleway(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 19),
+                                          fontSize: 18),
                                     ),
                                     SizedBox(
                                       width: 100,
@@ -663,10 +658,146 @@ class _HomePageState extends State<HomePage> {
                                     Text('20/30',
                                         style: GoogleFonts.raleway(
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 19))
+                                            fontSize: 18))
                                   ],
                                 ),
+                              ),
+                              SizedBox(height: 8,),
+                              Row(
+                                children: [
+                                  SizedBox(width: 25,),
+                                  Text('سکل پوائنٹس',style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color(0xff747474),
+                                    fontWeight: FontWeight.w600
+                                  ),),
+                                  SizedBox(width: 135,),
+                                  Text('سکل بیج کا انعام',style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color(0xff747474),
+                                    fontWeight: FontWeight.w600
+                                  ),)
+                                ],
                               )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 30,),
+                    Material(
+                      elevation: 1, // Set your desired elevation value here
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        width: screenWidth - 40,
+                        height: 380,
+                        decoration: BoxDecoration(),
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(top: 20, left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "سرگرمی",
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    DropdownButtonHideUnderline(
+                                      child: DropdownButton2<String>(
+                                        isExpanded: true,
+                                        hint: const Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                'اس ہفتے',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        items: items
+                                            .map((String item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: selectedValue,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            selectedValue = value;
+                                          });
+                                        },
+                                        buttonStyleData: ButtonStyleData(
+                                          height: 40,
+                                          width: 100,
+                                          padding: const EdgeInsets.only(
+                                              left: 14, right: 14),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border:
+                                                Border.all(color: Colors.black),
+                                          ),
+                                        ),
+                                        iconStyleData: const IconStyleData(
+                                          icon: Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                          ),
+                                          iconSize: 14,
+                                        ),
+                                        dropdownStyleData: DropdownStyleData(
+                                          maxHeight: 100,
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(14),
+                                          ),
+                                          offset: const Offset(-20, 0),
+                                          scrollbarTheme: ScrollbarThemeData(
+                                            radius: const Radius.circular(20),
+                                            thickness: MaterialStateProperty
+                                                .all<double>(6),
+                                            thumbVisibility:
+                                                MaterialStateProperty.all<bool>(
+                                                    true),
+                                          ),
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          height: 40,
+                                          padding: EdgeInsets.only(
+                                              left: 14, right: 14),
+                                        ),
+                                      ),
+                                    ),
+                                  ]),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              LineChartSample2()
+
+
                             ],
                           ),
                         ),
@@ -675,7 +806,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 30,
                 ),
               ],
             ),
