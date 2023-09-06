@@ -187,11 +187,11 @@ class _HomePageState extends State<HomePage> {
                       height: 20,
                     ),
                     Material(
-                      elevation: 3, // Set your desired elevation value here
+                      elevation: 1, // Set your desired elevation value here
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         width: screenWidth - 40,
-                        height: 500,
+                        height: 450,
                         decoration: BoxDecoration(),
                         child: Padding(
                           padding:
@@ -292,6 +292,9 @@ class _HomePageState extends State<HomePage> {
                                               color: Colors.black,
                                               shape: BoxShape.circle,
                                             ),
+                                            child: Center(
+                                              child: Image.asset('name'),
+                                            ),
                                           ),
                                           SizedBox(
                                             width: 6,
@@ -337,75 +340,160 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 10, right: 10, top: 30),
-                                      child: Container(
-                                        width: 340,
-                                        height: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(
-                                            color: Color(0xffE5E5E5),
-                                            width: 2.0,
+                              Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 5, right: 5, top: 30),
+                                  child: Container(
+                                    width: 340,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: Color(0xffE5E5E5),
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 20),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          // 3D looking circle container
+                                          Container(
+                                            width: 45,
+                                            height: 45,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xffF4D6A9),
+                                                  Color(0xffEAAF58)
+                                                ],
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            // 3D looking circle container
-                                            Container(
-                                              width: 40,
-                                              height: 40,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.blue,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.blue.shade700,
-                                                    offset: Offset(4.0, 4.0),
-                                                    blurRadius: 5.0,
-                                                  ),
-                                                  BoxShadow(
-                                                    color: Colors.blue.shade200,
-                                                    offset: Offset(-2.0, -2.0),
-                                                    blurRadius: 5.0,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            // Icon in between
 
-                                            // Column of text
-                                            Expanded(
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text("Title",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                  Text("Subtitle"),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("کوئز 1 زیر التوا ہے۔ ",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                RichText(
+                                                  text: TextSpan(
+                                                    children: <TextSpan>[
+                                                      TextSpan(
+                                                        text: "آخری تاریخ: ",
+                                                        style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: Colors
+                                                              .grey, // Set the color to gray
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                        text: "25 جون 2023",
+                                                        style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: Colors
+                                                              .black, // Set the color to black
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+
+                                          // Icon button on the right
+                                          InkWell(
+                                            child:
+                                                Icon(Icons.arrow_forward_ios),
+                                            onTap: () {},
+                                          ),
+                                          SizedBox(width: 10,)
+                                        ],
+                                      ),
+                                    ),
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 5, right: 5, top: 15),
+                                  child: Container(
+                                    width: 340,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: Color(0xffE5E5E5),
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 20),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          // 3D looking circle container
+                                          Container(
+                                            width: 45,
+                                            height: 45,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xffF4B9E1),
+                                                  Color(0xffED8DCE)
                                                 ],
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
                                               ),
+                                              shape: BoxShape.circle,
                                             ),
-                                            // Icon button on the right
-                                            IconButton(
-                                              icon: Icon(Icons.arrow_forward_ios),
-                                              onPressed: () {},
+                                          ),
+
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("ماڈیولز مکمل ہو گئے۔ ",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                Text("12"),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ))
-                                ],
-                              )
+                                          ),
+                                          // Icon button on the right
+                                          InkWell(
+                                            child: Icon(Icons.arrow_forward_ios),
+                                            onTap: () {},
+                                          ),
+                                          SizedBox(width: 10,)
+
+                                        ],
+                                      ),
+                                    ),
+                                  )),
                             ],
                           ),
                         ),
