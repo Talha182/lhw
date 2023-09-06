@@ -1,7 +1,9 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../custom_widgets/circular_progress_bar_with circle.dart';
+import '../custom_widgets/gradient_circle.dart';
 import '../custom_widgets/progress_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +20,7 @@ var items = [
   'اس ہفتے',
   'Item 2',
 ];
+String? selectedValue;
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -300,9 +303,6 @@ class _HomePageState extends State<HomePage> {
                                               color: Colors.black,
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Center(
-                                              child: Image.asset('name'),
-                                            ),
                                           ),
                                           SizedBox(
                                             width: 6,
@@ -367,22 +367,17 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          // 3D looking circle container
-                                          Container(
+                                          GradientCircle(
                                             width: 45,
                                             height: 45,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xffF4D6A9),
-                                                  Color(0xffEAAF58)
-                                                ],
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                              ),
+                                            gradient: LinearGradient(
+                                              colors: [Color(0xffF4D6A9), Color(0xffEAAF58)],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
                                             ),
+                                            imagePath: 'assets/icons/person_card.png', // Replace with your image path
                                           ),
+
 
                                           SizedBox(
                                             width: 20,
@@ -537,305 +532,150 @@ class _HomePageState extends State<HomePage> {
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600),
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey, // Specify the border color
-                                          width: 1.0,         // Specify the border width
-                                        ),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(left: 12.0,), // Adjust the padding values to control the height
-                                        child: DropdownButton<String>(
-                                          icon: Icon(Icons.arrow_downward_sharp),
-                                          value: dropdownvalue,
-                                          items: items.map((String item) {
-                                            return DropdownMenuItem<String>(
-                                              value: item,
+                                    DropdownButtonHideUnderline(
+                                      child: DropdownButton2<String>(
+                                        isExpanded: true,
+                                        hint: const Row(
+                                          children: [
+                                            Expanded(
                                               child: Text(
-                                                item,
+                                                'اس ہفتے',
                                                 style: TextStyle(
-                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                            );
-                                          }).toList(),
-                                          onChanged: (String? newValue) {
-                                            setState(() {
-                                              dropdownvalue = newValue!;
-                                            });
-                                          },
+                                            ),
+                                          ],
+                                        ),
+                                        items: items
+                                            .map((String item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: selectedValue,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            selectedValue = value;
+                                          });
+                                        },
+                                        buttonStyleData: ButtonStyleData(
+                                          height: 40,
+                                          width: 100,
+                                          padding: const EdgeInsets.only(
+                                              left: 14, right: 14),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border:
+                                                Border.all(color: Colors.black),
+                                          ),
+                                        ),
+                                        iconStyleData: const IconStyleData(
+                                          icon: Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                          ),
+                                          iconSize: 14,
+                                        ),
+                                        dropdownStyleData: DropdownStyleData(
+                                          maxHeight: 100,
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(14),
+                                          ),
+                                          offset: const Offset(-20, 0),
+                                          scrollbarTheme: ScrollbarThemeData(
+                                            radius: const Radius.circular(20),
+                                            thickness: MaterialStateProperty
+                                                .all<double>(6),
+                                            thumbVisibility:
+                                                MaterialStateProperty.all<bool>(
+                                                    true),
+                                          ),
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          height: 40,
+                                          padding: EdgeInsets.only(
+                                              left: 14, right: 14),
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ]),
                               SizedBox(
-                                height: 20,
+                                height: 50,
                               ),
-                              Row(
-                                children: [
-                                  // Container with circular border containing an image
-                                  Container(
-                                    width: 180,
-                                    height: 135,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              'assets/images/team.png'),
-                                          fit: BoxFit.cover),
+                              Center(child: CircularProgressWithInnerCircle()),
+
+                              Padding(
+                                padding: EdgeInsets.only(left: 34,top: 30,),
+                                child: Row(
+                                  children: [
+                                    GradientCircle(
+                                      width: 45,
+                                      height: 45,
+                                      gradient: LinearGradient(
+                                        colors: [Color(0xffD6C2FF), Color(0xff9B6BFF)],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                      imagePath: 'assets/icons/dots.png', // Replace with your image path
                                     ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  // Column containing three texts
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'خاندانی منصوبہ بندی',
-                                        style: TextStyle(
-                                            fontSize: 16,
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      '4380',
+                                      style: GoogleFonts.raleway(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 19),
+                                    ),
+                                    SizedBox(
+                                      width: 100,
+                                    ),
+                                    GradientCircle(
+                                      width: 45,
+                                      height: 45,
+                                      gradient: LinearGradient(
+                                        colors: [Color(0xffF4D6A9), Color(0xffEAAF58)],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                      imagePath: 'assets/icons/badge.png', // Replace with your image path
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text('20/30',
+                                        style: GoogleFonts.raleway(
                                             fontWeight: FontWeight.w600,
-                                            letterSpacing: 0.01),
-                                      ),
-                                      SizedBox(height: 10),
-                                      Row(
-                                        children: <Widget>[
-                                          Image.asset("assets/icons/book.png"),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            '24 ماڈیولز',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 0.01),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                            width: 5,
-                                            height: 5,
-                                            decoration: BoxDecoration(
-                                              color: Colors.black,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Center(
-                                              child: Image.asset('name'),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 6,
-                                          ),
-                                          Image.asset("assets/icons/book.png"),
-                                          SizedBox(
-                                            width: 6,
-                                          ),
-                                          Text("12 کوئز",
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  letterSpacing: 0.01))
-                                        ],
-                                      ),
-                                      SizedBox(height: 25),
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            'پیش رفت',
-                                            style: TextStyle(
-                                                color: Color(0xff7A7D84),
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          SizedBox(
-                                            width: 80,
-                                          ),
-                                          Text(
-                                            '${(0.6 * 100).toInt()}%', // The percentage value
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 2),
-                                      ProgressBar(
-                                        width: 160.0,
-                                        height: 6.0,
-                                        value: 0.6, // 60%
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 5, right: 5, top: 30),
-                                  child: Container(
-                                    width: 340,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                        color: Color(0xffE5E5E5),
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 20),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          // 3D looking circle container
-                                          Container(
-                                            width: 45,
-                                            height: 45,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xffF4D6A9),
-                                                  Color(0xffEAAF58)
-                                                ],
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                              ),
-                                            ),
-                                          ),
-
-                                          SizedBox(
-                                            width: 20,
-                                          ),
-
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text("کوئز 1 زیر التوا ہے۔ ",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                RichText(
-                                                  text: TextSpan(
-                                                    children: <TextSpan>[
-                                                      TextSpan(
-                                                        text: "آخری تاریخ: ",
-                                                        style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors
-                                                              .grey, // Set the color to gray
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text: "25 جون 2023",
-                                                        style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors
-                                                              .black, // Set the color to black
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-
-                                          // Icon button on the right
-                                          InkWell(
-                                            child:
-                                                Icon(Icons.arrow_forward_ios),
-                                            onTap: () {},
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )),
-                              Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 5, right: 5, top: 15),
-                                  child: Container(
-                                    width: 340,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                        color: Color(0xffE5E5E5),
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 20),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          // 3D looking circle container
-                                          Container(
-                                            width: 45,
-                                            height: 45,
-                                            decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xffF4B9E1),
-                                                  Color(0xffED8DCE)
-                                                ],
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                              ),
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-
-                                          SizedBox(
-                                            width: 20,
-                                          ),
-
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text("ماڈیولز مکمل ہو گئے۔ ",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                Text("12"),
-                                              ],
-                                            ),
-                                          ),
-                                          // Icon button on the right
-                                          InkWell(
-                                            child:
-                                                Icon(Icons.arrow_forward_ios),
-                                            onTap: () {},
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )),
+                                            fontSize: 19))
+                                  ],
+                                ),
+                              )
                             ],
                           ),
                         ),
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 100,
                 ),
               ],
             ),
