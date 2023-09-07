@@ -29,7 +29,8 @@ class CoursesPage extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 16.0),
                         child: Text(
                           "کورسز",
-                          style: GoogleFonts.abhayaLibre(
+                          style: TextStyle(
+                            fontFamily: 'UrduFont',
                             fontSize: 18,
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
@@ -65,50 +66,52 @@ class CoursesPage extends StatelessWidget {
                 ),
               ),
             )),
-
-            body: Padding(
-              padding: EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ButtonsTabBar(
-                    height: 50,
-                    radius: 20,
-                    elevation: 1,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                    backgroundColor: Colors.white,
-                    unselectedBackgroundColor: Color(0xffF0F0F0),
-                    unselectedLabelStyle: TextStyle(color: Color(0xff685F78),fontWeight: FontWeight.w600),
-                    labelStyle:
-                        TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                    tabs: [
-
-                      Tab(
-                        text: "جاری ہے۔",
-                      ),
-                      Tab(
-                        text: "مکمل",
-                      ),
-                      Tab(
-                        text: "تمام کورسز",
-                      ),
-                    ],
+        body: Padding(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ButtonsTabBar(
+                height: 50,
+                radius: 20,
+                elevation: 1,
+                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                backgroundColor: Colors.white,
+                unselectedBackgroundColor: Color(0xffF0F0F0),
+                unselectedLabelStyle: TextStyle(
+                    fontFamily: 'UrduType',
+                    color: Color(0xff685F78),
+                    fontWeight: FontWeight.w600),
+                labelStyle: TextStyle(
+                    fontFamily: 'UrduType',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+                tabs: [
+                  Tab(
+                    text: "جاری ہے۔",
                   ),
-                  Expanded(
-                    child: TabBarView(
-                      children: <Widget>[
-                      OnGoingCourses(),
-                      CompletedCourses(),
-                      TotalCourses(),
-
-                      ],
-                    ),
+                  Tab(
+                    text: "مکمل",
+                  ),
+                  Tab(
+                    text: "تمام کورسز",
                   ),
                 ],
               ),
-            ),
-
+              Expanded(
+                child: TabBarView(
+                  children: <Widget>[
+                    OnGoingCourses(),
+                    CompletedCourses(),
+                    TotalCourses(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
+      ),
     );
   }
 }

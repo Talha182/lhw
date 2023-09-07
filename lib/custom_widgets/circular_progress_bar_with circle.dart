@@ -86,7 +86,9 @@ class ProgressPainter extends CustomPainter {
       children: [
         TextSpan(
           text: '${(progressPercentage * 100).toStringAsFixed(0)}',
-          style: GoogleFonts.raleway(
+          style: TextStyle(
+              fontFamily: 'UrduType',
+
             fontSize: 35.0,
             color: Colors.black,
             fontWeight: FontWeight.w500
@@ -94,7 +96,9 @@ class ProgressPainter extends CustomPainter {
         ),
         TextSpan(
           text: '/80',
-          style: GoogleFonts.raleway(
+          style: TextStyle(
+              fontFamily: 'UrduType',
+
             color: Colors.black, // You can change the color for the total
             fontSize: 20.0, // You can change the font size for the total
             fontWeight: FontWeight.w500

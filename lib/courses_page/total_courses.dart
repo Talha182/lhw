@@ -16,7 +16,10 @@ class TotalCourses extends StatelessWidget {
           children: <Widget>[
             Text(
               "تمام کورسز",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  fontFamily: 'UrduType',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600),
             ),
             SizedBox(
               height: 15,
@@ -43,7 +46,7 @@ class TotalCourses extends StatelessWidget {
                 imagePosition: Alignment(0, 0),
               ),
             ),
-              Padding(
+            Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: GradientCardWithImage(
                 imagePath: 'assets/icons/community.png',

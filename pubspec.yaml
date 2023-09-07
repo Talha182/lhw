@@ -54,3 +54,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+
+  fonts:
+    - family: UrduType
+      fonts:
+        - asset: assets/fonts/Urdu.ttf

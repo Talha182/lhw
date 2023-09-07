@@ -45,8 +45,9 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.only(left: 16.0),
                         child: Text(
                           "ڈیش بورڈ",
-                          style: GoogleFonts.abhayaLibre(
-                            fontSize: 18,
+                          style: TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 20,
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
                           ),
@@ -95,8 +96,10 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Text(
                       'میرے کورسز',
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 10,
@@ -130,8 +133,9 @@ class _HomePageState extends State<HomePage> {
                                     Text(
                                       'مکمل کورس',
                                       style: TextStyle(
+                                          fontFamily: 'UrduType',
                                           color: Color(0xff7A7D84),
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w600),
                                     )
                                   ],
@@ -173,8 +177,9 @@ class _HomePageState extends State<HomePage> {
                                     Text(
                                       'باقی کورس',
                                       style: TextStyle(
+                                          fontFamily: 'UrduType',
                                           color: Color(0xff7A7D84),
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w600),
                                     )
                                   ],
@@ -218,6 +223,7 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "جاری کورس",
                                     style: TextStyle(
+                                        fontFamily: 'UrduType',
                                         fontSize: 17,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -231,6 +237,8 @@ class _HomePageState extends State<HomePage> {
                                         Text(
                                           "کورس پر جائیں۔",
                                           style: TextStyle(
+                                              fontFamily: 'UrduType',
+                                              fontSize: 15,
                                               color: Color(0xffFE8BD1),
                                               fontWeight: FontWeight.w600),
                                         ),
@@ -243,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                                           color: Color(
                                             0xffFE8BD1,
                                           ),
-                                          size: 15,
+                                          size: 14,
                                         )
                                       ],
                                     ),
@@ -276,11 +284,12 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         'خاندانی منصوبہ بندی',
                                         style: TextStyle(
-                                            fontSize: 16,
+                                            fontFamily: 'UrduType',
+                                            fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                             letterSpacing: 0.01),
                                       ),
-                                      SizedBox(height: 10),
+                                      SizedBox(height: 5),
                                       Row(
                                         children: <Widget>[
                                           Image.asset("assets/icons/book.png"),
@@ -290,7 +299,8 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             '24 ماڈیولز',
                                             style: TextStyle(
-                                                fontSize: 12,
+                                                fontFamily: 'UrduType',
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                                 letterSpacing: 0.01),
                                           ),
@@ -308,15 +318,17 @@ class _HomePageState extends State<HomePage> {
                                           SizedBox(
                                             width: 6,
                                           ),
-                                          Image.asset("assets/icons/person_card.png"),
+                                          Image.asset(
+                                              "assets/icons/person_card.png"),
                                           SizedBox(
                                             width: 6,
                                           ),
                                           Text("12 کوئز",
                                               style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  letterSpacing: 0.01))
+                                                fontFamily: 'UrduType',
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                              ))
                                         ],
                                       ),
                                       SizedBox(height: 25),
@@ -325,16 +337,18 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             'پیش رفت',
                                             style: TextStyle(
+                                                fontFamily: 'UrduType',
                                                 color: Color(0xff7A7D84),
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           SizedBox(
-                                            width: 80,
+                                            width: 100,
                                           ),
                                           Text(
                                             '${(0.6 * 100).toInt()}%', // The percentage value
                                             style: TextStyle(
-                                                fontSize: 12,
+                                                fontFamily: 'UrduType',
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                         ],
@@ -372,13 +386,16 @@ class _HomePageState extends State<HomePage> {
                                             width: 45,
                                             height: 45,
                                             gradient: LinearGradient(
-                                              colors: [Color(0xffF4D6A9), Color(0xffEAAF58)],
+                                              colors: [
+                                                Color(0xffF4D6A9),
+                                                Color(0xffEAAF58)
+                                              ],
                                               begin: Alignment.topLeft,
                                               end: Alignment.bottomRight,
                                             ),
-                                            imagePath: 'assets/icons/person_card.png', // Replace with your image path
+                                            imagePath:
+                                                'assets/icons/person_card.png', // Replace with your image path
                                           ),
-
 
                                           SizedBox(
                                             width: 20,
@@ -393,15 +410,20 @@ class _HomePageState extends State<HomePage> {
                                               children: [
                                                 Text("کوئز 1 زیر التوا ہے۔ ",
                                                     style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontFamily: 'UrduType',
                                                         fontWeight:
-                                                            FontWeight.bold)),
+                                                            FontWeight.w500)),
                                                 RichText(
                                                   text: TextSpan(
                                                     children: <TextSpan>[
                                                       TextSpan(
                                                         text: "آخری تاریخ: ",
                                                         style: TextStyle(
-                                                          fontSize: 13,
+                                                          fontFamily:
+                                                              'UrduType',
+
+                                                          fontSize: 14,
                                                           color: Colors
                                                               .grey, // Set the color to gray
                                                         ),
@@ -409,7 +431,10 @@ class _HomePageState extends State<HomePage> {
                                                       TextSpan(
                                                         text: "25 جون 2023",
                                                         style: TextStyle(
-                                                          fontSize: 13,
+                                                          fontFamily:
+                                                              'UrduType',
+
+                                                          fontSize: 14,
                                                           color: Colors
                                                               .black, // Set the color to black
                                                         ),
@@ -457,11 +482,15 @@ class _HomePageState extends State<HomePage> {
                                             width: 45,
                                             height: 45,
                                             gradient: LinearGradient(
-                                              colors: [Color(0xffF4B9E1), Color(0xffED8DCE)],
+                                              colors: [
+                                                Color(0xffF4B9E1),
+                                                Color(0xffED8DCE)
+                                              ],
                                               begin: Alignment.topLeft,
                                               end: Alignment.bottomRight,
                                             ),
-                                            imagePath: 'assets/icons/person_card.png', // Replace with your image path
+                                            imagePath:
+                                                'assets/icons/person_card.png', // Replace with your image path
                                           ),
 
                                           SizedBox(
@@ -477,8 +506,10 @@ class _HomePageState extends State<HomePage> {
                                               children: [
                                                 Text("ماڈیولز مکمل ہو گئے۔ ",
                                                     style: TextStyle(
+                                                        fontFamily: 'UrduType',
+                                                        fontSize: 18,
                                                         fontWeight:
-                                                            FontWeight.bold)),
+                                                            FontWeight.w500)),
                                                 Text("12"),
                                               ],
                                             ),
@@ -524,7 +555,8 @@ class _HomePageState extends State<HomePage> {
                                     Text(
                                       "مہارت کا درجہ",
                                       style: TextStyle(
-                                          fontSize: 17,
+                                          fontFamily: 'UrduType',
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w600),
                                     ),
                                     DropdownButtonHideUnderline(
@@ -536,6 +568,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Text(
                                                 'اس ہفتے',
                                                 style: TextStyle(
+                                                  fontFamily: 'UrduType',
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -550,8 +583,9 @@ class _HomePageState extends State<HomePage> {
                                                   value: item,
                                                   child: Text(
                                                     item,
-                                                    style: const TextStyle(
-                                                      fontSize: 14,
+                                                    style: TextStyle(
+                                                      fontFamily: 'UrduType',
+                                                      fontSize: 16,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                     ),
@@ -615,20 +649,26 @@ class _HomePageState extends State<HomePage> {
                                 height: 50,
                               ),
                               Center(child: CircularProgressWithInnerCircle()),
-
                               Padding(
-                                padding: EdgeInsets.only(left: 34,top: 30,),
+                                padding: EdgeInsets.only(
+                                  left: 34,
+                                  top: 30,
+                                ),
                                 child: Row(
                                   children: [
                                     GradientCircle(
                                       width: 45,
                                       height: 45,
                                       gradient: LinearGradient(
-                                        colors: [Color(0xffD6C2FF), Color(0xff9B6BFF)],
+                                        colors: [
+                                          Color(0xffD6C2FF),
+                                          Color(0xff9B6BFF)
+                                        ],
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
                                       ),
-                                      imagePath: 'assets/icons/dots.png', // Replace with your image path
+                                      imagePath:
+                                          'assets/icons/dots.png', // Replace with your image path
                                     ),
                                     SizedBox(
                                       width: 10,
@@ -646,11 +686,15 @@ class _HomePageState extends State<HomePage> {
                                       width: 45,
                                       height: 45,
                                       gradient: LinearGradient(
-                                        colors: [Color(0xffF4D6A9), Color(0xffEAAF58)],
+                                        colors: [
+                                          Color(0xffF4D6A9),
+                                          Color(0xffEAAF58)
+                                        ],
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
                                       ),
-                                      imagePath: 'assets/icons/badge.png', // Replace with your image path
+                                      imagePath:
+                                          'assets/icons/badge.png', // Replace with your image path
                                     ),
                                     SizedBox(
                                       width: 10,
@@ -662,21 +706,33 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 8,),
+                              SizedBox(
+                                height: 8,
+                              ),
                               Row(
                                 children: [
-                                  SizedBox(width: 25,),
-                                  Text('سکل پوائنٹس',style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xff747474),
-                                    fontWeight: FontWeight.w600
-                                  ),),
-                                  SizedBox(width: 135,),
-                                  Text('سکل بیج کا انعام',style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xff747474),
-                                    fontWeight: FontWeight.w600
-                                  ),)
+                                  SizedBox(
+                                    width: 35,
+                                  ),
+                                  Text(
+                                    'سکل پوائنٹس',
+                                    style: TextStyle(
+                                        fontFamily: 'UrduType',
+                                        fontSize: 14,
+                                        color: Color(0xff747474),
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                  ),
+                                  Text(
+                                    'سکل بیج کا انعام',
+                                    style: TextStyle(
+                                        fontFamily: 'UrduType',
+                                        fontSize: 14,
+                                        color: Color(0xff747474),
+                                        fontWeight: FontWeight.w600),
+                                  )
                                 ],
                               )
                             ],
@@ -684,7 +740,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Material(
                       elevation: 1, // Set your desired elevation value here
                       borderRadius: BorderRadius.circular(10),
@@ -705,7 +763,8 @@ class _HomePageState extends State<HomePage> {
                                     Text(
                                       "سرگرمی",
                                       style: TextStyle(
-                                          fontSize: 17,
+                                          fontFamily: 'UrduType',
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w600),
                                     ),
                                     DropdownButtonHideUnderline(
@@ -717,6 +776,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Text(
                                                 'اس ہفتے',
                                                 style: TextStyle(
+                                                  fontFamily: 'UrduType',
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -732,6 +792,7 @@ class _HomePageState extends State<HomePage> {
                                                   child: Text(
                                                     item,
                                                     style: const TextStyle(
+                                                      fontFamily: 'UrduType',
                                                       fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -796,8 +857,6 @@ class _HomePageState extends State<HomePage> {
                                 height: 30,
                               ),
                               LineChartSample2()
-
-
                             ],
                           ),
                         ),

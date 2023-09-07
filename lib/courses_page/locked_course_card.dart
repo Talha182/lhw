@@ -66,7 +66,8 @@ class LockedCourse extends StatelessWidget {
                   padding: EdgeInsets.only(left: 15),
                   child: Text(
                     midText,
-                    style: TextStyle(
+                    style: TextStyle(                          fontFamily: 'UrduType',
+
                       letterSpacing: 0.01,
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
@@ -90,7 +91,8 @@ class LockedCourse extends StatelessWidget {
                       ),
                       Text(
                         '24 ماڈیولز',
-                        style: TextStyle(
+                        style: TextStyle(                          fontFamily: 'UrduType',
+
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),
@@ -118,7 +120,8 @@ class LockedCourse extends StatelessWidget {
                       ),
                       Text(
                         '12 کوئز',
-                        style: TextStyle(
+                        style: TextStyle(                          fontFamily: 'UrduType',
+
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),

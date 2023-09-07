@@ -46,22 +46,23 @@ class GradientCardWithProgress extends StatelessWidget {
                         '${(progressValue * 100).toStringAsFixed(0)}%',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
                         ),
                       ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Text(
                   'بعدازپیدائشکید یکھ بھال',
                   style: TextStyle(
-                    letterSpacing: 0.01,
+                    fontFamily: 'UrduType',
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -79,6 +80,8 @@ class GradientCardWithProgress extends StatelessWidget {
                     Text(
                       '24 ماڈیولز',
                       style: TextStyle(
+                        fontFamily: 'UrduType',
+                        fontSize: 15,
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
@@ -107,6 +110,8 @@ class GradientCardWithProgress extends StatelessWidget {
                     Text(
                       '12 کوئز',
                       style: TextStyle(
+                        fontFamily: 'UrduType',
+                        fontSize: 15,
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
@@ -114,7 +119,7 @@ class GradientCardWithProgress extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 8,
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -129,8 +134,9 @@ class GradientCardWithProgress extends StatelessWidget {
                   child: Text(
                     'جاری رہے',
                     style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
+                      fontFamily: 'UrduType',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
                       color: Colors.black,
                     ),
                   ),

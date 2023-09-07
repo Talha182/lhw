@@ -27,7 +27,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
     HomePage(),
   ];
 
-  final textList = ['Home', 'Courses', 'Groups', 'Report'];
+  final textList = ['گھر', 'کورسز', 'گروپس', 'رپورٹ'];
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +79,11 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
         child: showSheet
             ? Icon(Icons.close, color: Colors.white)
             : Image.asset(
-          'assets/icons/floatingaction.png',
-          width: 24,
-          height: 24,
-          color: Colors.white,
-        ),
+                'assets/icons/floatingaction.png',
+                width: 24,
+                height: 24,
+                color: Colors.white,
+              ),
         onPressed: () {
           setState(() {
             showSheet = !showSheet;

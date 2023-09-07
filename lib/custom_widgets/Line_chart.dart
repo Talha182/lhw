@@ -59,6 +59,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
+        fontFamily: 'UrduType',
+
       fontWeight: FontWeight.bold,
       fontSize: 14,
       color: Color(0xff685F78)
@@ -100,6 +102,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
+      fontFamily: 'UrduType',
+
       fontWeight: FontWeight.bold,
       color: Color(0xff685F78),
       fontSize: 13,

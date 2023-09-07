@@ -54,10 +54,10 @@ class GradientCardWithImage extends StatelessWidget {
                   child: Text(
                     midText,
                     style: TextStyle(
-                      letterSpacing: 0.01,
+                      fontFamily: 'UrduType',
                       color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -78,6 +78,8 @@ class GradientCardWithImage extends StatelessWidget {
                       Text(
                         '24 ماڈیولز',
                         style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),
@@ -106,6 +108,8 @@ class GradientCardWithImage extends StatelessWidget {
                       Text(
                         '12 کوئز',
                         style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),
@@ -146,12 +150,15 @@ class ArrowContainer extends StatelessWidget {
           painter: ArrowPainter(),
         ),
         Positioned(
-          left: 5,
-          top: 10,
+          left: 10,
+          top: 5,
           child: Text(
             text, // Modified this line to display the text
             style: TextStyle(
-                color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500),
+                fontFamily: 'UrduType',
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w500),
           ),
         ),
       ],

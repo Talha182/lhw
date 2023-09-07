@@ -13,7 +13,8 @@ class CompletedCourses extends StatelessWidget {
           children: <Widget>[
             Text(
               "جاری ہے۔",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: TextStyle(                          fontFamily: 'UrduType',
+                  fontSize: 20, fontWeight: FontWeight.w600),
             ),
             SizedBox(
               height: 15,

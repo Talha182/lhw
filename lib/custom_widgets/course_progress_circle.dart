@@ -22,7 +22,8 @@ class ProgressCircle extends StatelessWidget {
             text, // Use the text passed as a constructor parameter
             textAlign: TextAlign.center,
             style:
-                GoogleFonts.raleway(fontWeight: FontWeight.w500, fontSize: 13),
+
+                TextStyle(fontFamily: 'UrduType',fontWeight: FontWeight.w500, fontSize: 13),
           ),
         ],
       ),
