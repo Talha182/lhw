@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lhw/courses_page/tab_bar.dart';
 import 'package:lhw/custom_widgets/custom_navbar.dart';
+import 'package:lhw/navy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'home_page/home_page.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: CoursesPage(),
+      home: Custom_NavBar(),
       debugShowCheckedModeBanner: false,
     );
   }
