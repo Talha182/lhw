@@ -1,7 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:lhw/courses_page/courses_page.dart';
 import 'package:lhw/home_page/home_page.dart';
+
+import '../courses_page/tab_bar.dart';
 
 class Navbar extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
 
   final List<Widget> pages = [
     HomePage(),
-    CoursesPage(),
+    HomePage(),
     HomePage(),
     HomePage(),
   ];

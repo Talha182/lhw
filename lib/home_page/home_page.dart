@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(
-                70.0), // Set to 80.0, change thisa to your desired height
+                70.0), // Set to 80.0, change this to your desired height
             child: AppBar(
               elevation: 1.0,
               backgroundColor: Colors.white,
@@ -308,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                                           SizedBox(
                                             width: 6,
                                           ),
-                                          Image.asset("assets/icons/book.png"),
+                                          Image.asset("assets/icons/person_card.png"),
                                           SizedBox(
                                             width: 6,
                                           ),
