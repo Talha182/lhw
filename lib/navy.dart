@@ -11,9 +11,6 @@ class Custom_NavBar extends StatefulWidget {
 
 class _Custom_NavBarState extends State<Custom_NavBar> {
   int _currentIndex = 0;
-  bool showSheet =
-      false; // Add this line to manage the overlay sheet visibility
-  final PageController _pageController = PageController();
 
   final List<Map<String, String>> iconsData = [
     {'path': 'assets/icons/home.png', 'label': 'گھر'},
@@ -39,59 +36,15 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: Stack(
-        children: [
-          Center(child: pages[_currentIndex]),
-          AnimatedOpacity(
-            duration: Duration(milliseconds: 300),
-            opacity: showSheet ? 0.5 : 0.0,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  showSheet = false;
-                });
-              },
-              child: Container(
-                color: Colors.black,
-              ),
-            ),
-          ),
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 300),
-            bottom: showSheet ? 28 : -300,
-            left: 0,
-            right: 0,
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 350,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: Center(child: Text('Your Content Here')),
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: Center(child: pages[_currentIndex]),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xffFE8BD1),
-        onPressed: () {
-          setState(() {
-            showSheet = !showSheet;
-          });
-        },
-        child: showSheet
-            ? Icon(Icons.close, color: Colors.white)
-            : Image.asset(
-                'assets/icons/floatingaction.png',
-                height: 40,
-                width: 40,
-              ),
+        onPressed: () {},
+        child: Image.asset(
+          'assets/icons/floatingaction.png',
+          height: 40,
+          width: 40,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: Material(
