@@ -11,6 +11,8 @@ class Custom_NavBar extends StatefulWidget {
 
 class _Custom_NavBarState extends State<Custom_NavBar> {
   int _currentIndex = 0;
+  PageController _pageController = PageController();
+
 
   final List<Map<String, String>> iconsData = [
     {'path': 'assets/icons/home.png', 'label': 'گھر'},
@@ -27,16 +29,29 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   ];
 
   void onTabTapped(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     setState(() {
       _currentIndex = index;
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: Center(child: pages[_currentIndex]),
+      body: PageView(
+        controller: _pageController,
+        children: pages,
+        onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xffFE8BD1),
         onPressed: () {},
