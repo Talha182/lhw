@@ -7,6 +7,9 @@ class LessonOption21 extends StatefulWidget {
 }
 
 class _LessonOption21State extends State<LessonOption21> {
+  bool isSelected = false;
+  bool isAnswered = false;
+
   int _current = 0;
   int _totalSteps = 100;
   int questionIndex = 0;
@@ -16,32 +19,41 @@ class _LessonOption21State extends State<LessonOption21> {
       question: 'What is the capital of England?',
       options: ['Moscow', 'London', 'California'],
       correctAnswer: 'London',
+      correctExplanation: 'London is the capital city of England and the United Kingdom.',
+      incorrectExplanation: 'The correct answer is London, which is the capital city of England and the United Kingdom.',
     ),
     Question(
-      question: 'What is the currency of Japan?',
-      options: ['Yen', 'Dollar', 'Euro'],
-      correctAnswer: 'Yen',
+        question: 'What is the currency of Japan?',
+        options: ['Yen', 'Dollar', 'Euro'],
+        correctAnswer: 'Yen',
+        correctExplanation: 'The yen is the official currency of Japan and is used throughout the country.',
+        incorrectExplanation: "The correct answer is Yen, which is the currency of the Japan"
     ),
+    // You can add more questions here, in the same format.
   ];
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
 
+// Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
-    if (selectedAnswer == questions[questionIndex].correctAnswer) {
-      setState(() {
-        optionColors[index] = Colors.green;
-      });
-    } else {
-      setState(() {
-        optionColors[index] = Colors.red;
-      });
-    }
+    if (isAnswered) return; // Skip the method if the question is already answered
+    setState(() {
+      this.selectedAnswer = selectedAnswer;  // Add this line
+      isAnswered = true; // Set to true when an option is selected
+      isSelected = true;
+      if (selectedAnswer == questions[questionIndex].correctAnswer) {
+        optionColors[index] = Colors.green[100]!;
+      } else {
+        optionColors[index] = Colors.red[100]!;
+      }
+    });
 
     Future.delayed(Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
           optionColors = [Colors.white, Colors.white, Colors.white];
+          isAnswered = false; // Reset for the next question
         });
       }
     });
@@ -137,7 +149,7 @@ class _LessonOption21State extends State<LessonOption21> {
                 Column(
                   children: List.generate(
                     questions[questionIndex].options.length,
-                        (index) => Padding(
+                    (index) => Padding(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       child: QuizCard(
                         text: questions[questionIndex].options[index],
@@ -145,19 +157,70 @@ class _LessonOption21State extends State<LessonOption21> {
                         color: optionColors[index],
                         ontap: () => updateQuestion(
                             questions[questionIndex].options[index], index),
+                        isCorrect: selectedAnswer ==
+                            questions[questionIndex].correctAnswer,
+                        isSelected: isSelected,
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-            Column(
-              children: [
-                Container(
+              Column(
+                children: [
+                  isAnswered // Check if the question is answered
+                      ? Container(
+                    padding: EdgeInsets.all(20),
+                    color: selectedAnswer == questions[questionIndex].correctAnswer
+                        ? Colors.green[100] // Light green if correct
+                        : Colors.red[100],  // Light red if incorrect
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: TextStyle(fontSize: 16),
+                        children: [
+                        TextSpan(
+                          text: selectedAnswer == questions[questionIndex].correctAnswer
+                              ? "Correct. "
+                              : "Incorrect. ",
+                          style: TextStyle(
+                            color: selectedAnswer == questions[questionIndex].correctAnswer
+                                ? Colors.green // Green text if correct
+                                : Colors.red,  // Red text if incorrect
+                          ),
+                        ),
+                        TextSpan(
+                          text: selectedAnswer == questions[questionIndex].correctAnswer
+                              ? questions[questionIndex].correctExplanation
+                              : questions[questionIndex].incorrectExplanation,
+                          style: TextStyle(
+                            color: selectedAnswer == questions[questionIndex].correctAnswer
+                                ? Colors.black // Black text if correct
+                                : Colors.red,  // Red text if incorrect
+                          ),
+                        ),
+                        if (selectedAnswer != questions[questionIndex].correctAnswer)
+                          TextSpan(
+                            text: "\nCorrect: ",
+                            style: TextStyle(
+                              color: Colors.black, // Black text for the correct answer prefix
+                            ),
+                          ),
+                        if (selectedAnswer != questions[questionIndex].correctAnswer)
+                          TextSpan(
+                            text: questions[questionIndex].correctExplanation, // Correct explanation
+                            style: TextStyle(
+                              color: Colors.black, // Black text for the correct explanation
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                )
+                    : Container(
                   width: double.infinity,
                   height: 1,
-                  decoration:
-                      BoxDecoration(color: Colors.black87.withOpacity(0.1)),
+                  decoration: BoxDecoration(color: Colors.black87.withOpacity(0.1)),
                 ),
                 SizedBox(
                   height: 10,
@@ -193,12 +256,15 @@ class _LessonOption21State extends State<LessonOption21> {
     );
   }
 }
+
 class QuizCard extends StatelessWidget {
   final String text;
   final String imagePath;
   final Function ontap;
   final Color color;
   final bool isCorrect;
+  final bool isSelected; // Add this
+  final bool isAnswered; // Add this
 
   const QuizCard({
     Key? key,
@@ -207,51 +273,55 @@ class QuizCard extends StatelessWidget {
     required this.ontap,
     this.color = Colors.white,
     this.isCorrect = false,
+    this.isSelected = false,
+    this.isAnswered = false, // Add this
+// Add this
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => ontap(),
-      child: CustomPaint(
-        painter: ThickBottomBorderPainter(
-          color: isCorrect ? Colors.green : (color == Colors.red ? Colors.red : Colors.grey),
-        ),
-        child: Container(
-          width: 380,
-          height: 120,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: color,
+      onTap: isAnswered
+          ? null
+          : () => ontap(), // Disable onTap if the question is answered
+
+      child: Container(
+        width: 380,
+        height: 120,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black87.withOpacity(0.1)
           ),
-          child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imagePath),
-                      fit: BoxFit.contain,
-                    ),
+          borderRadius: BorderRadius.circular(10),
+          color: color,
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    textAlign: TextAlign.justify,
-                    text,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color(0xff7A7D84),
-                      fontFamily: 'UrduType',
-                    ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  textAlign: TextAlign.justify,
+                  text,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xff7A7D84),
+                    fontFamily: 'UrduType',
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -259,53 +329,18 @@ class QuizCard extends StatelessWidget {
   }
 }
 
-class ThickBottomBorderPainter extends CustomPainter {
-  final Color color;
-
-  ThickBottomBorderPainter({required this.color});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final bottomBorderPaint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 10.0;
-
-    final bottomPath = Path()
-      ..moveTo(0, size.height)
-      ..lineTo(size.width, size.height);
-
-    canvas.drawPath(bottomPath, bottomBorderPaint);
-
-    final sideBorderPaint = Paint()
-      ..color = Colors.grey
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.3;
-
-    final sidePath = Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width, 0)
-      ..lineTo(size.width, size.height)
-      ..moveTo(0, 0)
-      ..lineTo(0, size.height);
-
-    canvas.drawPath(sidePath, sideBorderPaint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
-}
-
 class Question {
   final String question;
   final List<String> options;
   final String correctAnswer;
+  final String correctExplanation;  // Correct explanation
+  final String incorrectExplanation;  // Incorrect explanation
 
   Question({
     required this.question,
     required this.options,
     required this.correctAnswer,
+    required this.correctExplanation,
+    required this.incorrectExplanation,
   });
 }
