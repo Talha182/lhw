@@ -16,19 +16,43 @@ class _LessonOption21State extends State<LessonOption21> {
   String selectedAnswer = '';
   final List<Question> questions = [
     Question(
-      question: 'What is the capital of England?',
-      options: ['Moscow', 'London', 'California'],
-      correctAnswer: 'London',
-      correctExplanation: 'London is the capital city of England and the United Kingdom.',
-      incorrectExplanation: 'The correct answer is London, which is the capital city of England and the United Kingdom.',
+      question:
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+      options: [
+        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
+        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
+      ],
+      correctAnswer:
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+      correctExplanation:
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+      incorrectExplanation:
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
-        question: 'What is the currency of Japan?',
-        options: ['Yen', 'Dollar', 'Euro'],
-        correctAnswer: 'Yen',
-        correctExplanation: 'The yen is the official currency of Japan and is used throughout the country.',
-        incorrectExplanation: "The correct answer is Yen, which is the currency of the Japan"
+      question:
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+      options: [
+        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
+        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
+      ],
+      correctAnswer:
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+      correctExplanation:
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+      incorrectExplanation:
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
+    // Question(
+    //     question: 'What is the currency of Japan?',
+    //     options: ['Yen', 'Dollar', 'Euro'],
+    //     correctAnswer: 'Yen',
+    //     correctExplanation:
+    //         'The yen is the official currency of Japan and is used throughout the country.',
+    //     incorrectExplanation:
+    //         "The correct answer is Yen, which is the currency of the Japan"),
     // You can add more questions here, in the same format.
   ];
 
@@ -36,9 +60,10 @@ class _LessonOption21State extends State<LessonOption21> {
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
-    if (isAnswered) return; // Skip the method if the question is already answered
+    if (isAnswered)
+      return; // Skip the method if the question is already answered
     setState(() {
-      this.selectedAnswer = selectedAnswer;  // Add this line
+      this.selectedAnswer = selectedAnswer; // Add this line
       isAnswered = true; // Set to true when an option is selected
       isSelected = true;
       if (selectedAnswer == questions[questionIndex].correctAnswer) {
@@ -52,6 +77,7 @@ class _LessonOption21State extends State<LessonOption21> {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
+          _current = ((questionIndex / questions.length) * 1).toInt();
           optionColors = [Colors.white, Colors.white, Colors.white];
           isAnswered = false; // Reset for the next question
         });
@@ -61,6 +87,8 @@ class _LessonOption21State extends State<LessonOption21> {
 
   @override
   Widget build(BuildContext context) {
+    _totalSteps = questions.length; // Add this line
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(0),
@@ -69,167 +97,213 @@ class _LessonOption21State extends State<LessonOption21> {
           elevation: 0,
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
-            colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
-              Colors.transparent,
-            ],
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment(0, -0.2),
+                colors: [
+                  Color(0xff80B8FB).withOpacity(0.3),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 30, left: 20, right: 10),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.close,
-                          size: 30,
-                        ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 30, left: 20, right: 10),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.close,
+                              size: 30,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Container(
+                            width: 340,
+                            child: TweenAnimationBuilder(
+                              tween: Tween<double>(
+                                  begin: 0,
+                                  end: ((_current + 1) / 5 * _totalSteps)),
+                              duration: Duration(milliseconds: 400),
+                              builder: (BuildContext context, double value,
+                                  Widget? child) {
+                                return StepProgressIndicator(
+                                  totalSteps: _totalSteps,
+                                  currentStep: value.ceil(),
+                                  size: 8,
+                                  padding: 0,
+                                  selectedColor: Color(0xffFE8BD1),
+                                  unselectedColor: Colors.white,
+                                  roundedEdges: Radius.circular(10),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        width: 340,
-                        child: TweenAnimationBuilder(
-                          tween: Tween<double>(
-                              begin: 0,
-                              end: ((_current + 1) / 5 * _totalSteps)),
-                          duration: Duration(milliseconds: 400),
-                          builder: (BuildContext context, double value,
-                              Widget? child) {
-                            return StepProgressIndicator(
-                              totalSteps: _totalSteps,
-                              currentStep: value.ceil(),
-                              size: 8,
-                              padding: 0,
-                              selectedColor: Color(0xffFE8BD1),
-                              unselectedColor: Colors.white,
-                              roundedEdges: Radius.circular(10),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Image.asset(
-                      'assets/icons/cloud.png',
-                      width: 45,
-                      height: 45,
-                      fit: BoxFit.contain,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    questions[questionIndex].question,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
+                    Padding(
+                      padding: EdgeInsets.only(right: 30),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Image.asset(
+                          'assets/icons/cloud.png',
+                          width: 45,
+                          height: 45,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        questions[questionIndex].question,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontFamily: "UrduType", fontSize: 22),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: List.generate(
+                        questions[questionIndex].options.length,
+                        (index) => Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: QuizCard(
+                            text: questions[questionIndex].options[index],
+                            imagePath: 'assets/icons/quiz${index + 1}.png',
+                            color: optionColors[index],
+                            ontap: () => updateQuestion(
+                                questions[questionIndex].options[index], index),
+                            isCorrect: selectedAnswer ==
+                                questions[questionIndex].correctAnswer,
+                            isSelected: isSelected,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Column(
-                  children: List.generate(
-                    questions[questionIndex].options.length,
-                    (index) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      child: QuizCard(
-                        text: questions[questionIndex].options[index],
-                        imagePath: 'assets/icons/quiz${index + 1}.png',
-                        color: optionColors[index],
-                        ontap: () => updateQuestion(
-                            questions[questionIndex].options[index], index),
-                        isCorrect: selectedAnswer ==
-                            questions[questionIndex].correctAnswer,
-                        isSelected: isSelected,
-                      ),
-                    ),
-                  ),
+                  children: [
+                    isAnswered // Check if the question is answered
+                        ? Container(
+                            height: 160,
+                            width: double.infinity,
+                            color: selectedAnswer ==
+                                    questions[questionIndex].correctAnswer
+                                ? Colors.green[100] // Light green if correct
+                                : Colors.red[100], // Light red if incorrect
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 10,left: 15,right: 15),
+                              child: RichText(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                      fontFamily: "UrduType", fontSize: 18),
+                                  children: [
+                                    TextSpan(
+                                      text: selectedAnswer ==
+                                              questions[questionIndex]
+                                                  .correctAnswer
+                                          ? "درست۔ "
+                                          : "غلط۔ ",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: "UrduType",
+                                        color: selectedAnswer ==
+                                                questions[questionIndex]
+                                                    .correctAnswer
+                                            ? Colors
+                                                .green // Green text if correct
+                                            : Colors
+                                                .red, // Red text if incorrect
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: selectedAnswer ==
+                                              questions[questionIndex]
+                                                  .correctAnswer
+                                          ? questions[questionIndex]
+                                              .correctExplanation
+                                          : questions[questionIndex]
+                                              .incorrectExplanation,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: "UrduType",
+                                        color: selectedAnswer ==
+                                                questions[questionIndex]
+                                                    .correctAnswer
+                                            ? Colors
+                                                .black // Black text if correct
+                                            : Colors
+                                                .red, // Red text if incorrect
+                                      ),
+                                    ),
+                                    if (selectedAnswer !=
+                                        questions[questionIndex].correctAnswer)
+                                      TextSpan(
+                                        text: "\nدرست۔",
+                                        style: TextStyle(
+                                          fontFamily: "UrduType",
+                                          fontSize: 18,
+                                          color: Colors
+                                              .black, // Black text for the correct answer prefix
+                                        ),
+                                      ),
+                                    if (selectedAnswer !=
+                                        questions[questionIndex].correctAnswer)
+                                      TextSpan(
+                                        text: questions[questionIndex]
+                                            .correctExplanation, // Correct explanation
+                                        style: TextStyle(
+                                          fontFamily: "UrduType",
+                                          fontSize: 18,
+                                          color: Colors
+                                              .black, // Black text for the correct explanation
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
+                        : Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                height: 1,
+                                decoration: BoxDecoration(
+                                    color: Colors.black87.withOpacity(0.1)),
+                              ),
+                            ],
+                          ),
+                  ],
                 ),
               ],
             ),
-              Column(
-                children: [
-                  isAnswered // Check if the question is answered
-                      ? Container(
-                    padding: EdgeInsets.all(20),
-                    color: selectedAnswer == questions[questionIndex].correctAnswer
-                        ? Colors.green[100] // Light green if correct
-                        : Colors.red[100],  // Light red if incorrect
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        style: TextStyle(fontSize: 16),
-                        children: [
-                        TextSpan(
-                          text: selectedAnswer == questions[questionIndex].correctAnswer
-                              ? "Correct. "
-                              : "Incorrect. ",
-                          style: TextStyle(
-                            color: selectedAnswer == questions[questionIndex].correctAnswer
-                                ? Colors.green // Green text if correct
-                                : Colors.red,  // Red text if incorrect
-                          ),
-                        ),
-                        TextSpan(
-                          text: selectedAnswer == questions[questionIndex].correctAnswer
-                              ? questions[questionIndex].correctExplanation
-                              : questions[questionIndex].incorrectExplanation,
-                          style: TextStyle(
-                            color: selectedAnswer == questions[questionIndex].correctAnswer
-                                ? Colors.black // Black text if correct
-                                : Colors.red,  // Red text if incorrect
-                          ),
-                        ),
-                        if (selectedAnswer != questions[questionIndex].correctAnswer)
-                          TextSpan(
-                            text: "\nCorrect: ",
-                            style: TextStyle(
-                              color: Colors.black, // Black text for the correct answer prefix
-                            ),
-                          ),
-                        if (selectedAnswer != questions[questionIndex].correctAnswer)
-                          TextSpan(
-                            text: questions[questionIndex].correctExplanation, // Correct explanation
-                            style: TextStyle(
-                              color: Colors.black, // Black text for the correct explanation
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                )
-                    : Container(
-                  width: double.infinity,
-                  height: 1,
-                  decoration: BoxDecoration(color: Colors.black87.withOpacity(0.1)),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 30),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Padding(
+                  padding: EdgeInsets.only(bottom: 15),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      side: BorderSide(color: Colors.white, width: 2),
                       backgroundColor: Color(0xffFE8BD1),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -246,12 +320,10 @@ class _LessonOption21State extends State<LessonOption21> {
                         color: Colors.white,
                       ),
                     ),
-                  ),
-                ),
-              ],
+                  )),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -289,9 +361,7 @@ class QuizCard extends StatelessWidget {
         width: 380,
         height: 120,
         decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black87.withOpacity(0.1)
-          ),
+          border: Border.all(color: Colors.black87.withOpacity(0.1)),
           borderRadius: BorderRadius.circular(10),
           color: color,
         ),
@@ -333,8 +403,8 @@ class Question {
   final String question;
   final List<String> options;
   final String correctAnswer;
-  final String correctExplanation;  // Correct explanation
-  final String incorrectExplanation;  // Incorrect explanation
+  final String correctExplanation; // Correct explanation
+  final String incorrectExplanation; // Incorrect explanation
 
   Question({
     required this.question,
