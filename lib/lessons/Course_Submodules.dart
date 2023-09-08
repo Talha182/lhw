@@ -175,67 +175,92 @@ class CourseSubModules extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ...columnPadded([
                   Submodule_card(
                     imagePath: 'assets/icons/check.png',
                     heading: 'لیڈی ہیلتھ ورکر کے فرائض',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'بنیادی تعریف',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'پاکستان میں غذائیت کی صورتحال ',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/person_card.png',
                     heading: 'باب کوئز',
-                    duration: '3 سوالات',
+                    duration: '3 سوالات',onTap: (){}
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 1,
+                    color: Colors.black87.withOpacity(0.1),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'نوعمر لڑکیوں، حاملہ اور دودھ پلانے والی ماؤں کی غذائی ضروریات',
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+                    ),
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'لیڈی ہیلتھ ورکر کے فرائض',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'بنیادی تعریف',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'پاکستان میں غذائیت کی صورتحال ',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video2.png',
                     heading: 'باب کوئز',
-                    duration: '3 سوالات',
+                    duration: '3 سوالات',onTap: (){}
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 1,
+                    color: Colors.black87.withOpacity(0.1),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'حمل کی غذائی ضروریات',
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+                    ),
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'لیڈی ہیلتھ ورکر کے فرائض',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'بنیادی تعریف',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/video.png',
                     heading: 'پاکستان میں غذائیت کی صورتحال ',
-                    duration: '3 منٹ 2 سیکنڈ',
+                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
                     imagePath: 'assets/icons/person_card.png',
                     heading: 'باب کوئز',
-                    duration: '3 سوالات',
+                    duration: '3 سوالات', onTap: (){},
                   ),
                 ], 7)
               ],
@@ -251,53 +276,58 @@ class Submodule_card extends StatelessWidget {
   final String imagePath;
   final String heading;
   final String duration;
+  final Function onTap;
 
   //Constructor
   Submodule_card(
-      {required this.imagePath, required this.heading, required this.duration});
+      {required this.imagePath, required this.heading, required this.duration, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 400,
-      height: 70,
-
-      child: Padding(
-        padding: EdgeInsets.only(left: 20),
-        child: Row(
-          children: [
-            Image.asset(
-              imagePath,
-              fit: BoxFit.contain,
-              height: 22,
-              width: 22,
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 5, bottom: 4),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    heading,
-                    style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 15,
-                        color: Color(0xff685F78)),
-                  ),
-                  Text(
-                    duration,
-                    style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 15,
-                        color: Color(0xff929293)),
-                  ),
-                ],
+    return InkWell(
+      onTap: (){
+        onTap;
+      },
+      child: Container(
+        width: 400,
+        height: 70,
+        child: Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: Row(
+            children: [
+              Image.asset(
+                imagePath,
+                fit: BoxFit.contain,
+                height: 22,
+                width: 22,
               ),
-            )
-          ],
+              SizedBox(
+                width: 15,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 5, bottom: 4),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      heading,
+                      style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
+                          color: Color(0xff685F78)),
+                    ),
+                    Text(
+                      duration,
+                      style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
+                          color: Color(0xff929293)),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
