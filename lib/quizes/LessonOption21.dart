@@ -1,6 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption21 extends StatefulWidget {
@@ -11,30 +9,44 @@ class LessonOption21 extends StatefulWidget {
 class _LessonOption21State extends State<LessonOption21> {
   int _current = 0;
   int _totalSteps = 100;
-  int questionIndex = 0; // New line
-  String selectedAnswer = ''; // Existing line
-
-  final List<String> questions = [
-    'What is the capital of England?',
-    'What is the currency of Japan?',
-    'What is the national animal of Australia?'
+  int questionIndex = 0;
+  String selectedAnswer = '';
+  final List<Question> questions = [
+    Question(
+      question: 'What is the capital of England?',
+      options: ['Moscow', 'London', 'California'],
+      correctAnswer: 'London',
+    ),
+    Question(
+      question: 'What is the currency of Japan?',
+      options: ['Yen', 'Dollar', 'Euro'],
+      correctAnswer: 'Yen',
+    ),
   ];
 
-  final List<List<String>> options = [
-    ['Moscow', 'London', 'California'],
-    ['Yen', 'Dollar', 'Euro'],
-    ['Kangaroo', 'Elephant', 'Eagle']
-  ];
+  List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
 
-  void updateQuestion() {
-    if (questionIndex < questions.length - 1) {
+  void updateQuestion(String selectedAnswer, int index) {
+    if (selectedAnswer == questions[questionIndex].correctAnswer) {
       setState(() {
-        questionIndex++;
+        optionColors[index] = Colors.green;
       });
     } else {
-      // Logic to end the quiz or reset it
+      setState(() {
+        optionColors[index] = Colors.red;
+      });
     }
+
+    Future.delayed(Duration(seconds: 2), () {
+      if (questionIndex < questions.length - 1) {
+        setState(() {
+          questionIndex++;
+          optionColors = [Colors.white, Colors.white, Colors.white];
+        });
+      }
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,7 +126,7 @@ class _LessonOption21State extends State<LessonOption21> {
                 Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    'What is the capital of England',
+                    questions[questionIndex].question,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontFamily: "UrduType", fontSize: 22),
                   ),
@@ -123,38 +135,21 @@ class _LessonOption21State extends State<LessonOption21> {
                   height: 20,
                 ),
                 Column(
-                  children: [
-                    ...columnPadded([
-                      QuizCard(
-                        text: options[questionIndex][0],
-                        imagePath: 'assets/icons/quiz1.png',
-                        ontap: () {
-                          if (options[questionIndex][0] == 'London') { // Replace with the correct answer logic
-                            updateQuestion();
-                          }
-                        },
+                  children: List.generate(
+                    questions[questionIndex].options.length,
+                        (index) => Padding(
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      child: QuizCard(
+                        text: questions[questionIndex].options[index],
+                        imagePath: 'assets/icons/quiz${index + 1}.png',
+                        color: optionColors[index],
+                        ontap: () => updateQuestion(
+                            questions[questionIndex].options[index], index),
                       ),
-                      QuizCard(
-                        text: options[questionIndex][1],
-                        imagePath: 'assets/icons/quiz2.png',
-                        ontap: () {
-                          if (options[questionIndex][1] == 'London') { // Replace with the correct answer logic
-                            updateQuestion();
-                          }
-                        },
-                      ),
-                      QuizCard(
-                        text: options[questionIndex][2],
-                        imagePath: 'assets/icons/quiz3.png',
-                        ontap: () {
-                          if (options[questionIndex][2] == 'London') { // Replace with the correct answer logic
-                            updateQuestion();
-                          }
-                        },
-                      ),
-                    ], 10),
-                  ],
-                ),              ],
+                    ),
+                  ),
+                ),
+              ],
             ),
             Column(
               children: [
@@ -189,7 +184,7 @@ class _LessonOption21State extends State<LessonOption21> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ],
@@ -198,32 +193,36 @@ class _LessonOption21State extends State<LessonOption21> {
     );
   }
 }
-
 class QuizCard extends StatelessWidget {
   final String text;
   final String imagePath;
   final Function ontap;
-  const QuizCard(
-      {Key? key,
-      required this.text,
-      required this.imagePath,
-      required this.ontap})
-      : super(key: key);
+  final Color color;
+  final bool isCorrect;
+
+  const QuizCard({
+    Key? key,
+    required this.text,
+    required this.imagePath,
+    required this.ontap,
+    this.color = Colors.white,
+    this.isCorrect = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        ontap;
-      },
+      onTap: () => ontap(),
       child: CustomPaint(
-        painter: ThickBottomBorderPainter(),
+        painter: ThickBottomBorderPainter(
+          color: isCorrect ? Colors.green : (color == Colors.red ? Colors.red : Colors.grey),
+        ),
         child: Container(
           width: 380,
           height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+            color: color,
           ),
           child: Padding(
             padding: EdgeInsets.only(left: 20, right: 20),
@@ -261,11 +260,14 @@ class QuizCard extends StatelessWidget {
 }
 
 class ThickBottomBorderPainter extends CustomPainter {
+  final Color color;
+
+  ThickBottomBorderPainter({required this.color});
+
   @override
   void paint(Canvas canvas, Size size) {
-    // For the thick bottom border
     final bottomBorderPaint = Paint()
-      ..color = Colors.black87.withOpacity(0.2)
+      ..color = color
       ..style = PaintingStyle.stroke
       ..strokeWidth = 10.0;
 
@@ -275,7 +277,6 @@ class ThickBottomBorderPainter extends CustomPainter {
 
     canvas.drawPath(bottomPath, bottomBorderPaint);
 
-    // For the simple grey borders on the other sides
     final sideBorderPaint = Paint()
       ..color = Colors.grey
       ..style = PaintingStyle.stroke
@@ -295,4 +296,16 @@ class ThickBottomBorderPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
+}
+
+class Question {
+  final String question;
+  final List<String> options;
+  final String correctAnswer;
+
+  Question({
+    required this.question,
+    required this.options,
+    required this.correctAnswer,
+  });
 }
