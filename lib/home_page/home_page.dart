@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                       borderRadius: BorderRadius.circular(15),
                                       image: DecorationImage(
                                           image: AssetImage(
-                                              'assets/images/team.png'),
+                                              'assets/icons/team.png'),
                                           fit: BoxFit.cover),
                                     ),
                                   ),
@@ -615,7 +615,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         iconStyleData: const IconStyleData(
                                           icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
+                                            Icons.keyboard_arrow_down_sharp,
                                           ),
                                           iconSize: 14,
                                         ),
@@ -823,7 +823,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         iconStyleData: const IconStyleData(
                                           icon: Icon(
-                                            Icons.arrow_forward_ios_outlined,
+                                            Icons.keyboard_arrow_down_sharp,
                                           ),
                                           iconSize: 14,
                                         ),
