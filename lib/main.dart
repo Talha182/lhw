@@ -5,6 +5,7 @@ import 'package:lhw/lessons/Course_Submodules.dart';
 import 'package:lhw/lessons/Jaiza.dart';
 import 'package:lhw/lessons/Lesson_Option20/Lesson_Option20.dart';
 import 'package:lhw/lessons/lesson_page_tabbar.dart';
+import 'package:lhw/quizes/LessonOption21.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'Modules/module_screen.dart';
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: LessonOption20(),
+      home: LessonOption21(),
       debugShowCheckedModeBanner: false,
     );
   }

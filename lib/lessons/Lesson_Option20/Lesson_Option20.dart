@@ -49,7 +49,7 @@ class _LessonOption20State extends State<LessonOption20> {
                     width: 5,
                   ),
                   Container(
-                    width: 330,
+                    width: 340,
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
@@ -84,7 +84,7 @@ class _LessonOption20State extends State<LessonOption20> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(10),
               child: Text(
                 'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
                 textAlign: TextAlign.center,
@@ -92,58 +92,54 @@ class _LessonOption20State extends State<LessonOption20> {
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 20,
             ),
-            CarouselSlider(
-              items: [
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.blue),
-                ),
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.blue),
-                ),
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.blue,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.blue),
-                ),
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.blue),
-                ),
-              ],
-              options: CarouselOptions(
-                height: 400.0,
-                enlargeCenterPage: true,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                },
-                aspectRatio: 16 / 9,
-                autoPlay: false,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                viewportFraction: 0.9,
-              ),
+            Transform.translate(
+              offset: Offset(-35, 0),
+              child: CarouselSlider(
+                  items: const [
+                    LessonOptionCard(
+                      imagePath: 'assets/icons/drugs.png',
+                      text: 'ضمنی اثرات کی وضاحت',
+                      borderColor: Color(0xffFE8BD1),
+                    ),
+                    LessonOptionCard(
+                      imagePath: 'assets/icons/drugs.png',
+                      text: 'ضمنی اثرات کی وضاحت',
+                      borderColor: Color(0xffFE8BD1),
+                    ),
+                    LessonOptionCard(
+                      imagePath: 'assets/icons/drugs.png',
+                      text: 'ضمنی اثرات کی وضاحت',
+                      borderColor: Color(0xffFE8BD1),
+                    ),
+                    LessonOptionCard(
+                      imagePath: 'assets/icons/drugs.png',
+                      text: 'ضمنی اثرات کی وضاحت',
+                      borderColor: Color(0xffFE8BD1),
+                    ),
+                    LessonOptionCard(
+                      imagePath: 'assets/icons/drugs.png',
+                      text: 'ضمنی اثرات کی وضاحت',
+                      borderColor: Color(0xffFE8BD1),
+                    ),
+                  ],
+                  options: CarouselOptions(
+                    height: 400.0,
+                    enlargeCenterPage: false,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    },
+                    aspectRatio: 16 / 9,
+                    autoPlay: false,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enableInfiniteScroll: true,
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    viewportFraction:
+                        0.8, // Change this to make the adjacent pages visible
+                  )),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -159,15 +155,146 @@ class _LessonOption20State extends State<LessonOption20> {
                       shape: BoxShape.circle,
                       color: _current == index
                           ? Color(0xff9AC9C2)
-                          : Color(0xffD1D7DC5E),
+                          : Color(0xffeaedee),
                     ),
                   );
                 },
               ),
             ),
+            SizedBox(
+              height: 90,
+            ),
+            Container(
+              width: double.infinity,
+              height: 1,
+              decoration: BoxDecoration(color: Colors.black87.withOpacity(0.1)),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(color: Colors.white, width: 2),
+                backgroundColor: Color(0xffFE8BD1),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                minimumSize: Size(150, 37),
+              ),
+              onPressed: () {},
+              child: Text(
+                'جاری رہے',
+                style: TextStyle(
+                  fontFamily: 'UrduType',
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
+  }
+}
+
+class LessonOptionCard extends StatelessWidget {
+  final String imagePath;
+  final String text;
+  final Color borderColor;
+
+  const LessonOptionCard({
+    required this.imagePath,
+    required this.text,
+    required this.borderColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      margin: EdgeInsets.all(6.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.white,
+      ),
+      child: CustomPaint(
+        painter: BorderPainter(borderColor: borderColor),
+        child: Padding(
+          padding: EdgeInsets.only(top: 80.0),
+          child: Column(
+            children: [
+              Image.asset(
+                imagePath,
+                fit: BoxFit.contain,
+                width: 160,
+                height: 160,
+              ),
+              Text(
+                text,
+                style: TextStyle(
+                    fontFamily: "UrduType",
+                    fontSize: 30,
+                    color: Color(0xff7A7D84)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BorderPainter extends CustomPainter {
+  final Color borderColor;
+
+  BorderPainter({required this.borderColor});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double startOffset = 4.0;
+    final double endOffset = size.width - 4.0;
+    final double bottomOffset = size.height - 4.0;
+
+    final double curveRadius = 5.0;
+
+    final Path path = Path()
+      ..moveTo(startOffset + curveRadius, bottomOffset)
+      ..lineTo(endOffset - curveRadius, bottomOffset);
+
+    // Draw the straight part
+    final Paint paintForStraight = Paint()
+      ..color = borderColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 5.0;
+
+    canvas.drawPath(path, paintForStraight);
+
+    // Draw the curves with "gradient" effect
+    for (double i = 0; i <= 1; i += 0.1) {
+      final Paint paintForCurve = Paint()
+        ..color = borderColor.withOpacity(i)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 6.0 - (2.0 * i); // Varying the width
+
+      final Path pathForCurveRight = Path()
+        ..moveTo(endOffset - curveRadius, bottomOffset)
+        ..quadraticBezierTo(endOffset, bottomOffset, endOffset,
+            bottomOffset - (curveRadius * i));
+
+      final Path pathForCurveLeft = Path()
+        ..moveTo(startOffset, bottomOffset - (curveRadius * i))
+        ..quadraticBezierTo(
+            startOffset, bottomOffset, startOffset + curveRadius, bottomOffset);
+
+      canvas.drawPath(pathForCurveRight, paintForCurve);
+      canvas.drawPath(pathForCurveLeft, paintForCurve);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
   }
 }
