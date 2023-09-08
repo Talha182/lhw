@@ -5,8 +5,8 @@ import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
 import 'package:lhw/lessons/inforgraphics_carousel.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 
-class LessonsPage extends StatelessWidget {
-  const LessonsPage({super.key});
+class Jaiza extends StatelessWidget {
+  const Jaiza({super.key});
 
   @override
   Widget build(BuildContext context) {

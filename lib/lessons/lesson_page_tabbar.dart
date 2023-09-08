@@ -100,7 +100,7 @@ class LessonPageTabBar extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: <Widget>[
-                    LessonsPage(),
+                    Jaiza(),
                     CompletedCourses(),
                     TotalCourses(),
                   ],
