@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'Gradient_Circle_Progress_Bar.dart';
 
 class Module_DashBoard_Card extends StatelessWidget {
-  const Module_DashBoard_Card({
-    Key? key,
-    required this.progressValue,
-    required this.showProgressBar, required this.imagePath, required this.cardText
-  }) : super(key: key);
+  const Module_DashBoard_Card(
+      {Key? key,
+        required this.progressValue,
+        required this.showProgressBar,
+        required this.imagePath,
+        required this.cardText})
+      : super(key: key);
 
   final double progressValue;
   final bool showProgressBar;
@@ -39,7 +41,10 @@ class Module_DashBoard_Card extends StatelessWidget {
                 SizedBox(width: 15),
                 Text(
                   cardText, // Updated this line
-                  style: TextStyle(fontFamily: 'UrduType', fontSize: 18),
+                  style: TextStyle(fontFamily: 'UrduType', fontSize: 16),
+                  softWrap: true, // Set softWrap to true to enable text wrapping
+                  overflow: TextOverflow.ellipsis, // or TextOverflow.fade
+
                 ),
               ],
             ),

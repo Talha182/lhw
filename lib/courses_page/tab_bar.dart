@@ -13,7 +13,7 @@ class CoursesPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(
+            preferredSize: const Size.fromHeight(
                 70.0), // Set to 80.0, change thisa to your desired height
             child: AppBar(
               elevation: 1.0,
@@ -24,8 +24,8 @@ class CoursesPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16.0),
                         child: Text(
                           "کورسز",
                           style: TextStyle(
@@ -37,22 +37,22 @@ class CoursesPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(right: 20),
+                        padding: const EdgeInsets.only(right: 20),
                         child: Row(
                           children: [
                             InkWell(
                               child: Image.asset(
-                                'assets/icons/magnifier.png',
+                                'assets/images/magnifier.png',
                                 color: Colors.black,
                               ),
                               onTap: () {},
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             InkWell(
                               child: Image.asset(
-                                'assets/icons/bell.png',
+                                'assets/images/bell.png',
                                 color: Colors.black,
                               ),
                               onTap: () {},
@@ -66,7 +66,7 @@ class CoursesPage extends StatelessWidget {
               ),
             )),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -74,31 +74,31 @@ class CoursesPage extends StatelessWidget {
                 height: 50,
                 radius: 20,
                 elevation: 1,
-                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                 backgroundColor: Colors.white,
-                unselectedBackgroundColor: Color(0xffF0F0F0),
-                unselectedLabelStyle: TextStyle(
+                unselectedBackgroundColor: const Color(0xffF0F0F0),
+                unselectedLabelStyle: const TextStyle(
                     fontFamily: 'UrduType',
                     color: Color(0xff685F78),
                     fontWeight: FontWeight.w600),
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                     fontFamily: 'UrduType',
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
                 tabs: [
-                  Tab(
+                  const Tab(
                     text: "جاری ہے۔",
                   ),
-                  Tab(
+                  const Tab(
                     text: "مکمل",
                   ),
-                  Tab(
+                  const Tab(
                     text: "تمام کورسز",
                   ),
                 ],
               ),
-              Expanded(
+              const Expanded(
                 child: TabBarView(
                   children: <Widget>[
                     OnGoingCourses(),

@@ -6,7 +6,7 @@ class GradientCircle extends StatelessWidget {
   final LinearGradient gradient;
   final String imagePath;
 
-  GradientCircle({
+  const GradientCircle({super.key,
     required this.width,
     required this.height,
     required this.gradient,
@@ -15,7 +15,7 @@ class GradientCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: Stack(

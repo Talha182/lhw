@@ -176,7 +176,7 @@ class _LessonOption25State extends State<LessonOption25> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
-                  'assets/icons/cloud.png',
+                  'assets/images/cloud.png',
                   width: 45,
                   height: 45,
                   fit: BoxFit.contain,

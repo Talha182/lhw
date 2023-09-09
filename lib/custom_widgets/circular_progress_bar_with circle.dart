@@ -6,7 +6,7 @@ class CircularProgressWithInnerCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(200, 200), // Adjust the size as needed
+      size: const Size(200, 200), // Adjust the size as needed
       painter: ProgressPainter(
         progressPercentage: 0.7, // Change this to set the progress percentage
       ),
@@ -28,7 +28,7 @@ class ProgressPainter extends CustomPainter {
 
     // Draw the outer circular progress bar with rounded edges
     final outerPaint = Paint()
-      ..color = Color(0xffEEECEC)
+      ..color = const Color(0xffEEECEC)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4.0
       ..strokeCap = StrokeCap.round; // Set the strokeCap to round
@@ -38,7 +38,7 @@ class ProgressPainter extends CustomPainter {
     final sweepAngle = 360 * progressPercentage;
 
     // Create a gradient for the progress arc
-    final gradient = LinearGradient(
+    final gradient = const LinearGradient(
       colors: [
         Color(0xffF4D6A9),
         Color(0xffEAAF58),
@@ -60,7 +60,7 @@ class ProgressPainter extends CustomPainter {
       progressPaint,
     );
     // Create a gradient for the inner circle to give it a 3D effect
-    final innerCircleGradient = LinearGradient(
+    final innerCircleGradient = const LinearGradient(
       colors: [
         Color(0xffF4D6A9),
         Color(0xffEAAF58),
@@ -76,7 +76,7 @@ class ProgressPainter extends CustomPainter {
     canvas.drawCircle(center, radius - 15, innerCirclePaint);
 
     // Draw the percentage text in the middle of the circle
-    final textStyle = TextStyle(
+    final textStyle = const TextStyle(
       color: Colors.black, // You can change the text color as needed
     );
 
@@ -85,7 +85,7 @@ class ProgressPainter extends CustomPainter {
       children: [
         TextSpan(
           text: '${(progressPercentage * 100).toStringAsFixed(0)}',
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: 'UrduType',
 
             fontSize: 35.0,
@@ -93,7 +93,7 @@ class ProgressPainter extends CustomPainter {
             fontWeight: FontWeight.w500
           ),
         ),
-        TextSpan(
+        const TextSpan(
           text: '/80',
           style: TextStyle(
               fontFamily: 'UrduType',

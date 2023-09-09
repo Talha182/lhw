@@ -9,7 +9,7 @@ class LockedCourse extends StatelessWidget {
   final double imageHeight; // New parameter
   final Alignment imagePosition; // New parameter
 
-  LockedCourse({
+  const LockedCourse({super.key,
     required this.imagePath,
     required this.midText,
     required this.arrowText,
@@ -24,7 +24,7 @@ class LockedCourse extends StatelessWidget {
       height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [Color(0xffC3C3C3), Color(0xffCECECE)],
         ),
       ),
@@ -32,12 +32,12 @@ class LockedCourse extends StatelessWidget {
         children: [
           // Removed the left padding to move ArrowContainer to the very left
           Padding(
-            padding: EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 20,top: 10),
+                  padding: const EdgeInsets.only(left: 20,top: 10),
                   child: Container(
                     width: 50,
                     height: 50,
@@ -46,12 +46,12 @@ class LockedCourse extends StatelessWidget {
                         Container(
                           width: 50,
                           height: 50,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.white
                           ),
                         ),
-                        Center(
+                        const Center(
                           child: ClipOval(
                             child: Icon(
                               Icons.lock_outline,
@@ -61,12 +61,12 @@ class LockedCourse extends StatelessWidget {
                   ])),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 15),
                   child: Text(
                     midText,
-                    style: TextStyle(                          fontFamily: 'UrduType',
+                    style: const TextStyle(                          fontFamily: 'UrduType',
 
                       letterSpacing: 0.01,
                       color: Colors.white,
@@ -75,21 +75,21 @@ class LockedCourse extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 15),
                   child: Row(
                     children: [
                       Image.asset(
-                        'assets/icons/book.png',
+                        'assets/images/book.png',
                         color: Colors.white,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 6,
                       ),
-                      Text(
+                      const Text(
                         '24 ماڈیولز',
                         style: TextStyle(                          fontFamily: 'UrduType',
 
@@ -97,28 +97,28 @@ class LockedCourse extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Container(
                         width: 5,
                         height: 5,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 6,
                       ),
                       Image.asset(
-                        'assets/icons/book.png',
+                        'assets/images/book.png',
                         color: Colors.white,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 6,
                       ),
-                      Text(
+                      const Text(
                         '12 کوئز',
                         style: TextStyle(                          fontFamily: 'UrduType',
 

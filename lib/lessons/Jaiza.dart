@@ -11,7 +11,7 @@ class Jaiza extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: ListView(children: [
         Stack(
           children: [
@@ -19,34 +19,34 @@ class Jaiza extends StatelessWidget {
               width: 400,
               height: 170,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     colors: [Color(0xff8E79FB), Color(0xffB09FFD)]),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 20, top: 20),
+                padding: const EdgeInsets.only(left: 20, top: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('نیوٹریشن کورس',
+                    const Text('نیوٹریشن کورس',
                         style: TextStyle(
                           fontFamily: 'UrduType',
                           color: Colors.white,
                           fontSize: 25,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
                       children: [
                         Image.asset(
-                          'assets/icons/book.png',
+                          'assets/images/book.png',
                           color: Colors.white,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 6,
                         ),
-                        Text(
+                        const Text(
                           '24 ماڈیولز',
                           style: TextStyle(
                             fontFamily: 'UrduType',
@@ -55,28 +55,28 @@ class Jaiza extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                         Container(
                           width: 5,
                           height: 5,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 6,
                         ),
                         Image.asset(
-                          'assets/icons/book.png',
+                          'assets/images/book.png',
                           color: Colors.white,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 6,
                         ),
-                        Text(
+                        const Text(
                           '12 کوئز',
                           style: TextStyle(
                             fontFamily: 'UrduType',
@@ -87,21 +87,21 @@ class Jaiza extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        side: BorderSide(color: Colors.white, width: 2),
+                        side: const BorderSide(color: Colors.white, width: 2),
                         backgroundColor: Colors.transparent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        minimumSize: Size(150, 37),
+                        minimumSize: const Size(150, 37),
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'سیکھنا شروع کریں۔',
                         style: TextStyle(
                           fontFamily: 'UrduType',
@@ -118,7 +118,7 @@ class Jaiza extends StatelessWidget {
               bottom: -15,
               right: 0,
               child: Image.asset(
-                'assets/icons/module.png', // replace with your image name
+                'assets/images/module.png', // replace with your image name
                 width: 180, // Set your width
                 height: 180,
                 fit: BoxFit.contain, // Set your height
@@ -126,7 +126,7 @@ class Jaiza extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
@@ -134,14 +134,14 @@ class Jaiza extends StatelessWidget {
           height: 55,
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.withOpacity(0.3)),
-              color: Color(0xffCAE1E5).withOpacity(0.5),
+              color: const Color(0xffCAE1E5).withOpacity(0.5),
               borderRadius: BorderRadius.circular(10)),
           child: Padding(
-            padding: EdgeInsets.only(left: 5, right: 15),
+            padding: const EdgeInsets.only(left: 5, right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                const Row(
                   children: [
                     SizedBox(width: 15),
                     Text(
@@ -151,7 +151,7 @@ class Jaiza extends StatelessWidget {
                   ],
                 ),
                 InkWell(
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20,
                   ),
@@ -161,59 +161,59 @@ class Jaiza extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         ImageCarousel(),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        Text(
+        const Text(
           'کورس کی تفصیل',
           style: TextStyle(fontFamily: "UrduType", fontSize: 18),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
           children: [
             ...rowPadded([
-              Text(
+              const Text(
                 '1h 34m',
                 style: TextStyle(
                     fontFamily: "UrduType",
                     color: Color(0xff232323),
                     fontSize: 18),
               ),
-              Text(
+              const Text(
                 '•',
                 style: TextStyle(
                     fontFamily: "UrduType",
                     color: Color(0xff232323),
                     fontSize: 18),
               ),
-              Text(
+              const Text(
                 '3/15/2023',
                 style: TextStyle(
                     fontFamily: "UrduType",
                     color: Color(0xff232323),
                     fontSize: 18),
               ),
-              Text(
+              const Text(
                 'جاری کیا گیا:',
                 style: TextStyle(
                     fontFamily: "UrduType",
                     color: Color(0xff232323),
                     fontSize: 18),
               ),
-              Text(
+              const Text(
                 '•',
                 style: TextStyle(
                     fontFamily: "UrduType",
                     color: Color(0xff232323),
                     fontSize: 18),
               ),
-              Text(
+              const Text(
                 'ابتدائی',
                 style: TextStyle(
                     fontFamily: "UrduType",
@@ -223,25 +223,25 @@ class Jaiza extends StatelessWidget {
             ], 2)
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
           children: [
             ...rowPadded([
-              Text(
+              const Text(
                 '4/5',
                 style: TextStyle(
                     fontSize: 20, fontWeight: FontWeight.w500),
               ),
               RatingBar.builder(
-                unratedColor: Color(0xffD9D9D9),
+                unratedColor: const Color(0xffD9D9D9),
                 initialRating: 1,
                 itemSize: 35,
                 direction: Axis.horizontal,
                 allowHalfRating: false,
                 itemCount: 5,
-                itemBuilder: (context, _) => Icon(
+                itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Color(0xffF7DE8D),
                 ),
@@ -249,7 +249,7 @@ class Jaiza extends StatelessWidget {
                   print(rating);
                 },
               ),
-              Text(
+              const Text(
                 '(3770)',
                 style: TextStyle(
                     fontSize: 20, fontWeight: FontWeight.w500),
@@ -257,33 +257,33 @@ class Jaiza extends StatelessWidget {
             ], 3)
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         InkWell(
           onTap: () {},
-          child: Text(
+          child: const Text(
             "میرے جائزے میں ترمیم کریں۔",
             style: TextStyle(
                 fontFamily: "UrduType", fontSize: 16, color: Color(0xffFE8BD1)),
           ),
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         Container(
           height: 1.0,
           width: double.infinity,
           color: Colors.black87.withOpacity(0.2),
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
 
         Row(
           children: [
             ...rowPadded([
-              Image.asset('assets/icons/doc.png'),
-              SizedBox(width: 10,),
+              Image.asset('assets/images/doc.png'),
+              const SizedBox(width: 10,),
               InkWell(
                 onTap: (){},
-                child: Text(
+                child: const Text(
                   'ڈاؤن لوڈ کریں۔',
                   style: TextStyle(
                       fontFamily: "UrduType",
@@ -291,14 +291,14 @@ class Jaiza extends StatelessWidget {
                       fontSize: 18),
                 ),
               ),
-              Text(
+              const Text(
                 '•',
                 style: TextStyle(
                     fontFamily: "UrduType",
                     color: Color(0xff232323),
                     fontSize: 18),
               ),
-              Text(
+              const Text(
                 'ابتدائی',
                 style: TextStyle(
                     fontFamily: "UrduType",
@@ -308,15 +308,15 @@ class Jaiza extends StatelessWidget {
             ], 2)
           ],
         ),
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
         Row(
           children: [
             ...rowPadded([
-              Image.asset('assets/icons/discussion.png'),
-              SizedBox(width: 10,),
+              Image.asset('assets/images/discussion.png'),
+              const SizedBox(width: 10,),
               InkWell(
                 onTap: (){},
-                child: Text(
+                child: const Text(
                   'ابھی شامل ہوں۔',
                   style: TextStyle(
                       fontFamily: "UrduType",
@@ -324,14 +324,14 @@ class Jaiza extends StatelessWidget {
                       fontSize: 18),
                 ),
               ),
-              Text(
+              const Text(
                 '•',
                 style: TextStyle(
                     fontFamily: "UrduType",
                     color: Color(0xff232323),
                     fontSize: 18),
               ),
-              Text(
+              const Text(
                 'ڈسکشن گروپ میں شامل ہوں',
                 style: TextStyle(
                     fontFamily: "UrduType",
@@ -343,7 +343,7 @@ class Jaiza extends StatelessWidget {
         ),
 
 
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
       ]),
     ));
   }

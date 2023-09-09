@@ -1,6 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
@@ -29,78 +28,76 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(
+            preferredSize: const Size.fromHeight(
                 70.0), // Set to 80.0, change this to your desired height
             child: AppBar(
               elevation: 1.0,
               backgroundColor: Colors.white,
               flexibleSpace: Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Text(
-                          "ڈیش بورڈ",
-                          style: TextStyle(
-                            fontFamily: 'UrduType',
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16.0),
+                      child: Text(
+                        "ڈیش بورڈ",
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            child: Image.asset(
+                              'assets/images/magnifier.png',
+                              color: Colors.black,
+                            ),
+                            onTap: () {},
                           ),
-                        ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                            child: Image.asset(
+                              'assets/images/bell.png',
+                              color: Colors.black,
+                            ),
+                            onTap: () {},
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 20),
-                        child: Row(
-                          children: [
-                            InkWell(
-                              child: Image.asset(
-                                'assets/icons/magnifier.png',
-                                color: Colors.black,
-                              ),
-                              onTap: () {},
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            InkWell(
-                              child: Image.asset(
-                                'assets/icons/bell.png',
-                                color: Colors.black,
-                              ),
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
           body: Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
+            padding: const EdgeInsets.only(left: 15, right: 15),
             child: ListView(
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'میرے کورسز',
                       style: TextStyle(
                           fontFamily: 'UrduType',
                           fontSize: 18,
                           fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -111,13 +108,13 @@ class _HomePageState extends State<HomePage> {
                           height: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [Color(0xffDCEFDE), Color(0xff81C588)],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
                           ),
-                          child: Padding(
+                          child: const Padding(
                             padding: EdgeInsets.only(left: 15, top: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,24 +153,24 @@ class _HomePageState extends State<HomePage> {
                           height: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [Color(0xffF4B9E1), Color(0xffED8DCE)],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.only(left: 15, top: 10),
+                            padding: const EdgeInsets.only(left: 15, top: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    Image.asset('assets/icons/courses.png'),
-                                    SizedBox(
+                                    Image.asset('assets/images/courses.png'),
+                                    const SizedBox(
                                       width: 8,
                                     ),
-                                    Text(
+                                    const Text(
                                       'باقی کورس',
                                       style: TextStyle(
                                           fontFamily: 'UrduType',
@@ -183,8 +180,8 @@ class _HomePageState extends State<HomePage> {
                                     )
                                   ],
                                 ),
-                                SizedBox(height: 10),
-                                Padding(
+                                const SizedBox(height: 10),
+                                const Padding(
                                   padding: EdgeInsets.only(left: 30),
                                   child: Text(
                                     "12",
@@ -199,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Material(
@@ -208,10 +205,10 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         width: screenWidth - 40,
                         height: 450,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Padding(
                           padding:
-                              EdgeInsets.only(top: 20, left: 10, right: 10),
+                              const EdgeInsets.only(top: 20, left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -219,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Text(
+                                  const Text(
                                     "جاری کورس",
                                     style: TextStyle(
                                         fontFamily: 'UrduType',
@@ -228,9 +225,8 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      print("Button pressed");
                                     },
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
@@ -257,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Row(
@@ -268,19 +264,19 @@ class _HomePageState extends State<HomePage> {
                                     height: 135,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
-                                      image: DecorationImage(
+                                      image: const DecorationImage(
                                           image: AssetImage(
-                                              'assets/icons/team.png'),
+                                              'assets/images/team.png'),
                                           fit: BoxFit.cover),
                                     ),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   // Column containing three texts
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'خاندانی منصوبہ بندی',
                                         style: TextStyle(
                                             fontFamily: 'UrduType',
@@ -288,14 +284,14 @@ class _HomePageState extends State<HomePage> {
                                             fontWeight: FontWeight.w600,
                                             letterSpacing: 0.01),
                                       ),
-                                      SizedBox(height: 5),
+                                      const SizedBox(height: 5),
                                       Row(
                                         children: <Widget>[
-                                          Image.asset("assets/icons/book.png"),
-                                          SizedBox(
+                                          Image.asset("assets/images/book.png"),
+                                          const SizedBox(
                                             width: 5,
                                           ),
-                                          Text(
+                                          const Text(
                                             '24 ماڈیولز',
                                             style: TextStyle(
                                                 fontFamily: 'UrduType',
@@ -303,26 +299,26 @@ class _HomePageState extends State<HomePage> {
                                                 fontWeight: FontWeight.w600,
                                                 letterSpacing: 0.01),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 5,
                                           ),
                                           Container(
                                             width: 5,
                                             height: 5,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Colors.black,
                                               shape: BoxShape.circle,
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 6,
                                           ),
                                           Image.asset(
-                                              "assets/icons/person_card.png"),
-                                          SizedBox(
+                                              "assets/images/person_card.png"),
+                                          const SizedBox(
                                             width: 6,
                                           ),
-                                          Text("12 کوئز",
+                                          const Text("12 کوئز",
                                               style: TextStyle(
                                                 fontFamily: 'UrduType',
                                                 fontSize: 14,
@@ -330,29 +326,29 @@ class _HomePageState extends State<HomePage> {
                                               ))
                                         ],
                                       ),
-                                      SizedBox(height: 25),
+                                      const SizedBox(height: 25),
                                       Row(
                                         children: <Widget>[
-                                          Text(
+                                          const Text(
                                             'پیش رفت',
                                             style: TextStyle(
                                                 fontFamily: 'UrduType',
                                                 color: Color(0xff7A7D84),
                                                 fontWeight: FontWeight.w500),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 80,
                                           ),
                                           Text(
                                             '${(0.6 * 100).toInt()}%', // The percentage value
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontFamily: 'UrduType',
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 2),
+                                      const SizedBox(height: 2),
                                       ProgressBar(
                                         width: 140.0,
                                         height: 6.0,
@@ -363,7 +359,7 @@ class _HomePageState extends State<HomePage> {
                                 ],
                               ),
                               Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       left: 5, right: 5, top: 30),
                                   child: Container(
                                     width: 340,
@@ -371,12 +367,12 @@ class _HomePageState extends State<HomePage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
-                                        color: Color(0xffE5E5E5),
+                                        color: const Color(0xffE5E5E5),
                                         width: 2.0,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: 20),
+                                      padding: const EdgeInsets.only(left: 20),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -384,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                                           GradientCircle(
                                             width: 45,
                                             height: 45,
-                                            gradient: LinearGradient(
+                                            gradient: const LinearGradient(
                                               colors: [
                                                 Color(0xffF4D6A9),
                                                 Color(0xffEAAF58)
@@ -393,10 +389,10 @@ class _HomePageState extends State<HomePage> {
                                               end: Alignment.bottomRight,
                                             ),
                                             imagePath:
-                                                'assets/icons/person_card.png', // Replace with your image path
+                                                'assets/images/person_card.png', // Replace with your image path
                                           ),
 
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
 
@@ -407,14 +403,14 @@ class _HomePageState extends State<HomePage> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text("کوئز 1 زیر التوا ہے۔ ",
+                                                const Text("کوئز 1 زیر التوا ہے۔ ",
                                                     style: TextStyle(
                                                         fontSize: 18,
                                                         fontFamily: 'UrduType',
                                                         fontWeight:
                                                             FontWeight.w500)),
                                                 RichText(
-                                                  text: TextSpan(
+                                                  text: const TextSpan(
                                                     children: <TextSpan>[
                                                       TextSpan(
                                                         text: "آخری تاریخ: ",
@@ -448,10 +444,10 @@ class _HomePageState extends State<HomePage> {
                                           // Icon button on the right
                                           InkWell(
                                             child:
-                                                Icon(Icons.arrow_forward_ios),
+                                                const Icon(Icons.arrow_forward_ios),
                                             onTap: () {},
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           )
                                         ],
@@ -459,7 +455,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   )),
                               Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       left: 5, right: 5, top: 15),
                                   child: Container(
                                     width: 340,
@@ -467,12 +463,12 @@ class _HomePageState extends State<HomePage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
-                                        color: Color(0xffE5E5E5),
+                                        color: const Color(0xffE5E5E5),
                                         width: 2.0,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: 20),
+                                      padding: const EdgeInsets.only(left: 20),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -480,7 +476,7 @@ class _HomePageState extends State<HomePage> {
                                           GradientCircle(
                                             width: 45,
                                             height: 45,
-                                            gradient: LinearGradient(
+                                            gradient: const LinearGradient(
                                               colors: [
                                                 Color(0xffF4B9E1),
                                                 Color(0xffED8DCE)
@@ -489,14 +485,14 @@ class _HomePageState extends State<HomePage> {
                                               end: Alignment.bottomRight,
                                             ),
                                             imagePath:
-                                                'assets/icons/person_card.png', // Replace with your image path
+                                                'assets/images/person_card.png', // Replace with your image path
                                           ),
 
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
 
-                                          Expanded(
+                                          const Expanded(
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -516,10 +512,10 @@ class _HomePageState extends State<HomePage> {
                                           // Icon button on the right
                                           InkWell(
                                             child:
-                                                Icon(Icons.arrow_forward_ios),
+                                                const Icon(Icons.arrow_forward_ios),
                                             onTap: () {},
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           )
                                         ],
@@ -531,7 +527,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Material(
@@ -540,10 +536,10 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         width: screenWidth - 10,
                         height: 450,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Padding(
                           padding:
-                              EdgeInsets.only(top: 20, left: 10, right: 10),
+                              const EdgeInsets.only(top: 20, left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -551,7 +547,7 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text(
+                                    const Text(
                                       "مہارت کا درجہ",
                                       style: TextStyle(
                                           fontFamily: 'UrduType',
@@ -582,7 +578,7 @@ class _HomePageState extends State<HomePage> {
                                                   value: item,
                                                   child: Text(
                                                     item,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontFamily: 'UrduType',
                                                       fontSize: 16,
                                                       fontWeight:
@@ -644,12 +640,12 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ]),
-                              SizedBox(
+                              const SizedBox(
                                 height: 50,
                               ),
                               Center(child: CircularProgressWithInnerCircle()),
                               Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                   left: 34,
                                   top: 30,
                                 ),
@@ -658,7 +654,7 @@ class _HomePageState extends State<HomePage> {
                                     GradientCircle(
                                       width: 45,
                                       height: 45,
-                                      gradient: LinearGradient(
+                                      gradient: const LinearGradient(
                                         colors: [
                                           Color(0xffD6C2FF),
                                           Color(0xff9B6BFF)
@@ -667,24 +663,24 @@ class _HomePageState extends State<HomePage> {
                                         end: Alignment.bottomRight,
                                       ),
                                       imagePath:
-                                          'assets/icons/dots.png', // Replace with your image path
+                                          'assets/images/dots.png', // Replace with your image path
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
-                                    Text(
+                                    const Text(
                                       '4380',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 18),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 100,
                                     ),
                                     GradientCircle(
                                       width: 45,
                                       height: 45,
-                                      gradient: LinearGradient(
+                                      gradient: const LinearGradient(
                                         colors: [
                                           Color(0xffF4D6A9),
                                           Color(0xffEAAF58)
@@ -693,22 +689,22 @@ class _HomePageState extends State<HomePage> {
                                         end: Alignment.bottomRight,
                                       ),
                                       imagePath:
-                                          'assets/icons/badge.png', // Replace with your image path
+                                          'assets/images/badge.png', // Replace with your image path
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
-                                    Text('20/30',
+                                    const Text('20/30',
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 18))
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8,
                               ),
-                              Row(
+                              const Row(
                                 children: [
                                   SizedBox(
                                     width: 35,
@@ -739,7 +735,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Material(
@@ -748,10 +744,10 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         width: screenWidth - 40,
                         height: 380,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Padding(
                           padding:
-                              EdgeInsets.only(top: 20, left: 10, right: 10),
+                              const EdgeInsets.only(top: 20, left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -759,7 +755,7 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text(
+                                    const Text(
                                       "سرگرمی",
                                       style: TextStyle(
                                           fontFamily: 'UrduType',
@@ -852,10 +848,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ]),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
-                              LineChartSample2()
+                              const LineChartSample2()
                             ],
                           ),
                         ),
@@ -863,7 +859,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
               ],

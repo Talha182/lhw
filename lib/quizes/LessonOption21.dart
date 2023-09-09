@@ -158,7 +158,7 @@ class _LessonOption21State extends State<LessonOption21> {
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: Image.asset(
-                          'assets/icons/cloud.png',
+                          'assets/images/cloud.png',
                           width: 45,
                           height: 45,
                           fit: BoxFit.contain,
@@ -183,7 +183,7 @@ class _LessonOption21State extends State<LessonOption21> {
                           padding: EdgeInsets.symmetric(vertical: 15),
                           child: QuizCard(
                             text: questions[questionIndex].options[index],
-                            imagePath: 'assets/icons/quiz${index + 1}.png',
+                            imagePath: 'assets/images/quiz${index + 1}.png',
                             color: optionColors[index],
                             ontap: () => updateQuestion(
                                 questions[questionIndex].options[index], index),

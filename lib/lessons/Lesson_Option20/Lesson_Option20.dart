@@ -49,7 +49,7 @@ class _LessonOption20State extends State<LessonOption20> {
                     width: 5,
                   ),
                   Container(
-                    width: 340,
+                    width: 310,
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
@@ -76,7 +76,7 @@ class _LessonOption20State extends State<LessonOption20> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
-                  'assets/icons/cloud.png',
+                  'assets/images/cloud.png',
                   width: 45,
                   height: 45,
                   fit: BoxFit.contain,
@@ -99,27 +99,27 @@ class _LessonOption20State extends State<LessonOption20> {
               child: CarouselSlider(
                   items: const [
                     LessonOptionCard(
-                      imagePath: 'assets/icons/drugs.png',
+                      imagePath: 'assets/images/drugs.png',
                       text: 'ضمنی اثرات کی وضاحت',
                       borderColor: Color(0xffFE8BD1),
                     ),
                     LessonOptionCard(
-                      imagePath: 'assets/icons/drugs.png',
+                      imagePath: 'assets/images/drugs.png',
                       text: 'ضمنی اثرات کی وضاحت',
                       borderColor: Color(0xffFE8BD1),
                     ),
                     LessonOptionCard(
-                      imagePath: 'assets/icons/drugs.png',
+                      imagePath: 'assets/images/drugs.png',
                       text: 'ضمنی اثرات کی وضاحت',
                       borderColor: Color(0xffFE8BD1),
                     ),
                     LessonOptionCard(
-                      imagePath: 'assets/icons/drugs.png',
+                      imagePath: 'assets/images/drugs.png',
                       text: 'ضمنی اثرات کی وضاحت',
                       borderColor: Color(0xffFE8BD1),
                     ),
                     LessonOptionCard(
-                      imagePath: 'assets/icons/drugs.png',
+                      imagePath: 'assets/images/drugs.png',
                       text: 'ضمنی اثرات کی وضاحت',
                       borderColor: Color(0xffFE8BD1),
                     ),
@@ -161,9 +161,7 @@ class _LessonOption20State extends State<LessonOption20> {
                 },
               ),
             ),
-            SizedBox(
-              height: 90,
-            ),
+          Spacer(),
             Container(
               width: double.infinity,
               height: 1,

@@ -5,6 +5,8 @@ import 'package:lhw/home_page/home_page.dart';
 import '../courses_page/tab_bar.dart';
 
 class Navbar extends StatefulWidget {
+  const Navbar({super.key});
+
   @override
   _NavbarState createState() => _NavbarState();
 }
@@ -14,17 +16,17 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
   bool showSheet = false;
 
   final iconList = [
-    'assets/icons/home.png',
-    'assets/icons/courses.png',
-    'assets/icons/groups.png',
-    'assets/icons/report.png',
+    'assets/images/home.png',
+    'assets/images/courses.png',
+    'assets/images/groups.png',
+    'assets/images/report.png',
   ];
 
   final List<Widget> pages = [
-    HomePage(),
-    HomePage(),
-    HomePage(),
-    HomePage(),
+    const HomePage(),
+    const HomePage(),
+    const HomePage(),
+    const HomePage(),
   ];
 
   final textList = ['گھر', 'کورسز', 'گروپس', 'رپورٹ'];
@@ -39,7 +41,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
             child: pages[_bottomNavIndex],
           ),
           AnimatedOpacity(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             opacity: showSheet ? 0.5 : 0.0,
             child: GestureDetector(
               onTap: () {
@@ -53,7 +55,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
             ),
           ),
           AnimatedPositioned(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             bottom: showSheet ? 28 : -300,
             left: 0,
             right: 0,
@@ -61,25 +63,25 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
               onTap: () {},
               child: Container(
                 height: 350,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: Center(child: Text('Your Content Here')),
+                child: const Center(child: Text('Your Content Here')),
               ),
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xffFE8BD1),
+        backgroundColor: const Color(0xffFE8BD1),
         child: showSheet
-            ? Icon(Icons.close, color: Colors.white)
+            ? const Icon(Icons.close, color: Colors.white)
             : Image.asset(
-                'assets/icons/floatingaction.png',
+                'assets/images/floatingaction.png',
                 width: 24,
                 height: 24,
                 color: Colors.white,
@@ -95,7 +97,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
         height: 65,
         itemCount: iconList.length,
         tabBuilder: (int index, bool isActive) {
-          final color = isActive ? Color(0xffFE8BD1) : Colors.grey;
+          final color = isActive ? const Color(0xffFE8BD1) : Colors.grey;
           return Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +108,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
                 height: 24,
                 color: color,
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
@@ -120,7 +122,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
         },
         backgroundColor: Colors.white,
         activeIndex: _bottomNavIndex,
-        splashColor: Color(0xffFE8BD1),
+        splashColor: const Color(0xffFE8BD1),
         notchAndCornersAnimation: null,
         splashSpeedInMilliseconds: 300,
         notchSmoothness: NotchSmoothness.defaultEdge,
@@ -128,7 +130,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
         leftCornerRadius: 12,
         rightCornerRadius: 12,
         onTap: (index) => setState(() => _bottomNavIndex = index),
-        shadow: BoxShadow(
+        shadow: const BoxShadow(
           offset: Offset(0, 2),
           blurRadius: 12,
           spreadRadius: 0.5,

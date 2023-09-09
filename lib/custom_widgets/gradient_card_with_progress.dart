@@ -7,7 +7,7 @@ class GradientCardWithProgress extends StatelessWidget {
   final Color gradientStartColor;
   final Color gradientEndColor;
 
-  GradientCardWithProgress({
+  const GradientCardWithProgress({super.key,
     required this.progressValue,
     required this.imagePath,
     required this.gradientStartColor,
@@ -30,7 +30,7 @@ class GradientCardWithProgress extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 15, top: 15),
+            padding: const EdgeInsets.only(left: 15, top: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -39,13 +39,13 @@ class GradientCardWithProgress extends StatelessWidget {
                   child: CircleProgressBar(
                     strokeWidth: 3.0,
                     foregroundColor: Colors.white,
-                    backgroundColor: Color(0xffE6D0B0),
+                    backgroundColor: const Color(0xffE6D0B0),
                     value: progressValue,
                     child: Center(
                       child: Text(
                         '${(progressValue * 100).toStringAsFixed(0)}%',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'UrduType',
                           fontSize: 15,
                         ),
@@ -53,10 +53,10 @@ class GradientCardWithProgress extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   'بعدازپیدائشکید یکھ بھال',
                   style: TextStyle(
                     fontFamily: 'UrduType',
@@ -65,19 +65,19 @@ class GradientCardWithProgress extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
                 Row(
                   children: [
                     Image.asset(
-                      'assets/icons/book.png',
+                      'assets/images/book.png',
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
-                    Text(
+                    const Text(
                       '24 ماڈیولز',
                       style: TextStyle(
                         fontFamily: 'UrduType',
@@ -86,28 +86,28 @@ class GradientCardWithProgress extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
                     Container(
                       width: 5,
                       height: 5,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
                     Image.asset(
-                      'assets/icons/book.png',
+                      'assets/images/book.png',
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
-                    Text(
+                    const Text(
                       '12 کوئز',
                       style: TextStyle(
                         fontFamily: 'UrduType',
@@ -118,20 +118,20 @@ class GradientCardWithProgress extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xffF5DAB2),
+                    primary: const Color(0xffF5DAB2),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    minimumSize: Size(140, 40),
+                    minimumSize: const Size(140, 40),
                   ),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'جاری رہے',
                     style: TextStyle(
                       fontFamily: 'UrduType',

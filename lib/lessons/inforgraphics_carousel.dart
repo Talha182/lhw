@@ -8,8 +8,8 @@ class ImageCarousel extends StatefulWidget {
 class _ImageCarouselState extends State<ImageCarousel> {
   int currentPage = 0;
   final List<String> assetImages = [
-    'assets/icons/1.png',
-    'assets/icons/2.png',
+    'assets/images/1.png',
+    'assets/images/2.png',
   ];
 
   @override

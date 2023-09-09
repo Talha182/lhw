@@ -158,7 +158,7 @@ class _LessonOption24State extends State<LessonOption24> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
-                  'assets/icons/cloud.png',
+                  'assets/images/cloud.png',
                   width: 45,
                   height: 45,
                   fit: BoxFit.contain,
@@ -189,7 +189,7 @@ class _LessonOption24State extends State<LessonOption24> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.asset(
-                            'assets/icons/team.png',
+                            'assets/images/team.png',
                             fit: BoxFit
                                 .cover, // This will make the image cover the whole container
                             width: 380,

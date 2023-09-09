@@ -25,43 +25,41 @@ class _ModulePageState extends State<ModulePage> {
         backgroundColor: Colors.white,
         flexibleSpace: Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: InkWell(
-                    child: Icon(Icons.arrow_back),
-                    onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: InkWell(
+                  child: const Icon(Icons.arrow_back),
+                  onTap: () {},
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 5.0),
+                child: Text(
+                  "ڈیش بورڈ",
+                  style: TextStyle(
+                    fontFamily: 'UrduType',
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0),
-                  child: Text(
-                    "ڈیش بورڈ",
-                    style: TextStyle(
-                      fontFamily: 'UrduType',
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: InkWell(
+                  child: const Icon(Icons.more_vert),
+                  onTap: () {},
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: InkWell(
-                    child: Icon(Icons.more_vert),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: ListView(
           children: [
             Stack(
@@ -70,16 +68,16 @@ class _ModulePageState extends State<ModulePage> {
                   width: 400,
                   height: 200,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                         colors: [Color(0xff8E79FB), Color(0xffB09FFD)]),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20, top: 20),
+                    padding: const EdgeInsets.only(left: 20, top: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('نیوٹریشن کورس',
+                        const Text('نیوٹریشن کورس',
                             style: TextStyle(
                               fontFamily: 'UrduType',
                               color: Colors.white,
@@ -89,37 +87,37 @@ class _ModulePageState extends State<ModulePage> {
                           children: [
                             Text(
                               '${(progressValue * 100).toStringAsFixed(0)}%', // Displaying the progress as percentage
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'UrduType',
                                 color: Colors.white,
                                 fontSize: 18,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             AnimatedProgressBar(
                               height: 5,
                               value: progressValue,
                               duration: const Duration(seconds: 2),
-                              color: Color(0xff9AC9C2),
+                              color: const Color(0xff9AC9C2),
                               backgroundColor: Colors.white,
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Row(
                           children: [
                             Image.asset(
-                              'assets/icons/book.png',
+                              'assets/images/book.png',
                               color: Colors.white,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 6,
                             ),
-                            Text(
+                            const Text(
                               '24 ماڈیولز',
                               style: TextStyle(
                                 fontFamily: 'UrduType',
@@ -128,28 +126,28 @@ class _ModulePageState extends State<ModulePage> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             Container(
                               width: 5,
                               height: 5,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.white,
                                 shape: BoxShape.circle,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 6,
                             ),
                             Image.asset(
-                              'assets/icons/book.png',
+                              'assets/images/book.png',
                               color: Colors.white,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 6,
                             ),
-                            Text(
+                            const Text(
                               '12 کوئز',
                               style: TextStyle(
                                 fontFamily: 'UrduType',
@@ -160,42 +158,41 @@ class _ModulePageState extends State<ModulePage> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         _feedbackButtonPressed
                             ? RatingBar.builder(
-                          unratedColor: Color(0xffC8CCFE),
+                          unratedColor: const Color(0xffC8CCFE),
                           initialRating: 0,
                           itemSize: 35,
                           direction: Axis.horizontal,
                           allowHalfRating: false,
                           itemCount: 5,
-                          itemBuilder: (context, _) => Icon(
+                          itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Color(0xffF7DE8D),
                           ),
                           onRatingUpdate: (rating) {
-                            print(rating);
                           },
                         )
                             : ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   side:
-                                      BorderSide(color: Colors.white, width: 2),
+                                      const BorderSide(color: Colors.white, width: 2),
                                   backgroundColor: Colors.transparent,
                                   elevation: 0,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
-                                  minimumSize: Size(140, 40),
+                                  minimumSize: const Size(140, 40),
                                 ),
                                 onPressed: () {
                                   setState(() {
                                     _feedbackButtonPressed = true;
                                   });
                                 },
-                                child: Text(
+                                child: const Text(
                                   'فیڈ بیک فراہم کریں۔',
                                   style: TextStyle(
                                     fontFamily: 'UrduType',
@@ -213,7 +210,7 @@ class _ModulePageState extends State<ModulePage> {
                   bottom: -15,
                   right: 0,
                   child: Image.asset(
-                    'assets/icons/module.png', // replace with your image name
+                    'assets/images/module.png', // replace with your image name
                     width: 180, // Set your width
                     height: 180,
                     fit: BoxFit.contain, // Set your height
@@ -221,21 +218,21 @@ class _ModulePageState extends State<ModulePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'کورس کا مواد',
               style: TextStyle(fontFamily: 'UrduType', fontSize: 25),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               children: [
                 ...rowPadded([
-                  Image.asset('assets/icons/book.png'),
-                  Text(
+                  Image.asset('assets/images/book.png'),
+                  const Text(
                     '16 ماڈیولز',
                     style: TextStyle(
                         fontFamily: "UrduType",
@@ -245,18 +242,18 @@ class _ModulePageState extends State<ModulePage> {
                   Container(
                     width: 5,
                     height: 5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         shape: BoxShape.circle, color: Colors.black87),
                   ),
-                  Image.asset('assets/icons/person_card.png'),
-                  Text(
+                  Image.asset('assets/images/person_card.png'),
+                  const Text(
                     '12 کوئز',
                     style: TextStyle(
                         fontFamily: "UrduType",
                         color: Color(0xff7A7D84),
                         fontSize: 15),
                   ),
-                  Text(
+                  const Text(
                     '•',
                     style: TextStyle(
                         fontFamily: "UrduType",
@@ -264,7 +261,7 @@ class _ModulePageState extends State<ModulePage> {
                         fontSize: 18),
                   ),
 
-                  Text(
+                  const Text(
                     '5h 45m کل لمبائی',
                     style: TextStyle(
                         fontFamily: "UrduType",
@@ -274,7 +271,7 @@ class _ModulePageState extends State<ModulePage> {
                 ], 4)
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 11,
             ),
             Row(
@@ -283,7 +280,7 @@ class _ModulePageState extends State<ModulePage> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.transparent, // Background color
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Colors.black, // Border color
                       width: 1,
                     ),
@@ -292,18 +289,18 @@ class _ModulePageState extends State<ModulePage> {
                       borderRadius:
                           BorderRadius.circular(30), // Circular radius
                     ),
-                    minimumSize: Size(200, 40),
+                    minimumSize: const Size(200, 40),
                   ),
                   onPressed: () {
                     // Add your action here
                   },
                   child: Row(
                     children: [
-                      Image.asset('assets/icons/download.png'),
-                      SizedBox(
+                      Image.asset('assets/images/download.png'),
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         'مواد ڈاؤن لوڈ کریں۔',
                         style: TextStyle(
                             fontFamily: "UrduType",
@@ -315,18 +312,18 @@ class _ModulePageState extends State<ModulePage> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffFE8BD1),
+                    backgroundColor: const Color(0xffFE8BD1),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(30), // Circular radius
                     ),
-                    minimumSize: Size(150, 40),
+                    minimumSize: const Size(150, 40),
                   ),
                   onPressed: () {
                     // Add your action here
                   },
-                  child: Text(
+                  child: const Text(
                     'کورس جاری رکھیں',
                     style: TextStyle(
                       fontFamily: "UrduType",
@@ -337,7 +334,7 @@ class _ModulePageState extends State<ModulePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Column(
@@ -345,38 +342,38 @@ class _ModulePageState extends State<ModulePage> {
                 ...columnPadded([
                   Module_DashBoard_Card(
                     progressValue: progressValue,
-                    imagePath: 'assets/icons/image 8.png',
+                    imagePath: 'assets/images/image 8.png',
                     cardText: 'غذائیت کا تعارف',
                     showProgressBar: true,
                   ),
                   Module_DashBoard_Card(
                     progressValue: progressValue,
-                    imagePath: 'assets/icons/image9.png',
+                    imagePath: 'assets/images/image9.png',
                     cardText:
                         'نوعمر لڑکیوں، حاملہ اور دودھ پلانے والی ماؤں کی غذائی ضروریات',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
                     progressValue: progressValue,
-                    imagePath: 'assets/icons/image10.png',
+                    imagePath: 'assets/images/image10.png',
                     cardText: 'حمل کی غذائی ضروریات',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
                     progressValue: progressValue,
-                    imagePath: 'assets/icons/image11.png',
+                    imagePath: 'assets/images/image11.png',
                     cardText: 'آئرن کی کمی/انیمیا',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
                     progressValue: progressValue,
-                    imagePath: 'assets/icons/image12.png',
+                    imagePath: 'assets/images/image12.png',
                     cardText: 'وٹامن اے کی کمی',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
                     progressValue: progressValue,
-                    imagePath: 'assets/icons/image13.png',
+                    imagePath: 'assets/images/image13.png',
                     cardText: 'آیوڈین کی کمی',
                     showProgressBar: false,
                   ),

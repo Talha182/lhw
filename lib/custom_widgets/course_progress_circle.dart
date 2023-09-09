@@ -22,7 +22,7 @@ class ProgressCircle extends StatelessWidget {
             textAlign: TextAlign.center,
             style:
 
-                TextStyle(fontFamily: 'UrduType',fontWeight: FontWeight.w500, fontSize: 13),
+                const TextStyle(fontFamily: 'UrduType',fontWeight: FontWeight.w500, fontSize: 13),
           ),
         ],
       ),

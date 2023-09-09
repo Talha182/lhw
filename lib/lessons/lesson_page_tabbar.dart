@@ -14,57 +14,55 @@ class LessonPageTabBar extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(
+            preferredSize: const Size.fromHeight(
                 70.0), // Set to 80.0, change thisa to your desired height
             child: AppBar(
               elevation: 1.0,
               backgroundColor: Colors.white,
               flexibleSpace: Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Row(
-                          children: [
-                            InkWell(
-                              child: Icon(
-                                Icons.arrow_back,
-                                size: 28,
-                              ),
-                              onTap: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            child: const Icon(
+                              Icons.arrow_back,
+                              size: 28,
                             ),
-                            SizedBox(
-                              width: 10,
+                            onTap: () {},
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text(
+                            "ماڈیول 1",
+                            style: TextStyle(
+                              fontFamily: 'UrduFont',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
-                            Text(
-                              "ماڈیول 1",
-                              style: TextStyle(
-                                fontFamily: 'UrduFont',
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 25, bottom: 6),
-                        child: InkWell(
-                          child: Icon(Icons.more_vert),
-                          onTap: () {},
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 25, bottom: 6),
+                      child: InkWell(
+                        child: const Icon(Icons.more_vert),
+                        onTap: () {},
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             )),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -72,19 +70,19 @@ class LessonPageTabBar extends StatelessWidget {
                 height: 50,
                 radius: 20,
                 elevation: 1,
-                contentPadding: EdgeInsets.symmetric(horizontal: 42),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 42),
                 backgroundColor: Colors.white,
-                unselectedBackgroundColor: Color(0xffF0F0F0),
-                unselectedLabelStyle: TextStyle(
+                unselectedBackgroundColor: const Color(0xffF0F0F0),
+                unselectedLabelStyle: const TextStyle(
                     fontFamily: 'UrduType',
                     color: Color(0xff685F78),
                     fontWeight: FontWeight.w600),
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                     fontFamily: 'UrduType',
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
-                tabs: [
+                tabs: const [
                   Tab(
                     text: "جائزہ",
                   ),
@@ -96,7 +94,7 @@ class LessonPageTabBar extends StatelessWidget {
                   ),
                 ],
               ),
-              Expanded(
+              const Expanded(
                 child: TabBarView(
                   children: <Widget>[
                     Jaiza(),

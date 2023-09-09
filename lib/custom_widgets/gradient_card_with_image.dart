@@ -69,7 +69,7 @@ class GradientCardWithImage extends StatelessWidget {
                   child: Row(
                     children: [
                       Image.asset(
-                        'assets/icons/book.png',
+                        'assets/images/book.png',
                         color: Colors.white,
                       ),
                       SizedBox(
@@ -99,7 +99,7 @@ class GradientCardWithImage extends StatelessWidget {
                         width: 6,
                       ),
                       Image.asset(
-                        'assets/icons/book.png',
+                        'assets/images/book.png',
                         color: Colors.white,
                       ),
                       SizedBox(

@@ -161,7 +161,7 @@ class _LessonOption26State extends State<LessonOption26> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
-                  'assets/icons/cloud.png',
+                  'assets/images/cloud.png',
                   width: 45,
                   height: 45,
                   fit: BoxFit.contain,
@@ -191,7 +191,7 @@ class _LessonOption26State extends State<LessonOption26> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/icons/LessonOption26.png',
+                          'assets/images/LessonOption26.png',
                           fit: BoxFit.cover,
                         )),
                   ),
@@ -254,7 +254,7 @@ class _LessonOption26State extends State<LessonOption26> {
                         child: Container(
                           child: Center(
                             child: Image.asset(
-                              'assets/icons/touch.png',
+                              'assets/images/touch.png',
                               width: 55,
                               height: 55,
                               fit: BoxFit.contain,
@@ -266,7 +266,7 @@ class _LessonOption26State extends State<LessonOption26> {
                             shape: BoxShape.circle,
                             color: Colors.black.withOpacity(0.4),
                           ),
-                          // child: Image.asset("assets/icons/team.png"),
+                          // child: Image.asset("assets/images/team.png"),
                         ),
                       )),
                   Positioned(
@@ -325,7 +325,7 @@ class _LessonOption26State extends State<LessonOption26> {
                               },
                             );
                           },
-                          child: Image.asset("assets/icons/lesson_26.png"))),
+                          child: Image.asset("assets/images/lesson_26.png"))),
                   Positioned(
                       top: 180, // Adjust as needed
                       right: 150, // Adjust as needed
@@ -384,7 +384,7 @@ class _LessonOption26State extends State<LessonOption26> {
                                             Expanded(
                                               flex: 1.5.toInt(), // This will occupy 1/3 of the row
                                               child: Image.asset(
-                                                'assets/icons/LessonOption26.png',
+                                                'assets/images/LessonOption26.png',
                                                 height: double.infinity,
                                                 fit: BoxFit.cover, // Stretch the image to cover the entire container
                                               ),
@@ -411,7 +411,7 @@ class _LessonOption26State extends State<LessonOption26> {
                               },
                             );
                           },
-                          child: Image.asset("assets/icons/lesson_26.png"))),
+                          child: Image.asset("assets/images/lesson_26.png"))),
                   Positioned(
                       top: 310, // Adjust as needed
                       right: 70, // Adjust as needed
@@ -469,7 +469,7 @@ class _LessonOption26State extends State<LessonOption26> {
                             );
                           },
                           child: Image.asset(
-                            "assets/icons/lesson_26.png",
+                            "assets/images/lesson_26.png",
                           ))),
                 ],
               ),

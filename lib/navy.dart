@@ -15,11 +15,11 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   bool showSheet = false;
   PageController _pageController = PageController();
 
-  final List<Map<String, String>> iconsData = [
-    {'path': 'assets/icons/home.png', 'label': 'گھر'},
-    {'path': 'assets/icons/courses.png', 'label': 'کورسز'},
-    {'path': 'assets/icons/groups.png', 'label': 'گروپس'},
-    {'path': 'assets/icons/report.png', 'label': 'رپورٹ'},
+  final List<Map<String, String>> imagesData = [
+    {'path': 'assets/images/home.png', 'label': 'گھر'},
+    {'path': 'assets/images/courses.png', 'label': 'کورسز'},
+    {'path': 'assets/images/groups.png', 'label': 'گروپس'},
+    {'path': 'assets/images/report.png', 'label': 'رپورٹ'},
   ];
 
   final List<Widget> pages = [
@@ -96,7 +96,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
         child: showSheet
             ? Icon(Icons.close, color: Colors.white)
             : Image.asset(
-                'assets/icons/floatingaction.png',
+                'assets/images/floatingaction.png',
                 width: 24,
                 height: 24,
                 color: Colors.white,
@@ -118,8 +118,8 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
           notchMargin: 2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: iconsData.map((iconData) {
-              int index = iconsData.indexOf(iconData);
+            children: imagesData.map((iconData) {
+              int index = imagesData.indexOf(iconData);
               bool isSelected = _currentIndex == index;
               return GestureDetector(
                 onTap: () => onTabTapped(index),

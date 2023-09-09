@@ -17,37 +17,39 @@ class _DragDropState extends State<DragDrop> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+  bool _isDragSuccessful = false;
+
 
   final List<Question> questions = [
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     // Question(
     //     question: 'What is the currency of Japan?',
@@ -77,7 +79,7 @@ class _DragDropState extends State<DragDrop> {
       }
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
@@ -97,7 +99,7 @@ class _DragDropState extends State<DragDrop> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -107,9 +109,9 @@ class _DragDropState extends State<DragDrop> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
+            end: const Alignment(0, -0.2),
             colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
+              const Color(0xff80B8FB).withOpacity(0.3),
               Colors.transparent,
             ],
           ),
@@ -117,7 +119,7 @@ class _DragDropState extends State<DragDrop> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 30, left: 20, right: 10),
+              padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
               child: Row(
                 children: [
                   InkWell(
@@ -125,12 +127,12 @@ class _DragDropState extends State<DragDrop> {
                       Navigator.pop(
                           context); // This will navigate back when tapped
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                       size: 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Container(
@@ -138,7 +140,7 @@ class _DragDropState extends State<DragDrop> {
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
-                      duration: Duration(milliseconds: 400),
+                      duration: const Duration(milliseconds: 400),
                       builder:
                           (BuildContext context, double value, Widget? child) {
                         return StepProgressIndicator(
@@ -146,9 +148,9 @@ class _DragDropState extends State<DragDrop> {
                           currentStep: value.ceil(),
                           size: 8,
                           padding: 0,
-                          selectedColor: Color(0xffFE8BD1),
+                          selectedColor: const Color(0xffFE8BD1),
                           unselectedColor: Colors.white,
-                          roundedEdges: Radius.circular(10),
+                          roundedEdges: const Radius.circular(10),
                         );
                       },
                     ),
@@ -157,31 +159,23 @@ class _DragDropState extends State<DragDrop> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 30),
+              padding: const EdgeInsets.only(right: 30),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
-                  'assets/icons/cloud.png',
+                  'assets/images/cloud.png',
                   width: 45,
                   height: 45,
                   fit: BoxFit.contain,
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                questions[questionIndex].question,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-              ),
-            ),
-            SizedBox(
-              height: 40,
+            const SizedBox(
+              height: 10,
             ),
             Container(
               width: 350,
-              height: 420,
+              height: 350,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -189,95 +183,84 @@ class _DragDropState extends State<DragDrop> {
                 children: [
                   Positioned.fill(
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'assets/icons/LessonOption26.png',
-                          fit: BoxFit.cover,
-                        )),
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        'assets/images/LessonOption26.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                  Positioned(
-                      top: 10, // Adjust as needed
-                      left: 15, // Adjust as needed
-                      child: InkWell(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return Dialog(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Container(
-                                  width: 350, // Set the width
-                                  height: 220, // Set the height
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Align(
-                                            alignment: Alignment.topRight,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Icon(Icons.close),
-                                            )),
-                                        Text(
-                                          'غذائیت کی صورتحال',
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              fontSize: 20),
-                                        ),
-                                        Expanded(
-                                          child: SingleChildScrollView(
-                                            child: Text(
-                                              'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
-                                              style: TextStyle(
-                                                  fontFamily: "UrduType",
-                                                  fontSize: 14,
-                                                  color: Color(0xff7A7D84)),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 5,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      )),
+                  if (_isDragSuccessful)
+                    Positioned(
+                      // Position where you want the baby to appear when drag is successful
+                      top: 150,
+                      left: 150,
+                      child: Image.asset("assets/images/baby.png"),
+                    ),
+                  DragTarget<String>(
+                    onWillAccept: (data) {
+                      print('$data');
+                      return data != null;
+                    },
+
+                    onAccept: (data) {
+                      print('onAccept: $data');
+                      setState(() {
+                        _isDragSuccessful = true;
+                      });
+                    },
+                    builder: (context, candidateData, rejectedData) {
+                      print('Building DragTarget');
+                      return Container(); // Empty container
+                    },
+                  ),
+
                 ],
               ),
             ),
-            SizedBox(
-              height: 15,
+
+            const SizedBox(
+              height: 20,
             ),
-            Spacer(),
+            const Text(
+              "نوزائیدہ کو ماں کی چھاتی پر گھسیٹیں۔",
+              style: TextStyle(fontFamily: "UrduType", fontSize: 22),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Draggable(
+              data: "Baby Placed",
+              child: _isDragSuccessful ? Container() : Image.asset("assets/images/baby.png"),  // Empty container if drag was successful
+              feedback: Image.asset("assets/images/baby.png"),
+              childWhenDragging: Container(),  // Empty container while dragging
+              onDragEnd: (details) {
+                setState(() {
+                  _isDragSuccessful = true;  // Set your state variable to true upon successful drag
+                });
+              },
+            ),
+
+            const Spacer(),
             Divider(
               height: 1,
               thickness: 1,
               color: Colors.black87.withOpacity(0.1),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xffFE8BD1),
+                backgroundColor: const Color(0xffFE8BD1),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                minimumSize: Size(150, 37),
+                minimumSize: const Size(150, 37),
               ),
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 'جاری رہے',
                 style: TextStyle(
                   fontFamily: 'UrduType',
@@ -286,7 +269,7 @@ class _DragDropState extends State<DragDrop> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],
@@ -329,7 +312,7 @@ class QuizCard extends StatelessWidget {
           color: color,
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
             children: [
               Container(
@@ -343,12 +326,12 @@ class QuizCard extends StatelessWidget {
                       : Colors.transparent,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   text,
                   textAlign: TextAlign.justify,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Color(0xff7A7D84),
                     fontFamily: 'UrduType',

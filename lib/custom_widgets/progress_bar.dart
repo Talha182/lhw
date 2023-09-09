@@ -5,7 +5,7 @@ class ProgressBar extends StatelessWidget {
   final double height;
   final double value; // value should be between 0 and 1
 
-  ProgressBar({
+  const ProgressBar({super.key,
     required this.width,
     required this.height,
     required this.value,
@@ -15,13 +15,13 @@ class ProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(height / 2)),
-      child: Container(
+      child: SizedBox(
         width: width,
         height: height,
         child: LinearProgressIndicator(
           minHeight: height,
           value: value,
-          color: Color(0xff9AC9C2),
+          color: const Color(0xff9AC9C2),
           backgroundColor: Colors.grey[300],
         ),
       ),

@@ -10,7 +10,7 @@ class CourseSubModules extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
+          preferredSize: const Size.fromHeight(
               70.0), // Set to 80.0, change thisa to your desired height
           child: AppBar(
             elevation: 1.0,
@@ -26,16 +26,16 @@ class CourseSubModules extends StatelessWidget {
                       child: Row(
                         children: [
                           InkWell(
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_back,
                               size: 25,
                             ),
                             onTap: () {},
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text(
+                          const Text(
                             "ماڈیول 1",
                             style: TextStyle(
                               fontFamily: 'UrduFont',
@@ -48,9 +48,9 @@ class CourseSubModules extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 25, bottom: 6),
+                      padding: const EdgeInsets.only(right: 25, bottom: 6),
                       child: InkWell(
-                        child: Icon(Icons.more_vert),
+                        child: const Icon(Icons.more_vert),
                         onTap: () {},
                       ),
                     ),
@@ -60,7 +60,7 @@ class CourseSubModules extends StatelessWidget {
             ),
           )),
       body: Padding(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: ListView(
           children: [
             Stack(
@@ -69,16 +69,16 @@ class CourseSubModules extends StatelessWidget {
                   width: 400,
                   height: 100,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                         colors: [Color(0xff8E79FB), Color(0xffB09FFD)]),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20, top: 5),
+                    padding: const EdgeInsets.only(left: 20, top: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('نیوٹریشن کورس',
+                        const Text('نیوٹریشن کورس',
                             style: TextStyle(
                               fontFamily: 'UrduType',
                               color: Colors.white,
@@ -88,17 +88,17 @@ class CourseSubModules extends StatelessWidget {
                           children: [
                             ...rowPadded([
                               Image.asset(
-                                'assets/icons/book.png',
+                                'assets/images/book.png',
                                 color: Colors.white,
                               ),
-                              Text(
+                              const Text(
                                 '24 ماڈیولز',
                                 style: TextStyle(
                                     fontFamily: "UrduType",
                                     color: Colors.white,
                                     fontSize: 15),
                               ),
-                              Text(
+                              const Text(
                                 '•',
                                 style: TextStyle(
                                     fontFamily: "UrduType",
@@ -106,10 +106,10 @@ class CourseSubModules extends StatelessWidget {
                                     fontSize: 18),
                               ),
                               Image.asset(
-                                'assets/icons/person_card.png',
+                                'assets/images/person_card.png',
                                 color: Colors.white,
                               ),
-                              Text(
+                              const Text(
                                 '12 کوئز',
                                 style: TextStyle(
                                     fontFamily: "UrduType",
@@ -127,7 +127,7 @@ class CourseSubModules extends StatelessWidget {
                   bottom: -15,
                   right: 0,
                   child: Image.asset(
-                    'assets/icons/module.png', // replace with your image name
+                    'assets/images/module.png', // replace with your image name
                     width: 120, // Set your width
                     height: 120,
                     fit: BoxFit.contain, // Set your height
@@ -135,13 +135,13 @@ class CourseSubModules extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
+                const Text(
                   'آپ کی پیشرفت',
                   style: TextStyle(
                       fontFamily: 'UrduType',
@@ -149,22 +149,22 @@ class CourseSubModules extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       fontSize: 16),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 100,
                 ),
                 Text('${(0.4 * 100).toInt()}%', // The percentage value
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w500)),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ProgressBar(
               width: 160.0,
               height: 6.0,
               value: 0.4, // 60%
             ),
-            SizedBox(height: 25),
-            Text(
+            const SizedBox(height: 25),
+            const Text(
               'غذائیت کا تعارف',
               style: TextStyle(
                   fontFamily: 'UrduType',
@@ -172,28 +172,28 @@ class CourseSubModules extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   fontSize: 18),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ...columnPadded([
                   Submodule_card(
-                    imagePath: 'assets/icons/check.png',
+                    imagePath: 'assets/images/check.png',
                     heading: 'لیڈی ہیلتھ ورکر کے فرائض',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'بنیادی تعریف',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'پاکستان میں غذائیت کی صورتحال ',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/person_card.png',
+                    imagePath: 'assets/images/person_card.png',
                     heading: 'باب کوئز',
                     duration: '3 سوالات',onTap: (){}
                   ),
@@ -202,7 +202,7 @@ class CourseSubModules extends StatelessWidget {
                     height: 1,
                     color: Colors.black87.withOpacity(0.1),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Text(
                       'نوعمر لڑکیوں، حاملہ اور دودھ پلانے والی ماؤں کی غذائی ضروریات',
@@ -210,22 +210,22 @@ class CourseSubModules extends StatelessWidget {
                     ),
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'لیڈی ہیلتھ ورکر کے فرائض',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'بنیادی تعریف',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'پاکستان میں غذائیت کی صورتحال ',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video2.png',
+                    imagePath: 'assets/images/video2.png',
                     heading: 'باب کوئز',
                     duration: '3 سوالات',onTap: (){}
                   ),
@@ -234,7 +234,7 @@ class CourseSubModules extends StatelessWidget {
                     height: 1,
                     color: Colors.black87.withOpacity(0.1),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Text(
                       'حمل کی غذائی ضروریات',
@@ -242,22 +242,22 @@ class CourseSubModules extends StatelessWidget {
                     ),
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'لیڈی ہیلتھ ورکر کے فرائض',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'بنیادی تعریف',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/video.png',
+                    imagePath: 'assets/images/video.png',
                     heading: 'پاکستان میں غذائیت کی صورتحال ',
                     duration: '3 منٹ 2 سیکنڈ',onTap: (){}
                   ),
                   Submodule_card(
-                    imagePath: 'assets/icons/person_card.png',
+                    imagePath: 'assets/images/person_card.png',
                     heading: 'باب کوئز',
                     duration: '3 سوالات', onTap: (){},
                   ),
@@ -291,7 +291,7 @@ class Submodule_card extends StatelessWidget {
         width: 400,
         height: 70,
         child: Padding(
-          padding: EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20),
           child: Row(
             children: [
               Image.asset(
@@ -300,24 +300,24 @@ class Submodule_card extends StatelessWidget {
                 height: 22,
                 width: 22,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 4),
+                padding: const EdgeInsets.only(top: 5, bottom: 4),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       heading,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'UrduType',
                           fontSize: 15,
                           color: Color(0xff685F78)),
                     ),
                     Text(
                       duration,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'UrduType',
                           fontSize: 15,
                           color: Color(0xff929293)),
