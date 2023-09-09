@@ -1,6 +1,5 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lhw/courses_page/completed_courses.dart';
 import 'package:lhw/courses_page/ongoing_courses.dart';
 import 'package:lhw/courses_page/total_courses.dart';

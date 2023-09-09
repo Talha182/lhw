@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../custom_widgets/Row_Column_Padding.dart';
 import '../custom_widgets/progress_bar.dart';
@@ -154,7 +153,7 @@ class CourseSubModules extends StatelessWidget {
                   width: 100,
                 ),
                 Text('${(0.4 * 100).toInt()}%', // The percentage value
-                    style: GoogleFonts.raleway(
+                    style: TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w500)),
               ],
             ),

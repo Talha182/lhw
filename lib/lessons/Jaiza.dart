@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
 import 'package:lhw/lessons/inforgraphics_carousel.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
@@ -232,7 +231,7 @@ class Jaiza extends StatelessWidget {
             ...rowPadded([
               Text(
                 '4/5',
-                style: GoogleFonts.raleway(
+                style: TextStyle(
                     fontSize: 20, fontWeight: FontWeight.w500),
               ),
               RatingBar.builder(
@@ -252,7 +251,7 @@ class Jaiza extends StatelessWidget {
               ),
               Text(
                 '(3770)',
-                style: GoogleFonts.raleway(
+                style: TextStyle(
                     fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ], 3)

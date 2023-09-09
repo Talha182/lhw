@@ -1,13 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/courses_page/tab_bar.dart';
-import 'package:lhw/lessons/Course_Submodules.dart';
-import 'package:lhw/lessons/Jaiza.dart';
-import 'package:lhw/lessons/Lesson_Option20/Lesson_Option20.dart';
-import 'package:lhw/lessons/lesson_page_tabbar.dart';
+import 'package:lhw/demo.dart';
+import 'package:lhw/quizes/LessonOption24.dart';
 import 'package:lhw/quizes/LessonOption21.dart';
+import 'package:lhw/quizes/LessonOption24.dart';
+import 'package:lhw/quizes/LessonOption25.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'Modules/module_screen.dart';
 
 
 void main() async {
@@ -43,7 +41,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: LessonOption21(),
+      home: LessonOption25(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import 'package:google_fonts/google_fonts.dart';
 
 class CircularProgressWithInnerCircle extends StatelessWidget {
   @override
@@ -77,7 +76,7 @@ class ProgressPainter extends CustomPainter {
     canvas.drawCircle(center, radius - 15, innerCirclePaint);
 
     // Draw the percentage text in the middle of the circle
-    final textStyle = GoogleFonts.raleway(
+    final textStyle = TextStyle(
       color: Colors.black, // You can change the text color as needed
     );
 

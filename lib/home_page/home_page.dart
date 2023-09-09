@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
@@ -145,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.only(left: 30),
                                   child: Text(
                                     "3",
-                                    style: GoogleFonts.raleway(fontSize: 20),
+                                    style: TextStyle(fontSize: 20),
                                   ),
                                 ),
                               ],
@@ -189,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.only(left: 30),
                                   child: Text(
                                     "12",
-                                    style: GoogleFonts.raleway(
+                                    style: TextStyle(
                                       fontSize: 20,
                                     ),
                                   ),
@@ -675,7 +674,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Text(
                                       '4380',
-                                      style: GoogleFonts.raleway(
+                                      style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 18),
                                     ),
@@ -700,7 +699,7 @@ class _HomePageState extends State<HomePage> {
                                       width: 10,
                                     ),
                                     Text('20/30',
-                                        style: GoogleFonts.raleway(
+                                        style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 18))
                                   ],
