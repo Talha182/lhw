@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           body: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(left: 15, right: 15),
             child: ListView(
               children: <Widget>[
                 SizedBox(
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 180,
+                          width: 170,
                           height: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -341,7 +341,7 @@ class _HomePageState extends State<HomePage> {
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           SizedBox(
-                                            width: 100,
+                                            width: 80,
                                           ),
                                           Text(
                                             '${(0.6 * 100).toInt()}%', // The percentage value
@@ -354,7 +354,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       SizedBox(height: 2),
                                       ProgressBar(
-                                        width: 160.0,
+                                        width: 140.0,
                                         height: 6.0,
                                         value: 0.6, // 60%
                                       ),
@@ -538,7 +538,7 @@ class _HomePageState extends State<HomePage> {
                       elevation: 1, // Set your desired elevation value here
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
-                        width: screenWidth - 40,
+                        width: screenWidth - 10,
                         height: 450,
                         decoration: BoxDecoration(),
                         child: Padding(

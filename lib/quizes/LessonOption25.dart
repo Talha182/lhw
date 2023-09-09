@@ -1,7 +1,7 @@
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:video_player/video_player.dart';
-import 'package:video_viewer/video_viewer.dart';
 
 class LessonOption25 extends StatefulWidget {
   const LessonOption25({super.key});
@@ -19,26 +19,6 @@ class _LessonOption25State extends State<LessonOption25> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
-  VideoPlayerController? _controller;
-  final VideoViewerController controller = VideoViewerController();
-
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/demo.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-      });
-    _controller!.setLooping(true);
-    _controller!.play();
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
 
   final List<Question> questions = [
     Question(
@@ -113,6 +93,22 @@ class _LessonOption25State extends State<LessonOption25> {
     });
   }
 
+  late FlickManager flickManager;
+  @override
+  void initState() {
+    super.initState();
+    flickManager = FlickManager(
+      videoPlayerController:
+      VideoPlayerController.asset("assets/videos/demo.mp4"),
+    );
+  }
+
+  @override
+  void dispose() {
+    flickManager.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     _totalSteps = questions.length; // Add this line
@@ -153,7 +149,7 @@ class _LessonOption25State extends State<LessonOption25> {
                     width: 5,
                   ),
                   Container(
-                    width: 340,
+                    width: 320,
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
@@ -203,29 +199,9 @@ class _LessonOption25State extends State<LessonOption25> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child:FutureBuilder<Map<String, VideoSource>>(
-                  future: VideoSource.fromM3u8PlaylistUrl(
-                    "https://sfux-ext.sfux.info/hls/chapter/105/1588724110/1588724110.m3u8",
-                    formatter: (quality) => quality == "Auto" ? "Automatic" : "${quality.split("x").last}p",
-                  ),
-                  builder: (_, data) {
-                    return data.hasData
-                        ? VideoViewer(
-                      source: data.data!,  // Adding null check here
-                      onFullscreenFixLandscape: true,
-                      style: VideoViewerStyle(
-                        playAndPauseStyle: PlayAndPauseWidgetStyle(
-                          background: Color(0xff191C21).withOpacity(0.5),
-                            play: Icon(Icons.play_arrow, color: Colors.white, size: 40),
-                            pause: Icon(Icons.pause, color: Colors.white, size: 40)),
-                        thumbnail: Image.network(
-                          "https://play-lh.googleusercontent.com/aA2iky4PH0REWCcPs9Qym2X7e9koaa1RtY-nKkXQsDVU6Ph25_9GkvVuyhS72bwKhN1P",
-                        ),
-                      ),
-                    )
-                        : Text('');
-                  },
-                )
+                child: FlickVideoPlayer(
+                    flickManager: flickManager
+                ),
 
               ),
             ),
@@ -255,17 +231,13 @@ class _LessonOption25State extends State<LessonOption25> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-            ),
+            Spacer(),
             Divider(
               height: 1,
               thickness: 1,
               color: Colors.black87.withOpacity(0.1),
             ),
-            SizedBox(
-              height: 10,
-            ),
+
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xffFE8BD1),

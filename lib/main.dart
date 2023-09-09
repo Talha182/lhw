@@ -1,12 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:lhw/DragDrop/Drag_Drop.dart';
+import 'package:lhw/courses_page/tab_bar.dart';
 import 'package:lhw/demo.dart';
-import 'package:lhw/quizes/LessonOption24.dart';
-import 'package:lhw/quizes/LessonOption21.dart';
-import 'package:lhw/quizes/LessonOption24.dart';
+import 'package:lhw/home_page/home_page.dart';
 import 'package:lhw/quizes/LessonOption25.dart';
 import 'package:lhw/quizes/LessonOption26.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'lessons/lesson_page_tabbar.dart';
 
 
 void main() async {
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: LessonOption26(),
+      home: DragDrop(),
       debugShowCheckedModeBanner: false,
     );
   }

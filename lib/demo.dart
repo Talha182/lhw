@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:video_viewer/video_viewer.dart';
+import 'package:flick_video_player/flick_video_player.dart';
+import 'package:video_player/video_player.dart';
 
-class Demo extends StatefulWidget {
-  const Demo({super.key});
+class SamplePlayer extends StatefulWidget {
 
   @override
-  State<Demo> createState() => _DemoState();
+  _SamplePlayerState createState() => _SamplePlayerState();
 }
 
-class _DemoState extends State<Demo> {
-  final VideoViewerController controller = VideoViewerController();
+class _SamplePlayerState extends State<SamplePlayer> {
+  late FlickManager flickManager;
+  @override
+  void initState() {
+    super.initState();
+    flickManager = FlickManager(
+      videoPlayerController:
+      VideoPlayerController.asset("assets/videos/demo.mp4"),
+    );
+  }
+
+  @override
+  void dispose() {
+    flickManager.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return VideoViewer(
-      controller: controller,
-      source: {
-        "SubRip Text": VideoSource(
-          video: VideoPlayerController.network(
-              "https://www.speechpad.com/proxy/get/marketing/samples/standard-captions-example.mp4"),
-          subtitle: {
-            "English": VideoViewerSubtitle.network(
-              "https://felipemurguia.com/assets/txt/WEBVTT_English.txt",
-              type: SubtitleType.webvtt,
-            ),
-          },
-        )
-      },
+    return Container(
+      child: FlickVideoPlayer(
+          flickManager: flickManager
+      ),
     );
   }
 }
