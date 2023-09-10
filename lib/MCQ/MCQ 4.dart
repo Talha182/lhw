@@ -22,33 +22,35 @@ class _MCQ4State extends State<MCQ4> {
   final List<Question> questions = [
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     // Question(
     //     question: 'What is the currency of Japan?',
@@ -61,7 +63,12 @@ class _MCQ4State extends State<MCQ4> {
     // You can add more questions here, in the same format.
   ];
 
-  List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
+  List<Color> optionColors = [
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white
+  ];
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
@@ -142,7 +149,8 @@ class _MCQ4State extends State<MCQ4> {
                       clipLinearGradient: true,
                       barRadius: Radius.circular(20),
                     ),
-                  ),                ],
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -157,99 +165,48 @@ class _MCQ4State extends State<MCQ4> {
                 ),
               ),
             ),
-            Material(
-              elevation: 2.0, // Adjust the elevation level as desired
-              borderRadius: BorderRadius.circular(
-                  10), // To match the Container's border radius
-              child: Container(
-                width: 380,
-                height: 350,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black87.withOpacity(0.1))),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Container(
-                        width: 350,
-                        height: 160,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/images/team.png',
-                            fit: BoxFit
-                                .cover, // This will make the image cover the whole container
-                            width: 380,
-                            height: 300,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        questions[questionIndex].question,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 15),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xffFE8BD1),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          minimumSize: Size(150, 37),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'اگلے',
-                          style: TextStyle(
-                            fontFamily: 'UrduType',
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             SizedBox(
               height: 10,
             ),
-            Text(
-              "بہترین آپشن کا انتخاب کریں۔",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 23),
+            Image.asset("assets/images/quiz 1.png"),
+            SizedBox(
+              height: 20,
             ),
-            Column(
-              children: List.generate(
-                questions[questionIndex].options.length,
-                    (index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
-                  child: QuizCard(
-                    text: questions[questionIndex].options[index],
-                    ontap: () => updateQuestion(
-                        questions[questionIndex].options[index], index),
-                    color: optionColors[index],
-                    isCorrect: selectedAnswer ==
-                        questions[questionIndex].correctAnswer,
-                    isSelected: isSelected,
-                    isOptionSelected:
-                    index == selectedOptionIndex, // Pass this value here
+            Padding(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Text(
+                  "Lorem ipsum dolor sit amet consectetur. Ut cras velit sagittis massa donc amet.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600
+                  ),
+                )),
+            SizedBox(
+              height: 20,
+            ),
+            SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                  questions[questionIndex].options.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: QuizCard(
+                      text: questions[questionIndex].options[index],
+                      ontap: () => updateQuestion(
+                          questions[questionIndex].options[index], index),
+                      color: optionColors[index],
+                      isCorrect: selectedAnswer ==
+                          questions[questionIndex].correctAnswer,
+                      isSelected: isSelected,
+                      isOptionSelected:
+                          index == selectedOptionIndex, // Pass this value here
+                    ),
                   ),
                 ),
               ),
             ),
+            SizedBox(height: 20),
             Divider(
               height: 1,
               thickness: 1,
@@ -305,44 +262,42 @@ class QuizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: isAnswered ? null : () => ontap(),
-      child: Expanded(
-        child: Container(
-          width: 360,
-          height: 60,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black87.withOpacity(0.1)),
-            borderRadius: BorderRadius.circular(10),
-            color: color,
-          ),
-          child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              children: [
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black87.withOpacity(0.2)),
-                    shape: BoxShape.circle,
-                    color: isOptionSelected // Use the parameter here
-                        ? (isCorrect ? Colors.green : Colors.red)
-                        : Colors.transparent,
+      child: Container(
+        width: 360,
+        height: 80,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black87.withOpacity(0.1)),
+          borderRadius: BorderRadius.circular(10),
+          color: color,
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            children: [
+              Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black87.withOpacity(0.2)),
+                  shape: BoxShape.circle,
+                  color: isOptionSelected // Use the parameter here
+                      ? (isCorrect ? Colors.green : Colors.red)
+                      : Colors.transparent,
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  text,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xff7A7D84),
+                    fontFamily: 'UrduType',
                   ),
                 ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    text,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xff7A7D84),
-                      fontFamily: 'UrduType',
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

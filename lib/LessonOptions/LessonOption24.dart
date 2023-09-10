@@ -157,75 +157,75 @@ class _LessonOption24State extends State<LessonOption24> {
                 ),
               ),
             ),
-            Material(
-              elevation: 2.0, // Adjust the elevation level as desired
-              borderRadius: BorderRadius.circular(
-                  10), // To match the Container's border radius
-              child: Container(
-                width: 380,
-                height: 350,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black87.withOpacity(0.1))),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Container(
-                        width: 350,
-                        height: 160,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/images/team.png',
-                            fit: BoxFit
-                                .cover, // This will make the image cover the whole container
-                            width: 380,
-                            height: 300,
+            Padding(
+              padding: EdgeInsets.only(top: 0,left: 15,right: 15),
+              child: Material(
+                elevation: 2.0, // Adjust the elevation level as desired
+                borderRadius: BorderRadius.circular(
+                    10), // To match the Container's border radius
+                child: Container(
+                  width: double.infinity,
+                  height: 340,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black87.withOpacity(0.1))),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Container(
+                          width: 350,
+                          height: 160,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'assets/images/team.png',
+                              fit: BoxFit
+                                  .cover, // This will make the image cover the whole container
+                              width: 380,
+                              height: 300,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        questions[questionIndex].question,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 15),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xffFE8BD1),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          minimumSize: Size(150, 37),
-                        ),
-                        onPressed: () {},
+                      Padding(
+                        padding: EdgeInsets.all(10),
                         child: Text(
-                          'اگلے',
-                          style: TextStyle(
-                            fontFamily: 'UrduType',
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
+                          questions[questionIndex].question,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontFamily: "UrduType", fontSize: 22),
                         ),
                       ),
-                    ),
-                  ],
+                    ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xffFE8BD1),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            minimumSize: Size(150, 37),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'اگلے',
+                            style: TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 5,
             ),
             Text(
               "بہترین آپشن کا انتخاب کریں۔",
@@ -235,7 +235,7 @@ class _LessonOption24State extends State<LessonOption24> {
               children: List.generate(
                 questions[questionIndex].options.length,
                 (index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(vertical: 8),
                   child: QuizCard(
                     text: questions[questionIndex].options[index],
                     ontap: () => updateQuestion(
@@ -250,6 +250,7 @@ class _LessonOption24State extends State<LessonOption24> {
                 ),
               ),
             ),
+            Spacer(),
             Divider(
               height: 1,
               thickness: 1,
