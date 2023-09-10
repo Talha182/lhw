@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/home_page/home_page.dart';
-import 'package:lhw/lessons/Lesson_Option20/Lesson_Option20.dart';
-import 'package:lhw/quizes/LessonOption25.dart';
-import 'package:lhw/quizes/LessonOption33.dart';
+import 'package:lhw/LessonOptions/LessonOption21.dart';
+import 'package:lhw/LessonOptions/LessonOption24.dart';
+import 'package:lhw/LessonOptions/Lesson_Option20.dart';
+import 'package:lhw/MCQ/MCQ%204.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'LessonOptions/LessonOption25.dart';
 
 
 
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: LessonOption33(),
+      home: MCQ4(),
       debugShowCheckedModeBanner: false,
     );
   }

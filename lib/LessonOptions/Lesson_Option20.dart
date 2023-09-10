@@ -3,19 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption20 extends StatefulWidget {
+  const LessonOption20({super.key});
+
   @override
   _LessonOption20State createState() => _LessonOption20State();
 }
 
 class _LessonOption20State extends State<LessonOption20> {
   int _current = 0;
-  int _totalSteps = 100;
+  final int _totalSteps = 100;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(
+        preferredSize: const Size.fromHeight(
           0,
         ),
         child: AppBar(
@@ -27,25 +29,25 @@ class _LessonOption20State extends State<LessonOption20> {
         decoration: BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topCenter,
-          end: Alignment(0, -0.2),
+          end: const Alignment(0, -0.2),
           colors: [
-            Color(0xff80B8FB).withOpacity(0.5),
+            const Color(0xff80B8FB).withOpacity(0.5),
             Colors.transparent,
           ],
         )),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 30, left: 20, right: 10),
+              padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
               child: Row(
                 children: [
-                  InkWell(
+                  const InkWell(
                     child: Icon(
                       Icons.close,
                       size: 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Container(
@@ -53,7 +55,7 @@ class _LessonOption20State extends State<LessonOption20> {
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
-                      duration: Duration(milliseconds: 400),
+                      duration: const Duration(milliseconds: 400),
                       builder:
                           (BuildContext context, double value, Widget? child) {
                         return StepProgressIndicator(
@@ -61,9 +63,9 @@ class _LessonOption20State extends State<LessonOption20> {
                           currentStep: value.ceil(),
                           size: 8,
                           padding: 0,
-                          selectedColor: Color(0xffFE8BD1),
+                          selectedColor: const Color(0xffFE8BD1),
                           unselectedColor: Colors.white,
-                          roundedEdges: Radius.circular(10),
+                          roundedEdges: const Radius.circular(10),
                         );
                       },
                     ),
@@ -72,7 +74,7 @@ class _LessonOption20State extends State<LessonOption20> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 30),
+              padding: const EdgeInsets.only(right: 30),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
@@ -83,7 +85,7 @@ class _LessonOption20State extends State<LessonOption20> {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(10),
               child: Text(
                 'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
@@ -91,11 +93,11 @@ class _LessonOption20State extends State<LessonOption20> {
                 style: TextStyle(fontFamily: "UrduType", fontSize: 22),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Transform.translate(
-              offset: Offset(-35, 0),
+              offset: const Offset(-35, 0),
               child: CarouselSlider(
                   items: const [
                     LessonOptionCard(
@@ -136,7 +138,7 @@ class _LessonOption20State extends State<LessonOption20> {
                     autoPlay: false,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
                     viewportFraction:
                         0.8, // Change this to make the adjacent pages visible
                   )),
@@ -150,38 +152,38 @@ class _LessonOption20State extends State<LessonOption20> {
                     width: 8.0,
                     height: 8.0,
                     margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                        const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: _current == index
-                          ? Color(0xff9AC9C2)
-                          : Color(0xffeaedee),
+                          ? const Color(0xff9AC9C2)
+                          : const Color(0xffeaedee),
                     ),
                   );
                 },
               ),
             ),
-          Spacer(),
+          const Spacer(),
             Container(
               width: double.infinity,
               height: 1,
               decoration: BoxDecoration(color: Colors.black87.withOpacity(0.1)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                side: BorderSide(color: Colors.white, width: 2),
-                backgroundColor: Color(0xffFE8BD1),
+                side: const BorderSide(color: Colors.white, width: 2),
+                backgroundColor: const Color(0xffFE8BD1),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                minimumSize: Size(150, 37),
+                minimumSize: const Size(150, 37),
               ),
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 'جاری رہے',
                 style: TextStyle(
                   fontFamily: 'UrduType',
@@ -202,7 +204,7 @@ class LessonOptionCard extends StatelessWidget {
   final String text;
   final Color borderColor;
 
-  const LessonOptionCard({
+  const LessonOptionCard({super.key,
     required this.imagePath,
     required this.text,
     required this.borderColor,
@@ -212,7 +214,7 @@ class LessonOptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 300,
-      margin: EdgeInsets.all(6.0),
+      margin: const EdgeInsets.all(6.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         color: Colors.white,
@@ -220,7 +222,7 @@ class LessonOptionCard extends StatelessWidget {
       child: CustomPaint(
         painter: BorderPainter(borderColor: borderColor),
         child: Padding(
-          padding: EdgeInsets.only(top: 80.0),
+          padding: const EdgeInsets.only(top: 80.0),
           child: Column(
             children: [
               Image.asset(
@@ -231,7 +233,7 @@ class LessonOptionCard extends StatelessWidget {
               ),
               Text(
                 text,
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: "UrduType",
                     fontSize: 30,
                     color: Color(0xff7A7D84)),

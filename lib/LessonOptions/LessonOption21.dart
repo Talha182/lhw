@@ -130,7 +130,7 @@ class _LessonOption21State extends State<LessonOption21> {
                             width: 5,
                           ),
                           Container(
-                            width: 340,
+                            width: 320,
                             child: TweenAnimationBuilder(
                               tween: Tween<double>(
                                   begin: 0,
@@ -170,17 +170,15 @@ class _LessonOption21State extends State<LessonOption21> {
                       child: Text(
                         questions[questionIndex].question,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 22),
+                        style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+
                     Column(
                       children: List.generate(
                         questions[questionIndex].options.length,
                         (index) => Padding(
-                          padding: EdgeInsets.symmetric(vertical: 15),
+                          padding: EdgeInsets.symmetric(vertical: 10),
                           child: QuizCard(
                             text: questions[questionIndex].options[index],
                             imagePath: 'assets/images/quiz${index + 1}.png',
@@ -200,14 +198,14 @@ class _LessonOption21State extends State<LessonOption21> {
                   children: [
                     isAnswered // Check if the question is answered
                         ? Container(
-                            height: 160,
+                            height: 140,
                             width: double.infinity,
                             color: selectedAnswer ==
                                     questions[questionIndex].correctAnswer
                                 ? Colors.green[100] // Light green if correct
                                 : Colors.red[100], // Light red if incorrect
                             child: Padding(
-                              padding: EdgeInsets.only(top: 10,left: 15,right: 15),
+                              padding: EdgeInsets.only(top: 0,left: 15,right: 15),
                               child: RichText(
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
@@ -221,7 +219,7 @@ class _LessonOption21State extends State<LessonOption21> {
                                           ? "درست۔ "
                                           : "غلط۔ ",
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontFamily: "UrduType",
                                         color: selectedAnswer ==
                                                 questions[questionIndex]
@@ -241,7 +239,7 @@ class _LessonOption21State extends State<LessonOption21> {
                                           : questions[questionIndex]
                                               .incorrectExplanation,
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontFamily: "UrduType",
                                         color: selectedAnswer ==
                                                 questions[questionIndex]
@@ -258,7 +256,7 @@ class _LessonOption21State extends State<LessonOption21> {
                                         text: "\nدرست۔",
                                         style: TextStyle(
                                           fontFamily: "UrduType",
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           color: Colors
                                               .black, // Black text for the correct answer prefix
                                         ),
@@ -270,7 +268,7 @@ class _LessonOption21State extends State<LessonOption21> {
                                             .correctExplanation, // Correct explanation
                                         style: TextStyle(
                                           fontFamily: "UrduType",
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           color: Colors
                                               .black, // Black text for the correct explanation
                                         ),
@@ -295,6 +293,8 @@ class _LessonOption21State extends State<LessonOption21> {
               ],
             ),
           ),
+          Spacer(),
+
           Positioned(
             bottom: 0,
             left: 0,
@@ -358,7 +358,7 @@ class QuizCard extends StatelessWidget {
           : () => ontap(), // Disable onTap if the question is answered
 
       child: Container(
-        width: 380,
+        width: 360,
         height: 120,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black87.withOpacity(0.1)),
