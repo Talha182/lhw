@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption24 extends StatefulWidget {
   const LessonOption24({super.key});
@@ -13,8 +12,6 @@ class _LessonOption24State extends State<LessonOption24> {
   bool isSelected = false;
   bool isAnswered = false;
 
-  int _current = 0;
-  int _totalSteps = 100;
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
@@ -82,7 +79,6 @@ class _LessonOption24State extends State<LessonOption24> {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
-          _current = ((questionIndex / questions.length) * 1).toInt();
           optionColors = [Colors.white, Colors.white, Colors.white];
           isAnswered = false; // Reset for the next question
           isSelected = false; // Reset isSelected
@@ -94,7 +90,6 @@ class _LessonOption24State extends State<LessonOption24> {
 
   @override
   Widget build(BuildContext context) {
-    _totalSteps = questions.length; // Add this line
 
     return Scaffold(
       appBar: PreferredSize(

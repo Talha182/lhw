@@ -1,8 +1,6 @@
   import 'package:carousel_slider/carousel_slider.dart';
   import 'package:flutter/material.dart';
-  import 'package:flutter/services.dart';
   import 'package:percent_indicator/percent_indicator.dart';
-  import 'package:step_progress_indicator/step_progress_indicator.dart';
 
   class ComicStrip extends StatefulWidget {
     const ComicStrip({super.key});

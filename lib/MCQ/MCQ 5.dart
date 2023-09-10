@@ -1,6 +1,7 @@
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:video_player/video_player.dart';
 
 class MCQ5 extends StatefulWidget {
   const MCQ5({super.key});
@@ -12,7 +13,6 @@ class MCQ5 extends StatefulWidget {
 class _MCQ5State extends State<MCQ5> {
   bool isSelected = false;
   bool isAnswered = false;
-
   int _current = 0;
   int _totalSteps = 100;
   int questionIndex = 0;
@@ -22,53 +22,45 @@ class _MCQ5State extends State<MCQ5> {
   final List<Question> questions = [
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
+        'آپشن 1',
+        'آپشن 2',
+        'آپشن 3',
+        'آپشن 4',
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
+        'آپشن 1',
+        'آپشن 2',
+        'آپشن 3',
+        'آپشن 4',
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
-    // Question(
-    //     question: 'What is the currency of Japan?',
-    //     options: ['Yen', 'Dollar', 'Euro'],
-    //     correctAnswer: 'Yen',
-    //     correctExplanation:
-    //         'The yen is the official currency of Japan and is used throughout the country.',
-    //     incorrectExplanation:
-    //         "The correct answer is Yen, which is the currency of the Japan"),
-    // You can add more questions here, in the same format.
   ];
 
   List<Color> optionColors = [
     Colors.white,
     Colors.white,
     Colors.white,
-    Colors.white
+    Colors.white  // Added fourth color
   ];
+
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
@@ -83,6 +75,7 @@ class _MCQ5State extends State<MCQ5> {
       } else {
         optionColors[index] = Colors.red[100]!;
       }
+
     });
 
     Future.delayed(Duration(seconds: 2), () {
@@ -90,7 +83,7 @@ class _MCQ5State extends State<MCQ5> {
         setState(() {
           questionIndex++;
           _current = ((questionIndex / questions.length) * 1).toInt();
-          optionColors = [Colors.white, Colors.white, Colors.white];
+          optionColors = [Colors.white, Colors.white, Colors.white, Colors.white];
           isAnswered = false; // Reset for the next question
           isSelected = false; // Reset isSelected
           selectedOptionIndex = null; // Reset selectedOptionIndex
@@ -123,6 +116,7 @@ class _MCQ5State extends State<MCQ5> {
           ),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.only(top: 30, left: 20, right: 10),
@@ -138,16 +132,24 @@ class _MCQ5State extends State<MCQ5> {
                   SizedBox(
                     width: 5,
                   ),
-                  Expanded(
-                    child: new LinearPercentIndicator(
-                      animation: true,
-                      animationDuration: 400,
-                      lineHeight: 10.0,
-                      percent: 0.3,
-                      progressColor: Color(0xffFE8BD1),
-                      backgroundColor: Colors.white,
-                      clipLinearGradient: true,
-                      barRadius: Radius.circular(20),
+                  Container(
+                    width: 320,
+                    child: TweenAnimationBuilder(
+                      tween: Tween<double>(
+                          begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
+                      duration: Duration(milliseconds: 400),
+                      builder:
+                          (BuildContext context, double value, Widget? child) {
+                        return StepProgressIndicator(
+                          totalSteps: _totalSteps,
+                          currentStep: value.ceil(),
+                          size: 8,
+                          padding: 0,
+                          selectedColor: Color(0xffFE8BD1),
+                          unselectedColor: Colors.white,
+                          roundedEdges: Radius.circular(10),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -165,29 +167,50 @@ class _MCQ5State extends State<MCQ5> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
+            Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Container(
+                width: double.infinity,
+                height: 170,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    "assets/images/team.png",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ),
-            Image.asset("assets/images/quiz 1.png"),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  "Lorem ipsum dolor sit amet consectetur. Ut cras velit sagittis massa donc amet.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                )),
-            SizedBox(
-              height: 20,
+              padding: EdgeInsets.only(left: 20,right: 20),
+              child: Text(
+                "سوال ${questionIndex + 1}",
+                textAlign: TextAlign.right,
+                style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+              ),
             ),
-            SingleChildScrollView(
+
+            Padding(
+              padding: EdgeInsets.only(left: 20,right: 20),
+              child: Text(
+                questions[questionIndex].question,
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
               child: Column(
                 children: List.generate(
                   questions[questionIndex].options.length,
-                      (index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                  (index) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
                     child: QuizCard(
                       text: questions[questionIndex].options[index],
                       ontap: () => updateQuestion(
@@ -197,7 +220,7 @@ class _MCQ5State extends State<MCQ5> {
                           questions[questionIndex].correctAnswer,
                       isSelected: isSelected,
                       isOptionSelected:
-                      index == selectedOptionIndex, // Pass this value here
+                          index == selectedOptionIndex, // Pass this value here
                     ),
                   ),
                 ),
@@ -210,14 +233,15 @@ class _MCQ5State extends State<MCQ5> {
               color: Colors.black87.withOpacity(0.1),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.only(left: 10,right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('آپ کا اسکور: 10 پوائنٹس',style: TextStyle(
-                      fontFamily: "UrduType",
-                      color: Color(0xff8E79FB)
-                  ),),
+                  Text(
+                    'آپ کا اسکور: 10 پوائنٹس',
+                    style: TextStyle(
+                        fontFamily: "UrduType", color: Color(0xff8E79FB)),
+                  ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xffFE8BD1),
@@ -237,7 +261,6 @@ class _MCQ5State extends State<MCQ5> {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -274,7 +297,7 @@ class QuizCard extends StatelessWidget {
       onTap: isAnswered ? null : () => ontap(),
       child: Container(
         width: 360,
-        height: 80,
+        height: 65,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black87.withOpacity(0.1)),
           borderRadius: BorderRadius.circular(10),
