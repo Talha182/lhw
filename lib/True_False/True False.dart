@@ -217,74 +217,36 @@ class _TrueFalseState extends State<TrueFalse> {
                 thickness: 1,
                 color: Colors.black87.withOpacity(0.1),
               ),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffFE8BD1),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+              Padding(
+                padding: EdgeInsets.all(0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'آپ کا اسکور: 10 پوائنٹس',
+                      style: TextStyle(
+                          fontFamily: "UrduType", color: Color(0xff8E79FB)),
                     ),
-                    minimumSize: Size(150, 37),
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            width: 350, // Set the width
-                            height: 220, // Set the height
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(
-                                      alignment: Alignment.topRight,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Icon(Icons.close),
-                                      )),
-                                  Text(
-                                    'غذائیت کی صورتحال',
-                                    style: TextStyle(
-                                        fontFamily: "UrduType", fontSize: 20),
-                                  ),
-                                  Expanded(
-                                    child: SingleChildScrollView(
-                                      child: Text(
-                                        'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
-                                        style: TextStyle(
-                                            fontFamily: "UrduType",
-                                            fontSize: 14,
-                                            color: Color(0xff7A7D84)),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 5,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Text(
-                    'جاری رہے',
-                    style: TextStyle(
-                      fontFamily: 'UrduType',
-                      fontSize: 15,
-                      color: Colors.white,
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xffFE8BD1),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        minimumSize: Size(150, 37),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'جاری رہے',
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
