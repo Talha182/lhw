@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class MCQ4 extends StatefulWidget {
-  const MCQ4({super.key});
+class MCQ5 extends StatefulWidget {
+  const MCQ5({super.key});
 
   @override
-  State<MCQ4> createState() => _MCQ4State();
+  State<MCQ5> createState() => _MCQ5State();
 }
 
-class _MCQ4State extends State<MCQ4> {
+class _MCQ5State extends State<MCQ5> {
   bool isSelected = false;
   bool isAnswered = false;
 
@@ -22,7 +22,7 @@ class _MCQ4State extends State<MCQ4> {
   final List<Question> questions = [
     Question(
       question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
@@ -30,15 +30,15 @@ class _MCQ4State extends State<MCQ4> {
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
       question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
@@ -46,11 +46,11 @@ class _MCQ4State extends State<MCQ4> {
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     // Question(
     //     question: 'What is the currency of Japan?',
@@ -186,7 +186,7 @@ class _MCQ4State extends State<MCQ4> {
               child: Column(
                 children: List.generate(
                   questions[questionIndex].options.length,
-                  (index) => Padding(
+                      (index) => Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: QuizCard(
                       text: questions[questionIndex].options[index],
@@ -197,7 +197,7 @@ class _MCQ4State extends State<MCQ4> {
                           questions[questionIndex].correctAnswer,
                       isSelected: isSelected,
                       isOptionSelected:
-                          index == selectedOptionIndex, // Pass this value here
+                      index == selectedOptionIndex, // Pass this value here
                     ),
                   ),
                 ),
@@ -215,8 +215,8 @@ class _MCQ4State extends State<MCQ4> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('آپ کا اسکور: 10 پوائنٹس',style: TextStyle(
-                    fontFamily: "UrduType",
-                    color: Color(0xff8E79FB)
+                      fontFamily: "UrduType",
+                      color: Color(0xff8E79FB)
                   ),),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
