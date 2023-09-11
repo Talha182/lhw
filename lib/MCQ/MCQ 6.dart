@@ -1,7 +1,5 @@
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:video_player/video_player.dart';
 
 class MCQ6 extends StatefulWidget {
   const MCQ6({super.key});

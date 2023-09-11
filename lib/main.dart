@@ -1,15 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/LessonOptions/LessonOption21.dart';
-import 'package:lhw/LessonOptions/LessonOption33.dart';
-import 'package:lhw/MCQ/MCQ%206.dart';
-import 'package:lhw/True_False/False_02.dart';
+import 'package:lhw/True_False/True_False_02.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
-import 'LessonOptions/LessonOption25.dart';
-import 'True_False/True False.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

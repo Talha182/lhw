@@ -1,7 +1,5 @@
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:video_player/video_player.dart';
 
 class TrueFalse2 extends StatefulWidget {
   const TrueFalse2({super.key});
@@ -22,30 +20,30 @@ class _TrueFalse2State extends State<TrueFalse2> {
   final List<Question> questions = [
     Question(
       question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'سچ ہے۔',
         'جھوٹا۔ ',
       ],
       correctAnswer: 'جھوٹا۔ ',
       correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
       question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'سچ ہے۔',
         'جھوٹا۔ ',
       ],
       correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
   ];
 
@@ -182,9 +180,9 @@ class _TrueFalse2State extends State<TrueFalse2> {
                 questions[questionIndex].question,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 18,
-                  color: Color(0xff7A7D84)
+                    fontFamily: "UrduType",
+                    fontSize: 18,
+                    color: Color(0xff7A7D84)
                 ),
               ),
               const SizedBox(
@@ -201,7 +199,7 @@ class _TrueFalse2State extends State<TrueFalse2> {
               Column(
                 children: List.generate(
                   questions[questionIndex].options.length,
-                  (index) => Padding(
+                      (index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: QuizCard(
                       text: questions[questionIndex].options[index],
@@ -212,7 +210,7 @@ class _TrueFalse2State extends State<TrueFalse2> {
                           questions[questionIndex].correctAnswer,
                       isSelected: isSelected,
                       isOptionSelected:
-                          index == selectedOptionIndex, // Pass this value here
+                      index == selectedOptionIndex, // Pass this value here
                     ),
                   ),
                 ),
