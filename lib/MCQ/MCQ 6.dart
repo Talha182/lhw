@@ -77,7 +77,7 @@ class _MCQ6State extends State<MCQ6> {
       }
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
@@ -102,7 +102,7 @@ class _MCQ6State extends State<MCQ6> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -112,9 +112,9 @@ class _MCQ6State extends State<MCQ6> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
+            end: const Alignment(0, -0.2),
             colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
+              const Color(0xff80B8FB).withOpacity(0.3),
               Colors.transparent,
             ],
           ),
@@ -123,17 +123,17 @@ class _MCQ6State extends State<MCQ6> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 30, left: 20, right: 10),
+              padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
               child: Row(
                 children: [
                   InkWell(
                     onTap: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                       size: 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Container(
@@ -141,7 +141,7 @@ class _MCQ6State extends State<MCQ6> {
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
-                      duration: Duration(milliseconds: 400),
+                      duration: const Duration(milliseconds: 400),
                       builder:
                           (BuildContext context, double value, Widget? child) {
                         return StepProgressIndicator(
@@ -149,9 +149,9 @@ class _MCQ6State extends State<MCQ6> {
                           currentStep: value.ceil(),
                           size: 8,
                           padding: 0,
-                          selectedColor: Color(0xffFE8BD1),
+                          selectedColor: const Color(0xffFE8BD1),
                           unselectedColor: Colors.white,
-                          roundedEdges: Radius.circular(10),
+                          roundedEdges: const Radius.circular(10),
                         );
                       },
                     ),
@@ -160,7 +160,7 @@ class _MCQ6State extends State<MCQ6> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 30),
+              padding: const EdgeInsets.only(right: 30),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
@@ -172,7 +172,7 @@ class _MCQ6State extends State<MCQ6> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Container(
                 width: double.infinity,
                 height: 180,
@@ -220,7 +220,7 @@ class _MCQ6State extends State<MCQ6> {
                           Text(
                             "سوال ${questionIndex + 1}",
                             textAlign: TextAlign.right,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: "UrduType",
                                 fontSize: 18,
                                 color: Colors.white),
@@ -228,7 +228,7 @@ class _MCQ6State extends State<MCQ6> {
                           Text(
                             questions[questionIndex].question,
                             textAlign: TextAlign.justify,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: "UrduType",
                                 fontSize: 16,
                                 color: Colors.white),
@@ -241,17 +241,17 @@ class _MCQ6State extends State<MCQ6> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20,right: 20,top: 10),
+              padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
               child: GridView.builder(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of items in a row.
                   childAspectRatio: (360 /
                       400), // Adjust width & height here (original was 360/65)
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
                 ),
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true, // To limit the height to its children
                 itemCount: questions[questionIndex].options.length,
                 itemBuilder: (context, index) {
@@ -268,33 +268,33 @@ class _MCQ6State extends State<MCQ6> {
                 },
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Divider(
               height: 1,
               thickness: 1,
               color: Colors.black87.withOpacity(0.1),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'آپ کا اسکور: 10 پوائنٹس',
                     style: TextStyle(
                         fontFamily: "UrduType", color: Color(0xff8E79FB)),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffFE8BD1),
+                      backgroundColor: const Color(0xffFE8BD1),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      minimumSize: Size(150, 37),
+                      minimumSize: const Size(150, 37),
                     ),
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'جاری رہے',
                       style: TextStyle(
                         fontFamily: 'UrduType',
@@ -346,16 +346,16 @@ class QuizCard extends StatelessWidget {
           color: color,
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 10, right: 10),
+          padding: const EdgeInsets.only(left: 10, right: 10),
           child: Column(
             children: [
 
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   text,
                   textAlign: TextAlign.justify,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xff7A7D84),
                     fontFamily: 'UrduType',
@@ -373,7 +373,7 @@ class QuizCard extends StatelessWidget {
                       : Colors.transparent,
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
             ],
           ),
         ),
