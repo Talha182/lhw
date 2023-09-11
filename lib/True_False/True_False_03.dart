@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class TrueFalse2 extends StatefulWidget {
-  const TrueFalse2({super.key});
+class TrueFalse3 extends StatefulWidget {
+  const TrueFalse3({super.key});
 
   @override
-  State<TrueFalse2> createState() => _TrueFalse2State();
+  State<TrueFalse3> createState() => _TrueFalse3State();
 }
 
-class _TrueFalse2State extends State<TrueFalse2> {
+class _TrueFalse3State extends State<TrueFalse3> {
   bool isSelected = false;
   bool isAnswered = false;
   int _current = 0;
@@ -19,38 +19,26 @@ class _TrueFalse2State extends State<TrueFalse2> {
 
   final List<Question> questions = [
     Question(
-      question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'سچ ہے۔',
-        'جھوٹا۔ ',
-      ],
-      correctAnswer: 'جھوٹا۔ ',
-      correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+      question: "The capital of England is London",
+      correctAnswer: 'True',
     ),
     Question(
-      question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'سچ ہے۔',
-        'جھوٹا۔ ',
-      ],
-      correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+      question: "The capital of Pakistan is Paris",
+      correctAnswer: 'False',
+    ),
+    Question(
+      // Adding a third question for demonstration
+      question: "Flutter is a programming language",
+      correctAnswer: 'False',
     ),
   ];
 
-  List<Color> optionColors = [
-    Colors.white,
-    Colors.white,
-  ];
+  List<Color> optionColors = [];
+  @override
+  void initState() {
+    super.initState();
+    optionColors = List.generate(questions.length * 2, (index) => Colors.white);
+  }
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
@@ -59,7 +47,9 @@ class _TrueFalse2State extends State<TrueFalse2> {
       this.selectedAnswer = selectedAnswer;
       isAnswered = true;
       isSelected = true;
-      selectedOptionIndex = index; // Add this line
+      selectedOptionIndex =
+          index % 2; // This will be either 0 (True) or 1 (False)
+
       if (selectedAnswer == questions[questionIndex].correctAnswer) {
         optionColors[index] = Colors.green[100]!;
       } else {
@@ -71,11 +61,6 @@ class _TrueFalse2State extends State<TrueFalse2> {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
-          _current = ((questionIndex / questions.length) * 1).toInt();
-          optionColors = [
-            Colors.white,
-            Colors.white,
-          ];
           isAnswered = false; // Reset for the next question
           isSelected = false; // Reset isSelected
           selectedOptionIndex = null; // Reset selectedOptionIndex
@@ -109,8 +94,7 @@ class _TrueFalse2State extends State<TrueFalse2> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               Row(
                 children: [
@@ -177,17 +161,14 @@ class _TrueFalse2State extends State<TrueFalse2> {
                 style: TextStyle(fontFamily: "UrduType", fontSize: 22),
               ),
               Text(
-                questions[questionIndex].question,
+                "بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔",
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                     fontFamily: "UrduType",
-                    fontSize: 18,
-                    color: Color(0xff7A7D84)
-                ),
+                    fontSize: 16,
+                    color: Color(0xff7A7D84)),
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 30),
               Text(
                 "جواب کا انتخاب کریں۔",
                 style: TextStyle(
@@ -196,26 +177,39 @@ class _TrueFalse2State extends State<TrueFalse2> {
                     letterSpacing: 0.2,
                     color: Color(0xff7A7D84)),
               ),
-              Column(
-                children: List.generate(
-                  questions[questionIndex].options.length,
-                      (index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: QuizCard(
-                      text: questions[questionIndex].options[index],
-                      ontap: () => updateQuestion(
-                          questions[questionIndex].options[index], index),
-                      color: optionColors[index],
-                      isCorrect: selectedAnswer ==
-                          questions[questionIndex].correctAnswer,
-                      isSelected: isSelected,
-                      isOptionSelected:
-                      index == selectedOptionIndex, // Pass this value here
+              Padding(
+                padding: EdgeInsets.only(top: 15, right: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'سچ ہے۔',
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 16),
                     ),
-                  ),
+                    SizedBox(width: 28), // Adjust width accordingly
+                    Text('جھوٹا۔',
+                        style: TextStyle(fontFamily: "UrduType", fontSize: 16)),
+                  ],
                 ),
               ),
-              const Spacer(),
+              Column(
+                children: List<Widget>.generate(
+                  questions.length,
+                  (questionIndex) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: QuizCard(
+                        questionText: questions[questionIndex].question,
+                        correctAnswer: questions[questionIndex].correctAnswer,
+                        onTap: (selectedOption) {
+                          updateQuestion(selectedOption, questionIndex);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Spacer(),
               Divider(
                 height: 1,
                 thickness: 1,
@@ -261,85 +255,112 @@ class _TrueFalse2State extends State<TrueFalse2> {
   }
 }
 
-class QuizCard extends StatelessWidget {
-  final String text;
-  final Function ontap;
-  final Color color;
-  final bool isCorrect;
-  final bool isSelected;
-  final bool isAnswered;
-  final bool isOptionSelected; // Define this parameter
+// ... [rest of the imports]
+
+class QuizCard extends StatefulWidget {
+  final String questionText;
+  final String correctAnswer;
+  final Function(String) onTap;
 
   const QuizCard({
-    Key? key,
-    required this.text,
-    required this.ontap,
-    this.color = const Color(0xffF2F2F2),
-    this.isCorrect = false,
-    this.isSelected = false,
-    this.isAnswered = false,
-    this.isOptionSelected = false, // Initialize this parameter
-  }) : super(key: key);
+    required this.questionText,
+    required this.correctAnswer,
+    required this.onTap,
+  });
+
+  @override
+  _QuizCardState createState() => _QuizCardState();
+}
+
+class _QuizCardState extends State<QuizCard> {
+  String? selectedOption;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: isAnswered ? null : () => ontap(),
-      child: Container(
-        width: 360,
-        height: 65,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black87.withOpacity(0.1)),
-          borderRadius: BorderRadius.circular(10),
-          color: color,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Row(
-            children: [
-              Container(
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black87.withOpacity(0.2)),
-                  shape: BoxShape.circle,
-                  color: isOptionSelected // Use the parameter here
-                      ? (isCorrect ? Colors.green : Colors.red)
-                      : Colors.transparent,
+    return Container(
+      width: 360,
+      height: 65,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: determineCardColor(), // use the determined color here
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                widget.questionText,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Color(0xff7A7D84),
+                  fontFamily: 'UrduType',
                 ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  text,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Color(0xff7A7D84),
-                    fontFamily: 'UrduType',
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+            optionCircle("True"),
+            SizedBox(width: 30),
+            optionCircle("False"),
+          ],
         ),
       ),
     );
+  }
+
+  Widget optionCircle(String option) {
+    return InkWell(
+      onTap: () {
+        // Check if an option has already been selected
+        if (selectedOption != null) return;
+
+        setState(() {
+          selectedOption = option;
+        });
+        widget.onTap(option);
+      },
+      child: Container(
+        width: 20,
+        height: 20,
+        margin: const EdgeInsets.only(right: 10),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black87.withOpacity(0.2)),
+          shape: BoxShape.circle,
+          color: determineColor(option),
+        ),
+      ),
+    );
+  }
+
+  Color determineColor(String option) {
+    if (selectedOption == option) {
+      if (widget.correctAnswer == option) {
+        return Colors.green;
+      } else {
+        return Colors.red;
+      }
+    }
+    return Colors.transparent;
+  }
+
+  // New method to determine the color of the card
+  Color determineCardColor() {
+    if (selectedOption == null) {
+      return Colors.white; // Default color if no option is selected
+    }
+    if (selectedOption == widget.correctAnswer) {
+      return Colors.green[100]!;
+    } else {
+      return Colors.red[100]!;
+    }
   }
 }
 
 class Question {
   final String question;
-  final List<String> options;
   final String correctAnswer;
-  final String correctExplanation; // Correct explanation
-  final String incorrectExplanation; // Incorrect explanation
 
   Question({
     required this.question,
-    required this.options,
     required this.correctAnswer,
-    required this.correctExplanation,
-    required this.incorrectExplanation,
   });
 }

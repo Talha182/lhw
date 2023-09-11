@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class DragDrop extends StatefulWidget {
-  const DragDrop({super.key});
+class LessonOption32 extends StatefulWidget {
+  const LessonOption32({super.key});
 
   @override
-  State<DragDrop> createState() => _DragDropState();
+  State<LessonOption32> createState() => _LessonOption32State();
 }
 
-class _DragDropState extends State<DragDrop> {
+class _LessonOption32State extends State<LessonOption32> {
   bool isSelected = false;
   bool isAnswered = false;
 
