@@ -106,88 +106,94 @@ class _ScoreState extends State<Score> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 180,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff9AC9C2).withOpacity(0.5)),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.check,
-                                          color: Color(0xff9AC9C2),
-                                          size: 14,
+                          child: CustomPaint(
+                            painter: BorderPainter(borderColor: Color(0xff9AC9C2)), // Change color as desired
+                            child: Container(
+                              height: 180,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xff9AC9C2).withOpacity(0.4)),
+                              child: Padding(
+                                padding:
+                                EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        width: 20,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.check,
+                                            color: Color(0xff9AC9C2),
+                                            size: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Lorem Ipsum Sit Dolor؟",
-                                    style: TextStyle(fontSize: 14),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  Text(
-                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                    style: TextStyle(fontSize: 16),
-                                    textAlign: TextAlign.start,
-                                  )
-                                ],
+                                    Text(
+                                      "Lorem Ipsum Sit Dolor؟",
+                                      style: TextStyle(fontSize: 14),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Text(
+                                      "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                      style: TextStyle(fontSize: 16),
+                                      textAlign: TextAlign.start,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Container(
-                            height: 180,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff9AC9C2).withOpacity(0.5)),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.check,
-                                          color: Color(0xff9AC9C2),
-                                          size: 14,
+                          child: CustomPaint(
+                            painter: BorderPainter(borderColor: Color(0xff9AC9C2)), // Change color as desired
+                            child: Container(
+                              height: 180,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xff9AC9C2).withOpacity(0.4)),
+                              child: Padding(
+                                padding:
+                                EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        width: 20,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.check,
+                                            color: Color(0xff9AC9C2),
+                                            size: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Lorem Ipsum Sit Dolor؟",
-                                    style: TextStyle(fontSize: 14),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  Text(
-                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                    style: TextStyle(fontSize: 16),
-                                    textAlign: TextAlign.start,
-                                  )
-                                ],
+                                    Text(
+                                      "Lorem Ipsum Sit Dolor؟",
+                                      style: TextStyle(fontSize: 14),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Text(
+                                      "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                      style: TextStyle(fontSize: 16),
+                                      textAlign: TextAlign.start,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -201,88 +207,94 @@ class _ScoreState extends State<Score> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 180,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff9AC9C2).withOpacity(0.5)),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.check,
-                                          color: Color(0xff9AC9C2),
-                                          size: 14,
+                          child: CustomPaint(
+                            painter: BorderPainter(borderColor: Color(0xff9AC9C2)), // Change color as desired
+                            child: Container(
+                              height: 180,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xff9AC9C2).withOpacity(0.4)),
+                              child: Padding(
+                                padding:
+                                EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        width: 20,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.check,
+                                            color: Color(0xff9AC9C2),
+                                            size: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Lorem Ipsum Sit Dolor؟",
-                                    style: TextStyle(fontSize: 14),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  Text(
-                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                    style: TextStyle(fontSize: 16),
-                                    textAlign: TextAlign.start,
-                                  )
-                                ],
+                                    Text(
+                                      "Lorem Ipsum Sit Dolor؟",
+                                      style: TextStyle(fontSize: 14),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Text(
+                                      "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                      style: TextStyle(fontSize: 16),
+                                      textAlign: TextAlign.start,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Container(
-                            height: 180,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff9AC9C2).withOpacity(0.5)),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.check,
-                                          color: Color(0xff9AC9C2),
-                                          size: 14,
+                          child: CustomPaint(
+                            painter: BorderPainter(borderColor: Color(0xff9AC9C2)), // Change color as desired
+                            child: Container(
+                              height: 180,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xff9AC9C2).withOpacity(0.4)),
+                              child: Padding(
+                                padding:
+                                EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        width: 20,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.check,
+                                            color: Color(0xff9AC9C2),
+                                            size: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Lorem Ipsum Sit Dolor؟",
-                                    style: TextStyle(fontSize: 14),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  Text(
-                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                    style: TextStyle(fontSize: 16),
-                                    textAlign: TextAlign.start,
-                                  )
-                                ],
+                                    Text(
+                                      "Lorem Ipsum Sit Dolor؟",
+                                      style: TextStyle(fontSize: 14),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Text(
+                                      "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                      style: TextStyle(fontSize: 16),
+                                      textAlign: TextAlign.start,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -296,88 +308,94 @@ class _ScoreState extends State<Score> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 180,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff9AC9C2).withOpacity(0.5)),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.check,
-                                          color: Color(0xff9AC9C2),
-                                          size: 14,
+                          child: CustomPaint(
+                            painter: BorderPainter(borderColor: Color(0xff9AC9C2)), // Change color as desired
+                            child: Container(
+                              height: 180,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xff9AC9C2).withOpacity(0.4)),
+                              child: Padding(
+                                padding:
+                                EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        width: 20,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.check,
+                                            color: Color(0xff9AC9C2),
+                                            size: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Lorem Ipsum Sit Dolor؟",
-                                    style: TextStyle(fontSize: 14),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  Text(
-                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                    style: TextStyle(fontSize: 16),
-                                    textAlign: TextAlign.start,
-                                  )
-                                ],
+                                    Text(
+                                      "Lorem Ipsum Sit Dolor؟",
+                                      style: TextStyle(fontSize: 14),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Text(
+                                      "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                      style: TextStyle(fontSize: 16),
+                                      textAlign: TextAlign.start,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Container(
-                            height: 180,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xffFB6262).withOpacity(0.5)),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.close,
-                                          color: Color(0xffFB6262),
-                                          size: 14,
+                          child: CustomPaint(
+                            painter: BorderPainter(borderColor: Color(0xffFB6262)), // Change color as desired
+                            child: Container(
+                              height: 180,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xffFB6262).withOpacity(0.4)),
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        width: 20,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.close,
+                                            color: Color(0xffFB6262),
+                                            size: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Lorem Ipsum Sit Dolor؟",
-                                    style: TextStyle(fontSize: 14),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  Text(
-                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                    style: TextStyle(fontSize: 16),
-                                    textAlign: TextAlign.start,
-                                  )
-                                ],
+                                    Text(
+                                      "Lorem Ipsum Sit Dolor؟",
+                                      style: TextStyle(fontSize: 14),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Text(
+                                      "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                      style: TextStyle(fontSize: 16),
+                                      textAlign: TextAlign.start,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -456,24 +474,54 @@ class _ScoreState extends State<Score> {
     );
   }
 }
-class BottomBorderPainter extends CustomPainter {
+
+
+
+class BorderPainter extends CustomPainter {
+  final Color borderColor;
+
+  BorderPainter({required this.borderColor});
+
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.green
+    const double startOffset = 4.0;
+    final double endOffset = size.width - 4.0;
+    final double bottomOffset = size.height - 4.0;
+
+    const double curveRadius = 5.0;
+
+    final Path path = Path()
+      ..moveTo(startOffset + curveRadius, bottomOffset)
+      ..lineTo(endOffset - curveRadius, bottomOffset);
+
+    // Draw the straight part
+    final Paint paintForStraight = Paint()
+      ..color = borderColor
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0; // adjust this for the thickness
+      ..strokeWidth = 5.0;
 
-    final path = Path();
+    canvas.drawPath(path, paintForStraight);
 
-    // Define starting, control and ending points
-    final startPoint = Offset(0, size.height);
-    final endPoint = Offset(size.width, size.height);
-    final controlPoint = Offset(size.width / 2, size.height - 10); // adjust the -10 to control the depth of the curve
+    // Draw the curves with "gradient" effect
+    for (double i = 0; i <= 1; i += 0.1) {
+      final Paint paintForCurve = Paint()
+        ..color = borderColor.withOpacity(i)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 5.0 - (2.0 * i); // Varying the width
 
-    path.moveTo(startPoint.dx, startPoint.dy);
-    path.quadraticBezierTo(controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy);
-    canvas.drawPath(path, paint);
+      final Path pathForCurveRight = Path()
+        ..moveTo(endOffset - curveRadius, bottomOffset)
+        ..quadraticBezierTo(endOffset, bottomOffset, endOffset,
+            bottomOffset - (curveRadius * i));
+
+      final Path pathForCurveLeft = Path()
+        ..moveTo(startOffset, bottomOffset - (curveRadius * i))
+        ..quadraticBezierTo(
+            startOffset, bottomOffset, startOffset + curveRadius, bottomOffset);
+
+      canvas.drawPath(pathForCurveRight, paintForCurve);
+      canvas.drawPath(pathForCurveLeft, paintForCurve);
+    }
   }
 
   @override
