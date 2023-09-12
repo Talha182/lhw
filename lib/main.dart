@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/LessonOptions/Lesson%20Option%2032.dart';
-import 'package:lhw/True_False/True_False_02.dart';
-import 'package:lhw/True_False/True_False_03.dart';
+import 'package:lhw/DragDrop/DragDrop.dart';
+import 'package:lhw/Result/Presentation.dart';
+import 'package:lhw/Result/Score.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: LessonOption32(),
+      home: Score(),
       debugShowCheckedModeBanner: false,
     );
   }
