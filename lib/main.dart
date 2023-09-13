@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lhw/DragDrop/DragDrop.dart';
 import 'package:lhw/Result/Presentation.dart';
 import 'package:lhw/Result/Score.dart';
+import 'package:lhw/leaderboard/leaderboard.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: Score(),
+      home: LeaderBoard(),
       debugShowCheckedModeBanner: false,
     );
   }
