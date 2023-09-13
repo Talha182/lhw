@@ -17,7 +17,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
     return Stack(
       children: [
         Container(
-          width: 400,
+          width: double.infinity,
           height: 170,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.black87.withOpacity(0.2)),

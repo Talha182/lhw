@@ -18,7 +18,7 @@ class GradientCardWithProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: double.infinity,
       height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -48,6 +48,7 @@ class GradientCardWithProgress extends StatelessWidget {
                         style: const TextStyle(
                           fontFamily: 'UrduType',
                           fontSize: 15,
+                          color: Colors.white
                         ),
                       ),
                     ),

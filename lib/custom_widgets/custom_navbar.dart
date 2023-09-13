@@ -1,8 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:lhw/home_page/home_page.dart';
 
-import '../courses_page/tab_bar.dart';
+import '../Mobile_HomePage/home_page.dart';
+import '../Mobile_HomePage/tab_bar.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});

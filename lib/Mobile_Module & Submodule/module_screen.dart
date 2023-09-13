@@ -174,7 +174,7 @@ class _ModulePageState extends State<ModulePage> {
                             color: Color(0xffF7DE8D),
                           ),
                           onRatingUpdate: (rating) {
-                          },
+                            },
                         )
                             : ElevatedButton(
                                 style: ElevatedButton.styleFrom(

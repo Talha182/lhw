@@ -1,11 +1,11 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:lhw/courses_page/completed_courses.dart';
-import 'package:lhw/courses_page/ongoing_courses.dart';
-import 'package:lhw/courses_page/total_courses.dart';
+import 'package:lhw/Mobile_HomePage/Courses_Completed.dart';
+import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
+import 'package:lhw/Mobile_HomePage/Courses_All Courses.dart';
 
-class CoursesPage extends StatelessWidget {
-  const CoursesPage({super.key});
+class CoursesPage_Tabbar extends StatelessWidget {
+  const CoursesPage_Tabbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class CoursesPage extends StatelessWidget {
                 child: TabBarView(
                   children: <Widget>[
                     OnGoingCourses(),
-                    CompletedCourses(),
+                    Courses_Completed(),
                     TotalCourses(),
                   ],
                 ),

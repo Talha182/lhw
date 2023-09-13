@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lhw/FAB_Page/BottomModalSheet.dart';
-import 'package:lhw/courses_page/tab_bar.dart';
-import 'package:lhw/home_page/home_page.dart';
+import 'package:lhw/Mobile_HomePage/tab_bar.dart';
+
+import 'Mobile_HomePage/home_page.dart';
 
 class Custom_NavBar extends StatefulWidget {
   const Custom_NavBar({super.key});
@@ -24,7 +25,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
 
   final List<Widget> pages = [
     HomePage(),
-    CoursesPage(),
+    CoursesPage_Tabbar(),
     HomePage(),
     HomePage(),
   ];

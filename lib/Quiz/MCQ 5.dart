@@ -227,43 +227,51 @@ class _MCQ5State extends State<MCQ5> {
               ),
             ),
             Spacer(),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: Colors.black87.withOpacity(0.1),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10,right: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'آپ کا اسکور: 10 پوائنٹس',
-                    style: TextStyle(
-                        fontFamily: "UrduType", color: Color(0xff8E79FB)),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffFE8BD1),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+            Column(
+              children: [
+                Divider(
+                  height: 1,
+                  thickness: 1,
+                  color: Colors.black87.withOpacity(0.1),
+                ),
+                SizedBox(height: 10 ,),
+
+                Padding(
+                  padding: EdgeInsets.only(left: 10,right: 10,bottom: 1),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'آپ کا اسکور: 10 پوائنٹس',
+                        style: TextStyle(
+                            fontFamily: "UrduType", color: Color(0xff8E79FB)),
                       ),
-                      minimumSize: Size(150, 37),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'جاری رہے',
-                      style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 15,
-                        color: Colors.white,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xffFE8BD1),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: Size(150, 37),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'جاری رہے',
+                          style: TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              ],
+            )
+
+
           ],
         ),
       ),

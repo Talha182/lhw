@@ -108,7 +108,7 @@ class _LessonOption20State extends State<LessonOption20> {
                     LessonOptionCard(
                       imagePath: 'assets/images/drugs.png',
                       text: 'ضمنی اثرات کی وضاحت',
-                      borderColor: Color(0xffFE8BD1),
+                      borderColor: Color(0xff9AC9C2),
                     ),
                     LessonOptionCard(
                       imagePath: 'assets/images/drugs.png',
@@ -257,7 +257,7 @@ class BorderPainter extends CustomPainter {
     final double endOffset = size.width - 4.0;
     final double bottomOffset = size.height - 4.0;
 
-    final double curveRadius = 5.0;
+    final double curveRadius = 6.0;
 
     final Path path = Path()
       ..moveTo(startOffset + curveRadius, bottomOffset)
@@ -276,7 +276,7 @@ class BorderPainter extends CustomPainter {
       final Paint paintForCurve = Paint()
         ..color = borderColor.withOpacity(i)
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 6.0 - (2.0 * i); // Varying the width
+        ..strokeWidth = 5.0 - (2.0 * i); // Varying the width
 
       final Path pathForCurveRight = Path()
         ..moveTo(endOffset - curveRadius, bottomOffset)

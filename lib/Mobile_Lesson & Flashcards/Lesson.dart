@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
-import 'package:lhw/lessons/inforgraphics_carousel.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
+
+import 'inforgraphics_carousel.dart';
 
 class Jaiza extends StatelessWidget {
   const Jaiza({super.key});
@@ -11,12 +12,12 @@ class Jaiza extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(top: 10),
       child: ListView(children: [
         Stack(
           children: [
             Container(
-              width: 400,
+              width: double.infinity,
               height: 170,
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -130,7 +131,7 @@ class Jaiza extends StatelessWidget {
           height: 20,
         ),
         Container(
-          width: 400,
+          width: double.infinity,
           height: 55,
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.withOpacity(0.3)),
@@ -231,8 +232,7 @@ class Jaiza extends StatelessWidget {
             ...rowPadded([
               const Text(
                 '4/5',
-                style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
               RatingBar.builder(
                 unratedColor: const Color(0xffD9D9D9),
@@ -251,8 +251,7 @@ class Jaiza extends StatelessWidget {
               ),
               const Text(
                 '(3770)',
-                style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ], 3)
           ],
@@ -268,21 +267,26 @@ class Jaiza extends StatelessWidget {
                 fontFamily: "UrduType", fontSize: 16, color: Color(0xffFE8BD1)),
           ),
         ),
-        const SizedBox(height: 20,),
+        const SizedBox(
+          height: 20,
+        ),
         Container(
           height: 1.0,
           width: double.infinity,
           color: Colors.black87.withOpacity(0.2),
         ),
-        const SizedBox(height: 20,),
-
+        const SizedBox(
+          height: 20,
+        ),
         Row(
           children: [
             ...rowPadded([
               Image.asset('assets/images/doc.png'),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: const Text(
                   'ڈاؤن لوڈ کریں۔',
                   style: TextStyle(
@@ -308,14 +312,18 @@ class Jaiza extends StatelessWidget {
             ], 2)
           ],
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         Row(
           children: [
             ...rowPadded([
               Image.asset('assets/images/discussion.png'),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: const Text(
                   'ابھی شامل ہوں۔',
                   style: TextStyle(
@@ -341,9 +349,9 @@ class Jaiza extends StatelessWidget {
             ], 2)
           ],
         ),
-
-
-        const SizedBox(height: 50,),
+        const SizedBox(
+          height: 50,
+        ),
       ]),
     ));
   }

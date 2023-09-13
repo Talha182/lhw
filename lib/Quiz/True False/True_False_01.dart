@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:video_player/video_player.dart';
 
-class TrueFalse extends StatefulWidget {
-  const TrueFalse({super.key});
+class TrueFalse1 extends StatefulWidget {
+  const TrueFalse1({super.key});
 
   @override
-  State<TrueFalse> createState() => _TrueFalseState();
+  State<TrueFalse1> createState() => _TrueFalse1State();
 }
 
-class _TrueFalseState extends State<TrueFalse> {
+class _TrueFalse1State extends State<TrueFalse1> {
   bool isSelected = false;
   bool isAnswered = false;
   int _current = 0;
