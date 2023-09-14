@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
@@ -165,8 +166,10 @@ class _HomePageState extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Row(
-                                  children: <Widget>[
-                                    Image.asset('assets/images/courses.png'),
+                                    children: <Widget>[
+                                    SvgPicture.asset(
+                                      'assets/images/course.svg', // Replace with your SVG path
+                                    ),
                                     const SizedBox(
                                       width: 8,
                                     ),
