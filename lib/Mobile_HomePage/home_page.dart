@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(right: 20),
                       child: Row(
                         children: [
-                          InkWell(
+                          GestureDetector(
                             child: Image.asset(
                               'assets/images/magnifier.png',
                               color: Colors.black,
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(
                             width: 20,
                           ),
-                          InkWell(
+                          GestureDetector(
                             child: Image.asset(
                               'assets/images/bell.png',
                               color: Colors.black,
@@ -223,9 +223,9 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 17,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
-                                    },
+                                     },
                                     child: const Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -442,7 +442,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
 
                                           // Icon button on the right
-                                          InkWell(
+                                          GestureDetector(
                                             child:
                                                 const Icon(Icons.arrow_forward_ios),
                                             onTap: () {},
@@ -510,7 +510,7 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ),
                                           // Icon button on the right
-                                          InkWell(
+                                          GestureDetector(
                                             child:
                                                 const Icon(Icons.arrow_forward_ios),
                                             onTap: () {},

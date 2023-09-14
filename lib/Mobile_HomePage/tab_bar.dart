@@ -40,7 +40,7 @@ class CoursesPage_Tabbar extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 20),
                         child: Row(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               child: Image.asset(
                                 'assets/images/magnifier.png',
                                 color: Colors.black,
@@ -50,7 +50,7 @@ class CoursesPage_Tabbar extends StatelessWidget {
                             const SizedBox(
                               width: 20,
                             ),
-                            InkWell(
+                            GestureDetector(
                               child: Image.asset(
                                 'assets/images/bell.png',
                                 color: Colors.black,
@@ -71,6 +71,7 @@ class CoursesPage_Tabbar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ButtonsTabBar(
+                splashColor: Colors.transparent,
                 height: 50,
                 radius: 20,
                 elevation: 1,
