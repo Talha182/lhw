@@ -303,7 +303,7 @@ class QuizCard extends StatelessWidget {
                   text,
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     color: Color(0xff7A7D84),
                     fontFamily: 'UrduType',
                   ),

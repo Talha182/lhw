@@ -1,5 +1,6 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:video_player/video_player.dart';
 
@@ -149,13 +150,14 @@ class _TrueFalse1State extends State<TrueFalse1> {
               ),
               Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
+                child: SvgPicture.asset(
                   'assets/images/cloud.svg',
                   width: 20,
                   height: 20,
                   fit: BoxFit.contain,
                 ),
               ),
+              SizedBox(height: 15,),
               Text(
                 "مدت",
                 style: TextStyle(fontFamily: "UrduType"),

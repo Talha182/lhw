@@ -19,37 +19,39 @@ class _PresentationState extends State<Presentation> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+  double _volume = 0.5; // Default volume is 50%
+  bool isPlaying = false;
 
   final List<Question> questions = [
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     // Question(
     //     question: 'What is the currency of Japan?',
@@ -79,7 +81,7 @@ class _PresentationState extends State<Presentation> {
       }
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
@@ -99,7 +101,8 @@ class _PresentationState extends State<Presentation> {
     super.initState();
     flickManager = FlickManager(
       videoPlayerController:
-      VideoPlayerController.asset("assets/videos/demo.mp4"),
+          VideoPlayerController.asset("assets/videos/demo.mp4")
+            ..setVolume(_volume), // Setting the initial volume
     );
   }
 
@@ -109,13 +112,32 @@ class _PresentationState extends State<Presentation> {
     super.dispose();
   }
 
+  VideoPlayerController _getVideoPlayerController() {
+    return flickManager.flickVideoManager!.videoPlayerController!;
+  }
+  void togglePlayPause() {
+    var controller = flickManager.flickVideoManager!.videoPlayerController!;
+    if (controller.value.isPlaying) {
+      controller.pause();
+      setState(() {
+        isPlaying = false;
+      });
+    } else {
+      controller.play();
+      setState(() {
+        isPlaying = true;
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     _totalSteps = questions.length; // Add this line
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -125,28 +147,27 @@ class _PresentationState extends State<Presentation> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
+            end: const Alignment(0, -0.2),
             colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
+              const Color(0xff80B8FB).withOpacity(0.3),
               Colors.transparent,
             ],
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20,bottom: 5),
-
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
           child: Column(
             children: [
               Row(
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                       size: 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -154,17 +175,17 @@ class _PresentationState extends State<Presentation> {
                       child: TweenAnimationBuilder(
                         tween: Tween<double>(
                             begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
-                        duration: Duration(milliseconds: 400),
-                        builder:
-                            (BuildContext context, double value, Widget? child) {
+                        duration: const Duration(milliseconds: 400),
+                        builder: (BuildContext context, double value,
+                            Widget? child) {
                           return StepProgressIndicator(
                             totalSteps: _totalSteps,
                             currentStep: value.ceil(),
                             size: 8,
                             padding: 0,
-                            selectedColor: Color(0xffFE8BD1),
+                            selectedColor: const Color(0xffFE8BD1),
                             unselectedColor: Colors.white,
-                            roundedEdges: Radius.circular(10),
+                            roundedEdges: const Radius.circular(10),
                           );
                         },
                       ),
@@ -173,7 +194,7 @@ class _PresentationState extends State<Presentation> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(right: 20,bottom: 10),
+                padding: const EdgeInsets.only(right: 10, bottom: 10),
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: SvgPicture.asset(
@@ -184,43 +205,114 @@ class _PresentationState extends State<Presentation> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 0, right: 0),
-                child: Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child:FlickVideoPlayer(
-                      flickManager: flickManager,
-                      flickVideoWithControls: FlickVideoWithControls(
-                        controls: FlickPortraitControls(
-                          progressBarSettings: FlickProgressBarSettings(
-                            handleColor: Color(0xffFE8BD1),  // Color of the draggable handle
-                            playedColor: Color(0xffFE8BD1),  // Color of the portion of the video that has been played
-                            bufferedColor: Colors.white.withOpacity(0.5),  // Color of the buffered video
-                          ),
-                        ),
-                      ),
-                    )
-                    ,
+              SizedBox(
+                height: 200,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: FlickVideoPlayer(
+                    flickManager: flickManager,
+                    flickVideoWithControls: const FlickVideoWithControls(
+                      videoFit: BoxFit.cover,
+                      controls: CustomFlickPortraitControls(),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
+              Material(
+                elevation: 1,
+                child: Container(
+                  width: double.infinity,
+                  height: 70,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset("assets/images/volume.svg"),
+                            SizedBox(
+                              width: 140,
+                              child: SliderTheme(
+                                data: SliderTheme.of(context).copyWith(
+                                  thumbShape: const RoundSliderThumbShape(
+                                      enabledThumbRadius:
+                                          8.0), // Adjust the radius value to your preference
+                                ),
+                                child: Slider(
+                                  value: _volume,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _volume = value;
+                                      _getVideoPlayerController()
+                                          .setVolume(_volume);
+                                    });
+                                  },
+                                  activeColor: const Color(0xffFE8BD1),
+                                  inactiveColor: Colors.grey[300],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0xffEBEBEB)),
+                              child: Center(
+                                child:GestureDetector(
+                                  onTap: togglePlayPause,
+                                  child: Icon(
+                                    isPlaying ? Icons.pause : Icons.play_arrow_outlined,
+                                    size: 25,
+                                  ),
+                                ),
+
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0xffEBEBEB)),
+                              child: GestureDetector(
+                                child: Center(
+                                    child: SvgPicture.asset(
+                                  "assets/images/full_screen.svg",
+                                  color: Colors.black,
+                                )),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 "بہترین آپشن کا انتخاب کریں۔",
                 style: TextStyle(fontFamily: "UrduType", fontSize: 23),
               ),
               Column(
                 children: List.generate(
                   questions[questionIndex].options.length,
-                      (index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                  (index) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: QuizCard(
                       text: questions[questionIndex].options[index],
                       ontap: () => updateQuestion(
@@ -230,26 +322,28 @@ class _PresentationState extends State<Presentation> {
                           questions[questionIndex].correctAnswer,
                       isSelected: isSelected,
                       isOptionSelected:
-                      index == selectedOptionIndex, // Pass this value here
+                          index == selectedOptionIndex, // Pass this value here
                     ),
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Divider(
                 height: 1,
                 thickness: 1,
                 color: Colors.black87.withOpacity(0.1),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(
+                height: 5,
+              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xffFE8BD1),
+                  backgroundColor: const Color(0xffFE8BD1),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  minimumSize: Size(150, 37),
+                  minimumSize: const Size(150, 37),
                 ),
                 onPressed: () {
                   showDialog(
@@ -259,30 +353,28 @@ class _PresentationState extends State<Presentation> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Container(
+                        child: SizedBox(
                           width: 350, // Set the width
                           height: 220, // Set the height
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Align(
                                     alignment: Alignment.topRight,
-                                    child: InkWell(
+                                    child: GestureDetector(
                                       onTap: () {
                                         Navigator.pop(context);
                                       },
-                                      child: Icon(Icons.close),
+                                      child: const Icon(Icons.close),
                                     )),
-                                Text(
+                                const Text(
                                   'غذائیت کی صورتحال',
                                   style: TextStyle(
-                                      fontFamily: "UrduType",
-                                      fontSize: 20),
+                                      fontFamily: "UrduType", fontSize: 20),
                                 ),
-                                Expanded(
+                                const Expanded(
                                   child: SingleChildScrollView(
                                     child: Text(
                                       'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
@@ -303,7 +395,7 @@ class _PresentationState extends State<Presentation> {
                     },
                   );
                 },
-                child: Text(
+                child: const Text(
                   'جاری رہے',
                   style: TextStyle(
                     fontFamily: 'UrduType',
@@ -342,7 +434,7 @@ class QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: isAnswered ? null : () => ontap(),
       child: Container(
         width: 380,
@@ -353,7 +445,7 @@ class QuizCard extends StatelessWidget {
           color: color,
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 10, right: 10),
+          padding: const EdgeInsets.only(left: 10, right: 10),
           child: Row(
             children: [
               Container(
@@ -367,12 +459,12 @@ class QuizCard extends StatelessWidget {
                       : Colors.transparent,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   text,
                   textAlign: TextAlign.justify,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     color: Color(0xff7A7D84),
                     fontFamily: 'UrduType',
@@ -401,4 +493,41 @@ class Question {
     required this.correctExplanation,
     required this.incorrectExplanation,
   });
+}
+
+class CustomFlickPortraitControls extends StatelessWidget {
+  const CustomFlickPortraitControls({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Positioned.fill(
+          child: FlickShowControlsAction(
+            child: FlickSeekVideoAction(
+              child: Center(child: Container()),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: -10, // Adjust this value if needed
+          left: 0,
+          right: 0,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 0), // Adjust as per need
+            child: FlickVideoProgressBar(
+              flickProgressBarSettings: FlickProgressBarSettings(
+                height: 5,
+                handleRadius: 8,
+                handleColor: const Color(0xffFE8BD1),
+                backgroundColor: Colors.white24,
+                bufferedColor: Colors.white38,
+                playedColor: const Color(0xffFE8BD1),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }

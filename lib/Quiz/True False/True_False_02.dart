@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class TrueFalse2 extends StatefulWidget {
@@ -145,13 +146,16 @@ class _TrueFalse2State extends State<TrueFalse2> {
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/cloud.svg',
-                  width: 20,
-                  height: 20,
-                  fit: BoxFit.contain,
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               Container(

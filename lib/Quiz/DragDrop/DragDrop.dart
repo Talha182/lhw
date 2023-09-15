@@ -17,6 +17,7 @@ class _DragDropState extends State<DragDrop> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+  List<bool> isDragged = List.generate(8, (index) => false);  // assuming 8 buttons
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +77,16 @@ class _DragDropState extends State<DragDrop> {
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 20,
-                  height: 20,
-                  fit: BoxFit.contain,
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               const Text(
@@ -93,70 +97,59 @@ class _DragDropState extends State<DragDrop> {
               const SizedBox(
                 height: 10,
               ),
-              // Container(
-              //   width: double.infinity,
-              //   height: 200,
-              //   decoration: BoxDecoration(
-              //       color: Colors.black87.withOpacity(0.4),
-              //       borderRadius: BorderRadius.circular(10)),
-              //   child: GridView.builder(
-              //     padding: EdgeInsets.all(8.0),
-              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //       crossAxisCount: 2,
-              //       childAspectRatio: 3, // ratio for button width to height
-              //       mainAxisSpacing: 10.0,
-              //       crossAxisSpacing: 10.0,
-              //     ),
-              //     itemCount: buttons.length,
-              //     itemBuilder: (context, index) {
-              //       return Draggable(
-              //         data: index,
-              //         child: ElevatedButton(
-              //           onPressed: buttons[index].action as void Function()?,
-              //           child: Text(buttons[index].name),
-              //         ),
-              //         feedback: Material(
-              //           child: ElevatedButton(
-              //             onPressed: () {},
-              //             child: Text(buttons[index].name),
-              //           ),
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // ),
+
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[0]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[0] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[0] = false;
+                      });
+                    },
                   ),
+
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[1]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[1] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[1] = false;
+                      });
+                    },
                   ),
+
                 ],
               ),
               const SizedBox(
@@ -167,32 +160,52 @@ class _DragDropState extends State<DragDrop> {
                 children: [
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[2]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[2] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[2] = false;
+                      });
+                    },
                   ),
+
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[3]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[3] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[3] = false;
+                      });
+                    },
                   ),
+
                 ],
               ),
               const SizedBox(
@@ -203,32 +216,52 @@ class _DragDropState extends State<DragDrop> {
                 children: [
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[4]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[4] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[4] = false;
+                      });
+                    },
                   ),
+
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[5]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[5] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[5] = false;
+                      });
+                    },
                   ),
+
                 ],
               ),
               const SizedBox(
@@ -239,32 +272,52 @@ class _DragDropState extends State<DragDrop> {
                 children: [
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[6]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[6] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[6] = false;
+                      });
+                    },
                   ),
+
                   Draggable(
                     feedback: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
-                    child: CustomGradientButton(
-                      onTap: () {
-                        print("Button tapped");
-                      },
+                    child: isDragged[7]
+                        ? Container()  // this makes the original place empty when dragging for button 0
+                        : CustomGradientButton(
+                      onTap: () {},
                       label: 'جواب کا اختیار 1',
                     ),
+                    childWhenDragging: Container(),  // display an empty container when dragging
+                    onDragStarted: () {
+                      setState(() {
+                        isDragged[7] = true;
+                      });
+                    },
+                    onDragEnd: (details) {
+                      setState(() {
+                        isDragged[7] = false;
+                      });
+                    },
                   ),
+
                 ],
               ),
 

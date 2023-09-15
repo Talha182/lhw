@@ -130,13 +130,16 @@ class _TrueFalse3State extends State<TrueFalse3> {
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 20,
-                  height: 20,
-                  fit: BoxFit.contain,
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               Container(

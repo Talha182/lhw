@@ -1,8 +1,6 @@
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:video_player/video_player.dart';
 
 class MCQ5 extends StatefulWidget {
   const MCQ5({super.key});
@@ -59,9 +57,8 @@ class _MCQ5State extends State<MCQ5> {
     Colors.white,
     Colors.white,
     Colors.white,
-    Colors.white  // Added fourth color
+    Colors.white // Added fourth color
   ];
-
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
@@ -76,7 +73,6 @@ class _MCQ5State extends State<MCQ5> {
       } else {
         optionColors[index] = Colors.red[100]!;
       }
-
     });
 
     Future.delayed(Duration(seconds: 2), () {
@@ -84,7 +80,12 @@ class _MCQ5State extends State<MCQ5> {
         setState(() {
           questionIndex++;
           _current = ((questionIndex / questions.length) * 1).toInt();
-          optionColors = [Colors.white, Colors.white, Colors.white, Colors.white];
+          optionColors = [
+            Colors.white,
+            Colors.white,
+            Colors.white,
+            Colors.white
+          ];
           isAnswered = false; // Reset for the next question
           isSelected = false; // Reset isSelected
           selectedOptionIndex = null; // Reset selectedOptionIndex
@@ -116,12 +117,12 @@ class _MCQ5State extends State<MCQ5> {
             ],
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 20, right: 10),
-              child: Row(
+        child: Padding(
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
                   InkWell(
                     onTap: () {},
@@ -133,8 +134,7 @@ class _MCQ5State extends State<MCQ5> {
                   SizedBox(
                     width: 5,
                   ),
-                  Container(
-                    width: 320,
+                  Expanded(
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
@@ -155,22 +155,19 @@ class _MCQ5State extends State<MCQ5> {
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: 30),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 20,
-                  height: 20,
-                  fit: BoxFit.contain,
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Container(
+              Container(
                 width: double.infinity,
                 height: 170,
                 decoration: BoxDecoration(
@@ -184,96 +181,94 @@ class _MCQ5State extends State<MCQ5> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20,right: 20),
-              child: Text(
-                "سوال ${questionIndex + 1}",
-                textAlign: TextAlign.right,
-                style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+              SizedBox(
+                height: 15,
               ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.only(left: 20,right: 20),
-              child: Text(
-                questions[questionIndex].question,
-                textAlign: TextAlign.justify,
-                style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+              Padding(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Text(
+                  "سوال ${questionIndex + 1}",
+                  textAlign: TextAlign.right,
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Column(
-                children: List.generate(
-                  questions[questionIndex].options.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: QuizCard(
-                      text: questions[questionIndex].options[index],
-                      ontap: () => updateQuestion(
-                          questions[questionIndex].options[index], index),
-                      color: optionColors[index],
-                      isCorrect: selectedAnswer ==
-                          questions[questionIndex].correctAnswer,
-                      isSelected: isSelected,
-                      isOptionSelected:
-                          index == selectedOptionIndex, // Pass this value here
+              Padding(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Text(
+                  questions[questionIndex].question,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 18,color: Color(0xff7A7D84)),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Column(
+                  children: List.generate(
+                    questions[questionIndex].options.length,
+                    (index) => Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: QuizCard(
+                        text: questions[questionIndex].options[index],
+                        ontap: () => updateQuestion(
+                            questions[questionIndex].options[index], index),
+                        color: optionColors[index],
+                        isCorrect: selectedAnswer ==
+                            questions[questionIndex].correctAnswer,
+                        isSelected: isSelected,
+                        isOptionSelected: index ==
+                            selectedOptionIndex, // Pass this value here
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Spacer(),
-            Column(
-              children: [
-                Divider(
-                  height: 1,
-                  thickness: 1,
-                  color: Colors.black87.withOpacity(0.1),
-                ),
-                SizedBox(height: 10 ,),
-
-                Padding(
-                  padding: EdgeInsets.only(left: 10,right: 10,bottom: 1),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'آپ کا اسکور: 10 پوائنٹس',
-                        style: TextStyle(
-                            fontFamily: "UrduType", color: Color(0xff8E79FB)),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xffFE8BD1),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          minimumSize: Size(150, 37),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'جاری رہے',
-                          style: TextStyle(
-                            fontFamily: 'UrduType',
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
+              Spacer(),
+              Column(
+                children: [
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                    color: Colors.black87.withOpacity(0.1),
                   ),
-                ),
-              ],
-            )
-
-
-          ],
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'آپ کا اسکور: 10 پوائنٹس',
+                          style: TextStyle(
+                              fontFamily: "UrduType", color: Color(0xff8E79FB)),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xffFE8BD1),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            minimumSize: Size(150, 37),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'جاری رہے',
+                            style: TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
