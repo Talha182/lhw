@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class LessonOption24 extends StatefulWidget {
@@ -110,167 +111,164 @@ class _LessonOption24State extends State<LessonOption24> {
             ],
           ),
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 20, right: 10),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.close,
-                      size: 30,
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.close,
+                        size: 30,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    child: new LinearPercentIndicator(
-                      animation: true,
-                      animationDuration: 400,
-                      lineHeight: 10.0,
-                      percent: 0.3,
-                      progressColor: Color(0xffFE8BD1),
-                      backgroundColor: Colors.white,
-                      clipLinearGradient: true,
-                      barRadius: Radius.circular(20),
+                    SizedBox(
+                      width: 5,
                     ),
-                  ),                ],
+                    Expanded(
+                      child: new LinearPercentIndicator(
+                        animation: true,
+                        animationDuration: 400,
+                        lineHeight: 10.0,
+                        percent: 0.3,
+                        progressColor: Color(0xffFE8BD1),
+                        backgroundColor: Colors.white,
+                        clipLinearGradient: true,
+                        barRadius: Radius.circular(20),
+                      ),
+                    ),                ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: 30),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/cloud.png',
-                  width: 45,
-                  height: 45,
-                  fit: BoxFit.contain,
+              Padding(
+                padding: EdgeInsets.only(right: 10,bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 0,left: 15,right: 15),
-              child: Material(
-                elevation: 2.0, // Adjust the elevation level as desired
-                borderRadius: BorderRadius.circular(
-                    10), // To match the Container's border radius
-                child: Container(
-                  width: double.infinity,
-                  height: 340,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.black87.withOpacity(0.1))),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Container(
-                          width: 350,
-                          height: 160,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'assets/images/team.png',
-                              fit: BoxFit
-                                  .cover, // This will make the image cover the whole container
-                              width: 380,
-                              height: 300,
+                 Material(
+                  elevation: 2.0, // Adjust the elevation level as desired
+                  borderRadius: BorderRadius.circular(
+                      10), // To match the Container's border radius
+                  child: Container(
+                    width: double.infinity,
+                    height: 340,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black87.withOpacity(0.1))),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Container(
+                            width: double.infinity,
+                            height: 160,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                'assets/images/team.png',
+                                fit: BoxFit
+                                    .cover, // This will make the image cover the whole container
+                                width: 380,
+                                height: 300,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          questions[questionIndex].question,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-                        ),
-                      ),
-                    ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xffFE8BD1),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            minimumSize: Size(150, 37),
-                          ),
-                          onPressed: () {},
+                        Padding(
+                          padding: EdgeInsets.all(10),
                           child: Text(
-                            'اگلے',
-                            style: TextStyle(
-                              fontFamily: 'UrduType',
-                              fontSize: 15,
-                              color: Colors.white,
-                            ),
+                            questions[questionIndex].question,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontFamily: "UrduType", fontSize: 22),
                           ),
                         ),
-                    ],
+                      ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xffFE8BD1),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              minimumSize: Size(150, 37),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              'اگلے',
+                              style: TextStyle(
+                                fontFamily: 'UrduType',
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "بہترین آپشن کا انتخاب کریں۔",
+                style: TextStyle(fontFamily: "UrduType", fontSize: 23),
+              ),
+              Column(
+                children: List.generate(
+                  questions[questionIndex].options.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: QuizCard(
+                      text: questions[questionIndex].options[index],
+                      ontap: () => updateQuestion(
+                          questions[questionIndex].options[index], index),
+                      color: optionColors[index],
+                      isCorrect: selectedAnswer ==
+                          questions[questionIndex].correctAnswer,
+                      isSelected: isSelected,
+                      isOptionSelected:
+                          index == selectedOptionIndex, // Pass this value here
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "بہترین آپشن کا انتخاب کریں۔",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 23),
-            ),
-            Column(
-              children: List.generate(
-                questions[questionIndex].options.length,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: QuizCard(
-                    text: questions[questionIndex].options[index],
-                    ontap: () => updateQuestion(
-                        questions[questionIndex].options[index], index),
-                    color: optionColors[index],
-                    isCorrect: selectedAnswer ==
-                        questions[questionIndex].correctAnswer,
-                    isSelected: isSelected,
-                    isOptionSelected:
-                        index == selectedOptionIndex, // Pass this value here
+              Spacer(),
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.black87.withOpacity(0.1),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xffFE8BD1),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  minimumSize: Size(150, 37),
+                ),
+                onPressed: () {},
+                child: Text(
+                  'جاری رہے',
+                  style: TextStyle(
+                    fontFamily: 'UrduType',
+                    fontSize: 15,
+                    color: Colors.white,
                   ),
                 ),
               ),
-            ),
-            Spacer(),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: Colors.black87.withOpacity(0.1),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xffFE8BD1),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                minimumSize: Size(150, 37),
-              ),
-              onPressed: () {},
-              child: Text(
-                'جاری رہے',
-                style: TextStyle(
-                  fontFamily: 'UrduType',
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -306,7 +304,6 @@ class QuizCard extends StatelessWidget {
           width: 360,
           height: 60,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black87.withOpacity(0.1)),
             borderRadius: BorderRadius.circular(10),
             color: color,
           ),

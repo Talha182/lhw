@@ -18,7 +18,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
   final iconList = [
     'assets/images/home.png',
     'assets/images/courses.png',
-    'assets/images/groups.png',
+    'assets/images/groups.svg',
     'assets/images/report.png',
   ];
 

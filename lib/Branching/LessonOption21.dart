@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption21 extends StatefulWidget {
@@ -45,15 +46,7 @@ class _LessonOption21State extends State<LessonOption21> {
       incorrectExplanation:
           ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
-    // Question(
-    //     question: 'What is the currency of Japan?',
-    //     options: ['Yen', 'Dollar', 'Euro'],
-    //     correctAnswer: 'Yen',
-    //     correctExplanation:
-    //         'The yen is the official currency of Japan and is used throughout the country.',
-    //     incorrectExplanation:
-    //         "The correct answer is Yen, which is the currency of the Japan"),
-    // You can add more questions here, in the same format.
+
   ];
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
@@ -158,13 +151,13 @@ class _LessonOption21State extends State<LessonOption21> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 30),
+                      padding: const EdgeInsets.only(right: 30,top: 10),
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child: Image.asset(
-                          'assets/images/cloud.png',
-                          width: 45,
-                          height: 45,
+                        child: SvgPicture.asset(
+                          'assets/images/cloud.svg',
+                          width: 20,
+                          height: 20,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -439,11 +432,11 @@ class BorderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double startOffset = 4.0;
-    final double endOffset = size.width - 4.0;
-    final double bottomOffset = size.height - 4.0;
+    const double startOffset = 1.0;
+    final double endOffset = size.width - 1.0;
+    final double bottomOffset = size.height - 2.0;
 
-    final double curveRadius = 6.0;
+    const double curveRadius = 7.0;
 
     final Path path = Path()
       ..moveTo(startOffset + curveRadius, bottomOffset)

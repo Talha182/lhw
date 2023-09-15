@@ -1,5 +1,6 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:video_player/video_player.dart';
 
@@ -131,174 +132,188 @@ class _LessonOption33State extends State<LessonOption33> {
             ],
           ),
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 20, right: 10),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.close,
-                      size: 30,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Container(
-                    width: 320,
-                    child: TweenAnimationBuilder(
-                      tween: Tween<double>(
-                          begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
-                      duration: Duration(milliseconds: 400),
-                      builder:
-                          (BuildContext context, double value, Widget? child) {
-                        return StepProgressIndicator(
-                          totalSteps: _totalSteps,
-                          currentStep: value.ceil(),
-                          size: 8,
-                          padding: 0,
-                          selectedColor: Color(0xffFE8BD1),
-                          unselectedColor: Colors.white,
-                          roundedEdges: Radius.circular(10),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: 30),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/cloud.png',
-                  width: 45,
-                  height: 45,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: FlickVideoPlayer(flickManager: flickManager),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              "بہترین آپشن کا انتخاب کریں۔",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 23),
-            ),
-            Column(
-              children: List.generate(
-                questions[questionIndex].options.length,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: QuizCard(
-                    text: questions[questionIndex].options[index],
-                    ontap: () => updateQuestion(
-                        questions[questionIndex].options[index], index),
-                    color: optionColors[index],
-                    isCorrect: selectedAnswer ==
-                        questions[questionIndex].correctAnswer,
-                    isSelected: isSelected,
-                    isOptionSelected:
-                        index == selectedOptionIndex, // Pass this value here
-                  ),
-                ),
-              ),
-            ),
-            Spacer(),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: Colors.black87.withOpacity(0.1),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xffFE8BD1),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                minimumSize: Size(150, 37),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Dialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20,bottom: 5),
+
+          child: Column(
+            children: [
+                 Row(
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.close,
+                        size: 30,
                       ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
                       child: Container(
-                        width: 350, // Set the width
-                        height: 220, // Set the height
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            crossAxisAlignment:
-                            CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                  alignment: Alignment.topRight,
-                                  child: InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Icon(Icons.close),
-                                  )),
-                              Text(
-                                'غذائیت کی صورتحال',
-                                style: TextStyle(
-                                    fontFamily: "UrduType",
-                                    fontSize: 20),
-                              ),
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Text(
-                                    'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
-                                    style: TextStyle(
-                                        fontFamily: "UrduType",
-                                        fontSize: 14,
-                                        color: Color(0xff7A7D84)),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 5,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                        child: TweenAnimationBuilder(
+                          tween: Tween<double>(
+                              begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
+                          duration: Duration(milliseconds: 400),
+                          builder:
+                              (BuildContext context, double value, Widget? child) {
+                            return StepProgressIndicator(
+                              totalSteps: _totalSteps,
+                              currentStep: value.ceil(),
+                              size: 8,
+                              padding: 0,
+                              selectedColor: Color(0xffFE8BD1),
+                              unselectedColor: Colors.white,
+                              roundedEdges: Radius.circular(10),
+                            );
+                          },
                         ),
                       ),
-                    );
-                  },
-                );
-              },
-              child: Text(
-                'جاری رہے',
-                style: TextStyle(
-                  fontFamily: 'UrduType',
-                  fontSize: 15,
-                  color: Colors.white,
+                    ),
+                  ],
+                ),
+              Padding(
+                padding: EdgeInsets.only(right: 20,bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(left: 0, right: 0),
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child:FlickVideoPlayer(
+                        flickManager: flickManager,
+                        flickVideoWithControls: FlickVideoWithControls(
+                          controls: FlickPortraitControls(
+                            progressBarSettings: FlickProgressBarSettings(
+                              handleColor: Color(0xffFE8BD1),  // Color of the draggable handle
+                              playedColor: Color(0xffFE8BD1),  // Color of the portion of the video that has been played
+                              bufferedColor: Colors.white.withOpacity(0.5),  // Color of the buffered video
+                            ),
+                          ),
+                        ),
+                      )
+                      ,
+                    ),
+                  ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                "بہترین آپشن کا انتخاب کریں۔",
+                style: TextStyle(fontFamily: "UrduType", fontSize: 23),
+              ),
+              Column(
+                children: List.generate(
+                  questions[questionIndex].options.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: QuizCard(
+                      text: questions[questionIndex].options[index],
+                      ontap: () => updateQuestion(
+                          questions[questionIndex].options[index], index),
+                      color: optionColors[index],
+                      isCorrect: selectedAnswer ==
+                          questions[questionIndex].correctAnswer,
+                      isSelected: isSelected,
+                      isOptionSelected:
+                          index == selectedOptionIndex, // Pass this value here
+                    ),
+                  ),
+                ),
+              ),
+              Spacer(),
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.black87.withOpacity(0.1),
+              ),
+              SizedBox(height: 5,),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xffFE8BD1),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  minimumSize: Size(150, 37),
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Container(
+                          width: 350, // Set the width
+                          height: 220, // Set the height
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Align(
+                                    alignment: Alignment.topRight,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Icon(Icons.close),
+                                    )),
+                                Text(
+                                  'غذائیت کی صورتحال',
+                                  style: TextStyle(
+                                      fontFamily: "UrduType",
+                                      fontSize: 20),
+                                ),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    child: Text(
+                                      'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
+                                      style: TextStyle(
+                                          fontFamily: "UrduType",
+                                          fontSize: 14,
+                                          color: Color(0xff7A7D84)),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 5,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'جاری رہے',
+                  style: TextStyle(
+                    fontFamily: 'UrduType',
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -338,7 +353,7 @@ class QuizCard extends StatelessWidget {
           color: color,
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: EdgeInsets.only(left: 10, right: 10),
           child: Row(
             children: [
               Container(
@@ -358,7 +373,7 @@ class QuizCard extends StatelessWidget {
                   text,
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     color: Color(0xff7A7D84),
                     fontFamily: 'UrduType',
                   ),

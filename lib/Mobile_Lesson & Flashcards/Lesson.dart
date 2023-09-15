@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
-import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 
 import 'inforgraphics_carousel.dart';
 
@@ -40,8 +40,8 @@ class Jaiza extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Image.asset(
-                          'assets/images/book.png',
+                        SvgPicture.asset(
+                          'assets/images/module.svg',
                           color: Colors.white,
                         ),
                         const SizedBox(
@@ -70,8 +70,8 @@ class Jaiza extends StatelessWidget {
                         const SizedBox(
                           width: 6,
                         ),
-                        Image.asset(
-                          'assets/images/book.png',
+                        SvgPicture.asset(
+                          'assets/images/module.svg',
                           color: Colors.white,
                         ),
                         const SizedBox(
@@ -281,7 +281,7 @@ class Jaiza extends StatelessWidget {
         Row(
           children: [
             ...rowPadded([
-              Image.asset('assets/images/doc.png'),
+              SvgPicture.asset('assets/images/doc.svg'),
               const SizedBox(
                 width: 10,
               ),
@@ -318,7 +318,7 @@ class Jaiza extends StatelessWidget {
         Row(
           children: [
             ...rowPadded([
-              Image.asset('assets/images/discussion.png'),
+              SvgPicture.asset('assets/images/discussion.svg'),
               const SizedBox(
                 width: 10,
               ),

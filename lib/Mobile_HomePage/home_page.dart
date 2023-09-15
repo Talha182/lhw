@@ -56,8 +56,8 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: [
                           GestureDetector(
-                            child: Image.asset(
-                              'assets/images/magnifier.png',
+                            child: SvgPicture.asset(
+                              'assets/images/magnifier.svg',
                               color: Colors.black,
                             ),
                             onTap: () {},
@@ -66,8 +66,8 @@ class _HomePageState extends State<HomePage> {
                             width: 20,
                           ),
                           GestureDetector(
-                            child: Image.asset(
-                              'assets/images/bell.png',
+                            child: SvgPicture.asset(
+                              'assets/images/bell.svg',
                               color: Colors.black,
                             ),
                             onTap: () {},
@@ -290,7 +290,7 @@ class _HomePageState extends State<HomePage> {
                                       const SizedBox(height: 5),
                                       Row(
                                         children: <Widget>[
-                                          Image.asset("assets/images/book.png"),
+                                          SvgPicture.asset("assets/images/module.svg"),
                                           const SizedBox(
                                             width: 5,
                                           ),
@@ -316,8 +316,8 @@ class _HomePageState extends State<HomePage> {
                                           const SizedBox(
                                             width: 6,
                                           ),
-                                          Image.asset(
-                                              "assets/images/person_card.png"),
+                                          SvgPicture.asset(
+                                              "assets/images/person_card.svg"),
                                           const SizedBox(
                                             width: 6,
                                           ),
@@ -392,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                                               end: Alignment.bottomRight,
                                             ),
                                             imagePath:
-                                                'assets/images/person_card.png', // Replace with your image path
+                                                'assets/images/person_card.svg', imageWidth: 18, imageHeight: 18, // Replace with your image path
                                           ),
 
                                           const SizedBox(
@@ -488,7 +488,7 @@ class _HomePageState extends State<HomePage> {
                                               end: Alignment.bottomRight,
                                             ),
                                             imagePath:
-                                                'assets/images/person_card.png', // Replace with your image path
+                                                'assets/images/person_card.svg', imageWidth: 18, imageHeight: 18, // Replace with your image path
                                           ),
 
                                           const SizedBox(
@@ -666,7 +666,7 @@ class _HomePageState extends State<HomePage> {
                                         end: Alignment.bottomRight,
                                       ),
                                       imagePath:
-                                          'assets/images/dots.png', // Replace with your image path
+                                          'assets/images/dots.svg', imageWidth: 22, imageHeight: 22, // Replace with your image path
                                     ),
                                     const SizedBox(
                                       width: 10,
@@ -692,7 +692,7 @@ class _HomePageState extends State<HomePage> {
                                         end: Alignment.bottomRight,
                                       ),
                                       imagePath:
-                                          'assets/images/badge.png', // Replace with your image path
+                                          'assets/images/badge.svg', imageWidth: 24, imageHeight: 24, // Replace with your image path
                                     ),
                                     const SizedBox(
                                       width: 10,

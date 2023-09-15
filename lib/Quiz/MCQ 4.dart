@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class MCQ4 extends StatefulWidget {
@@ -126,123 +127,123 @@ class _MCQ4State extends State<MCQ4> {
             ],
           ),
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 20, right: 10),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.close,
-                      size: 30,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    child: new LinearPercentIndicator(
-                      animation: true,
-                      animationDuration: 400,
-                      lineHeight: 10.0,
-                      percent: 0.3,
-                      progressColor: Color(0xffFE8BD1),
-                      backgroundColor: Colors.white,
-                      clipLinearGradient: true,
-                      barRadius: Radius.circular(20),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: 30),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/cloud.png',
-                  width: 45,
-                  height: 45,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            Image.asset("assets/images/quiz 1.png"),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  "Lorem ipsum dolor sit amet consectetur. Ut cras velit sagittis massa donc amet.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                )),
-            SizedBox(
-              height: 20,
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: List.generate(
-                  questions[questionIndex].options.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: QuizCard(
-                      text: questions[questionIndex].options[index],
-                      ontap: () => updateQuestion(
-                          questions[questionIndex].options[index], index),
-                      color: optionColors[index],
-                      isCorrect: selectedAnswer ==
-                          questions[questionIndex].correctAnswer,
-                      isSelected: isSelected,
-                      isOptionSelected:
-                          index == selectedOptionIndex, // Pass this value here
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Spacer(),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: Colors.black87.withOpacity(0.1),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'آپ کا اسکور: 10 پوائنٹس',
-                    style: TextStyle(
-                        fontFamily: "UrduType", color: Color(0xff8E79FB)),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffFE8BD1),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+        child: Padding(
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20,bottom: 5),
+          child: Column(
+            children: [
+              Row(
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.close,
+                        size: 30,
                       ),
-                      minimumSize: Size(150, 37),
                     ),
-                    onPressed: () {},
-                    child: Text(
-                      'جاری رہے',
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: new LinearPercentIndicator(
+                        animation: true,
+                        animationDuration: 400,
+                        lineHeight: 10.0,
+                        percent: 0.3,
+                        progressColor: Color(0xffFE8BD1),
+                        backgroundColor: Colors.white,
+                        clipLinearGradient: true,
+                        barRadius: Radius.circular(20),
+                      ),
+                    ),
+                  ],
+                ),
+              Padding(
+                padding: EdgeInsets.only(right: 30),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              Image.asset("assets/images/quiz 1.png"),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Text(
+                    "Lorem ipsum dolor sit amet consectetur. Ut cras velit sagittis massa donc amet.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: List.generate(
+                    questions[questionIndex].options.length,
+                    (index) => Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: QuizCard(
+                        text: questions[questionIndex].options[index],
+                        ontap: () => updateQuestion(
+                            questions[questionIndex].options[index], index),
+                        color: optionColors[index],
+                        isCorrect: selectedAnswer ==
+                            questions[questionIndex].correctAnswer,
+                        isSelected: isSelected,
+                        isOptionSelected:
+                            index == selectedOptionIndex, // Pass this value here
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Spacer(),
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.black87.withOpacity(0.1),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'آپ کا اسکور: 10 پوائنٹس',
                       style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 15,
-                        color: Colors.white,
+                          fontFamily: "UrduType", color: Color(0xff8E79FB)),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xffFE8BD1),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        minimumSize: Size(150, 37),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'جاری رہے',
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

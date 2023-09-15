@@ -1,5 +1,6 @@
   import 'package:carousel_slider/carousel_slider.dart';
   import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
   import 'package:percent_indicator/percent_indicator.dart';
 
   class ComicStrip extends StatefulWidget {
@@ -133,10 +134,10 @@
                     padding: const EdgeInsets.only(right: 30),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Image.asset(
-                        'assets/images/cloud.png',
-                        width: 45,
-                        height: 45,
+                      child: SvgPicture.asset(
+                        'assets/images/cloud.svg',
+                        width: 20,
+                        height: 20,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -191,8 +192,8 @@
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _current == index
-                              ? Color.fromRGBO(0, 0, 0, 0.9)
-                              : Color.fromRGBO(0, 0, 0, 0.4),
+                              ? Color(0xff9AC9C2)
+                              : Color.fromRGBO(0, 0, 0, 0.1),
                         ),
                       );
                     }).toList(),
@@ -244,7 +245,7 @@
                           color: Colors.black87.withOpacity(0.4),
                           shape: BoxShape.circle),
                       child: (Center(
-                          child: Image.asset("assets/images/dislike.png"))),
+                          child: SvgPicture.asset("assets/images/thumbDown.svg"))),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -256,7 +257,7 @@
                             color: Colors.black87.withOpacity(0.4),
                             shape: BoxShape.circle),
                         child:
-                            Center(child: Image.asset("assets/images/like.png"))),
+                            Center(child: SvgPicture.asset("assets/images/thumbDown.svg"))),
                   ),
                   SizedBox(height: 10),
                   InkWell(
@@ -267,7 +268,7 @@
                             color: Colors.black87.withOpacity(0.4),
                             shape: BoxShape.circle),
                         child: Center(
-                            child: Image.asset("assets/images/fullscreen.png"))),
+                            child: SvgPicture.asset("assets/images/full_screen.svg"))),
                   ),
                 ],
               ),

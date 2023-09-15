@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../custom_widgets/Row_Column_Padding.dart';
 import '../custom_widgets/progress_bar.dart';
@@ -25,7 +26,7 @@ class CourseSubModules extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 16.0),
                       child: Row(
                         children: [
-                          InkWell(
+                          GestureDetector(
                             child: const Icon(
                               Icons.arrow_back,
                               size: 25,
@@ -49,7 +50,7 @@ class CourseSubModules extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 25, bottom: 6),
-                      child: InkWell(
+                      child: GestureDetector(
                         child: const Icon(Icons.more_vert),
                         onTap: () {},
                       ),
@@ -87,8 +88,8 @@ class CourseSubModules extends StatelessWidget {
                         Row(
                           children: [
                             ...rowPadded([
-                              Image.asset(
-                                'assets/images/book.png',
+                              SvgPicture.asset(
+                                'assets/images/module.svg',
                                 color: Colors.white,
                               ),
                               const Text(
@@ -105,8 +106,8 @@ class CourseSubModules extends StatelessWidget {
                                     color: Colors.white,
                                     fontSize: 18),
                               ),
-                              Image.asset(
-                                'assets/images/person_card.png',
+                              SvgPicture.asset(
+                                'assets/images/person_card.svg',
                                 color: Colors.white,
                               ),
                               const Text(
@@ -178,27 +179,27 @@ class CourseSubModules extends StatelessWidget {
               children: [
                 ...columnPadded([
                   Submodule_card(
-                    imagePath: 'assets/images/check.png',
-                    heading: 'لیڈی ہیلتھ ورکر کے فرائض',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/check.svg',
+                      heading: 'لیڈی ہیلتھ ورکر کے فرائض',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'بنیادی تعریف',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'بنیادی تعریف',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'پاکستان میں غذائیت کی صورتحال ',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'پاکستان میں غذائیت کی صورتحال ',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/person_card.png',
-                    heading: 'باب کوئز',
-                    duration: '3 سوالات',onTap: (){}
-                  ),
-                  Container(
-                    width: double.infinity,
+                      imagePath: 'assets/images/person_card.svg',
+                      heading: 'باب کوئز',
+                      duration: '3 سوالات',
+                      onTap: () {}, imageWidth: 18, imageHeight: 18,),
+                  Divider(
+                    thickness: 1,
                     height: 1,
                     color: Colors.black87.withOpacity(0.1),
                   ),
@@ -210,25 +211,25 @@ class CourseSubModules extends StatelessWidget {
                     ),
                   ),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'لیڈی ہیلتھ ورکر کے فرائض',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'لیڈی ہیلتھ ورکر کے فرائض',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'بنیادی تعریف',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'بنیادی تعریف',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'پاکستان میں غذائیت کی صورتحال ',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'پاکستان میں غذائیت کی صورتحال ',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageHeight: 22, imageWidth: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/video2.png',
-                    heading: 'باب کوئز',
-                    duration: '3 سوالات',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video2.svg',
+                      heading: 'باب کوئز',
+                      duration: '3 سوالات',
+                      onTap: () {}, imageWidth: 20, imageHeight: 20,),
                   Container(
                     width: double.infinity,
                     height: 1,
@@ -242,24 +243,25 @@ class CourseSubModules extends StatelessWidget {
                     ),
                   ),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'لیڈی ہیلتھ ورکر کے فرائض',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'لیڈی ہیلتھ ورکر کے فرائض',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'بنیادی تعریف',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'بنیادی تعریف',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/video.png',
-                    heading: 'پاکستان میں غذائیت کی صورتحال ',
-                    duration: '3 منٹ 2 سیکنڈ',onTap: (){}
-                  ),
+                      imagePath: 'assets/images/video.svg',
+                      heading: 'پاکستان میں غذائیت کی صورتحال ',
+                      duration: '3 منٹ 2 سیکنڈ',
+                      onTap: () {}, imageWidth: 22, imageHeight: 22,),
                   Submodule_card(
-                    imagePath: 'assets/images/person_card.png',
+                    imagePath: 'assets/images/person_card.svg',
                     heading: 'باب کوئز',
-                    duration: '3 سوالات', onTap: (){},
+                    duration: '3 سوالات',
+                    onTap: () {}, imageWidth: 20, imageHeight: 20,
                   ),
                 ], 7)
               ],
@@ -274,17 +276,22 @@ class CourseSubModules extends StatelessWidget {
 class Submodule_card extends StatelessWidget {
   final String imagePath;
   final String heading;
+  final double imageWidth;
+  final double imageHeight;
   final String duration;
   final Function onTap;
 
   //Constructor
-  Submodule_card(
-      {required this.imagePath, required this.heading, required this.duration, required this.onTap});
+  const Submodule_card(
+      {super.key, required this.imagePath,
+      required this.heading,
+      required this.duration,
+      required this.onTap, required this.imageWidth, required this.imageHeight});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){
+    return GestureDetector(
+      onTap: () {
         onTap;
       },
       child: Container(
@@ -294,11 +301,11 @@ class Submodule_card extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20),
           child: Row(
             children: [
-              Image.asset(
+              SvgPicture.asset(
                 imagePath,
                 fit: BoxFit.contain,
-                height: 22,
-                width: 22,
+                height: imageHeight,
+                width: imageWidth,
               ),
               const SizedBox(
                 width: 15,

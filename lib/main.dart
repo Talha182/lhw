@@ -1,12 +1,27 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lhw/Branching/LessonOption21.dart';
+import 'package:lhw/Branching/LessonOption24.dart';
+import 'package:lhw/Branching/LessonOption25.dart';
+import 'package:lhw/Branching/LessonOption33.dart';
+import 'package:lhw/Comic_Strip/comic_strip.dart';
+import 'package:lhw/Image_Hotspot/LessonOption27.dart';
+import 'package:lhw/Interactive%20Image/Lesson%20Option%2032.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
 import 'package:lhw/Mobile_HomePage/home_page.dart';
 import 'package:lhw/Mobile_HomePage/tab_bar.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Course_Submodules.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
+import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
+import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Quiz/True%20False/True_False_03.dart';
+import 'package:lhw/navy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'Image_Hotspot/LessonOption26.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +46,7 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));*/
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
 
       builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,
@@ -41,8 +57,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  Course_DropDown(),
-      debugShowCheckedModeBanner: false,
+      home:  Presentation(),
     );
   }
 }

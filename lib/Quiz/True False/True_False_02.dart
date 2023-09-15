@@ -148,9 +148,9 @@ class _TrueFalse2State extends State<TrueFalse2> {
               Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(
-                  'assets/images/cloud.png',
-                  width: 45,
-                  height: 45,
+                  'assets/images/cloud.svg',
+                  width: 20,
+                  height: 20,
                   fit: BoxFit.contain,
                 ),
               ),

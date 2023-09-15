@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/FAB_Page/BottomModalSheet.dart';
 import 'package:lhw/Mobile_HomePage/tab_bar.dart';
 
@@ -17,17 +18,17 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   PageController _pageController = PageController();
 
   final List<Map<String, String>> imagesData = [
-    {'path': 'assets/images/home.png', 'label': 'گھر'},
-    {'path': 'assets/images/courses.png', 'label': 'کورسز'},
-    {'path': 'assets/images/groups.png', 'label': 'گروپس'},
-    {'path': 'assets/images/report.png', 'label': 'رپورٹ'},
+    {'path': 'assets/images/home.svg', 'label': 'گھر'},
+    {'path': 'assets/images/courses.svg', 'label': 'کورسز'},
+    {'path': 'assets/images/groups.svg', 'label': 'گروپس'},
+    {'path': 'assets/images/report.svg', 'label': 'رپورٹ'},
   ];
 
   final List<Widget> pages = [
-    HomePage(),
-    CoursesPage_Tabbar(),
-    HomePage(),
-    HomePage(),
+    const HomePage(),
+    const CoursesPage_Tabbar(),
+    const HomePage(),
+    const HomePage(),
   ];
 
   void onTabTapped(int index) {
@@ -77,7 +78,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                 onTap: () {},
                 child: Container(
                   height: 400,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
@@ -85,7 +86,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                     ),
                   ),
                   child:
-                      CustomBottomModalSheet(), // Replace 'Your Content Here' with your StatefulWidget
+                      const CustomBottomModalSheet(), // Replace 'Your Content Here' with your StatefulWidget
                 ),
               ),
             ),
@@ -93,9 +94,9 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xffFE8BD1),
+        backgroundColor: const Color(0xffFE8BD1),
         child: showSheet
-            ? Icon(Icons.close, color: Colors.white)
+            ? const Icon(Icons.close, color: Colors.white)
             : Image.asset(
                 'assets/images/floatingaction.png',
                 width: 24,
@@ -127,18 +128,18 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Image.asset(
+                    SvgPicture.asset(
                       iconData['path']!,
-                      height: 24,
-                      width: 24,
-                      color: isSelected ? Color(0xffFE8BD1) : null,
+                      height: 18,
+                      width: 18,
+                      color: isSelected ? const Color(0xffFE8BD1) : null,
                     ),
                     Text(
                       iconData['label']!,
                       style: TextStyle(
                         fontFamily: 'UrduType',
                         fontSize: 16,
-                        color: isSelected ? Color(0xffFE8BD1) : null,
+                        color: isSelected ? const Color(0xffFE8BD1) : null,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

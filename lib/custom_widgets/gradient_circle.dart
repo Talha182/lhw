@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GradientCircle extends StatelessWidget {
   final double width;
+  final double imageWidth;
   final double height;
+  final double imageHeight;
   final LinearGradient gradient;
   final String imagePath;
 
@@ -10,7 +13,7 @@ class GradientCircle extends StatelessWidget {
     required this.width,
     required this.height,
     required this.gradient,
-    required this.imagePath,
+    required this.imagePath, required this.imageWidth, required this.imageHeight,
   });
 
   @override
@@ -29,14 +32,12 @@ class GradientCircle extends StatelessWidget {
             ),
           ),
           Center(
-            child: ClipOval(
-              child: Image.asset(
+              child: SvgPicture.asset(
                 imagePath,
-                width: 24, // Adjust the image size as needed
-                height: 24, // Adjust the image size as needed
-                fit: BoxFit.contain, // Use BoxFit.contain to maintain quality
+                width: imageWidth, // Adjust the image size as needed
+                height: imageHeight, // Adjust the image size as needed
+                fit: BoxFit.cover, // Use BoxFit.contain to maintain quality
               ),
-            ),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:circle_progress_bar/circle_progress_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GradientCardWithImage extends StatelessWidget {
   final String imagePath;
@@ -68,8 +69,8 @@ class GradientCardWithImage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 15),
                   child: Row(
                     children: [
-                      Image.asset(
-                        'assets/images/book.png',
+                      SvgPicture.asset(
+                        'assets/images/module.svg',
                         color: Colors.white,
                       ),
                       SizedBox(
@@ -98,8 +99,8 @@ class GradientCardWithImage extends StatelessWidget {
                       SizedBox(
                         width: 6,
                       ),
-                      Image.asset(
-                        'assets/images/book.png',
+                      SvgPicture.asset(
+                        'assets/images/module.svg',
                         color: Colors.white,
                       ),
                       SizedBox(

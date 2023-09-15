@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 
 import '../custom_widgets/Row_Column_Padding.dart';
@@ -110,8 +111,8 @@ class _ModulePageState extends State<ModulePage> {
                         ),
                         Row(
                           children: [
-                            Image.asset(
-                              'assets/images/book.png',
+                            SvgPicture.asset(
+                              'assets/images/module.svg',
                               color: Colors.white,
                             ),
                             const SizedBox(
@@ -140,8 +141,8 @@ class _ModulePageState extends State<ModulePage> {
                             const SizedBox(
                               width: 6,
                             ),
-                            Image.asset(
-                              'assets/images/book.png',
+                            SvgPicture.asset(
+                              'assets/images/module.svg',
                               color: Colors.white,
                             ),
                             const SizedBox(
@@ -231,7 +232,7 @@ class _ModulePageState extends State<ModulePage> {
             Row(
               children: [
                 ...rowPadded([
-                  Image.asset('assets/images/book.png'),
+                  SvgPicture.asset('assets/images/module.svg'),
                   const Text(
                     '16 ماڈیولز',
                     style: TextStyle(
@@ -239,13 +240,14 @@ class _ModulePageState extends State<ModulePage> {
                         color: Color(0xff7A7D84),
                         fontSize: 15),
                   ),
-                  Container(
-                    width: 5,
-                    height: 5,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.black87),
+                  const Text(
+                    '•',
+                    style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Color(0xff232323),
+                        fontSize: 18),
                   ),
-                  Image.asset('assets/images/person_card.png'),
+                  SvgPicture.asset('assets/images/person_card.svg'),
                   const Text(
                     '12 کوئز',
                     style: TextStyle(
@@ -296,7 +298,7 @@ class _ModulePageState extends State<ModulePage> {
                   },
                   child: Row(
                     children: [
-                      Image.asset('assets/images/download.png'),
+                      SvgPicture.asset('assets/images/download.svg'),
                       const SizedBox(
                         width: 10,
                       ),

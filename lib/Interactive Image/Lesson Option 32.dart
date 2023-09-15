@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption32 extends StatefulWidget {
@@ -116,163 +117,164 @@ class _LessonOption32State extends State<LessonOption32> {
             ],
           ),
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(
-                          context); // This will navigate back when tapped
-                    },
-                    child: const Icon(
-                      Icons.close,
-                      size: 30,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Container(
-                    width: 310,
-                    child: TweenAnimationBuilder(
-                      tween: Tween<double>(
-                          begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
-                      duration: const Duration(milliseconds: 400),
-                      builder:
-                          (BuildContext context, double value, Widget? child) {
-                        return StepProgressIndicator(
-                          totalSteps: _totalSteps,
-                          currentStep: value.ceil(),
-                          size: 8,
-                          padding: 0,
-                          selectedColor: const Color(0xffFE8BD1),
-                          unselectedColor: Colors.white,
-                          roundedEdges: const Radius.circular(10),
-                        );
+        child: Padding(
+          padding: EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 5),
+          child: Column(
+            children: [
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(
+                            context); // This will navigate back when tapped
                       },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 30),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/cloud.png',
-                  width: 45,
-                  height: 45,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: 350,
-              height: 350,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        'assets/images/LessonOption26.png',
-                        fit: BoxFit.cover,
+                      child: const Icon(
+                        Icons.close,
+                        size: 30,
                       ),
                     ),
-                  ),
-                  if (_isDragSuccessful)
-                    Positioned(
-                      // Position where you want the baby to appear when drag is successful
-                      top: 150,
-                      left: 150,
-                      child: Image.asset("assets/images/baby.png"),
+                    const SizedBox(
+                      width: 5,
                     ),
-                  DragTarget<String>(
-                    onWillAccept: (data) {
-                      print('$data');
-                      return data != null;
-                    },
-
-                    onAccept: (data) {
-                      print('onAccept: $data');
-                      setState(() {
-                        _isDragSuccessful = true;
-                      });
-                    },
-                    builder: (context, candidateData, rejectedData) {
-                      print('Building DragTarget');
-                      return Container(); // Empty container
-                    },
+                    Expanded(
+                      child: Container(
+                        child: TweenAnimationBuilder(
+                          tween: Tween<double>(
+                              begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
+                          duration: const Duration(milliseconds: 400),
+                          builder:
+                              (BuildContext context, double value, Widget? child) {
+                            return StepProgressIndicator(
+                              totalSteps: _totalSteps,
+                              currentStep: value.ceil(),
+                              size: 8,
+                              padding: 0,
+                              selectedColor: const Color(0xffFE8BD1),
+                              unselectedColor: Colors.white,
+                              roundedEdges: const Radius.circular(10),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10,bottom: 5),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
                   ),
-
-                ],
-              ),
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-            const Text(
-              "نوزائیدہ کو ماں کی چھاتی پر گھسیٹیں۔",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Draggable(
-              data: "Baby Placed",
-              child: _isDragSuccessful ? Container() : Image.asset("assets/images/baby.png"),  // Empty container if drag was successful
-              feedback: Image.asset("assets/images/baby.png"),
-              childWhenDragging: Container(),  // Empty container while dragging
-              onDragEnd: (details) {
-                setState(() {
-                  _isDragSuccessful = true;  // Set your state variable to true upon successful drag
-                });
-              },
-            ),
-
-            const Spacer(),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: Colors.black87.withOpacity(0.1),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xffFE8BD1),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                minimumSize: const Size(150, 37),
-              ),
-              onPressed: () {},
-              child: const Text(
-                'جاری رہے',
-                style: TextStyle(
-                  fontFamily: 'UrduType',
-                  fontSize: 15,
-                  color: Colors.white,
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: double.infinity,
+                height: 350,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          'assets/images/LessonOption26.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    if (_isDragSuccessful)
+                      Positioned(
+                        // Position where you want the baby to appear when drag is successful
+                        top: 150,
+                        left: 150,
+                        child: Image.asset("assets/images/baby.png"),
+                      ),
+                    DragTarget<String>(
+                      onWillAccept: (data) {
+                        print('$data');
+                        return data != null;
+                      },
+
+                      onAccept: (data) {
+                        print('onAccept: $data');
+                        setState(() {
+                          _isDragSuccessful = true;
+                        });
+                      },
+                      builder: (context, candidateData, rejectedData) {
+                        print('Building DragTarget');
+                        return Container(); // Empty container
+                      },
+                    ),
+
+                  ],
+                ),
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "نوزائیدہ کو ماں کی چھاتی پر گھسیٹیں۔",
+                style: TextStyle(fontFamily: "UrduType", fontSize: 22),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Draggable(
+                data: "Baby Placed",
+                child: _isDragSuccessful ? Container() : Image.asset("assets/images/baby.png"),  // Empty container if drag was successful
+                feedback: Image.asset("assets/images/baby.png"),
+                childWhenDragging: Container(),  // Empty container while dragging
+                onDragEnd: (details) {
+                  setState(() {
+                    _isDragSuccessful = true;  // Set your state variable to true upon successful drag
+                  });
+                },
+              ),
+
+              const Spacer(),
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.black87.withOpacity(0.1),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xffFE8BD1),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  minimumSize: const Size(150, 37),
+                ),
+                onPressed: () {},
+                child: const Text(
+                  'جاری رہے',
+                  style: TextStyle(
+                    fontFamily: 'UrduType',
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
         ),
       ),
     );

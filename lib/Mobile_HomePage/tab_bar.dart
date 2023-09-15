@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Completed.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
 import 'package:lhw/Mobile_HomePage/Courses_All Courses.dart';
@@ -57,16 +58,16 @@ class _CoursesPage_TabbarState extends State<CoursesPage_Tabbar> {
             child: Row(
               children: [
                 GestureDetector(
-                  child: Image.asset(
-                    'assets/images/magnifier.png',
+                  child: SvgPicture.asset(
+                    'assets/images/magnifier.svg',
                     color: Colors.black,
                   ),
                   onTap: () {},
                 ),
                 const SizedBox(width: 20),
                 GestureDetector(
-                  child: Image.asset(
-                    'assets/images/bell.png',
+                  child: SvgPicture.asset(
+                    'assets/images/bell.svg',
                     color: Colors.black,
                   ),
                   onTap: () {},

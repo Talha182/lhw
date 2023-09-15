@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:circle_progress_bar/circle_progress_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GradientCardWithProgress extends StatelessWidget {
   final double progressValue;
@@ -71,8 +72,8 @@ class GradientCardWithProgress extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset(
-                      'assets/images/book.png',
+                    SvgPicture.asset(
+                      'assets/images/module.svg',
                       color: Colors.white,
                     ),
                     const SizedBox(
@@ -101,8 +102,8 @@ class GradientCardWithProgress extends StatelessWidget {
                     const SizedBox(
                       width: 6,
                     ),
-                    Image.asset(
-                      'assets/images/book.png',
+                    SvgPicture.asset(
+                      'assets/images/module.svg',
                       color: Colors.white,
                     ),
                     const SizedBox(

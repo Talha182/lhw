@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:circle_progress_bar/circle_progress_bar.dart';
+import 'package:flutter_svg/svg.dart';
 
 class LockedCourse extends StatelessWidget {
   final String imagePath;
@@ -9,7 +10,8 @@ class LockedCourse extends StatelessWidget {
   final double imageHeight; // New parameter
   final Alignment imagePosition; // New parameter
 
-  const LockedCourse({super.key,
+  const LockedCourse({
+    super.key,
     required this.imagePath,
     required this.midText,
     required this.arrowText,
@@ -37,19 +39,16 @@ class LockedCourse extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 20,top: 10),
+                  padding: const EdgeInsets.only(left: 20, top: 10),
                   child: Container(
-                    width: 50,
-                    height: 50,
-                    child: Stack(
-                      children: [
+                      width: 50,
+                      height: 50,
+                      child: Stack(children: [
                         Container(
                           width: 50,
                           height: 50,
                           decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white
-                          ),
+                              shape: BoxShape.circle, color: Colors.white),
                         ),
                         const Center(
                           child: ClipOval(
@@ -58,16 +57,15 @@ class LockedCourse extends StatelessWidget {
                             ),
                           ),
                         ),
-                  ])),
+                      ])),
                 ),
-
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: Text(
                     midText,
-                    style: const TextStyle(                          fontFamily: 'UrduType',
-
+                    style: const TextStyle(
+                      fontFamily: 'UrduType',
                       letterSpacing: 0.01,
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
@@ -82,8 +80,8 @@ class LockedCourse extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 15),
                   child: Row(
                     children: [
-                      Image.asset(
-                        'assets/images/book.png',
+                      SvgPicture.asset(
+                        'assets/images/module.svg',
                         color: Colors.white,
                       ),
                       const SizedBox(
@@ -91,8 +89,8 @@ class LockedCourse extends StatelessWidget {
                       ),
                       const Text(
                         '24 ماڈیولز',
-                        style: TextStyle(                          fontFamily: 'UrduType',
-
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),
@@ -111,8 +109,8 @@ class LockedCourse extends StatelessWidget {
                       const SizedBox(
                         width: 6,
                       ),
-                      Image.asset(
-                        'assets/images/book.png',
+                      SvgPicture.asset(
+                        'assets/images/module.svg',
                         color: Colors.white,
                       ),
                       const SizedBox(
@@ -120,8 +118,8 @@ class LockedCourse extends StatelessWidget {
                       ),
                       const Text(
                         '12 کوئز',
-                        style: TextStyle(                          fontFamily: 'UrduType',
-
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),
@@ -147,5 +145,3 @@ class LockedCourse extends StatelessWidget {
     );
   }
 }
-
-

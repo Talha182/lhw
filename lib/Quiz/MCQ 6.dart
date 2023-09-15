@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class MCQ6 extends StatefulWidget {
@@ -161,10 +162,10 @@ class _MCQ6State extends State<MCQ6> {
               padding: const EdgeInsets.only(right: 30),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/cloud.png',
-                  width: 45,
-                  height: 45,
+                child: SvgPicture.asset(
+                  'assets/images/cloud.svg',
+                  width: 20,
+                  height: 20,
                   fit: BoxFit.contain,
                 ),
               ),

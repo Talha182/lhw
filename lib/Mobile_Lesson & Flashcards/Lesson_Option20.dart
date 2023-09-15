@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption20 extends StatefulWidget {
@@ -74,13 +75,13 @@ class _LessonOption20State extends State<LessonOption20> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 30),
+              padding: const EdgeInsets.only(right: 30,top: 15),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/cloud.png',
-                  width: 45,
-                  height: 45,
+                child: SvgPicture.asset(
+                  'assets/images/cloud.svg',
+                  width: 20,
+                  height: 20,
                   fit: BoxFit.contain,
                 ),
               ),
