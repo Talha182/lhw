@@ -1,11 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20openview%202.dart';
 import 'package:lhw/navy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
-import 'Image_Hotspot/LessonOption26.dart';
-import 'Quiz/MCQ 5.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
