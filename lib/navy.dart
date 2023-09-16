@@ -15,7 +15,7 @@ class Custom_NavBar extends StatefulWidget {
 class _Custom_NavBarState extends State<Custom_NavBar> {
   int _currentIndex = 0;
   bool showSheet = false;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   final List<Map<String, String>> imagesData = [
     {'path': 'assets/images/home.svg', 'label': 'گھر'},

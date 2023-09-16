@@ -257,7 +257,6 @@ class _LessonOption26State extends State<LessonOption26> {
                               child: SvgPicture.asset(
                                 'assets/images/touch.svg',
                                 width: 30,
-                                height: 30,
                                 fit: BoxFit.contain,
                               ),
                             ),
