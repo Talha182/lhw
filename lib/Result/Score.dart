@@ -423,21 +423,24 @@ class _ScoreState extends State<Score> {
                     children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffFE8BD1),
+                          side: BorderSide(
+                            color: Color(0xffFE8BD1).withOpacity(0.5)
+                          ),
+                          backgroundColor: Colors.transparent,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          minimumSize: const Size(150, 37),
+                          minimumSize: const Size(160, 37),
                         ),
                         onPressed: () {},
                         child: const Expanded(
                           child: Text(
-                            'جاری رہے',
+                            'اسکورز کا جائزہ لیں۔',
                             style: TextStyle(
                               fontFamily: 'UrduType',
                               fontSize: 15,
-                              color: Colors.white,
+                              color: Color(0xffFE8BD1),
                             ),
                           ),
                         ),
