@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/navy.dart';
+import 'package:lhw/Result/Presentation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'Presentation/Presentation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: const Custom_NavBar(),
+      home:  CourseCompletion(),
     );
   }
 }

@@ -1,15 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lhw/Result/leaderboard/leaderboard.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class Presentation extends StatefulWidget {
-  const Presentation({super.key});
+class CourseCompletion extends StatefulWidget {
+  const CourseCompletion({super.key});
 
   @override
-  State<Presentation> createState() => _PresentationState();
+  State<CourseCompletion> createState() => _CourseCompletionState();
 }
 
-class _PresentationState extends State<Presentation> {
+class _CourseCompletionState extends State<CourseCompletion> {
   bool isSelected = false;
   bool isAnswered = false;
   int _current = 0;
@@ -45,7 +47,7 @@ class _PresentationState extends State<Presentation> {
             children: [
               Row(
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: () {},
                     child: const Icon(
                       Icons.close,
@@ -86,18 +88,18 @@ class _PresentationState extends State<Presentation> {
                 ),
               ),
               Image.asset("assets/images/presentation.png"),
-              Text(
+              const Text(
                 "عظیم کام! عظیم پیش رفت",
                 style: TextStyle(fontFamily: "UrduType", fontSize: 22),
               ),
-              Text(
+              const Text(
                 "آپ نے اس سبق میں کوئز مکمل کیا۔",
                 style: TextStyle(
                     fontFamily: "UrduType",
                     fontSize: 16,
                     color: Color(0xff7A7D84)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -108,24 +110,24 @@ class _PresentationState extends State<Presentation> {
                     height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffFE8BD1),
+                      color: const Color(0xffFE8BD1),
                     ),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "کورسز مکمل",
                           style: TextStyle(fontFamily: "UrduType"),
                         ),
                         Expanded(
                           child: Padding(
                             padding:
-                                EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                                const EdgeInsets.only(left: 5, right: 5, bottom: 5),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "12",
                                   style: TextStyle(fontSize: 20),
@@ -142,24 +144,24 @@ class _PresentationState extends State<Presentation> {
                     height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xff9AC9C2),
+                      color: const Color(0xff9AC9C2),
                     ),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "ماڈیولز مکمل ہو گئے۔",
                           style: TextStyle(fontFamily: "UrduType"),
                         ),
                         Expanded(
                           child: Padding(
                             padding:
-                                EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                                const EdgeInsets.only(left: 5, right: 5, bottom: 5),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "12",
                                   style: TextStyle(fontSize: 20),
@@ -173,7 +175,7 @@ class _PresentationState extends State<Presentation> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -184,24 +186,24 @@ class _PresentationState extends State<Presentation> {
                     height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffF7DE8D),
+                      color: const Color(0xffF7DE8D),
                     ),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "مجموعی سکور",
                           style: TextStyle(fontFamily: "UrduType"),
                         ),
                         Expanded(
                           child: Padding(
                             padding:
-                                EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                                const EdgeInsets.only(left: 5, right: 5, bottom: 5),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "14",
                                   style: TextStyle(fontSize: 20),
@@ -218,24 +220,24 @@ class _PresentationState extends State<Presentation> {
                     height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffFFC6A6),
+                      color: const Color(0xffFFC6A6),
                     ),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "سیکھنے کے اوقات",
                           style: TextStyle(fontFamily: "UrduType"),
                         ),
                         Expanded(
                           child: Padding(
                             padding:
-                                EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                                const EdgeInsets.only(left: 5, right: 5, bottom: 5),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "120 گھنٹے",
                                   style: TextStyle(
@@ -250,11 +252,16 @@ class _PresentationState extends State<Presentation> {
                   ),
                 ],
               ),
-              SizedBox(height: 20,),
-              InkWell(
-                child: Text("لیڈر بورڈ دیکھیں",
+              const SizedBox(height: 20,),
+              CupertinoButton(
+                child: const Text("لیڈر بورڈ دیکھیں",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 16,color: Color(0xffFE8BD1))),
-                onTap: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) => const LeaderBoard()),
+                  );
+                },
               ),
               const Spacer(),
               Divider(
