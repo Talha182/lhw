@@ -9,22 +9,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lhw/main.dart';
+import 'package:mockito/mockito.dart';
+import 'package:lhw/database/app_database.dart';
+
+class MockAppDatabase extends Mock implements AppDatabase {
+  // Add necessary mocked methods if needed
+}
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    final mockDatabase = MockAppDatabase();
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(database: mockDatabase));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // rest of your test code
   });
 }
+

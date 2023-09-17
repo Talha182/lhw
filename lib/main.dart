@@ -1,13 +1,20 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lhw/Image_Hotspot/LessonOption26.dart';
+import 'package:lhw/Quiz/MCQ%204.dart';
 import 'package:lhw/Result/Score.dart';
+import 'package:lhw/database/app_database.dart';
 import 'package:lhw/navy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+
+  // Override for HTTP behavior due to certificate issues.
+  HttpOverrides.global = new MyHttpOverrides();
+
+  final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  runApp(MyApp(database: database));
 }
 
 class MyHttpOverrides extends HttpOverrides {
@@ -20,16 +27,14 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final AppDatabase database;
+
+  const MyApp({Key? key, required this.database}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    /* SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ));*/
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,
         breakpoints: [
@@ -39,7 +44,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: const Score(),
+      home: MCQ4(database: database,),
     );
   }
 }
