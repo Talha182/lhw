@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/Result/Presentation.dart';
-import 'package:lhw/Result/Score.dart';
+import 'package:lhw/Image_Hotspot/LessonOption26.dart';
+import 'package:lhw/navy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
-import 'Presentation/Presentation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  Score(),
+      home: const LessonOption26(),
     );
   }
 }

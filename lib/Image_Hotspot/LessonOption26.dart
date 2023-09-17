@@ -208,7 +208,7 @@ class _LessonOption26State extends State<LessonOption26> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: Container(
+                                  child: SizedBox(
                                     width: 350, // Set the width
                                     height: 220, // Set the height
                                     child: Padding(
@@ -281,8 +281,8 @@ class _LessonOption26State extends State<LessonOption26> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: Container(
-                                      width: 350, // Set the width
+                                    child: SizedBox(
+                                      width: double.infinity, // Set the width
                                       height: 220, // Set the height
                                       child: Padding(
                                         padding: const EdgeInsets.all(12.0),
@@ -338,7 +338,7 @@ class _LessonOption26State extends State<LessonOption26> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 350, // Set the width
                                       height: 220, // Set the height
                                       child: Stack(
@@ -437,7 +437,7 @@ class _LessonOption26State extends State<LessonOption26> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 350, // Set the width
                                       height: 220, // Set the height
                                       child: Padding(
