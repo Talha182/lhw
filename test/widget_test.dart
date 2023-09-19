@@ -10,9 +10,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lhw/main.dart';
 import 'package:mockito/mockito.dart';
-import 'package:lhw/database/app_database.dart';
 
-class MockAppDatabase extends Mock implements AppDatabase {
+class MockAppDatabase extends Mock  {
   // Add necessary mocked methods if needed
 }
 
@@ -21,7 +20,7 @@ void main() {
     final mockDatabase = MockAppDatabase();
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp(database: mockDatabase));
+    await tester.pumpWidget(MyApp());
 
     // rest of your test code
   });

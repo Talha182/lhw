@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../database/app_database.dart';
 
 class MCQ4 extends StatefulWidget {
-  final AppDatabase database;
 
 
-  const MCQ4({super.key, required this.database});
+  const MCQ4({super.key});
 
   @override
   State<MCQ4> createState() => _MCQ4State();

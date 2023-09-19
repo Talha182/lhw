@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lhw/Image_Hotspot/LessonOption26.dart';
 import 'package:lhw/Quiz/MCQ%204.dart';
 import 'package:lhw/Result/Score.dart';
-import 'package:lhw/database/app_database.dart';
 import 'package:lhw/navy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -13,8 +12,7 @@ void main() async {
   // Override for HTTP behavior due to certificate issues.
   HttpOverrides.global = new MyHttpOverrides();
 
-  final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
-  runApp(MyApp(database: database));
+  runApp(const MyApp());
 }
 
 class MyHttpOverrides extends HttpOverrides {
@@ -27,9 +25,8 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 class MyApp extends StatelessWidget {
-  final AppDatabase database;
 
-  const MyApp({Key? key, required this.database}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +41,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: MCQ4(database: database,),
+      home: const MCQ4(),
     );
   }
 }
