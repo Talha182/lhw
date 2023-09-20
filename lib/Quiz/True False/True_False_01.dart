@@ -2,7 +2,6 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:video_player/video_player.dart';
 
 class TrueFalse1 extends StatefulWidget {
   const TrueFalse1({super.key});
