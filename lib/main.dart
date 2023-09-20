@@ -1,17 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:lhw/Image_Hotspot/LessonOption26.dart';
 import 'package:lhw/Quiz/MCQ%204.dart';
-import 'package:lhw/Result/Score.dart';
-import 'package:lhw/navy.dart';
+import 'package:lhw/demo.dart';
+import 'package:lhw/notification/notifications_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'navy.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Override for HTTP behavior due to certificate issues.
-  HttpOverrides.global = new MyHttpOverrides();
-
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -25,7 +24,6 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: const MCQ4(),
+      home: NotificationScreen(),
     );
   }
 }

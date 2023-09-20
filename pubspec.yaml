@@ -38,6 +38,8 @@ dependencies:
   floor_generator: ^1.4.2
   build_runner: ^2.4.6
   mockito: ^5.4.2
+  sqflite: ^2.3.0
+  path_provider: ^2.1.1
 
 
 dev_dependencies:
