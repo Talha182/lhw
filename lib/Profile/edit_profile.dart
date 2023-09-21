@@ -224,26 +224,26 @@ class ProfileEdit extends StatelessWidget {
               },
               decoration: InputDecoration(
                 hintText: 'DD/MM/YYYY',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Color(0xff7A7D84),fontSize: 13
                 ),
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.grey,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.grey,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.grey,
                   ),
                 ),
@@ -281,7 +281,7 @@ class ProfileEdit extends StatelessWidget {
               onInputValidated: (bool value) {
                 print(value);
               },
-              selectorConfig: SelectorConfig(
+              selectorConfig: const SelectorConfig(
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                 showFlags: false, // This should hide flags
 
@@ -300,7 +300,7 @@ class ProfileEdit extends StatelessWidget {
                   ),
                 ),
               ),
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontFamily: "UrduType",
                 fontSize: 16,
               ),
