@@ -61,7 +61,7 @@ class NotificationScreen extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: ListView(
           children: [
-            Text(
+            const Text(
               "آج",
               textDirection: TextDirection.rtl,
               style: TextStyle(
@@ -71,7 +71,7 @@ class NotificationScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             NotificationCard(
@@ -80,7 +80,7 @@ class NotificationScreen extends StatelessWidget {
                   "آپ کو 'باب 9: نیوٹریشن' ڈسکشن گروپ میں شامل کیا گیا ہے۔ ابھی گفتگو میں شامل ہوں!",
               date: formatCurrentDateInUrdu(),
             ),
-            Text(
+            const Text(
               "قبل ازیں",
               textDirection: TextDirection.rtl,
               style: TextStyle(
@@ -90,7 +90,7 @@ class NotificationScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             NotificationCard(
@@ -99,8 +99,8 @@ class NotificationScreen extends StatelessWidget {
                   "آپ کو 'باب 9: نیوٹریشن' ڈسکشن گروپ میں شامل کیا گیا ہے۔ ابھی گفتگو میں شامل ہوں!",
               date: formatCurrentDateInUrdu(),
             ),
-            Divider(),
-            SizedBox(
+            const Divider(),
+            const SizedBox(
               height: 20,
             ),
             NotificationCard(
@@ -109,8 +109,8 @@ class NotificationScreen extends StatelessWidget {
                   "&#39;انفینٹ کیئر&#39; پر آپ کے آخری سبق کو ایک ہفتہ ہو گیا ہے۔ آج اپنا سیکھنے کا سفر جاری رکھیں",
               date: formatCurrentDateInUrdu(),
             ),
-            Divider(),
-            SizedBox(
+            const Divider(),
+            const SizedBox(
               height: 20,
             ),
             NotificationCard(
@@ -119,8 +119,8 @@ class NotificationScreen extends StatelessWidget {
                   "مبارک ہو! آپ لیڈر بورڈ پر 5ویں نمبر پر چلے گئے ہیں۔ چلتے رہو!",
               date: formatCurrentDateInUrdu(),
             ),
-            Divider(),
-            SizedBox(
+            const Divider(),
+            const SizedBox(
               height: 20,
             ),
             NotificationCard(
@@ -129,7 +129,7 @@ class NotificationScreen extends StatelessWidget {
                   "بہت اچھے! آپ نے &#39;ویکسینیشن ٹیکنیکس&#39; کورس کا 50% مکمل کر لیا ہے۔ اسے جاری رکھیں",
               date: formatCurrentDateInUrdu(),
             ),
-            Divider(),SizedBox(
+            const Divider(),const SizedBox(
               height: 20,
             ),
             NotificationCard(
@@ -138,7 +138,7 @@ class NotificationScreen extends StatelessWidget {
                   "ہم آپ کے ان پٹ کی قدر کرتے ہیں! براہ کرم &#39;بنیادی حفظان صحت کے طریقوں&#39; کورس کے لیے رائے دیں۔",
               date: formatCurrentDateInUrdu(),
             ),
-            Divider(),SizedBox(
+            const Divider(),const SizedBox(
               height: 20,
             ),
             NotificationCard(
@@ -147,7 +147,7 @@ class NotificationScreen extends StatelessWidget {
                   "اچھی خبر! ہم نے سیکھنے کے آسان تجربے کے لیے ایپ کو اپ ڈیٹ کیا ہے۔",
               date: formatCurrentDateInUrdu(),
             ),
-            Divider(),
+            const Divider(),
           ],
         ),
       ),
@@ -188,7 +188,7 @@ class NotificationCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15.4,
                       fontFamily: "UrduType",
                     ),
@@ -196,7 +196,7 @@ class NotificationCard extends StatelessWidget {
                   ),
                   Text(
                     date,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 13,
                       fontFamily: "UrduType",
                       color: Color(0xff7A7D84),
@@ -206,7 +206,7 @@ class NotificationCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             const Icon(Icons.close)
