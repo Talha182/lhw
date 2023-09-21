@@ -2,8 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-class ProfileEdit extends StatelessWidget {
+class ProfileEdit extends StatefulWidget {
   ProfileEdit({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileEdit> createState() => _ProfileEditState();
+}
+
+class _ProfileEditState extends State<ProfileEdit> {
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -206,29 +226,15 @@ class ProfileEdit extends StatelessWidget {
               ),
             ),
             TextField(
-              readOnly: true, // makes this TextField read-only
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
-              onTap: () async {
-                DateTime? selectedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(1900),
-                  lastDate: DateTime.now(),
-                );
-
-                if (selectedDate != null && selectedDate != DateTime.now()) {
-                  // Handle the selected date
-                  print(selectedDate); // Replace this with your own logic
-                }
-              },
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
-                hintText: 'DD/MM/YYYY',
-                hintStyle: const TextStyle(
-                  color: Color(0xff7A7D84),fontSize: 13
-                ),
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                hintText: "DD/MM/YY",
+                hintStyle: TextStyle(fontSize: 13),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
@@ -274,23 +280,82 @@ class ProfileEdit extends StatelessWidget {
                 ),
               ),
             ),
-            InternationalPhoneNumberInput(
-              onInputChanged: (PhoneNumber number) {
-                print(number.phoneNumber);
-              },
-              onInputValidated: (bool value) {
-                print(value);
-              },
-              selectorConfig: const SelectorConfig(
-                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                showFlags: false, // This should hide flags
-
+            TextField(
+              textAlign: TextAlign.right,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0), // Adj
+                hintText: "اپنا موبائل نمبر درج کیجئے",
+                hintStyle: const TextStyle(fontFamily: "UrduType"),
+                suffix: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    SizedBox(
+                      height: 30,
+                      child: VerticalDivider(
+                        color: const Color(0xfD9D9D9).withOpacity(0.5),
+                        thickness: 1,
+                      ),
+                    ),
+                    const Text('+1'),
+                  ],
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
               ),
-              ignoreBlank: false,
-              autoValidateMode: AutovalidateMode.disabled,
-              initialValue: number,
-              textFieldController: null,
-              inputDecoration: InputDecoration(
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'صوبہ',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
+              decoration: InputDecoration(
+                hintText: "منتخب کریں۔",
+                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
                 contentPadding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 10.0),
                 border: OutlineInputBorder(
@@ -299,10 +364,342 @@ class ProfileEdit extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
               ),
-              textStyle: const TextStyle(
-                fontFamily: "UrduType",
-                fontSize: 16,
+            ),const SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'شہر',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
+              decoration: InputDecoration(
+                hintText: "منتخب کریں۔",
+                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ),const SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'یو سی کا نام',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
+              decoration: InputDecoration(
+                hintText: "منتخب کریں۔",
+                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ),const SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'گاؤں',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
+              decoration: InputDecoration(
+                hintText: "منتخب کریں۔",
+                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ),const SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'ای میل (بطور اختیاری)',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
+              decoration: InputDecoration(
+                hintText: "ای میل درج کریں۔",
+                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ),const SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'LHW شناختی نمبر',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
+              decoration: InputDecoration(
+                hintText: "LHW ID نمبر درج کریں۔",
+                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ),const SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'سروس کے سال',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              readOnly: true, // make it read-only
+              onTap: () => _selectDate(context), // show date picker when tapped
+              decoration: InputDecoration(
+                hintText: "سروس کے سال درج کریں۔",
+                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
               ),
             ),
           ],
