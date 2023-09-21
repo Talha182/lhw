@@ -47,6 +47,7 @@ class ProfileEdit extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(15),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -76,121 +77,28 @@ class ProfileEdit extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Container(
-              height: 420,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(15),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/images/pencil_edit.svg",
-                              width: 17,
-                              height: 17,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "تفصیلات میں ترمیم کریں۔",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: "UrduType",
-                                  color: Color(0xffFE8BD1)),
-                            ),
-                          ],
-                        ),
-                        Text("عمومی تفصیلات",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: "UrduType",
-                            )),
-                      ],
-                    ),
-
-                    createDetailGroup("پیدائش کی تاریخ", "نام", "1/07/2023", "کوڈی فشر"),
-                    createDetailGroup("یو سی کا نام", "فون نمبر", "دہلی یونیورسٹی", "+91 7232632621"),
-                    createDetailGroup("LHW شناختی نمبر", "سروس کے سال", "62328618264", "4"),
-                    createDetailGroup("ای میل", "گاؤں", "CodyFisher@lhw.com", "دہلی"),
-                  ],
+            RichText(
+              text: TextSpan(
+                text: '*',
+                style: TextStyle(
+                  color: Color(0xffEC5A53),  // This makes the asterisk red
+                  fontSize: 16,
                 ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'پہلا نام',
+                    style: TextStyle(
+                      fontFamily: "UrduType",
+                      color: Colors.black,  // Change the color as you want
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
-}
-
-Widget createDetailGroup(String heading1, String heading2, String value1, String value2) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10.0),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Expanded(
-              child: Text(
-                heading1,
-                textAlign: TextAlign.end,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "UrduType",
-                  color: Color(0xff7A7D84), // Grey color for headings
-                ),
-              ),
-            ),
-            SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                heading2,
-                textAlign: TextAlign.end,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "UrduType",
-                  color: Color(0xff7A7D84), // Grey color for headings
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Expanded(
-              child: Text(
-                value1,
-                textAlign: TextAlign.end,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "UrduType",
-                ),
-              ),
-            ),
-            SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                value2,
-                textAlign: TextAlign.end,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "UrduType",
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
 }
