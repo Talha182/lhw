@@ -1,3 +1,4 @@
+#file: noinspection DartPathPackageReference
 name: lhw
 description: A new Flutter project.
 
@@ -40,8 +41,8 @@ dependencies:
   mockito: ^5.4.2
   sqflite: ^2.3.0
   path_provider: ^2.1.1
-  intl_phone_number_input: ^0.7.3+1
-
+  flutter_phone_number_field:
+    path: flutter_phone_number_field-1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 
 class ProfileEdit extends StatefulWidget {
   ProfileEdit({Key? key}) : super(key: key);
@@ -27,8 +26,6 @@ class _ProfileEditState extends State<ProfileEdit> {
 
   @override
   Widget build(BuildContext context) {
-    String initialCountry = 'US';
-    PhoneNumber number = PhoneNumber(isoCode: 'US');
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
@@ -129,21 +126,21 @@ class _ProfileEditState extends State<ProfileEdit> {
                     vertical: 10.0,
                     horizontal: 10.0), // Adjust vertical padding
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
               ),
@@ -181,21 +178,21 @@ class _ProfileEditState extends State<ProfileEdit> {
                     vertical: 10.0,
                     horizontal: 10.0), // Adjust vertical padding
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
               ),
@@ -232,25 +229,25 @@ class _ProfileEditState extends State<ProfileEdit> {
               onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
                 hintText: "DD/MM/YY",
-                hintStyle: TextStyle(fontSize: 13),
+                hintStyle: const TextStyle(fontSize: 13),
                 contentPadding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 10.0),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
               ),
@@ -280,51 +277,40 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
             ),
-            TextField(
+            FlutterPhoneNumberField(
+              showCountryFlag: false,
+              showDropdownIcon: false,
               textAlign: TextAlign.right,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0), // Adj
-                hintText: "اپنا موبائل نمبر درج کیجئے",
-                hintStyle: const TextStyle(fontFamily: "UrduType"),
-                suffix: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: VerticalDivider(
-                        color: const Color(0xfD9D9D9).withOpacity(0.5),
-                        thickness: 1,
-                      ),
-                    ),
-                    const Text('+1'),
-                  ],
+              initialCountryCode: "PK",
+              pickerDialogStyle: PickerDialogStyle(
+                countryFlagStyle: const TextStyle(fontSize: 17),
+              ),
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                hintText: 'اپنا موبائل نمبر درج کیجئے',
+                hintStyle: TextStyle(
+                  fontFamily: "UrduType",
+                  color: Color(0xff7A7D84),
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color:
+                          Color(0xffCDD1E0)), // You can set it to transparent here.
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: Color(0xffCDD1E0)), // Grey border when enabled
                 ),
               ),
+              languageCode: "ar",
+              onChanged: (phone) {},
+              onCountryChanged: (country) {},
             ),
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
             Container(
               alignment: Alignment.centerRight,
@@ -351,33 +337,40 @@ class _ProfileEditState extends State<ProfileEdit> {
             TextField(
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
                 hintText: "منتخب کریں۔",
-                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                hintStyle: const TextStyle(
+                  fontFamily: "UrduType",
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                  vertical: 10.0,
+                  horizontal: 10.0,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
+                prefixIcon: const Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: Colors.black,
+                ), // Added dropdown icon on the left
               ),
-            ),const SizedBox(
+            ),
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -405,33 +398,40 @@ class _ProfileEditState extends State<ProfileEdit> {
             TextField(
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
                 hintText: "منتخب کریں۔",
-                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                hintStyle: const TextStyle(
+                  fontFamily: "UrduType",
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                  vertical: 10.0,
+                  horizontal: 10.0,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
+                prefixIcon: const Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: Colors.black,
+                ),
               ),
-            ),const SizedBox(
+            ),
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -459,33 +459,40 @@ class _ProfileEditState extends State<ProfileEdit> {
             TextField(
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
                 hintText: "منتخب کریں۔",
-                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                hintStyle: const TextStyle(
+                  fontFamily: "UrduType",
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                  vertical: 10.0,
+                  horizontal: 10.0,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
+                prefixIcon: const Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: Colors.black,
+                ), // Added dropdown icon on the left
               ),
-            ),const SizedBox(
+            ),
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -513,33 +520,40 @@ class _ProfileEditState extends State<ProfileEdit> {
             TextField(
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
                 hintText: "منتخب کریں۔",
-                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                hintStyle: const TextStyle(
+                  fontFamily: "UrduType",
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                  vertical: 10.0,
+                  horizontal: 10.0,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
+                prefixIcon: const Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: Colors.black,
+                ), // Added dropdown icon on the left
               ),
-            ),const SizedBox(
+            ),
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -566,34 +580,38 @@ class _ProfileEditState extends State<ProfileEdit> {
             ),
             TextField(
               textAlign: TextAlign.right,
+              keyboardType: TextInputType.emailAddress,
               textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
                 hintText: "ای میل درج کریں۔",
-                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                hintStyle: const TextStyle(
+                  fontFamily: "UrduType",
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                  vertical: 10.0,
+                  horizontal: 10.0,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
+
               ),
-            ),const SizedBox(
+            ),            const SizedBox(
               height: 30,
             ),
             Container(
@@ -621,33 +639,37 @@ class _ProfileEditState extends State<ProfileEdit> {
             TextField(
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
+              keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 hintText: "LHW ID نمبر درج کریں۔",
-                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                hintStyle: const TextStyle(
+                  fontFamily: "UrduType",
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                  vertical: 10.0,
+                  horizontal: 10.0,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
+
               ),
-            ),const SizedBox(
+            ),            const SizedBox(
               height: 30,
             ),
             Container(
@@ -673,36 +695,39 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
+              keyboardType: TextInputType.phone,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
               decoration: InputDecoration(
                 hintText: "سروس کے سال درج کریں۔",
-                hintStyle: TextStyle(fontSize: 13,fontFamily: "UrduType"),
+                hintStyle: const TextStyle(
+                  fontFamily: "UrduType",
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                  vertical: 10.0,
+                  horizontal: 10.0,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Colors.grey,
+                    color: Color(0xffCDD1E0),
                   ),
                 ),
+
               ),
-            ),
-          ],
+            ),          ],
         ),
       ),
     );
