@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lhw/Profile/Profile.dart';
 import 'package:lhw/Profile/edit_profile.dart';
 import 'package:lhw/Quiz/MCQ%204.dart';
+import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/Settings/SettingsPage.dart';
 import 'package:lhw/Settings/data.dart';
 import 'package:lhw/demo.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: SettingsPage(),
+      home: ReportsScreen(),
     );
   }
 }
