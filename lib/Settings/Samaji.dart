@@ -14,7 +14,6 @@ class _SamajiScreenState extends State<SamajiScreen> {
   bool secondState = false;
   bool thirdState = false;
   bool fourthState = false;
-  bool fifthState = false;
   double _sliderValue = 0;
 
   @override
@@ -25,7 +24,7 @@ class _SamajiScreenState extends State<SamajiScreen> {
         child: ListView(
           children: [
             const Text(
-              "کنیکٹیویٹی اور ڈیٹا",
+              "سوشل میڈیا کنکشنز",
               style: TextStyle(fontFamily: "UrduType", fontSize: 17),
               textAlign: TextAlign.right, // Align text to the right
             ),
@@ -44,27 +43,179 @@ class _SamajiScreenState extends State<SamajiScreen> {
               thickness: 1,
             ),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
             const Text(
-              "ڈیٹا کے استعمال کی ترجیح",
+              "لنکڈن",
               style: TextStyle(fontFamily: "UrduType", fontSize: 17),
               textAlign: TextAlign.right, // Align text to the right
             ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              decoration: InputDecoration(
+                hintText: "URL درج کریں۔",
+                hintStyle:
+                    const TextStyle(fontFamily: "UrduType", color: Colors.black),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 10.0), // Adjust vertical padding
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
             const Text(
-              "اپنے موبائل اور ڈیسک ٹاپ اطلاعات کا نظم کریں۔  ",
+              "فیس بک",
+              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+              textAlign: TextAlign.right, // Align text to the right
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              decoration: InputDecoration(
+                hintText: "URL درج کریں۔",
+                hintStyle:
+                    const TextStyle(fontFamily: "UrduType", color: Colors.black),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 10.0), // Adjust vertical padding
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Text(
+              "انسٹاگرام",
+              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+              textAlign: TextAlign.right, // Align text to the right
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              decoration: InputDecoration(
+                hintText: "URL درج کریں۔",
+                hintStyle:
+                    const TextStyle(fontFamily: "UrduType", color: Colors.black),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 10.0), // Adjust vertical padding
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Text(
+              "ٹویٹر",
+              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+              textAlign: TextAlign.right, // Align text to the right
+            ),
+            TextField(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              decoration: InputDecoration(
+                hintText: "URL درج کریں۔",
+                hintStyle:
+                    const TextStyle(fontFamily: "UrduType", color: Colors.black),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 10.0), // Adjust vertical padding
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xffCDD1E0),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            const Text(
+              "اشتراک کی ترتیبات",
+              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+              textAlign: TextAlign.right,
+            ),
+            const Text(
+              "کورس کا مواد صرف وائی فائی سے منسلک ہونے پر ڈاؤن لوڈ ہوتا ہے۔",
               style: TextStyle(
                   fontFamily: "UrduType",
                   fontSize: 13,
                   color: Color(0xff8B9DA0)),
               textAlign: TextAlign.right, // Align text to the right
             ),
-            const SizedBox(
-              height: 10,
-            ),
             Directionality(
               textDirection:
-              TextDirection.rtl, // Set the text direction to right-to-left
+                  TextDirection.rtl, // Set the text direction to right-to-left
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -100,28 +251,40 @@ class _SamajiScreenState extends State<SamajiScreen> {
             const SizedBox(
               height: 10,
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text(
+              "اشتراک کی ترتیبات",
+              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+              textAlign: TextAlign.right, // Align text to the right
+            ),
+            const Text(
+              "فیصلہ کریں کہ کس چیز کا خود بخود اشتراک کیا جاتا ہے۔",
+              style: TextStyle(
+                  fontFamily: "UrduType",
+                  fontSize: 13,
+                  color: Color(0xff8B9DA0)),
+              textAlign: TextAlign.right, // Align text to the right
+            ),
+            const SizedBox(
+              height: 15,
+            ),
             Directionality(
               textDirection:
-              TextDirection.rtl, // Set the text direction to right-to-left
+                  TextDirection.rtl, // Set the text direction to right-to-left
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "ڈیٹا سیور موڈ",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-                      ),
-                      Text(
-                        "موبائل نیٹ ورک استعمال کرتے وقت ڈیٹا کو بچانے کے لیے تصویر/ویڈیو کے معیار کو کم کریں۔",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 13,
-                            color: Color(0xff8B9DA0)),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ],
+                  const Text(
+                    "مکمل کورسز",
+                    style: TextStyle(fontFamily: "UrduType", fontSize: 17),
                   ),
                   CupertinoSwitch(
                     activeColor: const Color(0xff72C391),
@@ -134,84 +297,54 @@ class _SamajiScreenState extends State<SamajiScreen> {
                   ),
                 ],
               ),
+            ),const SizedBox(
+              height: 15,
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              "متن کا سائز اور انداز",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const Text(
-              "پش اور ای میل اطلاعات کو منتخب کریں جو آپ وصول کرنا چاہتے ہیں۔",
-              style: TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 13,
-                  color: Color(0xff8B9DA0)),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const SizedBox(
-              height: 35,
-            ),
-            Stack(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.identity()..scale(-1.08, 1.0, 1.0),
-                    child: SizedBox(
-                      width: 340,
-                      height: 80,
-                      child: SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          trackHeight:
-                          7.0, // Adjust this value to make it thicker or thinner
-                          thumbShape: BorderThumbShape(thumbRadius: 12.0, borderWidth: 4.0),
-                        ),
-                        child: Slider(
-                          inactiveColor: Color(0xffEAEAEF),
-                          activeColor: Color(0xffFE8BD1),
-                          value: 1.0 - _sliderValue, // Inverted value
-                          onChanged: (newValue) {
-                            setState(() {
-                              _sliderValue =
-                                  1.0 - newValue; // Update the original value
-                            });
-                          },
-                        ),
-                      ),
-                    ),
+            Directionality(
+              textDirection:
+                  TextDirection.rtl, // Set the text direction to right-to-left
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const Text(
+                    "بیجز حاصل کئے ",
+                    style: TextStyle(fontFamily: "UrduType", fontSize: 17),
                   ),
-                ),
-                Positioned(
-                  right: 20,
-                  bottom: 55, // Adjust as needed
-                  child: Text(
-                    "اے",
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        fontSize: 15,
-                        color: Color(0xff7A7D84)), // Small A
+                  CupertinoSwitch(
+                    activeColor: const Color(0xff72C391),
+                    value: thirdState,
+                    onChanged: (value) {
+                      setState(() {
+                        thirdState = value;
+                      });
+                    },
                   ),
-                ),
-                Positioned(
-                  left: 40,
-                  bottom: 55, // Adjust as needed
-                  child: Text(
-                    "اے",
-                    style: TextStyle(
-                        fontSize: 24, fontFamily: "UrduType"), // Large A
+                ],
+              ),
+            ),const SizedBox(
+              height: 15,
+            ),
+            Directionality(
+              textDirection:
+                  TextDirection.rtl, // Set the text direction to right-to-left
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const Text(
+                    "لیڈر بورڈ رینک ",
+                    style: TextStyle(fontFamily: "UrduType", fontSize: 17),
                   ),
-                ),
-              ],
+                  CupertinoSwitch(
+                    activeColor: const Color(0xff72C391),
+                    value: fourthState,
+                    onChanged: (value) {
+                      setState(() {
+                        fourthState = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 50,
@@ -220,46 +353,5 @@ class _SamajiScreenState extends State<SamajiScreen> {
         ),
       ),
     );
-  }
-}
-class BorderThumbShape extends SliderComponentShape {
-  final double thumbRadius;
-  final double borderWidth;
-
-  BorderThumbShape({this.thumbRadius = 6.0, this.borderWidth = 2.0});
-
-  @override
-  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return Size.fromRadius(thumbRadius);
-  }
-
-  @override
-  void paint(
-      PaintingContext context,
-      Offset center, {
-        required Animation<double> activationAnimation,
-        required Animation<double> enableAnimation,
-        bool? isDiscrete,
-        required TextPainter labelPainter,
-        required RenderBox parentBox,
-        required SliderThemeData sliderTheme,
-        TextDirection? textDirection,
-        double? value,
-        double? textScaleFactor,
-        Size? sizeWithOverflow,
-      }) {
-    final Canvas canvas = context.canvas;
-
-    final Paint thumbPaint = Paint()
-      ..color = sliderTheme.thumbColor!
-      ..style = PaintingStyle.fill;
-
-    final Paint borderPaint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = borderWidth;
-
-    canvas.drawCircle(center, thumbRadius, thumbPaint);
-    canvas.drawCircle(center, thumbRadius - borderWidth / 2, borderPaint);
   }
 }
