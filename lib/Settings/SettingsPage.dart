@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Completed.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
 import 'package:lhw/Mobile_HomePage/Courses_All Courses.dart';
+import 'package:lhw/Settings/Samaji.dart';
+import 'package:lhw/Settings/data.dart';
 
 import 'Itla\'aat.dart';
 
@@ -108,8 +110,8 @@ class _SettingsPageState extends State<SettingsPage> {
               Positioned(
 
                 bottom: 4,
-                left: 126,
-                child: _curvedBorderContainer(Color(0xffF7DE8D), 100, 5.0),
+                left: 124,
+                child: _curvedBorderContainer(Color(0xffF7DE8D), 101, 5.0),
               ),
 
               Positioned(
@@ -123,9 +125,9 @@ class _SettingsPageState extends State<SettingsPage> {
             child: TabBarView(
               children: <Widget>[
 
-                Courses_Completed(),
-                TotalCourses(),
                 SamajiScreen(),
+                DataScreen(),
+                ItlaatScreen(),
               ],
             ),
           ),

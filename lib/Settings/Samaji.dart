@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class DataScreen extends StatefulWidget {
-  const DataScreen({super.key});
+class SamajiScreen extends StatefulWidget {
+  const SamajiScreen({super.key});
 
   @override
-  State<DataScreen> createState() => _DataScreenState();
+  State<SamajiScreen> createState() => _SamajiScreenState();
 }
 
-class _DataScreenState extends State<DataScreen> {
+class _SamajiScreenState extends State<SamajiScreen> {
   bool firstState = false;
   bool secondState = false;
   bool thirdState = false;
@@ -64,7 +64,7 @@ class _DataScreenState extends State<DataScreen> {
             ),
             Directionality(
               textDirection:
-                  TextDirection.rtl, // Set the text direction to right-to-left
+              TextDirection.rtl, // Set the text direction to right-to-left
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -102,7 +102,7 @@ class _DataScreenState extends State<DataScreen> {
             ),
             Directionality(
               textDirection:
-                  TextDirection.rtl, // Set the text direction to right-to-left
+              TextDirection.rtl, // Set the text direction to right-to-left
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -173,7 +173,7 @@ class _DataScreenState extends State<DataScreen> {
                       child: SliderTheme(
                         data: SliderTheme.of(context).copyWith(
                           trackHeight:
-                              7.0, // Adjust this value to make it thicker or thinner
+                          7.0, // Adjust this value to make it thicker or thinner
                           thumbShape: BorderThumbShape(thumbRadius: 12.0, borderWidth: 4.0),
                         ),
                         child: Slider(

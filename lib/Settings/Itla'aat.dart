@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SamajiScreen extends StatefulWidget {
-  const SamajiScreen({super.key});
+class ItlaatScreen extends StatefulWidget {
+  const ItlaatScreen({super.key});
 
   @override
-  State<SamajiScreen> createState() => _SamajiScreenState();
+  State<ItlaatScreen> createState() => _ItlaatScreenState();
 }
 
-class _SamajiScreenState extends State<SamajiScreen> {
+class _ItlaatScreenState extends State<ItlaatScreen> {
   bool firstState = false;
   bool secondState = false;
   bool thirdState = false;
