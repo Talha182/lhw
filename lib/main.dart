@@ -4,6 +4,7 @@ import 'package:lhw/Profile/Profile.dart';
 import 'package:lhw/Profile/edit_profile.dart';
 import 'package:lhw/Quiz/MCQ%204.dart';
 import 'package:lhw/Settings/SettingsPage.dart';
+import 'package:lhw/Settings/data.dart';
 import 'package:lhw/demo.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: SettingsPage(),
+      home: DataScreen(),
     );
   }
 }
