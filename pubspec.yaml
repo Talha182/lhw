@@ -40,6 +40,7 @@ dependencies:
   build_runner: ^2.4.6
   mockito: ^5.4.2
   sqflite: ^2.3.0
+  syncfusion_flutter_charts: ^23.1.36
   path_provider: ^2.1.1
   flutter_phone_number_field:
     path: flutter_phone_number_field-1.0.1

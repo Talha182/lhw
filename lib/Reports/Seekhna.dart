@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Seekhna extends StatefulWidget {
   Seekhna({super.key});
@@ -23,6 +24,13 @@ class _SeekhnaState extends State<Seekhna> {
 
   @override
   Widget build(BuildContext context) {
+    final List<ChartData> chartData = [
+      ChartData('1', 35),
+      ChartData('2', 23),
+      ChartData('3', 34),
+      ChartData('4', 25),
+      ChartData('5', 40)
+    ];
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -41,8 +49,7 @@ class _SeekhnaState extends State<Seekhna> {
               const SizedBox(
                 height: 10,
               ),
-              Expanded(
-                child: Container(
+                 Container(
                   height: 500,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -385,7 +392,7 @@ class _SeekhnaState extends State<Seekhna> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Align(
@@ -398,26 +405,27 @@ class _SeekhnaState extends State<Seekhna> {
                                   Container(
                                     width: 30,
                                     height: 30,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                         gradient: LinearGradient(colors: [
                                           Color(0xff99FFA3),
                                           Color(0xff68EE76),
                                         ])),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
+                                  const Text(
                                     "بہترین اور صحت اسکور",
                                     style: TextStyle(
                                         fontFamily: "UrduType",
                                         fontSize: 15,
                                         color: Color(0xff685F78)),
                                   ),
-                                  SizedBox(width: 10,),
-
-                                  Text(
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
                                     "95/100",
                                     style: TextStyle(
                                         fontFamily: "UrduType",
@@ -427,11 +435,197 @@ class _SeekhnaState extends State<Seekhna> {
                                 ],
                               )),
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 1,
-                        )
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Directionality(
+                              textDirection: TextDirection
+                                  .rtl, // Set the text direction to right-to-left
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        gradient: LinearGradient(colors: [
+                                          Color(0xffFE6C6C),
+                                          Color(0xffFE464B),
+                                        ])),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
+                                    "بہترین اور صحت اسکور",
+                                    style: TextStyle(
+                                        fontFamily: "UrduType",
+                                        fontSize: 15,
+                                        color: Color(0xff685F78)),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
+                                    "95/100",
+                                    style: TextStyle(
+                                        fontFamily: "UrduType",
+                                        fontSize: 18,
+                                        color: Color(0xffFE464B)),
+                                  ),
+                                ],
+                              )),
+                        ),
                       ],
                     ),
+                  ),
+                ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 400,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                  child: Column(
+                    children: [
+                      Directionality(
+                        textDirection: TextDirection
+                            .rtl, // Set the text direction to right-to-left
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "سکور کی تقسیم",
+                                  style: TextStyle(
+                                      fontFamily: "UrduType", fontSize: 17),
+                                ),
+                                Text(
+                                  "تمام ابواب کے لیے اپنے سکور کی حدیں دیکھیں",
+                                  style: TextStyle(
+                                      fontFamily: "UrduType",
+                                      fontSize: 13,
+                                      color: Color(0xff8B9DA0)),
+                                  textAlign: TextAlign
+                                      .right, // Align text to the right
+                                ),
+                              ],
+                            ),
+                            Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton2<String>(
+                                  isExpanded: true,
+                                  hint: const Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'باب 1',
+                                          style: TextStyle(
+                                              fontFamily: 'UrduType',
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  items: items
+                                      .map((String item) =>
+                                          DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontFamily: 'UrduType',
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: selectedValue,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      selectedValue = value;
+                                    });
+                                  },
+                                  buttonStyleData: ButtonStyleData(
+                                    height: 40,
+                                    width: 70,
+                                    padding: const EdgeInsets.only(
+                                        left: 14, right: 14),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                          color: const Color(0xff685F78)),
+                                    ),
+                                  ),
+                                  iconStyleData: const IconStyleData(
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                    ),
+                                    iconSize: 14,
+                                  ),
+                                  dropdownStyleData: DropdownStyleData(
+                                    maxHeight: 100,
+                                    width: 150,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                    offset: const Offset(-20, 0),
+                                    scrollbarTheme: ScrollbarThemeData(
+                                      radius: const Radius.circular(20),
+                                      thickness:
+                                          MaterialStateProperty.all<double>(6),
+                                      thumbVisibility:
+                                          MaterialStateProperty.all<bool>(true),
+                                    ),
+                                  ),
+                                  menuItemStyleData: const MenuItemStyleData(
+                                    height: 40,
+                                    padding:
+                                        EdgeInsets.only(left: 14, right: 14),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SfCartesianChart(
+                        primaryXAxis: CategoryAxis(),
+                        primaryYAxis: NumericAxis(),
+                        series: <ChartSeries<ChartData, String>>[
+                          ScatterSeries<ChartData, String>(
+                            dataSource: chartData,
+                            xValueMapper: (ChartData data, _) => data.x,
+                            yValueMapper: (ChartData data, _) =>
+                                data.y, // No need to convert to String
+                            markerSettings: MarkerSettings(
+                              isVisible: true,
+                              height: 20,
+                              width: 20,
+                              shape: DataMarkerType.circle,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -695,4 +889,11 @@ class Quiz1Line extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
   }
+}
+
+class ChartData {
+  final String x;
+  final int y;
+
+  ChartData(this.x, this.y);
 }
