@@ -271,13 +271,13 @@ Widget _tabBar() {
               child: _curvedBorderContainer(const Color(0xffF7DE8D), 105, 5.0),
             ),
             Positioned(
-              bottom: 4,
-              left: 242,
-              child: _curvedBorderContainer(const Color(0xff826FE3), 101, 5.0),
+              bottom: 4.2,
+              left: 243,
+              child: _curvedBorderContainer(const Color(0xff826FE3), 100, 5.0),
             ),
           ],
         ),
-        const Expanded(
+         Expanded(
           child: TabBarView(
             children: <Widget>[
               Achievements(),
