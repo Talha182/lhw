@@ -157,8 +157,9 @@ class _Resources_TabBarState extends State<Resources_TabBar> {
           const Expanded(
             child: TabBarView(
               children: <Widget>[
-                ResourcesPdf(),
                 ResourcesBookmark(),
+
+                ResourcesPdf(),
               ],
             ),
           ),

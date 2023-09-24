@@ -2,6 +2,7 @@
   import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
   import 'package:percent_indicator/percent_indicator.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 
   class ComicStrip extends StatefulWidget {
     const ComicStrip({super.key});
@@ -64,15 +65,17 @@ import 'package:flutter_svg/flutter_svg.dart';
         height: 200,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(
-            image: AssetImage(imagePath), // Using the provided image path
-            fit: BoxFit.cover, // The image will cover the entire container
-          ),
         ),
+          child: PinchZoom(
+            resetDuration: const Duration(milliseconds: 100),
+            maxScale: 2.5,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(imagePath, fit: BoxFit.cover),
+            ),
+          ),
       );
     }
-
-
 
     @override
     Widget build(BuildContext context) {
@@ -114,7 +117,7 @@ import 'package:flutter_svg/flutter_svg.dart';
                           width: 5,
                         ),
                         Expanded(
-                          child: new LinearPercentIndicator(
+                          child:  LinearPercentIndicator(
                             animation: false,
                             animationDuration: 400,
                             lineHeight: 10.0,

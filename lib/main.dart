@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:lhw/Comic_Strip/comic_strip.dart';
 import 'package:lhw/Mobile_HomePage/home_page.dart';
 import 'package:lhw/Mobile_HomePage/tab_bar.dart';
 import 'package:lhw/Reports/Help.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/Reports/Resources_Tabbar.dart';
+import 'package:lhw/custom_widgets/custom_navbar.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'navy.dart';
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: Resources_TabBar(),
+      home: ComicStrip(),
     );
   }
 }

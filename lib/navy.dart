@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/FAB_Page/BottomModalSheet.dart';
 import 'package:lhw/Mobile_HomePage/tab_bar.dart';
+import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 
 import 'Mobile_HomePage/home_page.dart';
@@ -29,7 +30,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
     const HomePage(),
     const CoursesPage_Tabbar(),
     const HomePage(),
-    NotificationScreen(),
+    ReportsScreen(),
   ];
 
   void onTabTapped(int index) {

@@ -26,7 +26,7 @@ class _ResourcesPdfState extends State<ResourcesPdf> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(left: 5, right: 5, top: 20),
+        padding: const EdgeInsets.only(left: 5, right: 5, top: 20),
         child: ListView(
           children: [
             Row(
@@ -114,13 +114,13 @@ class _ResourcesPdfState extends State<ResourcesPdf> {
                     ),
                   ],
                 ),
-                Text(
+                const Text(
                   "منقسم لیڈر بورڈز",
                   style: TextStyle(fontFamily: "UrduType", fontSize: 18),
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -136,7 +136,7 @@ class _ResourcesPdfState extends State<ResourcesPdf> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -152,14 +152,14 @@ class _ResourcesPdfState extends State<ResourcesPdf> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: () {
                 // Your onPressed logic here
               },
-              child: Text(
+              child: const Text(
                 'سب دیکھیں',
                 style: TextStyle(
                     fontFamily: "UrduType",
@@ -178,7 +178,7 @@ class _ResourcesPdfState extends State<ResourcesPdf> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -189,21 +189,162 @@ class _ResourcesPdfState extends State<ResourcesPdf> {
                 padding: EdgeInsets.only(top: 20, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [Text("حالیہ فائلیں۔",style: TextStyle(
+                  children: [const Text("حالیہ فائلیں۔",style: TextStyle(
                     fontFamily: "UrduType",
                     fontSize: 18
                   ),),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     Directionality(
                       textDirection: TextDirection.rtl,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SvgPicture.asset("assets/images/filter.svg"),
-                          SizedBox(width: 5,),
-                          Text("نام")
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/filter.svg")),
+                              const SizedBox(width: 5,),
+                              const Text("نام",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 20,color: Color(0xff8E8E8E)
+                              ),),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/filter.svg")),
+                              const SizedBox(width: 5,),
+                              const Text("آخری بار کھولا گیا۔",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 20,color: Color(0xff8E8E8E)
+
+                              ),),
+                            ],
+                          ),
+
                         ],
                       ),
-                    )
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: Color(0xffDED9E9),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/file.svg",width: 17,height: 17,)),
+                              const SizedBox(width: 5,),
+                              const Text("باب 1.pdf",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 16,color: Color(0xff685F78)
+                              ),),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/filter.svg")),
+                              const SizedBox(width: 5,),
+                              const Text("14/05/2023 - 17:15",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 16,color: Color(0xff685F78)
+
+                              ),),
+                            ],
+                          ),
+
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/file.svg",width: 17,height: 17,)),
+                              const SizedBox(width: 5,),
+                              const Text("باب 1.pdf",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 16,color: Color(0xff685F78)
+                              ),),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/filter.svg")),
+                              const SizedBox(width: 5,),
+                              const Text("14/05/2023 - 17:15",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 16,color: Color(0xff685F78)
+
+                              ),),
+                            ],
+                          ),
+
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/file.svg",width: 17,height: 17,)),
+                              const SizedBox(width: 5,),
+                              const Text("باب 1.pdf",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 16,color: Color(0xff685F78)
+                              ),),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:EdgeInsets.only(top: 10),
+                                  child: SvgPicture.asset("assets/images/filter.svg")),
+                              const SizedBox(width: 5,),
+                              const Text("14/05/2023 - 17:15",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 16,color: Color(0xff685F78)
+
+                              ),),
+                            ],
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+
 
                   ],
                 ),
@@ -234,7 +375,7 @@ class PdfContainer extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.grey.shade200),
       child: Padding(
-        padding: EdgeInsets.only(top: 12, left: 10, right: 10),
+        padding: const EdgeInsets.only(top: 12, left: 10, right: 10),
         child: Column(
           children: [
             Row(
@@ -252,7 +393,7 @@ class PdfContainer extends StatelessWidget {
                       width: 14,
                       height: 14,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
                     SvgPicture.asset(
@@ -264,35 +405,35 @@ class PdfContainer extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             SvgPicture.asset(
               "assets/images/pdf.svg",
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "پی ڈی ایف",
               style: TextStyle(
                   fontFamily: "UrduType",
                   fontSize: 17,
                   color: Color(0xff685F78)),
             ),
-            Text(
+            const Text(
               "12 ایم بی",
               style: TextStyle(
                   fontFamily: "UrduType",
                   fontSize: 17,
                   color: Color(0xff685F78)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: "UrduType",
                   fontSize: 17,
                   color: Color(0xff685F78)),
