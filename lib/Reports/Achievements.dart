@@ -1,5 +1,10 @@
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:progresso/progresso.dart';
+
+import 'Page1.dart';
+import 'Sargarmi.dart';
+import 'Seekhna.dart';
 
 class Achievements extends StatefulWidget {
   const Achievements({Key? key}) : super(key: key);
@@ -535,7 +540,7 @@ class _AchievementsState extends State<Achievements>
                 ),
               ),
               Container(
-                height: 300,
+                height: 280,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Color(0xffF0F0F0)),
@@ -565,7 +570,8 @@ class _AchievementsState extends State<Achievements>
                           "assets/images/star 1.png",
                           color: Color(0xffE0E0E0),
                           scale: 1.2,
-                        )), Positioned(
+                        )),
+                    Positioned(
                         top: 0,
                         right: 0,
                         child: Image.asset(
@@ -573,14 +579,282 @@ class _AchievementsState extends State<Achievements>
                           color: Color(0xffE0E0E0),
                           scale: 1,
                         )),
+                    Positioned(
+                        top: 45,
+                        right: 50,
+                        child: Image.asset(
+                          color: Color(0xffE0E0E0),
+                          "assets/images/star 1.png",
+                          scale: 1.5,
+                        )),
+                    Positioned(
+                        top: 30,
+                        right: 78,
+                        child: Image.asset(
+                          color: Color(0xffE0E0E0),
+                          "assets/images/star 2.png",
+                          scale: 1.8,
+                        )),
+                    Positioned(
+                        top: 65,
+                        right: 55,
+                        child: Image.asset(
+                          color: Color(0xffE0E0E0),
+                          "assets/images/star 2.png",
+                          scale: 1,
+                        )),
+                    Positioned(
+                        top: 10,
+                        right: 10,
+                        child: Text(
+                          "لیڈر بورڈ",
+                          style:
+                              TextStyle(fontFamily: "UrduType", fontSize: 18),
+                        )),
+                    Positioned(
+                        top: 35,
+                        right: 10,
+                        child: Text(
+                          "کورسز اور ماڈیولز، تکمیل کی حیثیت کو اجاگر کرتے ہوئے اور آگے کیا ہے۔",
+                          style: TextStyle(
+                              fontFamily: "UrduType",
+                              fontSize: 16,
+                              color: Color(0xff8B9DA0)),
+                        )),
+                    Positioned(
+                        top: 140,
+                        right: 20,
+                        child: Column(
+                          children: [
+                            Image.asset("assets/images/crown.png"),
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: Image.asset(
+                                "assets/images/person2.png",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Positioned(
+                        top: 245,
+                        right: 55,
+                        child: Container(
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                              border: Border.all(
+                                  color: Color(0xff8A8C93), width: 2)),
+                          child: Center(
+                              child: Text(
+                            "10",
+                            style: TextStyle(
+                                fontSize: 13, fontWeight: FontWeight.w600),
+                          )),
+                        )),
+                    Positioned(
+                        top: 150,
+                        right: 130,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Eiden Smith",
+                              style: TextStyle(
+                                fontFamily: "UrduType",
+                                fontSize: 20,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "پوائنٹس:",
+                                  style: TextStyle(
+                                      fontFamily: "UrduType",
+                                      color: Color(0xff8B9DA0)),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "100",
+                                  style: TextStyle(
+                                      fontFamily: "UrduType", fontSize: 19),
+                                )
+                              ],
+                            ),
+                            Container(
+                              width: 135,
+                              height: 35,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffFDCD4F),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 5, top: 5),
+                                child: Text(
+                                  "9ویں تک جانے کے لیے 150 پوائنٹس",
+                                  style: TextStyle(
+                                      fontFamily: "UrduType", fontSize: 13),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
                   ],
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              _TabBarWithPages(), // Insert the tab bar with pages here
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class _TabBarWithPages extends StatefulWidget {
+  @override
+  _TabBarWithPagesState createState() => _TabBarWithPagesState();
+}
+
+class _TabBarWithPagesState extends State<_TabBarWithPages>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this); // Updated to 3
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        _tabBar(), // Custom tab bar integrated
+        Container(
+          height: 500,
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              // Content for the tabs
+              NewPage2(),
+              NewPage1(),
+
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _tabBar() {
+    final GlobalKey _tabBarKey = GlobalKey();
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Stack(
+            children: [
+              ButtonsTabBar(
+                key: _tabBarKey,
+                controller: _tabController, // Added this line
+                splashColor: Colors.transparent,
+                height: 50,
+                radius: 20,
+                elevation: 1,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                backgroundColor: Colors.white,
+                unselectedBackgroundColor: const Color(0xffF0F0F0),
+                unselectedLabelStyle: const TextStyle(
+                    fontFamily: 'UrduType',
+                    color: Color(0xff685F78),
+                    fontWeight: FontWeight.w600),
+                labelStyle: const TextStyle(
+                    fontFamily: 'UrduType',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+                tabs: [
+                  const Tab(text: "منقسم"),
+                  const Tab(text: "ٹاپ پرفارمرز"),
+                ],
+              ),
+              Positioned(
+                bottom: 4,
+                left: 5,
+                child:
+                    _curvedBorderContainer(const Color(0xff826FE3), 102, 5.0),
+              ),
+              Positioned(
+                bottom: 4,
+                left: 118,
+                child: _curvedBorderContainer(const Color(0xff9AC9C2), 82, 5.0),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _curvedBorderContainer(Color color, double width, double height) {
+    return CustomPaint(
+      size: Size(width, height),
+      painter: CurvedEndsPainter(color, width),
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+}
+
+class CurvedEndsPainter extends CustomPainter {
+  final Color color;
+  final double tabWidth;
+
+  CurvedEndsPainter(this.color, this.tabWidth);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.7;
+
+    const double maxRadius = 12;
+    final double radius = (tabWidth > 2 * maxRadius) ? maxRadius : tabWidth / 2;
+
+    final Path path = Path()
+      ..moveTo(radius, size.height)
+      ..lineTo(size.width - radius, size.height)
+      ..arcToPoint(Offset(size.width, size.height - radius),
+          radius: const Radius.circular(17), clockwise: false)
+      ..moveTo(1, size.height - radius)
+      ..arcToPoint(Offset(radius, size.height),
+          radius: const Radius.circular(17), clockwise: false);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
 
