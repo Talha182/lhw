@@ -161,7 +161,6 @@ class _AchievementsState extends State<Achievements>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // Space between the new text and "روشن خیال"
                                             Text(
                                               "بہترین طلبہ",
                                               style: TextStyle(
@@ -227,7 +226,6 @@ class _AchievementsState extends State<Achievements>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // Space between the new text and "روشن خیال"
                                             Text(
                                               "سوال سلطان",
                                               style: TextStyle(
@@ -293,7 +291,6 @@ class _AchievementsState extends State<Achievements>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // Space between the new text and "روشن خیال"
                                             Text(
                                               "راہگیر تعلیم",
                                               style: TextStyle(
@@ -359,7 +356,6 @@ class _AchievementsState extends State<Achievements>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // Space between the new text and "روشن خیال"
                                             Text(
                                               "فا تح فہم",
                                               style: TextStyle(
@@ -425,7 +421,6 @@ class _AchievementsState extends State<Achievements>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // Space between the new text and "روشن خیال"
                                             Text(
                                               "سنگِ سفر",
                                               style: TextStyle(
