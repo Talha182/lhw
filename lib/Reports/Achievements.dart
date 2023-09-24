@@ -42,7 +42,7 @@ class _AchievementsState extends State<Achievements>
               ),
               const SizedBox(height: 10),
               Container(
-                height: 1030,
+                height: 860,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -66,7 +66,7 @@ class _AchievementsState extends State<Achievements>
                       ),
                       const SizedBox(height: 10),
                       Container(
-                        height: 920,
+                        height: 760,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: const Color(0xffE3E3E3)),
@@ -163,7 +163,7 @@ class _AchievementsState extends State<Achievements>
                                           children: [
                                             // Space between the new text and "روشن خیال"
                                             Text(
-                                              "روشن خیال",
+                                              "بہترین طلبہ",
                                               style: TextStyle(
                                                 fontFamily: "UrduType",
                                                 fontSize: 18,
@@ -229,7 +229,7 @@ class _AchievementsState extends State<Achievements>
                                           children: [
                                             // Space between the new text and "روشن خیال"
                                             Text(
-                                              "روشن خیال",
+                                              "سوال سلطان",
                                               style: TextStyle(
                                                 fontFamily: "UrduType",
                                                 fontSize: 18,
@@ -295,7 +295,7 @@ class _AchievementsState extends State<Achievements>
                                           children: [
                                             // Space between the new text and "روشن خیال"
                                             Text(
-                                              "روشن خیال",
+                                              "راہگیر تعلیم",
                                               style: TextStyle(
                                                 fontFamily: "UrduType",
                                                 fontSize: 18,
@@ -361,7 +361,7 @@ class _AchievementsState extends State<Achievements>
                                           children: [
                                             // Space between the new text and "روشن خیال"
                                             Text(
-                                              "روشن خیال",
+                                              "فا تح فہم",
                                               style: TextStyle(
                                                 fontFamily: "UrduType",
                                                 fontSize: 18,
@@ -427,7 +427,7 @@ class _AchievementsState extends State<Achievements>
                                           children: [
                                             // Space between the new text and "روشن خیال"
                                             Text(
-                                              "روشن خیال",
+                                              "سنگِ سفر",
                                               style: TextStyle(
                                                 fontFamily: "UrduType",
                                                 fontSize: 18,
@@ -455,7 +455,7 @@ class _AchievementsState extends State<Achievements>
                                           strokeWidth: 10.0,
                                         ),
                                         const Text(
-                                          "14 دن کے سلسلے تک پہنچیں۔",
+                                          "جب کوئی صارف کورس مکمل کرتا ہے تو انعام دیا جاتا ہے۔",
                                           style: TextStyle(
                                               fontFamily: "UrduType",
                                               color: Color(0xff8B9DA0)),
@@ -491,9 +491,8 @@ class _AchievementsState extends State<Achievements>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // Space between the new text and "روشن خیال"
                                             Text(
-                                              "روشن خیال",
+                                              "حاضر ستارے",
                                               style: TextStyle(
                                                 fontFamily: "UrduType",
                                                 fontSize: 18,
@@ -534,10 +533,7 @@ class _AchievementsState extends State<Achievements>
                               SizedBox(
                                 height: 10,
                               ),
-                              Divider(
-                                thickness: 1,
-                                color: Colors.grey.withOpacity(0.5),
-                              ),
+
                             ],
                           ),
                         ),
