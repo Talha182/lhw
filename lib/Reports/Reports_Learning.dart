@@ -68,7 +68,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   children: [
                     Expanded(
                       child: Container(
-                        height: 85,
+                        height: 75,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             gradient: const LinearGradient(colors: [
@@ -103,7 +103,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                     ),
                     Expanded(
                       child: Container(
-                        height: 85,
+                        height: 75,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             gradient: const LinearGradient(colors: [
@@ -146,7 +146,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   children: [
                     Expanded(
                       child: Container(
-                        height: 85,
+                        height: 75,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             gradient: const LinearGradient(colors: [
@@ -185,7 +185,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                     ),
                     Expanded(
                       child: Container(
-                        height: 85,
+                        height: 75,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             gradient: const LinearGradient(colors: [
