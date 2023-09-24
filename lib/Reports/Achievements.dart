@@ -46,7 +46,6 @@ class _AchievementsState extends State<Achievements>
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black)
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -95,7 +94,6 @@ class _AchievementsState extends State<Achievements>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // Space between the new text and "روشن خیال"
                                             Text(
                                               "روشن خیال",
                                               style: TextStyle(
@@ -528,7 +526,6 @@ class _AchievementsState extends State<Achievements>
                               SizedBox(
                                 height: 10,
                               ),
-
                             ],
                           ),
                         ),
@@ -537,6 +534,48 @@ class _AchievementsState extends State<Achievements>
                   ),
                 ),
               ),
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xffF0F0F0)),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Image.asset(
+                        "assets/images/splash.png",
+                        scale: 1.2,
+                        color: Color(0xffE0E0E0),
+                      ),
+                    ),
+                    Positioned(
+                        top: 105,
+                        left: 35,
+                        child: Image.asset(
+                          "assets/images/star 2.png",
+                          color: Color(0xffE0E0E0),
+                          scale: 0.9,
+                        )),
+                    Positioned(
+                        top: 100,
+                        left: 95,
+                        child: Image.asset(
+                          "assets/images/star 1.png",
+                          color: Color(0xffE0E0E0),
+                          scale: 1.2,
+                        )), Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Image.asset(
+                          "assets/images/Star 7.png",
+                          color: Color(0xffE0E0E0),
+                          scale: 1,
+                        )),
+                  ],
+                ),
+              )
             ],
           ),
         ),
