@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 
 import '../custom_widgets/Row_Column_Padding.dart';
@@ -164,23 +166,22 @@ class _ModulePageState extends State<ModulePage> {
                         ),
                         _feedbackButtonPressed
                             ? RatingBar.builder(
-                          unratedColor: const Color(0xffC8CCFE),
-                          initialRating: 0,
-                          itemSize: 35,
-                          direction: Axis.horizontal,
-                          allowHalfRating: false,
-                          itemCount: 5,
-                          itemBuilder: (context, _) => const Icon(
-                            Icons.star,
-                            color: Color(0xffF7DE8D),
-                          ),
-                          onRatingUpdate: (rating) {
-                            },
-                        )
+                                unratedColor: const Color(0xffC8CCFE),
+                                initialRating: 0,
+                                itemSize: 35,
+                                direction: Axis.horizontal,
+                                allowHalfRating: false,
+                                itemCount: 5,
+                                itemBuilder: (context, _) => const Icon(
+                                  Icons.star,
+                                  color: Color(0xffF7DE8D),
+                                ),
+                                onRatingUpdate: (rating) {},
+                              )
                             : ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  side:
-                                      const BorderSide(color: Colors.white, width: 2),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
                                   backgroundColor: Colors.transparent,
                                   elevation: 0,
                                   shape: RoundedRectangleBorder(
@@ -262,7 +263,6 @@ class _ModulePageState extends State<ModulePage> {
                         color: Color(0xff232323),
                         fontSize: 18),
                   ),
-
                   const Text(
                     '5h 45m کل لمبائی',
                     style: TextStyle(
@@ -343,10 +343,13 @@ class _ModulePageState extends State<ModulePage> {
               children: [
                 ...columnPadded([
                   Module_DashBoard_Card(
+                    onClick: () {
+                      Get.to(() => Course_DropDown());
+                    },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image 8.png',
                     cardText: 'غذائیت کا تعارف',
-                    showProgressBar: true,
+                    showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
                     progressValue: progressValue,
@@ -354,26 +357,31 @@ class _ModulePageState extends State<ModulePage> {
                     cardText:
                         'نوعمر لڑکیوں، حاملہ اور دودھ پلانے والی ماؤں کی غذائی ضروریات',
                     showProgressBar: false,
+                    onClick: () {},
                   ),
                   Module_DashBoard_Card(
+                    onClick: () {},
                     progressValue: progressValue,
                     imagePath: 'assets/images/image10.png',
                     cardText: 'حمل کی غذائی ضروریات',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
+                    onClick: () {},
                     progressValue: progressValue,
                     imagePath: 'assets/images/image11.png',
                     cardText: 'آئرن کی کمی/انیمیا',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
+                    onClick: () {},
                     progressValue: progressValue,
                     imagePath: 'assets/images/image12.png',
                     cardText: 'وٹامن اے کی کمی',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
+                    onClick: () {},
                     progressValue: progressValue,
                     imagePath: 'assets/images/image13.png',
                     cardText: 'آیوڈین کی کمی',
@@ -388,4 +396,3 @@ class _ModulePageState extends State<ModulePage> {
     );
   }
 }
-

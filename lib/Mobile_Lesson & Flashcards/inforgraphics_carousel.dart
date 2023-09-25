@@ -39,7 +39,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                 shape: BoxShape.circle,
                 color: Colors.white
             ),
-            child: InkWell(
+            child: GestureDetector(
               onTap: (){
                 setState(() {
                   currentPage= (currentPage+1) % assetImages.length;
@@ -61,7 +61,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
               shape: BoxShape.circle,
               color: Colors.white
             ),
-            child: InkWell(
+            child: GestureDetector(
               onTap: (){
                 setState(() {
                   currentPage= (currentPage+1) % assetImages.length;

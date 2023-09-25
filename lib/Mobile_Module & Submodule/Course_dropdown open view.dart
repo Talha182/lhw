@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lhw/Presentation/Presentation.dart';
 
 class Course_DropDown extends StatelessWidget {
   const Course_DropDown({super.key});
@@ -28,7 +29,7 @@ class Course_DropDown extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -47,12 +48,12 @@ class Course_DropDown extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           SvgPicture.asset(
@@ -92,28 +93,37 @@ class Course_DropDown extends StatelessWidget {
               top: 220,
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     "لیڈی ہیلتھ ورکر کے فرائض",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffD9D9D9)),
-                        shape: BoxShape.circle,
-                        color: Colors.white),
-                    child: Center(
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: Color(0xffD1D7DC)),
-                        child: Center(
-                          child: SvgPicture.asset("assets/images/trophy.svg"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Presentation()),
+                      );
+                    },
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xffD9D9D9)),
+                          shape: BoxShape.circle,
+                          color: Colors.white),
+                      child: Center(
+                        child: Container(
+                          width: 45,
+                          height: 45,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Color(0xffD1D7DC)),
+                          child: Center(
+                            child: SvgPicture.asset("assets/images/trophy.svg"),
+                          ),
                         ),
                       ),
                     ),
@@ -129,14 +139,14 @@ class Course_DropDown extends StatelessWidget {
                     width: 60,
                     height: 60,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffD9D9D9)),
+                        border: Border.all(color: const Color(0xffD9D9D9)),
                         shape: BoxShape.circle,
                         color: Colors.white),
                     child: Center(
                       child: Container(
                         width: 45,
                         height: 45,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Color(0xffD1D7DC)),
                         child: Center(
                           child: SvgPicture.asset("assets/images/book.svg"),
@@ -144,10 +154,10 @@ class Course_DropDown extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
-                  Text(
+                  const Text(
                     "بنیادی تعریفیں",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
@@ -158,11 +168,11 @@ class Course_DropDown extends StatelessWidget {
               top: 530,
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     "پاکستان میں غذائیت کی صورتحال",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
@@ -170,7 +180,7 @@ class Course_DropDown extends StatelessWidget {
                     height: 60,
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: Color(0xffF5BCDF69).withOpacity(0.4)),
+                            color: const Color(0xffF5BCDF69).withOpacity(0.4)),
                         shape: BoxShape.circle,
                         color: Colors.white),
                     child: Center(
@@ -178,7 +188,7 @@ class Course_DropDown extends StatelessWidget {
                         child: Container(
                           width: 45,
                           height: 45,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: Color(0xffFF6BC5)),
                           child: Center(
                             child: SvgPicture.asset("assets/images/tick.svg"),

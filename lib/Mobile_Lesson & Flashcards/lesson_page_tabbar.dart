@@ -108,7 +108,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
                 tabs: [
-                  const Tab(text: "جاری ہے۔"),
+                  const Tab(text: "جائزہ"),
                   const Tab(text: "گروپس"),
                   const Tab(text: "بک مارکس"),
                 ],
@@ -116,16 +116,16 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
               Positioned(
                 bottom: 4,
                 left: 5,
-                child: _curvedBorderContainer(Color(0xff9AC9C2), 116, 5.0),
+                child: _curvedBorderContainer(Color(0xff9AC9C2), 92, 5.0),
               ),
               Positioned(
                 bottom: 4,
-                left: 130,
+                left: 107,
                 child: _curvedBorderContainer(Color(0xffF7DE8D), 98, 5.0),
               ),
               Positioned(
                 bottom: 4,
-                left: 239,
+                left: 216,
                 child: _curvedBorderContainer(Color(0xff826FE3), 110, 5.0),
               ),
             ],
@@ -133,7 +133,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
           const Expanded(
             child: TabBarView(
               children: <Widget>[
-                Jaiza(),
+                Lesson(),
                 Courses_Completed(),
                 TotalCourses(),
               ],

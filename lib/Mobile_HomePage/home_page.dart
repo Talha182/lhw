@@ -2,6 +2,9 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
+import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
@@ -248,7 +251,8 @@ class _HomePageState extends State<HomePage> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           GestureDetector(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Get.to(() => LessonPageTabBar());                                            },
                                             child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
 import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
 
 import 'inforgraphics_carousel.dart';
+import 'lesson_page_tabbar.dart';
 
-class Jaiza extends StatelessWidget {
-  const Jaiza({super.key});
+class Lesson extends StatelessWidget {
+  const Lesson({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -151,12 +154,14 @@ class Jaiza extends StatelessWidget {
                     ),
                   ],
                 ),
-                InkWell(
+                GestureDetector(
                   child: const Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => ModulePage());
+                  },
                 ),
               ],
             ),
