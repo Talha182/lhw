@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Comic_Strip/comic_strip.dart';
+import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Mobile_HomePage/home_page.dart';
 import 'package:lhw/Mobile_HomePage/tab_bar.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Course_Submodules.dart';
@@ -50,7 +52,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: Presentation(),
+      home: SignUpScreen(),
     );
   }
 }

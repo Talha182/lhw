@@ -1,9 +1,96 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 
-class Course_DropDown extends StatelessWidget {
+class Course_DropDown extends StatefulWidget {
   const Course_DropDown({super.key});
+
+  @override
+  State<Course_DropDown> createState() => _Course_DropDownState();
+}
+
+class _Course_DropDownState extends State<Course_DropDown> {
+  void showCustomDialog() {
+    Get.dialog(
+         Dialog(
+           child: Container(
+              width: 420, // You can increase it beyond 350 now
+              height: 200,
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "ماڈیول 1 - ذیلی ماڈل 1",
+                    style: TextStyle(
+                        fontFamily: "UrduType", color: Color(0xff685F78)),
+                  ),
+                  Text(
+                    "پاکستان میں غذائیت کی صورتحال",
+                    style: TextStyle(fontFamily: "UrduType"),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/module.svg',
+                        color: Colors.white,
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      const Text(
+                        '24 ماڈیولز',
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Container(
+                        width: 5,
+                        height: 5,
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/module.svg',
+                        color: Colors.white,
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      const Text(
+                        '12 کوئز',
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                ],
+              )),
+         ),
+      barrierDismissible: true, // allows dismissing by touching outside
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,11 +189,7 @@ class Course_DropDown extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Presentation()),
-                      );
+                      showCustomDialog();
                     },
                     child: Container(
                       width: 60,
