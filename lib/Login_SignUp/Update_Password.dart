@@ -11,8 +11,14 @@ class UpdatePasswordScreen extends StatefulWidget {
 
 class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
 
+  bool _obscureText = true;
+  bool _isChecked = false;
 
-
+  void _toggleVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +29,14 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
           children: [
             Center(
                 child: Text(
-                  "پاسورڈ بھول گے",
+                  "پاس ورڈ ری سیٹ",
                   style: TextStyle(fontFamily: "UrduType", fontSize: 30),
                 )),
             Directionality(
               textDirection: TextDirection.rtl,
               child: Center(
                 child: Text(
-                  "وہ نمبر درج کریں جس میں آپ ری سیٹ لنک وصول کرنا چاہتے ہیں۔",
+                  "نیا پاس ورڈ درج کریں۔",
                   style: TextStyle(
                       fontFamily: "UrduType",
                       fontSize: 20,
@@ -51,7 +57,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'فون نمبر',
+                      text: 'پاس ورڈ',
                       style: TextStyle(
                         fontFamily: "UrduType",
                         color: Colors.black, // Change the color as you want
@@ -62,43 +68,107 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            FlutterPhoneNumberField(
-              showCountryFlag: true,
-              showDropdownIcon: false,
-              textAlign: TextAlign.right,
-              initialCountryCode: "PK",
-              pickerDialogStyle: PickerDialogStyle(
-                countryFlagStyle: const TextStyle(fontSize: 17),
+            TextField(
+                obscureText: _obscureText,
+                textAlign: TextAlign.right,
+                decoration: InputDecoration(
+                    prefixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.remove_red_eye,
+                        color: Colors.black,
+                      ),
+                      onPressed: _toggleVisibility,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10.0,
+                      horizontal: 10.0,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ))),
+            const SizedBox(
+              height: 20,
+            ),   Container(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: const TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xffEC5A53), // This makes the asterisk red
+                    fontSize: 16,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'پاس ورڈ کی تصدیق کریں',
+                      style: TextStyle(
+                        fontFamily: "UrduType",
+                        color: Colors.black, // Change the color as you want
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              decoration: const InputDecoration(
-                contentPadding:
-                EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                hintText: 'اپنا موبائل نمبر درج کیجئے',
-                hintStyle: TextStyle(
-                  fontFamily: "UrduType",
-                  color: Color(0xff7A7D84),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide(
-                      color: Color(
-                          0xffCDD1E0)), // You can set it to transparent here.
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide(
-                      color: Color(0xffCDD1E0)), // Grey border when enabled
-                ),
-              ),
-              languageCode: "ar",
-              onChanged: (phone) {},
-              onCountryChanged: (country) {},
             ),
-
-            SizedBox(
+            const SizedBox(
+              height: 5,
+            ),
+            TextField(
+                obscureText: _obscureText,
+                textAlign: TextAlign.right,
+                decoration: InputDecoration(
+                    prefixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.remove_red_eye,
+                        color: Colors.black,
+                      ),
+                      onPressed: _toggleVisibility,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10.0,
+                      horizontal: 10.0,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ))),
+            const SizedBox(
               height: 20,
             ),
             Center(
