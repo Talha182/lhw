@@ -305,49 +305,47 @@ class FlutterPhoneNumberFieldState extends State<FlutterPhoneNumberField> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(
-                  width: 4,
-                ),
                 if (widget.enabled &&
                     widget.showDropdownIcon &&
                     widget.dropdownIconPosition == IconPosition.leading) ...[
                   widget.dropdownIcon,
                   const SizedBox(width: 4),
                 ],
-                if (widget.showCountryFlag) ...[
-                  kIsWeb
-                      ? Image.asset(
-                          'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                          package: 'flutter_phone_number_field',
-                          width: widget.pickerDialogStyle.webCountryIconWidth ??
-                              32,
-                        )
-                      : Text(
-                          _selectedCountry.flag,
-                          style: widget.pickerDialogStyle.countryFlagStyle ??
-                              const TextStyle(fontSize: 18),
-                        ),
-                  const SizedBox(width: 8),
-                ],
+                const SizedBox(width: 8),
+
                 Container(
                   height: 40,
                   width: 1,
                   color: Color(0xffD9D9D9).withOpacity(0.8),
                 ),
                 const SizedBox(width: 8),
-
                 FittedBox(
                   child: Text(
                     '+${_selectedCountry.dialCode}',
                     style: TextStyle(
-                      fontFamily: "UrduType",
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18
+                        fontFamily: "UrduType",
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18
                     ),
                   ),
                 ),
-
+                SizedBox(width: 5,),
+                if (widget.showCountryFlag) ...[
+                  kIsWeb
+                      ? Image.asset(
+                    'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                    package: 'flutter_phone_number_field',
+                    width: widget.pickerDialogStyle.webCountryIconWidth ??
+                        32,
+                  )
+                      : Text(
+                    _selectedCountry.flag,
+                    style: widget.pickerDialogStyle.countryFlagStyle ??
+                        const TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(width: 8),
+                ],
                 if (widget.enabled &&
                     widget.showDropdownIcon &&
                     widget.dropdownIconPosition == IconPosition.trailing) ...[

@@ -1,20 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Comic_Strip/comic_strip.dart';
-import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
-import 'package:lhw/Mobile_HomePage/home_page.dart';
-import 'package:lhw/Mobile_HomePage/tab_bar.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Course_Submodules.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
-import 'package:lhw/Presentation/Presentation.dart';
-import 'package:lhw/Reports/Help.dart';
-import 'package:lhw/Reports/Reports_Learning.dart';
-import 'package:lhw/Reports/Resources_Tabbar.dart';
-import 'package:lhw/custom_widgets/custom_navbar.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'Mobile_Lesson & Flashcards/lesson_page_tabbar.dart';
@@ -52,7 +40,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: SignUpScreen(),
+      home: ForgotPasswordScreen(),
     );
   }
 }
