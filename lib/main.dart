@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Login_SignUp/Update_Password.dart';
+import 'package:lhw/splash/splash.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'Mobile_Lesson & Flashcards/lesson_page_tabbar.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: UpdatePasswordScreen(),
+      home: SplashScreen(),
     );
   }
 }
