@@ -28,7 +28,7 @@ class TotalCourses extends StatelessWidget {
             Column(
               children: [
                 ...columnPadded([
-                  GradientCardWithProgress(
+                  const GradientCardWithProgress(
                     progressValue: 0.2,
                     imagePath: 'assets/images/two_women.png',
                     gradientStartColor: Color(0xffEAAF58),
