@@ -227,9 +227,7 @@ class _ModulePageState extends State<ModulePage> {
               'کورس کا مواد',
               style: TextStyle(fontFamily: 'UrduType', fontSize: 25),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+
             Row(
               children: [
                 ...rowPadded([
@@ -274,7 +272,7 @@ class _ModulePageState extends State<ModulePage> {
               ],
             ),
             const SizedBox(
-              height: 11,
+              height: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
