@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Login_SignUp/Update_Password.dart';
+import 'package:lhw/Mobile_HomePage/home_page.dart';
 import 'package:lhw/splash/splash.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'Login_SignUp/Onboarding.dart';
 import 'Mobile_Lesson & Flashcards/lesson_page_tabbar.dart';
 import 'navy.dart';
 void main() async {
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: SplashScreen(),
+      home: HomePage(),
     );
   }
 }

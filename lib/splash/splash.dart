@@ -9,7 +9,9 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffFEF1F9),
       body: Padding(
-        padding: EdgeInsets.only(top: 80,),
+        padding: EdgeInsets.only(
+          top: 80,
+        ),
         child: Stack(
           children: [
             Column(
@@ -37,14 +39,12 @@ class SplashScreen extends StatelessWidget {
                 )
               ],
             ),
-
             Positioned(
                 bottom: -30,
                 child: SvgPicture.asset("assets/images/splash_curve.svg")),
-              Positioned(
+            Positioned(
                 bottom: -30,
                 child: SvgPicture.asset("assets/images/splash_bg.svg")),
-
             Positioned(
                 bottom: -30,
                 child: SvgPicture.asset("assets/images/splash_samina.svg")),
