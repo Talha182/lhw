@@ -4,7 +4,6 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
@@ -55,9 +54,10 @@ class _HomePageState extends State<HomePage> {
         body: Column(children: [
           if (_isSearching && _filteredData.isNotEmpty)
             Container(
-              margin: EdgeInsets.only(top: 10.0),
+              margin: EdgeInsets.only(top: 0.0,left: 15,right: 15),
               padding: EdgeInsets.symmetric(vertical: 10.0),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
                 boxShadow: [BoxShadow(color: Colors.grey[300]!, blurRadius: 5)],
               ),
