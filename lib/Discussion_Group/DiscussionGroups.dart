@@ -112,7 +112,7 @@ class GroupsDiscussion extends StatelessWidget {
                                 ])),
                               child: ClipOval(
                                 child: Padding(
-                                  padding: EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.only(top: 10),
                                   child: SvgPicture.asset(
                                     "assets/images/samina_group.svg",
                                     fit: BoxFit.fill,
@@ -192,7 +192,7 @@ class GroupsDiscussion extends StatelessWidget {
                                 ])),
                             child: ClipOval(
                               child: Padding(
-                                padding: EdgeInsets.only(top:5),
+                                padding: const EdgeInsets.only(top:5),
                                 child: Image.asset(
                                   "assets/images/1.png",
                                   fit: BoxFit.fill,
@@ -214,10 +214,10 @@ class GroupsDiscussion extends StatelessWidget {
                             width: 35,
                             height: 30,
                             decoration: BoxDecoration(
-                              color: Color(0xff72C391),
+                              color: const Color(0xff72C391),
                               borderRadius: BorderRadius.circular(13)
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text("21",style: TextStyle(
                                 fontFamily: "UrduType",
                                 color: Colors.white
@@ -243,38 +243,50 @@ class GroupsDiscussion extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               DiscussionGroupsChatCard(
-                gradient: LinearGradient(colors: [Color(0xffF48C14), Color(0xffFABC74)]),
+                gradient: const LinearGradient(colors: [Color(0xffF48C14), Color(0xffFABC74)]),
                 image: Image.asset("assets/images/2.png",fit: BoxFit.fill,),
                 titleText: "باب 2: کمیونٹی کے ساتھ کام کرنا",
                 endImage: "assets/images/Icon.svg",
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               DiscussionGroupsChatCard(
-                gradient: LinearGradient(colors: [Color(0xff937FFB), Color(0xffA896FC)]),
+                gradient: const LinearGradient(colors: [Color(0xff937FFB), Color(0xffA896FC)]),
                 image: Image.asset("assets/images/community.png",fit: BoxFit.fill,),
                 titleText: "باب 3: باہمی رابطے اور صحت کی تعلیم",
                 endImage: "assets/images/Icon.svg",
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               DiscussionGroupsChatCard(
-                gradient: LinearGradient(colors: [Color(0xff34B2D5), Color(0xff5DCBE9)]),
+                gradient: const LinearGradient(colors: [Color(0xff34B2D5), Color(0xff5DCBE9)]),
                 image: Image.asset("assets/images/3.png",fit: BoxFit.fill,),
                 titleText: "باب 4: خاندانی منصوبہ بندی",
                 endImage: "assets/images/Icon.svg",
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               DiscussionGroupsChatCard(
-                gradient: LinearGradient(colors: [Color(0xff34B2D5), Color(0xff5DCBE9)]),
-                image: Image.asset("assets/images/3.png",fit: BoxFit.fill,),
+                gradient: const LinearGradient(colors: [Color(0xffF66592), Color(0xffFB80A9)]),
+                image: Image.asset("assets/images/4.png",fit: BoxFit.fill,),
                 titleText: "باب 5: قبل از پیدائش کی دیکھ بھال",
                 endImage: "assets/images/locked_group.svg",
               ),
+              const SizedBox(height: 20,),
+              DiscussionGroupsChatCard(
+                gradient: const LinearGradient(colors: [Color(0xff6DB374), Color(0xffAFD6B3)]),
+                image: Image.asset("assets/images/5.png",fit: BoxFit.fill,),
+                titleText: "باب 6: حمل کے دوران دیکھ بھال ",
+                endImage: "assets/images/locked_group.svg",
+              ),
+              const SizedBox(height: 20,),
 
-
-
-              SizedBox(height: 100,),
+              DiscussionGroupsChatCard(
+                gradient: const LinearGradient(colors: [Color(0xffEDBB71), Color(0xffF4D5A8)]),
+                image: Image.asset("assets/images/two_women.png",fit: BoxFit.fill,),
+                titleText: "باب 7: نوزائیدہ بچوں کی دیکھ بھال ",
+                endImage: "assets/images/locked_group.svg",
+              ),
+              const SizedBox(height: 100,),
 
             ],
           ),
@@ -322,7 +334,7 @@ class DiscussionGroupsChatCard extends StatelessWidget {
                       gradient: gradient),
                   child: ClipOval(
                     child: Padding(
-                      padding: EdgeInsets.only(top: 5),
+                      padding: const EdgeInsets.only(top: 5),
                       child: image,
                     ),
                   ),
@@ -332,7 +344,7 @@ class DiscussionGroupsChatCard extends StatelessWidget {
                 ),
                 Text(
                   titleText,
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+                  style: const TextStyle(fontFamily: "UrduType", fontSize: 18),
                 ),
               ],
             ),
