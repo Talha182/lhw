@@ -5,10 +5,12 @@ import 'package:lhw/Discussion_Group/DiscussionGroups.dart';
 import 'package:lhw/Discussion_Group/MessageScreen.dart';
 import 'package:lhw/Discussion_Group/Messaging_Settings.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
+import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Login_SignUp/Update_Password.dart';
 import 'package:lhw/Mobile_HomePage/home_page.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
+import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/splash/splash.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: MessageScreen(),
+      home: Custom_NavBar(),
     );
   }
 }

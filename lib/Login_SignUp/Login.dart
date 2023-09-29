@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lhw/Login_SignUp/Forgot_Password.dart';
+import 'package:lhw/Login_SignUp/Onboarding.dart';
+import 'package:lhw/Login_SignUp/SignUp.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,11 +25,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(left: 15, right: 15, top: 60),
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Center(
+            const Center(
                 child: Text(
               "خوش آمدید",
               style: TextStyle(fontFamily: "UrduType", fontSize: 30),
@@ -36,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "میں نئے ہیں؟",
                     style: TextStyle(
                         fontFamily: "UrduType",
@@ -44,7 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Color(0xff878787)),
                   ),
                   GestureDetector(
-                    child: Text(
+                    onTap: (){
+                      Get.to(() => const SignUpScreen());
+                    },
+                    child: const Text(
                       "سائن اپ",
                       style: TextStyle(
                           fontFamily: "UrduType",
@@ -52,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Color(0xffFE8BD1)),
                     ),
                   ),
-                  Text(
+                  const Text(
                     "LHW",
                     style: TextStyle(
                         fontFamily: "UrduType",
@@ -62,17 +68,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               "لیڈی ہیلتھ ورکر کا شناختی نمبر*",
               style: TextStyle(
                   fontFamily: "UrduType",
                   fontSize: 16,
                   color: Color(0xff0F0D18)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             TextField(
@@ -103,17 +109,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            Text(
+            const Text(
               "پاس ورڈ",
               style: TextStyle(
                   fontFamily: "UrduType",
                   fontSize: 16,
                   color: Color(0xff0F0D18)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             TextField(
@@ -151,11 +157,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Color(0xffCDD1E0),
                       ),
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Center(
-              child: Container(
+              child: SizedBox(
                 width: Get.width,
                 height: 45,
                 child: ElevatedButton(
@@ -167,7 +173,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     minimumSize: const Size(150, 37),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const OnboardingScreen());
+                  },
                   child: const Text(
                     'لاگ ان کریں',
                     style: TextStyle(
@@ -179,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Directionality(
               textDirection: TextDirection.rtl,
               child: Row(
@@ -193,8 +201,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           _isChecked = value!;
                         });
                       },
-                    ), SizedBox(width: 10,),
-                    Text(
+                    ), const SizedBox(width: 10,),
+                    const Text(
                       "مجھے پہچانتے ہو",
                       style: TextStyle(
                           fontFamily: "UrduType",
@@ -204,9 +212,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],),
                   GestureDetector(
                     onTap: (){
-
+                      Get.to(() => const ForgotPasswordScreen());
                     },
-                    child: Text(
+                    child: const Text(
                       "پاسورڈ بھول گے؟",
                       style: TextStyle(
                           fontFamily: "UrduType",
@@ -229,7 +237,7 @@ class CustomCheckbox extends StatefulWidget {
   final bool value;
   final ValueChanged<bool?> onChanged;
 
-  CustomCheckbox({required this.value, required this.onChanged});
+  const CustomCheckbox({super.key, required this.value, required this.onChanged});
 
   @override
   _CustomCheckboxState createState() => _CustomCheckboxState();
@@ -246,10 +254,10 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         width: 24.0,
         height: 24.0,
         decoration: BoxDecoration(
-          border: Border.all(width: 1.0, color: Color(0xffE5E5E5)),
+          border: Border.all(width: 1.0, color: const Color(0xffE5E5E5)),
           borderRadius: BorderRadius.circular(4.0),
         ),
-        child: widget.value ? Icon(Icons.check, size: 20.0) : null,
+        child: widget.value ? const Icon(Icons.check, size: 20.0) : null,
       ),
     );
   }

@@ -102,7 +102,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               height: 20,
             ),
             Center(
-              child: Container(
+              child: SizedBox(
                 width: Get.width,
                 height: 45,
                 child: ElevatedButton(

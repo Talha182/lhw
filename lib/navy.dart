@@ -5,6 +5,7 @@ import 'package:lhw/Mobile_HomePage/tab_bar.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 
+import 'Discussion_Group/DiscussionGroups.dart';
 import 'Mobile_HomePage/home_page.dart';
 
 class Custom_NavBar extends StatefulWidget {
@@ -29,8 +30,8 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   final List<Widget> pages = [
     const HomePage(),
     const CoursesPage_Tabbar(),
-    const HomePage(),
-    ReportsScreen(),
+    const GroupsDiscussion(),
+    const ReportsScreen(),
   ];
 
   void onTabTapped(int index) {

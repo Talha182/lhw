@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lhw/Image_Hotspot/LessonOption26.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 
 class Course_DropDown extends StatefulWidget {
@@ -14,80 +15,155 @@ class Course_DropDown extends StatefulWidget {
 class _Course_DropDownState extends State<Course_DropDown> {
   void showCustomDialog() {
     Get.dialog(
-         Dialog(
-           child: Container(
-              width: 420, // You can increase it beyond 350 now
-              height: 200,
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "ماڈیول 1 - ذیلی ماڈل 1",
-                    style: TextStyle(
-                        fontFamily: "UrduType", color: Color(0xff685F78)),
-                  ),
-                  Text(
-                    "پاکستان میں غذائیت کی صورتحال",
-                    style: TextStyle(fontFamily: "UrduType"),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
+      Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.circular(20.0), // This is the critical line
+        ),
+        insetPadding: const EdgeInsets.symmetric(horizontal: 10), // Add this line
+        child: ConstrainedBox(
+            // Add this widget
+            constraints: BoxConstraints(
+              maxHeight: 365,
+              maxWidth: MediaQuery.of(Get.context!).size.width - 50,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SvgPicture.asset(
-                        'assets/images/module.svg',
-                        color: Colors.white,
-                      ),
-                      const SizedBox(
-                        width: 6,
+                      const Text(
+                        "ماڈیول 1 - ذیلی ماڈل 1",
+                        style: TextStyle(
+                            fontFamily: "UrduType", color: Color(0xff685F78)),
                       ),
                       const Text(
-                        '24 ماڈیولز',
-                        style: TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        "پاکستان میں غذائیت کی صورتحال",
+                        style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                       ),
                       const SizedBox(
-                        width: 8,
+                        height: 10,
                       ),
-                      Container(
-                        width: 5,
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            "assets/images/person_card.svg",
+                            color: const Color(0xff685F78),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            "12 کوئز",
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontFamily: "UrduType",
+                                color: Color(0xff685F78)),
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
+                            width: 5,
+                            height: 5,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xff685F78)),
+                          ),
+                          const SizedBox(width: 8),
+                          SvgPicture.asset(
+                            "assets/images/clock.svg",
+                            color: const Color(0xff685F78),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            "01 گھنٹہ 30 منٹ",
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontFamily: "UrduType",
+                                color: Color(0xff685F78)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
                         height: 5,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      SvgPicture.asset(
-                        'assets/images/module.svg',
-                        color: Colors.white,
-                      ),
-                      const SizedBox(
-                        width: 6,
                       ),
                       const Text(
-                        '12 کوئز',
+                        "تفصیل",
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 18, fontFamily: "UrduType"),
+                      ),
+                      const Text(
+                        "Lorem ipsum dolor sit amet consectetur. بیٹھو arcu sit luctus potenti et ultricies cras. Condimentum nulla quisque et accumsan. Consectetur imperdiet non nunc magnis morbi tortor میں Dictum eget. Vulputate sapien sodales ullamcorper nec tempus viverra.",
                         style: TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                            fontFamily: "UrduType", color: Color(0xff7A7D84),height: 1.2),
+                        textAlign: TextAlign.justify,
+                      )
+                    ],
+                  ),
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10,right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent, // Background color
+                          side: const BorderSide(
+                            color: Colors.black, // Border color
+                            width: 1,
+                          ),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(30), // Circular radius
+                          ),
+                          minimumSize: const Size(150, 40),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                          child:   const Text(
+                              'منسوخ کریں۔',
+                              style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  color: Colors.black,
+                                  fontSize: 15),
+                            )
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffFE8BD1),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(30), // Circular radius
+                          ),
+                          minimumSize: const Size(150, 40),
+                        ),
+                        onPressed: () {
+                          Get.to(() => LessonOption26());
+                        },
+                        child: const Text(
+                          'کورس جاری رکھیں',
+                          style: TextStyle(
+                            fontFamily: "UrduType",
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
                   ),
+                ),
 
-                ],
-              )),
-         ),
+              ],
+            )),
+      ),
       barrierDismissible: true, // allows dismissing by touching outside
     );
   }
@@ -232,7 +308,11 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Color(0xffD1D7DC)),
                         child: Center(
-                          child: SvgPicture.asset("assets/images/book.svg"),
+                          child: GestureDetector(
+                              onTap: (){
+                                showCustomDialog();
+                              },
+                              child: SvgPicture.asset("assets/images/book.svg")),
                         ),
                       ),
                     ),
@@ -274,7 +354,11 @@ class _Course_DropDownState extends State<Course_DropDown> {
                           decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: Color(0xffFF6BC5)),
                           child: Center(
-                            child: SvgPicture.asset("assets/images/tick.svg"),
+                            child: GestureDetector(
+                                onTap: (){
+                                  showCustomDialog();
+                                },
+                                child: SvgPicture.asset("assets/images/tick.svg")),
                           ),
                         ),
                       ),

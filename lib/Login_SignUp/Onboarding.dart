@@ -3,6 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/navy.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key});
@@ -24,13 +26,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               color: _current == 0
                   ? const Color(0xffFEE2F3)
                   : _current == 1
-                  ? const Color(0xffFDF6E2) // Replace with the desired color for the second item
-                  : const Color(0xffE5F1EF),  // Replace with the desired color for the third item
+                      ? const Color(
+                          0xffFDF6E2) // Replace with the desired color for the second item
+                      : const Color(
+                          0xffE5F1EF), // Replace with the desired color for the third item
               child: _current == 0
-              ? SvgPicture.asset("assets/images/onBoarding1.svg")
-              : _current == 1
-              ? SvgPicture.asset("assets/images/onBoarding2.svg")
-              : SvgPicture.asset("assets/images/onBoarding3.svg"),
+                  ? SvgPicture.asset("assets/images/onBoarding1.svg")
+                  : _current == 1
+                      ? SvgPicture.asset("assets/images/onBoarding2.svg")
+                      : SvgPicture.asset("assets/images/onBoarding3.svg"),
             ),
           ),
           Expanded(
@@ -42,11 +46,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   height: 200,
                   color: Colors.white,
                   child: CarouselSlider(
-                    items: [
-                      const OnBoarding1(),
-                      const OnBoarding2(),
-                      const OnBoarding3(),
-                    ],  
+                    items: const [
+                      OnBoarding1(),
+                      OnBoarding2(),
+                      OnBoarding3(),
+                    ],
                     options: CarouselOptions(
                         autoPlay: false,
                         enlargeCenterPage: true,
@@ -82,7 +86,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Padding(
@@ -99,63 +103,73 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                         minimumSize: const Size(150, 37),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _current == 0
+                            ? Get.to(() => const Custom_NavBar())
+                            : _current == 1
+                                ? Get.to(() => ())
+                                : Get.to(() => LoginScreen());
+                      },
                       child: _current == 0
                           ? const Text(
-                        'I’m new to the app',
-                        style: TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
-                      )
+                              'I’m new to the app',
+                              style: TextStyle(
+                                fontFamily: 'UrduType',
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                            )
                           : _current == 1
-                          ? const Text(
-                        'Next',
-                        style: TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
-                      )
-                          : const Text(
-                        'Next',
-                        style: TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
-                      ),
+                              ? const Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    fontFamily: 'UrduType',
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    fontFamily: 'UrduType',
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                  ),
+                                ),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 _current == 0
-                    ? const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontFamily: 'UrduType',
-                    fontSize: 15,
-                  ),
-                )
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => LoginScreen());
+                        },
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 15,
+                          ),
+                        ),
+                      )
                     : _current == 1
-                    ? const Text(
-                  'Skip',
-                  style: TextStyle(
-                    fontFamily: 'UrduType',
-                    fontSize: 15,
-                  ),
-                )
-                    : const Text(
-                  'Skip',
-                  style: TextStyle(
-                    fontFamily: 'UrduType',
-                    fontSize: 15,
-                  ),
-                ),
-
+                        ? const Text(
+                            'Skip',
+                            style: TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 15,
+                            ),
+                          )
+                        : const Text(
+                            'Skip',
+                            style: TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 15,
+                            ),
+                          ),
               ],
             ),
           )),
@@ -164,7 +178,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 }
-
 
 class OnBoarding1 extends StatelessWidget {
   const OnBoarding1({super.key});
@@ -237,6 +250,7 @@ class OnBoarding2 extends StatelessWidget {
     );
   }
 }
+
 class OnBoarding3 extends StatelessWidget {
   const OnBoarding3({super.key});
 
@@ -272,4 +286,3 @@ class OnBoarding3 extends StatelessWidget {
     );
   }
 }
-

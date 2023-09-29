@@ -226,9 +226,11 @@ class _ModulePageState extends State<ModulePage> {
             const Text(
               'کورس کا مواد',
               style: TextStyle(fontFamily: 'UrduType', fontSize: 25),
+              textAlign: TextAlign.right,
             ),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ...rowPadded([
                   SvgPicture.asset('assets/images/module.svg'),
@@ -342,7 +344,7 @@ class _ModulePageState extends State<ModulePage> {
                 ...columnPadded([
                   Module_DashBoard_Card(
                     onClick: () {
-                      Get.to(() => Course_DropDown());
+                      Get.to(() => const Course_DropDown());
                     },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image 8.png',

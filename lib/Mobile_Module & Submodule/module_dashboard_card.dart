@@ -30,38 +30,41 @@ class Module_DashBoard_Card extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Image.asset(
-                    imagePath, // Updated this line
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.contain,
-                  ),
-                  SizedBox(width: 15),
-                  Text(
-                    cardText, // Updated this line
-                    style: TextStyle(fontFamily: 'UrduType', fontSize: 16),
-                    softWrap: true, // Set softWrap to true to enable text wrapping
-                    overflow: TextOverflow.ellipsis, // or TextOverflow.fade
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      imagePath, // Updated this line
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.contain,
+                    ),
+                    SizedBox(width: 15),
+                    Text(
+                      cardText, // Updated this line
+                      style: TextStyle(fontFamily: 'UrduType', fontSize: 16),
+                      softWrap: true, // Set softWrap to true to enable text wrapping
+                      overflow: TextOverflow.ellipsis, // or TextOverflow.fade
 
-                  ),
-                ],
-              ),
-              if (showProgressBar)
-                SizedBox(
-                  width: 40,
-                  height: 40,
-                  child: GradientCircleProgressBar(
-                    strokeWidth: 3.0,
-                    value: progressValue,
-                    backgroundColor: Colors.white,
-                  ),
+                    ),
+                  ],
                 ),
-            ],
+                if (showProgressBar)
+                  SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: GradientCircleProgressBar(
+                      strokeWidth: 3.0,
+                      value: progressValue,
+                      backgroundColor: Colors.white,
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,10 +1,7 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:progresso/progresso.dart';
 
-import 'Page1.dart';
-import 'Sargarmi.dart';
-import 'Seekhna.dart';
+import 'TopPerformers.dart';
 
 class Achievements extends StatefulWidget {
   const Achievements({Key? key}) : super(key: key);
@@ -138,7 +135,7 @@ class _AchievementsState extends State<Achievements>
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Divider(
@@ -203,7 +200,7 @@ class _AchievementsState extends State<Achievements>
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Divider(
@@ -268,7 +265,7 @@ class _AchievementsState extends State<Achievements>
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Divider(
@@ -333,7 +330,7 @@ class _AchievementsState extends State<Achievements>
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Divider(
@@ -398,7 +395,7 @@ class _AchievementsState extends State<Achievements>
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Divider(
@@ -463,7 +460,7 @@ class _AchievementsState extends State<Achievements>
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Divider(
@@ -528,7 +525,7 @@ class _AchievementsState extends State<Achievements>
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                             ],
@@ -543,7 +540,7 @@ class _AchievementsState extends State<Achievements>
                 height: 280,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color(0xffF0F0F0)),
+                    color: const Color(0xffF0F0F0)),
                 child: Stack(
                   children: [
                     Positioned(
@@ -552,7 +549,7 @@ class _AchievementsState extends State<Achievements>
                       child: Image.asset(
                         "assets/images/splash.png",
                         scale: 1.2,
-                        color: Color(0xffE0E0E0),
+                        color: const Color(0xffE0E0E0),
                       ),
                     ),
                     Positioned(
@@ -560,7 +557,7 @@ class _AchievementsState extends State<Achievements>
                         left: 35,
                         child: Image.asset(
                           "assets/images/star 2.png",
-                          color: Color(0xffE0E0E0),
+                          color: const Color(0xffE0E0E0),
                           scale: 0.9,
                         )),
                     Positioned(
@@ -568,7 +565,7 @@ class _AchievementsState extends State<Achievements>
                         left: 95,
                         child: Image.asset(
                           "assets/images/star 1.png",
-                          color: Color(0xffE0E0E0),
+                          color: const Color(0xffE0E0E0),
                           scale: 1.2,
                         )),
                     Positioned(
@@ -576,14 +573,14 @@ class _AchievementsState extends State<Achievements>
                         right: 0,
                         child: Image.asset(
                           "assets/images/Star 7.png",
-                          color: Color(0xffE0E0E0),
+                          color: const Color(0xffE0E0E0),
                           scale: 1,
                         )),
                     Positioned(
                         top: 45,
                         right: 50,
                         child: Image.asset(
-                          color: Color(0xffE0E0E0),
+                          color: const Color(0xffE0E0E0),
                           "assets/images/star 1.png",
                           scale: 1.5,
                         )),
@@ -591,7 +588,7 @@ class _AchievementsState extends State<Achievements>
                         top: 30,
                         right: 78,
                         child: Image.asset(
-                          color: Color(0xffE0E0E0),
+                          color: const Color(0xffE0E0E0),
                           "assets/images/star 2.png",
                           scale: 1.8,
                         )),
@@ -599,11 +596,11 @@ class _AchievementsState extends State<Achievements>
                         top: 65,
                         right: 55,
                         child: Image.asset(
-                          color: Color(0xffE0E0E0),
+                          color: const Color(0xffE0E0E0),
                           "assets/images/star 2.png",
                           scale: 1,
                         )),
-                    Positioned(
+                    const Positioned(
                         top: 10,
                         right: 10,
                         child: Text(
@@ -611,7 +608,7 @@ class _AchievementsState extends State<Achievements>
                           style:
                               TextStyle(fontFamily: "UrduType", fontSize: 18),
                         )),
-                    Positioned(
+                    const Positioned(
                         top: 35,
                         right: 10,
                         child: Text(
@@ -630,7 +627,7 @@ class _AchievementsState extends State<Achievements>
                             Container(
                               width: 90,
                               height: 90,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.white,
                               ),
@@ -651,8 +648,8 @@ class _AchievementsState extends State<Achievements>
                               shape: BoxShape.circle,
                               color: Colors.white,
                               border: Border.all(
-                                  color: Color(0xff8A8C93), width: 2)),
-                          child: Center(
+                                  color: const Color(0xff8A8C93), width: 2)),
+                          child: const Center(
                               child: Text(
                             "10",
                             style: TextStyle(
@@ -665,14 +662,14 @@ class _AchievementsState extends State<Achievements>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Eiden Smith",
                               style: TextStyle(
                                 fontFamily: "UrduType",
                                 fontSize: 20,
                               ),
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Text(
                                   "پوائنٹس:",
@@ -694,9 +691,9 @@ class _AchievementsState extends State<Achievements>
                               width: 135,
                               height: 35,
                               decoration: BoxDecoration(
-                                  color: Color(0xffFDCD4F),
+                                  color: const Color(0xffFDCD4F),
                                   borderRadius: BorderRadius.circular(8)),
-                              child: Padding(
+                              child: const Padding(
                                 padding: EdgeInsets.only(right: 5, top: 5),
                                 child: Text(
                                   "9ویں تک جانے کے لیے 150 پوائنٹس",
@@ -710,7 +707,7 @@ class _AchievementsState extends State<Achievements>
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               _TabBarWithPages(), // Insert the tab bar with pages here
@@ -740,7 +737,7 @@ class _TabBarWithPagesState extends State<_TabBarWithPages>
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _tabBar(), // Custom tab bar integrated
         Container(
@@ -748,9 +745,8 @@ class _TabBarWithPagesState extends State<_TabBarWithPages>
           child: TabBarView(
             controller: _tabController,
             children: [
-              // Content for the tabs
-              NewPage2(),
-              NewPage1(),
+               Page2(),
+               TopPerformers(),
 
             ],
           ),

@@ -1,9 +1,10 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lhw/Discussion_Group/DiscussionGroups.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Completed.dart';
-import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
 import 'package:lhw/Mobile_HomePage/Courses_All Courses.dart';
+import 'package:lhw/Reports/Resources_Bookmark.dart';
 
 import 'Lesson.dart';
 
@@ -21,6 +22,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
+      initialIndex: 2,
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(70.0),
@@ -38,46 +40,32 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
   }
 
   Widget _appBar() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              "کورسز",
-              style: TextStyle(
-                fontFamily: 'UrduFont',
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Padding(
+            padding: EdgeInsets.only(left: 16.0, bottom: 10),
+            child: Icon(Icons.more_vert_rounded)),
+        Padding(
+          padding: const EdgeInsets.only(right: 20, bottom: 7),
+          child: Row(
+            children: [
+              GestureDetector(
+                child: const Text(
+                  "ماڈیول 1",
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+                ),
+                onTap: () {},
               ),
-            ),
+              const SizedBox(width: 10),
+              GestureDetector(
+                child: const Icon(Icons.arrow_forward),
+                onTap: () {},
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Row(
-              children: [
-                GestureDetector(
-                  child: SvgPicture.asset(
-                    'assets/images/magnifier.svg',
-                    color: Colors.black,
-                  ),
-                  onTap: () {},
-                ),
-                const SizedBox(width: 20),
-                GestureDetector(
-                  child: SvgPicture.asset(
-                    'assets/images/bell.svg',
-                    color: Colors.black,
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -95,7 +83,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
                 height: 50,
                 radius: 20,
                 elevation: 1,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 38),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 42),
                 backgroundColor: Colors.white,
                 unselectedBackgroundColor: const Color(0xffF0F0F0),
                 unselectedLabelStyle: const TextStyle(
@@ -107,35 +95,35 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
-                tabs: [
-                  const Tab(text: "جائزہ"),
-                  const Tab(text: "گروپس"),
-                  const Tab(text: "بک مارکس"),
+                tabs: const [
+                  Tab(text: "بک مارکس"),
+                  Tab(text: "گروپس"),
+                  Tab(text: "جائزہ"),
                 ],
               ),
               Positioned(
                 bottom: 4,
                 left: 5,
-                child: _curvedBorderContainer(Color(0xff9AC9C2), 92, 5.0),
+                child: _curvedBorderContainer(const Color(0xff9AC9C2), 118, 5.0),
               ),
               Positioned(
                 bottom: 4,
-                left: 107,
-                child: _curvedBorderContainer(Color(0xffF7DE8D), 98, 5.0),
+                left: 133,
+                child: _curvedBorderContainer(const Color(0xffF7DE8D), 106, 5.0),
               ),
               Positioned(
                 bottom: 4,
-                left: 216,
-                child: _curvedBorderContainer(Color(0xff826FE3), 110, 5.0),
+                left: 249,
+                child: _curvedBorderContainer(const Color(0xff826FE3), 101, 5.0),
               ),
             ],
           ),
           const Expanded(
             child: TabBarView(
               children: <Widget>[
+                ResourcesBookmark(),
+                GroupsDiscussion(),
                 Lesson(),
-                Courses_Completed(),
-                TotalCourses(),
               ],
             ),
           ),

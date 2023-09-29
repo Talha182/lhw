@@ -254,10 +254,10 @@ Widget _tabBar() {
                   color: Colors.black,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
-              tabs: [
-                const Tab(text: "کامیابیاں"),
-                const Tab(text: "سرگرمی"),
-                const Tab(text: "سیکھنا"),
+              tabs: const [
+                Tab(text: "کامیابیاں"),
+                Tab(text: "سرگرمی"),
+                Tab(text: "سیکھنا"),
               ],
             ),
             Positioned(
