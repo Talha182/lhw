@@ -320,6 +320,19 @@ class _LessonOption21State extends State<LessonOption21> {
                   )),
             ),
           ),
+          Positioned(
+              bottom: 70, // Adjust as needed
+              right: 15, // Adjust as needed
+              child: CircleAvatar(
+                backgroundColor: Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                    padding: EdgeInsets.only(bottom: 2),
+                    child: SvgPicture.asset(
+                      "assets/images/samina_instructor.svg",
+                      fit: BoxFit.fill,
+                    )),
+              )),
         ],
       ),
     );

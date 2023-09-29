@@ -35,26 +35,25 @@ class GradientCardWithImage extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Removed the left padding to move ArrowContainer to the very left
           Padding(
-            padding: EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ArrowContainer(
                   text: arrowText,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(right: 15),
                   child: Text(
                     midText,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'UrduType',
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
@@ -62,21 +61,22 @@ class GradientCardWithImage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(right: 15),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SvgPicture.asset(
                         'assets/images/module.svg',
                         color: Colors.white,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 6,
                       ),
-                      Text(
+                      const Text(
                         '24 ماڈیولز',
                         style: TextStyle(
                           fontFamily: 'UrduType',
@@ -85,28 +85,28 @@ class GradientCardWithImage extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Container(
                         width: 5,
                         height: 5,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 6,
                       ),
                       SvgPicture.asset(
                         'assets/images/module.svg',
                         color: Colors.white,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 6,
                       ),
-                      Text(
+                      const Text(
                         '12 کوئز',
                         style: TextStyle(
                           fontFamily: 'UrduType',
@@ -123,7 +123,7 @@ class GradientCardWithImage extends StatelessWidget {
           ),
           Positioned(
             bottom: imagePosition.y, // Modified
-            right: imagePosition.x, // Modified
+            left: imagePosition.x, // Modified
             child: Image.asset(
               imagePath,
               width: imageWidth, // Modified
@@ -147,15 +147,15 @@ class ArrowContainer extends StatelessWidget {
     return Stack(
       children: [
         CustomPaint(
-          size: Size(220, 40),
+          size: const Size(220, 40),
           painter: ArrowPainter(),
         ),
         Positioned(
-          left: 10,
+          right: 10,
           top: 5,
           child: Text(
             text, // Modified this line to display the text
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'UrduType',
                 color: Colors.white,
                 fontSize: 16,
@@ -178,20 +178,20 @@ class ArrowPainter extends CustomPainter {
     final double arrowHeadSmoothness = 1.0; // Smoothness factor for arrow head
 
     final path = Path()
-      ..moveTo(0 + cornerRadius, 0)
-      ..quadraticBezierTo(0, 0, 0, cornerRadius)
-      ..lineTo(0, size.height - cornerRadius)
-      ..quadraticBezierTo(0, size.height, cornerRadius, size.height)
-      ..lineTo(size.width - 20, size.height)
-      ..lineTo(size.width - arrowHeadSmoothness,
-          size.height / 2 + arrowHeadSmoothness)
+      ..moveTo(size.width - cornerRadius, 0)
+      ..quadraticBezierTo(size.width, 0, size.width, cornerRadius)
+      ..lineTo(size.width, size.height - cornerRadius)
+      ..quadraticBezierTo(size.width, size.height,
+          size.width - cornerRadius, size.height)
+      ..lineTo(20, size.height)
+      ..lineTo(arrowHeadSmoothness, size.height / 2 + arrowHeadSmoothness)
       ..quadraticBezierTo(
-          size.width,
+          0,
           size.height / 2,
-          size.width - arrowHeadSmoothness,
+          arrowHeadSmoothness,
           size.height / 2 - arrowHeadSmoothness)
-      ..lineTo(size.width - 20, 0)
-      ..lineTo(cornerRadius, 0)
+      ..lineTo(20, 0)
+      ..lineTo(size.width - cornerRadius, 0)
       ..close();
 
     canvas.drawPath(path, paint);

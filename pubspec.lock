@@ -124,10 +124,9 @@ packages:
   buttons_tabbar:
     dependency: "direct main"
     description:
-      name: buttons_tabbar
-      sha256: "781128180f3e76cf93c093183f10395c664983dbee20bc4da2025be70085c2da"
-      url: "https://pub.dev"
-    source: hosted
+      path: "buttons_tabbar-1.3.7+1"
+      relative: true
+    source: path
     version: "1.3.7+1"
   carousel_slider:
     dependency: "direct main"

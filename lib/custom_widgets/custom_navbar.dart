@@ -2,7 +2,7 @@
 // import 'package:flutter/material.dart';
 //
 // import '../Mobile_HomePage/home_page.dart';
-// import '../Mobile_HomePage/tab_bar.dart';
+// import '../Mobile_HomePage/Courses_tabbar.dart';
 //
 // class Navbar extends StatefulWidget {
 //   const Navbar({super.key});

@@ -80,7 +80,7 @@ class _LessonOption25State extends State<LessonOption25> {
       }
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
@@ -116,7 +116,7 @@ class _LessonOption25State extends State<LessonOption25> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -126,144 +126,162 @@ class _LessonOption25State extends State<LessonOption25> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
+            end: const Alignment(0, -0.2),
             colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
+              const Color(0xff80B8FB).withOpacity(0.3),
               Colors.transparent,
             ],
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 5),
-          child: Column(
+          padding: const EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 5),
+          child: Stack(
             children: [
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.close,
-                        size: 30,
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: const Icon(
+                          Icons.close,
+                          size: 30,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                          child: TweenAnimationBuilder(
+                            tween: Tween<double>(
+                                begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
+                            duration: const Duration(milliseconds: 400),
+                            builder:
+                                (BuildContext context, double value, Widget? child) {
+                              return StepProgressIndicator(
+                                totalSteps: _totalSteps,
+                                currentStep: value.ceil(),
+                                size: 8,
+                                padding: 0,
+                                selectedColor: const Color(0xffFE8BD1),
+                                unselectedColor: Colors.white,
+                                roundedEdges: const Radius.circular(10),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: SvgPicture.asset(
+                        'assets/images/cloud.svg',
+                        width: 20,
+                        height: 20,
+                        fit: BoxFit.contain,
                       ),
                     ),
-                    SizedBox(
-                      width: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      questions[questionIndex].question,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
                     ),
-                    Expanded(
-                      child: Container(
-                        child: TweenAnimationBuilder(
-                          tween: Tween<double>(
-                              begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
-                          duration: Duration(milliseconds: 400),
-                          builder:
-                              (BuildContext context, double value, Widget? child) {
-                            return StepProgressIndicator(
-                              totalSteps: _totalSteps,
-                              currentStep: value.ceil(),
-                              size: 8,
-                              padding: 0,
-                              selectedColor: Color(0xffFE8BD1),
-                              unselectedColor: Colors.white,
-                              roundedEdges: Radius.circular(10),
-                            );
-                          },
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 170,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: FlickVideoPlayer(
+                          flickManager: flickManager
+                      ),
+
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Text(
+                    "بہترین آپشن کا انتخاب کریں۔",
+                    style: TextStyle(fontFamily: "UrduType", fontSize: 23),
+                  ),
+                  Column(
+                    children: List.generate(
+                      questions[questionIndex].options.length,
+                          (index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: QuizCard(
+                          text: questions[questionIndex].options[index],
+                          ontap: () => updateQuestion(
+                              questions[questionIndex].options[index], index),
+                          color: optionColors[index],
+                          isCorrect: selectedAnswer ==
+                              questions[questionIndex].correctAnswer,
+                          isSelected: isSelected,
+                          isOptionSelected:
+                          index == selectedOptionIndex, // Pass this value here
                         ),
                       ),
                     ),
-                  ],
-                ),
-              Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: SvgPicture.asset(
-                    'assets/images/cloud.svg',
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  questions[questionIndex].question,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 170,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: FlickVideoPlayer(
-                      flickManager: flickManager
-                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Divider(
+                        height: 1,
+                        thickness: 1,
+                        color: Colors.black87.withOpacity(0.1),
+                      ),
+                      const SizedBox(height: 5,),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffFE8BD1),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: const Size(150, 37),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'جاری رہے',
+                          style: TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
 
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                "بہترین آپشن کا انتخاب کریں۔",
-                style: TextStyle(fontFamily: "UrduType", fontSize: 23),
-              ),
-              Column(
-                children: List.generate(
-                  questions[questionIndex].options.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: QuizCard(
-                      text: questions[questionIndex].options[index],
-                      ontap: () => updateQuestion(
-                          questions[questionIndex].options[index], index),
-                      color: optionColors[index],
-                      isCorrect: selectedAnswer ==
-                          questions[questionIndex].correctAnswer,
-                      isSelected: isSelected,
-                      isOptionSelected:
-                          index == selectedOptionIndex, // Pass this value here
-                    ),
-                  ),
-                ),
-              ),
-              Spacer(),
-              Column(
-                children: [
-                  Divider(
-                    height: 1,
-                    thickness: 1,
-                    color: Colors.black87.withOpacity(0.1),
-                  ),
-                  SizedBox(height: 5,),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffFE8BD1),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      minimumSize: Size(150, 37),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'جاری رہے',
-                      style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ],
-              )
-
+              ),
+              Positioned(
+                  bottom: 90, // Adjust as needed
+                  right: 15, // Adjust as needed
+                  child: CircleAvatar(
+                    backgroundColor: Color(0xffF6B3D0),
+                    radius: 30,
+                    child: Padding(
+                        padding: EdgeInsets.only(bottom: 2),
+                        child: SvgPicture.asset(
+                          "assets/images/samina_instructor.svg",
+                          fit: BoxFit.fill,
+                        )),
+                  )),
             ],
+
           ),
         ),
       ),
@@ -303,33 +321,36 @@ class QuizCard extends StatelessWidget {
           color: color,
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 10, right: 10),
-          child: Row(
-            children: [
-              Container(
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black87.withOpacity(0.2)),
-                  shape: BoxShape.circle,
-                  color: isOptionSelected // Use the parameter here
-                      ? (isCorrect ? Colors.green : Colors.red)
-                      : Colors.transparent,
-                ),
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  text,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xff7A7D84),
-                    fontFamily: 'UrduType',
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              children: [
+                Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black87.withOpacity(0.2)),
+                    shape: BoxShape.circle,
+                    color: isOptionSelected // Use the parameter here
+                        ? (isCorrect ? Colors.green : Colors.red)
+                        : Colors.transparent,
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Color(0xff7A7D84),
+                      fontFamily: 'UrduType',
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

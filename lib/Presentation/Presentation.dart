@@ -226,7 +226,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
   int currentPage = 0;
   final List<String> assetImages = [
     'assets/images/presentation1.png',
-    'assets/images/presentation1.png',
+    'assets/images/1.png',
   ];
 
   @override

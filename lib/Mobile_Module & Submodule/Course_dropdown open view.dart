@@ -382,6 +382,19 @@ class _Course_DropDownState extends State<Course_DropDown> {
               child: SvgPicture.asset("assets/images/build4.svg")),
           Positioned(
               bottom: 0, child: SvgPicture.asset("assets/images/bottom.svg")),
+          Positioned(
+              bottom: 60, // Adjust as needed
+              right: 15, // Adjust as needed
+              child: CircleAvatar(
+                backgroundColor: Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                    padding: EdgeInsets.only(bottom: 2),
+                    child: SvgPicture.asset(
+                      "assets/images/samina_instructor.svg",
+                      fit: BoxFit.fill,
+                    )),
+              )),
         ],
       ),
     );

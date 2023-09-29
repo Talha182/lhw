@@ -111,10 +111,11 @@ class _LessonOption24State extends State<LessonOption24> {
             ],
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
+        child: Stack(children: [
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
                 Row(
                   children: [
                     InkWell(
@@ -139,20 +140,20 @@ class _LessonOption24State extends State<LessonOption24> {
                         barRadius: Radius.circular(20),
                       ),
                     ),                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 10,bottom: 10),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: SvgPicture.asset(
-                    'assets/images/cloud.svg',
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 10,bottom: 10),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: SvgPicture.asset(
+                      'assets/images/cloud.svg',
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              ),
-                 Material(
+                Material(
                   elevation: 2.0, // Adjust the elevation level as desired
                   borderRadius: BorderRadius.circular(
                       10), // To match the Container's border radius
@@ -193,82 +194,98 @@ class _LessonOption24State extends State<LessonOption24> {
                             style: TextStyle(fontFamily: "UrduType", fontSize: 22),
                           ),
                         ),
-                      ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xffFE8BD1),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              minimumSize: Size(150, 37),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xffFE8BD1),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
                             ),
-                            onPressed: () {},
-                            child: Text(
-                              'اگلے',
-                              style: TextStyle(
-                                fontFamily: 'UrduType',
-                                fontSize: 15,
-                                color: Colors.white,
-                              ),
+                            minimumSize: Size(150, 37),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'اگلے',
+                            style: TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 15,
+                              color: Colors.white,
                             ),
                           ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                "بہترین آپشن کا انتخاب کریں۔",
-                style: TextStyle(fontFamily: "UrduType", fontSize: 23),
-              ),
-              Column(
-                children: List.generate(
-                  questions[questionIndex].options.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: QuizCard(
-                      text: questions[questionIndex].options[index],
-                      ontap: () => updateQuestion(
-                          questions[questionIndex].options[index], index),
-                      color: optionColors[index],
-                      isCorrect: selectedAnswer ==
-                          questions[questionIndex].correctAnswer,
-                      isSelected: isSelected,
-                      isOptionSelected:
-                          index == selectedOptionIndex, // Pass this value here
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "بہترین آپشن کا انتخاب کریں۔",
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 23),
+                ),
+                Column(
+                  children: List.generate(
+                    questions[questionIndex].options.length,
+                        (index) => Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: QuizCard(
+                        text: questions[questionIndex].options[index],
+                        ontap: () => updateQuestion(
+                            questions[questionIndex].options[index], index),
+                        color: optionColors[index],
+                        isCorrect: selectedAnswer ==
+                            questions[questionIndex].correctAnswer,
+                        isSelected: isSelected,
+                        isOptionSelected:
+                        index == selectedOptionIndex, // Pass this value here
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Spacer(),
-              Divider(
-                height: 1,
-                thickness: 1,
-                color: Colors.black87.withOpacity(0.1),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xffFE8BD1),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  minimumSize: Size(150, 37),
+                Spacer(),
+                Divider(
+                  height: 1,
+                  thickness: 1,
+                  color: Colors.black87.withOpacity(0.1),
                 ),
-                onPressed: () {},
-                child: Text(
-                  'جاری رہے',
-                  style: TextStyle(
-                    fontFamily: 'UrduType',
-                    fontSize: 15,
-                    color: Colors.white,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xffFE8BD1),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    minimumSize: Size(150, 37),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'جاری رہے',
+                    style: TextStyle(
+                      fontFamily: 'UrduType',
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
+          Positioned(
+              bottom: 90, // Adjust as needed
+              right: 15, // Adjust as needed
+              child: CircleAvatar(
+                backgroundColor: Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                    padding: EdgeInsets.only(bottom: 2),
+                    child: SvgPicture.asset(
+                      "assets/images/samina_instructor.svg",
+                      fit: BoxFit.fill,
+                    )),
+              )),
+
+        ],
         ),
       ),
     );
@@ -309,32 +326,35 @@ class QuizCard extends StatelessWidget {
           ),
           child: Padding(
             padding: EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              children: [
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black87.withOpacity(0.2)),
-                    shape: BoxShape.circle,
-                    color: isOptionSelected // Use the parameter here
-                        ? (isCorrect ? Colors.green : Colors.red)
-                        : Colors.transparent,
-                  ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    text,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xff7A7D84),
-                      fontFamily: 'UrduType',
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Row(
+                children: [
+                  Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black87.withOpacity(0.2)),
+                      shape: BoxShape.circle,
+                      color: isOptionSelected // Use the parameter here
+                          ? (isCorrect ? Colors.green : Colors.red)
+                          : Colors.transparent,
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      text,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xff7A7D84),
+                        fontFamily: 'UrduType',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

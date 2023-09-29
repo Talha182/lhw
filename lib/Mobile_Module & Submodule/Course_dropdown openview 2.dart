@@ -206,7 +206,20 @@ class Course_DropDown2 extends StatelessWidget {
               left: 270,
               top: 250,
               child: SvgPicture.asset("assets/images/flag.svg")
-            )
+            ),
+          Positioned(
+              bottom: 60, // Adjust as needed
+              right: 15, // Adjust as needed
+              child: CircleAvatar(
+                backgroundColor: Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                    padding: EdgeInsets.only(bottom: 2),
+                    child: SvgPicture.asset(
+                      "assets/images/samina_instructor.svg",
+                      fit: BoxFit.fill,
+                    )),
+              )),
         ],
       ),
     );

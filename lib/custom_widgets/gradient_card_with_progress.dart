@@ -31,9 +31,9 @@ class GradientCardWithProgress extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 15, top: 15),
+            padding: const EdgeInsets.only(right: 15, top: 15),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 SizedBox(
                   width: 45,
@@ -71,6 +71,7 @@ class GradientCardWithProgress extends StatelessWidget {
                   height: 4,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SvgPicture.asset(
                       'assets/images/module.svg',
@@ -148,11 +149,11 @@ class GradientCardWithProgress extends StatelessWidget {
           ),
           Positioned(
             bottom: -26,
-            right: 0,
+            left: 0,
             child: Image.asset(
               imagePath,
-              width: 200,
-              height: 200,
+              width: 190,
+              height: 190,
               fit: BoxFit.contain,
             ),
           ),

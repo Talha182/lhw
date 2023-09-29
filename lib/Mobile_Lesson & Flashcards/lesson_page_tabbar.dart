@@ -101,21 +101,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
                   Tab(text: "جائزہ"),
                 ],
               ),
-              Positioned(
-                bottom: 4,
-                left: 5,
-                child: _curvedBorderContainer(const Color(0xff9AC9C2), 118, 5.0),
-              ),
-              Positioned(
-                bottom: 4,
-                left: 133,
-                child: _curvedBorderContainer(const Color(0xffF7DE8D), 106, 5.0),
-              ),
-              Positioned(
-                bottom: 4,
-                left: 249,
-                child: _curvedBorderContainer(const Color(0xff826FE3), 101, 5.0),
-              ),
+
             ],
           ),
           const Expanded(
@@ -132,44 +118,4 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
     );
   }
 
-  Widget _curvedBorderContainer(Color color, double width, double height) {
-    return CustomPaint(
-      size: Size(width, height),
-      painter: CurvedEndsPainter(color, width),
-    );
-  }
-}
-
-class CurvedEndsPainter extends CustomPainter {
-  final Color color;
-  final double tabWidth;
-
-  CurvedEndsPainter(this.color, this.tabWidth);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0;
-
-    const double maxRadius = 15;
-    final double radius = (tabWidth > 2 * maxRadius) ? maxRadius : tabWidth / 2;
-
-    final Path path = Path()
-      ..moveTo(radius, size.height)
-      ..lineTo(size.width - radius, size.height)
-      ..arcToPoint(Offset(size.width, size.height - radius),
-          radius: const Radius.circular(15), clockwise: false)
-      ..moveTo(1, size.height - radius)
-      ..arcToPoint(Offset(radius, size.height),
-          radius: const Radius.circular(15), clockwise: false);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
 }
