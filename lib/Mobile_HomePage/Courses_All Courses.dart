@@ -24,6 +24,7 @@ class TotalCourses extends StatelessWidget {
                       fontFamily: 'UrduType',
                       fontSize: 18,
                       fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.right,
                 ),
                 const SizedBox(
                   height: 15,

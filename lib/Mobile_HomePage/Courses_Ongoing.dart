@@ -27,6 +27,7 @@ class _OnGoingCoursesState extends State<OnGoingCourses> {
                   "جاری ہے۔",
                   style: TextStyle(                          fontFamily: 'UrduType',
                       fontSize: 20, fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.right,
                 ),
                 const SizedBox(
                   height: 15,

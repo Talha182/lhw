@@ -21,6 +21,7 @@ class Courses_Completed extends StatelessWidget {
                       fontFamily: 'UrduType',
                       fontSize: 20,
                       fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.right,
                 ),
                 const SizedBox(
                   height: 15,
