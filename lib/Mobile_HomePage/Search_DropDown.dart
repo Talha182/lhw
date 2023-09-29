@@ -19,6 +19,7 @@ class _SearchDropdownState extends State<SearchDropdown> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: 1,
       length: 2,
       child: Scaffold(
         appBar: PreferredSize(
@@ -97,16 +98,7 @@ Widget _tabBar() {
                 const Tab(text: "             کورسز        "),
               ],
             ),
-            Positioned(
-              bottom: 4,
-              left: 4,
-              child: _curvedBorderContainer(Color(0xff9AC9C2), 170, 5.0),
-            ),
-            Positioned(
-              bottom: 4,
-              left: 185,
-              child: _curvedBorderContainer(Color(0xffF7DE8D), 173, 5.0),
-            ),
+
           ],
         ),
         const Expanded(
@@ -122,43 +114,3 @@ Widget _tabBar() {
   );
 }
 
-Widget _curvedBorderContainer(Color color, double width, double height) {
-  return CustomPaint(
-    size: Size(width, height),
-    painter: CurvedEndsPainter(color, width),
-  );
-}
-
-class CurvedEndsPainter extends CustomPainter {
-  final Color color;
-  final double tabWidth;
-
-  CurvedEndsPainter(this.color, this.tabWidth);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0;
-
-    const double maxRadius = 15;
-    final double radius = (tabWidth > 2 * maxRadius) ? maxRadius : tabWidth / 2;
-
-    final Path path = Path()
-      ..moveTo(radius, size.height)
-      ..lineTo(size.width - radius, size.height)
-      ..arcToPoint(Offset(size.width, size.height - radius),
-          radius: const Radius.circular(15), clockwise: false)
-      ..moveTo(1, size.height - radius)
-      ..arcToPoint(Offset(radius, size.height),
-          radius: const Radius.circular(15), clockwise: false);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-}

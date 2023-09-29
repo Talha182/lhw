@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+
+import '../Image_Hotspot/LessonOption26.dart';
 
 class Score extends StatefulWidget {
   const Score({super.key});
@@ -17,6 +20,126 @@ class _ScoreState extends State<Score> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+
+  void showCustomDialog() {
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.circular(20.0), // This is the critical line
+        ),
+        insetPadding:
+            const EdgeInsets.symmetric(horizontal: 10), // Add this line
+        child: ConstrainedBox(
+            // Add this widget
+            constraints: BoxConstraints(
+              maxHeight: 430,
+              maxWidth: MediaQuery.of(Get.context!).size.width - 50,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: const Text(
+                            "بہترین آپشن کا انتخاب کریں۔",
+                            style:
+                                TextStyle(fontFamily: "UrduType", fontSize: 20),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              color: Color(0xffFFF0F0),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 8, right: 8,top: 10,bottom: 10),
+                            child: Text(
+                                'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
+                            style: TextStyle(fontFamily: "UrduType",color: Color(0xffFB6262)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              color: Color(0xffFFF0F0),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 8, right: 8,top: 10,bottom: 10),
+                            child: Text(
+                              "آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔",
+                            style: TextStyle(fontFamily: "UrduType",color: Color(0xffFB6262)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        Container(
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              color: Color(0xffF5FAF9),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 8, right: 8,top: 10,bottom: 10),
+                            child: Text(
+                              "یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔",
+                            style: TextStyle(fontFamily: "UrduType",color: Color(0xff9AC9C2)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                ),
+                Spacer(),
+                const Divider(
+                  thickness: 1,
+                ),
+                Center(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.transparent, // Background color
+                        side: const BorderSide(
+                          color: Colors.black, // Border color
+                          width: 1,
+                        ),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.circular(30), // Circular radius
+                        ),
+                        minimumSize: const Size(150, 40),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'ٹھیک ہے',
+                        style: TextStyle(
+                            fontFamily: "UrduType",
+                            color: Colors.black,
+                            fontSize: 15),
+                      )),
+                ),
+               
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            )),
+      ),
+      barrierDismissible: true, // allows dismissing by touching outside
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,95 +164,46 @@ class _ScoreState extends State<Score> {
         ),
         child: Padding(
           padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: ListView(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: SvgPicture.asset(
-                    'assets/images/cloud.svg',
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                const Center(
-                  child: Text(
-                    "اپنے سکور گارڈ کو چیک کریں۔",
-                    style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-                  ),
-                ),
-                const Center(
-                  child: Text(
-                    "حل کو ظاہر کرنے کے لیے نیچے ٹائلز پر کلک کریں۔",
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        fontSize: 16,
-                        color: Color(0xff7A7D84)),
-                  ),
-                ),
-                const SizedBox(
+          child: ListView(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: SvgPicture.asset(
+                  'assets/images/cloud.svg',
+                  width: 20,
                   height: 20,
+                  fit: BoxFit.contain,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomPaint(
-                      painter: BorderPainter(
-                          borderColor: const Color(
-                              0xff9AC9C2)), // Change color as desired
-                      child: GestureDetector(
-                        onTap: (){
-                          _dialogBuilder(context);
-                        },
-                        child: Container(
-                          width: 170,
-                          height: 185,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: const Color(0xff9AC9C2).withOpacity(0.4)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, top: 10),
-                            child: Column(
-                              children: [
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: Container(
-                                    width: 20,
-                                    height: 20,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white),
-                                    child: const Center(
-                                      child: Icon(
-                                        Icons.check,
-                                        color: Color(0xff9AC9C2),
-                                        size: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  "Lorem Ipsum Sit Dolor؟",
-                                  style: TextStyle(fontSize: 14),
-                                  textAlign: TextAlign.justify,
-                                ),
-                                const Text(
-                                  "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                  style: TextStyle(fontSize: 16),
-                                  textAlign: TextAlign.start,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    CustomPaint(
-                      painter: BorderPainter(
-                          borderColor: const Color(
-                              0xff9AC9C2)), // Change color as desired
+              ),
+              const Center(
+                child: Text(
+                  "اپنے سکور گارڈ کو چیک کریں۔",
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 22),
+                ),
+              ),
+              const Center(
+                child: Text(
+                  "حل کو ظاہر کرنے کے لیے نیچے ٹائلز پر کلک کریں۔",
+                  style: TextStyle(
+                      fontFamily: "UrduType",
+                      fontSize: 16,
+                      color: Color(0xff7A7D84)),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CustomPaint(
+                    painter: BorderPainter(
+                        borderColor:
+                            const Color(0xff9AC9C2)), // Change color as desired
+                    child: GestureDetector(
+                      onTap: () {
+                        showCustomDialog();
+                      },
                       child: Container(
                         width: 170,
                         height: 185,
@@ -173,18 +247,16 @@ class _ScoreState extends State<Score> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomPaint(
-                      painter: BorderPainter(
-                          borderColor: const Color(
-                              0xff9AC9C2)), // Change color as desired
+                  ),
+                  const SizedBox(width: 10),
+                  CustomPaint(
+                    painter: BorderPainter(
+                        borderColor:
+                            const Color(0xff9AC9C2)), // Change color as desired
+                    child: GestureDetector(
+                      onTap: (){
+                        showCustomDialog();
+                      },
                       child: Container(
                         width: 170,
                         height: 185,
@@ -192,8 +264,8 @@ class _ScoreState extends State<Score> {
                             borderRadius: BorderRadius.circular(10),
                             color: const Color(0xff9AC9C2).withOpacity(0.4)),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 10),
+                          padding:
+                              const EdgeInsets.only(left: 10, right: 10, top: 10),
                           child: Column(
                             children: [
                               Align(
@@ -228,11 +300,23 @@ class _ScoreState extends State<Score> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    CustomPaint(
-                      painter: BorderPainter(
-                          borderColor: const Color(
-                              0xff9AC9C2)), // Change color as desired
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CustomPaint(
+                    painter: BorderPainter(
+                        borderColor:
+                            const Color(0xff9AC9C2)), // Change color as desired
+                    child: GestureDetector(
+                      onTap: (){
+                        showCustomDialog();
+                      },
                       child: Container(
                         width: 170,
                         height: 185,
@@ -240,8 +324,8 @@ class _ScoreState extends State<Score> {
                             borderRadius: BorderRadius.circular(10),
                             color: const Color(0xff9AC9C2).withOpacity(0.4)),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 10),
+                          padding:
+                              const EdgeInsets.only(left: 10, right: 10, top: 10),
                           child: Column(
                             children: [
                               Align(
@@ -276,18 +360,16 @@ class _ScoreState extends State<Score> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomPaint(
-                      painter: BorderPainter(
-                          borderColor: const Color(
-                              0xff9AC9C2)), // Change color as desired
+                  ),
+                  const SizedBox(width: 10),
+                  CustomPaint(
+                    painter: BorderPainter(
+                        borderColor:
+                            const Color(0xff9AC9C2)), // Change color as desired
+                    child: GestureDetector(
+                      onTap: (){
+                        showCustomDialog();
+                      },
                       child: Container(
                         width: 170,
                         height: 185,
@@ -295,8 +377,8 @@ class _ScoreState extends State<Score> {
                             borderRadius: BorderRadius.circular(10),
                             color: const Color(0xff9AC9C2).withOpacity(0.4)),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 10),
+                          padding:
+                              const EdgeInsets.only(left: 10, right: 10, top: 10),
                           child: Column(
                             children: [
                               Align(
@@ -331,11 +413,76 @@ class _ScoreState extends State<Score> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    CustomPaint(
-                      painter: BorderPainter(
-                          borderColor: const Color(
-                              0xffFB6262)), // Change color as desired
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CustomPaint(
+                    painter: BorderPainter(
+                        borderColor:
+                            const Color(0xff9AC9C2)), // Change color as desired
+                    child: GestureDetector(
+                      onTap: (){
+                        showCustomDialog();
+                      },
+                      child: Container(
+                        width: 170,
+                        height: 185,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color(0xff9AC9C2).withOpacity(0.4)),
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.only(left: 10, right: 10, top: 10),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Container(
+                                  width: 20,
+                                  height: 20,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white),
+                                  child: const Center(
+                                    child: Icon(
+                                      Icons.check,
+                                      color: Color(0xff9AC9C2),
+                                      size: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                "Lorem Ipsum Sit Dolor؟",
+                                style: TextStyle(fontSize: 14),
+                                textAlign: TextAlign.justify,
+                              ),
+                              const Text(
+                                "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                style: TextStyle(fontSize: 16),
+                                textAlign: TextAlign.start,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  CustomPaint(
+                    painter: BorderPainter(
+                        borderColor:
+                            const Color(0xffFB6262)), // Change color as desired
+                    child: GestureDetector(
+                      onTap: (){
+                        showCustomDialog();
+                      },
                       child: Container(
                         width: 170,
                         height: 185,
@@ -343,8 +490,8 @@ class _ScoreState extends State<Score> {
                             borderRadius: BorderRadius.circular(10),
                             color: const Color(0xffFB6262).withOpacity(0.4)),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 10),
+                          padding:
+                              const EdgeInsets.only(left: 10, right: 10, top: 10),
                           child: Column(
                             children: [
                               Align(
@@ -379,77 +526,20 @@ class _ScoreState extends State<Score> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
-
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-//
-// Divider(
-// height: 1,
-// thickness: 1,
-// color: Colors.black87.withOpacity(0.1),
-// ),
-// const SizedBox(height: 10),
-// Row(
-// mainAxisAlignment: MainAxisAlignment.spaceBetween,
-// children: [
-// ElevatedButton(
-// style: ElevatedButton.styleFrom(
-// side: BorderSide(
-// color: const Color(0xffFE8BD1).withOpacity(0.5)
-// ),
-// backgroundColor: Colors.transparent,
-// elevation: 0,
-// shape: RoundedRectangleBorder(
-// borderRadius: BorderRadius.circular(30),
-// ),
-// minimumSize: const Size(160, 37),
-// ),
-// onPressed: () {},
-// child: const Expanded(
-// child: Text(
-// 'اسکورز کا جائزہ لیں۔',
-// style: TextStyle(
-// fontFamily: 'UrduType',
-// fontSize: 15,
-// color: Color(0xffFE8BD1),
-// ),
-// ),
-// ),
-// ),
-// ElevatedButton(
-// style: ElevatedButton.styleFrom(
-// backgroundColor: const Color(0xffFE8BD1),
-// elevation: 0,
-// shape: RoundedRectangleBorder(
-// borderRadius: BorderRadius.circular(30),
-// ),
-// minimumSize: const Size(150, 37),
-// ),
-// onPressed: () {},
-// child: const Expanded(
-// child: Text(
-// 'جاری رہے',
-// style: TextStyle(
-// fontFamily: 'UrduType',
-// fontSize: 15,
-// color: Colors.white,
-// ),
-// ),
-// ),
-// ),
-// ],
-// ),
 class BorderPainter extends CustomPainter {
   final Color borderColor;
 
@@ -501,83 +591,4 @@ class BorderPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
-}
-Future<void> _dialogBuilder(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: true,  // Allows tapping outside to dismiss
-    builder: (BuildContext context) {
-      return Stack(
-        children: <Widget>[
-          // Darkened background
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop(); // Close the dialog when tapped outside
-            },
-            child: Container(
-              color: Colors.black54,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-          ),
-
-          // Dialog content
-          Center(
-            child: Container(
-              width: 300, // or any custom width
-              height: 250, // or any custom height
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Column(
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Custom Dialog Title',
-                      style: TextStyle( decoration: TextDecoration.none,fontSize: 15,color: Colors.black),
-                    ),
-                  ),
-                  const Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16.0,right: 16.0),
-                      child: Text(
-                        'A dialog is a type of modal window that\n'
-                            'appears in front of app content to\n'
-                            'provide critical information, or prompt\n'
-                            'for a decision to be made.',
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 14,
-                          color: Colors.black
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        child: const Text('Disable'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      TextButton(
-                        child: const Text('Enable'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      );
-    },
-  );
 }

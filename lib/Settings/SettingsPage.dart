@@ -25,6 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
+      initialIndex: 2,
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70.0),
@@ -34,7 +35,8 @@ class _SettingsPageState extends State<SettingsPage> {
             flexibleSpace: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10, vertical: 2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -52,7 +54,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       textDirection: TextDirection.rtl,
                     ),
                     GestureDetector(
-                      child: const Icon(Icons.arrow_forward, color: Colors.black),
+                      child: const Icon(
+                          Icons.arrow_forward, color: Colors.black),
                       onTap: () {
                         // Add your navigation logic here
                       },
@@ -96,29 +99,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
-                tabs:  [
+                tabs: [
                   Tab(text: "سماجی"),
                   Tab(text: "ڈیٹا"),
                   Tab(text: "اطلاعات "),
                 ],
               ),
-              Positioned(
-                bottom: 4,
-                left: 4,
-                child: _curvedBorderContainer(Color(0xff9AC9C2), 110, 5.0),
-              ),
-              Positioned(
 
-                bottom: 4,
-                left: 124,
-                child: _curvedBorderContainer(Color(0xffF7DE8D), 101, 5.0),
-              ),
-
-              Positioned(
-                bottom: 4,
-                left: 235,
-                child: _curvedBorderContainer(Color(0xff826FE3), 122, 5.0),
-              ),
             ],
           ),
           const Expanded(
@@ -136,44 +123,4 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _curvedBorderContainer(Color color, double width, double height) {
-    return CustomPaint(
-      size: Size(width, height),
-      painter: CurvedEndsPainter(color, width),
-    );
-  }
-}
-
-class CurvedEndsPainter extends CustomPainter {
-  final Color color;
-  final double tabWidth;
-
-  CurvedEndsPainter(this.color, this.tabWidth);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5;
-
-    const double maxRadius = 15;
-    final double radius = (tabWidth > 2 * maxRadius) ? maxRadius : tabWidth / 2;
-
-    final Path path = Path()
-      ..moveTo(radius, size.height)
-      ..lineTo(size.width - radius, size.height)
-      ..arcToPoint(Offset(size.width, size.height - radius),
-          radius: const Radius.circular(15), clockwise: false)
-      ..moveTo(1, size.height - radius)
-      ..arcToPoint(Offset(radius, size.height),
-          radius: const Radius.circular(17), clockwise: false);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
 }

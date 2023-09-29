@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:lhw/Result/leaderboard/leaderboard.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -130,7 +131,7 @@ class _CourseCompletionState extends State<CourseCompletion> {
                               child: const Center(
                                 child: Text(
                                   "12",
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(fontSize: 20,fontFamily: "UrduType"),
                                 ),
                               ),
                             ),
@@ -164,7 +165,7 @@ class _CourseCompletionState extends State<CourseCompletion> {
                               child: const Center(
                                 child: Text(
                                   "12",
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(fontSize: 20,fontFamily: "UrduType"),
                                 ),
                               ),
                             ),
@@ -206,7 +207,7 @@ class _CourseCompletionState extends State<CourseCompletion> {
                               child: const Center(
                                 child: Text(
                                   "14",
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(fontSize: 20,fontFamily: "UrduType"),
                                 ),
                               ),
                             ),
@@ -257,10 +258,7 @@ class _CourseCompletionState extends State<CourseCompletion> {
                 child: const Text("لیڈر بورڈ دیکھیں",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 16,color: Color(0xffFE8BD1))),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(builder: (context) => const LeaderBoard()),
-                  );
+                 Get.to(() => LeaderBoard());
                 },
               ),
               const Spacer(),
