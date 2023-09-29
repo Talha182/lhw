@@ -18,6 +18,7 @@ class _MessageScreenState extends State<MessageScreen> {
   Message? _replyingMessage;
   final List<Message> _messages = [];
   FocusNode _messageFocusNode = FocusNode();
+  String hintText = "کچھ ٹائپ کریں...";
 
   bool showSuggestions = false;
   List<String> demoUsers = [
@@ -73,24 +74,122 @@ class _MessageScreenState extends State<MessageScreen> {
     }
   }
 
-
   void _sendMessage() {
     String trimmedMessage = _textEditingController.text.trim();
     if (trimmedMessage.isNotEmpty) {
+      bool isThisMessageAQuestion = hintText == "سوال";
+
       setState(() {
         _messages.add(Message(
             text: trimmedMessage,
             isCurrentUser: true,
             timestamp: DateTime.now(),
             showTime: _showTime,
-            repliedTo:
-                _replyingMessage // Add this line to store the reply information
-            ));
+            isQuestion: isThisMessageAQuestion,  // Add this line
+            repliedTo: _replyingMessage
+        ));
         _showTime = false;
+
+        // Resetting the hintText after sending the message.
+        if (isThisMessageAQuestion) {
+          hintText = "کچھ ٹائپ کریں...";
+        }
+
         _textEditingController.clear();
       });
       _scrollToBottom();
     }
+  }
+
+
+  OverlayEntry? overlayEntry;
+
+  void _showAttachmentOptions() {
+    if (overlayEntry != null) {
+      overlayEntry!.remove();
+      overlayEntry = null;
+      return; // if overlay is already shown, hide it and exit.
+    }
+
+    overlayEntry = OverlayEntry(
+      builder: (context) {
+        double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+
+        return Stack(
+          children: [
+            // Capture taps outside the overlay:
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: () {
+                  overlayEntry!.remove();
+                  overlayEntry = null;
+                },
+                child: const Material(
+                  color: Colors.transparent, // use transparent color to capture taps
+                ),
+              ),
+            ),
+
+            // The overlay content:
+            Positioned(
+              bottom: keyboardHeight > 0 ? keyboardHeight + 50 : 54,
+              right: 95,
+              child: Material(
+                elevation: 2,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10,left: 10,right: 10,bottom: 20),
+                    child:  Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              hintText = "سوال";
+                            });
+                            overlayEntry!.remove();
+                            overlayEntry = null;
+                          },
+                          child: const Row(
+                            children: [
+                              Text(
+                                "بطور سوال بھیجیں۔",
+                                style: TextStyle(
+                                  fontFamily: "UrduType",
+                                ),
+                              ),
+                              SizedBox(width: 10,),
+                              Icon(Icons.help_outline_rounded),
+                            ],
+                          ),
+                        ),
+
+                        const SizedBox(height: 10,),
+                        const Row(
+                          children: [
+                            Text("منسلکہ",style: TextStyle(
+                                fontFamily: "UrduType"
+                            ),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.attachment_outlined),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    Overlay.of(context).insert(overlayEntry!);
   }
 
   void _scrollToBottom() {
@@ -179,11 +278,15 @@ class _MessageScreenState extends State<MessageScreen> {
                             textDirection: TextDirection.rtl,
                           ),
                         ),
+
+
                       if (message.isCurrentUser)
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: Column(
+
                             children: [
+
                               if (message.repliedTo != null)
                                 Padding(
                                   padding:
@@ -229,10 +332,24 @@ class _MessageScreenState extends State<MessageScreen> {
                                               BorderRadius.circular(18.0),
                                           color: Colors.white,
                                         ),
-                                        child: Text(message.text,
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: "UrduType")),
+                                        child: Column(
+                                          children: [
+                                            if (message.isQuestion)
+                                                 const Text(
+                                                  "سوال",
+                                                  style: TextStyle(
+                                                    color: Color(0xffA0A0A0),
+                                                    fontFamily: "UrduType",
+                                                  ),
+                                                   textAlign: TextAlign.left,
+                                                ),
+                                             Text(message.text,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily: "UrduType")),
+                                          ],
+                                        ),
+
                                       ),
                                     ),
                                   ),
@@ -441,7 +558,7 @@ class _MessageScreenState extends State<MessageScreen> {
                               decoration: InputDecoration(
                                 contentPadding:
                                     const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                hintText: "کچھ ٹائپ کریں...",
+                                hintText: hintText,
                                 hintStyle: const TextStyle(
                                     fontFamily: "UrduType",
                                     color: Color(0xffA0A0A0)),
@@ -498,8 +615,13 @@ class _MessageScreenState extends State<MessageScreen> {
                                             ),
                                           ),
                                           const SizedBox(width: 5),
-                                          SvgPicture.asset(
-                                              "assets/images/attachment.svg"),
+                                          GestureDetector(
+                                            onTap: () {
+                                              _showAttachmentOptions();
+                                            },
+                                            child: SvgPicture.asset(
+                                                "assets/images/attachment.svg"),
+                                          ),
                                           const SizedBox(width: 20),
                                           SvgPicture.asset(
                                               "assets/images/microphone.svg"),
@@ -526,10 +648,11 @@ class _MessageScreenState extends State<MessageScreen> {
 
   Widget _buildSuggestionsBox() {
     return SizedBox(
-      height: 200,  // Specify your desired height here
+      height: 200, // Specify your desired height here
       child: SingleChildScrollView(
         child: ListView.builder(
-          physics: NeverScrollableScrollPhysics(), // Prevents the ListView from scrolling
+          physics:
+              const NeverScrollableScrollPhysics(), // Prevents the ListView from scrolling
           shrinkWrap: true, // constrain the height
           itemCount: filteredUsers.length,
           itemBuilder: (context, index) {
@@ -537,17 +660,18 @@ class _MessageScreenState extends State<MessageScreen> {
               leading: CircleAvatar(
                 radius: 20,
                 child: ClipOval(
-                    child: Image.asset("assets/images/profile_pic.png")
-                ),
+                    child: Image.asset("assets/images/profile_pic.png")),
               ),
               title: Text(
                 filteredUsers[index],
-                style: TextStyle(fontFamily: "UrduType"),
+                style: const TextStyle(fontFamily: "UrduType"),
               ),
               onTap: () {
-                final user = allUsers[index];
+                final user =
+                    filteredUsers[index]; // Fetch user from filteredUsers
                 final currentText = _textEditingController.text;
-                final newText = currentText.replaceFirst('@', '$user@ ');
+                final lastIndex = currentText.lastIndexOf('@');
+                final newText = currentText.substring(0, lastIndex) + '$user@ ';
                 _textEditingController.text = newText;
                 _textEditingController.selection = TextSelection.fromPosition(
                     TextPosition(offset: newText.length));
@@ -563,12 +687,44 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 }
 
+// void _showAttachmentOptions(BuildContext context) {
+//   showModalBottomSheet(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return Container(
+//           height: 120,  // or whatever height you want
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               ListTile(
+//                 leading: Icon(Icons.question_answer),
+//                 title: Text('Send as a question'),
+//                 onTap: () {
+//                   // Handle the action for "Send as a question"
+//                 },
+//               ),
+//               ListTile(
+//                 leading: Icon(Icons.insert_drive_file),
+//                 title: Text('Documents'),
+//                 onTap: () {
+//                   // Handle the action for "Documents"
+//                 },
+//               ),
+//             ],
+//           ),
+//         );
+//       }
+//   );
+// }
+
 class Message {
   final String text;
   final bool isCurrentUser;
   final DateTime timestamp;
   final bool showTime;
   final Message? repliedTo;
+  final bool isQuestion;  // add this
+
 
   Message({
     required this.text,
@@ -576,6 +732,8 @@ class Message {
     required this.timestamp,
     this.showTime = false,
     this.repliedTo,
+    this.isQuestion = false,  // default it to false
+
   });
 }
 
