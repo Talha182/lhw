@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Discussion_Group/DiscussionGroups.dart';
+import 'package:lhw/Discussion_Group/MessageScreen.dart';
 import 'package:lhw/Discussion_Group/Messaging_Settings.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: MessageSettings(),
+      home: MessageScreen(),
     );
   }
 }
