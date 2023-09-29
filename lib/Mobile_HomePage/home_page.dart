@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
         body: Column(children: [
           if (_isSearching && _filteredData.isNotEmpty)
             Container(
-              margin: EdgeInsets.only(top: 0.0,left: 15,right: 15),
+              margin: EdgeInsets.only(top: 0.0, left: 15, right: 15),
               padding: EdgeInsets.symmetric(vertical: 10.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -96,9 +96,9 @@ class _HomePageState extends State<HomePage> {
                                   const Text(
                                     'میرے کورسز',
                                     style: TextStyle(
-                                        fontFamily: 'UrduType',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600),
+                                      fontFamily: 'UrduType',
+                                      fontSize: 18,
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -151,14 +151,14 @@ class _HomePageState extends State<HomePage> {
                                                   )
                                                 ],
                                               ),
-                                              SizedBox(height: 10),
                                               Padding(
                                                 padding:
                                                     EdgeInsets.only(left: 30),
                                                 child: Text(
                                                   "3",
-                                                  style:
-                                                      TextStyle(fontSize: 20),
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontFamily: "UrduType"),
                                                 ),
                                               ),
                                             ],
@@ -207,15 +207,14 @@ class _HomePageState extends State<HomePage> {
                                                   )
                                                 ],
                                               ),
-                                              const SizedBox(height: 10),
                                               const Padding(
                                                 padding:
                                                     EdgeInsets.only(left: 30),
                                                 child: Text(
                                                   "12",
                                                   style: TextStyle(
-                                                    fontSize: 20,
-                                                  ),
+                                                      fontSize: 20,
+                                                      fontFamily: "UrduType"),
                                                 ),
                                               ),
                                             ],
@@ -609,7 +608,12 @@ class _HomePageState extends State<HomePage> {
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w500)),
-                                                              Text("12"),
+                                                              Text(
+                                                                "12",
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        "UrduType"),
+                                                              ),
                                                             ],
                                                           ),
                                                         ),
@@ -818,6 +822,7 @@ class _HomePageState extends State<HomePage> {
                                                   Text(
                                                     '4380',
                                                     style: TextStyle(
+                                                      fontFamily: "UrduType",
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontSize: 18),
@@ -848,6 +853,7 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                   Text('20/30',
                                                       style: TextStyle(
+                                                        fontFamily: "UrduType",
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontSize: 18))
