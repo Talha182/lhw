@@ -369,53 +369,58 @@ class QuizCard extends StatelessWidget {
         width: 360,
         height: 120,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black87.withOpacity(0.1)),
           borderRadius: BorderRadius.circular(10),
-          color: color,
+          color: isSelected
+              ? (isCorrect ? Color(0xff9AC9C2) : Color(0xffFB6262))
+              : const Color(0xffB1B2B4),
         ),
-        child: Stack(
-          children: [
-            CustomPaint(
-              painter: BorderPainter(
-                borderColor: isSelected
-                    ? (isCorrect ? Color(0xff9AC9C2) : Color(0xffFB6262))
-                    : const Color(0xffB1B2B4),
-              ),
-              size: const Size(360, 120 ),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: Container(
+            width: 360,
+            height: 120,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black87.withOpacity(0.1)),
+              borderRadius: BorderRadius.circular(10),
+              color: color,
             ),
+            child: Stack(
+              children: [
 
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Row(
-                children: [
-                  Center(
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(imagePath),
-                          fit: BoxFit.contain,
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      Center(
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(imagePath),
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      text,
-                      textAlign: TextAlign.justify,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Color(0xff7A7D84),
-                        fontFamily: 'UrduType',
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          text,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Color(0xff7A7D84),
+                            fontFamily: 'UrduType',
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -438,56 +443,3 @@ class Question {
   });
 }
 
-class BorderPainter extends CustomPainter {
-  final Color borderColor;
-
-  BorderPainter({required this.borderColor});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    const double startOffset = 1.0;
-    final double endOffset = size.width - 1.0;
-    final double bottomOffset = size.height - 2.0;
-
-    const double curveRadius = 7.0;
-
-    final Path path = Path()
-      ..moveTo(startOffset + curveRadius, bottomOffset)
-      ..lineTo(endOffset - curveRadius, bottomOffset);
-
-    // Draw the straight part
-    final Paint paintForStraight = Paint()
-      ..color = borderColor
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 5.0;
-
-
-    canvas.drawPath(path, paintForStraight);
-
-    // Draw the curves with "gradient" effect
-    for (double i = 0; i <= 1; i += 0.1) {
-      final Paint paintForCurve = Paint()
-        ..color = borderColor.withOpacity(i)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 5.5 - (2.0 * i); // Varying the width
-
-      final Path pathForCurveRight = Path()
-        ..moveTo(endOffset - curveRadius, bottomOffset)
-        ..quadraticBezierTo(endOffset, bottomOffset, endOffset,
-            bottomOffset - (curveRadius * i));
-
-      final Path pathForCurveLeft = Path()
-        ..moveTo(startOffset, bottomOffset - (curveRadius * i))
-        ..quadraticBezierTo(
-            startOffset, bottomOffset, startOffset + curveRadius, bottomOffset);
-
-      canvas.drawPath(pathForCurveRight, paintForCurve);
-      canvas.drawPath(pathForCurveLeft, paintForCurve);
-    }
-  }
-
-  @override
-  bool shouldRepaint(BorderPainter oldDelegate) {
-    return borderColor != oldDelegate.borderColor;
-  }
-}
