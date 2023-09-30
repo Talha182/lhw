@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
 import '../custom_widgets/progress_bar.dart';
@@ -19,6 +20,8 @@ class HomePage extends StatefulWidget {
 String dropdownvalue = 'اس ہفتے';
 bool _isSearching = false;
 String _searchQuery = '';
+double value = 0.5; // 50%
+
 final List<String> _sampleData = [
   'Apple',
   'Banana',
@@ -57,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               if (_isSearching && _filteredData.isNotEmpty)
                 Container(
                   margin: const EdgeInsets.only(top: 0.0, left: 15, right: 15),
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
@@ -95,8 +98,7 @@ class _HomePageState extends State<HomePage> {
                                 child: FadeInAnimation(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: <Widget>[
                                       const Text(
                                         'میرے کورسز',
@@ -129,22 +131,17 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             child: const Padding(
                                               padding: EdgeInsets.only(
-                                                  left: 15, top: 10),
+                                                  right: 15, top: 10),
                                               child: Column(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.end,
                                                 children: <Widget>[
                                                   Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
                                                     children: <Widget>[
-                                                      Icon(
-                                                          Icons
-                                                              .check_circle_outline,
-                                                          size: 19,
-                                                          color: Color(
-                                                              0xff7A7D84)),
-                                                      SizedBox(
-                                                        width: 8,
-                                                      ),
+
+
                                                       Text(
                                                         'مکمل کورس',
                                                         style: TextStyle(
@@ -156,20 +153,28 @@ class _HomePageState extends State<HomePage> {
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600),
-                                                      )
+                                                      ),SizedBox(
+                                                        width: 8,
+                                                      ),
+
+                                                      Icon(
+                                                          Icons
+                                                              .check_circle_outline,
+                                                          size: 19,
+                                                          color: Color(
+                                                              0xff7A7D84)),
                                                     ],
                                                   ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 30),
-                                                    child: Text(
-                                                      "3",
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          fontFamily:
-                                                              "UrduType"),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(right: 20),
+                                                      child: Text(
+                                                        "3",
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontFamily:
+                                                                "UrduType"),
+                                                      ),
                                                     ),
-                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -191,19 +196,16 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             child: Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 15, top: 10),
+                                                  right: 15, top: 10),
                                               child: Column(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.end,
                                                 children: <Widget>[
                                                   Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
                                                     children: <Widget>[
-                                                      SvgPicture.asset(
-                                                        'assets/images/course.svg',
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      ),
+
                                                       const Text(
                                                         'باقی کورس',
                                                         style: TextStyle(
@@ -215,20 +217,26 @@ class _HomePageState extends State<HomePage> {
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600),
-                                                      )
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      ),
+                                                      SvgPicture.asset(
+                                                        'assets/images/course.svg',
+                                                      ),
+
                                                     ],
                                                   ),
-                                                  const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 30),
-                                                    child: Text(
-                                                      "12",
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          fontFamily:
-                                                              "UrduType"),
+                                                     Padding(
+                                                       padding: EdgeInsets.only(right: 20),
+                                                       child: const Text(
+                                                        "12",
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontFamily:
+                                                                "UrduType"),
                                                     ),
-                                                  ),
+                                                     ),
                                                 ],
                                               ),
                                             ),
@@ -243,212 +251,192 @@ class _HomePageState extends State<HomePage> {
                                         // Set your desired elevation value here
                                         borderRadius: BorderRadius.circular(10),
                                         child: Container(
-                                          width: screenWidth - 40,
+                                          width: screenWidth - 25,
                                           height: 450,
                                           decoration: const BoxDecoration(),
                                           child: Padding(
                                             padding: const EdgeInsets.only(
-                                                top: 20, left: 10, right: 10),
+                                                top: 20, left: 5, right: 5),
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: <Widget>[
-                                                    const Text(
-                                                      "جاری کورس",
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              'UrduType',
-                                                          fontSize: 17,
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        Get.to(() =>
-                                                            LessonPageTabBar());
-                                                      },
-                                                      child: const Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Text(
-                                                            "کورس پر جائیں۔",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'UrduType',
-                                                                fontSize: 15,
-                                                                color: Color(
-                                                                    0xffFE8BD1),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                          SizedBox(
-                                                            width:
-                                                                5, // space between Text and Icon
-                                                          ),
-                                                          Icon(
-                                                            Icons
-                                                                .arrow_forward_ios,
-                                                            color: Color(
-                                                              0xffFE8BD1,
-                                                            ),
-                                                            size: 14,
-                                                          )
-                                                        ],
+                                                Directionality(
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: <Widget>[
+                                                      const Text(
+                                                        "جاری کورس",
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                'UrduType',
+                                                            fontSize: 17,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          Get.to(() =>
+                                                              const LessonPageTabBar());
+                                                        },
+                                                        child: const Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            Text(
+                                                              "کورس پر جائیں۔",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'UrduType',
+                                                                  fontSize: 15,
+                                                                  color: Color(
+                                                                      0xffFE8BD1),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                            ),
+                                                            SizedBox(
+                                                              width:
+                                                                  5, // space between Text and Icon
+                                                            ),
+                                                            Icon(
+                                                              Icons
+                                                                  .arrow_forward_ios,
+                                                              color: Color(
+                                                                0xffFE8BD1,
+                                                              ),
+                                                              size: 14,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                                 const SizedBox(
                                                   height: 20,
                                                 ),
-                                                Row(
-                                                  children: [
-                                                    // Container with circular border containing an image
-                                                    Container(
-                                                      width: 180,
-                                                      height: 135,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                        image: const DecorationImage(
-                                                            image: AssetImage(
-                                                                'assets/images/team.png'),
-                                                            fit: BoxFit.cover),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(width: 10),
-                                                    // Column containing three texts
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        const Text(
-                                                          'خاندانی منصوبہ بندی',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  'UrduType',
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              letterSpacing:
-                                                                  0.01),
+                                                Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisAlignment: MainAxisAlignment.start, // Aligns children to the start of the Row.
+                                                    children: [
+                                                      Container(
+                                                        width: 150,
+                                                        height: 130,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.black,
+                                                            borderRadius: BorderRadius.circular(10)
                                                         ),
-                                                        const SizedBox(
-                                                            height: 5),
-                                                        Row(
-                                                          children: <Widget>[
-                                                            SvgPicture.asset(
-                                                                "assets/images/module.svg"),
-                                                            const SizedBox(
-                                                              width: 5,
-                                                            ),
-                                                            const Text(
-                                                              '24 ماڈیولز',
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'UrduType',
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  letterSpacing:
-                                                                      0.01),
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 5,
-                                                            ),
-                                                            Container(
-                                                              width: 5,
-                                                              height: 5,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                color: Colors
-                                                                    .black,
-                                                                shape: BoxShape
-                                                                    .circle,
+                                                        child: Image.asset(
+                                                          "assets/images/team.png",
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                      ),
+                                                        Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start, // Aligns children to the start of the Column.
+                                                          children: [
+                                                            const Padding(
+                                                              padding: EdgeInsets.only(right: 10),
+                                                              child: Text(
+                                                                'خاندانی منصوبہ بندی',
+                                                                style: TextStyle(
+                                                                    fontFamily: "UrduType",
+                                                                    fontSize: 18
+                                                                ),
                                                               ),
                                                             ),
-                                                            const SizedBox(
-                                                              width: 6,
+                                                            const SizedBox(height: 8,),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(right: 10),
+
+                                                              child: Row(
+                                                                children: [
+                                                                  const Text(
+                                                                    '12 کوئز',
+                                                                    style: TextStyle(
+                                                                        fontFamily: "UrduType",
+                                                                        fontSize: 18
+                                                                    ),
+                                                                  ),
+                                                                  const SizedBox(width: 8,),
+                                                                  SvgPicture.asset("assets/images/person_card.svg"),
+                                                                  // dot container
+                                                                  const SizedBox(width: 8,),
+                                                                  Container(
+                                                                    width: 4,
+                                                                    height: 4,
+                                                                    decoration: const BoxDecoration(
+                                                                      shape: BoxShape.circle,
+                                                                      color: Colors.black,
+                                                                    ),
+                                                                  ),
+
+                                                                  const SizedBox(width: 10,),
+                                                                  const Text(
+                                                                    '12 کوئز',
+                                                                    style: TextStyle(
+                                                                        fontFamily: "UrduType",
+                                                                        fontSize: 18
+                                                                    ),
+                                                                  ),
+
+                                                                  const SizedBox(width: 5,),
+                                                                  SvgPicture.asset("assets/images/bookOpen.svg"),
+                                                                ],
+                                                              ),
                                                             ),
-                                                            SvgPicture.asset(
-                                                                "assets/images/person_card.svg"),
-                                                            const SizedBox(
-                                                              width: 6,
+                                                            const SizedBox(height: 12,),
+
+                                                             Padding(
+                                                              padding: const EdgeInsets.only(right: 10),
+
+                                                              child: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                children: [
+                                                                  const Text("پیش رفت",style: TextStyle(
+                                                                    fontFamily: "UrduType",
+                                                                    color: Color(0xff7A7D84)
+                                                                  ),),
+                                                                  const SizedBox(width:100,),
+                                                                  Text("${(value * 100).toStringAsFixed(1)}%",
+                                                                  style: const TextStyle(
+                                                                      fontFamily: "UrduType",
+                                                                  ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
-                                                            const Text(
-                                                                "12 کوئز",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'UrduType',
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ))
+                                                            const SizedBox(height: 5,),
+
+                                                            LinearPercentIndicator(
+                                                              isRTL: true,
+                                                              barRadius: const Radius.circular(10),
+                                                              width: 200.0,
+                                                              lineHeight: 6.0,
+                                                              percent: value,
+                                                              backgroundColor: const Color(0xffEBEBF0),
+                                                              progressColor: const Color(0xff9AC9C2),
+                                                            ),
+
                                                           ],
                                                         ),
-                                                        const SizedBox(
-                                                            height: 25),
-                                                        Row(
-                                                          children: <Widget>[
-                                                            const Text(
-                                                              'پیش رفت',
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'UrduType',
-                                                                  color: Color(
-                                                                      0xff7A7D84),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 80,
-                                                            ),
-                                                            Text(
-                                                              '${(0.6 * 100).toInt()}%',
-                                                              // The percentage value
-                                                              style: const TextStyle(
-                                                                  fontFamily:
-                                                                      'UrduType',
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 2),
-                                                        const ProgressBar(
-                                                          width: 140.0,
-                                                          height: 6.0,
-                                                          value: 0.6, // 60%
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
+
                                                 Padding(
                                                     padding:
                                                         const EdgeInsets.only(
                                                             left: 5,
                                                             right: 5,
-                                                            top: 30),
+                                                            top: 20),
                                                     child: Container(
-                                                      width: 340,
+                                                      width: double.infinity,
                                                       height: 80,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
@@ -574,7 +562,7 @@ class _HomePageState extends State<HomePage> {
                                                             right: 5,
                                                             top: 15),
                                                     child: Container(
-                                                      width: 340,
+                                                      width: double.infinity,
                                                       height: 80,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
@@ -686,149 +674,152 @@ class _HomePageState extends State<HomePage> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: <Widget>[
-                                                      const Text(
-                                                        "مہارت کا درجہ",
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                'UrduType',
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ),
-                                                      DropdownButtonHideUnderline(
-                                                        child: DropdownButton2<
-                                                            String>(
-                                                          isExpanded: true,
-                                                          hint: const Row(
-                                                            children: [
-                                                              Expanded(
-                                                                child: Text(
-                                                                  'اس ہفتے',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        'UrduType',
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          items: items
-                                                              .map((String
-                                                                      item) =>
-                                                                  DropdownMenuItem<
-                                                                      String>(
-                                                                    value: item,
-                                                                    child: Text(
-                                                                      item,
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontFamily:
-                                                                            'UrduType',
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
+                                                Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: <Widget>[
+                                                        const Text(
+                                                          "مہارت کا درجہ",
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'UrduType',
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
+                                                        DropdownButtonHideUnderline(
+                                                          child: DropdownButton2<
+                                                              String>(
+                                                            isExpanded: true,
+                                                            hint: const Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Text(
+                                                                    'اس ہفتے',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontFamily:
+                                                                          'UrduType',
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
                                                                     ),
-                                                                  ))
-                                                              .toList(),
-                                                          value: selectedValue,
-                                                          onChanged:
-                                                              (String? value) {
-                                                            setState(() {
-                                                              selectedValue =
-                                                                  value;
-                                                            });
-                                                          },
-                                                          buttonStyleData:
-                                                              ButtonStyleData(
-                                                            height: 40,
-                                                            width: 100,
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 14,
-                                                                    right: 14),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color:
-                                                                  Colors.white,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .black),
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ),
-                                                          iconStyleData:
-                                                              const IconStyleData(
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_sharp,
+                                                            items: items
+                                                                .map((String
+                                                                        item) =>
+                                                                    DropdownMenuItem<
+                                                                        String>(
+                                                                      value: item,
+                                                                      child: Text(
+                                                                        item,
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontFamily:
+                                                                              'UrduType',
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                        overflow:
+                                                                            TextOverflow
+                                                                                .ellipsis,
+                                                                      ),
+                                                                    ))
+                                                                .toList(),
+                                                            value: selectedValue,
+                                                            onChanged:
+                                                                (String? value) {
+                                                              setState(() {
+                                                                selectedValue =
+                                                                    value;
+                                                              });
+                                                            },
+                                                            buttonStyleData:
+                                                                ButtonStyleData(
+                                                              height: 40,
+                                                              width: 100,
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 14,
+                                                                      right: 14),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color:
+                                                                    Colors.white,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .black),
+                                                              ),
                                                             ),
-                                                            iconSize: 14,
-                                                          ),
-                                                          dropdownStyleData:
-                                                              DropdownStyleData(
-                                                            maxHeight: 100,
-                                                            width: 150,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          14),
+                                                            iconStyleData:
+                                                                const IconStyleData(
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_down_sharp,
+                                                              ),
+                                                              iconSize: 14,
                                                             ),
-                                                            offset:
-                                                                const Offset(
-                                                                    -20, 0),
-                                                            scrollbarTheme:
-                                                                ScrollbarThemeData(
-                                                              radius:
-                                                                  const Radius
-                                                                      .circular(
-                                                                      20),
-                                                              thickness:
-                                                                  MaterialStateProperty
-                                                                      .all<double>(
-                                                                          6),
-                                                              thumbVisibility:
-                                                                  MaterialStateProperty
-                                                                      .all<bool>(
-                                                                          true),
+                                                            dropdownStyleData:
+                                                                DropdownStyleData(
+                                                              maxHeight: 100,
+                                                              width: 150,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            14),
+                                                              ),
+                                                              offset:
+                                                                  const Offset(
+                                                                      -20, 0),
+                                                              scrollbarTheme:
+                                                                  ScrollbarThemeData(
+                                                                radius:
+                                                                    const Radius
+                                                                        .circular(
+                                                                        20),
+                                                                thickness:
+                                                                    MaterialStateProperty
+                                                                        .all<double>(
+                                                                            6),
+                                                                thumbVisibility:
+                                                                    MaterialStateProperty
+                                                                        .all<bool>(
+                                                                            true),
+                                                              ),
                                                             ),
-                                                          ),
-                                                          menuItemStyleData:
-                                                              const MenuItemStyleData(
-                                                            height: 40,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 14,
-                                                                    right: 14),
+                                                            menuItemStyleData:
+                                                                const MenuItemStyleData(
+                                                              height: 40,
+                                                              padding:
+                                                                  EdgeInsets.only(
+                                                                      left: 14,
+                                                                      right: 14),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ]),
+                                                      ]),
+                                                ),
                                                 const SizedBox(
                                                   height: 50,
                                                 ),
@@ -969,149 +960,132 @@ class _HomePageState extends State<HomePage> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: <Widget>[
-                                                      const Text(
-                                                        "سرگرمی",
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                'UrduType',
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ),
-                                                      DropdownButtonHideUnderline(
-                                                        child: DropdownButton2<
-                                                            String>(
-                                                          isExpanded: true,
-                                                          hint: const Row(
-                                                            children: [
-                                                              Expanded(
-                                                                child: Text(
-                                                                  'اس ہفتے',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        'UrduType',
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          items: items
-                                                              .map((String
-                                                                      item) =>
-                                                                  DropdownMenuItem<
-                                                                      String>(
-                                                                    value: item,
-                                                                    child: Text(
-                                                                      item,
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontFamily:
-                                                                            'UrduType',
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
+                                                Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: <Widget>[
+                                                        const Text(
+                                                          "سرگرمی",
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'UrduType',
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
+                                                        DropdownButtonHideUnderline(
+                                                          child: DropdownButton2<String>(
+                                                            isExpanded: true,
+                                                            hint: const Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Text(
+                                                                    'اس ہفتے',
+                                                                    style: TextStyle(
+                                                                      fontFamily: 'UrduType',
+                                                                      fontSize: 14,
+                                                                      fontWeight: FontWeight.bold,
                                                                     ),
-                                                                  ))
-                                                              .toList(),
-                                                          value: selectedValue,
-                                                          onChanged:
-                                                              (String? value) {
-                                                            setState(() {
-                                                              selectedValue =
-                                                                  value;
-                                                            });
-                                                          },
-                                                          buttonStyleData:
-                                                              ButtonStyleData(
-                                                            height: 40,
-                                                            width: 100,
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 14,
-                                                                    right: 14),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color:
-                                                                  Colors.white,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .black),
+                                                                    overflow: TextOverflow.ellipsis,
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ),
-                                                          iconStyleData:
-                                                              const IconStyleData(
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_sharp,
+                                                            items: items.map((String item) =>
+                                                                DropdownMenuItem<String>(
+                                                                  value: item,
+                                                                  child: Text(
+                                                                    item,
+                                                                    style: const TextStyle(
+                                                                      fontFamily: 'UrduType',
+                                                                      fontSize: 14,
+                                                                      fontWeight: FontWeight.bold,
+                                                                    ),
+                                                                    overflow: TextOverflow.ellipsis,
+                                                                  ),
+                                                                )).toList(),
+                                                            value: selectedValue,
+                                                            onChanged: (String? value) {
+                                                              setState(() {
+                                                                selectedValue = value;
+                                                              });
+                                                            },
+                                                            buttonStyleData:
+                                                                ButtonStyleData(
+                                                              height: 40,
+                                                              width: 90,
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 14,
+                                                                      right: 14),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color:
+                                                                    Colors.white,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .black),
+                                                              ),
                                                             ),
-                                                            iconSize: 14,
-                                                          ),
-                                                          dropdownStyleData:
-                                                              DropdownStyleData(
-                                                            maxHeight: 100,
-                                                            width: 150,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          14),
+                                                            iconStyleData:
+                                                                const IconStyleData(
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_down_sharp,
+                                                              ),
+                                                              iconSize: 14,
                                                             ),
-                                                            offset:
-                                                                const Offset(
-                                                                    -20, 0),
-                                                            scrollbarTheme:
-                                                                ScrollbarThemeData(
-                                                              radius:
-                                                                  const Radius
-                                                                      .circular(
-                                                                      20),
-                                                              thickness:
-                                                                  MaterialStateProperty
-                                                                      .all<double>(
-                                                                          6),
-                                                              thumbVisibility:
-                                                                  MaterialStateProperty
-                                                                      .all<bool>(
-                                                                          true),
+                                                            dropdownStyleData:
+                                                                DropdownStyleData(
+                                                              maxHeight: 100,
+                                                              width: 150,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            14),
+                                                              ),
+                                                              offset:
+                                                                  const Offset(
+                                                                      -20, 0),
+                                                              scrollbarTheme:
+                                                                  ScrollbarThemeData(
+                                                                radius:
+                                                                    const Radius
+                                                                        .circular(
+                                                                        20),
+                                                                thickness:
+                                                                    MaterialStateProperty
+                                                                        .all<double>(
+                                                                            6),
+                                                                thumbVisibility:
+                                                                    MaterialStateProperty
+                                                                        .all<bool>(
+                                                                            true),
+                                                              ),
                                                             ),
-                                                          ),
-                                                          menuItemStyleData:
-                                                              const MenuItemStyleData(
-                                                            height: 40,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 14,
-                                                                    right: 14),
+                                                            menuItemStyleData:
+                                                                const MenuItemStyleData(
+                                                              height: 40,
+                                                              padding:
+                                                                  EdgeInsets.only(
+                                                                      left: 14,
+                                                                      right: 14),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ]),
+                                                      ]),
+                                                ),
                                                 const SizedBox(
                                                   height: 30,
                                                 ),
@@ -1121,7 +1095,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 50,
                                       )
                                     ],
@@ -1142,10 +1116,10 @@ class _HomePageState extends State<HomePage> {
                 bottom: 70, // Adjust as needed
                 right: 20, // Adjust as needed
                 child: CircleAvatar(
-                  backgroundColor: Color(0xffF6B3D0),
+                  backgroundColor: const Color(0xffF6B3D0),
                   radius: 30,
                   child: Padding(
-                      padding: EdgeInsets.only(bottom: 2),
+                      padding: const EdgeInsets.only(bottom: 2),
                       child: SvgPicture.asset(
                         "assets/images/samina_instructor.svg",
                         fit: BoxFit.fill,
@@ -1158,50 +1132,53 @@ class _HomePageState extends State<HomePage> {
   Widget _buildDefaultAppBar() {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              "ڈیش بورڈ",
-              style: TextStyle(
-                fontFamily: 'UrduType',
-                fontSize: 20,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Text(
+                "ڈیش بورڈ",
+                style: TextStyle(
+                  fontFamily: 'UrduType',
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Row(
-              children: [
-                GestureDetector(
-                  child: SvgPicture.asset(
-                    'assets/images/magnifier.svg',
-                    color: Colors.black,
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    child: SvgPicture.asset(
+                      'assets/images/magnifier.svg',
+                      color: Colors.black,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _isSearching = true;
+                      });
+                    },
                   ),
-                  onTap: () {
-                    setState(() {
-                      _isSearching = true;
-                    });
-                  },
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                GestureDetector(
-                  child: SvgPicture.asset(
-                    'assets/images/bell.svg',
-                    color: Colors.black,
+                  const SizedBox(
+                    width: 20,
                   ),
-                  onTap: () {},
-                ),
-              ],
+                  GestureDetector(
+                    child: SvgPicture.asset(
+                      'assets/images/bell.svg',
+                      color: Colors.black,
+                    ),
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -1212,8 +1189,8 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         children: [
           GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0),
+            child: const Padding(
+              padding: EdgeInsets.only(left: 16.0),
               child: Icon(Icons.close, color: Color(0xff685F78)),
             ),
             onTap: () {
@@ -1234,7 +1211,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 autofocus: true,
                 textAlign: TextAlign.right,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "Search here...",
                     hintStyle: TextStyle(
@@ -1245,10 +1222,10 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Padding(
-              padding: EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 20),
               child: SvgPicture.asset(
                 "assets/images/magnifier.svg",
-                color: Color(0xff7A7D84),
+                color: const Color(0xff7A7D84),
               ))
         ],
       ),

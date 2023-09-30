@@ -21,7 +21,8 @@ dependencies:
   animated_bottom_navigation_bar: ^1.2.0
   circular_reveal_animation: ^2.0.1
   flutter_svg: ^2.0.7
-  dropdown_button2: ^2.3.9
+  dropdown_button2:
+    path: dropdown_button2-2.3.9
   fl_chart: ^0.63.0
   circle_progress_bar: ^0.1.2
   dashed_circular_progress_bar: ^0.0.4

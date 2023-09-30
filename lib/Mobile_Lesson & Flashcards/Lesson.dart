@@ -31,9 +31,9 @@ class Lesson extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 20, top: 20),
+                          padding: const EdgeInsets.only(right: 20, top: 20),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               const Text('نیوٹریشن کورس',
                                   style: TextStyle(
@@ -45,6 +45,7 @@ class Lesson extends StatelessWidget {
                                 height: 5,
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   SvgPicture.asset(
                                     'assets/images/module.svg',
@@ -123,7 +124,7 @@ class Lesson extends StatelessWidget {
                       ),
                       Positioned(
                         bottom: -15,
-                        right: 0,
+                        left  : 0,
                         child: Image.asset(
                           'assets/images/module.png', // replace with your image name
                           width: 180, // Set your width
@@ -144,29 +145,32 @@ class Lesson extends StatelessWidget {
                         color: const Color(0xffCAE1E5).withOpacity(0.5),
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 5, right: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Row(
-                            children: [
-                              SizedBox(width: 15),
-                              Text(
-                                "کورس کے ذیلی ماڈلز", // Updated this line
-                                style: TextStyle(fontFamily: 'UrduType', fontSize: 18),
-                              ),
-                            ],
-                          ),
-                          GestureDetector(
-                            child: const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 20,
+                      padding: const EdgeInsets.only(right: 5, left: 15),
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Row(
+                              children: [
+                                SizedBox(width: 15),
+                                Text(
+                                  "کورس کے ذیلی ماڈلز", // Updated this line
+                                  style: TextStyle(fontFamily: 'UrduType', fontSize: 18),
+                                ),
+                              ],
                             ),
-                            onTap: () {
-                              Get.to(() => const ModulePage());
-                            },
-                          ),
-                        ],
+                            GestureDetector(
+                              child: const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                              ),
+                              onTap: () {
+                                Get.to(() => const ModulePage());
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -247,7 +251,7 @@ class Lesson extends StatelessWidget {
                         ),
                         RatingBar.builder(
                           unratedColor: const Color(0xffD9D9D9),
-                          initialRating: 1,
+                          initialRating: 4,
                           itemSize: 35,
                           direction: Axis.horizontal,
                           allowHalfRating: false,

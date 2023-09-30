@@ -259,10 +259,9 @@ packages:
   dropdown_button2:
     dependency: "direct main"
     description:
-      name: dropdown_button2
-      sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
-      url: "https://pub.dev"
-    source: hosted
+      path: "dropdown_button2-2.3.9"
+      relative: true
+    source: path
     version: "2.3.9"
   equatable:
     dependency: transitive

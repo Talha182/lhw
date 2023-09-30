@@ -39,44 +39,47 @@ class _CoursesPage_TabbarState extends State<CoursesPage_Tabbar> {
 
   Widget _appBar() {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              "کورسز",
-              style: TextStyle(
-                fontFamily: 'UrduFont',
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Text(
+                "کورسز",
+                style: TextStyle(
+                  fontFamily: 'UrduFont',
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Row(
-              children: [
-                GestureDetector(
-                  child: SvgPicture.asset(
-                    'assets/images/magnifier.svg',
-                    color: Colors.black,
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    child: SvgPicture.asset(
+                      'assets/images/magnifier.svg',
+                      color: Colors.black,
+                    ),
+                    onTap: () {},
                   ),
-                  onTap: () {},
-                ),
-                const SizedBox(width: 20),
-                GestureDetector(
-                  child: SvgPicture.asset(
-                    'assets/images/bell.svg',
-                    color: Colors.black,
+                  const SizedBox(width: 20),
+                  GestureDetector(
+                    child: SvgPicture.asset(
+                      'assets/images/bell.svg',
+                      color: Colors.black,
+                    ),
+                    onTap: () {},
                   ),
-                  onTap: () {},
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -108,12 +111,13 @@ class _CoursesPage_TabbarState extends State<CoursesPage_Tabbar> {
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
-                tabs: [
+                tabs: const [
 
-                  const Tab(text: "تمام کورسز"),
-                  const Tab(text: "مکمل"),
 
-                  const Tab(text: "جاری ہے۔"),
+                  Tab(text: "تمام کورسز"),
+                  Tab(text: "مکمل"),
+
+                  Tab(text: "جاری ہے۔"),
 
                 ],
               ),

@@ -32,7 +32,7 @@ class _Resources_TabBarState extends State<Resources_TabBar> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -51,7 +51,7 @@ class _Resources_TabBarState extends State<Resources_TabBar> {
                     ),
                     GestureDetector(
                       child:
-                          const Icon(Icons.arrow_forward, color: Colors.black),
+                      const Icon(Icons.arrow_forward, color: Colors.black),
                       onTap: () {
                         // Add your navigation logic here
                       },
@@ -142,16 +142,7 @@ class _Resources_TabBarState extends State<Resources_TabBar> {
                   const Tab(text: "پی ڈی ایف فائلیں۔"),
                 ],
               ),
-              Positioned(
-                bottom: 4,
-                left: 4,
-                child: _curvedBorderContainer(Color(0xff9AC9C2), 170, 5.0),
-              ),
-              Positioned(
-                bottom: 4,
-                left: 185,
-                child: _curvedBorderContainer(Color(0xffF7DE8D), 173, 5.0),
-              ),
+
             ],
           ),
           const Expanded(
@@ -168,44 +159,4 @@ class _Resources_TabBarState extends State<Resources_TabBar> {
     );
   }
 
-  Widget _curvedBorderContainer(Color color, double width, double height) {
-    return CustomPaint(
-      size: Size(width, height),
-      painter: CurvedEndsPainter(color, width),
-    );
-  }
-}
-
-class CurvedEndsPainter extends CustomPainter {
-  final Color color;
-  final double tabWidth;
-
-  CurvedEndsPainter(this.color, this.tabWidth);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0;
-
-    const double maxRadius = 15;
-    final double radius = (tabWidth > 2 * maxRadius) ? maxRadius : tabWidth / 2;
-
-    final Path path = Path()
-      ..moveTo(radius, size.height)
-      ..lineTo(size.width - radius, size.height)
-      ..arcToPoint(Offset(size.width, size.height - radius),
-          radius: const Radius.circular(15), clockwise: false)
-      ..moveTo(1, size.height - radius)
-      ..arcToPoint(Offset(radius, size.height),
-          radius: const Radius.circular(15), clockwise: false);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
 }

@@ -131,7 +131,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         break;
     }
 
-    return Text(text, style: style, textAlign: TextAlign.left);
+    return Text(text, style: style, textAlign: TextAlign.right);
   }
 
   mainData() {
@@ -156,9 +156,15 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            interval: 1,
+            getTitlesWidget: leftTitleWidgets,
+            reservedSize: 45,
+          ),
         ),
+
         topTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
@@ -171,13 +177,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
           ),
         ),
         leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            getTitlesWidget: leftTitleWidgets,
-            reservedSize: 55,
-          ),
+          sideTitles: SideTitles(showTitles: false),
         ),
+
+
       ),
       borderData: FlBorderData(
         show: true,
@@ -244,6 +247,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
           ),
         ),
         leftTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+
+        topTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        rightTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
             getTitlesWidget: leftTitleWidgets,
@@ -251,12 +261,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             interval: 1,
           ),
         ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
+
       ),
       borderData: FlBorderData(
         show: true,

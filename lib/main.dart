@@ -12,6 +12,8 @@ import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
 import 'package:lhw/Mobile_HomePage/Courses_SearchDropDown.dart';
 import 'package:lhw/Mobile_HomePage/Courses_tabbar.dart';
 import 'package:lhw/Mobile_HomePage/Search_DropDown.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20openview%202.dart';
@@ -23,6 +25,7 @@ import 'package:lhw/Settings/SettingsPage.dart';
 import 'package:lhw/navy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'Login_SignUp/Login.dart';
 import 'Mobile_HomePage/home_page.dart';
 
 void main() async {
@@ -58,7 +61,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: const Custom_NavBar(),
+      home: const LessonOption20(),
     );
   }
 }

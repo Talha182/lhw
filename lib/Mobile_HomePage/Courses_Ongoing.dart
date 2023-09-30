@@ -20,7 +20,7 @@ class _OnGoingCoursesState extends State<OnGoingCourses> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20, left: 8, right: 8),
+            padding: const EdgeInsets.only(top: 20, left: 5, right: 5),
             child: ListView(
               children: <Widget>[
                 const Text(
