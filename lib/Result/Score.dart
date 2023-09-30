@@ -196,11 +196,7 @@ class _ScoreState extends State<Score> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CustomPaint(
-                    painter: BorderPainter(
-                        borderColor:
-                            const Color(0xff9AC9C2)), // Change color as desired
-                    child: GestureDetector(
+                  GestureDetector(
                       onTap: () {
                         showCustomDialog();
                       },
@@ -208,94 +204,111 @@ class _ScoreState extends State<Score> {
                         width: 170,
                         height: 185,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xff9AC9C2).withOpacity(0.4)),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xff9AC9C2)
+                        ),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 10),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.check,
-                                      color: Color(0xff9AC9C2),
-                                      size: 14,
+                          padding: EdgeInsets.only(bottom: 4),
+                          child: Container(
+                            width: 170,
+                            height: 185,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color(0xffE3EEED)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 10),
+                              child: Column(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Container(
+                                      width: 20,
+                                      height: 20,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.white),
+                                      child: const Center(
+                                        child: Icon(
+                                          Icons.check,
+                                          color: Color(0xff9AC9C2),
+                                          size: 14,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  const Text(
+                                    "Lorem Ipsum Sit Dolor؟",
+                                    style: TextStyle(fontSize: 14),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  const Text(
+                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                    style: TextStyle(fontSize: 16),
+                                    textAlign: TextAlign.start,
+                                  )
+                                ],
                               ),
-                              const Text(
-                                "Lorem Ipsum Sit Dolor؟",
-                                style: TextStyle(fontSize: 14),
-                                textAlign: TextAlign.justify,
-                              ),
-                              const Text(
-                                "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                style: TextStyle(fontSize: 16),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+
                   const SizedBox(width: 10),
-                  CustomPaint(
-                    painter: BorderPainter(
-                        borderColor:
-                            const Color(0xff9AC9C2)), // Change color as desired
-                    child: GestureDetector(
-                      onTap: (){
-                        showCustomDialog();
-                      },
-                      child: Container(
-                        width: 170,
-                        height: 185,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xff9AC9C2).withOpacity(0.4)),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 10, right: 10, top: 10),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.check,
-                                      color: Color(0xff9AC9C2),
-                                      size: 14,
+                  GestureDetector(
+                    onTap: () {
+                      showCustomDialog();
+                    },
+                    child: Container(
+                      width: 170,
+                      height: 185,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xff9AC9C2)
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 4),
+                        child: Container(
+                          width: 170,
+                          height: 185,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xffE3EEED)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10),
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.check,
+                                        color: Color(0xff9AC9C2),
+                                        size: 14,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const Text(
-                                "Lorem Ipsum Sit Dolor؟",
-                                style: TextStyle(fontSize: 14),
-                                textAlign: TextAlign.justify,
-                              ),
-                              const Text(
-                                "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                style: TextStyle(fontSize: 16),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
+                                const Text(
+                                  "Lorem Ipsum Sit Dolor؟",
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const Text(
+                                  "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                  style: TextStyle(fontSize: 16),
+                                  textAlign: TextAlign.start,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -309,106 +322,118 @@ class _ScoreState extends State<Score> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CustomPaint(
-                    painter: BorderPainter(
-                        borderColor:
-                            const Color(0xff9AC9C2)), // Change color as desired
-                    child: GestureDetector(
-                      onTap: (){
-                        showCustomDialog();
-                      },
-                      child: Container(
-                        width: 170,
-                        height: 185,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xff9AC9C2).withOpacity(0.4)),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 10, right: 10, top: 10),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.check,
-                                      color: Color(0xff9AC9C2),
-                                      size: 14,
+                  GestureDetector(
+                    onTap: () {
+                      showCustomDialog();
+                    },
+                    child: Container(
+                      width: 170,
+                      height: 185,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xff9AC9C2)
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 4),
+                        child: Container(
+                          width: 170,
+                          height: 185,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xffE3EEED)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10),
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.check,
+                                        color: Color(0xff9AC9C2),
+                                        size: 14,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const Text(
-                                "Lorem Ipsum Sit Dolor؟",
-                                style: TextStyle(fontSize: 14),
-                                textAlign: TextAlign.justify,
-                              ),
-                              const Text(
-                                "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                style: TextStyle(fontSize: 16),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
+                                const Text(
+                                  "Lorem Ipsum Sit Dolor؟",
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const Text(
+                                  "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                  style: TextStyle(fontSize: 16),
+                                  textAlign: TextAlign.start,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  CustomPaint(
-                    painter: BorderPainter(
-                        borderColor:
-                            const Color(0xff9AC9C2)), // Change color as desired
-                    child: GestureDetector(
-                      onTap: (){
-                        showCustomDialog();
-                      },
-                      child: Container(
-                        width: 170,
-                        height: 185,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xff9AC9C2).withOpacity(0.4)),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 10, right: 10, top: 10),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.check,
-                                      color: Color(0xff9AC9C2),
-                                      size: 14,
+                  GestureDetector(
+                    onTap: () {
+                      showCustomDialog();
+                    },
+                    child: Container(
+                      width: 170,
+                      height: 185,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xff9AC9C2)
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 4),
+                        child: Container(
+                          width: 170,
+                          height: 185,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xffE3EEED)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10),
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.check,
+                                        color: Color(0xff9AC9C2),
+                                        size: 14,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const Text(
-                                "Lorem Ipsum Sit Dolor؟",
-                                style: TextStyle(fontSize: 14),
-                                textAlign: TextAlign.justify,
-                              ),
-                              const Text(
-                                "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                style: TextStyle(fontSize: 16),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
+                                const Text(
+                                  "Lorem Ipsum Sit Dolor؟",
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const Text(
+                                  "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                  style: TextStyle(fontSize: 16),
+                                  textAlign: TextAlign.start,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -422,64 +447,66 @@ class _ScoreState extends State<Score> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CustomPaint(
-                    painter: BorderPainter(
-                        borderColor:
-                            const Color(0xff9AC9C2)), // Change color as desired
-                    child: GestureDetector(
-                      onTap: (){
-                        showCustomDialog();
-                      },
-                      child: Container(
-                        width: 170,
-                        height: 185,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xff9AC9C2).withOpacity(0.4)),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 10, right: 10, top: 10),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.check,
-                                      color: Color(0xff9AC9C2),
-                                      size: 14,
+                  GestureDetector(
+                    onTap: () {
+                      showCustomDialog();
+                    },
+                    child: Container(
+                      width: 170,
+                      height: 185,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xff9AC9C2)
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 4),
+                        child: Container(
+                          width: 170,
+                          height: 185,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xffE3EEED)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10),
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.check,
+                                        color: Color(0xff9AC9C2),
+                                        size: 14,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const Text(
-                                "Lorem Ipsum Sit Dolor؟",
-                                style: TextStyle(fontSize: 14),
-                                textAlign: TextAlign.justify,
-                              ),
-                              const Text(
-                                "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                style: TextStyle(fontSize: 16),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
+                                const Text(
+                                  "Lorem Ipsum Sit Dolor؟",
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const Text(
+                                  "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                  style: TextStyle(fontSize: 16),
+                                  textAlign: TextAlign.start,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  CustomPaint(
-                    painter: BorderPainter(
-                        borderColor:
-                            const Color(0xffFB6262)), // Change color as desired
-                    child: GestureDetector(
+                    GestureDetector(
                       onTap: (){
                         showCustomDialog();
                       },
@@ -487,46 +514,56 @@ class _ScoreState extends State<Score> {
                         width: 170,
                         height: 185,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xffFB6262).withOpacity(0.4)),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xffFB6262)
+                        ),
                         child: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 10, right: 10, top: 10),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.close,
-                                      color: Color(0xffFB6262),
-                                      size: 14,
+                          padding: EdgeInsets.only(bottom: 4),
+                          child: Container(
+                            width: 170,
+                            height: 185,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: const Color(0xffFAD5D5)),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10, top: 10),
+                              child: Column(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Container(
+                                      width: 20,
+                                      height: 20,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.white),
+                                      child: const Center(
+                                        child: Icon(
+                                          Icons.close,
+                                          color: Color(0xffFB6262),
+                                          size: 14,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  const Text(
+                                    "Lorem Ipsum Sit Dolor؟",
+                                    style: TextStyle(fontSize: 14),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  const Text(
+                                    "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
+                                    style: TextStyle(fontSize: 16),
+                                    textAlign: TextAlign.start,
+                                  )
+                                ],
                               ),
-                              const Text(
-                                "Lorem Ipsum Sit Dolor؟",
-                                style: TextStyle(fontSize: 14),
-                                textAlign: TextAlign.justify,
-                              ),
-                              const Text(
-                                "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo",
-                                style: TextStyle(fontSize: 16),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
               const SizedBox(
