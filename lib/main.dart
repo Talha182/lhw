@@ -23,6 +23,7 @@ import 'package:lhw/Result/Presentation.dart';
 import 'package:lhw/Result/Score.dart';
 import 'package:lhw/Settings/SettingsPage.dart';
 import 'package:lhw/navy.dart';
+import 'package:lhw/splash/splash.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'Login_SignUp/Login.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  Score(),
+      home:  SplashScreen(),
     );
   }
 }
