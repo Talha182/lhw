@@ -8,16 +8,16 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFEF1F9),
+      backgroundColor: const Color(0xffFEF1F9),
     body: GestureDetector(
     onHorizontalDragEnd: (DragEndDetails details) {
     if (details.primaryVelocity! > 0) {
     // Swiped from left to right. Adjust as needed.
-    Navigator.push(context, MaterialPageRoute(builder: (context) => OnboardingScreen())); // Replace `NextScreen` with the actual target screen's class name
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const OnboardingScreen())); // Replace `NextScreen` with the actual target screen's class name
     }
     },
         child: Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             top: 80,
           ),
           child: Stack(
@@ -30,16 +30,16 @@ class SplashScreen extends StatelessWidget {
                       Container(
                         width: 60,
                         height: 60,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Color(0xffFE8BD1)),
                         child: Center(
                           child: SvgPicture.asset("assets/images/cross.svg"),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         "ایل ایچ ڈبلیو",
                         style: TextStyle(fontFamily: "UrduType", fontSize: 30),
                       )

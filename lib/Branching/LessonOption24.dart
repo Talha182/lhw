@@ -76,7 +76,7 @@ class _LessonOption24State extends State<LessonOption24> {
       }
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
@@ -94,7 +94,7 @@ class _LessonOption24State extends State<LessonOption24> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -104,45 +104,53 @@ class _LessonOption24State extends State<LessonOption24> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
+            end: const Alignment(0, -0.2),
             colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
+              const Color(0xff80B8FB).withOpacity(0.3),
               Colors.transparent,
             ],
           ),
         ),
         child: Stack(children: [
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 Row(
                   children: [
                     InkWell(
                       onTap: () {},
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         size: 30,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Expanded(
-                      child: new LinearPercentIndicator(
-                        animation: true,
-                        animationDuration: 400,
-                        lineHeight: 10.0,
-                        percent: 0.3,
-                        progressColor: Color(0xffFE8BD1),
-                        backgroundColor: Colors.white,
-                        clipLinearGradient: true,
-                        barRadius: Radius.circular(20),
+                      child: SizedBox(
+                        child: TweenAnimationBuilder(
+                          tween: Tween<double>(
+                              begin: 0, end: 2.2),
+                          duration: const Duration(milliseconds: 400),
+                          builder:
+                              (BuildContext context, double value, Widget? child) {
+                            return LinearPercentIndicator(
+                              lineHeight: 8.0,
+                              percent: 1,
+                              backgroundColor: Colors.white,
+                              progressColor: const Color(0xffFE8BD1),
+                              barRadius: const Radius.circular(10),
+                            );
+                          },
+                        ),
                       ),
-                    ),                ],
+                    )
+                  ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 10,bottom: 10),
+                  padding: const EdgeInsets.only(right: 10,bottom: 10),
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: SvgPicture.asset(
@@ -167,7 +175,7 @@ class _LessonOption24State extends State<LessonOption24> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Container(
                             width: double.infinity,
                             height: 160,
@@ -187,24 +195,24 @@ class _LessonOption24State extends State<LessonOption24> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Text(
                             questions[questionIndex].question,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontFamily: "UrduType", fontSize: 22),
+                            style: const TextStyle(fontFamily: "UrduType", fontSize: 22),
                           ),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xffFE8BD1),
+                            backgroundColor: const Color(0xffFE8BD1),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            minimumSize: Size(150, 37),
+                            minimumSize: const Size(150, 37),
                           ),
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             'اگلے',
                             style: TextStyle(
                               fontFamily: 'UrduType',
@@ -217,10 +225,10 @@ class _LessonOption24State extends State<LessonOption24> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   "بہترین آپشن کا انتخاب کریں۔",
                   style: TextStyle(fontFamily: "UrduType", fontSize: 23),
                 ),
@@ -228,7 +236,7 @@ class _LessonOption24State extends State<LessonOption24> {
                   children: List.generate(
                     questions[questionIndex].options.length,
                         (index) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: QuizCard(
                         text: questions[questionIndex].options[index],
                         ontap: () => updateQuestion(
@@ -243,7 +251,7 @@ class _LessonOption24State extends State<LessonOption24> {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Divider(
                   height: 1,
                   thickness: 1,
@@ -251,15 +259,15 @@ class _LessonOption24State extends State<LessonOption24> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffFE8BD1),
+                    backgroundColor: const Color(0xffFE8BD1),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    minimumSize: Size(150, 37),
+                    minimumSize: const Size(150, 37),
                   ),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'جاری رہے',
                     style: TextStyle(
                       fontFamily: 'UrduType',
@@ -275,10 +283,10 @@ class _LessonOption24State extends State<LessonOption24> {
               bottom: 90, // Adjust as needed
               right: 15, // Adjust as needed
               child: CircleAvatar(
-                backgroundColor: Color(0xffF6B3D0),
+                backgroundColor: const Color(0xffF6B3D0),
                 radius: 30,
                 child: Padding(
-                    padding: EdgeInsets.only(bottom: 2),
+                    padding: const EdgeInsets.only(bottom: 2),
                     child: SvgPicture.asset(
                       "assets/images/samina_instructor.svg",
                       fit: BoxFit.fill,
@@ -325,7 +333,7 @@ class QuizCard extends StatelessWidget {
             color: color,
           ),
           child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: Row(
@@ -341,12 +349,12 @@ class QuizCard extends StatelessWidget {
                           : Colors.transparent,
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       text,
                       textAlign: TextAlign.justify,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Color(0xff7A7D84),
                         fontFamily: 'UrduType',

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/Onboarding.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
+import 'package:lhw/splash/splash.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -174,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: () {
-                    Get.to(() => const OnboardingScreen());
+                    Get.to(() => const SplashScreen());
                   },
                   child: const Text(
                     'لاگ ان کریں',
