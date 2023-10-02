@@ -40,7 +40,54 @@ var items = [
 ];
 String? selectedValue;
 
+
 class _HomePageState extends State<HomePage> {
+  bool showFirstMessage = false;
+  bool showSecondMessage = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Show first message after 3 seconds
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        setState(() {
+          showFirstMessage = true;
+        });
+
+        // Hide first message after 5 seconds
+        Future.delayed(const Duration(seconds: 5), () {
+          if (mounted) {
+            setState(() {
+              showFirstMessage = false;
+            });
+          }
+        });
+      }
+    });
+
+    // Show second message after a minute
+    Future.delayed(const Duration(minutes: 1), () {
+      if (mounted) {
+        setState(() {
+          showSecondMessage = true;
+        });
+
+        // Hide second message after 5 seconds
+        Future.delayed(const Duration(seconds: 5), () {
+          if (mounted) {
+            setState(() {
+              showSecondMessage = false;
+            });
+          }
+        });
+      }
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -1125,6 +1172,40 @@ class _HomePageState extends State<HomePage> {
                         fit: BoxFit.fill,
                       )),
                 )),
+            if (showFirstMessage)
+              Positioned(
+                bottom: 115, // adjust as needed
+                right: 75, // adjust as needed
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: const Text(
+                    'Hello! Need any help?',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+
+            // If `showSecondMessage` is true, show the second message
+            if (showSecondMessage)
+              Positioned(
+                bottom: 150, // adjust as needed
+                right: 60, // adjust as needed
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: const Text(
+                    'Still here? Let me know if you need assistance!',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
           ],
         ));
   }

@@ -6,9 +6,14 @@ import 'package:lhw/Branching/LessonOption24.dart';
 import 'package:lhw/Image_Hotspot/LessonOption26.dart';
 import 'package:lhw/Image_Hotspot/LessonOption27.dart';
 import 'package:lhw/Interactive%20Image/Lesson%20Option%2032.dart';
+import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/Login_SignUp/Onboarding.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
+import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'Mobile_HomePage/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +48,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  Lesson(),
+      home:  Course_DropDown(),
     );
   }
 }

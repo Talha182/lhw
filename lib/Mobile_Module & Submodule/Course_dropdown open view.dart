@@ -13,6 +13,10 @@ class Course_DropDown extends StatefulWidget {
 }
 
 class _Course_DropDownState extends State<Course_DropDown> {
+  int currentUnlockedLevel = 1; // By default, only the first level is unlocked
+
+
+
   void showCustomDialog() {
     Get.dialog(
       Dialog(
@@ -20,7 +24,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
           borderRadius:
               BorderRadius.circular(20.0), // This is the critical line
         ),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 10), // Add this line
+        insetPadding:
+            const EdgeInsets.symmetric(horizontal: 10), // Add this line
         child: ConstrainedBox(
             // Add this widget
             constraints: BoxConstraints(
@@ -96,7 +101,9 @@ class _Course_DropDownState extends State<Course_DropDown> {
                       const Text(
                         "Lorem ipsum dolor sit amet consectetur. بیٹھو arcu sit luctus potenti et ultricies cras. Condimentum nulla quisque et accumsan. Consectetur imperdiet non nunc magnis morbi tortor میں Dictum eget. Vulputate sapien sodales ullamcorper nec tempus viverra.",
                         style: TextStyle(
-                            fontFamily: "UrduType", color: Color(0xff7A7D84),height: 1.2),
+                            fontFamily: "UrduType",
+                            color: Color(0xff7A7D84),
+                            height: 1.2),
                         textAlign: TextAlign.justify,
                       )
                     ],
@@ -106,47 +113,53 @@ class _Course_DropDownState extends State<Course_DropDown> {
                   thickness: 1,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10,right: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.transparent, // Background color
-                          side: const BorderSide(
-                            color: Colors.black, // Border color
-                            width: 1,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent, // Background color
+                            side: const BorderSide(
+                              color: Colors.black, // Border color
+                              width: 1,
+                            ),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(30), // Circular radius
+                            ),
+                            minimumSize: const Size(150, 40),
                           ),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(30), // Circular radius
-                          ),
-                          minimumSize: const Size(150, 40),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                          child:   const Text(
-                              'منسوخ کریں۔',
-                              style: TextStyle(
-                                  fontFamily: "UrduType",
-                                  color: Colors.black,
-                                  fontSize: 15),
-                            )
-                      ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            'منسوخ کریں۔',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Colors.black,
+                                fontSize: 15),
+                          )),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xffFE8BD1),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius:
-                            BorderRadius.circular(30), // Circular radius
+                                BorderRadius.circular(30), // Circular radius
                           ),
                           minimumSize: const Size(150, 40),
                         ),
                         onPressed: () {
-                          Get.to(() => LessonOption26());
+                          Get.to(() => LessonOption26())!.then((value) {
+                            // When returning from LessonOption26, unlock the next level
+                            setState(() {
+                              if (currentUnlockedLevel < 3) {
+                                currentUnlockedLevel++;
+                              }
+                            });
+                          });
                         },
                         child: const Text(
                           'کورس جاری رکھیں',
@@ -160,7 +173,6 @@ class _Course_DropDownState extends State<Course_DropDown> {
                     ],
                   ),
                 ),
-
               ],
             )),
       ),
@@ -251,6 +263,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
               left: 10,
               top: 110,
               child: SvgPicture.asset("assets/images/pencil.svg")),
+
+          //Third button
           Positioned(
               left: 70,
               top: 220,
@@ -264,9 +278,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                     width: 20,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      showCustomDialog();
-                    },
+                    onTap: currentUnlockedLevel >= 3 ? showCustomDialog : null,
                     child: Container(
                       width: 60,
                       height: 60,
@@ -278,10 +290,10 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         child: Container(
                           width: 45,
                           height: 45,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Color(0xffD1D7DC)),
+                          decoration:  BoxDecoration(
+                              shape: BoxShape.circle,    color: currentUnlockedLevel >= 3 ? Color(0xffFF6BC5) : Color(0xffD1D7DC)),
                           child: Center(
-                            child: SvgPicture.asset("assets/images/trophy.svg"),
+                            child: SvgPicture.asset("assets/images/trophy.svg",   color: currentUnlockedLevel >= 3 ? Colors.white : null),
                           ),
                         ),
                       ),
@@ -289,6 +301,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                   )
                 ],
               )),
+          // Second button
           Positioned(
               left: 115,
               top: 330,
@@ -305,14 +318,15 @@ class _Course_DropDownState extends State<Course_DropDown> {
                       child: Container(
                         width: 45,
                         height: 45,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Color(0xffD1D7DC)),
+                        decoration:  BoxDecoration(
+                            shape: BoxShape.circle,    color: currentUnlockedLevel >= 2 ? Color(0xffFF6BC5) : Color(0xffD1D7DC)),
                         child: Center(
                           child: GestureDetector(
-                              onTap: (){
-                                showCustomDialog();
-                              },
-                              child: SvgPicture.asset("assets/images/book.svg")),
+                              onTap: currentUnlockedLevel >= 2
+                                  ? showCustomDialog
+                                  : null,
+                              child:
+                                  SvgPicture.asset("assets/images/book.svg",   color: currentUnlockedLevel >= 2 ? Colors.white : null)),
                         ),
                       ),
                     ),
@@ -338,6 +352,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                   const SizedBox(
                     width: 20,
                   ),
+                  // The pink means it is unlocked (First button)
                   Container(
                     width: 60,
                     height: 60,
@@ -351,14 +366,18 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         child: Container(
                           width: 45,
                           height: 45,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Color(0xffFF6BC5)),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: currentUnlockedLevel >= 1
+                                  ? Color(0xffFF6BC5)
+                                  : Color(0xffD1D7DC)),
                           child: Center(
                             child: GestureDetector(
-                                onTap: (){
-                                  showCustomDialog();
-                                },
-                                child: SvgPicture.asset("assets/images/tick.svg")),
+                                onTap: currentUnlockedLevel >= 1
+                                    ? showCustomDialog
+                                    : null,
+                                child:
+                                    SvgPicture.asset("assets/images/tick.svg",   color: currentUnlockedLevel >= 1 ? Colors.white :null)),
                           ),
                         ),
                       ),

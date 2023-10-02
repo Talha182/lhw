@@ -107,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         _current == 0
                             ? Get.to(() => const Custom_NavBar())
                             : _current == 1
-                                ? Get.to(() => ())
+                                ? Get.to(() => () => Custom_NavBar())
                                 : Get.to(() => LoginScreen());
                       },
                       child: _current == 0
