@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption20 extends StatefulWidget {
   const LessonOption20({super.key});

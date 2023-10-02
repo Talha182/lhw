@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class LessonOption32 extends StatefulWidget {
   const LessonOption32({super.key});
@@ -137,26 +137,24 @@ class _LessonOption32State extends State<LessonOption32> {
                       width: 5,
                     ),
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         child: TweenAnimationBuilder(
                           tween: Tween<double>(
-                              begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
+                              begin: 0, end: 2.2),
                           duration: const Duration(milliseconds: 400),
                           builder:
                               (BuildContext context, double value, Widget? child) {
-                            return StepProgressIndicator(
-                              totalSteps: _totalSteps,
-                              currentStep: value.ceil(),
-                              size: 8,
-                              padding: 0,
-                              selectedColor: const Color(0xffFE8BD1),
-                              unselectedColor: Colors.white,
-                              roundedEdges: const Radius.circular(10),
+                            return LinearPercentIndicator(
+                              lineHeight: 8.0,
+                              percent: 1,
+                              backgroundColor: Colors.white,
+                              progressColor: const Color(0xffFE8BD1),
+                              barRadius: const Radius.circular(10),
                             );
                           },
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               Padding(

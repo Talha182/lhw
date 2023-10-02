@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption26 extends StatefulWidget {
   const LessonOption26({super.key});

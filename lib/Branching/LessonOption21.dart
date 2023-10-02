@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class LessonOption21 extends StatefulWidget {
   @override

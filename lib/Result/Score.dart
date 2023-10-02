@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../Image_Hotspot/LessonOption26.dart';
 
