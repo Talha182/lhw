@@ -946,13 +946,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
-  step_progress_indicator:
-    dependency: "direct main"
-    description:
-      path: "step_progress_indicator-1.0.2"
-      relative: true
-    source: path
-    version: "1.0.2"
   stream_channel:
     dependency: transitive
     description:

@@ -1,28 +1,25 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Branching/LessonOption21.dart';
-import 'package:lhw/Branching/LessonOption24.dart';
-import 'package:lhw/Image_Hotspot/LessonOption26.dart';
-import 'package:lhw/Image_Hotspot/LessonOption27.dart';
-import 'package:lhw/Interactive%20Image/Lesson%20Option%2032.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
-import 'package:lhw/Login_SignUp/Onboarding.dart';
+import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
+import 'package:lhw/Profile/Profile.dart';
+import 'package:lhw/notification/notifications_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'Mobile_HomePage/home_page.dart';
+import 'navy.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Override for HTTP behavior due to certificate issues.
-  HttpOverrides.global = MyHttpOverrides();
-  runApp(const MyApp());
+  runApp(new MaterialApp(
+    home: new MyApp(),
+  ));
 }
-
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -37,6 +34,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  LoginScreen(),
+      home:  Course_DropDown(),
     );
   }
 }

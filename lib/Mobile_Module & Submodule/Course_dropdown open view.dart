@@ -15,22 +15,19 @@ class Course_DropDown extends StatefulWidget {
 class _Course_DropDownState extends State<Course_DropDown> {
   int currentUnlockedLevel = 1; // By default, only the first level is unlocked
 
-
-
-  void showCustomDialog() {
-    Get.dialog(
-      Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(20.0), // This is the critical line
-        ),
-        insetPadding:
-            const EdgeInsets.symmetric(horizontal: 10), // Add this line
-        child: ConstrainedBox(
-            // Add this widget
+  void showCustomDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 10),
+          child: ConstrainedBox(
             constraints: BoxConstraints(
               maxHeight: 365,
-              maxWidth: MediaQuery.of(Get.context!).size.width - 50,
+              maxWidth: MediaQuery.of(context).size.width - 50,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,15 +46,12 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         "پاکستان میں غذائیت کی صورتحال",
                         style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
-                          SvgPicture.asset(
-                            "assets/images/person_card.svg",
-                            color: const Color(0xff685F78),
-                          ),
+                          // Note: SvgPicture.asset requires the flutter_svg package.
+                          // SvgPicture.asset("assets/images/person_card.svg",
+                          //     color: const Color(0xff685F78)),
                           const SizedBox(width: 8),
                           const Text(
                             "12 کوئز",
@@ -71,14 +65,11 @@ class _Course_DropDownState extends State<Course_DropDown> {
                             width: 5,
                             height: 5,
                             decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xff685F78)),
+                                shape: BoxShape.circle, color: Color(0xff685F78)),
                           ),
                           const SizedBox(width: 8),
-                          SvgPicture.asset(
-                            "assets/images/clock.svg",
-                            color: const Color(0xff685F78),
-                          ),
+                          // SvgPicture.asset("assets/images/clock.svg",
+                          //     color: const Color(0xff685F78)),
                           const SizedBox(width: 8),
                           const Text(
                             "01 گھنٹہ 30 منٹ",
@@ -90,9 +81,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 5),
                       const Text(
                         "تفصیل",
                         textDirection: TextDirection.rtl,
@@ -109,50 +98,48 @@ class _Course_DropDownState extends State<Course_DropDown> {
                     ],
                   ),
                 ),
-                const Divider(
-                  thickness: 1,
-                ),
+                const Divider(thickness: 1),
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.transparent, // Background color
-                            side: const BorderSide(
-                              color: Colors.black, // Border color
-                              width: 1,
-                            ),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(30), // Circular radius
-                            ),
-                            minimumSize: const Size(150, 40),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          side: const BorderSide(
+                            color: Colors.black,
+                            width: 1,
                           ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text(
-                            'منسوخ کریں۔',
-                            style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors.black,
-                                fontSize: 15),
-                          )),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: const Size(150, 40),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                        child: const Text(
+                          'منسوخ کریں۔',
+                          style: TextStyle(
+                              fontFamily: "UrduType",
+                              color: Colors.black,
+                              fontSize: 15),
+                        ),
+                      ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xffFE8BD1),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(30), // Circular radius
+                            borderRadius: BorderRadius.circular(30),
                           ),
                           minimumSize: const Size(150, 40),
                         ),
                         onPressed: () {
-                          Get.to(() => LessonOption26())!.then((value) {
+                          Navigator.of(context).pop(); // Close the dialog
+                          Get.to(LessonOption26())!.then((value) {
                             // When returning from LessonOption26, unlock the next level
                             setState(() {
                               if (currentUnlockedLevel < 3) {
@@ -161,6 +148,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                             });
                           });
                         },
+
                         child: const Text(
                           'کورس جاری رکھیں',
                           style: TextStyle(
@@ -174,11 +162,14 @@ class _Course_DropDownState extends State<Course_DropDown> {
                   ),
                 ),
               ],
-            )),
-      ),
-      barrierDismissible: true, // allows dismissing by touching outside
+            ),
+          ),
+        );
+      },
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +269,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                     width: 20,
                   ),
                   GestureDetector(
-                    onTap: currentUnlockedLevel >= 3 ? showCustomDialog : null,
+                    onTap: currentUnlockedLevel >= 3 ? () => showCustomDialog(context) : null,
                     child: Container(
                       width: 60,
                       height: 60,
@@ -322,9 +313,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
                             shape: BoxShape.circle,    color: currentUnlockedLevel >= 2 ? Color(0xffFF6BC5) : Color(0xffD1D7DC)),
                         child: Center(
                           child: GestureDetector(
-                              onTap: currentUnlockedLevel >= 2
-                                  ? showCustomDialog
-                                  : null,
+                              onTap: currentUnlockedLevel >= 2 ? () => showCustomDialog(context) : null,
+
                               child:
                                   SvgPicture.asset("assets/images/book.svg",   color: currentUnlockedLevel >= 2 ? Colors.white : null)),
                         ),
@@ -373,9 +363,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
                                   : Color(0xffD1D7DC)),
                           child: Center(
                             child: GestureDetector(
-                                onTap: currentUnlockedLevel >= 1
-                                    ? showCustomDialog
-                                    : null,
+                                onTap: currentUnlockedLevel >= 1 ? () => showCustomDialog(context) : null,
+
                                 child:
                                     SvgPicture.asset("assets/images/tick.svg",   color: currentUnlockedLevel >= 1 ? Colors.white :null)),
                           ),
