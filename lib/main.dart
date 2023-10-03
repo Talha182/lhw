@@ -6,6 +6,8 @@ import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
 import 'package:lhw/Profile/Profile.dart';
+import 'package:lhw/Reports/Reports_Learning.dart';
+import 'package:lhw/Reports/Resources_Tabbar.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -13,13 +15,13 @@ import 'Mobile_HomePage/home_page.dart';
 import 'navy.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(new MaterialApp(
-    home: new MyApp(),
+  runApp(const MaterialApp(
+    home: MyApp(),
   ));
 }
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -34,7 +36,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  Course_DropDown(),
+      home: const ReportsScreen(),
     );
   }
 }

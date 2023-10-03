@@ -788,17 +788,7 @@ class _TabBarWithPagesState extends State<_TabBarWithPages>
                   const Tab(text: "ٹاپ پرفارمرز"),
                 ],
               ),
-              Positioned(
-                bottom: 4,
-                left: 5,
-                child:
-                    _curvedBorderContainer(const Color(0xff826FE3), 102, 5.0),
-              ),
-              Positioned(
-                bottom: 4,
-                left: 118,
-                child: _curvedBorderContainer(const Color(0xff9AC9C2), 82, 5.0),
-              ),
+              
             ],
           ),
         ],

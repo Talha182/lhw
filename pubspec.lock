@@ -981,10 +981,9 @@ packages:
   syncfusion_flutter_charts:
     dependency: "direct main"
     description:
-      name: syncfusion_flutter_charts
-      sha256: b1c706cea163059ecfe89132ca078f83d31e54cc99ecd1fabe4810e1b1dacc95
-      url: "https://pub.dev"
-    source: hosted
+      path: "syncfusion_flutter_charts-23.1.36"
+      relative: true
+    source: path
     version: "23.1.36"
   syncfusion_flutter_core:
     dependency: transitive
