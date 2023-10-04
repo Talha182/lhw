@@ -383,7 +383,7 @@ class _LessonOption26State extends State<LessonOption26> {
                               child: PhotoView(
                                 imageProvider: const AssetImage('assets/images/LessonOption26.png'),
                                 minScale: PhotoViewComputedScale.contained,
-                                maxScale: PhotoViewComputedScale.covered * 2,
+                                maxScale: PhotoViewComputedScale.contained * 2,
                                 backgroundDecoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
                                   color: Colors.transparent,

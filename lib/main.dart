@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:lhw/Branching/LessonOption21.dart';
 import 'package:lhw/Branching/LessonOption24.dart';
 import 'package:lhw/Branching/LessonOption25.dart';
+import 'package:lhw/Branching/LessonOption33.dart';
 import 'package:lhw/Image_Hotspot/LessonOption26.dart';
+import 'package:lhw/Interactive%20Image/Lesson%20Option%2032.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
@@ -53,7 +55,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  LessonOption26(),
+      home:  LessonOption33(),
     );
   }
 }
