@@ -105,10 +105,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       onPressed: () {
                         _current == 0
-                            ? Get.to(() => const Custom_NavBar())
+                            ? Get.to(() => const Custom_NavBar(),
+                        transition: Transition.fade,
+                        duration: Duration(milliseconds: 400))
                             : _current == 1
-                                ? Get.to(() => () => Custom_NavBar())
-                                : Get.to(() => LoginScreen());
+                                ? Get.to(() => const Custom_NavBar(),
+                            transition: Transition.fade,
+                            duration: Duration(milliseconds: 400))
+                                : Get.to(() => const LoginScreen(),
+                            transition: Transition.fade,
+                            duration: Duration(milliseconds: 400));
                       },
                       child: _current == 0
                           ? const Text(
@@ -145,7 +151,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 _current == 0
                     ? GestureDetector(
                         onTap: () {
-                          Get.to(() => LoginScreen());
+                          Get.to(() => LoginScreen(),transition: Transition.fade,duration: Duration(milliseconds: 400));
                         },
                         child: const Text(
                           'Login',

@@ -824,16 +824,15 @@ class _SeekhnaState extends State<Seekhna> {
                       SizedBox(
                           height: 220,
                           child: SfCartesianChart(
-
                             plotAreaBorderWidth: 0,
                             primaryXAxis: CategoryAxis(
-                                opposedPosition: true,
                                 majorGridLines: MajorGridLines(
                                   width: 0.5,
                                   color: Colors.grey[300],
                                   dashArray: [5, 5],
                                 ),
                                 axisLine: const AxisLine(
+
                                     width: 0.2 ), // Clean x-axis line
                                 majorTickLines: const MajorTickLines(
                                     width: 0), // Hide x-axis tick lines
@@ -856,7 +855,6 @@ class _SeekhnaState extends State<Seekhna> {
                             tooltipBehavior: _tooltip,
                             series: <ChartSeries<_ChartData, String>>[
                               BarSeries<_ChartData, String>(
-
                                   borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(10),
                                     bottomRight: Radius.circular(10),

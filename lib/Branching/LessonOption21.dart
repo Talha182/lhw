@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class LessonOption21 extends StatefulWidget {
@@ -54,8 +55,9 @@ class _LessonOption21State extends State<LessonOption21> {
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
-    if (isAnswered)
+    if (isAnswered) {
       return;
+    }
 
     setState(() {
       this.selectedAnswer = selectedAnswer;
@@ -117,7 +119,9 @@ class _LessonOption21State extends State<LessonOption21> {
                       child: Row(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Get.back();
+                            },
                             child: const Icon(
                               Icons.close,
                               size: 30,

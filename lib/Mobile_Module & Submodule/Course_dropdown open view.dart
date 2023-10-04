@@ -139,7 +139,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop(); // Close the dialog
-                          Get.to(LessonOption26())!.then((value) {
+                          Get.to(LessonOption26(),transition: Transition.fade,duration: Duration(milliseconds: 400))!.then((value) {
                             // When returning from LessonOption26, unlock the next level
                             setState(() {
                               if (currentUnlockedLevel < 3) {
@@ -202,7 +202,9 @@ class _Course_DropDownState extends State<Course_DropDown> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.back();
+                        },
                         child: const Icon(
                           Icons.close,
                           size: 30,

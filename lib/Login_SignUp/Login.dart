@@ -49,7 +49,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      Get.to(() => const SignUpScreen());
+                      Get.to(
+                              () => const SignUpScreen(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 500)
+                      );
                     },
                     child: const Text(
                       "سائن اپ",
@@ -175,7 +179,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: () {
-                    Get.to(() => const SplashScreen());
+                    Get.to(
+                            () => const SplashScreen(),
+                        transition: Transition.fadeIn,
+                        duration: const Duration(milliseconds: 400)
+                    );
                   },
                   child: const Text(
                     'لاگ ان کریں',
@@ -213,7 +221,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],),
                   GestureDetector(
                     onTap: (){
-                      Get.to(() => const ForgotPasswordScreen());
+                      Get.to(
+                              () => const ForgotPasswordScreen(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 400)
+                      );
                     },
                     child: const Text(
                       "پاسورڈ بھول گے؟",

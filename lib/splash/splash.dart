@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lhw/Login_SignUp/Onboarding.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -9,13 +11,17 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffFEF1F9),
-    body: GestureDetector(
-    onHorizontalDragEnd: (DragEndDetails details) {
-    if (details.primaryVelocity! > 0) {
-    // Swiped from left to right. Adjust as needed.
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const OnboardingScreen())); // Replace `NextScreen` with the actual target screen's class name
-    }
-    },
+      body: GestureDetector(
+        onHorizontalDragEnd: (DragEndDetails details) {
+          if (details.primaryVelocity! > 0 || details.primaryVelocity! > -180) {
+            // Swiped from left to right. Adjust as needed.
+            Get.to(
+                    () => const OnboardingScreen(),
+                transition: Transition.fade,
+                duration: const Duration(milliseconds: 400)
+            );
+          }
+        },
         child: Padding(
           padding: const EdgeInsets.only(
             top: 80,

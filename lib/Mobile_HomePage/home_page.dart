@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         });
 
         // Hide first message after 5 seconds
-        Future.delayed(const Duration(seconds: 5), () {
+        Future.delayed(const Duration(seconds: 7), () {
           if (mounted) {
             setState(() {
               showFirstMessage = false;
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                           (int index) {
                             return AnimationConfiguration.staggeredList(
                               position: index,
-                              duration: const Duration(milliseconds: 400),
+                              duration: const Duration(milliseconds: 300),
                               child: SlideAnimation(
                                 verticalOffset: 50.0,
                                 child: FadeInAnimation(
@@ -327,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                                                       GestureDetector(
                                                         onTap: () {
                                                           Get.to(() =>
-                                                              const LessonPageTabBar());
+                                                              const LessonPageTabBar(),transition: Transition.fade,duration: Duration(milliseconds: 300));
                                                         },
                                                         child: const Row(
                                                           mainAxisSize:
@@ -1160,7 +1160,7 @@ class _HomePageState extends State<HomePage> {
             ]),
             // Circle at bottom left
             Positioned(
-                bottom: 70, // Adjust as needed
+                bottom: 80, // Adjust as needed
                 right: 20, // Adjust as needed
                 child: CircleAvatar(
                   backgroundColor: const Color(0xffF6B3D0),
@@ -1175,7 +1175,7 @@ class _HomePageState extends State<HomePage> {
             if (showFirstMessage)
               Positioned(
                 bottom: 115, // adjust as needed
-                right: 75, // adjust as needed
+                right: 85, // adjust as needed
                 child: Container(
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
@@ -1193,8 +1193,9 @@ class _HomePageState extends State<HomePage> {
             if (showSecondMessage)
               Positioned(
                 bottom: 150, // adjust as needed
-                right: 60, // adjust as needed
+                right: 70, // adjust as needed
                 child: Container(
+                  width: 250,
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     color: Colors.white,

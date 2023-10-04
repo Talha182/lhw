@@ -228,7 +228,6 @@ class _ModulePageState extends State<ModulePage> {
               style: TextStyle(fontFamily: 'UrduType', fontSize: 25),
               textAlign: TextAlign.right,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -344,7 +343,9 @@ class _ModulePageState extends State<ModulePage> {
                 ...columnPadded([
                   Module_DashBoard_Card(
                     onClick: () {
-                      Get.to(() => const Course_DropDown());
+                      Get.to(() => const Course_DropDown(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 300));
                     },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image 8.png',
@@ -352,36 +353,56 @@ class _ModulePageState extends State<ModulePage> {
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
+                    onClick: () {
+                      Get.to(() => const Course_DropDown(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 300));
+                    },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image9.png',
                     cardText:
                         'نوعمر لڑکیوں، حاملہ اور دودھ پلانے والی ماؤں کی غذائی ضروریات',
                     showProgressBar: false,
-                    onClick: () {},
                   ),
                   Module_DashBoard_Card(
-                    onClick: () {},
+                    onClick: () {
+                      Get.to(() => const Course_DropDown(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 300));
+                    },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image10.png',
                     cardText: 'حمل کی غذائی ضروریات',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
-                    onClick: () {},
+                    onClick: () {
+                      Get.to(() => const Course_DropDown(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 300));
+                    },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image11.png',
                     cardText: 'آئرن کی کمی/انیمیا',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
-                    onClick: () {},
+                    onClick: () {
+                      Get.to(() => const Course_DropDown(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 300));
+                    },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image12.png',
                     cardText: 'وٹامن اے کی کمی',
                     showProgressBar: false,
                   ),
                   Module_DashBoard_Card(
-                    onClick: () {},
+                    onClick: () {
+                      Get.to(() => const Course_DropDown(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 300));
+                    },
                     progressValue: progressValue,
                     imagePath: 'assets/images/image13.png',
                     cardText: 'آیوڈین کی کمی',

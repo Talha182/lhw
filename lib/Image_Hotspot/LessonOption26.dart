@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:photo_view/photo_view.dart';
 
 class LessonOption26 extends StatefulWidget {
   const LessonOption26({super.key});
@@ -15,84 +16,10 @@ class _LessonOption26State extends State<LessonOption26> {
   bool isSelected = false;
   bool isAnswered = false;
 
-  int _current = 0;
-  int _totalSteps = 100;
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
 
-  final List<Question> questions = [
-    Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
-    ),
-    Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
-    ),
-    // Question(
-    //     question: 'What is the currency of Japan?',
-    //     options: ['Yen', 'Dollar', 'Euro'],
-    //     correctAnswer: 'Yen',
-    //     correctExplanation:
-    //         'The yen is the official currency of Japan and is used throughout the country.',
-    //     incorrectExplanation:
-    //         "The correct answer is Yen, which is the currency of the Japan"),
-    // You can add more questions here, in the same format.
-  ];
-
-  List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
-
-  // Update the 'updateQuestion' method
-  void updateQuestion(String selectedAnswer, int index) {
-    if (isAnswered) return;
-    setState(() {
-      this.selectedAnswer = selectedAnswer;
-      isAnswered = true;
-      isSelected = true;
-      selectedOptionIndex = index; // Add this line
-      if (selectedAnswer == questions[questionIndex].correctAnswer) {
-        optionColors[index] = Colors.green[100]!;
-      } else {
-        optionColors[index] = Colors.red[100]!;
-      }
-    });
-
-    Future.delayed(const Duration(seconds: 2), () {
-      if (questionIndex < questions.length - 1) {
-        setState(() {
-          questionIndex++;
-          _current = ((questionIndex / questions.length) * 1).toInt();
-          optionColors = [Colors.white, Colors.white, Colors.white];
-          isAnswered = false; // Reset for the next question
-          isSelected = false; // Reset isSelected
-          selectedOptionIndex = null; // Reset selectedOptionIndex
-        });
-      }
-    });
-  }
 
   void showCustomDialog() {
     Get.dialog(
@@ -357,7 +284,6 @@ class _LessonOption26State extends State<LessonOption26> {
 
   @override
   Widget build(BuildContext context) {
-    _totalSteps = questions.length; // Add this line
 
     return Scaffold(
       appBar: PreferredSize(
@@ -431,13 +357,13 @@ class _LessonOption26State extends State<LessonOption26> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
+                  const Padding(
+                    padding: EdgeInsets.all(10),
                     child: Text(
-                      questions[questionIndex].question,
-                      textAlign: TextAlign.center,
+                      "آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔"
+                      ,textAlign: TextAlign.center,
                       style:
-                          const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                          TextStyle(fontFamily: "UrduType", fontSize: 20),
                     ),
                   ),
                   const SizedBox(
@@ -454,10 +380,16 @@ class _LessonOption26State extends State<LessonOption26> {
                         Positioned.fill(
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                'assets/images/LessonOption26.png',
-                                fit: BoxFit.cover,
-                              )),
+                              child: PhotoView(
+                                imageProvider: const AssetImage('assets/images/LessonOption26.png'),
+                                minScale: PhotoViewComputedScale.contained,
+                                maxScale: PhotoViewComputedScale.covered * 2,
+                                backgroundDecoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                          ),
                         ),
                         Positioned(
                             top: 10, // Adjust as needed
@@ -516,7 +448,6 @@ class _LessonOption26State extends State<LessonOption26> {
                             right: 10, // Adjust as needed
                             child: GestureDetector(
                                 onTap: () {
-                                  showCustomDialog3();
                                 },
                                 child: SvgPicture.asset(
                                   "assets/images/full_screen.svg",
@@ -582,88 +513,7 @@ class _LessonOption26State extends State<LessonOption26> {
   }
 }
 
-class QuizCard extends StatelessWidget {
-  final String text;
-  final Function ontap;
-  final Color color;
-  final bool isCorrect;
-  final bool isSelected;
-  final bool isAnswered;
-  final bool isOptionSelected; // Define this parameter
 
-  const QuizCard({
-    Key? key,
-    required this.text,
-    required this.ontap,
-    this.color = const Color(0xffF2F2F2),
-    this.isCorrect = false,
-    this.isSelected = false,
-    this.isAnswered = false,
-    this.isOptionSelected = false, // Initialize this parameter
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: isAnswered ? null : () => ontap(),
-      child: Container(
-        width: 380,
-        height: 80,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black87.withOpacity(0.1)),
-          borderRadius: BorderRadius.circular(10),
-          color: color,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Row(
-            children: [
-              Container(
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black87.withOpacity(0.2)),
-                  shape: BoxShape.circle,
-                  color: isOptionSelected // Use the parameter here
-                      ? (isCorrect ? Colors.green : Colors.red)
-                      : Colors.transparent,
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  text,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Color(0xff7A7D84),
-                    fontFamily: 'UrduType',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Question {
-  final String question;
-  final List<String> options;
-  final String correctAnswer;
-  final String correctExplanation; // Correct explanation
-  final String incorrectExplanation; // Incorrect explanation
-
-  Question({
-    required this.question,
-    required this.options,
-    required this.correctAnswer,
-    required this.correctExplanation,
-    required this.incorrectExplanation,
-  });
-}
 
 class ArrowContainer extends StatelessWidget {
   @override

@@ -14,7 +14,7 @@ class LessonOption25 extends StatefulWidget {
 class _LessonOption25State extends State<LessonOption25> {
   bool isSelected = false;
   bool isAnswered = false;
-
+  bool videoFinished = false;
   int _current = 0;
   int _totalSteps = 100;
   int questionIndex = 0;
@@ -99,10 +99,22 @@ class _LessonOption25State extends State<LessonOption25> {
   void initState() {
     super.initState();
     flickManager = FlickManager(
-      videoPlayerController:
-      VideoPlayerController.asset("assets/videos/demo.mp4"),
+      videoPlayerController: VideoPlayerController.asset("assets/videos/demo.mp4"),
     );
+
+    flickManager.flickVideoManager!.videoPlayerController?.addListener(() {
+      final currentPosition = flickManager.flickVideoManager?.videoPlayerController?.value.position;
+      final videoDuration = flickManager.flickVideoManager?.videoPlayerController?.value.duration;
+
+      if (currentPosition != null && videoDuration != null && currentPosition >= videoDuration) {
+        setState(() {
+          videoFinished = true;
+        });
+      }
+    });
   }
+
+
 
   @override
   void dispose() {
@@ -250,7 +262,7 @@ class _LessonOption25State extends State<LessonOption25> {
                           ),
                           minimumSize: const Size(150, 37),
                         ),
-                        onPressed: () {},
+                        onPressed: videoFinished ? () {} : null,
                         child: const Text(
                           'جاری رہے',
                           style: TextStyle(

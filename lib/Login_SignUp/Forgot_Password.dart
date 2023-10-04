@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:get/get.dart';
+import 'package:lhw/Login_SignUp/Login.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -114,7 +115,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     ),
                     minimumSize: const Size(150, 37),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(
+                            () => const LoginScreen(),
+                        transition: Transition.fade,
+                        duration: const Duration(milliseconds: 400)
+                    );
+                  },
                   child: const Text(
                     'لنک بھیجیں۔',
                     style: TextStyle(

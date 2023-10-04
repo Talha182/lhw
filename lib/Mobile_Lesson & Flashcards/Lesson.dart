@@ -160,7 +160,7 @@ class _LessonState extends State<Lesson> {
                               minimumSize: const Size(150, 37),
                             ),
                             onPressed: () {
-                              Get.to(() => const Course_DropDown());
+                              Get.to(() => const ModulePage(),transition: Transition.fade,duration: Duration(milliseconds: 400));
                             },
                             child: const Text(
                               'سیکھنا شروع کریں۔',
@@ -220,7 +220,7 @@ class _LessonState extends State<Lesson> {
                             size: 20,
                           ),
                           onTap: () {
-                            Get.to(() => const ModulePage());
+                            Get.to(() => const ModulePage(),transition: Transition.fade,duration: Duration(milliseconds: 400));
                           },
                         ),
                       ],
@@ -478,6 +478,7 @@ class _LessonState extends State<Lesson> {
             bottom: 150, // adjust as needed
             right: 60, // adjust as needed
             child: Container(
+              height: 200,
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: Colors.white,
