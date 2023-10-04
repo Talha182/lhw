@@ -13,6 +13,7 @@ import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
+import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Profile/Profile.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/Reports/Resources_Tabbar.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home:  LessonOption33(),
+      home:  const Presentation(),
     );
   }
 }
