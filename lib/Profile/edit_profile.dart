@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
+import 'package:get/get.dart';
+import 'package:lhw/Profile/Profile.dart';
 
 class ProfileEdit extends StatefulWidget {
   ProfileEdit({Key? key}) : super(key: key);
@@ -10,19 +13,27 @@ class ProfileEdit extends StatefulWidget {
 
 class _ProfileEditState extends State<ProfileEdit> {
   DateTime selectedDate = DateTime.now();
-
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+    DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
+      initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
+
+    if (pickedDate != null) {
+      dobController.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
+    }
   }
+
+
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nicController = TextEditingController();
+  TextEditingController serviceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +130,7 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
+              controller: firstNameController,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
               decoration: InputDecoration(
@@ -171,6 +183,8 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
+              controller: lastNameController,
+
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
               decoration: InputDecoration(
@@ -222,36 +236,37 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
             ),
-            TextField(
-              textAlign: TextAlign.right,
-              textDirection: TextDirection.rtl,
-              readOnly: true, // make it read-only
-              onTap: () => _selectDate(context), // show date picker when tapped
-              decoration: InputDecoration(
-                hintText: "DD/MM/YY",
-                hintStyle: const TextStyle(fontSize: 13),
-                contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Color(0xffCDD1E0),
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Color(0xffCDD1E0),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Color(0xffCDD1E0),
-                  ),
-                ),
+        TextField(
+          controller: dobController,
+          textAlign: TextAlign.right,
+          textDirection: TextDirection.rtl,
+          readOnly: true,
+          onTap: () => _selectDate(context),
+          decoration: InputDecoration(
+            hintText: "DD/MM/YY",
+            hintStyle: const TextStyle(fontSize: 13),
+            contentPadding: const EdgeInsets.symmetric(
+                vertical: 10.0, horizontal: 10.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(
+                color: Color(0xffCDD1E0),
               ),
             ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(
+                color: Color(0xffCDD1E0),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(
+                color: Color(0xffCDD1E0),
+              ),
+            ),
+          ),
+        ),
             const SizedBox(
               height: 30,
             ),
@@ -278,6 +293,7 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             FlutterPhoneNumberField(
+              controller: phoneController,
               showCountryFlag: false,
               showDropdownIcon: false,
               textAlign: TextAlign.right,
@@ -286,8 +302,8 @@ class _ProfileEditState extends State<ProfileEdit> {
                 countryFlagStyle: const TextStyle(fontSize: 17),
               ),
               decoration: const InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 hintText: 'اپنا موبائل نمبر درج کیجئے',
                 hintStyle: TextStyle(
                   fontFamily: "UrduType",
@@ -296,8 +312,8 @@ class _ProfileEditState extends State<ProfileEdit> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   borderSide: BorderSide(
-                      color:
-                          Color(0xffCDD1E0)), // You can set it to transparent here.
+                      color: Color(
+                          0xffCDD1E0)), // You can set it to transparent here.
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -579,6 +595,7 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
+              controller: emailController,
               textAlign: TextAlign.right,
               keyboardType: TextInputType.emailAddress,
               textDirection: TextDirection.rtl,
@@ -609,9 +626,9 @@ class _ProfileEditState extends State<ProfileEdit> {
                     color: Color(0xffCDD1E0),
                   ),
                 ),
-
               ),
-            ),            const SizedBox(
+            ),
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -637,6 +654,7 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
+              controller: nicController,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
               keyboardType: TextInputType.phone,
@@ -667,9 +685,9 @@ class _ProfileEditState extends State<ProfileEdit> {
                     color: Color(0xffCDD1E0),
                   ),
                 ),
-
               ),
-            ),            const SizedBox(
+            ),
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -695,6 +713,7 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
+              controller: serviceController,
               keyboardType: TextInputType.phone,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
@@ -725,9 +744,50 @@ class _ProfileEditState extends State<ProfileEdit> {
                     color: Color(0xffCDD1E0),
                   ),
                 ),
-
               ),
-            ),          ],
+            ),
+            SizedBox(height: 20,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xffFE8BD1),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                minimumSize: const Size(150, 37),
+              ),
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+
+                String fullName = "${firstNameController.text} ${lastNameController.text}";
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(
+                      fullName: fullName,
+                      email: emailController.text,
+                      dob: dobController.text,
+                      phone: phoneController.text,
+                      nic: nicController.text,
+                      serviceYears: serviceController.text,
+                    ),
+                  ),
+                );
+              },
+              child: const Text(
+                'جاری رہے',
+                style: TextStyle(
+                  fontFamily: 'UrduType',
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
         ),
       ),
     );

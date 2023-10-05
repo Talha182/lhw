@@ -91,9 +91,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 30,
               ),
               Expanded(child: ListView(children: [
-                Directionality(
+                const Directionality(
                   textDirection: TextDirection.rtl,
-                  child: const Text(
+                  child: Text(
+                    "ای میل",
+                    style: TextStyle(
+                        fontFamily: "UrduType",
+                        fontSize: 16,
+                        color: Color(0xff0F0D18)),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.right,
+                  textDirection: TextDirection.rtl,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10.0,
+                        horizontal: 10.0), // Adjust vertical padding
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffCDD1E0),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                const Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Text(
                     "ای میل",
                     style: TextStyle(
                         fontFamily: "UrduType",
@@ -157,7 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 FlutterPhoneNumberField(
@@ -217,7 +259,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 TextField(
@@ -272,7 +314,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 TextField(
@@ -400,7 +442,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       readOnly: true,
                       decoration: InputDecoration(
                         prefixIcon: IconButton(
-                          icon: Icon(Icons.calendar_today_outlined,
+                          icon: const Icon(Icons.calendar_today_outlined,
                               color: Colors.black),
                           onPressed: () {
                             _selectDate(context);
@@ -430,7 +472,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Center(
@@ -458,7 +500,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Directionality(
                   textDirection: TextDirection.rtl,
                   child: Row(
@@ -471,10 +513,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           });
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         "مجھے پہچانتے ہو",
                         style: TextStyle(
                             fontFamily: "UrduType",
@@ -518,10 +560,10 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         width: 24.0,
         height: 24.0,
         decoration: BoxDecoration(
-          border: Border.all(width: 1.0, color: Color(0xffE5E5E5)),
+          border: Border.all(width: 1.0, color: const Color(0xffE5E5E5)),
           borderRadius: BorderRadius.circular(4.0),
         ),
-        child: widget.value ? Icon(Icons.check, size: 20.0) : null,
+        child: widget.value ? const Icon(Icons.check, size: 20.0) : null,
       ),
     );
   }

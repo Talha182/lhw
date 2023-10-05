@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/Onboarding.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
+import 'package:lhw/navy.dart';
 import 'package:lhw/splash/splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -48,12 +50,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Color(0xff878787)),
                   ),
                   GestureDetector(
-                    onTap: (){
-                      Get.to(
-                              () => const SignUpScreen(),
+                    onTap: () {
+                      Get.to(() => const SignUpScreen(),
                           transition: Transition.fade,
-                          duration: const Duration(milliseconds: 500)
-                      );
+                          duration: const Duration(milliseconds: 500));
                     },
                     child: const Text(
                       "سائن اپ",
@@ -179,11 +179,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: () {
-                    Get.to(
-                            () => const SplashScreen(),
+                    Get.offAll(() => const SplashScreen(),
                         transition: Transition.fadeIn,
-                        duration: const Duration(milliseconds: 400)
-                    );
+                        duration: const Duration(milliseconds: 400));
                   },
                   child: const Text(
                     'لاگ ان کریں',
@@ -196,36 +194,41 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
             Directionality(
               textDirection: TextDirection.rtl,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(children: [
-                    CustomCheckbox(
-                      value: _isChecked,
-                      onChanged: (value) {
-                        setState(() {
-                          _isChecked = value!;
-                        });
-                      },
-                    ), const SizedBox(width: 10,),
-                    const Text(
-                      "مجھے پہچانتے ہو",
-                      style: TextStyle(
-                          fontFamily: "UrduType",
-                          fontSize: 16,
-                          color: Color(0xff0F0D18)),
-                    ),
-                  ],),
+                  Row(
+                    children: [
+                      CustomCheckbox(
+                        value: _isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _isChecked = value!;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        "مجھے پہچانتے ہو",
+                        style: TextStyle(
+                            fontFamily: "UrduType",
+                            fontSize: 16,
+                            color: Color(0xff0F0D18)),
+                      ),
+                    ],
+                  ),
                   GestureDetector(
-                    onTap: (){
-                      Get.to(
-                              () => const ForgotPasswordScreen(),
+                    onTap: () {
+                      Get.to(() => const ForgotPasswordScreen(),
                           transition: Transition.fade,
-                          duration: const Duration(milliseconds: 400)
-                      );
+                          duration: const Duration(milliseconds: 400));
                     },
                     child: const Text(
                       "پاسورڈ بھول گے؟",
@@ -235,7 +238,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Color(0xffFE8BD1)),
                     ),
                   ),
-
                 ],
               ),
             )
@@ -250,7 +252,8 @@ class CustomCheckbox extends StatefulWidget {
   final bool value;
   final ValueChanged<bool?> onChanged;
 
-  const CustomCheckbox({super.key, required this.value, required this.onChanged});
+  const CustomCheckbox(
+      {super.key, required this.value, required this.onChanged});
 
   @override
   _CustomCheckboxState createState() => _CustomCheckboxState();
@@ -273,5 +276,29 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         child: widget.value ? const Icon(Icons.check, size: 20.0) : null,
       ),
     );
+  }
+}
+
+class InitialRouter extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    _checkFirstTime();
+    return const Scaffold(
+        body: Center(
+            child:
+                CircularProgressIndicator())); // Loading screen while checking
+  }
+
+  _checkFirstTime() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTime = prefs.getBool('is_first_time') ?? true;
+
+    if (isFirstTime) {
+      Get.offAll(() => const LoginScreen(),
+          transition: Transition.fadeIn, duration: const Duration(milliseconds: 400));
+    } else {
+      Get.offAll(() => const Custom_NavBar(),
+          transition: Transition.fadeIn, duration: const Duration(milliseconds: 400));
+    }
   }
 }

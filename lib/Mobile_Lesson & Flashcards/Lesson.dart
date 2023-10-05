@@ -68,7 +68,7 @@ class _LessonState extends State<Lesson> {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10),
-          child: Expanded(
+
             child: ListView(children: [
               Stack(
                 children: [
@@ -438,7 +438,6 @@ class _LessonState extends State<Lesson> {
                 height: 50,
               ),
             ]),
-          ),
         ),
         Positioned(
             bottom: 60, // Adjust as needed

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/Discussion_Group/MessageScreen.dart';
 
 class GroupsDiscussion extends StatelessWidget {
   const GroupsDiscussion({super.key});
@@ -167,79 +168,84 @@ class GroupsDiscussion extends StatelessWidget {
               ),
               const SizedBox(height: 20,),
 
-              Container(
-                width: Get.width,
-                height: 80,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black.withOpacity(0.1))),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10, left: 10, right: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: LinearGradient(colors: [
-                                  Color(0xffED8DCE),
-                                  Color(0xffED8DCE)
-                                ])),
-                            child: ClipOval(
-                              child: Padding(
-                                padding: const EdgeInsets.only(top:5),
-                                child: Image.asset(
-                                  "assets/images/1.png",
-                                  fit: BoxFit.fill,
+              GestureDetector(
+                onTap: (){
+                  Get.to(() => MessageScreen());
+                },
+                child: Container(
+                  width: Get.width,
+                  height: 80,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black.withOpacity(0.1))),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 10, left: 10, right: 10, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(colors: [
+                                    Color(0xffED8DCE),
+                                    Color(0xffED8DCE)
+                                  ])),
+                              child: ClipOval(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top:5),
+                                  child: Image.asset(
+                                    "assets/images/1.png",
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text(
-                            "باب 1 تعارف",
-                            style:
-                            TextStyle(fontFamily: "UrduType", fontSize: 18),
-                          ),   const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: 35,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff72C391),
-                              borderRadius: BorderRadius.circular(13)
+                            const SizedBox(
+                              width: 10,
                             ),
-                            child: const Center(
-                              child: Text("21",style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors.white
-                              ),),
-                            )
-                          )
-                        ],
-                      ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                "assets/images/Icon.svg",
-                                width: 24,
-                                height: 24,
+                            const Text(
+                              "باب 1 تعارف",
+                              style:
+                              TextStyle(fontFamily: "UrduType", fontSize: 18),
+                            ),   const SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 35,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: const Color(0xff72C391),
+                                borderRadius: BorderRadius.circular(13)
                               ),
-                              const SizedBox(
-                                width: 5,
+                              child: const Center(
+                                child: Text("21",style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  color: Colors.white
+                                ),),
                               )
-                            ],
-                          )
+                            )
+                          ],
+                        ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/images/Icon.svg",
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                )
+                              ],
+                            )
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

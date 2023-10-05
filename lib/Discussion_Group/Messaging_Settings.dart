@@ -11,6 +11,7 @@ class MessageSettings extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0.5,
           backgroundColor: Colors.white,
           flexibleSpace: Align(

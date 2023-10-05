@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Result/leaderboard/leaderboard.dart';
+import 'package:lhw/navy.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class CourseCompletion extends StatefulWidget {
@@ -258,7 +259,7 @@ class _CourseCompletionState extends State<CourseCompletion> {
                 child: const Text("لیڈر بورڈ دیکھیں",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 16,color: Color(0xffFE8BD1))),
                 onPressed: () {
-                 Get.to(() => LeaderBoard());
+                 Get.to(() => LeaderBoard(),transition: Transition.fade,duration: Duration(milliseconds: 300));
                 },
               ),
               const Spacer(),
@@ -286,7 +287,9 @@ class _CourseCompletionState extends State<CourseCompletion> {
                         ),
                         minimumSize: const Size(150, 37),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => Custom_NavBar());
+                      },
                       child: const Expanded(
                         child: Text(
                           'جاری رہے',

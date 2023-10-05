@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lhw/Login_SignUp/Onboarding.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Add a delay to auto-navigate after a set time
+    Future.delayed(Duration(seconds: 3), () {
+      if(Get.currentRoute != "/OnboardingScreen") { // Prevent navigation if user already swiped
+        Get.off(
+                () => const OnboardingScreen(),
+            transition: Transition.fade,
+            duration: const Duration(milliseconds: 400)
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +36,7 @@ class SplashScreen extends StatelessWidget {
         onHorizontalDragEnd: (DragEndDetails details) {
           if (details.primaryVelocity! > 0 || details.primaryVelocity! > -180) {
             // Swiped from left to right. Adjust as needed.
-            Get.to(
+            Get.off(
                     () => const OnboardingScreen(),
                 transition: Transition.fade,
                 duration: const Duration(milliseconds: 400)

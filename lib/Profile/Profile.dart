@@ -1,15 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:lhw/Profile/edit_profile.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  final String fullName;
+  final String email;
+  final String dob;
+  final String phone;
+  final String nic;
+  final String serviceYears;
 
+  ProfileScreen(
+      {this.fullName = "Default",
+      this.email = "default@email.com",
+      this.dob = "",
+      this.phone = "",
+      this.nic = "",
+      this.serviceYears = ""});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0.5,
           backgroundColor: Colors.white,
           flexibleSpace: Align(
@@ -48,30 +69,35 @@ class ProfileScreen extends StatelessWidget {
         padding: EdgeInsets.all(15),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  child: Text(
-                    "پروفائل تصویر تبدیل کریں۔",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: "UrduType",
-                        color: Color(0xffFE8BD1)),
+            GestureDetector(
+              onTap: () {
+                Get.to(() => ProfileEdit());
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    child: Text(
+                      "پروفائل تصویر تبدیل کریں۔",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: "UrduType",
+                          color: Color(0xffFE8BD1)),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                ClipOval(
-                  child: Image.asset(
-                    'assets/images/profile_pic.png', // replace with your asset image name
-                    width: 80.0, // the width of the image widget
-                    height: 80.0, // the height of the image widget
-                    fit: BoxFit.cover,
+                  SizedBox(
+                    width: 20,
                   ),
-                )
-              ],
+                  ClipOval(
+                    child: Image.asset(
+                      'assets/images/profile_pic.png', // replace with your asset image name
+                      width: 80.0, // the width of the image widget
+                      height: 80.0, // the height of the image widget
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              ),
             ),
             SizedBox(
               height: 30,
@@ -89,24 +115,31 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/images/pencil_edit.svg",
-                              width: 17,
-                              height: 17,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "تفصیلات میں ترمیم کریں۔",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: "UrduType",
-                                  color: Color(0xffFE8BD1)),
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => ProfileEdit(),
+                                transition: Transition.fade,
+                                duration: Duration(milliseconds: 300));
+                          },
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/images/pencil_edit.svg",
+                                width: 17,
+                                height: 17,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "تفصیلات میں ترمیم کریں۔",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "UrduType",
+                                    color: Color(0xffFE8BD1)),
+                              ),
+                            ],
+                          ),
                         ),
                         Text("عمومی تفصیلات",
                             style: TextStyle(
@@ -115,11 +148,14 @@ class ProfileScreen extends StatelessWidget {
                             )),
                       ],
                     ),
-
-                    createDetailGroup("پیدائش کی تاریخ", "نام", "1/07/2023", "کوڈی فشر"),
-                    createDetailGroup("یو سی کا نام", "فون نمبر", "دہلی یونیورسٹی", "+91 7232632621"),
-                    createDetailGroup("LHW شناختی نمبر", "سروس کے سال", "62328618264", "4"),
-                    createDetailGroup("ای میل", "گاؤں", "CodyFisher@lhw.com", "دہلی"),
+                    createDetailGroup("پیدائش کی تاریخ", "نام", "${widget.dob}",
+                        "${widget.fullName}"),
+                    createDetailGroup("یو سی کا نام", "فون نمبر",
+                        "دہلی یونیورسٹی", "${widget.phone}"),
+                    createDetailGroup(
+                        "LHW شناختی نمبر", "سروس کے سال", "${widget.nic}", "${widget.serviceYears}"),
+                    createDetailGroup(
+                        "ای میل", "گاؤں", "${widget.email}", "دہلی"),
                   ],
                 ),
               ),
@@ -131,7 +167,8 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget createDetailGroup(String heading1, String heading2, String value1, String value2) {
+Widget createDetailGroup(
+    String heading1, String heading2, String value1, String value2) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 10.0),
     child: Column(

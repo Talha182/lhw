@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:collection';
 
+import 'package:get/get.dart';
+import 'package:lhw/Discussion_Group/Messaging_Settings.dart';
+
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
 
@@ -207,6 +210,7 @@ class _MessageScreenState extends State<MessageScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0.5,
           backgroundColor: Colors.white,
           flexibleSpace: Align(
@@ -216,7 +220,11 @@ class _MessageScreenState extends State<MessageScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset("assets/images/Icon.svg"),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(() => MessageSettings());
+                    },
+                      child: SvgPicture.asset("assets/images/Icon.svg")),
                   const Text(
                     "ترتیبات",
                     style: TextStyle(

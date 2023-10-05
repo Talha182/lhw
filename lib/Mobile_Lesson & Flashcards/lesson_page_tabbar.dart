@@ -1,6 +1,7 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lhw/Bookmarks.dart';
 import 'package:lhw/Discussion_Group/DiscussionGroups.dart';
 import 'package:lhw/Mobile_HomePage/Courses_Completed.dart';
 import 'package:lhw/Mobile_HomePage/Courses_All Courses.dart';
@@ -107,7 +108,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
           const Expanded(
             child: TabBarView(
               children: <Widget>[
-                ResourcesBookmark(),
+                Bookmarks(),
                 GroupsDiscussion(),
                 Lesson(),
               ],

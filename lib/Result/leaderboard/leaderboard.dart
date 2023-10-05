@@ -253,7 +253,7 @@ class Leaderboard_Card extends StatelessWidget {
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(10)),
             child: Padding(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.only(left: 10,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
