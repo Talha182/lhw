@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/controllers/signup_controller.dart';
+import 'package:lhw/models/user_model.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -25,72 +26,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
-  DateTime selectedDate = DateTime.now();
-
-  DateTime? _selectedDate;
-
   Future<void> _selectDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
+    DateTime? selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
     );
 
-    if (pickedDate != null && pickedDate != _selectedDate) {
-      setState(() {
-        _selectedDate = pickedDate;
-        dobController.text =
-            "${_selectedDate!.day}-${_selectedDate!.month}-${_selectedDate!.year}";
-      });
+    if (selectedDate != null && selectedDate != DateTime.now()) {
+      // Get the instance of SignUpController
+      final signUpController = SignUpController.instance;
+
+      // Format the selected date and set it to the dob controller of SignUpController
+      signUpController.dob.text = "${selectedDate.toLocal()}".split(' ')[0];
     }
-  }
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController idController = TextEditingController();
-  final TextEditingController nicController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController dobController = TextEditingController();
-
-
-  void validateAndSignUp() {
-    if (nameController.text.isEmpty ||
-        emailController.text.isEmpty ||
-        phoneController.text.isEmpty ||
-        idController.text.isEmpty ||
-        nicController.text.isEmpty ||
-        passwordController.text.isEmpty ||
-        dobController.text.isEmpty) {
-      Fluttertoast.showToast(
-          msg: "Please fill in all the fields",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      return;
-    }
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
-    idController.dispose();
-    nicController.dispose();
-    passwordController.dispose();
-    dobController.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
     final _formkey = GlobalKey<FormState>();
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
@@ -239,8 +196,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: const TextSpan(
                           text: '*',
                           style: TextStyle(
-                            color:
-                                Color(0xffEC5A53), // This makes the asterisk red
+                            color: Color(
+                                0xffEC5A53), // This makes the asterisk red
                             fontSize: 16,
                           ),
                           children: <TextSpan>[
@@ -248,8 +205,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               text: 'فون نمبر',
                               style: TextStyle(
                                 fontFamily: "UrduType",
-                                color:
-                                    Colors.black, // Change the color as you want
+                                color: Colors
+                                    .black, // Change the color as you want
                                 fontSize: 16,
                               ),
                             ),
@@ -286,8 +243,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           borderSide: BorderSide(
-                              color:
-                                  Color(0xffCDD1E0)), // Grey border when enabled
+                              color: Color(
+                                  0xffCDD1E0)), // Grey border when enabled
                         ),
                       ),
                       languageCode: "ar",
@@ -303,8 +260,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: const TextSpan(
                           text: '*',
                           style: TextStyle(
-                            color:
-                                Color(0xffEC5A53), // This makes the asterisk red
+                            color: Color(
+                                0xffEC5A53), // This makes the asterisk red
                             fontSize: 16,
                           ),
                           children: <TextSpan>[
@@ -312,8 +269,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               text: 'لیڈی ہیلتھ ورکر کا شناختی نمبر',
                               style: TextStyle(
                                 fontFamily: "UrduType",
-                                color:
-                                    Colors.black, // Change the color as you want
+                                color: Colors
+                                    .black, // Change the color as you want
                                 fontSize: 16,
                               ),
                             ),
@@ -361,8 +318,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: const TextSpan(
                           text: '*',
                           style: TextStyle(
-                            color:
-                                Color(0xffEC5A53), // This makes the asterisk red
+                            color: Color(
+                                0xffEC5A53), // This makes the asterisk red
                             fontSize: 16,
                           ),
                           children: <TextSpan>[
@@ -370,8 +327,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               text: 'شناختی کارڈ نمبر',
                               style: TextStyle(
                                 fontFamily: "UrduType",
-                                color:
-                                    Colors.black, // Change the color as you want
+                                color: Colors
+                                    .black, // Change the color as you want
                                 fontSize: 16,
                               ),
                             ),
@@ -419,8 +376,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: const TextSpan(
                           text: '*',
                           style: TextStyle(
-                            color:
-                                Color(0xffEC5A53), // This makes the asterisk red
+                            color: Color(
+                                0xffEC5A53), // This makes the asterisk red
                             fontSize: 16,
                           ),
                           children: <TextSpan>[
@@ -428,8 +385,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               text: 'پاس ورڈ',
                               style: TextStyle(
                                 fontFamily: "UrduType",
-                                color:
-                                    Colors.black, // Change the color as you want
+                                color: Colors
+                                    .black, // Change the color as you want
                                 fontSize: 16,
                               ),
                             ),
@@ -485,8 +442,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: const TextSpan(
                           text: '*',
                           style: TextStyle(
-                            color:
-                                Color(0xffEC5A53), // This makes the asterisk red
+                            color: Color(
+                                0xffEC5A53), // This makes the asterisk red
                             fontSize: 16,
                           ),
                           children: <TextSpan>[
@@ -494,8 +451,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               text: 'تاریخ پیدائش',
                               style: TextStyle(
                                 fontFamily: "UrduType",
-                                color:
-                                    Colors.black, // Change the color as you want
+                                color: Colors
+                                    .black, // Change the color as you want
                                 fontSize: 16,
                               ),
                             ),
@@ -512,6 +469,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: controller.dob,
                       readOnly: true,
                       decoration: InputDecoration(
+                        hintText: "MM/DD/YYYY",
                         prefixIcon: IconButton(
                           icon: const Icon(Icons.calendar_today_outlined,
                               color: Colors.black),
@@ -548,17 +506,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Center(
                       child: Container(
-                        width: Get.width,
-                        height: 45,
-                        child: RoundedButton(
+                          width: Get.width,
+                          height: 45,
+                          child: RoundedButton(
                             title: "سائن اپ",
-                            onTap: () {
-                              if(_formkey.currentState!.validate()){
-                                SignUpController.instance.SignUp(controller.email.text.trim(), controller.password.text.trim());
-                              }
+                            onTap: () async {
+                              if (areFieldsEmpty([
+                                controller.email,
+                                controller.password,
+                                controller.name,
+                                controller.id,
+                                controller.phone,
+                                controller.nic,
+                                controller.dob
+                              ])) {
+                                Fluttertoast.showToast(
+                                    msg: "Please fill all the fields!",
+                                    backgroundColor:
+                                        Colors.red.withOpacity(0.1),
+                                    textColor: Colors.red);
+                              } else if (_formkey.currentState!.validate()) {
+                                SignUpController.instance.SignUp(
+                                    controller.email.text.trim(),
+                                    controller.password.text.trim());
 
-                            }),
-                      ),
+                                final user = UserModel(
+                                    controller.id.text.trim(),
+                                    controller.name.text.trim(),
+                                    controller.email.text.trim(),
+                                    controller.phone.text.trim(),
+                                    controller.password.text.trim(),
+                                    controller.nic.text.trim(),
+                                    controller.dob.text.trim());
+                                await SignUpController.instance
+                                    .createUser(user);
+                              }
+                            },
+                          )),
                     ),
                     const SizedBox(
                       height: 10,
@@ -599,6 +583,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  bool areFieldsEmpty(List<TextEditingController> controllers) {
+    for (var controller in controllers) {
+      if (controller.text.trim().isEmpty) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 

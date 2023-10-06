@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/navy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../controllers/signup_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,7 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   bool _isChecked = false;
 
-
   void _toggleVisibility() {
     setState(() {
       _obscureText = !_obscureText;
@@ -29,10 +31,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  bool areFieldsEmpty(TextEditingController emailController, TextEditingController passwordController) {
+    return emailController.text.trim().isEmpty || passwordController.text.trim().isEmpty;
+  }
 
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignUpController());
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
@@ -94,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 5,
             ),
             TextField(
+              controller: controller.email,
               keyboardType: TextInputType.phone,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
@@ -135,6 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 5,
             ),
             TextField(
+                controller: controller.password,
                 obscureText: _obscureText,
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
@@ -176,11 +185,26 @@ class _LoginScreenState extends State<LoginScreen> {
               child: SizedBox(
                 width: Get.width,
                 height: 45,
-                child: RoundedButton(
-                  title: 'لاگ ان کریں',
-                  onTap: () {
-                  }
-                ),
+                  child:RoundedButton(
+                      title: 'لاگ ان کریں',
+                      onTap: () {
+                        if (areFieldsEmpty(controller.email, controller.password)) {
+                          Fluttertoast.showToast(
+                              msg: "Please fill all the fields!",
+                              backgroundColor: Colors.red.withOpacity(0.1),
+                              textColor: Colors.red
+                          );
+                        } else {
+                          SignUpController.instance.Login(
+                              controller.email.text.trim(),
+                              controller.password.text.trim()
+                          );
+                        }
+                      }
+                  )
+
+
+
               ),
             ),
             const SizedBox(
@@ -229,7 +253,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -240,12 +264,11 @@ class _LoginScreenState extends State<LoginScreen> {
 class RoundedButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+
   const RoundedButton({
-    super.key,
     required this.title,
     required this.onTap,
   });
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
-import 'package:lhw/controllers/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../controllers/signup_controller.dart';
@@ -18,8 +17,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   bool showVerificationCode = false;
   final _formkey = GlobalKey<FormState>();
   final controller = Get.put(SignUpController());
-  var otp;
-
 
   @override
   Widget build(BuildContext context) {
@@ -123,10 +120,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     animationDuration: const Duration(milliseconds: 300),
                     keyboardType: TextInputType.number,
                     animationType: AnimationType.fade,
-                    onSubmitted: (code) {
-                      otp = code;
-                      OTPController.instance.verifyOTP(otp);
-                    },
                     appContext: context,
                   ),
                 ),
@@ -138,15 +131,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       setState(() {
                         showVerificationCode = true;
                       });
-                      if (_formkey.currentState!.validate()) {
-                        String formattedNumber = "+92" + controller.phone.text.trim();
-
-                        SignUpController.instance
-                            .phoneAuthentication(formattedNumber);
-                      }
-
-                      OTPController.instance.verifyOTP(otp);
-
                     }),
               ),
               const SizedBox(

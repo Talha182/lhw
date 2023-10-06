@@ -6,15 +6,15 @@ import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/Profile/edit_profile.dart';
-import 'package:lhw/authentication_repository/authentication_repository.dart';
 import 'package:lhw/firebase_options.dart';
+import 'package:lhw/loading_screen.dart';
+import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options:DefaultFirebaseOptions.currentPlatform
-  ).then((value) => Get.put(AuthenticationRepository()));
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => Get.put(AuthenticationRepository()));
   runApp(const MaterialApp(
     home: MyApp(),
   ));
@@ -45,8 +45,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: ForgotPasswordScreen(),
+      home: LoadingScreen(),
     );
   }
 }
-

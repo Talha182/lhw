@@ -6,9 +6,11 @@ import 'package:get/get.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import '../Login_SignUp/Login.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
 import '../custom_widgets/progress_bar.dart';
+import '../repositories/authentication_repository/authentication_repository.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -588,12 +590,15 @@ class _HomePageState extends State<HomePage> {
                                                               ),
                                                             ),
 
-                                                            // Icon button on the right
                                                             GestureDetector(
                                                               child: const Icon(
                                                                   Icons
                                                                       .arrow_forward_ios),
-                                                              onTap: () {},
+                                                              onTap: () async {
+                                                                  await AuthenticationRepository.instance.Logout();
+                                                                  // Redirect to the login page after logging out.
+                                                                  Get.offAll(() => LoginScreen());
+                                                              },
                                                             ),
                                                             const SizedBox(
                                                               width: 10,

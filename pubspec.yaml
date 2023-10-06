@@ -60,6 +60,7 @@ dependencies:
     path: flutter_phone_number_field-1.0.1
   buttons_tabbar:
     path: buttons_tabbar-1.3.7+1
+  loading_animation_widget: ^1.2.0+4
 
 
 
