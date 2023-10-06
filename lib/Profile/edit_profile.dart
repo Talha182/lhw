@@ -765,12 +765,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ProfileScreen(
-                      fullName: fullName,
-                      email: emailController.text,
-                      dob: dobController.text,
-                      phone: phoneController.text,
-                      nic: nicController.text,
-                      serviceYears: serviceController.text,
+
                     ),
                   ),
                 );
