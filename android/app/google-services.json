@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "396203950504",
+    "project_id": "phc-lhw",
+    "storage_bucket": "phc-lhw.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396203950504:android:3ae9256dba09072f2d9d9d",
+        "android_client_info": {
+          "package_name": "com.phc.lhw"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBb5yDCTEOACU-Nsf-J3aQgKBu5xVgPfr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

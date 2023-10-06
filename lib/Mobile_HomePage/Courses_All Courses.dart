@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:lhw/Mobile_HomePage/locked_course_card.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
 import 'package:lhw/custom_widgets/gradient_card_with_image.dart';
 
@@ -32,11 +34,13 @@ class TotalCourses extends StatelessWidget {
                 Column(
                   children: [
                     ...columnPadded([
-                      const GradientCardWithProgress(
+                       GradientCardWithProgress(
                         progressValue: 0.2,
                         imagePath: 'assets/images/two_women.png',
                         gradientStartColor: Color(0xffEAAF58),
-                        gradientEndColor: Color(0xffF4D6A9),
+                        gradientEndColor: Color(0xffF4D6A9), onTap: () {
+                          Get.to(() => LessonPageTabBar(),transition: Transition.fade,duration: Duration(milliseconds: 300));
+                      },
                       ),
                       GradientCardWithImage(
                         imagePath: 'assets/images/1.png',

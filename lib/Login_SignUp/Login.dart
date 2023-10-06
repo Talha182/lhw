@@ -1,10 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Forgot_Password.dart';
-import 'package:lhw/Login_SignUp/Onboarding.dart';
 import 'package:lhw/Login_SignUp/SignUp.dart';
 import 'package:lhw/navy.dart';
-import 'package:lhw/splash/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,11 +17,19 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   bool _isChecked = false;
 
+
   void _toggleVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
+
+  TextEditingController idController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -169,28 +176,10 @@ class _LoginScreenState extends State<LoginScreen> {
               child: SizedBox(
                 width: Get.width,
                 height: 45,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffFE8BD1),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    minimumSize: const Size(150, 37),
-                  ),
-                  onPressed: () {
-                    Get.offAll(() => const SplashScreen(),
-                        transition: Transition.fadeIn,
-                        duration: const Duration(milliseconds: 400));
-                  },
-                  child: const Text(
-                    'لاگ ان کریں',
-                    style: TextStyle(
-                      fontFamily: 'UrduType',
-                      fontSize: 15,
-                      color: Colors.white,
-                    ),
-                  ),
+                child: RoundedButton(
+                  title: 'لاگ ان کریں',
+                  onTap: () {
+                  }
                 ),
               ),
             ),
@@ -248,6 +237,39 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
+class RoundedButton extends StatelessWidget {
+  final String title;
+  final VoidCallback onTap;
+  const RoundedButton({
+    super.key,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 45,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: const Color(0xffFE8BD1)),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontFamily: 'UrduType',
+              fontSize: 15,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class CustomCheckbox extends StatefulWidget {
   final bool value;
   final ValueChanged<bool?> onChanged;
@@ -295,10 +317,12 @@ class InitialRouter extends StatelessWidget {
 
     if (isFirstTime) {
       Get.offAll(() => const LoginScreen(),
-          transition: Transition.fadeIn, duration: const Duration(milliseconds: 400));
+          transition: Transition.fadeIn,
+          duration: const Duration(milliseconds: 400));
     } else {
       Get.offAll(() => const Custom_NavBar(),
-          transition: Transition.fadeIn, duration: const Duration(milliseconds: 400));
+          transition: Transition.fadeIn,
+          duration: const Duration(milliseconds: 400));
     }
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 
 import '../custom_widgets/gradient_card_with_progress.dart';
 
@@ -36,7 +38,9 @@ class _OnGoingCoursesState extends State<OnGoingCourses> {
                   progressValue: progressValue,
                   imagePath: 'assets/images/two_women.png',
                   gradientStartColor: const Color(0xffEAAF58),
-                  gradientEndColor: const Color(0xffF4D6A9),
+                  gradientEndColor: const Color(0xffF4D6A9), onTap: () {
+                    Get.to(() => const LessonPageTabBar(),transition: Transition.fade,duration: const Duration(milliseconds: 300));
+                },
                 ),
               ],
             ),
@@ -45,10 +49,10 @@ class _OnGoingCoursesState extends State<OnGoingCourses> {
               bottom: 60, // Adjust as needed
               right: 15, // Adjust as needed
               child: CircleAvatar(
-                backgroundColor: Color(0xffF6B3D0),
+                backgroundColor: const Color(0xffF6B3D0),
                 radius: 30,
                 child: Padding(
-                    padding: EdgeInsets.only(bottom: 2),
+                    padding: const EdgeInsets.only(bottom: 2),
                     child: SvgPicture.asset(
                       "assets/images/samina_instructor.svg",
                       fit: BoxFit.fill,

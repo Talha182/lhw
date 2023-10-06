@@ -7,12 +7,12 @@ class GradientCardWithProgress extends StatelessWidget {
   final String imagePath;
   final Color gradientStartColor;
   final Color gradientEndColor;
-
+  final VoidCallback onTap;
   const GradientCardWithProgress({super.key,
     required this.progressValue,
     required this.imagePath,
     required this.gradientStartColor,
-    required this.gradientEndColor,
+    required this.gradientEndColor, required this.onTap,
   });
 
 
@@ -133,7 +133,7 @@ class GradientCardWithProgress extends StatelessWidget {
                     ),
                     minimumSize: const Size(140, 40),
                   ),
-                  onPressed: () {},
+                  onPressed: onTap,
                   child: const Text(
                     'جاری رہے',
                     style: TextStyle(
