@@ -8,26 +8,28 @@ class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
   final name = TextEditingController();
-  final phone = TextEditingController();
+  final phoneNo = TextEditingController();
   final email = TextEditingController();
   final id = TextEditingController();
   final nic = TextEditingController();
   final dob = TextEditingController();
   final password = TextEditingController();
-  var isLoading = false.obs;
   final userRepo = Get.put(UserRepository());
 
-  void SignUp(String email, String password) async {
-    isLoading.value = true;
-    await AuthenticationRepository.instance
-        .createUserWithEmailAndPassword(email, password);
-    isLoading.value = false;
+  Future<bool> SignUp(String email, String password) async {
+    try {
+      await AuthenticationRepository.instance
+          .createUserWithEmailAndPassword(email, password);
+      return true;
+    } catch (e) {
+      print("Error while signing up: $e");
+      return false;
+    }
   }
 
+
   Future<void> createUser(UserModel user) async {
-    isLoading.value = true;
     await userRepo.createUser(user);
-    isLoading.value = false;
   }
 
   void Login(String email, String password) {
@@ -45,7 +47,7 @@ class SignUpController extends GetxController {
     name.clear();
     id.clear();
     dob.clear();
-    phone.clear();
+    phoneNo.clear();
     nic.clear();
   }
 

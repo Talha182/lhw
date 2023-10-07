@@ -74,7 +74,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 height: 5,
               ),
               FlutterPhoneNumberField(
-                controller: controller.phone,
+                controller: controller.phoneNo,
                 showCountryFlag: true,
                 showDropdownIcon: false,
                 textAlign: TextAlign.right,

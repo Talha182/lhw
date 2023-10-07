@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:get/get.dart';
+import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Profile/Profile.dart';
+import 'package:lhw/controllers/profile_controller.dart';
+import 'package:lhw/models/user_model.dart';
 
 class ProfileEdit extends StatefulWidget {
   ProfileEdit({Key? key}) : super(key: key);
@@ -21,19 +24,13 @@ class _ProfileEditState extends State<ProfileEdit> {
       lastDate: DateTime.now(),
     );
 
-    if (pickedDate != null) {
-      dobController.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
-    }
+    // if (pickedDate != null) {
+    //   dobController.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
+    // }
   }
 
 
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController dobController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController nicController = TextEditingController();
-  TextEditingController serviceController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +115,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'پہلا نام',
+                      text: ' نام',
                       style: TextStyle(
                         fontFamily: "UrduType",
                         color: Colors.black, // Change the color as you want
@@ -130,7 +127,6 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
-              controller: firstNameController,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
               decoration: InputDecoration(
@@ -159,57 +155,6 @@ class _ProfileEditState extends State<ProfileEdit> {
             ),
             const SizedBox(
               height: 30,
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              child: RichText(
-                text: const TextSpan(
-                  text: '*',
-                  style: TextStyle(
-                    color: Color(0xffEC5A53), // This makes the asterisk red
-                    fontSize: 16,
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'آخری نام',
-                      style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Colors.black, // Change the color as you want
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            TextField(
-              controller: lastNameController,
-
-              textAlign: TextAlign.right,
-              textDirection: TextDirection.rtl,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 10.0), // Adjust vertical padding
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Color(0xffCDD1E0),
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Color(0xffCDD1E0),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(
-                    color: Color(0xffCDD1E0),
-                  ),
-                ),
-              ),
             ),
             const SizedBox(
               height: 30,
@@ -237,7 +182,6 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
         TextField(
-          controller: dobController,
           textAlign: TextAlign.right,
           textDirection: TextDirection.rtl,
           readOnly: true,
@@ -293,7 +237,6 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             FlutterPhoneNumberField(
-              controller: phoneController,
               showCountryFlag: false,
               showDropdownIcon: false,
               textAlign: TextAlign.right,
@@ -595,7 +538,6 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
-              controller: emailController,
               textAlign: TextAlign.right,
               keyboardType: TextInputType.emailAddress,
               textDirection: TextDirection.rtl,
@@ -654,7 +596,6 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
-              controller: nicController,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
               keyboardType: TextInputType.phone,
@@ -713,7 +654,7 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             TextField(
-              controller: serviceController,
+              // controller: serviceController,
               keyboardType: TextInputType.phone,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
@@ -747,38 +688,10 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
             ),
             SizedBox(height: 20,),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xffFE8BD1),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                minimumSize: const Size(150, 37),
-              ),
-              onPressed: () {
-                FocusScope.of(context).unfocus();
+            RoundedButton(title:'جاری رہے',
+                onTap: (){
 
-                String fullName = "${firstNameController.text} ${lastNameController.text}";
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProfileScreen(
-
-                    ),
-                  ),
-                );
-              },
-              child: const Text(
-                'جاری رہے',
-                style: TextStyle(
-                  fontFamily: 'UrduType',
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+                }),
             const SizedBox(
               height: 10,
             ),

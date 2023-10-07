@@ -218,7 +218,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 5,
                     ),
                     FlutterPhoneNumberField(
-                      controller: controller.phone,
+                      controller: controller.phoneNo,
                       showCountryFlag: true,
                       showDropdownIcon: false,
                       textAlign: TextAlign.right,
@@ -505,19 +505,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 20,
                     ),
                     Center(
-                      child: Container(
+                      child: SizedBox(
                           width: Get.width,
                           height: 45,
                           child: RoundedButton(
                             title: "سائن اپ",
                             onTap: () async {
                               if (areFieldsEmpty([
-                                controller.email,
-                                controller.password,
-                                controller.name,
                                 controller.id,
-                                controller.phone,
+                                controller.name,
+                                controller.email,
                                 controller.nic,
+                                controller.phoneNo,
+                                controller.password,
+                                controller.nic,
+                                controller.phoneNo,
+                                controller.password,
+
                                 controller.dob
                               ])) {
                                 Fluttertoast.showToast(
@@ -534,10 +538,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     controller.id.text.trim(),
                                     controller.name.text.trim(),
                                     controller.email.text.trim(),
-                                    controller.phone.text.trim(),
-                                    controller.password.text.trim(),
                                     controller.nic.text.trim(),
+                                    controller.phoneNo.text.trim(),
+                                    controller.password.text.trim(),
                                     controller.dob.text.trim());
+
                                 await SignUpController.instance
                                     .createUser(user);
                               }

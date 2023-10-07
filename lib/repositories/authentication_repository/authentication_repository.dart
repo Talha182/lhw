@@ -41,18 +41,35 @@ class AuthenticationRepository extends GetxController {
   //       : Get.offAll(() => const Custom_NavBar());
   // }
 
-  Future<void> createUserWithEmailAndPassword(
-      String email, String password) async {
+  Future<void> createUserWithEmailAndPassword(String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      Get.offAll(() => SplashScreen());
+      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+
+      Fluttertoast.showToast(
+          msg: "Account created successfully!",
+          backgroundColor: Colors.green.withOpacity(0.1),
+          textColor: Colors.green
+      );
+
+      // Delay navigation to give the toast time to appear
+      await Future.delayed(Duration(seconds: 2));
+      Get.offAll(() => const SplashScreen());
 
       // Clear text fields after successful account creation
       SignUpController.instance.clearSignUpFields();
     } on FirebaseAuthException catch (e) {
-      // Handle exception
-    } catch (_) {}
+      if (e.code == 'email-already-in-use') {
+        Fluttertoast.showToast(
+            msg: "This email is already in use.",
+            backgroundColor: Colors.red.withOpacity(0.1),
+            textColor: Colors.red
+        );
+      } else {
+        // Handle other types of FirebaseAuthException here if needed
+      }
+    } catch (_) {
+      // Handle other types of exceptions if needed
+    }
   }
 
   Future<void> LoginUserWithEmailAndPassword(
@@ -73,7 +90,7 @@ class AuthenticationRepository extends GetxController {
       firebaseUser.value != null
           ? Get.offAll(() => const Custom_NavBar(),
               transition: Transition.fade,
-              duration: Duration(milliseconds: 300))
+              duration: const Duration(milliseconds: 300))
           : Get.to(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
       switch (e.code) {

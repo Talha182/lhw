@@ -186,28 +186,30 @@ class _MCQ4State extends State<MCQ4> {
               const SizedBox(
                 height: 20,
               ),
-              SingleChildScrollView(
-                child: Column(
-                  children: List.generate(
-                    questions[questionIndex].options.length,
-                    (index) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: QuizCard(
-                        text: questions[questionIndex].options[index],
-                        ontap: () => updateQuestion(
-                            questions[questionIndex].options[index], index),
-                        color: optionColors[index],
-                        isCorrect: selectedAnswer ==
-                            questions[questionIndex].correctAnswer,
-                        isSelected: isSelected,
-                        isOptionSelected:
-                            index == selectedOptionIndex, // Pass this value here
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: List.generate(
+                      questions[questionIndex].options.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: QuizCard(
+                          text: questions[questionIndex].options[index],
+                          ontap: () => updateQuestion(
+                              questions[questionIndex].options[index], index),
+                          color: optionColors[index],
+                          isCorrect: selectedAnswer ==
+                              questions[questionIndex].correctAnswer,
+                          isSelected: isSelected,
+                          isOptionSelected:
+                              index == selectedOptionIndex, // Pass this value here
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-              const Spacer(),
+              // const Spacer(),
               Divider(
                 height: 1,
                 thickness: 1,

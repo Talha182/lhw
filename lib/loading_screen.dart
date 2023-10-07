@@ -11,7 +11,7 @@ class LoadingScreen extends StatelessWidget {
         child: LoadingAnimationWidget.twistingDots(
           leftDotColor: const Color(0xffFE8BD1),
           rightDotColor: const Color(0xff7A7D84),
-          size: 20,
+          size: 45,
         ),// or any other loading widget you prefer
       ),
     );
