@@ -15,6 +15,8 @@ class SignUpController extends GetxController {
   final dob = TextEditingController();
   final password = TextEditingController();
   final userRepo = Get.put(UserRepository());
+  var isLoading = false.obs;
+
 
   Future<bool> SignUp(String email, String password) async {
     try {

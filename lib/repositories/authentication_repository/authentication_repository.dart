@@ -43,6 +43,8 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> createUserWithEmailAndPassword(String email, String password) async {
     try {
+      SignUpController.instance.isLoading.value = true; // Start loading
+
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
 
       Fluttertoast.showToast(
@@ -51,9 +53,8 @@ class AuthenticationRepository extends GetxController {
           textColor: Colors.green
       );
 
-      // Delay navigation to give the toast time to appear
-      await Future.delayed(Duration(seconds: 2));
-      Get.offAll(() => const SplashScreen());
+      // No need for delay here as you're using the toast
+       Get.offAll(() => const SplashScreen());
 
       // Clear text fields after successful account creation
       SignUpController.instance.clearSignUpFields();

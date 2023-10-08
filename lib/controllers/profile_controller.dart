@@ -22,8 +22,10 @@ class ProfileController extends GetxController {
       return _userRepo.getUserDetails(email);
     } else {
       Get.snackbar("Error", "Login To Continue");
+      throw Exception("User not logged in"); // Throwing an exception or you can return a default value if you prefer.
     }
   }
+
   /// Fetch list of user records
   Future<List<UserModel>> getAllUsers() async => await _userRepo.allUser();
 

@@ -65,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      controller.clearLoginFields();
                       Get.to(() => const SignUpScreen(),
                           transition: Transition.fade,
                           duration: const Duration(milliseconds: 500));
