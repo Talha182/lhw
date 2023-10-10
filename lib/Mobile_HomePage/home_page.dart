@@ -9,7 +9,6 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../Login_SignUp/Login.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
-import '../custom_widgets/progress_bar.dart';
 import '../repositories/authentication_repository/authentication_repository.dart';
 
 class HomePage extends StatefulWidget {
@@ -329,7 +328,7 @@ class _HomePageState extends State<HomePage> {
                                                       GestureDetector(
                                                         onTap: () {
                                                           Get.to(() =>
-                                                              const LessonPageTabBar(),transition: Transition.fade,duration: Duration(milliseconds: 300));
+                                                              const LessonPageTabBar(),transition: Transition.fade,duration: const Duration(milliseconds: 300));
                                                         },
                                                         child: const Row(
                                                           mainAxisSize:
@@ -597,7 +596,7 @@ class _HomePageState extends State<HomePage> {
                                                               onTap: () async {
                                                                   await AuthenticationRepository.instance.Logout();
                                                                   // Redirect to the login page after logging out.
-                                                                  Get.offAll(() => LoginScreen());
+                                                                  Get.offAll(() => const LoginScreen());
                                                               },
                                                             ),
                                                             const SizedBox(

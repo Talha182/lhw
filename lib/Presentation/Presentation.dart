@@ -58,11 +58,10 @@ class _PresentationState extends State<Presentation> {
                   Expanded(
                     child: SizedBox(
                       child: TweenAnimationBuilder(
-                        tween: Tween<double>(
-                            begin: 0, end: 2.2),
+                        tween: Tween<double>(begin: 0, end: 2.2),
                         duration: const Duration(milliseconds: 400),
-                        builder:
-                            (BuildContext context, double value, Widget? child) {
+                        builder: (BuildContext context, double value,
+                            Widget? child) {
                           return LinearPercentIndicator(
                             lineHeight: 8.0,
                             percent: 1,
@@ -92,7 +91,7 @@ class _PresentationState extends State<Presentation> {
                 height: 230,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child:ImageCarousel(),
+                  child: ImageCarousel(),
                 ),
               ),
               Material(
@@ -240,33 +239,33 @@ class _ImageCarouselState extends State<ImageCarousel> {
   final List<Question> questions = [
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
     Question(
       question:
-      'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
       options: [
         'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
         'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
         'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
       ],
       correctAnswer:
-      'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
+          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
       correctExplanation:
-      ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
+          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
       incorrectExplanation:
-      ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
   ];
 
@@ -307,7 +306,6 @@ class _ImageCarouselState extends State<ImageCarousel> {
 
   bool isDialogCurrentlyShown = false;
 
-
   void showDialogWithQuestionOptions() {
     if (isDialogCurrentlyShown) {
       return; // Return early if dialog is currently shown
@@ -339,7 +337,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                       const SizedBox(height: 10),
                       ...List.generate(
                         questions[questionIndex].options.length,
-                            (index) => Padding(
+                        (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: QuizCard(
                             text: questions[questionIndex].options[index],
@@ -368,7 +366,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                             backgroundColor: isSelected
                                 ? const Color(0xffFE8BD1) // Original color
                                 : Colors
-                                .grey, // Grey color when option not selected
+                                    .grey, // Grey color when option not selected
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -377,9 +375,9 @@ class _ImageCarouselState extends State<ImageCarousel> {
                           ),
                           onPressed: isSelected
                               ? () {
-                            Navigator.of(context)
-                                .pop(); // Close the dialog when button is pressed
-                          }
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog when button is pressed
+                                }
                               : null, // Set to null when option is not selected, making it non-clickable
                           child: const Text(
                             'جاری رہے',
@@ -404,7 +402,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
     });
   }
 
-
+  double get progress => (currentPage + 1) / assetImages.length;
 
   @override
   Widget build(BuildContext context) {
@@ -417,7 +415,10 @@ class _ImageCarouselState extends State<ImageCarousel> {
             borderRadius: BorderRadius.circular(10),
             color: Colors.grey.withOpacity(0.5),
           ),
-          child: Image.asset(assetImages[currentPage],fit: BoxFit.fitWidth,),
+          child: Image.asset(
+            assetImages[currentPage],
+            fit: BoxFit.fitWidth,
+          ),
         ),
         Positioned(
           left: 10,
@@ -426,17 +427,19 @@ class _ImageCarouselState extends State<ImageCarousel> {
             width: 35,
             height: 35,
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black.withOpacity(0.4)
-            ),
+                shape: BoxShape.circle, color: Colors.black.withOpacity(0.4)),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 setState(() {
-                  currentPage= (currentPage+1) % assetImages.length;
+                  currentPage = (currentPage + 1) % assetImages.length;
                 });
               },
               child: const Center(
-                child: Icon(Icons.arrow_back_ios_new,size: 16, color: Colors.white,),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 16,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -445,27 +448,40 @@ class _ImageCarouselState extends State<ImageCarousel> {
           right: 10,
           top: 100,
           child: Container(
-            width: 35,
-            height: 35,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black.withOpacity(0.4)
-            ),
-            child:GestureDetector(
-              onTap: (){
-                setState(() {
-                  currentPage = (currentPage + 1) % assetImages.length;
-                });
-                showDialogWithQuestionOptions();  // Add this line to show the custom dialog.
-              },
-              child: const Center(
-                child: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white,),
-              ),
-            )
-
-          ),
-
+              width: 35,
+              height: 35,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.black.withOpacity(0.4)),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    currentPage = (currentPage + 1) % assetImages.length;
+                  });
+                  showDialogWithQuestionOptions(); // Add this line to show the custom dialog.
+                },
+                child: const Center(
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              )),
         ),
+        Positioned(
+          bottom: 0,
+            right: 0,
+            left: 0,
+            child: SizedBox(
+              child: LinearPercentIndicator(
+                lineHeight: 8.0,
+                percent: progress,
+                backgroundColor: Colors.white,
+                progressColor: const Color(0xffFE8BD1),
+                barRadius: const Radius.circular(10),
+              ),
+            ),
+        )
       ],
     );
   }

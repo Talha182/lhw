@@ -47,11 +47,14 @@ class _LessonOption21State extends State<LessonOption21> {
       incorrectExplanation:
           ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
-
   ];
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
-  List<bool> isSelectedList = [false, false, false];  // assuming 3 options per question
+  List<bool> isSelectedList = [
+    false,
+    false,
+    false
+  ]; // assuming 3 options per question
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
@@ -63,11 +66,20 @@ class _LessonOption21State extends State<LessonOption21> {
       this.selectedAnswer = selectedAnswer;
       isAnswered = true;
       isSelectedList[index] = true;
+      String explanation;
+
       if (selectedAnswer == questions[questionIndex].correctAnswer) {
         optionColors[index] = Colors.green[100]!;
+        explanation = questions[questionIndex].correctExplanation;
       } else {
         optionColors[index] = Colors.red[100]!;
+        explanation = questions[questionIndex].incorrectExplanation;
       }
+
+      _showAnswerDialog(
+          context,
+          selectedAnswer == questions[questionIndex].correctAnswer,
+          explanation);
     });
 
     Future.delayed(const Duration(seconds: 2), () {
@@ -83,6 +95,86 @@ class _LessonOption21State extends State<LessonOption21> {
     });
   }
 
+  void _showAnswerDialog(
+      BuildContext context, bool isCorrect, String explanation) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          child: Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: isCorrect? Color(0xff9AC9C2) : Color(0xffFB6262), // Outer container's color
+                ),
+                padding: const EdgeInsets.only(
+                    bottom: 4.0), // Create a space at the bottom
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white, // Inner container's color
+                  ),
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: isCorrect
+                                ? Color(0xff9AC9C2).withOpacity(0.3)
+                                : Color(0xffFB6262).withOpacity(0.3),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            isCorrect ? Icons.check : Icons.close,
+                            size: 30,
+                            color: isCorrect
+                                ? Color(0xff9AC9C2)
+                                : Color(0xffFB6262),
+                          ),
+                        ),
+                        Text(
+                          isCorrect ? "درست۔" : "غلط۔",
+                          style: TextStyle(
+                            fontFamily: "UrduType",
+                            color: isCorrect
+                                ? Color(0xff47857C)
+                                : Color(0xffFB6262),
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text(
+                          explanation,
+                          style:
+                              TextStyle(fontFamily: "UrduType", fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 0,
+                child: IconButton(
+                  icon: Icon(Icons.close, color: Colors.black),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +207,8 @@ class _LessonOption21State extends State<LessonOption21> {
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
+                      padding:
+                          const EdgeInsets.only(top: 30, left: 20, right: 10),
                       child: Row(
                         children: [
                           GestureDetector(
@@ -134,10 +227,11 @@ class _LessonOption21State extends State<LessonOption21> {
                             width: 320,
                             child: TweenAnimationBuilder(
                               tween: Tween<double>(
-                                  begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
+                                  begin: 0,
+                                  end: ((_current + 1) / 5 * _totalSteps)),
                               duration: const Duration(milliseconds: 400),
-                              builder:
-                                  (BuildContext context, double value, Widget? child) {
+                              builder: (BuildContext context, double value,
+                                  Widget? child) {
                                 return LinearPercentIndicator(
                                   lineHeight: 8.0,
                                   percent: value / _totalSteps,
@@ -152,7 +246,7 @@ class _LessonOption21State extends State<LessonOption21> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 30,top: 10),
+                      padding: const EdgeInsets.only(right: 30, top: 10),
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: SvgPicture.asset(
@@ -168,14 +262,14 @@ class _LessonOption21State extends State<LessonOption21> {
                       child: Text(
                         questions[questionIndex].question,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                        style: const TextStyle(
+                            fontFamily: "UrduType", fontSize: 20),
                       ),
                     ),
-
                     Column(
                       children: List.generate(
                         questions[questionIndex].options.length,
-                            (index) => Padding(
+                        (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: QuizCard(
                             text: questions[questionIndex].options[index],
@@ -183,116 +277,116 @@ class _LessonOption21State extends State<LessonOption21> {
                             color: optionColors[index],
                             ontap: () => updateQuestion(
                                 questions[questionIndex].options[index], index),
-                            isCorrect: selectedAnswer == questions[questionIndex].correctAnswer,
-                            isSelected: isSelectedList[index],  // use the list here
+                            isCorrect: selectedAnswer ==
+                                questions[questionIndex].correctAnswer,
+                            isSelected:
+                                isSelectedList[index], // use the list here
                           ),
                         ),
                       ),
                     ),
-
                   ],
                 ),
-                Column(
-                  children: [
-                    isAnswered // Check if the question is answered
-                        ? Container(
-                            height: 140,
-                            width: double.infinity,
-                            color: selectedAnswer ==
-                                    questions[questionIndex].correctAnswer
-                                ? Colors.green[100] // Light green if correct
-                                : Colors.red[100], // Light red if incorrect
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 0,left: 15,right: 15),
-                              child: RichText(
-                                textAlign: TextAlign.center,
-                                text: TextSpan(
-                                  style: const TextStyle(
-                                      fontFamily: "UrduType", fontSize: 18),
-                                  children: [
-                                    TextSpan(
-                                      text: selectedAnswer ==
-                                              questions[questionIndex]
-                                                  .correctAnswer
-                                          ? "درست۔ "
-                                          : "غلط۔ ",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: "UrduType",
-                                        color: selectedAnswer ==
-                                                questions[questionIndex]
-                                                    .correctAnswer
-                                            ? Colors
-                                                .green // Green text if correct
-                                            : Colors
-                                                .red, // Red text if incorrect
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: selectedAnswer ==
-                                              questions[questionIndex]
-                                                  .correctAnswer
-                                          ? questions[questionIndex]
-                                              .correctExplanation
-                                          : questions[questionIndex]
-                                              .incorrectExplanation,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: "UrduType",
-                                        color: selectedAnswer ==
-                                                questions[questionIndex]
-                                                    .correctAnswer
-                                            ? Colors
-                                                .black // Black text if correct
-                                            : Colors
-                                                .red, // Red text if incorrect
-                                      ),
-                                    ),
-                                    if (selectedAnswer !=
-                                        questions[questionIndex].correctAnswer)
-                                      const TextSpan(
-                                        text: "\nدرست۔",
-                                        style: TextStyle(
-                                          fontFamily: "UrduType",
-                                          fontSize: 16,
-                                          color: Colors
-                                              .black, // Black text for the correct answer prefix
-                                        ),
-                                      ),
-                                    if (selectedAnswer !=
-                                        questions[questionIndex].correctAnswer)
-                                      TextSpan(
-                                        text: questions[questionIndex]
-                                            .correctExplanation, // Correct explanation
-                                        style: const TextStyle(
-                                          fontFamily: "UrduType",
-                                          fontSize: 16,
-                                          color: Colors
-                                              .black, // Black text for the correct explanation
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
-                        : Column(
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                decoration: BoxDecoration(
-                                    color: Colors.black87.withOpacity(0.1)),
-                              ),
-                            ],
-                          ),
-                  ],
-                ),
+                // Column(
+                //   children: [
+                //     isAnswered // Check if the question is answered
+                //         ? Container(
+                //             height: 140,
+                //             width: double.infinity,
+                //             color: selectedAnswer ==
+                //                     questions[questionIndex].correctAnswer
+                //                 ? Colors.green[100] // Light green if correct
+                //                 : Colors.red[100], // Light red if incorrect
+                //             child: Padding(
+                //               padding: const EdgeInsets.only(top: 0,left: 15,right: 15),
+                //               child: RichText(
+                //                 textAlign: TextAlign.center,
+                //                 text: TextSpan(
+                //                   style: const TextStyle(
+                //                       fontFamily: "UrduType", fontSize: 18),
+                //                   children: [
+                //                     TextSpan(
+                //                       text: selectedAnswer ==
+                //                               questions[questionIndex]
+                //                                   .correctAnswer
+                //                           ? "درست۔ "
+                //                           : "غلط۔ ",
+                //                       style: TextStyle(
+                //                         fontSize: 16,
+                //                         fontFamily: "UrduType",
+                //                         color: selectedAnswer ==
+                //                                 questions[questionIndex]
+                //                                     .correctAnswer
+                //                             ? Colors
+                //                                 .green // Green text if correct
+                //                             : Colors
+                //                                 .red, // Red text if incorrect
+                //                       ),
+                //                     ),
+                //                     TextSpan(
+                //                       text: selectedAnswer ==
+                //                               questions[questionIndex]
+                //                                   .correctAnswer
+                //                           ? questions[questionIndex]
+                //                               .correctExplanation
+                //                           : questions[questionIndex]
+                //                               .incorrectExplanation,
+                //                       style: TextStyle(
+                //                         fontSize: 16,
+                //                         fontFamily: "UrduType",
+                //                         color: selectedAnswer ==
+                //                                 questions[questionIndex]
+                //                                     .correctAnswer
+                //                             ? Colors
+                //                                 .black // Black text if correct
+                //                             : Colors
+                //                                 .red, // Red text if incorrect
+                //                       ),
+                //                     ),
+                //                     if (selectedAnswer !=
+                //                         questions[questionIndex].correctAnswer)
+                //                       const TextSpan(
+                //                         text: "\nدرست۔",
+                //                         style: TextStyle(
+                //                           fontFamily: "UrduType",
+                //                           fontSize: 16,
+                //                           color: Colors
+                //                               .black, // Black text for the correct answer prefix
+                //                         ),
+                //                       ),
+                //                     if (selectedAnswer !=
+                //                         questions[questionIndex].correctAnswer)
+                //                       TextSpan(
+                //                         text: questions[questionIndex]
+                //                             .correctExplanation, // Correct explanation
+                //                         style: const TextStyle(
+                //                           fontFamily: "UrduType",
+                //                           fontSize: 16,
+                //                           color: Colors
+                //                               .black, // Black text for the correct explanation
+                //                         ),
+                //                       ),
+                //                   ],
+                //                 ),
+                //               ),
+                //             ),
+                //           )
+                //         : Column(
+                //             children: [
+                //               Container(
+                //                 width: double.infinity,
+                //                 height: 1,
+                //                 decoration: BoxDecoration(
+                //                     color: Colors.black87.withOpacity(0.1)),
+                //               ),
+                //             ],
+                //           ),
+                //   ],
+                // ),
               ],
             ),
           ),
           const Spacer(),
-
           Positioned(
             bottom: 0,
             left: 0,
@@ -363,9 +457,7 @@ class QuizCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isAnswered
-          ? null
-          : () => ontap(),
+      onTap: isAnswered ? null : () => ontap(),
       child: Container(
         width: 360,
         height: 120,
@@ -387,7 +479,6 @@ class QuizCard extends StatelessWidget {
             ),
             child: Stack(
               children: [
-
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Row(
@@ -443,4 +534,3 @@ class Question {
     required this.incorrectExplanation,
   });
 }
-
