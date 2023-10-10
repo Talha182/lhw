@@ -11,6 +11,7 @@ import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20openview%202.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Profile/edit_profile.dart';
+import 'package:lhw/Quiz/DragDrop/DragDrop.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/Settings/SettingsPage.dart';
 import 'package:lhw/firebase_options.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: Course_DropDown2(),
+      home: DragDrop(),
     );
   }
 }
