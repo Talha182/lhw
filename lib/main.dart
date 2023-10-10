@@ -14,18 +14,25 @@ import 'package:lhw/Profile/edit_profile.dart';
 import 'package:lhw/Quiz/DragDrop/DragDrop.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/Settings/SettingsPage.dart';
+import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
+import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
   //     .then((value) => Get.put(AuthenticationRepository()));
+  await Firebase.initializeApp();
+  await FirebaseApi().initNotification();
   runApp(const MaterialApp(
     home: MyApp(),
+
   ));
 }
 
@@ -44,6 +51,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorKey: navigatorKey,
+      routes: {
+        '/notification_screen' : (context) =>  NotificationScreen()
+      },
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,
@@ -54,7 +65,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: DragDrop(),
+      home: LoginScreen(),
     );
   }
 }

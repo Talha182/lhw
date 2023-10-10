@@ -1,11 +1,16 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key}) : super(key: key);
+  static const route = '/notification-screen';
 
   @override
   Widget build(BuildContext context) {
+    final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
+    final imageUrl = message.data['imageUrl'];
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
@@ -74,80 +79,136 @@ class NotificationScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            NotificationCard(
-              imagePath: "assets/images/notification.svg",
-              title:
-                  "آپ کو 'باب 9: نیوٹریشن' ڈسکشن گروپ میں شامل کیا گیا ہے۔ ابھی گفتگو میں شامل ہوں!",
-              date: formatCurrentDateInUrdu(),
+        Container(
+          height: 85,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (imageUrl != null)
+                  Image.network(
+                    imageUrl,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  )
+                else
+                  SvgPicture.asset("assets/images/1.png"),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        message.notification!.title.toString(),
+                        style: const TextStyle(
+                          fontSize: 15.4,
+                          fontFamily: "UrduType",
+                        ),
+                        textAlign: TextAlign.justify,
+                      ),
+                      Text(
+                        message.notification!.body.toString(),
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontFamily: "UrduType",
+                          color: Color(0xff7A7D84),
+                        ),
+                        textAlign: TextAlign.justify,
+                        ),
+                      // ),Text(
+                      //   message.data.toString(),
+                      //   style: const TextStyle(
+                      //     fontSize: 13,
+                      //     fontFamily: "UrduType",
+                      //     color: Color(0xff7A7D84),
+                      //   ),
+                      //   textAlign: TextAlign.justify,
+                      // ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Icon(Icons.close)
+              ],
             ),
-            const Text(
-              "قبل ازیں",
-              textDirection: TextDirection.rtl,
-              style: TextStyle(
-                fontFamily: 'UrduType',
-                fontSize: 20,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            NotificationCard(
-              imagePath: "assets/images/notification.svg",
-              title:
-                  "آپ کو 'باب 9: نیوٹریشن' ڈسکشن گروپ میں شامل کیا گیا ہے۔ ابھی گفتگو میں شامل ہوں!",
-              date: formatCurrentDateInUrdu(),
-            ),
-            const Divider(),
-            const SizedBox(
-              height: 20,
-            ),
-            NotificationCard(
-              imagePath: "assets/images/notification_alarm.svg",
-              title:
-                  "&#39;انفینٹ کیئر&#39; پر آپ کے آخری سبق کو ایک ہفتہ ہو گیا ہے۔ آج اپنا سیکھنے کا سفر جاری رکھیں",
-              date: formatCurrentDateInUrdu(),
-            ),
-            const Divider(),
-            const SizedBox(
-              height: 20,
-            ),
-            NotificationCard(
-              imagePath: "assets/images/notification_trophy.svg",
-              title:
-                  "مبارک ہو! آپ لیڈر بورڈ پر 5ویں نمبر پر چلے گئے ہیں۔ چلتے رہو!",
-              date: formatCurrentDateInUrdu(),
-            ),
-            const Divider(),
-            const SizedBox(
-              height: 20,
-            ),
-            NotificationCard(
-              imagePath: "assets/images/notification_badge.svg",
-              title:
-                  "بہت اچھے! آپ نے &#39;ویکسینیشن ٹیکنیکس&#39; کورس کا 50% مکمل کر لیا ہے۔ اسے جاری رکھیں",
-              date: formatCurrentDateInUrdu(),
-            ),
-            const Divider(),const SizedBox(
-              height: 20,
-            ),
-            NotificationCard(
-              imagePath: "assets/images/notification_thumbsup.svg",
-              title:
-                  "ہم آپ کے ان پٹ کی قدر کرتے ہیں! براہ کرم &#39;بنیادی حفظان صحت کے طریقوں&#39; کورس کے لیے رائے دیں۔",
-              date: formatCurrentDateInUrdu(),
-            ),
-            const Divider(),const SizedBox(
-              height: 20,
-            ),
-            NotificationCard(
-              imagePath: "assets/images/notification_settings.svg",
-              title:
-                  "اچھی خبر! ہم نے سیکھنے کے آسان تجربے کے لیے ایپ کو اپ ڈیٹ کیا ہے۔",
-              date: formatCurrentDateInUrdu(),
-            ),
-            const Divider(),
+          ),
+        ),
+            // const Text(
+            //   "قبل ازیں",
+            //   textDirection: TextDirection.rtl,
+            //   style: TextStyle(
+            //     fontFamily: 'UrduType',
+            //     fontSize: 20,
+            //     color: Colors.black,
+            //     fontWeight: FontWeight.w600,
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // NotificationCard(
+            //   imagePath: "assets/images/notification.svg",
+            //   title:
+            //       "آپ کو 'باب 9: نیوٹریشن' ڈسکشن گروپ میں شامل کیا گیا ہے۔ ابھی گفتگو میں شامل ہوں!",
+            //   date: formatCurrentDateInUrdu(),
+            // ),
+            // const Divider(),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // NotificationCard(
+            //   imagePath: "assets/images/notification_alarm.svg",
+            //   title:
+            //       "&#39;انفینٹ کیئر&#39; پر آپ کے آخری سبق کو ایک ہفتہ ہو گیا ہے۔ آج اپنا سیکھنے کا سفر جاری رکھیں",
+            //   date: formatCurrentDateInUrdu(),
+            // ),
+            // const Divider(),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // NotificationCard(
+            //   imagePath: "assets/images/notification_trophy.svg",
+            //   title:
+            //       "مبارک ہو! آپ لیڈر بورڈ پر 5ویں نمبر پر چلے گئے ہیں۔ چلتے رہو!",
+            //   date: formatCurrentDateInUrdu(),
+            // ),
+            // const Divider(),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // NotificationCard(
+            //   imagePath: "assets/images/notification_badge.svg",
+            //   title:
+            //       "بہت اچھے! آپ نے &#39;ویکسینیشن ٹیکنیکس&#39; کورس کا 50% مکمل کر لیا ہے۔ اسے جاری رکھیں",
+            //   date: formatCurrentDateInUrdu(),
+            // ),
+            // const Divider(),const SizedBox(
+            //   height: 20,
+            // ),
+            // NotificationCard(
+            //   imagePath: "assets/images/notification_thumbsup.svg",
+            //   title:
+            //       "ہم آپ کے ان پٹ کی قدر کرتے ہیں! براہ کرم &#39;بنیادی حفظان صحت کے طریقوں&#39; کورس کے لیے رائے دیں۔",
+            //   date: formatCurrentDateInUrdu(),
+            // ),
+            // const Divider(),const SizedBox(
+            //   height: 20,
+            // ),
+            // NotificationCard(
+            //   imagePath: "assets/images/notification_settings.svg",
+            //   title:
+            //       "اچھی خبر! ہم نے سیکھنے کے آسان تجربے کے لیے ایپ کو اپ ڈیٹ کیا ہے۔",
+            //   date: formatCurrentDateInUrdu(),
+            // ),
+            // const Divider(),
           ],
         ),
       ),

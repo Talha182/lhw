@@ -141,7 +141,6 @@
                                 minimumSize: const Size(150, 37),
                               ),
                               onPressed: () {},
-                              child: const Expanded(
                                 child: Text(
                                   'جاری رہے',
                                   style: TextStyle(
@@ -149,8 +148,7 @@
                                     fontSize: 15,
                                     color: Colors.white,
                                   ),
-                                ),
-                              ))
+                                ),)
                         ]),
                   )
                 ]),
