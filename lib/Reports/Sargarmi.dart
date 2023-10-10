@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Sargarmi extends StatefulWidget {
   const Sargarmi({super.key});
@@ -13,10 +14,33 @@ class _SargarmiState extends State<Sargarmi> {
   Set<DateTime> _selectedDates = {};
 
   @override
+  void initState() {
+    super.initState();
+    _loadAttendance();
+  }
+
+  _loadAttendance() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> storedDates = prefs.getStringList('attendanceDates') ?? [];
+    setState(() {
+      _selectedDates = storedDates.map((date) => DateTime.parse(date)).toSet();
+      // Add today's date to the set and save
+      _markAttendance(_currentDate);
+    });
+  }
+
+  _markAttendance(DateTime date) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _selectedDates.add(date);
+    prefs.setStringList('attendanceDates', _selectedDates.map((date) => date.toIso8601String()).toList());
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10),
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: ListView(
@@ -39,7 +63,7 @@ class _SargarmiState extends State<Sargarmi> {
                     fontSize: 16,
                     color: Color(0xff8B9DA0)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -48,7 +72,7 @@ class _SargarmiState extends State<Sargarmi> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -58,42 +82,34 @@ class _SargarmiState extends State<Sargarmi> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: Colors.grey.shade300)),
                         child: Padding(
-                            padding: EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(15),
                             child: Stack(
                               children: <Widget>[
-                                CalendarCarousel(
-                                  weekDayFormat: WeekdayFormat.short,
-                                  headerTextStyle: TextStyle(
+                                IgnorePointer(
+                                  child: CalendarCarousel(
+                                    weekDayFormat: WeekdayFormat.short,
+                                    headerTextStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: "UrduType",
+                                        fontSize: 20),
+                                    iconColor: const Color(0xffE3E3E3),
+                                    showOnlyCurrentMonthDate: true,
+                              
+                                    weekdayTextStyle: const TextStyle(
                                       color: Colors.black,
-                                      fontFamily: "UrduType",
-                                      fontSize: 20),
-                                  iconColor: Color(0xffE3E3E3),
-                                  showOnlyCurrentMonthDate: true,
-                                  onDayPressed: (date, _) {
-                                    setState(() {
-                                      // Toggle selection: If the date is already in the set, remove it, else add it
-                                      if (_selectedDates.contains(date)) {
-                                        _selectedDates.remove(date);
-                                      } else {
-                                        _selectedDates.add(date);
-                                      }
-                                    });
-                                  },
-                                  weekdayTextStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  weekendTextStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  headerMargin: EdgeInsets.only(bottom: 20),
-                                  thisMonthDayBorderColor: Colors.grey,
-                                  weekFormat: false,
-                                  selectedDayTextStyle:
-                                      TextStyle(color: Colors.white),
-                                  todayButtonColor: Colors.transparent,
-                                  todayTextStyle:
-                                      TextStyle(color: Colors.white),
-                                  customDayBuilder: (
+                                    ),
+                                    weekendTextStyle: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    headerMargin: const EdgeInsets.only(bottom: 20),
+                                    thisMonthDayBorderColor: Colors.grey,
+                                    weekFormat: false,
+                                    selectedDayTextStyle:
+                                        const TextStyle(color: Colors.white),
+                                    todayButtonColor: Colors.transparent,
+                                    todayTextStyle:
+                                        const TextStyle(color: Colors.white),
+                              customDayBuilder: (
                                     bool isSelectable,
                                     int index,
                                     bool isSelectedDay,
@@ -103,36 +119,46 @@ class _SargarmiState extends State<Sargarmi> {
                                     bool isNextMonthDay,
                                     bool isThisMonthDay,
                                     DateTime day,
-                                  ) {
-                                    if (!isThisMonthDay)
-                                      return null; // If you only want the current month's days
+                                    ) {
+                                  if (!isThisMonthDay) return null;
 
-                                    Color containerColor = Color(0xffEDEFF1);
-                                    Widget? child; // Made it nullable
+                                  Color containerColor = const Color(0xffEDEFF1);
+                                  Widget? child;
 
-                                    if (_selectedDates.contains(day)) {
-                                      containerColor = Color(0xffFFCE51);
-                                      child = Center(
-                                        child: Image.asset(
-                                          "assets/images/calender1.png",
-                                          width: 18,
-                                          height: 18,
-                                          fit: BoxFit.contain,
-                                        ), // Icon for the selected day
-                                      );
-                                    }
-
-                                    return Container(
-                                      margin: EdgeInsets.all(4.0),
-                                      decoration: BoxDecoration(
-                                        color: containerColor,
-                                        shape: BoxShape.circle,
+                                  if (_selectedDates.contains(day)) {
+                                    containerColor = const Color(0xffFFCE51);
+                                    child = Center(
+                                      child: Image.asset(
+                                        "assets/images/calender1.png",
+                                        width: 18,
+                                        height: 18,
+                                        fit: BoxFit.contain,
                                       ),
-                                      child: child,
                                     );
-                                  },
+                                  } else if (isToday) {  // If the day is today, we'll display the icon
+                                    containerColor = const Color(0xffFFCE51);  // or any other color you want for today
+                                    child = Center(
+                                      child: Image.asset(
+                                        "assets/images/calender1.png",
+                                        width: 18,
+                                        height: 18,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    );
+                                  }
+
+                                  return Container(
+                                    margin: const EdgeInsets.all(4.0),
+                                    decoration: BoxDecoration(
+                                      color: containerColor,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: child,
+                                  );
+                              },
+                                  ),
                                 ),
-                                Positioned(
+                              Positioned(
                                   top: 40.0, // adjust as per your requirement
                                   left: 16.0,
                                   right: 16.0,
@@ -145,14 +171,14 @@ class _SargarmiState extends State<Sargarmi> {
                               ],
                             )),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Padding(
-                          padding: EdgeInsets.only(right: 20, top: 15),
+                          padding: const EdgeInsets.only(right: 20, top: 15),
                           child: Image.asset("assets/images/quotations.png")),
                       Text(
-                        "10 دن کا سلسلہ حاصل ہوا! رفتار کو جاری رکھیں",
+                        "${_selectedDates.length} دن کا سلسلہ حاصل ہوا! رفتار کو جاری رکھیں",
                         style: TextStyle(
                             fontFamily: "UrduType",
                             fontSize: 20,
@@ -162,7 +188,7 @@ class _SargarmiState extends State<Sargarmi> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
@@ -171,22 +197,22 @@ class _SargarmiState extends State<Sargarmi> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
-                  padding: EdgeInsets.only(top: 10, right: 10, left: 10),
+                  padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "بحث گروپ کی شرکت کی پیمائش",
                         style: TextStyle(fontFamily: "UrduType", fontSize: 17),
                       ),
-                      Text(
+                      const Text(
                         "دیکھیں کہ آپ نے ہر باب کے کوئز میں کیسی کارکردگی دکھائی",
                         style: TextStyle(
                             fontFamily: "UrduType",
                             fontSize: 15,
                             color: Color(0xff8B9DA0)),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
@@ -197,15 +223,15 @@ class _SargarmiState extends State<Sargarmi> {
                             height: 135,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Color(0xffE5E5E5))),
+                                border: Border.all(color: const Color(0xffE5E5E5))),
                             child: Padding(
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 children: [
                                   Container(
                                     width: 45,
                                     height: 45,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       gradient: LinearGradient(colors: [
                                         Color(0xffF4D6A9),
@@ -217,15 +243,15 @@ class _SargarmiState extends State<Sargarmi> {
                                           "assets/images/message.png"),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
+                                  const Text(
                                     "تبصرے",
                                     style: TextStyle(
                                         fontFamily: "UrduType", fontSize: 18),
                                   ),
-                                  Text(
+                                  const Text(
                                     "100",
                                     style: TextStyle(
                                         fontFamily: "UrduType", fontSize: 18),
@@ -239,15 +265,15 @@ class _SargarmiState extends State<Sargarmi> {
                             height: 135,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Color(0xffE5E5E5))),
+                                border: Border.all(color: const Color(0xffE5E5E5))),
                             child: Padding(
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 children: [
                                   Container(
                                     width: 45,
                                     height: 45,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       gradient: LinearGradient(colors: [
                                         Color(0xffF4B9E1),
@@ -259,15 +285,15 @@ class _SargarmiState extends State<Sargarmi> {
                                           "assets/images/add.png"),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
+                                  const Text(
                                     "پوسٹس",
                                     style: TextStyle(
                                         fontFamily: "UrduType", fontSize: 18),
                                   ),
-                                  Text(
+                                  const Text(
                                     "12",
                                     style: TextStyle(
                                         fontFamily: "UrduType", fontSize: 18),
@@ -281,15 +307,15 @@ class _SargarmiState extends State<Sargarmi> {
                             height: 135,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Color(0xffE5E5E5))),
+                                border: Border.all(color: const Color(0xffE5E5E5))),
                             child: Padding(
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 children: [
                                   Container(
                                     width: 45,
                                     height: 45,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       gradient: LinearGradient(colors: [
                                         Color(0xffE6ECF9),
@@ -301,15 +327,15 @@ class _SargarmiState extends State<Sargarmi> {
                                           "assets/images/like.png",color: Colors.black,),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
+                                  const Text(
                                     "پسند کرتا ہے۔",
                                     style: TextStyle(
                                         fontFamily: "UrduType", fontSize: 18),
                                   ),
-                                  Text(
+                                  const Text(
                                     "12",
                                     style: TextStyle(
                                         fontFamily: "UrduType", fontSize: 18),
@@ -320,13 +346,13 @@ class _SargarmiState extends State<Sargarmi> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Divider(
                         thickness: 1,
                         color: Colors.grey.shade200,
-                      ), SizedBox(
+                      ), const SizedBox(
                         height: 10,
                       ),
                       Row(
@@ -359,7 +385,7 @@ class _SargarmiState extends State<Sargarmi> {
                           )
                         ],
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       Row(
                         children: [
                           Image.asset(

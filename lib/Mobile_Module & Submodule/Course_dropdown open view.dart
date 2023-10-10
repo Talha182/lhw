@@ -65,7 +65,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
                             width: 5,
                             height: 5,
                             decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Color(0xff685F78)),
+                                shape: BoxShape.circle,
+                                color: Color(0xff685F78)),
                           ),
                           const SizedBox(width: 8),
                           // SvgPicture.asset("assets/images/clock.svg",
@@ -139,7 +140,10 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop(); // Close the dialog
-                          Get.to(LessonOption26(),transition: Transition.fade,duration: Duration(milliseconds: 400))!.then((value) {
+                          Get.to(LessonOption26(),
+                                  transition: Transition.fade,
+                                  duration: Duration(milliseconds: 400))!
+                              .then((value) {
                             // When returning from LessonOption26, unlock the next level
                             setState(() {
                               if (currentUnlockedLevel < 3) {
@@ -148,7 +152,6 @@ class _Course_DropDownState extends State<Course_DropDown> {
                             });
                           });
                         },
-
                         child: const Text(
                           'کورس جاری رکھیں',
                           style: TextStyle(
@@ -168,8 +171,6 @@ class _Course_DropDownState extends State<Course_DropDown> {
       },
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -271,7 +272,9 @@ class _Course_DropDownState extends State<Course_DropDown> {
                     width: 20,
                   ),
                   GestureDetector(
-                    onTap: currentUnlockedLevel >= 3 ? () => showCustomDialog(context) : null,
+                    onTap: currentUnlockedLevel >= 3
+                        ? () => showCustomDialog(context)
+                        : null,
                     child: Container(
                       width: 60,
                       height: 60,
@@ -283,10 +286,16 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         child: Container(
                           width: 45,
                           height: 45,
-                          decoration:  BoxDecoration(
-                              shape: BoxShape.circle,    color: currentUnlockedLevel >= 3 ? Color(0xffFF6BC5) : Color(0xffD1D7DC)),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: currentUnlockedLevel >= 3
+                                  ? Color(0xffFF6BC5)
+                                  : Color(0xffD1D7DC)),
                           child: Center(
-                            child: SvgPicture.asset("assets/images/trophy.svg",   color: currentUnlockedLevel >= 3 ? Colors.white : null),
+                            child: SvgPicture.asset("assets/images/trophy.svg",
+                                color: currentUnlockedLevel >= 3
+                                    ? Colors.white
+                                    : null),
                           ),
                         ),
                       ),
@@ -311,14 +320,20 @@ class _Course_DropDownState extends State<Course_DropDown> {
                       child: Container(
                         width: 45,
                         height: 45,
-                        decoration:  BoxDecoration(
-                            shape: BoxShape.circle,    color: currentUnlockedLevel >= 2 ? Color(0xffFF6BC5) : Color(0xffD1D7DC)),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: currentUnlockedLevel >= 2
+                                ? Color(0xffFF6BC5)
+                                : Color(0xffD1D7DC)),
                         child: Center(
                           child: GestureDetector(
-                              onTap: currentUnlockedLevel >= 2 ? () => showCustomDialog(context) : null,
-
-                              child:
-                                  SvgPicture.asset("assets/images/book.svg",   color: currentUnlockedLevel >= 2 ? Colors.white : null)),
+                              onTap: currentUnlockedLevel >= 2
+                                  ? () => showCustomDialog(context)
+                                  : null,
+                              child: SvgPicture.asset("assets/images/book.svg",
+                                  color: currentUnlockedLevel >= 2
+                                      ? Colors.white
+                                      : null)),
                         ),
                       ),
                     ),
@@ -365,10 +380,14 @@ class _Course_DropDownState extends State<Course_DropDown> {
                                   : Color(0xffD1D7DC)),
                           child: Center(
                             child: GestureDetector(
-                                onTap: currentUnlockedLevel >= 1 ? () => showCustomDialog(context) : null,
-
-                                child:
-                                    SvgPicture.asset("assets/images/tick.svg",   color: currentUnlockedLevel >= 1 ? Colors.white :null)),
+                                onTap: currentUnlockedLevel >= 1
+                                    ? () => showCustomDialog(context)
+                                    : null,
+                                child: SvgPicture.asset(
+                                    "assets/images/tick.svg",
+                                    color: currentUnlockedLevel >= 1
+                                        ? Colors.white
+                                        : null)),
                           ),
                         ),
                       ),

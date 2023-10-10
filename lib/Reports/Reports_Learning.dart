@@ -59,11 +59,11 @@ class _ReportsScreenState extends State<ReportsScreen> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -141,7 +141,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -267,8 +267,8 @@ Widget _tabBar() {
          Expanded(
           child: TabBarView(
             children: <Widget>[
-              Achievements(),
-              Sargarmi(),
+              const Achievements(),
+              const Sargarmi(),
               Seekhna(),
             ],
           ),
