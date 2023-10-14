@@ -62,7 +62,7 @@ dependencies:
     path: buttons_tabbar-1.3.7+1
   loading_animation_widget: ^1.2.0+4
   firebase_messaging: ^14.6.9
-
+  camera: ^0.10.5+5
 
 
 dev_dependencies:

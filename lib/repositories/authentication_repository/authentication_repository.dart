@@ -41,35 +41,26 @@ class AuthenticationRepository extends GetxController {
   //       : Get.offAll(() => const Custom_NavBar());
   // }
 
-  Future<void> createUserWithEmailAndPassword(String email, String password) async {
+  Future<void> createUserWithEmailAndPassword(
+      String email, String password) async {
     try {
-      SignUpController.instance.isLoading.value = true; // Start loading
-
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
-
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      firebaseUser.value != null
+          ? Get.offAll(() => const Custom_NavBar())
+          : Get.to(() => const SplashScreen());
       Fluttertoast.showToast(
           msg: "Account created successfully!",
           backgroundColor: Colors.green.withOpacity(0.1),
-          textColor: Colors.green
-      );
-
-      // No need for delay here as you're using the toast
-       Get.offAll(() => const SplashScreen());
-
-      // Clear text fields after successful account creation
-      SignUpController.instance.clearSignUpFields();
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        Fluttertoast.showToast(
-            msg: "This email is already in use.",
-            backgroundColor: Colors.red.withOpacity(0.1),
-            textColor: Colors.red
-        );
-      } else {
-        // Handle other types of FirebaseAuthException here if needed
-      }
+          textColor: Colors.green);
+    } on FirebaseException catch (e) {
+      final ex = SignUpExceptions.code(e.code);
+      print(ex.message);
+      throw ex;
     } catch (_) {
-      // Handle other types of exceptions if needed
+      const ex = SignUpExceptions();
+      print(ex.message);
+      throw ex;
     }
   }
 
@@ -85,8 +76,7 @@ class AuthenticationRepository extends GetxController {
       Fluttertoast.showToast(
           msg: "Login successful!",
           backgroundColor: Colors.green.withOpacity(0.1),
-          textColor: Colors.green
-      );
+          textColor: Colors.green);
 
       firebaseUser.value != null
           ? Get.offAll(() => const Custom_NavBar(),

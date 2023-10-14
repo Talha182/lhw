@@ -504,60 +504,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Obx((){
-                      if (SignUpController.instance.isLoading.value){
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }else {
-                       return Center(
-                          child: SizedBox(
-                              width: Get.width,
-                              height: 45,
-                              child: RoundedButton(
-                                title: "سائن اپ",
-                                onTap: () async {
-                                  if (areFieldsEmpty([
-                                    controller.id,
-                                    controller.name,
-                                    controller.email,
-                                    controller.nic,
-                                    controller.phoneNo,
-                                    controller.password,
-                                    controller.nic,
-                                    controller.phoneNo,
-                                    controller.password,
-
-                                    controller.dob
-                                  ])) {
-                                    Fluttertoast.showToast(
-                                        msg: "Please fill all the fields!",
-                                        backgroundColor:
-                                            Colors.red.withOpacity(0.1),
-                                        textColor: Colors.red);
-                                  } else if (_formkey.currentState!.validate()) {
-                                    SignUpController.instance.SignUp(
-                                        controller.email.text.trim(),
-                                        controller.password.text.trim());
-
-                                    final user = UserModel(
-                                        controller.id.text.trim(),
-                                        controller.name.text.trim(),
-                                        controller.email.text.trim(),
-                                        controller.nic.text.trim(),
-                                        controller.phoneNo.text.trim(),
-                                        controller.password.text.trim(),
-                                        controller.dob.text.trim());
-
-                                    await SignUpController.instance
-                                        .createUser(user);
-                                  }
-                                },
-                              )),
-
-                        );
-                      }
-                      }),
+                  Obx(() {
+                    if (SignUpController.instance.isLoading.value) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return Center(
+                        child: SizedBox(
+                          width: Get.width,
+                          height: 45,
+                          child: RoundedButton(
+                            title: "سائن اپ",
+                            onTap: () async {
+                              if (areFieldsEmpty([
+                                SignUpController.instance.id,
+                                SignUpController.instance.name,
+                                SignUpController.instance.email,
+                                SignUpController.instance.nic,
+                                SignUpController.instance.phoneNo,
+                                SignUpController.instance.password,
+                                SignUpController.instance.dob
+                              ])) {
+                                Fluttertoast.showToast(
+                                  msg: "Please fill all the fields!",
+                                  backgroundColor: Colors.red.withOpacity(0.1),
+                                  textColor: Colors.red,
+                                );
+                              } else if (_formkey.currentState!.validate()) {
+                                await SignUpController.instance.RegisterUser(
+                                  SignUpController.instance.email.text.trim(),
+                                  SignUpController.instance.password.text.trim(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                    }
+                  }),
                     const SizedBox(
                       height: 10,
                     ),
