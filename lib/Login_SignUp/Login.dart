@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller.clearLoginFields();
                       Get.to(() => const SignUpScreen(),
                           transition: Transition.fade,
-                          duration: const Duration(milliseconds: 500));
+                          duration: const Duration(milliseconds: 200));
                     },
                     child: const Text(
                       "سائن اپ",
@@ -242,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       Get.to(() => const ForgotPasswordScreen(),
                           transition: Transition.fade,
-                          duration: const Duration(milliseconds: 400));
+                          duration: const Duration(milliseconds: 200));
                     },
                     child: const Text(
                       "پاسورڈ بھول گے؟",
@@ -342,11 +342,11 @@ class InitialRouter extends StatelessWidget {
     if (isFirstTime) {
       Get.offAll(() => const LoginScreen(),
           transition: Transition.fadeIn,
-          duration: const Duration(milliseconds: 400));
+          duration: const Duration(milliseconds: 200));
     } else {
       Get.offAll(() => const Custom_NavBar(),
           transition: Transition.fadeIn,
-          duration: const Duration(milliseconds: 400));
+          duration: const Duration(milliseconds: 200));
     }
   }
 }

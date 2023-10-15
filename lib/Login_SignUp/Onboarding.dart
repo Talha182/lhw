@@ -116,7 +116,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         },
                         child: _current == 0
                             ? const Text(
-                          'I’m new to the app',
+                          'میں ایپ میں نیا ہوں',
                           style: TextStyle(
                             fontFamily: 'UrduType',
                             fontSize: 15,
@@ -125,7 +125,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         )
                             : _current == 1
                             ? const Text(
-                          'Next',
+                          'اگلا',
                           style: TextStyle(
                             fontFamily: 'UrduType',
                             fontSize: 15,
@@ -133,7 +133,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         )
                             : const Text(
-                          'Finish Onboarding',
+                          'اگلا',
                           style: TextStyle(
                             fontFamily: 'UrduType',
                             fontSize: 15,
@@ -144,13 +144,41 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: _navigateToHome,
-                    child: const Text(
-                      'Skip',
+                  InkWell(
+
+                    onTap: () {
+                      if (_current == 2) {
+                        _navigateToHome();
+                      } else {
+                        setState(() {
+                          _current = _current + 1;
+                        });
+                      }
+                    },
+                    child: _current == 0
+                        ? const Text(
+                      'لاگ ان',
                       style: TextStyle(
                         fontFamily: 'UrduType',
                         fontSize: 15,
+                        color: Colors.black,
+                      ),
+                    )
+                        : _current == 1
+                        ? const Text(
+                      'اچٹیں',
+                      style: TextStyle(
+                        fontFamily: 'UrduType',
+                        fontSize: 15,
+                        color: Colors.black,
+                      ),
+                    )
+                        : const Text(
+                      'اچٹیں',
+                      style: TextStyle(
+                        fontFamily: 'UrduType',
+                        fontSize: 15,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -177,7 +205,7 @@ class OnBoarding1 extends StatelessWidget {
           height: 30,
         ),
         Text(
-          "Welcome, Lady Health Workers!",
+          "خوش آمدید، لیڈی ہیلتھ ورکرز!",
           style: TextStyle(fontFamily: "UrduType", fontSize: 25),
         ),
         SizedBox(
@@ -186,7 +214,7 @@ class OnBoarding1 extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            "Step by step, these courses will guide you, focusing on your unique learning journey",
+            "قدم بہ قدم، یہ کورسز آپ کی رہنمائی کریں گے، آپ کے منفرد سیکھنے کے سفر پر توجہ مرکوز کریں گے.",
             textAlign: TextAlign.right, // Align the text to the right
             style: TextStyle(
               fontFamily: "UrduType",
@@ -213,7 +241,7 @@ class OnBoarding2 extends StatelessWidget {
           height: 30,
         ),
         Text(
-          "New to technology?",
+          "ٹیکنالوجی میں نیا؟",
           style: TextStyle(fontFamily: "UrduType", fontSize: 25),
         ),
         SizedBox(
@@ -222,7 +250,7 @@ class OnBoarding2 extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            "Don't worry; we've designed this app with you in mind.",
+            "فکر نہ کرو; ہم نے اس ایپ کو آپ کو ذہن میں رکھتے ہوئے ڈیزائن کیا ہے.",
             textAlign: TextAlign.right, // Align the text to the right
             style: TextStyle(
               fontFamily: "UrduType",
@@ -249,7 +277,7 @@ class OnBoarding3 extends StatelessWidget {
           height: 30,
         ),
         Text(
-          "Meet Your Virtual LHW Guide!",
+          "اپنے مجازی ایل ایچ ڈبلیو گائیڈ سے ملیں!",
           style: TextStyle(fontFamily: "UrduType", fontSize: 25),
         ),
         SizedBox(
@@ -258,7 +286,7 @@ class OnBoarding3 extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            "Lost or unsure? Watch for helpful directions from our LHW, simplifying every step for you.",
+            "کھو یا غیر یقینی؟ ہمارے ایل ایچ ڈبلیو سے مددگار ہدایات دیکھیں ، آپ کے لئے ہر قدم کو آسان بنائیں۔",
             textAlign: TextAlign.right, // Align the text to the right
             style: TextStyle(
               fontFamily: "UrduType",

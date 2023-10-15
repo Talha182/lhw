@@ -109,10 +109,10 @@ class _LessonOption21State extends State<LessonOption21> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: isCorrect? Color(0xff9AC9C2) : Color(0xffFB6262), // Outer container's color
+                  color: isCorrect? const Color(0xff9AC9C2) : const Color(0xffFB6262), // Outer container's color
                 ),
                 padding: const EdgeInsets.only(
-                    bottom: 4.0), // Create a space at the bottom
+                    bottom: 4.0),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -128,32 +128,36 @@ class _LessonOption21State extends State<LessonOption21> {
                           height: 40,
                           decoration: BoxDecoration(
                             color: isCorrect
-                                ? Color(0xff9AC9C2).withOpacity(0.3)
-                                : Color(0xffFB6262).withOpacity(0.3),
+                                ? const Color(0xff9AC9C2).withOpacity(0.3)
+                                : const Color(0xffFB6262).withOpacity(0.3),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
                             isCorrect ? Icons.check : Icons.close,
                             size: 30,
                             color: isCorrect
-                                ? Color(0xff9AC9C2)
-                                : Color(0xffFB6262),
+                                ? const Color(0xff9AC9C2)
+                                : const Color(0xffFB6262),
                           ),
                         ),
                         Text(
-                          isCorrect ? "درست۔" : "غلط۔",
+                          isCorrect
+                              ? "درست۔"
+                              : "غلط۔ $explanation",  // Added a space after "غلط۔" and then added the explanation for wrong answers.
                           style: TextStyle(
                             fontFamily: "UrduType",
                             color: isCorrect
-                                ? Color(0xff47857C)
-                                : Color(0xffFB6262),
+                                ? const Color(0xff47857C)
+                                : const Color(0xffFB6262),
                             fontSize: 18,
                           ),
+                          textAlign: TextAlign.center,
                         ),
+
                         Text(
                           explanation,
                           style:
-                              TextStyle(fontFamily: "UrduType", fontSize: 16),
+                              const TextStyle(fontFamily: "UrduType", fontSize: 16),
                         ),
                       ],
                     ),
@@ -163,7 +167,7 @@ class _LessonOption21State extends State<LessonOption21> {
               Positioned(
                 right: 0,
                 child: IconButton(
-                  icon: Icon(Icons.close, color: Colors.black),
+                  icon: const Icon(Icons.close, color: Colors.black),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -386,7 +390,6 @@ class _LessonOption21State extends State<LessonOption21> {
               ],
             ),
           ),
-          const Spacer(),
           Positioned(
             bottom: 0,
             left: 0,
@@ -419,10 +422,10 @@ class _LessonOption21State extends State<LessonOption21> {
               bottom: 70, // Adjust as needed
               right: 15, // Adjust as needed
               child: CircleAvatar(
-                backgroundColor: Color(0xffF6B3D0),
+                backgroundColor: const Color(0xffF6B3D0),
                 radius: 30,
                 child: Padding(
-                    padding: EdgeInsets.only(bottom: 2),
+                    padding: const EdgeInsets.only(bottom: 2),
                     child: SvgPicture.asset(
                       "assets/images/samina_instructor.svg",
                       fit: BoxFit.fill,
@@ -464,11 +467,11 @@ class QuizCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: isSelected
-              ? (isCorrect ? Color(0xff9AC9C2) : Color(0xffFB6262))
+              ? (isCorrect ? const Color(0xff9AC9C2) : const Color(0xffFB6262))
               : const Color(0xffB1B2B4),
         ),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: const EdgeInsets.only(bottom: 4),
           child: Container(
             width: 360,
             height: 120,

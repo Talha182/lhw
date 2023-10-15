@@ -41,7 +41,6 @@ var items = [
 ];
 String? selectedValue;
 
-
 class _HomePageState extends State<HomePage> {
   bool showFirstMessage = false;
   bool showSecondMessage = false;
@@ -86,8 +85,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -188,8 +185,6 @@ class _HomePageState extends State<HomePage> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
                                                     children: <Widget>[
-
-
                                                       Text(
                                                         'مکمل کورس',
                                                         style: TextStyle(
@@ -201,10 +196,10 @@ class _HomePageState extends State<HomePage> {
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600),
-                                                      ),SizedBox(
+                                                      ),
+                                                      SizedBox(
                                                         width: 8,
                                                       ),
-
                                                       Icon(
                                                           Icons
                                                               .check_circle_outline,
@@ -213,16 +208,17 @@ class _HomePageState extends State<HomePage> {
                                                               0xff7A7D84)),
                                                     ],
                                                   ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(right: 20),
-                                                      child: Text(
-                                                        "3",
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            fontFamily:
-                                                                "UrduType"),
-                                                      ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 20),
+                                                    child: Text(
+                                                      "3",
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontFamily:
+                                                              "UrduType"),
                                                     ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -253,7 +249,6 @@ class _HomePageState extends State<HomePage> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
                                                     children: <Widget>[
-
                                                       const Text(
                                                         'باقی کورس',
                                                         style: TextStyle(
@@ -272,19 +267,19 @@ class _HomePageState extends State<HomePage> {
                                                       SvgPicture.asset(
                                                         'assets/images/course.svg',
                                                       ),
-
                                                     ],
                                                   ),
-                                                     const Padding(
-                                                       padding: EdgeInsets.only(right: 20),
-                                                       child: Text(
-                                                        "12",
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            fontFamily:
-                                                                "UrduType"),
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 20),
+                                                    child: Text(
+                                                      "12",
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontFamily:
+                                                              "UrduType"),
                                                     ),
-                                                     ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -327,8 +322,16 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                                       GestureDetector(
                                                         onTap: () {
-                                                          Get.to(() =>
-                                                              const LessonPageTabBar(),transition: Transition.fade,duration: const Duration(milliseconds: 300));
+                                                          Get.to(
+                                                              () =>
+                                                                  const LessonPageTabBar(),
+                                                              transition:
+                                                                  Transition
+                                                                      .fade,
+                                                              duration:
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          300));
                                                         },
                                                         child: const Row(
                                                           mainAxisSize:
@@ -368,115 +371,165 @@ class _HomePageState extends State<HomePage> {
                                                   height: 20,
                                                 ),
                                                 Directionality(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   child: Row(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    mainAxisAlignment: MainAxisAlignment.start, // Aligns children to the start of the Row.
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .start, // Aligns children to the start of the Row.
                                                     children: [
                                                       Container(
                                                         width: 150,
                                                         height: 130,
                                                         decoration: BoxDecoration(
                                                             color: Colors.black,
-                                                            borderRadius: BorderRadius.circular(10)
-                                                        ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
                                                         child: Image.asset(
                                                           "assets/images/team.png",
                                                           fit: BoxFit.fill,
                                                         ),
                                                       ),
-                                                        Column(
-                                                          crossAxisAlignment: CrossAxisAlignment.start, // Aligns children to the start of the Column.
-                                                          children: [
-                                                            const Padding(
-                                                              padding: EdgeInsets.only(right: 10),
-                                                              child: Text(
-                                                                'خاندانی منصوبہ بندی',
-                                                                style: TextStyle(
-                                                                    fontFamily: "UrduType",
-                                                                    fontSize: 18
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start, // Aligns children to the start of the Column.
+                                                        children: [
+                                                          const Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 10),
+                                                            child: Text(
+                                                              'خاندانی منصوبہ بندی',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      "UrduType",
+                                                                  fontSize: 18),
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 8,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    right: 10),
+                                                            child: Row(
+                                                              children: [
+                                                                const Text(
+                                                                  '12 کوئز',
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          "UrduType",
+                                                                      fontSize:
+                                                                          18),
                                                                 ),
-                                                              ),
+                                                                const SizedBox(
+                                                                  width: 8,
+                                                                ),
+                                                                SvgPicture.asset(
+                                                                    "assets/images/person_card.svg"),
+                                                                // dot container
+                                                                const SizedBox(
+                                                                  width: 8,
+                                                                ),
+                                                                Container(
+                                                                  width: 4,
+                                                                  height: 4,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                ),
+
+                                                                const SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                const Text(
+                                                                  '12 کوئز',
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          "UrduType",
+                                                                      fontSize:
+                                                                          18),
+                                                                ),
+
+                                                                const SizedBox(
+                                                                  width: 5,
+                                                                ),
+                                                                SvgPicture.asset(
+                                                                    "assets/images/bookOpen.svg"),
+                                                              ],
                                                             ),
-                                                            const SizedBox(height: 8,),
-                                                            Padding(
-                                                              padding: const EdgeInsets.only(right: 10),
-
-                                                              child: Row(
-                                                                children: [
-                                                                  const Text(
-                                                                    '12 کوئز',
-                                                                    style: TextStyle(
-                                                                        fontFamily: "UrduType",
-                                                                        fontSize: 18
-                                                                    ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 12,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    right: 10),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                const Text(
+                                                                  "پیش رفت",
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          "UrduType",
+                                                                      color: Color(
+                                                                          0xff7A7D84)),
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 100,
+                                                                ),
+                                                                Text(
+                                                                  "${(value * 100).toStringAsFixed(1)}%",
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    fontFamily:
+                                                                        "UrduType",
                                                                   ),
-                                                                  const SizedBox(width: 8,),
-                                                                  SvgPicture.asset("assets/images/person_card.svg"),
-                                                                  // dot container
-                                                                  const SizedBox(width: 8,),
-                                                                  Container(
-                                                                    width: 4,
-                                                                    height: 4,
-                                                                    decoration: const BoxDecoration(
-                                                                      shape: BoxShape.circle,
-                                                                      color: Colors.black,
-                                                                    ),
-                                                                  ),
-
-                                                                  const SizedBox(width: 10,),
-                                                                  const Text(
-                                                                    '12 کوئز',
-                                                                    style: TextStyle(
-                                                                        fontFamily: "UrduType",
-                                                                        fontSize: 18
-                                                                    ),
-                                                                  ),
-
-                                                                  const SizedBox(width: 5,),
-                                                                  SvgPicture.asset("assets/images/bookOpen.svg"),
-                                                                ],
-                                                              ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                            const SizedBox(height: 12,),
-
-                                                             Padding(
-                                                              padding: const EdgeInsets.only(right: 10),
-
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  const Text("پیش رفت",style: TextStyle(
-                                                                    fontFamily: "UrduType",
-                                                                    color: Color(0xff7A7D84)
-                                                                  ),),
-                                                                  const SizedBox(width:100,),
-                                                                  Text("${(value * 100).toStringAsFixed(1)}%",
-                                                                  style: const TextStyle(
-                                                                      fontFamily: "UrduType",
-                                                                  ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            const SizedBox(height: 5,),
-
-                                                            LinearPercentIndicator(
-                                                              isRTL: true,
-                                                              barRadius: const Radius.circular(10),
-                                                              width: 200.0,
-                                                              lineHeight: 6.0,
-                                                              percent: value,
-                                                              backgroundColor: const Color(0xffEBEBF0),
-                                                              progressColor: const Color(0xff9AC9C2),
-                                                            ),
-
-                                                          ],
-                                                        ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 5,
+                                                          ),
+                                                          LinearPercentIndicator(
+                                                            isRTL: true,
+                                                            barRadius:
+                                                                const Radius
+                                                                    .circular(
+                                                                    10),
+                                                            width: 200.0,
+                                                            lineHeight: 6.0,
+                                                            percent: value,
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xffEBEBF0),
+                                                            progressColor:
+                                                                const Color(
+                                                                    0xff9AC9C2),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
-
                                                 Padding(
                                                     padding:
                                                         const EdgeInsets.only(
@@ -527,11 +580,9 @@ class _HomePageState extends State<HomePage> {
                                                               imageHeight:
                                                                   18, // Replace with your image path
                                                             ),
-
                                                             const SizedBox(
                                                               width: 20,
                                                             ),
-
                                                             Expanded(
                                                               child: Column(
                                                                 mainAxisAlignment:
@@ -588,15 +639,17 @@ class _HomePageState extends State<HomePage> {
                                                                 ],
                                                               ),
                                                             ),
-
                                                             GestureDetector(
                                                               child: const Icon(
                                                                   Icons
                                                                       .arrow_forward_ios),
                                                               onTap: () async {
-                                                                  await AuthenticationRepository.instance.Logout();
-                                                                  // Redirect to the login page after logging out.
-                                                                  Get.offAll(() => const LoginScreen());
+                                                                await AuthenticationRepository
+                                                                    .instance
+                                                                    .Logout();
+                                                                // Redirect to the login page after logging out.
+                                                                Get.offAll(() =>
+                                                                    const LoginScreen());
                                                               },
                                                             ),
                                                             const SizedBox(
@@ -726,7 +779,8 @@ class _HomePageState extends State<HomePage> {
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Directionality(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -743,8 +797,9 @@ class _HomePageState extends State<HomePage> {
                                                                       .w600),
                                                         ),
                                                         DropdownButtonHideUnderline(
-                                                          child: DropdownButton2<
-                                                              String>(
+                                                          child:
+                                                              DropdownButton2<
+                                                                  String>(
                                                             isExpanded: true,
                                                             hint: const Row(
                                                               children: [
@@ -773,8 +828,10 @@ class _HomePageState extends State<HomePage> {
                                                                         item) =>
                                                                     DropdownMenuItem<
                                                                         String>(
-                                                                      value: item,
-                                                                      child: Text(
+                                                                      value:
+                                                                          item,
+                                                                      child:
+                                                                          Text(
                                                                         item,
                                                                         style:
                                                                             const TextStyle(
@@ -786,14 +843,14 @@ class _HomePageState extends State<HomePage> {
                                                                               FontWeight.bold,
                                                                         ),
                                                                         overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
+                                                                            TextOverflow.ellipsis,
                                                                       ),
                                                                     ))
                                                                 .toList(),
-                                                            value: selectedValue,
-                                                            onChanged:
-                                                                (String? value) {
+                                                            value:
+                                                                selectedValue,
+                                                            onChanged: (String?
+                                                                value) {
                                                               setState(() {
                                                                 selectedValue =
                                                                     value;
@@ -807,11 +864,12 @@ class _HomePageState extends State<HomePage> {
                                                                   const EdgeInsets
                                                                       .only(
                                                                       left: 14,
-                                                                      right: 14),
+                                                                      right:
+                                                                          14),
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color:
-                                                                    Colors.white,
+                                                                color: Colors
+                                                                    .white,
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
@@ -862,10 +920,11 @@ class _HomePageState extends State<HomePage> {
                                                             menuItemStyleData:
                                                                 const MenuItemStyleData(
                                                               height: 40,
-                                                              padding:
-                                                                  EdgeInsets.only(
+                                                              padding: EdgeInsets
+                                                                  .only(
                                                                       left: 14,
-                                                                      right: 14),
+                                                                      right:
+                                                                          14),
                                                             ),
                                                           ),
                                                         ),
@@ -1012,7 +1071,8 @@ class _HomePageState extends State<HomePage> {
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Directionality(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -1029,40 +1089,63 @@ class _HomePageState extends State<HomePage> {
                                                                       .w600),
                                                         ),
                                                         DropdownButtonHideUnderline(
-                                                          child: DropdownButton2<String>(
+                                                          child:
+                                                              DropdownButton2<
+                                                                  String>(
                                                             isExpanded: true,
                                                             hint: const Row(
                                                               children: [
                                                                 Expanded(
                                                                   child: Text(
                                                                     'اس ہفتے',
-                                                                    style: TextStyle(
-                                                                      fontFamily: 'UrduType',
-                                                                      fontSize: 14,
-                                                                      fontWeight: FontWeight.bold,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontFamily:
+                                                                          'UrduType',
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
                                                                     ),
-                                                                    overflow: TextOverflow.ellipsis,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
-                                                            items: items.map((String item) =>
-                                                                DropdownMenuItem<String>(
-                                                                  value: item,
-                                                                  child: Text(
-                                                                    item,
-                                                                    style: const TextStyle(
-                                                                      fontFamily: 'UrduType',
-                                                                      fontSize: 14,
-                                                                      fontWeight: FontWeight.bold,
-                                                                    ),
-                                                                    overflow: TextOverflow.ellipsis,
-                                                                  ),
-                                                                )).toList(),
-                                                            value: selectedValue,
-                                                            onChanged: (String? value) {
+                                                            items: items
+                                                                .map((String
+                                                                        item) =>
+                                                                    DropdownMenuItem<
+                                                                        String>(
+                                                                      value:
+                                                                          item,
+                                                                      child:
+                                                                          Text(
+                                                                        item,
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontFamily:
+                                                                              'UrduType',
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
+                                                                      ),
+                                                                    ))
+                                                                .toList(),
+                                                            value:
+                                                                selectedValue,
+                                                            onChanged: (String?
+                                                                value) {
                                                               setState(() {
-                                                                selectedValue = value;
+                                                                selectedValue =
+                                                                    value;
                                                               });
                                                             },
                                                             buttonStyleData:
@@ -1073,11 +1156,12 @@ class _HomePageState extends State<HomePage> {
                                                                   const EdgeInsets
                                                                       .only(
                                                                       left: 14,
-                                                                      right: 14),
+                                                                      right:
+                                                                          14),
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color:
-                                                                    Colors.white,
+                                                                color: Colors
+                                                                    .white,
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
@@ -1128,10 +1212,11 @@ class _HomePageState extends State<HomePage> {
                                                             menuItemStyleData:
                                                                 const MenuItemStyleData(
                                                               height: 40,
-                                                              padding:
-                                                                  EdgeInsets.only(
+                                                              padding: EdgeInsets
+                                                                  .only(
                                                                       left: 14,
-                                                                      right: 14),
+                                                                      right:
+                                                                          14),
                                                             ),
                                                           ),
                                                         ),
