@@ -22,7 +22,6 @@ import 'package:lhw/repositories/authentication_repository/authentication_reposi
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:camera/camera.dart';
 
-
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
@@ -39,7 +38,6 @@ Future<void> main() async {
   final firstCamera = cameras.first;
   runApp(const MaterialApp(
     home: MyApp(),
-
   ));
 }
 
@@ -59,9 +57,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorKey: navigatorKey,
-      routes: {
-        '/notification_screen' : (context) =>  NotificationScreen()
-      },
+      routes: {'/notification_screen': (context) => NotificationScreen()},
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,
@@ -76,6 +72,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 // A screen that allows users to take a picture using a given camera.
 class TakePictureScreen extends StatefulWidget {
   const TakePictureScreen({
