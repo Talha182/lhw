@@ -26,10 +26,10 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-  //     .then((value) => Get.put(AuthenticationRepository()));
-  // await Firebase.initializeApp();
-  // await FirebaseApi().initNotification();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => Get.put(AuthenticationRepository()));
+  await Firebase.initializeApp();
+  await FirebaseApi().initNotification();
 
   // Obtain a list of the available cameras on the device.
   final cameras = await availableCameras();
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: LessonOption21(),
+      home: LoginScreen(),
     );
   }
 }
