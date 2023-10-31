@@ -3,13 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NotificationScreen extends StatelessWidget {
-  NotificationScreen({Key? key}) : super(key: key);
+  const NotificationScreen({Key? key}) : super(key: key);
   static const route = '/notification-screen';
 
   @override
   Widget build(BuildContext context) {
-    final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
-    final imageUrl = message.data['imageUrl'];
+    final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage?;
+    // if (message == null) {
+    //   // Handle the case when the message is null, maybe return to the previous screen with a message
+    //   print("No notification");
+    //   // For example, you can pop the screen and return to the previous one:
+    //   Navigator.of(context).pop();
+    //   return Container(); // or another widget as a placeholder
+    // }
+
+    final imageUrl = message?.data['imageUrl'];  // Now you can safely access data without "!"
+
 
     return Scaffold(
       appBar: PreferredSize(
@@ -62,7 +71,20 @@ class NotificationScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
+      body: message == null
+          ? Center(
+        child: Text(
+          "No notifications",
+          style: TextStyle(
+            fontFamily: 'UrduType',
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+          textDirection: TextDirection.rtl,
+        ),
+      )
+          : Padding(
         padding: const EdgeInsets.all(15),
         child: ListView(
           children: [
@@ -105,7 +127,7 @@ class NotificationScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        message.notification!.title.toString(),
+                        message!.notification!.title.toString(),
                         style: const TextStyle(
                           fontSize: 15.4,
                           fontFamily: "UrduType",
@@ -113,7 +135,7 @@ class NotificationScreen extends StatelessWidget {
                         textAlign: TextAlign.justify,
                       ),
                       Text(
-                        message.notification!.body.toString(),
+                        message!.notification!.body.toString(),
                         style: const TextStyle(
                           fontSize: 13,
                           fontFamily: "UrduType",
@@ -221,7 +243,7 @@ class NotificationCard extends StatelessWidget {
   final String title;
   final String date;
 
-  NotificationCard({
+  const NotificationCard({
     Key? key,
     required this.imagePath,
     required this.title,

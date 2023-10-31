@@ -7,6 +7,7 @@ import 'package:lhw/controllers/signup_controller.dart';
 import 'package:lhw/navy.dart';
 import 'package:lhw/splash/splash.dart';
 
+import 'auth_status.dart';
 import 'exceptions/signup_exceptions.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -14,21 +15,30 @@ class AuthenticationRepository extends GetxController {
 
   //Variable
   final _auth = FirebaseAuth.instance;
-  late final Rx<User?> firebaseUser;
+  final Rx<User?> firebaseUser = Rx<User?>(null);
   var verificationId = ''.obs;
+  var authStatus = AuthStatus.undecided.obs;
+
 
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 6));
-    firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
-    ever(firebaseUser, _setInitialScreen);
+    ever(firebaseUser, (User? user) {
+      if (user == null) {
+        authStatus.value = AuthStatus.unauthenticated;
+      } else {
+        authStatus.value = AuthStatus.authenticated;
+      }
+    });
   }
 
+
   _setInitialScreen(User? user) {
-    user == null
-        ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(() => const Custom_NavBar());
+    if (user == null) {
+      Get.offAll(() => const LoginScreen());
+    } else {
+      Get.offAll(() => const Custom_NavBar());
+    }
   }
 
   // _setInitialScreen(User? user) async {

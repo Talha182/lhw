@@ -9,6 +9,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../Login_SignUp/Login.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
+import '../notification/notifications_screen.dart';
 import '../repositories/authentication_repository/authentication_repository.dart';
 
 class HomePage extends StatefulWidget {
@@ -1343,7 +1344,9 @@ class _HomePageState extends State<HomePage> {
                       'assets/images/bell.svg',
                       color: Colors.black,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => NotificationScreen());
+                    },
                   ),
                 ],
               ),

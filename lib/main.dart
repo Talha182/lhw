@@ -18,9 +18,12 @@ import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:lhw/notification/notifications_screen.dart';
+import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:camera/camera.dart';
+
+import 'navy.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -68,10 +71,24 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: const LoginScreen(),
+        getPages: [
+        GetPage(name: '/', page: () => InitialRouter()),
+    ],
+      home: Obx(() {
+        switch (AuthenticationRepository.instance.authStatus.value) {
+          case AuthStatus.undecided:
+            return LoadingScreen();  // your loading screen widget
+          case AuthStatus.authenticated:
+            return Custom_NavBar();
+          case AuthStatus.unauthenticated:
+          default:
+            return LoginScreen();
+        }
+      }),
     );
   }
 }
+
 
 // A screen that allows users to take a picture using a given camera.
 class TakePictureScreen extends StatefulWidget {
