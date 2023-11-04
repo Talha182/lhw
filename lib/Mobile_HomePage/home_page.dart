@@ -936,7 +936,7 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                                 Center(
                                                     child:
-                                                        CircularProgressWithInnerCircle()),
+                                                        CircularProgressWithInnerCircle(percentage: 0.7,)),
                                                 const Padding(
                                                   padding: EdgeInsets.only(
                                                     left: 34,
@@ -1345,7 +1345,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                     ),
                     onTap: () {
-                      Get.to(() => NotificationScreen());
+                      Get.to(() => const NotificationScreen());
                     },
                   ),
                 ],

@@ -1,14 +1,50 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+class CircularProgressWithInnerCircle extends StatefulWidget {
+  final double percentage;
 
-class CircularProgressWithInnerCircle extends StatelessWidget {
+  const CircularProgressWithInnerCircle({
+    super.key,
+    required this.percentage, // The target percentage of the progress bar
+  });
+
+  @override
+  State<CircularProgressWithInnerCircle> createState() => _CircularProgressWithInnerCircleState();
+}
+
+class _CircularProgressWithInnerCircleState extends State<CircularProgressWithInnerCircle> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2), // Duration of the animation
+    );
+    _animation = Tween<double>(begin: 0, end: widget.percentage).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    )..addListener(() {
+      setState(() {});
+    });
+
+    _controller.forward(); // Start the animation
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose(); // Dispose the controller when the widget is removed
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
       size: const Size(200, 200), // Adjust the size as needed
       painter: ProgressPainter(
-        progressPercentage: 0.7, // Change this to set the progress percentage
+        progressPercentage: _animation.value, // Use the animated value here
       ),
     );
   }
@@ -38,7 +74,7 @@ class ProgressPainter extends CustomPainter {
     final sweepAngle = 360 * progressPercentage;
 
     // Create a gradient for the progress arc
-    final gradient = const LinearGradient(
+    const gradient = LinearGradient(
       colors: [
         Color(0xffF4D6A9),
         Color(0xffEAAF58),
@@ -60,7 +96,7 @@ class ProgressPainter extends CustomPainter {
       progressPaint,
     );
     // Create a gradient for the inner circle to give it a 3D effect
-    final innerCircleGradient = const LinearGradient(
+    const innerCircleGradient = LinearGradient(
       colors: [
         Color(0xffF4D6A9),
         Color(0xffEAAF58),
@@ -76,7 +112,7 @@ class ProgressPainter extends CustomPainter {
     canvas.drawCircle(center, radius - 15, innerCirclePaint);
 
     // Draw the percentage text in the middle of the circle
-    final textStyle = const TextStyle(
+    const textStyle = TextStyle(
       color: Colors.black, // You can change the text color as needed
     );
 
@@ -84,7 +120,7 @@ class ProgressPainter extends CustomPainter {
     final textSpan = TextSpan(
       children: [
         TextSpan(
-          text: '${(progressPercentage * 100).toStringAsFixed(0)}',
+          text: (progressPercentage * 100).toStringAsFixed(0),
           style: const TextStyle(
               fontFamily: 'UrduType',
 
@@ -118,8 +154,9 @@ class ProgressPainter extends CustomPainter {
     textPainter.paint(canvas, Offset(textX, textY));
   }
 
+
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return oldDelegate != this; // Return true if the progress has changed
   }
 }
