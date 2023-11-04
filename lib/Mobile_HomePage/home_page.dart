@@ -934,7 +934,7 @@ class _HomePageState extends State<HomePage> {
                                                 const SizedBox(
                                                   height: 50,
                                                 ),
-                                                Center(
+                                                const Center(
                                                     child:
                                                         CircularProgressWithInnerCircle(percentage: 0.7,)),
                                                 const Padding(
