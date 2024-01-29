@@ -13,6 +13,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 
   class _ComicStripState extends State<ComicStrip> with SingleTickerProviderStateMixin {
     int _current = 0;
+    int _testing = 3;
     double _progress = 0.0;
     late List<Widget> _carouselItems;
     late AnimationController _progressController;
