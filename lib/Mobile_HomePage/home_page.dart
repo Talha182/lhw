@@ -11,6 +11,7 @@ import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
 import '../notification/notifications_screen.dart';
 import '../repositories/authentication_repository/authentication_repository.dart';
+import '../utils/is_first_time_check.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -45,6 +46,8 @@ String? selectedValue;
 class _HomePageState extends State<HomePage> {
   bool showFirstMessage = false;
   bool showSecondMessage = false;
+
+
 
   @override
   void initState() {
@@ -89,6 +92,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    FirstTimeCheck.checkFirstTimeAndShowDialog(
+      'isFirstVisitHomePage',
+      'Welcome to the Home Page! Discover our features and enjoy your journey.',
+      'assets/images/home_page_image.png', // Make sure you have this image in your assets
+    );
+
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: PreferredSize(
@@ -936,7 +946,9 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                                 const Center(
                                                     child:
-                                                        CircularProgressWithInnerCircle(percentage: 0.7,)),
+                                                        CircularProgressWithInnerCircle(
+                                                  percentage: 0.7,
+                                                )),
                                                 const Padding(
                                                   padding: EdgeInsets.only(
                                                     left: 34,
@@ -1310,7 +1322,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Padding(
-              padding: EdgeInsets.only(right: 16.0),
+              padding: EdgeInsets.only(right: 16.0, bottom: 20.0),
               child: Text(
                 "ڈیش بورڈ",
                 style: TextStyle(

@@ -8,14 +8,14 @@ import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 import '../custom_widgets/Row_Column_Padding.dart';
 import 'module_dashboard_card.dart';
 
-class ModulePage extends StatefulWidget {
-  const ModulePage({super.key});
+class ModuleScreen extends StatefulWidget {
+  const ModuleScreen({super.key});
 
   @override
-  State<ModulePage> createState() => _ModulePageState();
+  State<ModuleScreen> createState() => _ModuleScreenState();
 }
 
-class _ModulePageState extends State<ModulePage> {
+class _ModuleScreenState extends State<ModuleScreen> {
   bool _feedbackButtonPressed = false;
 
   @override

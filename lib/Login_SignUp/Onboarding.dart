@@ -19,7 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Future<void> _navigateToHome() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('is_first_time', false);
-    Get.offAll(() => Custom_NavBar(), transition: Transition.fade, duration: Duration(milliseconds: 400));
+    Get.offAll(() => const Custom_NavBar(), transition: Transition.fade, duration: const Duration(milliseconds: 400));
   }
   int _current = 0;
   @override

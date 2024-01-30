@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/FAB_Page/BottomModalSheet.dart';
-import 'package:lhw/Mobile_HomePage/Courses_tabbar.dart';
+import 'package:lhw/Courses_Tab/Courses_tabbar.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 
@@ -97,6 +97,9 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50)
+        ),
         backgroundColor: const Color(0xffFE8BD1),
         child: showSheet
             ? const Icon(Icons.close, color: Colors.white)
@@ -121,52 +124,55 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
           height: 70,
           shape: const CircularNotchedRectangle(),
           notchMargin: 2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: imagesData.map((iconData) {
-                int index = imagesData.indexOf(iconData);
-                bool isSelected = _currentIndex == index;
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: imagesData.map((iconData) {
+                  int index = imagesData.indexOf(iconData);
+                  bool isSelected = _currentIndex == index;
 
-                // The widget for the navbar item
-                Widget navBarItem = GestureDetector(
-                  onTap: () => onTabTapped(index),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SvgPicture.asset(
-                        iconData['path']!,
-                        height: 18,
-                        width: 18,
-                        color: isSelected ? const Color(0xffFE8BD1) : null,
-                      ),
-                      Text(
-                        iconData['label']!,
-                        style: TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 16,
+                  // The widget for the navbar item
+                  Widget navBarItem = GestureDetector(
+                    onTap: () => onTabTapped(index),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset(
+                          iconData['path']!,
+                          height: 18,
+                          width: 18,
                           color: isSelected ? const Color(0xffFE8BD1) : null,
-                          fontWeight: FontWeight.w500,
                         ),
-                      ),
-                    ],
-                  ),
-                );
+                        Text(
+                          iconData['label']!,
+                          style: TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 16,
+                            color: isSelected ? const Color(0xffFE8BD1) : null,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
 
-                // Adjust the padding based on the item's label
-                if (iconData['label'] == 'کورسز') {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 20.0), // move it to the left
-                    child: navBarItem,
-                  );
-                } else if (iconData['label'] == 'گروپس') {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 20.0), // move it to the right
-                    child: navBarItem,
-                  );
-                } else {
-                  return navBarItem;
-                }
-              }).toList(),
+                  // Adjust the padding based on the item's label
+                  if (iconData['label'] == 'کورسز') {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 20.0), // move it to the left
+                      child: navBarItem,
+                    );
+                  } else if (iconData['label'] == 'گروپس') {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 20.0), // move it to the right
+                      child: navBarItem,
+                    );
+                  } else {
+                    return navBarItem;
+                  }
+                }).toList(),
+              ),
             )
         ),
       ),

@@ -2,18 +2,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Branching/LessonOption21.dart';
-import 'package:lhw/Branching/LessonOption33.dart';
-import 'package:lhw/Login_SignUp/Forgot_Password.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
-import 'package:lhw/Login_SignUp/SignUp.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20openview%202.dart';
-import 'package:lhw/Presentation/Presentation.dart';
-import 'package:lhw/Profile/edit_profile.dart';
-import 'package:lhw/Quiz/DragDrop/DragDrop.dart';
-import 'package:lhw/Reports/Reports_Learning.dart';
-import 'package:lhw/Settings/SettingsPage.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
@@ -21,7 +10,6 @@ import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:camera/camera.dart';
 
 import 'navy.dart';
 
@@ -34,11 +22,6 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await FirebaseApi().initNotification();
 
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
   runApp(const MaterialApp(
     home: MyApp(),
   ));
@@ -60,7 +43,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorKey: navigatorKey,
-      routes: {'/notification_screen': (context) => NotificationScreen()},
+      routes: {'/notification_screen': (context) => const NotificationScreen()},
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,
@@ -71,18 +54,16 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-        getPages: [
-        GetPage(name: '/', page: () => InitialRouter()),
-    ],
+
       home: Obx(() {
         switch (AuthenticationRepository.instance.authStatus.value) {
           case AuthStatus.undecided:
-            return LoadingScreen();  // your loading screen widget
+            return const LoadingScreen();  // your loading screen widget
           case AuthStatus.authenticated:
-            return Custom_NavBar();
+            return const Custom_NavBar();
           case AuthStatus.unauthenticated:
           default:
-            return LoginScreen();
+            return const LoginScreen();
         }
       }),
     );

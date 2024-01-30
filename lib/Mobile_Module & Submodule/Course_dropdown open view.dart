@@ -140,9 +140,9 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop(); // Close the dialog
-                          Get.to(LessonOption26(),
+                          Get.to(const LessonOption26(),
                                   transition: Transition.fade,
-                                  duration: Duration(milliseconds: 400))!
+                                  duration: const Duration(milliseconds: 400))!
                               .then((value) {
                             // When returning from LessonOption26, unlock the next level
                             setState(() {
@@ -289,8 +289,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: currentUnlockedLevel >= 3
-                                  ? Color(0xffFF6BC5)
-                                  : Color(0xffD1D7DC)),
+                                  ? const Color(0xffFF6BC5)
+                                  : const Color(0xffD1D7DC)),
                           child: Center(
                             child: SvgPicture.asset("assets/images/trophy.svg",
                                 color: currentUnlockedLevel >= 3
@@ -323,8 +323,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: currentUnlockedLevel >= 2
-                                ? Color(0xffFF6BC5)
-                                : Color(0xffD1D7DC)),
+                                ? const Color(0xffFF6BC5)
+                                : const Color(0xffD1D7DC)),
                         child: Center(
                           child: GestureDetector(
                               onTap: currentUnlockedLevel >= 2
@@ -376,8 +376,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: currentUnlockedLevel >= 1
-                                  ? Color(0xffFF6BC5)
-                                  : Color(0xffD1D7DC)),
+                                  ? const Color(0xffFF6BC5)
+                                  : const Color(0xffD1D7DC)),
                           child: Center(
                             child: GestureDetector(
                                 onTap: currentUnlockedLevel >= 1
@@ -415,10 +415,10 @@ class _Course_DropDownState extends State<Course_DropDown> {
               bottom: 60, // Adjust as needed
               right: 15, // Adjust as needed
               child: CircleAvatar(
-                backgroundColor: Color(0xffF6B3D0),
+                backgroundColor: const Color(0xffF6B3D0),
                 radius: 30,
                 child: Padding(
-                    padding: EdgeInsets.only(bottom: 2),
+                    padding: const EdgeInsets.only(bottom: 2),
                     child: SvgPicture.asset(
                       "assets/images/samina_instructor.svg",
                       fit: BoxFit.fill,

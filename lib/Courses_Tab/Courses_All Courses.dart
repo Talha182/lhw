@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Mobile_HomePage/locked_course_card.dart';
+import 'package:lhw/Courses_Tab/locked_course_card.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
 import 'package:lhw/custom_widgets/gradient_card_with_image.dart';

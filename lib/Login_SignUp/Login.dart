@@ -2,6 +2,7 @@
   import 'package:flutter/material.dart';
   import 'package:fluttertoast/fluttertoast.dart';
   import 'package:get/get.dart';
+import 'package:lhw/Bookmarks.dart';
   import 'package:lhw/Login_SignUp/Forgot_Password.dart';
   import 'package:lhw/Login_SignUp/SignUp.dart';
   import 'package:lhw/navy.dart';
@@ -325,30 +326,3 @@
     }
   }
   
-  class InitialRouter extends StatelessWidget {
-    const InitialRouter({super.key});
-  
-    @override
-    Widget build(BuildContext context) {
-      _checkFirstTime();
-      return const Scaffold(
-          body: Center(
-              child:
-                  CircularProgressIndicator())); // Loading screen while checking
-    }
-  
-    _checkFirstTime() async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool isFirstTime = prefs.getBool('is_first_time') ?? true;
-  
-      if (isFirstTime) {
-        Get.offAll(() => const LoginScreen(),
-            transition: Transition.fadeIn,
-            duration: const Duration(milliseconds: 200));
-      } else {
-        Get.offAll(() => const Custom_NavBar(),
-            transition: Transition.fadeIn,
-            duration: const Duration(milliseconds: 200));
-      }
-    }
-  }

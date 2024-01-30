@@ -2,9 +2,9 @@ import 'dart:ui';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lhw/Mobile_HomePage/Courses_Completed.dart';
-import 'package:lhw/Mobile_HomePage/Courses_Ongoing.dart';
-import 'package:lhw/Mobile_HomePage/Courses_All Courses.dart';
+import 'package:lhw/Courses_Tab/Courses_Completed.dart';
+import 'package:lhw/Courses_Tab/Courses_Ongoing.dart';
+import 'package:lhw/Courses_Tab/Courses_All%20Courses.dart';
 import 'package:lhw/Reports/Resources_Bookmark.dart';
 import 'package:lhw/Reports/Resources_Pdf.dart';
 

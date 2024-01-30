@@ -33,13 +33,13 @@ class AuthenticationRepository extends GetxController {
   }
 
 
-  _setInitialScreen(User? user) {
-    if (user == null) {
-      Get.offAll(() => const LoginScreen());
-    } else {
-      Get.offAll(() => const Custom_NavBar());
-    }
-  }
+  // _setInitialScreen(User? user) {
+  //   if (user == null) {
+  //     Get.offAll(() => const LoginScreen());
+  //   } else {
+  //     Get.offAll(() => const Custom_NavBar());
+  //   }
+  // }
 
   // _setInitialScreen(User? user) async {
   //   Get.offAll(() => LoadingScreen()); // Initially show the loading screen

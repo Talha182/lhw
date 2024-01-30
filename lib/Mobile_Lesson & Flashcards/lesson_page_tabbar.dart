@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/Bookmarks.dart';
 import 'package:lhw/Discussion_Group/DiscussionGroups.dart';
-import 'package:lhw/Mobile_HomePage/Courses_Completed.dart';
-import 'package:lhw/Mobile_HomePage/Courses_All Courses.dart';
+import 'package:lhw/Courses_Tab/Courses_Completed.dart';
+import 'package:lhw/Courses_Tab/Courses_All%20Courses.dart';
 import 'package:lhw/Reports/Resources_Bookmark.dart';
 
 import 'Lesson.dart';

@@ -160,7 +160,7 @@ class _LessonState extends State<Lesson> {
                               minimumSize: const Size(150, 37),
                             ),
                             onPressed: () {
-                              Get.to(() => const ModulePage(),transition: Transition.fade,duration: Duration(milliseconds: 400));
+                              Get.to(() => const ModuleScreen(),transition: Transition.fade,duration: Duration(milliseconds: 400));
                             },
                             child: const Text(
                               'سیکھنا شروع کریں۔',
@@ -220,7 +220,7 @@ class _LessonState extends State<Lesson> {
                             size: 20,
                           ),
                           onTap: () {
-                            Get.to(() => const ModulePage(),transition: Transition.fade,duration: Duration(milliseconds: 400));
+                            Get.to(() => const ModuleScreen(),transition: Transition.fade,duration: Duration(milliseconds: 400));
                           },
                         ),
                       ],
