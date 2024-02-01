@@ -348,6 +348,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                       'You performed a long press in the area!'),
                 ),
               );
+
             }
             // Add any additional long press actions here...
           }
