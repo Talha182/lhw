@@ -19,18 +19,18 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'showDialog': false,
       'dialogText': 'Click on the right side',
       'swipeEnabled': false,
-      'longPressEnabled': true, // Ensure this is explicitly set for each image
-      'longPressAction': 'showMessage',
+      'longPressEnabled': false, // Ensure this is explicitly set for each image
+      'longPressAction': '',
     },
     {
       'image': 'assets/script11/Script11-02.jpg',
       'guide': 'See the sky? Tap it to learn more.',
       'touchArea': const Rect.fromLTWH(370, 310, 310, 80),
       'showDialog': true,
-      'swipeEnabled': true,
+      'swipeEnabled': false,
       'swipeAction': 'nextImage',
-      'dialogText': 'Click on the right side',
-
+      'dialogText':
+          'بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ  ہو ۔',
     },
     {
       'image': 'assets/test/3.jpg',
@@ -40,9 +40,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
-
-
-    },{
+    },
+    {
       'image': 'assets/test/1.jpg',
       'guide': 'Find the hidden bird and tap.',
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
@@ -50,8 +49,6 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
-
-
     },
   ];
 
@@ -106,8 +103,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     double width = touchArea.width;
     double height = touchArea.height;
     bool swipeEnabled = imagesInfo[currentIndex]['swipeEnabled'] ?? false;
-    bool longPressEnabled = imagesInfo[currentIndex]['longPressEnabled'] ?? false;
-
+    bool longPressEnabled =
+        imagesInfo[currentIndex]['longPressEnabled'] ?? false;
 
     return Scaffold(
       body: GestureDetector(
@@ -116,39 +113,80 @@ class _InteractiveImagesState extends State<InteractiveImages> {
           if (!swipeEnabled && !longPressEnabled) {
             final Offset localPosition = details.localPosition;
             if (touchArea.contains(localPosition)) {
-              if (imagesInfo[currentIndex].containsKey('showDialog') && imagesInfo[currentIndex]['showDialog']) {
+              if (imagesInfo[currentIndex].containsKey('showDialog') &&
+                  imagesInfo[currentIndex]['showDialog']) {
                 showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    contentPadding: EdgeInsets.zero,
-                    content: ConstrainedBox(
-                      constraints: BoxConstraints(minWidth: 100, maxWidth: 300, minHeight: 100, maxHeight: 300),
-                      child: Stack(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.greenAccent),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
-                              child: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Text(
-                                  imagesInfo[currentIndex]['dialogText'] ?? 'You tapped on an interactive area!', // Handle null dialogText
-                                  style: TextStyle(fontSize: 20, fontFamily: "UrduType"),
-                                  maxLines: 5,
-                                  overflow: TextOverflow.ellipsis,
+                    context: context,
+                    builder: (context) => Dialog(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.zero, // This removes border radius
+                          ),
+                          child: Stack(
+                            clipBehavior: Clip
+                                .none, // Allows overflow of children outside the box
+                            children: <Widget>[
+                              // Dialog main content
+                              Container(
+                                padding: const EdgeInsets.all(20),
+                                margin: const EdgeInsets.only(top: 20, right: 60, bottom: 60, left: 60), // Adjust margins for image space
+                                child:
+                                    ConstrainedBox(
+                                      constraints: const BoxConstraints(
+                                        maxHeight: 120,
+                                        maxWidth:150, // Set a maximum width for the text content
+                                      ),
+                                      child: Text(
+                                        imagesInfo[currentIndex]['dialogText'] ?? 'You tapped on an interactive area!',
+                                        textAlign: TextAlign.center, // Ensures text is centered if short
+                                        style: const TextStyle(
+                                          fontFamily: "UrduType",
+                                          fontSize: 20
+                                        ),
+                                      ),
+                                    ),
+
+                              ),
+                              Positioned(
+                                bottom:
+                                    -15, // Adjusted to fit within the dialog, below the green border
+                                left:
+                                    -55, // Adjusted to fit within the dialog, below the green border
+                                child: Image.asset(
+                                  'assets/script11/1.png', // Replace with your image path
+                                  width: 180, // Adjust the size as needed
+                                  height: 180, // Adjust the size as needed
                                 ),
                               ),
-                            ),
+                              // Top-right Image (Second Image)
+                              Positioned(
+                                top:
+                                    -40, // Adjusted to fit within the dialog, above the green border
+                                right:
+                                    -50, // Adjusted to fit within the dialog, above the green border
+                                child: Image.asset(
+                                  'assets/script11/2.png', // Replace with your image path
+                                  width: 180, // Adjust the size as needed
+                                  height: 180, // Adjust the size as needed
+                                ),
+                              ),
+                              // Green border Container (Overlaying Images)
+                              Positioned.fill(
+                                // This ensures the container fills the dialog but respects the margin
+                                child: Container(
+                                  margin: const EdgeInsets.all(
+                                      5), // Margin from the edge of the dialog
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        color: Colors.green,
+                                        width: 2), // Green border
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
+                        ));
               } else {
                 nextImage();
               }
@@ -157,7 +195,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
         },
 
         onHorizontalDragEnd: (details) {
-          if (!longPressEnabled && swipeEnabled ) { // Check if long press is not enabled
+          if (!longPressEnabled && swipeEnabled) {
+            // Check if long press is not enabled
             // Since swipe is enabled for this image, handle the swipe action here
             final action = imagesInfo[currentIndex]['swipeAction'];
             if (action == 'nextImage') {
@@ -168,14 +207,16 @@ class _InteractiveImagesState extends State<InteractiveImages> {
         },
         onLongPressStart: (LongPressStartDetails details) {
           final Offset localPosition = details.localPosition;
-          if (longPressEnabled && touchArea.contains(localPosition)) { // Check if long press is enabled
+          if (longPressEnabled && touchArea.contains(localPosition)) {
+            // Check if long press is enabled
             if (!swipeEnabled && longPressEnabled) {
               final action = imagesInfo[currentIndex]['longPressAction'];
               if (action == 'showMessage') {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    content: Text(imagesInfo[currentIndex]['dialogText'] ?? 'You performed a long press in the area!'),
+                    content: Text(imagesInfo[currentIndex]['dialogText'] ??
+                        'You performed a long press in the area!'),
                   ),
                 );
               }
@@ -286,3 +327,4 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     );
   }
 }
+
