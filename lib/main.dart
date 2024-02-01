@@ -9,6 +9,7 @@ import 'package:lhw/loading_screen.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
+import 'package:lhw/test/Features/InteractiveImage.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'navy.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
           case AuthStatus.undecided:
             return const LoadingScreen();  // your loading screen widget
           case AuthStatus.authenticated:
-            return const Custom_NavBar();
+            return const InteractiveImages();
           case AuthStatus.unauthenticated:
           default:
             return const LoginScreen();

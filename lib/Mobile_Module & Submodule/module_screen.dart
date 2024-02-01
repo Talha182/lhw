@@ -3,8 +3,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 
+import '../DownloadProgressDialog.dart';
 import '../custom_widgets/Row_Column_Padding.dart';
 import 'module_dashboard_card.dart';
 
@@ -292,8 +294,17 @@ class _ModuleScreenState extends State<ModuleScreen> {
                     ),
                     minimumSize: const Size(200, 40),
                   ),
-                  onPressed: () {
-                    // Add your action here
+                  onPressed: () async {
+                    bool result = await _permissionRequest();
+                    if (result) {
+                      showDialog(
+                          context: context,
+                          builder: (dialogcontext) {
+                            return DownloadProgressDialog();
+                          });
+                    } else {
+                      print("No permission to read and write.");
+                    }
                   },
                   child: Row(
                     children: [
@@ -415,5 +426,13 @@ class _ModuleScreenState extends State<ModuleScreen> {
         ),
       ),
     );
+  }  static Future<bool> _permissionRequest() async {
+    PermissionStatus result;
+    result = await Permission.storage.request();
+    if (result.isGranted) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

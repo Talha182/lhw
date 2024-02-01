@@ -123,7 +123,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
           padding: const EdgeInsets.symmetric(horizontal: 0),
           height: 70,
           shape: const CircularNotchedRectangle(),
-          notchMargin: 2,
+          notchMargin: 0.1,
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: Row(
@@ -160,12 +160,12 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                   // Adjust the padding based on the item's label
                   if (iconData['label'] == 'کورسز') {
                     return Padding(
-                      padding: const EdgeInsets.only(right: 20.0), // move it to the left
+                      padding: const EdgeInsets.only(left: 20.0), // move it to the left
                       child: navBarItem,
                     );
                   } else if (iconData['label'] == 'گروپس') {
                     return Padding(
-                      padding: const EdgeInsets.only(left: 20.0), // move it to the right
+                      padding: const EdgeInsets.only(right: 20.0), // move it to the right
                       child: navBarItem,
                     );
                   } else {

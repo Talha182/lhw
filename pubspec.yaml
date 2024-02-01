@@ -43,7 +43,7 @@ dependencies:
   sqflite: ^2.3.0
   syncfusion_flutter_charts:
     path: syncfusion_flutter_charts-23.1.36
-  path_provider: ^2.1.1
+  path_provider: ^2.1.2
   flutter_calendar_carousel: ^2.4.2
   progresso: ^0.3.0
   expandable: ^5.0.1
@@ -64,6 +64,11 @@ dependencies:
   firebase_messaging: ^14.6.9
   camera: ^0.10.5+5
   image_picker: ^1.0.4
+  open_file: ^3.3.2
+  http: ^1.2.0
+  permission_handler: ^11.2.0
+  dio: ^5.4.0
+
 
 
 dev_dependencies:
@@ -78,6 +83,8 @@ flutter:
   assets:
     - assets/images/
     - assets/videos/
+    - assets/test/
+    - assets/script11/
 
   fonts:
     - family: UrduType

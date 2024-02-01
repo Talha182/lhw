@@ -93,11 +93,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    FirstTimeCheck.checkFirstTimeAndShowDialog(
-      'isFirstVisitHomePage',
-      'Welcome to the Home Page! Discover our features and enjoy your journey.',
-      'assets/images/home_page_image.png', // Make sure you have this image in your assets
-    );
 
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(

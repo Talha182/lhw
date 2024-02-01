@@ -8,7 +8,7 @@ class FirstTimeCheck {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isFirstTime = prefs.getBool(key) ?? true;
 
-    if (isFirstTime) {
+    // if (isFirstTime) {
     // Show the dialog with dynamic content
     Get.dialog(
       Dialog(
@@ -53,6 +53,6 @@ class FirstTimeCheck {
     );
 
     await prefs.setBool(key, false);
-    }
+    // }
   }
 }
