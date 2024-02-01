@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'dart:async';
 
 class InteractiveImages extends StatefulWidget {
   const InteractiveImages({Key? key}) : super(key: key);
@@ -67,22 +68,13 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
       'showDialog': false,
       'swipeEnabled': false,
-      'longPressAction': 'showMessage', // Custom action identifier
+      'longPressEnabled': true,
+      'longPressAction': 'showTimer', // This is the custom action identifier// Make sure this is true for the action to work
       'dialogText': 'Click on the right side',
       'dragDropEnabled': false, // Add this line for each image
 
     },
-    {
-      'image': 'assets/script11/Script11-06.jpg',
-      'guide': 'Find the hidden bird and tap.',
-      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
-      'showDialog': false,
-      'swipeEnabled': false,
-      'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'Click on the right side',
-      'dragDropEnabled': false, // Add this line for each image
 
-    },
     {
       'image': 'assets/script11/Script11-10.jpg',
       'guide': 'Find the hidden bird and tap.',
@@ -219,6 +211,9 @@ class _InteractiveImagesState extends State<InteractiveImages> {
 
   int currentIndex = 0;
   bool isMessageVisible = false;
+  bool showTimerIcon = false;
+  Timer? iconTimer;
+
 
   @override
   void initState() {
@@ -233,6 +228,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
 
   @override
   void dispose() {
+    iconTimer?.cancel();
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -271,7 +268,6 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     bool longPressEnabled =
         imagesInfo[currentIndex]['longPressEnabled'] ?? false;
     // Assuming "Script11-02.jpg" is at index 1 in your imagesInfo list
-    bool isDragDropImage = currentIndex == 1;
     bool dragDropEnabled = imagesInfo[currentIndex]['dragDropEnabled'] ?? false; // New line
 
 
@@ -291,12 +287,13 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     // Drag target
     var dragTarget = DragTarget<String>(
       onAccept: (data) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: Text("Image dropped successfully!"),
-          ),
-        );
+        // showDialog(
+        //   context: context,
+        //   builder: (context) => const AlertDialog(
+        //     content: Text("Image dropped successfully!"),
+        //   ),
+        // );
+        nextImage();
       },
       builder: (
           BuildContext context,
@@ -310,7 +307,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
             color: Colors.blue.withOpacity(0.5),
             border: Border.all(color: Colors.blue, width: 2),
           ),
-          child: Center(child: Text("Drop here")),
+          child: const Center(child: Text("Drop here")),
         );
       },
     );
@@ -357,6 +354,19 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                       'You performed a long press in the area!'),
                 ),
               );
+            }
+            if (action == 'showTimer') {
+              setState(() {
+                showTimerIcon = true;
+              });
+              iconTimer?.cancel(); // Cancel any existing timer
+              iconTimer = Timer(const Duration(seconds: 5), () {
+                if (mounted) {
+                  setState(() {
+                    showTimerIcon = false;
+                  });
+                }
+              });
             }
             // Add any additional long press actions here...
           }
@@ -454,6 +464,18 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                 right: 50, // Adjust based on your UI needs
                 child: dragTarget,
               ),
+            // Inside your Stack widget...
+            if (showTimerIcon)
+              const Positioned(
+                bottom: 100,
+                right: 100,
+                child: Icon(
+                  Icons.timer, // You can choose an appropriate icon
+                  size: 60,
+                  color: Colors.blue,
+                ),
+              ),
+
 
           ],
         ),
