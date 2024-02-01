@@ -38,8 +38,9 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
       'showDialog': false,
       'swipeEnabled': false,
+      'longPressEnabled': true,
       'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'Click on the right side',
+      'dialogText': '',
     },
     {
       'image': 'assets/test/1.jpg',
@@ -129,23 +130,26 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                               // Dialog main content
                               Container(
                                 padding: const EdgeInsets.all(20),
-                                margin: const EdgeInsets.only(top: 20, right: 60, bottom: 60, left: 60), // Adjust margins for image space
-                                child:
-                                    ConstrainedBox(
-                                      constraints: const BoxConstraints(
-                                        maxHeight: 120,
-                                        maxWidth:150, // Set a maximum width for the text content
-                                      ),
-                                      child: Text(
-                                        imagesInfo[currentIndex]['dialogText'] ?? 'You tapped on an interactive area!',
-                                        textAlign: TextAlign.center, // Ensures text is centered if short
-                                        style: const TextStyle(
-                                          fontFamily: "UrduType",
-                                          fontSize: 20
-                                        ),
-                                      ),
-                                    ),
-
+                                margin: const EdgeInsets.only(
+                                    top: 20,
+                                    right: 60,
+                                    bottom: 60,
+                                    left: 60), // Adjust margins for image space
+                                child: ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    maxHeight: 120,
+                                    maxWidth:
+                                        150, // Set a maximum width for the text content
+                                  ),
+                                  child: Text(
+                                    imagesInfo[currentIndex]['dialogText'] ??
+                                        'You tapped on an interactive area!',
+                                    textAlign: TextAlign
+                                        .center, // Ensures text is centered if short
+                                    style: const TextStyle(
+                                        fontFamily: "UrduType", fontSize: 20),
+                                  ),
+                                ),
                               ),
                               Positioned(
                                 bottom:
@@ -193,7 +197,6 @@ class _InteractiveImagesState extends State<InteractiveImages> {
             }
           }
         },
-
         onHorizontalDragEnd: (details) {
           if (!longPressEnabled && swipeEnabled) {
             // Check if long press is not enabled
@@ -205,42 +208,22 @@ class _InteractiveImagesState extends State<InteractiveImages> {
             // Add more conditions for different swipe actions if needed
           }
         },
-        onLongPressStart: (LongPressStartDetails details) {
-          final Offset localPosition = details.localPosition;
-          if (longPressEnabled && touchArea.contains(localPosition)) {
-            // Check if long press is enabled
-            if (!swipeEnabled && longPressEnabled) {
-              final action = imagesInfo[currentIndex]['longPressAction'];
-              if (action == 'showMessage') {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    content: Text(imagesInfo[currentIndex]['dialogText'] ??
-                        'You performed a long press in the area!'),
-                  ),
-                );
-              }
-              // Handle other long press actions as needed
+        onLongPress: () {
+          // Handle long press action only if longPressEnabled is true
+          if (longPressEnabled) {
+            final action = imagesInfo[currentIndex]['longPressAction'];
+            if (action == 'showMessage') {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  content: Text(imagesInfo[currentIndex]['dialogText'] ??
+                      'You performed a long press in the area!'),
+                ),
+              );
             }
+            // Add any additional long press actions here...
           }
         },
-
-        // onLongPress: () {
-        //   // Handle long press only if it's enabled and the press was within the touch area
-        //   if (longPressEnabled) {
-        //     final action = imagesInfo[currentIndex]['longPressAction'];
-        //     if (action == 'showMessage') {
-        //       // Perform the long press action, e.g., show a message or dialog
-        //       showDialog(
-        //         context: context,
-        //         builder: (context) => AlertDialog(
-        //           content: Text(imagesInfo[currentIndex]['dialogText'] ?? 'You performed a long press!'),
-        //         ),
-        //       );
-        //     }
-        //     // Add more conditions for different long press actions if needed
-        //   }
-        // },
         child: Stack(
           children: [
             Container(
@@ -327,4 +310,3 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     );
   }
 }
-
