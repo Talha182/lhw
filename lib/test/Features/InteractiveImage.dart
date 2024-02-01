@@ -24,16 +24,18 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     },
     {
       'image': 'assets/script11/Script11-02.jpg',
-      'guide': 'See the sky? Tap it to learn more.',
+      'guide': '',
       'touchArea': const Rect.fromLTWH(370, 310, 310, 80),
       'showDialog': true,
       'swipeEnabled': false,
       'swipeAction': 'nextImage',
       'dialogText':
           'بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ  ہو ۔',
+      'longPressEnabled': false,
+      'longPressAction': '', // Custom action identifier
     },
     {
-      'image': 'assets/test/3.jpg',
+      'image': 'assets/script11/Script11-03.jpg',
       'guide': 'Find the hidden bird and tap.',
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
       'showDialog': false,
@@ -43,7 +45,133 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'dialogText': '',
     },
     {
-      'image': 'assets/test/1.jpg',
+      'image': 'assets/script11/Script11-04.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': true,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-05.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-06.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-10.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-11.png',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-13.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-14.png',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-16.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-17.png',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-19.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-20.png',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-22.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-23.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-25.jpg',
+      'guide': 'Find the hidden bird and tap.',
+      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
+      'showDialog': false,
+      'swipeEnabled': false,
+      'longPressAction': 'showMessage', // Custom action identifier
+      'dialogText': 'Click on the right side',
+    },
+    {
+      'image': 'assets/script11/Script11-26.jpg',
       'guide': 'Find the hidden bird and tap.',
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
       'showDialog': false,
@@ -157,7 +285,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                                 left:
                                     -55, // Adjusted to fit within the dialog, below the green border
                                 child: Image.asset(
-                                  'assets/script11/1.png', // Replace with your image path
+                                  'assets/script11/2.png', // Replace with your image path
                                   width: 180, // Adjust the size as needed
                                   height: 180, // Adjust the size as needed
                                 ),
@@ -169,7 +297,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                                 right:
                                     -50, // Adjusted to fit within the dialog, above the green border
                                 child: Image.asset(
-                                  'assets/script11/2.png', // Replace with your image path
+                                  'assets/script11/1.png', // Replace with your image path
                                   width: 180, // Adjust the size as needed
                                   height: 180, // Adjust the size as needed
                                 ),
@@ -246,7 +374,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                   ),
                   child: Text(
                     imagesInfo[currentIndex]['guide'],
-                    style: const TextStyle(fontSize: 14, fontFamily: "UrduTyp"),
+                    style:
+                        const TextStyle(fontSize: 14, fontFamily: "UrduType"),
                   ),
                 ),
               ),
