@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 class InteractiveImages extends StatefulWidget {
   const InteractiveImages({Key? key}) : super(key: key);
@@ -21,6 +20,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressEnabled': false, // Ensure this is explicitly set for each image
       'longPressAction': '',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-02.jpg',
@@ -33,6 +34,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
           'بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ  ہو ۔',
       'longPressEnabled': false,
       'longPressAction': '', // Custom action identifier
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-03.jpg',
@@ -43,6 +46,9 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'longPressEnabled': true,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': '',
+      'dragDropEnabled': true, // Add this line for each image
+
+
     },
     {
       'image': 'assets/script11/Script11-04.jpg',
@@ -52,6 +58,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-05.jpg',
@@ -61,6 +69,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-06.jpg',
@@ -70,6 +80,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-10.jpg',
@@ -79,6 +91,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-11.png',
@@ -88,6 +102,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-13.jpg',
@@ -97,6 +113,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-14.png',
@@ -106,6 +124,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-16.jpg',
@@ -115,6 +135,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-17.png',
@@ -124,6 +146,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-19.jpg',
@@ -133,6 +157,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-20.png',
@@ -142,6 +168,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-22.jpg',
@@ -151,6 +179,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-23.jpg',
@@ -160,6 +190,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-25.jpg',
@@ -169,6 +201,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
     {
       'image': 'assets/script11/Script11-26.jpg',
@@ -178,6 +212,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
+      'dragDropEnabled': false, // Add this line for each image
+
     },
   ];
 
@@ -234,91 +270,64 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     bool swipeEnabled = imagesInfo[currentIndex]['swipeEnabled'] ?? false;
     bool longPressEnabled =
         imagesInfo[currentIndex]['longPressEnabled'] ?? false;
+    // Assuming "Script11-02.jpg" is at index 1 in your imagesInfo list
+    bool isDragDropImage = currentIndex == 1;
+    bool dragDropEnabled = imagesInfo[currentIndex]['dragDropEnabled'] ?? false; // New line
+
+
+    var draggableImage = Draggable<String>(
+      data: 'Script11-03.jpg',
+      feedback: Material(
+        child: Opacity(
+          opacity: 0.7,
+          child: Image.asset('assets/script11/Script11-03.jpg', width: 100),
+        ),
+        elevation: 4.0,
+      ),
+      childWhenDragging: Container(),
+      child: Image.asset('assets/script11/Script11-03.jpg', width: 100),
+    );
+
+    // Drag target
+    var dragTarget = DragTarget<String>(
+      onAccept: (data) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text("Image dropped successfully!"),
+          ),
+        );
+      },
+      builder: (
+          BuildContext context,
+          List<dynamic> accepted,
+          List<dynamic> rejected,
+          ) {
+        return Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            color: Colors.blue.withOpacity(0.5),
+            border: Border.all(color: Colors.blue, width: 2),
+          ),
+          child: Center(child: Text("Drop here")),
+        );
+      },
+    );
+
+
 
     return Scaffold(
       body: GestureDetector(
         onTapUp: (TapUpDetails details) {
           // Tap action is allowed only if both swipe and long press are disabled
-          if (!swipeEnabled && !longPressEnabled) {
+          if (!dragDropEnabled && !swipeEnabled && !longPressEnabled) {
             final Offset localPosition = details.localPosition;
             if (touchArea.contains(localPosition)) {
               if (imagesInfo[currentIndex].containsKey('showDialog') &&
                   imagesInfo[currentIndex]['showDialog']) {
                 showDialog(
-                    context: context,
-                    builder: (context) => Dialog(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.zero, // This removes border radius
-                          ),
-                          child: Stack(
-                            clipBehavior: Clip
-                                .none, // Allows overflow of children outside the box
-                            children: <Widget>[
-                              // Dialog main content
-                              Container(
-                                padding: const EdgeInsets.all(20),
-                                margin: const EdgeInsets.only(
-                                    top: 20,
-                                    right: 60,
-                                    bottom: 60,
-                                    left: 60), // Adjust margins for image space
-                                child: ConstrainedBox(
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 120,
-                                    maxWidth:
-                                        150, // Set a maximum width for the text content
-                                  ),
-                                  child: Text(
-                                    imagesInfo[currentIndex]['dialogText'] ??
-                                        'You tapped on an interactive area!',
-                                    textAlign: TextAlign
-                                        .center, // Ensures text is centered if short
-                                    style: const TextStyle(
-                                        fontFamily: "UrduType", fontSize: 20),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom:
-                                    -15, // Adjusted to fit within the dialog, below the green border
-                                left:
-                                    -55, // Adjusted to fit within the dialog, below the green border
-                                child: Image.asset(
-                                  'assets/script11/2.png', // Replace with your image path
-                                  width: 180, // Adjust the size as needed
-                                  height: 180, // Adjust the size as needed
-                                ),
-                              ),
-                              // Top-right Image (Second Image)
-                              Positioned(
-                                top:
-                                    -40, // Adjusted to fit within the dialog, above the green border
-                                right:
-                                    -50, // Adjusted to fit within the dialog, above the green border
-                                child: Image.asset(
-                                  'assets/script11/1.png', // Replace with your image path
-                                  width: 180, // Adjust the size as needed
-                                  height: 180, // Adjust the size as needed
-                                ),
-                              ),
-                              // Green border Container (Overlaying Images)
-                              Positioned.fill(
-                                // This ensures the container fills the dialog but respects the margin
-                                child: Container(
-                                  margin: const EdgeInsets.all(
-                                      5), // Margin from the edge of the dialog
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                        color: Colors.green,
-                                        width: 2), // Green border
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ));
+                    context: context, builder: (context) => buildDialog());
               } else {
                 nextImage();
               }
@@ -326,7 +335,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
           }
         },
         onHorizontalDragEnd: (details) {
-          if (!longPressEnabled && swipeEnabled) {
+          if (!dragDropEnabled && !longPressEnabled && swipeEnabled) {
             // Check if long press is not enabled
             // Since swipe is enabled for this image, handle the swipe action here
             final action = imagesInfo[currentIndex]['swipeAction'];
@@ -338,7 +347,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
         },
         onLongPress: () {
           // Handle long press action only if longPressEnabled is true
-          if (longPressEnabled) {
+          if (!dragDropEnabled && longPressEnabled) {
             final action = imagesInfo[currentIndex]['longPressAction'];
             if (action == 'showMessage') {
               showDialog(
@@ -348,7 +357,6 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                       'You performed a long press in the area!'),
                 ),
               );
-
             }
             // Add any additional long press actions here...
           }
@@ -434,8 +442,93 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                     ),
                   ),
                 )),
+            if (dragDropEnabled)
+              Positioned(
+                top: 50, // Adjust based on your UI needs
+                left: 50, // Adjust based on your UI needs
+                child: draggableImage,
+              ),
+            if (dragDropEnabled)
+              Positioned(
+                bottom: 50, // Adjust based on your UI needs
+                right: 50, // Adjust based on your UI needs
+                child: dragTarget,
+              ),
+
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildDialog() {
+    return Dialog(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.zero, // This removes border radius
+      ),
+      child: Stack(
+        clipBehavior: Clip.none, // Allows overflow of children outside the box
+        children: <Widget>[
+          // Dialog main content
+          Container(
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.only(
+                top: 20,
+                right: 60,
+                bottom: 60,
+                left: 60), // Adjust margins for image space
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 120,
+                maxWidth: 150, // Set a maximum width for the text content
+              ),
+              child: Text(
+                imagesInfo[currentIndex]['dialogText'] ??
+                    'You tapped on an interactive area!',
+                textAlign:
+                    TextAlign.center, // Ensures text is centered if short
+                style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+              ),
+            ),
+          ),
+
+          Positioned(
+            bottom:
+                -15, // Adjusted to fit within the dialog, below the green border
+            left:
+                -55, // Adjusted to fit within the dialog, below the green border
+            child: Image.asset(
+              'assets/script11/2.png', // Replace with your image path
+              width: 180, // Adjust the size as needed
+              height: 180, // Adjust the size as needed
+            ),
+          ),
+          // Top-right Image (Second Image)
+          Positioned(
+            top:
+                -40, // Adjusted to fit within the dialog, above the green border
+            right:
+                -50, // Adjusted to fit within the dialog, above the green border
+            child: Image.asset(
+              'assets/script11/1.png', // Replace with your image path
+              width: 180, // Adjust the size as needed
+              height: 180, // Adjust the size as needed
+            ),
+          ),
+          // Green border Container (Overlaying Images)
+          Positioned.fill(
+            // This ensures the container fills the dialog but respects the margin
+            child: Container(
+              margin:
+                  const EdgeInsets.all(5), // Margin from the edge of the dialog
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border:
+                    Border.all(color: Colors.green, width: 2), // Green border
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
