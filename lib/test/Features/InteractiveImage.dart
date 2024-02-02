@@ -42,7 +42,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     },
     {
       'image': 'assets/script11/Script11-03.jpg',
-      'guide': 'Find the hidden bird and tap.',
+      'guide': 'شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔',
       'touchArea': const Rect.fromLTWH(0, 0, 0, 0),
       'showDialog': false,
       'swipeEnabled': false,
@@ -58,7 +58,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'showDialog': true,
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'Click on the right side',
+      'dialogText': 'تھوک کے نمونے جمع کرنے سے پہلے مریض کو گرم پانی سے نہا  لینے یا گرم مشروب پینے کی رہنمائی کریں۔ اس سے بلغم کو نکلنے میں مدد ملے گی۔',
       'dragDropEnabled': false, // Add this line for each image
     },
     {
@@ -95,17 +95,17 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     },
     {
       'image': 'assets/script11/Script11-16.jpg',
-      'guide': 'Find the hidden bird and tap.',
+      'guide': 'گہری سانس شروع کرنے کے لئے مریض پر تھوڑی دیر تک کلک کیے رکھیں۔',
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
-      'showDialog': false,
+      'showDialog': true,
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'Click on the right side',
+      'dialogText': 'مریض کو ایک گہری سانس لینے اور اسے 5 سیکنڈ کے لئے اپنے سینے میں رکھنے کے لئے کہیں۔.',
       'dragDropEnabled': false, // Add this line for each image
     },
     {
       'image': 'assets/script11/Script11-19.jpg',
-      'guide': 'Find the hidden bird and tap.',
+      'guide': 'ڈبی کو صاف کرنے کے لئے ٹشو کو لیں اور پھر اسے کوڑے میں پھینک دیں۔',
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
       'showDialog': false,
       'swipeEnabled': false,
@@ -115,7 +115,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     },
     {
       'image': 'assets/script11/Script11-22.jpg',
-      'guide': 'Find the hidden bird and tap.',
+      'guide': 'اس کی جانچ پڑتال کے لئے نمونے پر کلک کریں۔',
       'touchArea': const Rect.fromLTWH(50, 120, 80, 80),
       'showDialog': false,
       'swipeEnabled': false,
@@ -127,10 +127,10 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'image': 'assets/script11/Script11-23.jpg',
       'guide': 'Find the hidden bird and tap.',
       'touchArea': const Rect.fromLTWH(0, 0, 0, 0),
-      'showDialog': false,
+      'showDialog': true,
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'Click on the right side',
+      'dialogText': 'نمونے کا جائزہ لیں اور اس بات کا یقین کریں کہ لیا گیا نمونہ بلغم ہی ہو، منہ یا ناک کی رطوبت نہ ہو۔',
       'dragDropEnabled': false, // Add this line for each image
     },
     {

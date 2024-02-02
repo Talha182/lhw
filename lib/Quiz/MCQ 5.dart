@@ -75,7 +75,7 @@ class _MCQ5State extends State<MCQ5> {
       }
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
@@ -100,7 +100,7 @@ class _MCQ5State extends State<MCQ5> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -110,15 +110,15 @@ class _MCQ5State extends State<MCQ5> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
+            end: const Alignment(0, -0.2),
             colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
+              const Color(0xff80B8FB).withOpacity(0.3),
               Colors.transparent,
             ],
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -126,12 +126,12 @@ class _MCQ5State extends State<MCQ5> {
                 children: [
                   InkWell(
                     onTap: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                       size: 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -156,7 +156,7 @@ class _MCQ5State extends State<MCQ5> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: SvgPicture.asset(
@@ -169,7 +169,7 @@ class _MCQ5State extends State<MCQ5> {
               ),
               Container(
                 width: double.infinity,
-                height: 170,
+                height: 155,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -181,32 +181,32 @@ class _MCQ5State extends State<MCQ5> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 15,
+              const SizedBox(
+                height: 5,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Text(
                   "سوال ${questionIndex + 1}",
                   textAlign: TextAlign.right,
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+                  style: const TextStyle(fontFamily: "UrduType", fontSize: 18),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Text(
                   questions[questionIndex].question,
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 18,color: Color(0xff7A7D84)),
+                  style: const TextStyle(fontFamily: "UrduType", fontSize: 18,color: Color(0xff7A7D84)),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20),
                 child: Column(
                   children: List.generate(
                     questions[questionIndex].options.length,
                     (index) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: QuizCard(
                         text: questions[questionIndex].options[index],
                         ontap: () => updateQuestion(
@@ -222,7 +222,7 @@ class _MCQ5State extends State<MCQ5> {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Column(
                 children: [
                   Divider(
@@ -230,30 +230,30 @@ class _MCQ5State extends State<MCQ5> {
                     thickness: 1,
                     color: Colors.black87.withOpacity(0.1),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'آپ کا اسکور: 10 پوائنٹس',
                           style: TextStyle(
                               fontFamily: "UrduType", color: Color(0xff8E79FB)),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xffFE8BD1),
+                            backgroundColor: const Color(0xffFE8BD1),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            minimumSize: Size(150, 37),
+                            minimumSize: const Size(150, 37),
                           ),
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             'جاری رہے',
                             style: TextStyle(
                               fontFamily: 'UrduType',
@@ -308,7 +308,7 @@ class QuizCard extends StatelessWidget {
           color: color,
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
             children: [
               Container(
@@ -322,12 +322,12 @@ class QuizCard extends StatelessWidget {
                       : Colors.transparent,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   text,
                   textAlign: TextAlign.justify,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Color(0xff7A7D84),
                     fontFamily: 'UrduType',
