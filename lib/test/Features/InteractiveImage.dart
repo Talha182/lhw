@@ -83,7 +83,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
-      'dragDropEnabled': false, // Add this line for each image
+      'dragDropEnabled': true, // Add this line for each image
+
 
     },
     {
@@ -166,8 +167,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     {
       'image': 'assets/script11/Script11-22.jpg',
       'guide': 'Find the hidden bird and tap.',
-      'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
-      'showDialog': false,
+      'touchArea': const Rect.fromLTWH(50, 120, 80, 80),
+      'showDialog': true,
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
       'dialogText': 'Click on the right side',
@@ -287,12 +288,6 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     // Drag target
     var dragTarget = DragTarget<String>(
       onAccept: (data) {
-        // showDialog(
-        //   context: context,
-        //   builder: (context) => const AlertDialog(
-        //     content: Text("Image dropped successfully!"),
-        //   ),
-        // );
         nextImage();
       },
       builder: (
@@ -312,7 +307,39 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       },
     );
 
+    var draggableImage2 = Draggable<String>(
+      data: 'Script11-11.png',
+      feedback: Material(
+        elevation: 4.0,
+        child: Opacity(
+          opacity: 0.7,
+          child: Image.asset('assets/script11/Script11-11.png', width: 100),
+        ),
+      ),
+      childWhenDragging: Container(),
+      child: Image.asset('assets/script11/Script11-11.png', width: 100),
+    );
 
+    var dragTarget2 = DragTarget<String>(
+      onAccept: (data) {
+        nextImage();
+      },
+      builder: (
+          BuildContext context,
+          List<dynamic> accepted,
+          List<dynamic> rejected,
+          ) {
+        return Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            color: Colors.blue.withOpacity(0.5),
+            border: Border.all(color: Colors.blue, width: 2),
+          ),
+          child: const Center(child: Text("Drop here")),
+        );
+      },
+    );
 
     return Scaffold(
       body: GestureDetector(
@@ -454,8 +481,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                 )),
             if (dragDropEnabled)
               Positioned(
-                top: 50, // Adjust based on your UI needs
-                left: 50, // Adjust based on your UI needs
+                bottom: 50, // Adjust based on your UI needs
+                left: 200, // Adjust based on your UI needs
                 child: draggableImage,
               ),
             if (dragDropEnabled)
@@ -463,6 +490,17 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                 bottom: 50, // Adjust based on your UI needs
                 right: 50, // Adjust based on your UI needs
                 child: dragTarget,
+              ),if (dragDropEnabled)
+              Positioned(
+                bottom: 50, // Adjust based on your UI needs
+                left: 200, // Adjust based on your UI needs
+                child: draggableImage2,
+              ),
+            if (dragDropEnabled)
+              Positioned(
+                bottom: 50, // Adjust based on your UI needs
+                right: 50, // Adjust based on your UI needs
+                child: dragTarget2,
               ),
             // Inside your Stack widget...
             if (showTimerIcon)

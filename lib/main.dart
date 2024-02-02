@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           case AuthStatus.undecided:
             return const LoadingScreen();  // your loading screen widget
           case AuthStatus.authenticated:
-            return  LessonOption21();
+            return  InteractiveImages();
           case AuthStatus.unauthenticated:
           default:
             return const LoginScreen();
