@@ -274,11 +274,11 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     var draggableImage = Draggable<String>(
       data: 'Script11-03.jpg',
       feedback: Material(
+        elevation: 4.0,
         child: Opacity(
           opacity: 0.7,
           child: Image.asset('assets/script11/Script11-03.jpg', width: 100),
         ),
-        elevation: 4.0,
       ),
       childWhenDragging: Container(),
       child: Image.asset('assets/script11/Script11-03.jpg', width: 100),

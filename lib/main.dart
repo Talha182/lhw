@@ -2,7 +2,11 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lhw/Bookmarks.dart';
+import 'package:lhw/Branching/LessonOption21.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
+import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
@@ -10,6 +14,7 @@ import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
 import 'package:lhw/test/Features/InteractiveImage.dart';
+import 'package:lhw/test/Features/ObjectivesTree.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'navy.dart';
@@ -61,7 +66,7 @@ class MyApp extends StatelessWidget {
           case AuthStatus.undecided:
             return const LoadingScreen();  // your loading screen widget
           case AuthStatus.authenticated:
-            return const InteractiveImages();
+            return  LessonOption21();
           case AuthStatus.unauthenticated:
           default:
             return const LoginScreen();

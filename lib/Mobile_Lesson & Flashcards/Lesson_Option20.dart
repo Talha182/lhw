@@ -20,114 +20,26 @@ class _LessonOption20State extends State<LessonOption20> {
   int _maxNavigableIndex = 0;
   bool _isLastCardFlipped = false;
 
+  List<Map<String, dynamic>> cardData = [
+    {
+      'image': 'assets/images/flip1.png',
+      'text': 'Back Side Text 1',
+    },
+    {
+      'image': 'assets/images/flip1.png',
+      'text': 'Back Side Text 2',
+    },
+    {
+      'image': 'assets/images/flip1.png',
+      'text': 'Back Side Text 3',
+    },
+    // Add more cards as needed
+  ];
+
+
 
   final CarouselController _carouselController = CarouselController();
 
-  List<Widget> frontCardWidgets = [
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-  ];
-
-  List<Widget> backCardWidgets = [
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      width: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.asset(
-        "assets/images/flip1.png",
-        fit: BoxFit.fill,
-      ),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -170,13 +82,13 @@ class _LessonOption20State extends State<LessonOption20> {
                     width: 320,
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
-                          begin: 0, end: ((_current + 1) / 5 * _totalSteps)),
+                          begin: 0, end: ((_current + 1) / cardData.length) * _totalSteps),
                       duration: const Duration(milliseconds: 400),
                       builder:
                           (BuildContext context, double value, Widget? child) {
                         return LinearPercentIndicator(
                           lineHeight: 8.0,
-                          percent: value / _totalSteps,
+                          percent: min(value / _totalSteps, 1.0), // Ensure the percent doesn't exceed 1
                           backgroundColor: Colors.white,
                           progressColor: const Color(0xffFE8BD1),
                           barRadius: const Radius.circular(10),
@@ -211,67 +123,74 @@ class _LessonOption20State extends State<LessonOption20> {
               height: 20,
             ),
             Transform.translate(
-                offset: const Offset(-40, 0),
-                child: CarouselSlider.builder(
-                  carouselController: _carouselController,
-                  itemCount: frontCardWidgets.length, // assuming front and back lists are of the same length
-                  itemBuilder: (BuildContext context, int index, int realIndex) {
-                    return FlipCard(
-                      onFlip: () {
-                        if (_current == index) {
-                          setState(() {
-                            _maxNavigableIndex = max(_maxNavigableIndex, index + 1);
-                            if(index == frontCardWidgets.length - 1) {
-                              _isLastCardFlipped = true;
-                            }
-                          });
-                        }
-                      },
-
-                      fill: Fill.fillBack,
-                      direction: FlipDirection.HORIZONTAL,
-                      front: frontCardWidgets[index],
-                      back: backCardWidgets[index],
-                    );
-                  },
-                  options: CarouselOptions(
-                    height: 440.0,
-                    enlargeCenterPage: false,
-                    onPageChanged: (index, reason) {
-                      if (index <= _maxNavigableIndex) {
-                        setState(() {
-                          _current = index;
-                        });
-                      } else {
-                        _carouselController.animateToPage(
-                          _current,
-                          duration: Duration(milliseconds: 600),  // Adjust duration as needed
-                          curve: Curves.easeOut,  // Adjust curve as needed
-                        );
-                      }
+              offset: const Offset(-40, 0),
+              child: CarouselSlider.builder(
+                carouselController: _carouselController,
+                itemCount: cardData.length,
+                itemBuilder: (BuildContext context, int index, int realIndex) {
+                  return FlipCard(
+                    onFlip: () {
+                      setState(() {
+                        _isLastCardFlipped = index == cardData.length - 1;
+                      });
                     },
-
-                    aspectRatio: 16 / 9,
-                    autoPlay: false,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enableInfiniteScroll: false,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    viewportFraction: 0.78,
-                  ),
-                )),
+                    direction: FlipDirection.HORIZONTAL,
+                    front: Container(
+                      width: 280,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          image: AssetImage(cardData[index]['image']),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    back: Container(
+                      width: 280,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          cardData[index]['text'],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: "UrduType",
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                options: CarouselOptions(
+                  height: 420.0,
+                  enlargeCenterPage: false,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  },
+                  aspectRatio: 16 / 9,
+                  autoPlay: false,
+                  enableInfiniteScroll: false,
+                  viewportFraction: 0.78,
+                ),
+              ),
+            ),
             SizedBox(
               height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                5,
-                (index) {
+                cardData.length, // Use the length of cardData for dynamic indicator count
+                    (index) {
                   return Container(
                     width: 8.0,
                     height: 8.0,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 2.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: _current == index
@@ -282,6 +201,7 @@ class _LessonOption20State extends State<LessonOption20> {
                 },
               ),
             ),
+
             const Spacer(),
             Container(
               width: double.infinity,

@@ -86,6 +86,7 @@ flutter:
     - assets/videos/
     - assets/test/
     - assets/script11/
+    - assets/objectivesTree/
 
   fonts:
     - family: UrduType

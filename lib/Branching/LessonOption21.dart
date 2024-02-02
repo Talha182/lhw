@@ -86,7 +86,7 @@ class _LessonOption21State extends State<LessonOption21> {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
-          _current = ((questionIndex / questions.length) * 1).toInt();
+          _current = questionIndex + 1; // Update current question number
           optionColors = [Colors.white, Colors.white, Colors.white];
           isAnswered = false;
           isSelectedList = [false, false, false]; // Reset for the next question
@@ -231,21 +231,22 @@ class _LessonOption21State extends State<LessonOption21> {
                             width: 320,
                             child: TweenAnimationBuilder(
                               tween: Tween<double>(
-                                  begin: 0,
-                                  end: ((_current + 1) / 5 * _totalSteps)),
+                                begin: 0,
+                                end: _current / questions.length, // Correct end value for the tween
+                              ),
                               duration: const Duration(milliseconds: 400),
-                              builder: (BuildContext context, double value,
-                                  Widget? child) {
+                              builder: (BuildContext context, double value, Widget? child) {
                                 return LinearPercentIndicator(
                                   lineHeight: 8.0,
-                                  percent: value / _totalSteps,
+                                  percent: value, // Use the animated value for the percent
                                   backgroundColor: Colors.white,
                                   progressColor: const Color(0xffFE8BD1),
                                   barRadius: const Radius.circular(10),
                                 );
                               },
                             ),
-                          )
+                          ),
+
                         ],
                       ),
                     ),
@@ -291,102 +292,6 @@ class _LessonOption21State extends State<LessonOption21> {
                     ),
                   ],
                 ),
-                // Column(
-                //   children: [
-                //     isAnswered // Check if the question is answered
-                //         ? Container(
-                //             height: 140,
-                //             width: double.infinity,
-                //             color: selectedAnswer ==
-                //                     questions[questionIndex].correctAnswer
-                //                 ? Colors.green[100] // Light green if correct
-                //                 : Colors.red[100], // Light red if incorrect
-                //             child: Padding(
-                //               padding: const EdgeInsets.only(top: 0,left: 15,right: 15),
-                //               child: RichText(
-                //                 textAlign: TextAlign.center,
-                //                 text: TextSpan(
-                //                   style: const TextStyle(
-                //                       fontFamily: "UrduType", fontSize: 18),
-                //                   children: [
-                //                     TextSpan(
-                //                       text: selectedAnswer ==
-                //                               questions[questionIndex]
-                //                                   .correctAnswer
-                //                           ? "درست۔ "
-                //                           : "غلط۔ ",
-                //                       style: TextStyle(
-                //                         fontSize: 16,
-                //                         fontFamily: "UrduType",
-                //                         color: selectedAnswer ==
-                //                                 questions[questionIndex]
-                //                                     .correctAnswer
-                //                             ? Colors
-                //                                 .green // Green text if correct
-                //                             : Colors
-                //                                 .red, // Red text if incorrect
-                //                       ),
-                //                     ),
-                //                     TextSpan(
-                //                       text: selectedAnswer ==
-                //                               questions[questionIndex]
-                //                                   .correctAnswer
-                //                           ? questions[questionIndex]
-                //                               .correctExplanation
-                //                           : questions[questionIndex]
-                //                               .incorrectExplanation,
-                //                       style: TextStyle(
-                //                         fontSize: 16,
-                //                         fontFamily: "UrduType",
-                //                         color: selectedAnswer ==
-                //                                 questions[questionIndex]
-                //                                     .correctAnswer
-                //                             ? Colors
-                //                                 .black // Black text if correct
-                //                             : Colors
-                //                                 .red, // Red text if incorrect
-                //                       ),
-                //                     ),
-                //                     if (selectedAnswer !=
-                //                         questions[questionIndex].correctAnswer)
-                //                       const TextSpan(
-                //                         text: "\nدرست۔",
-                //                         style: TextStyle(
-                //                           fontFamily: "UrduType",
-                //                           fontSize: 16,
-                //                           color: Colors
-                //                               .black, // Black text for the correct answer prefix
-                //                         ),
-                //                       ),
-                //                     if (selectedAnswer !=
-                //                         questions[questionIndex].correctAnswer)
-                //                       TextSpan(
-                //                         text: questions[questionIndex]
-                //                             .correctExplanation, // Correct explanation
-                //                         style: const TextStyle(
-                //                           fontFamily: "UrduType",
-                //                           fontSize: 16,
-                //                           color: Colors
-                //                               .black, // Black text for the correct explanation
-                //                         ),
-                //                       ),
-                //                   ],
-                //                 ),
-                //               ),
-                //             ),
-                //           )
-                //         : Column(
-                //             children: [
-                //               Container(
-                //                 width: double.infinity,
-                //                 height: 1,
-                //                 decoration: BoxDecoration(
-                //                     color: Colors.black87.withOpacity(0.1)),
-                //               ),
-                //             ],
-                //           ),
-                //   ],
-                // ),
               ],
             ),
           ),
