@@ -91,8 +91,9 @@ class _LessonOption21State extends State<LessonOption21> {
       }
       else {
         // Show result screen
-        Get.to(() => ResultsScreen());
-
+        Get.to(() =>  ResultsScreen(),
+            transition: Transition.fade,
+            duration: const Duration(milliseconds: 300));
       }
     });
     Question currentQuestion = questions[questionIndex];

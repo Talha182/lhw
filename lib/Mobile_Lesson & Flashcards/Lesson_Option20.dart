@@ -25,7 +25,6 @@ class _LessonOption20State extends State<LessonOption20> {
   final CarouselController _carouselController = CarouselController();
 
   // Instantiating the BookmarkController
-  final BookmarkController bookmarkController = Get.put(BookmarkController());
 
   List<Map<String, dynamic>> cardData = [
     {
@@ -72,18 +71,11 @@ class _LessonOption20State extends State<LessonOption20> {
                 children: [
                   InkWell(
                     onTap: () {
-                      if (bookmarkController.isBookmarked(bookmarkId)) {
-                        bookmarkController.removeBookmark(bookmarkId);
-                      } else {
-                        bookmarkController.addBookmark(bookmarkId);
-                      }
+
                     },
                     child: Obx(() =>
                         Icon(
-                          bookmarkController.isBookmarked(bookmarkId)
-                              ? Icons.bookmark
-                              : Icons.bookmark_border,
-                          size: 30,
+                            Icons.bookmark
                         )),
                   ),
                   const Icon(
@@ -274,11 +266,5 @@ class _LessonOption20State extends State<LessonOption20> {
     );
   }
 
-  void toggleBookmark(String id) {
-    if (bookmarkController.isBookmarked(id)) {
-      bookmarkController.removeBookmark(id);
-    } else {
-      bookmarkController.addBookmark(id);
-    }
-  }
+
 }

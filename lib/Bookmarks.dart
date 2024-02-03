@@ -1,14 +1,14 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class Bookmarks extends StatefulWidget {
-  const Bookmarks({super.key});
+class BookmarkScreen extends StatefulWidget {
+  const BookmarkScreen({super.key});
 
   @override
-  State<Bookmarks> createState() => _BookmarksState();
+  State<BookmarkScreen> createState() => _BookmarkScreenState();
 }
 
-class _BookmarksState extends State<Bookmarks> {
+class _BookmarkScreenState extends State<BookmarkScreen> {
   String dropdownvalue = 'اس ہفتے';
   var items = [
     'اس ہفتے',

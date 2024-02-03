@@ -1352,8 +1352,9 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                     ),
                     onTap: () {
-                      Get.to(() => const NotificationScreen());
-                    },
+                      Get.to(() => const NotificationScreen(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 300));                    },
                   ),
                 ],
               ),

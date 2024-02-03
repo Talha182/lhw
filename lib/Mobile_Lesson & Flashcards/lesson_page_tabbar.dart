@@ -108,7 +108,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
           const Expanded(
             child: TabBarView(
               children: <Widget>[
-                Bookmarks(),
+                BookmarkScreen(),
                 GroupsDiscussion(),
                 Lesson(),
               ],

@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller.clearLoginFields();
                       Get.to(() => const SignUpScreen(),
                           transition: Transition.fade,
-                          duration: const Duration(milliseconds: 200));
+                          duration: const Duration(milliseconds: 300));
                     },
                     child: const Text(
                       "سائن اپ",

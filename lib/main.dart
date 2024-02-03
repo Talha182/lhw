@@ -6,6 +6,8 @@ import 'package:lhw/Bookmarks.dart';
 import 'package:lhw/Branching/LessonOption21.dart';
 import 'package:lhw/Branching/LessonOption24.dart';
 import 'package:lhw/Comic_Strip/comic_strip.dart';
+import 'package:lhw/Image_Hotspot/LessonOption26.dart';
+import 'package:lhw/Interactive%20Image/LessonOption32.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
@@ -74,7 +76,7 @@ class MyApp extends StatelessWidget {
           case AuthStatus.undecided:
             return const LoadingScreen();  // your loading screen widget
           case AuthStatus.authenticated:
-            return LessonOption24();
+            return const LessonOption20();
           case AuthStatus.unauthenticated:
           default:
             return const LoginScreen();
