@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:photo_view/photo_view.dart';
+
+import '../BookmarkController.dart';
 
 class LessonOption26 extends StatefulWidget {
   const LessonOption26({super.key});
@@ -19,6 +22,25 @@ class _LessonOption26State extends State<LessonOption26> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+  final BookmarkController bookmarkController =   Get.put(BookmarkController());
+
+  final List<ClickableArea> clickableAreas = [
+    ClickableArea(
+      position: Offset(200, 40), // Adjust positions as needed
+      dialogText: 'یہ پہلا کلک ایبل علاقہ ہے۔',
+      dialogImage: 'assets/images/lesson_26.png',
+    ),
+    ClickableArea(
+      position: Offset(150, 180),
+      dialogText: 'یہ دوسرا کلک ایبل علاقہ ہے۔',
+      dialogImage: 'assets/images/fatigue.png',
+    ),
+    ClickableArea(
+      position: Offset(220, 310),
+      dialogText: 'یہ تیسرا کلک ایبل علاقہ ہے۔',
+      dialogImage: 'assets/images/touch.png',
+    ),
+  ];
 
 
   void showCustomDialog() {
@@ -282,17 +304,71 @@ class _LessonOption26State extends State<LessonOption26> {
     );
   }
 
+  void showCustomDialog0(String dialogText, String dialogImage) {
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        insetPadding: const EdgeInsets.symmetric(horizontal: 10),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: 250,
+            maxWidth: MediaQuery.of(Get.context!).size.width - 50,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Builder(
+                  builder: (context) {
+                    return Align(
+                      alignment: Alignment.topRight,
+                      child: GestureDetector(
+                        onTap: () => Navigator.pop(context), // Use the Builder's context here
+                        child: const Icon(Icons.close),
+                      ),
+                    );
+                  },
+                ),
+                Text(
+                  'غذائیت کی صورتحال',
+                  style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text(
+                          dialogText,
+                          style: const TextStyle(
+                              fontFamily: "UrduType", fontSize: 14, color: Color(0xff7A7D84)),
+                        ),
+                        SizedBox(height: 10),
+                        Image.asset(
+                          dialogImage,
+                          fit: BoxFit.cover,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -305,7 +381,7 @@ class _LessonOption26State extends State<LessonOption26> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
+          padding: const EdgeInsets.only(top: 60 , left: 20, right: 20, bottom: 5),
           child: Stack(
             children: [
               Column(
@@ -342,11 +418,23 @@ class _LessonOption26State extends State<LessonOption26> {
                               );
                             },
                           ),
+
                         ),
-                      )                    ],
+                      )   , const SizedBox(width: 5,),
+                      GestureDetector
+                        (
+                          onTap: () {
+                            final bookmarkController = Get.find<BookmarkController>();
+                            bookmarkController.addBookmark(
+                              Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
+                            );
+                            // Optionally, show a snackbar or some feedback to the user
+                            Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                          },
+                          child: const Icon(Icons.bookmark_outline)),                 ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 30),
+                    padding: const EdgeInsets.only(right:10,top: 10,bottom: 10),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: SvgPicture.asset(
@@ -367,7 +455,7 @@ class _LessonOption26State extends State<LessonOption26> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   Container(
                     width: 350,
@@ -415,43 +503,28 @@ class _LessonOption26State extends State<LessonOption26> {
                                 // child: Image.asset("assets/images/team.png"),
                               ),
                             )),
-                        Positioned(
-                            top: 35, // Adjust as needed
-                            right: 40, // Adjust as needed
-                            child: GestureDetector(
-                                onTap: () {
-                                  showCustomDialog4();
-                                },
+                        ...clickableAreas.map((area) => Positioned(
+                          top: area.position.dy,
+                          left: area.position.dx,
+                          child: GestureDetector(
+                            onTap: () => showCustomDialog0(area.dialogText, area.dialogImage),
+                            child: Container(
+                              width: 45,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Center(
                                 child: Image.asset(
-                                    "assets/images/lesson_26.png"))),
-                        Positioned(
-                            top: 180, // Adjust as needed
-                            right: 150, // Adjust as needed
-                            child: GestureDetector(
-                                onTap: () {
-                                  showCustomDialog3();
-                                },
-                                child: Image.asset(
-                                    "assets/images/lesson_26.png"))),
-                        Positioned(
-                            top: 310, // Adjust as needed
-                            right: 70, // Adjust as needed
-                            child: GestureDetector(
-                                onTap: () {
-                                 showCustomDialog2();
-                                },
-                                child: Image.asset(
-                                  "assets/images/lesson_26.png",
-                                ))),
-                        Positioned(
-                            bottom: 5, // Adjust as needed
-                            right: 10, // Adjust as needed
-                            child: GestureDetector(
-                                onTap: () {
-                                },
-                                child: SvgPicture.asset(
-                                  "assets/images/full_screen.svg",
-                                ))),
+                                  'assets/images/lesson_26.png',
+                                  width: 30,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )).toList(),
+
                       ],
                     ),
                   ),
@@ -573,4 +646,17 @@ class ArrowPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
+}
+class ClickableArea {
+  final Offset position;
+  final String dialogText;
+  final String dialogImage;
+  final String touchIcon;
+
+  ClickableArea({
+    required this.position,
+    required this.dialogText,
+    required this.dialogImage,
+    this.touchIcon = 'assets/images/lesson_26.png',
+  });
 }

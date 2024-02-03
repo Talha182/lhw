@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+
+import '../BookmarkController.dart';
+import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 
 class MCQ6 extends StatefulWidget {
   const MCQ6({super.key});
@@ -17,6 +21,7 @@ class _MCQ6State extends State<MCQ6> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+  final BookmarkController bookmarkController = Get.put(BookmarkController());
 
   final List<Question> questions = [
     Question(
@@ -100,13 +105,7 @@ class _MCQ6State extends State<MCQ6> {
     _totalSteps = questions.length; // Add this line
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -122,7 +121,7 @@ class _MCQ6State extends State<MCQ6> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
+              padding: const EdgeInsets.only(top: 60, left: 20, right: 10),
               child: Row(
                 children: [
                   InkWell(
@@ -136,7 +135,6 @@ class _MCQ6State extends State<MCQ6> {
                     width: 5,
                   ),
                   Expanded(
-                    child: SizedBox(
                       child: TweenAnimationBuilder(
                         tween: Tween<double>(
                             begin: 0, end: 2.2),
@@ -152,13 +150,29 @@ class _MCQ6State extends State<MCQ6> {
                           );
                         },
                       ),
-                    ),
-                  )
+                   ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        final bookmarkController =
+                        Get.find<BookmarkController>();
+                        bookmarkController.addBookmark(
+                          Bookmark(
+                              title: 'LessonOption20',
+                              routeName: '/lessonOption20'),
+                        );
+                        // Optionally, show a snackbar or some feedback to the user
+                        Get.snackbar('Bookmark Added',
+                            'This page has been added to your bookmarks');
+                      },
+                      child: const Icon(Icons.bookmark_outline)),
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 30),
+              padding: const EdgeInsets.only(right: 30,bottom: 10, top: 10),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: SvgPicture.asset(
@@ -201,7 +215,7 @@ class _MCQ6State extends State<MCQ6> {
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            stops: [0.3, 0.9], // Adjust stops as needed
+                            stops: const [0.3, 0.9], // Adjust stops as needed
                           ),
                         ),
                       ),

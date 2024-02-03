@@ -30,7 +30,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   final List<Widget> pages = [
     const HomePage(),
     const CoursesPage_Tabbar(),
-    const GroupsDiscussion(),
+    const GroupsDiscussion(showAppBar: true,),
     const ReportsScreen(),
   ];
 

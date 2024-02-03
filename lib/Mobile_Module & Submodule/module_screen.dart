@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -24,8 +25,67 @@ class _ModuleScreenState extends State<ModuleScreen> {
   Widget build(BuildContext context) {
     double progressValue = 0.4; // Example variable to hold progress value
 
+    final List<Map<String, dynamic>> moduleData = [
+      {
+        'cardText': 'غذائیت کا تعارف',
+        'imagePath': 'assets/images/image9.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      {
+        'cardText': 'نوعمر لڑکیوں، حاملہ اور کی غذائی ضروریات',
+        'imagePath': 'assets/images/image9.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      {
+        'cardText': 'حمل کی غذائی ضروریات',
+        'imagePath': 'assets/images/image10.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      {
+        'cardText': 'آئرن کی کمی/انیمیا',
+        'imagePath': 'assets/images/image11.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      {
+        'cardText': 'وٹامن اے کی کمی',
+        'imagePath': 'assets/images/image12.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      {
+        'cardText': 'آیوڈین کی کمی',
+        'imagePath': 'assets/images/image13.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      // Add more modules as needed
+    ];
+
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 1.0,
         backgroundColor: Colors.white,
         flexibleSpace: Align(
@@ -350,83 +410,28 @@ class _ModuleScreenState extends State<ModuleScreen> {
               height: 15,
             ),
             Column(
-              children: [
-                ...columnPadded([
-                  Module_DashBoard_Card(
-                    onClick: () {
-                      Get.to(() => const Course_DropDown(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    },
-                    progressValue: progressValue,
-                    imagePath: 'assets/images/image 8.png',
-                    cardText: 'غذائیت کا تعارف',
-                    showProgressBar: false,
-                  ),
-                  Module_DashBoard_Card(
-                    onClick: () {
-                      Get.to(() => const Course_DropDown(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    },
-                    progressValue: progressValue,
-                    imagePath: 'assets/images/image9.png',
-                    cardText:
-                        'نوعمر لڑکیوں، حاملہ اور دودھ پلانے والی ماؤں کی غذائی ضروریات',
-                    showProgressBar: false,
-                  ),
-                  Module_DashBoard_Card(
-                    onClick: () {
-                      Get.to(() => const Course_DropDown(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    },
-                    progressValue: progressValue,
-                    imagePath: 'assets/images/image10.png',
-                    cardText: 'حمل کی غذائی ضروریات',
-                    showProgressBar: false,
-                  ),
-                  Module_DashBoard_Card(
-                    onClick: () {
-                      Get.to(() => const Course_DropDown(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    },
-                    progressValue: progressValue,
-                    imagePath: 'assets/images/image11.png',
-                    cardText: 'آئرن کی کمی/انیمیا',
-                    showProgressBar: false,
-                  ),
-                  Module_DashBoard_Card(
-                    onClick: () {
-                      Get.to(() => const Course_DropDown(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    },
-                    progressValue: progressValue,
-                    imagePath: 'assets/images/image12.png',
-                    cardText: 'وٹامن اے کی کمی',
-                    showProgressBar: false,
-                  ),
-                  Module_DashBoard_Card(
-                    onClick: () {
-                      Get.to(() => const Course_DropDown(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    },
-                    progressValue: progressValue,
-                    imagePath: 'assets/images/image13.png',
-                    cardText: 'آیوڈین کی کمی',
-                    showProgressBar: false,
-                  ),
-                ], 8)
-              ],
+              children: moduleData
+                  .map((module) => Padding(
+                        padding: const EdgeInsets.only(bottom: 14.0),
+                        child: Module_DashBoard_Card(
+                          onClick: module['onTap'],
+                          progressValue: 0.4, // Example progress value
+                          imagePath: module['imagePath'],
+                          cardText: module['cardText'],
+                          showProgressBar: false,
+                        ),
+                      ))
+                  .toList()
+                  .animate(interval: 200.ms)
+                  .fade(duration: 200.ms),
             ),
           ],
         ),
       ),
     );
-  }  static Future<bool> _permissionRequest() async {
+  }
+
+  static Future<bool> _permissionRequest() async {
     PermissionStatus result;
     result = await Permission.storage.request();
     if (result.isGranted) {

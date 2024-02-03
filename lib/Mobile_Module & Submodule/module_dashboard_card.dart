@@ -23,13 +23,13 @@ class Module_DashBoard_Card extends StatelessWidget {
       onTap: onClick,
       child: Container(
         width: 400,
-        height: 85,
+        height: 75,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.withOpacity(0.3)),
-            color: Color(0xffE0E0E0).withOpacity(0.4),
+            color: const Color(0xffE0E0E0).withOpacity(0.4),
             borderRadius: BorderRadius.circular(10)),
         child: Padding(
-          padding: EdgeInsets.only(left: 15, right: 15),
+          padding: const EdgeInsets.only(left: 15, right: 15),
           child: Directionality(
             textDirection: TextDirection.rtl,
             child: Row(
@@ -43,10 +43,10 @@ class Module_DashBoard_Card extends StatelessWidget {
                       height: 50,
                       fit: BoxFit.contain,
                     ),
-                    SizedBox(width: 15),
+                    const SizedBox(width: 15),
                     Text(
                       cardText, // Updated this line
-                      style: TextStyle(fontFamily: 'UrduType', fontSize: 16),
+                      style: const TextStyle(fontFamily: 'UrduType', fontSize: 20),
                       softWrap: true, // Set softWrap to true to enable text wrapping
                       overflow: TextOverflow.ellipsis, // or TextOverflow.fade
 

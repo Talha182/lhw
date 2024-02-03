@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+
+import '../BookmarkController.dart';
+import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 
 class LessonOption24 extends StatefulWidget {
   const LessonOption24({super.key});
@@ -16,6 +20,8 @@ class _LessonOption24State extends State<LessonOption24> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+  final BookmarkController bookmarkController =   Get.put(BookmarkController());
+
 
   final List<Question> questions = [
     Question(
@@ -92,13 +98,7 @@ class _LessonOption24State extends State<LessonOption24> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -113,7 +113,7 @@ class _LessonOption24State extends State<LessonOption24> {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(top: 0,left: 20,right: 20),
               child: ListView(
                 children: [
                   Row(
@@ -129,7 +129,6 @@ class _LessonOption24State extends State<LessonOption24> {
                         width: 5,
                       ),
                       Expanded(
-                        child: SizedBox(
                           child: TweenAnimationBuilder(
                             tween: Tween<double>(begin: 0, end: 2.2),
                             duration: const Duration(milliseconds: 400),
@@ -144,8 +143,21 @@ class _LessonOption24State extends State<LessonOption24> {
                               );
                             },
                           ),
-                        ),
-                      )
+
+
+                      ),
+                      const SizedBox(width: 5,),
+                      GestureDetector
+                        (
+                          onTap: () {
+                            final bookmarkController = Get.find<BookmarkController>();
+                            bookmarkController.addBookmark(
+                              Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
+                            );
+                            // Optionally, show a snackbar or some feedback to the user
+                            Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                          },
+                          child: const Icon(Icons.bookmark_outline)),
                     ],
                   ),
                   Padding(
@@ -229,13 +241,13 @@ class _LessonOption24State extends State<LessonOption24> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Center(
-                    child: const Text(
+                  const Center(
+                    child: Text(
                       "بہترین آپشن کا انتخاب کریں۔",
                       style: TextStyle(fontFamily: "UrduType", fontSize: 23),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Column(
                     children: List.generate(
                       questions[questionIndex].options.length,

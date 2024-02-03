@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:video_player/video_player.dart';
 
+import '../BookmarkController.dart';
+import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 import '../Quiz_Widgets/QuizCard.dart';
 import '../Quiz_Widgets/Question.dart';
 
@@ -24,6 +26,7 @@ class _LessonOption33State extends State<LessonOption33> {
   String selectedAnswer = '';
   int? selectedOptionIndex;
   bool isDialogShown = false;
+  final BookmarkController bookmarkController = Get.put(BookmarkController());
 
   final List<Question> questions = [
     Question(
@@ -225,13 +228,6 @@ class _LessonOption33State extends State<LessonOption33> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -245,7 +241,7 @@ class _LessonOption33State extends State<LessonOption33> {
         ),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
+              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
           child: Column(
             children: [
               Row(
@@ -261,23 +257,38 @@ class _LessonOption33State extends State<LessonOption33> {
                     width: 5,
                   ),
                   Expanded(
-                    child: SizedBox(
-                      child: TweenAnimationBuilder(
-                        tween: Tween<double>(begin: 0, end: 2.2),
-                        duration: const Duration(milliseconds: 400),
-                        builder: (BuildContext context, double value,
-                            Widget? child) {
-                          return LinearPercentIndicator(
-                            lineHeight: 8.0,
-                            percent: 1,
-                            backgroundColor: Colors.white,
-                            progressColor: const Color(0xffFE8BD1),
-                            barRadius: const Radius.circular(10),
-                          );
-                        },
-                      ),
+                    child: TweenAnimationBuilder(
+                      tween: Tween<double>(begin: 0, end: 2.2),
+                      duration: const Duration(milliseconds: 400),
+                      builder:
+                          (BuildContext context, double value, Widget? child) {
+                        return LinearPercentIndicator(
+                          lineHeight: 8.0,
+                          percent: 1,
+                          backgroundColor: Colors.white,
+                          progressColor: const Color(0xffFE8BD1),
+                          barRadius: const Radius.circular(10),
+                        );
+                      },
                     ),
                   ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        final bookmarkController =
+                            Get.find<BookmarkController>();
+                        bookmarkController.addBookmark(
+                          Bookmark(
+                              title: 'LessonOption20',
+                              routeName: '/lessonOption20'),
+                        );
+                        // Optionally, show a snackbar or some feedback to the user
+                        Get.snackbar('Bookmark Added',
+                            'This page has been added to your bookmarks');
+                      },
+                      child: const Icon(Icons.bookmark_outline)),
                 ],
               ),
               Padding(
@@ -406,5 +417,3 @@ class _LessonOption33State extends State<LessonOption33> {
     );
   }
 }
-
-

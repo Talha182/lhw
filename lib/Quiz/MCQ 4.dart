@@ -1,11 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../BookmarkController.dart';
+import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 
 class MCQ4 extends StatefulWidget {
-
-
   const MCQ4({super.key});
 
   @override
@@ -21,6 +24,7 @@ class _MCQ4State extends State<MCQ4> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
+  final BookmarkController bookmarkController = Get.put(BookmarkController());
 
   final List<Question> questions = [
     Question(
@@ -112,13 +116,7 @@ class _MCQ4State extends State<MCQ4> {
     _totalSteps = questions.length; // Add this line
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -131,35 +129,55 @@ class _MCQ4State extends State<MCQ4> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20,bottom: 5),
+          padding:
+              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
           child: Column(
             children: [
               Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.close,
-                        size: 30,
-                      ),
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.close,
+                      size: 30,
                     ),
-                    const SizedBox(
-                      width: 5,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Expanded(
+                    child: TweenAnimationBuilder(
+                      tween: Tween<double>(
+                          begin: 0,
+                          end: ((_current + 1) / questions.length) *
+                              _totalSteps),
+                      duration: const Duration(milliseconds: 400),
+                      builder: (BuildContext context, double value,
+                          Widget? child) {
+                        return LinearPercentIndicator(
+                          lineHeight: 8.0,
+                          percent: min(value / _totalSteps, 1.0),
+                          backgroundColor: Colors.white,
+                          progressColor: const Color(0xffFE8BD1),
+                          barRadius: const Radius.circular(10),
+                        );
+                      },
                     ),
-                    Expanded(
-                      child: new LinearPercentIndicator(
-                        animation: true,
-                        animationDuration: 400,
-                        lineHeight: 10.0,
-                        percent: 0.3,
-                        progressColor: const Color(0xffFE8BD1),
-                        backgroundColor: Colors.white,
-                        clipLinearGradient: true,
-                        barRadius: const Radius.circular(20),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 5,),
+                  GestureDetector
+                    (
+                      onTap: () {
+                        final bookmarkController = Get.find<BookmarkController>();
+                        bookmarkController.addBookmark(
+                          Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
+                        );
+                        // Optionally, show a snackbar or some feedback to the user
+                        Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                      },
+                      child: const Icon(Icons.bookmark_outline)),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 30),
                 child: Align(
@@ -201,8 +219,8 @@ class _MCQ4State extends State<MCQ4> {
                           isCorrect: selectedAnswer ==
                               questions[questionIndex].correctAnswer,
                           isSelected: isSelected,
-                          isOptionSelected:
-                              index == selectedOptionIndex, // Pass this value here
+                          isOptionSelected: index ==
+                              selectedOptionIndex, // Pass this value here
                         ),
                       ),
                     ),

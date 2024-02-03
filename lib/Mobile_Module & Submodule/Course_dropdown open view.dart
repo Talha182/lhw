@@ -29,142 +29,141 @@ class _Course_DropDownState extends State<Course_DropDown> {
               maxHeight: 365,
               maxWidth: MediaQuery.of(context).size.width - 50,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "ماڈیول 1 - ذیلی ماڈل 1",
-                        style: TextStyle(
-                            fontFamily: "UrduType", color: Color(0xff685F78)),
-                      ),
-                      const Text(
-                        "پاکستان میں غذائیت کی صورتحال",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          // Note: SvgPicture.asset requires the flutter_svg package.
-                          // SvgPicture.asset("assets/images/person_card.svg",
-                          //     color: const Color(0xff685F78)),
-                          const SizedBox(width: 8),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+              
                           const Text(
-                            "12 کوئز",
+                            "ماڈیول 1 - ذیلی ماڈل 1",
                             style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: "UrduType",
-                                color: Color(0xff685F78)),
+                                fontFamily: "UrduType", color: Color(0xff685F78)),
                           ),
-                          const SizedBox(width: 8),
-                          Container(
-                            width: 5,
-                            height: 5,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xff685F78)),
-                          ),
-                          const SizedBox(width: 8),
-                          // SvgPicture.asset("assets/images/clock.svg",
-                          //     color: const Color(0xff685F78)),
-                          const SizedBox(width: 8),
                           const Text(
-                            "01 گھنٹہ 30 منٹ",
+                            "پاکستان میں غذائیت کی صورتحال",
+                            style: TextStyle(fontFamily: "UrduType", fontSize: 20),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              // Note: SvgPicture.asset requires the flutter_svg package.
+                              // SvgPicture.asset("assets/images/person_card.svg",
+                              //     color: const Color(0xff685F78)),
+                              const SizedBox(width: 8),
+                              const Text(
+                                "12 کوئز",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: "UrduType",
+                                    color: Color(0xff685F78)),
+                              ),
+                              const SizedBox(width: 8),
+                              Container(
+                                width: 5,
+                                height: 5,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xff685F78)),
+                              ),
+                              const SizedBox(width: 8),
+                              // SvgPicture.asset("assets/images/clock.svg",
+                              //     color: const Color(0xff685F78)),
+                              const SizedBox(width: 8),
+                              const Text(
+                                "01 گھنٹہ 30 منٹ",
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: "UrduType",
+                                    color: Color(0xff685F78)),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 5),
+                          const Text(
+                            "تفصیل",
                             textDirection: TextDirection.rtl,
+                            style: TextStyle(fontSize: 18, fontFamily: "UrduType"),
+                          ),
+                          const Text(
+                            "Lorem ipsum dolor sit amet consectetur. بیٹھو arcu sit luctus potenti et ultricies cras. Condimentum nulla quisque et accumsan. Consectetur imperdiet non nunc magnis morbi tortor میں Dictum eget. Vulputate sapien sodales ullamcorper nec tempus viverra.",
                             style: TextStyle(
-                                fontSize: 15,
                                 fontFamily: "UrduType",
-                                color: Color(0xff685F78)),
+                                color: Color(0xff7A7D84),
+                                height: 1.2),
+                            textAlign: TextAlign.justify,
+                          ),
+              
+              Spacer(),
+                    const Divider(thickness: 1),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              side: const BorderSide(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              minimumSize: const Size(140, 40),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                            child: const Text(
+                              'منسوخ کریں۔',
+                              style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  color: Colors.black,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xffFE8BD1),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              minimumSize: const Size(140, 40),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                              Get.to(const LessonOption26(),
+                                      transition: Transition.fade,
+                                      duration: const Duration(milliseconds: 400))!
+                                  .then((value) {
+                                // When returning from LessonOption26, unlock the next level
+                                setState(() {
+                                  if (currentUnlockedLevel < 3) {
+                                    currentUnlockedLevel++;
+                                  }
+                                });
+                              });
+                            },
+                            child: const Text(
+                              'کورس جاری رکھیں',
+                              style: TextStyle(
+                                fontFamily: "UrduType",
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 5),
-                      const Text(
-                        "تفصیل",
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(fontSize: 18, fontFamily: "UrduType"),
-                      ),
-                      const Text(
-                        "Lorem ipsum dolor sit amet consectetur. بیٹھو arcu sit luctus potenti et ultricies cras. Condimentum nulla quisque et accumsan. Consectetur imperdiet non nunc magnis morbi tortor میں Dictum eget. Vulputate sapien sodales ullamcorper nec tempus viverra.",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            color: Color(0xff7A7D84),
-                            height: 1.2),
-                        textAlign: TextAlign.justify,
-                      )
-                    ],
-                  ),
+                  ],
                 ),
-                const Divider(thickness: 1),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.transparent,
-                          side: const BorderSide(
-                            color: Colors.black,
-                            width: 1,
-                          ),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          minimumSize: const Size(150, 40),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop(); // Close the dialog
-                        },
-                        child: const Text(
-                          'منسوخ کریں۔',
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              color: Colors.black,
-                              fontSize: 15),
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffFE8BD1),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          minimumSize: const Size(150, 40),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop(); // Close the dialog
-                          Get.to(const LessonOption26(),
-                                  transition: Transition.fade,
-                                  duration: const Duration(milliseconds: 400))!
-                              .then((value) {
-                            // When returning from LessonOption26, unlock the next level
-                            setState(() {
-                              if (currentUnlockedLevel < 3) {
-                                currentUnlockedLevel++;
-                              }
-                            });
-                          });
-                        },
-                        child: const Text(
-                          'کورس جاری رکھیں',
-                          style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         );
@@ -175,13 +174,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
+
       body: Stack(
         children: [
           Container(
@@ -196,7 +189,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(left: 20,right: 20,top: 50),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

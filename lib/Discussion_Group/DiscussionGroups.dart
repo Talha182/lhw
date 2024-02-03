@@ -4,14 +4,18 @@ import 'package:get/get.dart';
 import 'package:lhw/Discussion_Group/MessageScreen.dart';
 
 class GroupsDiscussion extends StatelessWidget {
-  const GroupsDiscussion({super.key});
+  final bool showAppBar; // Add this line
+
+  const GroupsDiscussion({super.key, required this.showAppBar});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
+      appBar: showAppBar // Check the condition here
+          ? PreferredSize(
           preferredSize: const Size.fromHeight(70.0),
           child: AppBar(
+            automaticallyImplyLeading: false,
             elevation: 1,
             backgroundColor: Colors.white,
             flexibleSpace: Align(
@@ -58,7 +62,7 @@ class GroupsDiscussion extends StatelessWidget {
                 ],
               ),
             ),
-          )),
+          )):null,
       body: Padding(
         padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
         child: Directionality(
@@ -111,17 +115,16 @@ class GroupsDiscussion extends StatelessWidget {
                                   Color(0xffED8DCE),
                                   Color(0xffED8DCE)
                                 ])),
-                              child: ClipOval(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SvgPicture.asset(
-                                    "assets/images/samina_group.svg",
-                                    fit: BoxFit.fill,
-                                  ),
+                            child: ClipOval(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: SvgPicture.asset(
+                                  "assets/images/samina_group.svg",
+                                  fit: BoxFit.fill,
                                 ),
                               ),
+                            ),
                           ),
-
                           const SizedBox(
                             width: 10,
                           ),
@@ -158,19 +161,24 @@ class GroupsDiscussion extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               const Text(
                 "کورس گروپس",
                 style: TextStyle(
-                    fontFamily: "UrduType",
-                    fontSize: 25,
-                   ),
+                  fontFamily: "UrduType",
+                  fontSize: 25,
+                ),
               ),
-              const SizedBox(height: 20,),
-
+              const SizedBox(
+                height: 20,
+              ),
               GestureDetector(
-                onTap: (){
-                  Get.to(() => MessageScreen());
+                onTap: () {
+                  Get.to(() => const MessageScreen(),
+                      transition: Transition.fadeIn,
+                      duration: const Duration(milliseconds: 300));
                 },
                 child: Container(
                   width: Get.width,
@@ -197,7 +205,7 @@ class GroupsDiscussion extends StatelessWidget {
                                   ])),
                               child: ClipOval(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top:5),
+                                  padding: const EdgeInsets.only(top: 5),
                                   child: Image.asset(
                                     "assets/images/1.png",
                                     fit: BoxFit.fill,
@@ -210,90 +218,126 @@ class GroupsDiscussion extends StatelessWidget {
                             ),
                             const Text(
                               "باب 1 تعارف",
-                              style:
-                              TextStyle(fontFamily: "UrduType", fontSize: 18),
-                            ),   const SizedBox(
+                              style: TextStyle(
+                                  fontFamily: "UrduType", fontSize: 18),
+                            ),
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
-                              width: 35,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: const Color(0xff72C391),
-                                borderRadius: BorderRadius.circular(13)
-                              ),
-                              child: const Center(
-                                child: Text("21",style: TextStyle(
-                                  fontFamily: "UrduType",
-                                  color: Colors.white
-                                ),),
-                              )
-                            )
+                                width: 35,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xff72C391),
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: const Center(
+                                  child: Text(
+                                    "21",
+                                    style: TextStyle(
+                                        fontFamily: "UrduType",
+                                        color: Colors.white),
+                                  ),
+                                ))
                           ],
                         ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/images/Icon.svg",
-                                  width: 24,
-                                  height: 24,
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                )
-                              ],
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "assets/images/Icon.svg",
+                              width: 24,
+                              height: 24,
+                            ),
+                            const SizedBox(
+                              width: 5,
                             )
-
+                          ],
+                        )
                       ],
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               DiscussionGroupsChatCard(
-                gradient: const LinearGradient(colors: [Color(0xffF48C14), Color(0xffFABC74)]),
-                image: Image.asset("assets/images/2.png",fit: BoxFit.fill,),
+                gradient: const LinearGradient(
+                    colors: [Color(0xffF48C14), Color(0xffFABC74)]),
+                image: Image.asset(
+                  "assets/images/2.png",
+                  fit: BoxFit.fill,
+                ),
                 titleText: "باب 2: کمیونٹی کے ساتھ کام کرنا",
                 endImage: "assets/images/Icon.svg",
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               DiscussionGroupsChatCard(
-                gradient: const LinearGradient(colors: [Color(0xff937FFB), Color(0xffA896FC)]),
-                image: Image.asset("assets/images/community.png",fit: BoxFit.fill,),
+                gradient: const LinearGradient(
+                    colors: [Color(0xff937FFB), Color(0xffA896FC)]),
+                image: Image.asset(
+                  "assets/images/community.png",
+                  fit: BoxFit.fill,
+                ),
                 titleText: "باب 3: باہمی رابطے اور صحت کی تعلیم",
                 endImage: "assets/images/Icon.svg",
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               DiscussionGroupsChatCard(
-                gradient: const LinearGradient(colors: [Color(0xff34B2D5), Color(0xff5DCBE9)]),
-                image: Image.asset("assets/images/3.png",fit: BoxFit.fill,),
+                gradient: const LinearGradient(
+                    colors: [Color(0xff34B2D5), Color(0xff5DCBE9)]),
+                image: Image.asset(
+                  "assets/images/3.png",
+                  fit: BoxFit.fill,
+                ),
                 titleText: "باب 4: خاندانی منصوبہ بندی",
                 endImage: "assets/images/Icon.svg",
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               DiscussionGroupsChatCard(
-                gradient: const LinearGradient(colors: [Color(0xffF66592), Color(0xffFB80A9)]),
-                image: Image.asset("assets/images/4.png",fit: BoxFit.fill,),
+                gradient: const LinearGradient(
+                    colors: [Color(0xffF66592), Color(0xffFB80A9)]),
+                image: Image.asset(
+                  "assets/images/4.png",
+                  fit: BoxFit.fill,
+                ),
                 titleText: "باب 5: قبل از پیدائش کی دیکھ بھال",
                 endImage: "assets/images/locked_group.svg",
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               DiscussionGroupsChatCard(
-                gradient: const LinearGradient(colors: [Color(0xff6DB374), Color(0xffAFD6B3)]),
-                image: Image.asset("assets/images/5.png",fit: BoxFit.fill,),
+                gradient: const LinearGradient(
+                    colors: [Color(0xff6DB374), Color(0xffAFD6B3)]),
+                image: Image.asset(
+                  "assets/images/5.png",
+                  fit: BoxFit.fill,
+                ),
                 titleText: "باب 6: حمل کے دوران دیکھ بھال ",
                 endImage: "assets/images/locked_group.svg",
               ),
-              const SizedBox(height: 20,),
-
+              const SizedBox(
+                height: 20,
+              ),
               DiscussionGroupsChatCard(
-                gradient: const LinearGradient(colors: [Color(0xffEDBB71), Color(0xffF4D5A8)]),
-                image: Image.asset("assets/images/two_women.png",fit: BoxFit.fill,),
+                gradient: const LinearGradient(
+                    colors: [Color(0xffEDBB71), Color(0xffF4D5A8)]),
+                image: Image.asset(
+                  "assets/images/two_women.png",
+                  fit: BoxFit.fill,
+                ),
                 titleText: "باب 7: نوزائیدہ بچوں کی دیکھ بھال ",
                 endImage: "assets/images/locked_group.svg",
               ),
-              const SizedBox(height: 100,),
-
+              const SizedBox(
+                height: 100,
+              ),
             ],
           ),
         ),
@@ -325,8 +369,8 @@ class DiscussionGroupsChatCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.black.withOpacity(0.1))),
       child: Padding(
-        padding: const EdgeInsets.only(
-            top: 10, left: 10, right: 10, bottom: 10),
+        padding:
+            const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -335,9 +379,8 @@ class DiscussionGroupsChatCard extends StatelessWidget {
                 Container(
                   width: 55,
                   height: 55,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: gradient),
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, gradient: gradient),
                   child: ClipOval(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 5),

@@ -1,124 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart'; // Assuming you'll use SVG objectivesTree
+import 'package:flutter_svg/svg.dart';
 
 class ObjectivesTree extends StatelessWidget {
-  const ObjectivesTree({super.key});
+   ObjectivesTree({Key? key}) : super(key: key);
+
+  final List<Map<String, dynamic>> objectives = [
+    {
+      'icon': 'assets/objectivesTree/girl-icon.svg',
+      'message': 'Message for the girl icon',
+      'position': {'bottom': 15.0, 'left': 5.0},
+    },
+    {
+      'icon': 'assets/objectivesTree/globe-icon.svg',
+      'message': 'Message for the globe icon',
+      'position': {'bottom': 10.0, 'left': 80.0},
+    },
+    {
+      'icon': 'assets/objectivesTree/patient-icon.svg',
+      'message': 'Message for the patient icon',
+      'position': {'top': 50.0, 'right': 130.0},
+    },
+    {
+      'icon': 'assets/objectivesTree/plus-icon.svg',
+      'message': 'Message for the plus icon',
+      'position': {'bottom': 25.0, 'right': 60.0},
+    },
+    {
+      'icon': 'assets/objectivesTree/assessment-icon.svg',
+      'message': 'Message for the assessment icon',
+      'position': {'top': 0.0, 'right': 130.0},
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(30),
-          width: double.infinity,
-          height: 200,
-          // Using Stack to overlay objectivesTree on top of the Container
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  "assets/objectivesTree/objectivesTree.jpg",
-                  fit: BoxFit.fill,
-                ),
-              ),
-              // Overlaying IconButtons on the image
-              Positioned(
-                bottom: 15, // Adjust these values as needed
-                left: 5,
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/objectivesTree/girl-icon.svg",
-                    color: Colors.white,
-                    width: 50,
-                    height: 50,
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return buildDialog("Text for the girl icon");
-                      },
-                    );                    // Your action here
-                  },
-                ),
-              ),
-              Positioned(
-                bottom: 10,
-                left: 60, // Space out the objectivesTree as needed
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/objectivesTree/globe-icon.svg",
-                    width: 50,
-                    height: 50,
-                  ),
-                  onPressed: () {
-                    // Your action here
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return buildDialog("Text for the girl icon");
-                      },
-                    );
-                  },
-                ),
-              ),
-              Positioned(
-                top: 60,
-                right: 120, // Adjust for alignment
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/objectivesTree/patient-icon.svg",
-                    width: 30,
-                    height: 30,
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return buildDialog("Text for the girl icon");
-                      },
-                    );
-                    // Your action here
-                  },
-                ),
-              ),
-              Positioned(
-                bottom: 28,
-                right: 60, // Align to the right
-                child: IconButton(
-                  icon: SvgPicture.asset("assets/objectivesTree/plus-icon.svg",width: 20,height: 20,),
-                  onPressed: () {
-                    // Your action here
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return buildDialog("Text for the girl icon");
-                      },
-                    );
-                  },
-                ),
-              ),
-              // Centering an icon
-              Positioned(
-                top: 0,
-                right: 120,
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                      "assets/objectivesTree/assessment-icon.svg",width: 30,height: 30,),
-                  onPressed: () {
-                    // Your action here
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return buildDialog("Text for the girl icon");
-                      },
-                    );
-                  },
-                ),
-              ),
-            ],
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              "assets/objectivesTree/objectivesTree.jpg",
+              fit: BoxFit.fill,
+            ),
           ),
-        ),
+          ...objectives.map((objective) => Positioned(
+            bottom: objective['position']['bottom'],
+            top: objective['position']['top'],
+            left: objective['position']['left'],
+            right: objective['position']['right'],
+            child: IconButton(
+              icon: SvgPicture.asset(
+                objective['icon'],
+                width: 30,
+                height: 30,
+              ),
+              onPressed: () => showDialog(
+                context: context,
+                builder: (BuildContext context) => buildDialog(objective['message']),
+              ),
+            ),
+          )),
+        ],
       ),
     );
   }

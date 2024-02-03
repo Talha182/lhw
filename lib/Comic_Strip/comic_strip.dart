@@ -33,7 +33,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
         _buildSlide('assets/images/Strip1.png', 'assets/images/Strip2.png'),
       ];
       _progressController = AnimationController(
-          duration: Duration(milliseconds: 400), vsync: this)
+          duration: const Duration(milliseconds: 400), vsync: this)
         ..addListener(() {
           setState(() {
             _progress = _progressAnimation.value;
@@ -53,7 +53,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
         child: Column(
           children: [
             _buildContainer(imagePathA),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildContainer(imagePathB),
           ],
         ),
@@ -123,10 +123,10 @@ import 'package:pinch_zoom/pinch_zoom.dart';
                             animationDuration: 400,
                             lineHeight: 10.0,
                             percent: _progress,
-                            progressColor: Color(0xffFE8BD1),
+                            progressColor: const Color(0xffFE8BD1),
                             backgroundColor: Colors.white,
                             clipLinearGradient: true,
-                            barRadius: Radius.circular(20),
+                            barRadius: const Radius.circular(20),
                           ),
                         ),
 
@@ -158,7 +158,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
                     height: 20,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20),
                     child: CarouselSlider.builder(
                         itemCount: _carouselItems.length,
                         itemBuilder: (context, index, realIdx) {
@@ -192,12 +192,12 @@ import 'package:pinch_zoom/pinch_zoom.dart';
                         width: 8.0,
                         height: 8.0,
                         margin:
-                            EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _current == index
-                              ? Color(0xff9AC9C2)
-                              : Color.fromRGBO(0, 0, 0, 0.1),
+                              ? const Color(0xff9AC9C2)
+                              : const Color.fromRGBO(0, 0, 0, 0.1),
                         ),
                       );
                     }).toList(),
@@ -252,7 +252,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
                           child: SvgPicture.asset("assets/images/thumbDown.svg"))),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   InkWell(
                     child: Container(
                         width: 40,
@@ -263,7 +263,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
                         child:
                             Center(child: SvgPicture.asset("assets/images/thumbDown.svg"))),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   InkWell(
                     child: Container(
                         width: 40,

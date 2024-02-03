@@ -28,6 +28,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(70.0),
             child: AppBar(
+              automaticallyImplyLeading: false,
               elevation: 1.0,
               backgroundColor: Colors.white,
               flexibleSpace: Align(
@@ -102,14 +103,15 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
                   Tab(text: "جائزہ"),
                 ],
               ),
-
             ],
           ),
           const Expanded(
             child: TabBarView(
               children: <Widget>[
                 BookmarkScreen(),
-                GroupsDiscussion(),
+                GroupsDiscussion(
+                  showAppBar: false,
+                ),
                 Lesson(),
               ],
             ),
@@ -118,5 +120,4 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
       ),
     );
   }
-
 }

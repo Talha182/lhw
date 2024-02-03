@@ -238,6 +238,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     // Assuming "Script11-02.jpg" is at index 1 in your imagesInfo list
     bool dragDropEnabled =
         imagesInfo[currentIndex]['dragDropEnabled'] ?? false; // New line
+    String currentImagePath = imagesInfo[currentIndex]['image'];
+
 
     var draggableImage = hasBeenDroppedSuccessfully
         ? Image.asset('assets/script11/Script11-14.png',
@@ -408,11 +410,18 @@ class _InteractiveImagesState extends State<InteractiveImages> {
         },
         child: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(imagesInfo[currentIndex]['image']),
-                  fit: BoxFit.cover, // This will fill the screen with the image
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500), // Customize animation duration
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+              child: Container(
+                key: ValueKey<String>(currentImagePath), // Unique key for animation
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(currentImagePath),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

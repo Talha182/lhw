@@ -5,6 +5,8 @@ import 'package:lhw/Result/ResultScreen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/models/question_model.dart';
 
+import '../BookmarkController.dart';
+import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 import '../QuizController.dart';
 
 class LessonOption21 extends StatefulWidget {
@@ -16,6 +18,8 @@ class _LessonOption21State extends State<LessonOption21> {
   bool isSelected = false;
   bool isAnswered = false;
   final ResultsController resultsController = Get.put(ResultsController());
+  final BookmarkController bookmarkController =   Get.put(BookmarkController());
+
 
 
   int _current = 0;
@@ -24,8 +28,8 @@ class _LessonOption21State extends State<LessonOption21> {
   String selectedAnswer = '';
   final List<Question> questions = [
     Question(
-      question: 'Your first question text here',
-      options: ['Option 1', 'Option 2', 'Option 3'],
+      question: 'سوال: "پاکستان کی کس شہر میں بادشاہی مسجد واقع ہے؟"',
+      options: ['اختیارات 1', 'Option 2', 'Option 3'],
       correctAnswer: 'Option 1',
       correctExplanation: 'Correct explanation here.',
       incorrectExplanation: 'Incorrect explanation here.',
@@ -144,7 +148,7 @@ class _LessonOption21State extends State<LessonOption21> {
                                 : const Color(0xffFB6262),
                           ),
                         ),
-                        SizedBox(height: 10), // Add spacing before the text
+                        const SizedBox(height: 10), // Add spacing before the text
                         Text(
                           isCorrect ? "درست" : "غلط",
                           style: TextStyle(
@@ -154,7 +158,7 @@ class _LessonOption21State extends State<LessonOption21> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 10), // Add spacing before the explanation
+                        const SizedBox(height: 10), // Add spacing before the explanation
                         Text(
                           explanation,
                           style: const TextStyle(
@@ -189,13 +193,7 @@ class _LessonOption21State extends State<LessonOption21> {
     _totalSteps = questions.length; // Add this line
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
+
       body: Stack(
         children: [
           Container(
@@ -216,7 +214,7 @@ class _LessonOption21State extends State<LessonOption21> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 30, left: 20, right: 10),
+                          const EdgeInsets.only(top: 60, left: 20, right: 10),
                       child: Row(
                         children: [
                           GestureDetector(
@@ -231,8 +229,7 @@ class _LessonOption21State extends State<LessonOption21> {
                           const SizedBox(
                             width: 5,
                           ),
-                          SizedBox(
-                            width: 320,
+                          Expanded(
                             child: TweenAnimationBuilder(
                               tween: Tween<double>(
                                 begin: 0,
@@ -250,6 +247,18 @@ class _LessonOption21State extends State<LessonOption21> {
                               },
                             ),
                           ),
+                          const SizedBox(width: 5,),
+                          GestureDetector
+                            (
+                              onTap: () {
+                                final bookmarkController = Get.find<BookmarkController>();
+                                bookmarkController.addBookmark(
+                                  Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
+                                );
+                                // Optionally, show a snackbar or some feedback to the user
+                                Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                              },
+                              child: const Icon(Icons.bookmark_outline)),
 
                         ],
                       ),
@@ -275,6 +284,7 @@ class _LessonOption21State extends State<LessonOption21> {
                             fontFamily: "UrduType", fontSize: 20),
                       ),
                     ),
+                    SizedBox(height: 10,),
                     Column(
                       children: List.generate(
                         questions[questionIndex].options.length,
@@ -370,59 +380,62 @@ class QuizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: isAnswered ? null : () => ontap(),
-      child: Container(
-        width: 360,
-        height: 120,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: isSelected
-              ? (isCorrect ? const Color(0xff9AC9C2) : const Color(0xffFB6262))
-              : const Color(0xffB1B2B4),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 4),
-          child: Container(
-            width: 360,
-            height: 120,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black87.withOpacity(0.1)),
-              borderRadius: BorderRadius.circular(10),
-              color: color,
-            ),
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: Row(
-                    children: [
-                      Center(
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(imagePath),
-                              fit: BoxFit.contain,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Container(
+          width: 360,
+          height: 120,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: isSelected
+                ? (isCorrect ? const Color(0xff9AC9C2) : const Color(0xffFB6262))
+                : const Color(0xffB1B2B4),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: Container(
+              width: 360,
+              height: 120,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black87.withOpacity(0.1)),
+                borderRadius: BorderRadius.circular(10),
+                color: color,
+              ),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Row(
+                      children: [
+                        Center(
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(imagePath),
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          text,
-                          textAlign: TextAlign.justify,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Color(0xff7A7D84),
-                            fontFamily: 'UrduType',
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            text,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Color(0xff7A7D84),
+                              fontFamily: 'UrduType',
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
