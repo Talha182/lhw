@@ -258,143 +258,8 @@ class _Course_DropDownState extends State<Course_DropDown> {
               top: 110,
               child: SvgPicture.asset("assets/images/pencil.svg")),
 
-          //Third button
-          Positioned(
-              left: 70,
-              top: 220,
-              child: Row(
-                children: [
-                  const Text(
-                    "لیڈی ہیلتھ ورکر کے فرائض",
-                    style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  GestureDetector(
-                    onTap: currentUnlockedLevel >= 3
-                        ? () => showCustomDialog(context)
-                        : null,
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffD9D9D9)),
-                          shape: BoxShape.circle,
-                          color: Colors.white),
-                      child: Center(
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: currentUnlockedLevel >= 3
-                                  ? const Color(0xffFF6BC5)
-                                  : const Color(0xffD1D7DC)),
-                          child: Center(
-                            child: SvgPicture.asset("assets/images/trophy.svg",
-                                color: currentUnlockedLevel >= 3
-                                    ? Colors.white
-                                    : null),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              )),
-          // Second button
-          Positioned(
-              left: 115,
-              top: 330,
-              child: Row(
-                children: [
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xffD9D9D9)),
-                        shape: BoxShape.circle,
-                        color: Colors.white),
-                    child: Center(
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: currentUnlockedLevel >= 2
-                                ? const Color(0xffFF6BC5)
-                                : const Color(0xffD1D7DC)),
-                        child: Center(
-                          child: GestureDetector(
-                              onTap: currentUnlockedLevel >= 2
-                                  ? () => showCustomDialog(context)
-                                  : null,
-                              child: SvgPicture.asset("assets/images/book.svg",
-                                  color: currentUnlockedLevel >= 2
-                                      ? Colors.white
-                                      : null)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const Text(
-                    "بنیادی تعریفیں",
-                    style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                  ),
-                ],
-              )),
-          Positioned(
-              left: 80,
-              top: 530,
-              child: Row(
-                children: [
-                  const Text(
-                    "پاکستان میں غذائیت کی صورتحال",
-                    style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  // The pink means it is unlocked (First button)
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color(0xffF5BCDF69).withOpacity(0.4)),
-                        shape: BoxShape.circle,
-                        color: Colors.white),
-                    child: Center(
-                      child: Material(
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: currentUnlockedLevel >= 1
-                                  ? const Color(0xffFF6BC5)
-                                  : const Color(0xffD1D7DC)),
-                          child: Center(
-                            child: GestureDetector(
-                                onTap: currentUnlockedLevel >= 1
-                                    ? () => showCustomDialog(context)
-                                    : null,
-                                child: SvgPicture.asset(
-                                    "assets/images/tick.svg",
-                                    color: currentUnlockedLevel >= 1
-                                        ? Colors.white
-                                        : null)),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+
+          // Bottom buildings
           Positioned(
               bottom: 0, child: SvgPicture.asset("assets/images/build1.svg")),
           Positioned(
@@ -423,6 +288,150 @@ class _Course_DropDownState extends State<Course_DropDown> {
                       "assets/images/samina_instructor.svg",
                       fit: BoxFit.fill,
                     )),
+              )),
+
+
+          // Clickable buttons
+          Positioned(
+              left: 70,
+              top: 220,
+              child: GestureDetector(
+                onTap: currentUnlockedLevel >= 3
+                    ? () => showCustomDialog(context)
+                    : null,
+                child: Row(
+                  children: [
+                    const Text(
+                      "لیڈی ہیلتھ ورکر کے فرائض",
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xffD9D9D9)),
+                          shape: BoxShape.circle,
+                          color: Colors.white),
+                      child: Center(
+                        child: Container(
+                          width: 45,
+                          height: 45,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: currentUnlockedLevel >= 3
+                                  ? const Color(0xffFF6BC5)
+                                  : const Color(0xffD1D7DC)),
+                          child: Center(
+                            child: SvgPicture.asset("assets/images/trophy.svg",
+                                color: currentUnlockedLevel >= 3
+                                    ? Colors.white
+                                    : null),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
+              )),
+          Positioned(
+              left: 115,
+              top: 330,
+              child: GestureDetector(
+                onTap: currentUnlockedLevel >= 2
+                    ? () => showCustomDialog(context)
+                    : null,
+                child: Row(
+                  children: [
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xffD9D9D9)),
+                          shape: BoxShape.circle,
+                          color: Colors.white),
+                      child: Center(
+                        child: Container(
+                          width: 45,
+                          height: 45,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: currentUnlockedLevel >= 2
+                                  ? const Color(0xffFF6BC5)
+                                  : const Color(0xffD1D7DC)),
+                          child: Center(
+
+                              child: SvgPicture.asset("assets/images/book.svg",
+                                  color: currentUnlockedLevel >= 2
+                                      ? Colors.white
+                                      : null)),
+
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Text(
+                      "بنیادی تعریفیں",
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    ),
+                  ],
+                ),
+              )),
+          Positioned(
+              left: 80,
+              top: 530,
+              child: GestureDetector(
+                onTap: currentUnlockedLevel >= 1
+                    ? () => showCustomDialog(context)
+                    : null,
+                child: Row(
+                  children: [
+                    const Text(
+                      "پاکستان میں غذائیت کی صورتحال",
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    // The pink means it is unlocked (First button)
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: const Color(0xffF5BCDF69).withOpacity(0.4)),
+                          shape: BoxShape.circle,
+                          color: Colors.white),
+                      child: Center(
+                        child: Material(
+                          child: Container(
+                            width: 45,
+                            height: 45,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: currentUnlockedLevel >= 1
+                                    ? const Color(0xffFF6BC5)
+                                    : const Color(0xffD1D7DC)),
+                            child: Center(
+
+                              child: SvgPicture.asset(
+                                  "assets/images/tick.svg",
+                                  color: currentUnlockedLevel >= 1
+                                      ? Colors.white
+                                      : null),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               )),
         ],
       ),
