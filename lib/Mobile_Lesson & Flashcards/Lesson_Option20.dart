@@ -18,9 +18,7 @@ class _LessonOption20State extends State<LessonOption20> {
   int _current = 0;
   final int _totalSteps = 100;
   bool _isLastCardFlipped = false;
-
-  // Assuming each card can be uniquely identified by an index or ID for bookmarking purposes
-  final String bookmarkId = 'unique_identifier_for_the_lesson';
+  final BookmarkController bookmarkController =   Get.put(BookmarkController());
 
   final CarouselController _carouselController = CarouselController();
 
@@ -69,15 +67,18 @@ class _LessonOption20State extends State<LessonOption20> {
               padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
               child: Row(
                 children: [
-                  InkWell(
-                    onTap: () {
+                  GestureDetector
+                    (
+                      onTap: () {
+                        final bookmarkController = Get.find<BookmarkController>();
+                        bookmarkController.addBookmark(
+                          Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
+                        );
+                        // Optionally, show a snackbar or some feedback to the user
+                        Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                      },
+                      child: Icon(Icons.bookmark_outline)),
 
-                    },
-                    child: Obx(() =>
-                        Icon(
-                            Icons.bookmark
-                        )),
-                  ),
                   const Icon(
                     Icons.close,
                     size: 30,
@@ -245,6 +246,7 @@ class _LessonOption20State extends State<LessonOption20> {
                 minimumSize: const Size(150, 37),
               ),
               onPressed: (){
+
               },
               // onPressed: _isLastCardFlipped
               //     ? () {
@@ -265,6 +267,12 @@ class _LessonOption20State extends State<LessonOption20> {
       ),
     );
   }
+}
 
 
+class Bookmark {
+  final String title;
+  final String routeName;
+
+  Bookmark({required this.title, required this.routeName});
 }

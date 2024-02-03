@@ -1,21 +1,14 @@
 import 'package:get/get.dart';
+import 'Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 
 class BookmarkController extends GetxController {
-  var bookmarks = <Map<String, dynamic>>[].obs;
+  var bookmarks = <Bookmark>[].obs;
 
-  void addBookmark(String id, int index) {
-    bookmarks.add({'id': id, 'index': index});
+  void addBookmark(Bookmark bookmark) {
+    bookmarks.add(bookmark);
   }
 
-  void removeBookmark(String id) {
-    bookmarks.removeWhere((bookmark) => bookmark['id'] == id);
-  }
-
-  bool isBookmarked(String id) {
-    return bookmarks.any((bookmark) => bookmark['id'] == id);
-  }
-
-  List<Map<String, dynamic>> getBookmarkedItems() {
-    return bookmarks;
+  void removeBookmark(Bookmark bookmark) {
+    bookmarks.remove(bookmark);
   }
 }

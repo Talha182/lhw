@@ -70,6 +70,7 @@ dependencies:
   dio: ^5.4.0
   flutter_secure_storage: ^8.1.0
   audioplayers: ^5.2.1
+  flutter_animate: ^4.5.0
 
 
 

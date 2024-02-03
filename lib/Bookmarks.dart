@@ -1,5 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'BookmarkController.dart';
 
 class BookmarkScreen extends StatefulWidget {
   const BookmarkScreen({super.key});
@@ -9,6 +12,8 @@ class BookmarkScreen extends StatefulWidget {
 }
 
 class _BookmarkScreenState extends State<BookmarkScreen> {
+  final BookmarkController bookmarkController =   Get.put(BookmarkController());
+
   String dropdownvalue = 'اس ہفتے';
   var items = [
     'اس ہفتے',
@@ -115,49 +120,19 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
               height: 20,
             ),
             Expanded(
-                child: ListView(
-              children: [
-                BookMarksCard(
-                  image: Image.asset("assets/images/1.png"),
-                  title: 'باب 1 تعارف',
-                  gradient: LinearGradient(
-                      colors: [Color(0xffED8DCE), Color(0xffF4B9E1)]),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                BookMarksCard(
-                  image: Image.asset("assets/images/2.png"),
-                  title: 'باب 1 تعارف',
-                  gradient: LinearGradient(
-                      colors: [Color(0xffF38E17), Color(0xffFABF7A)]),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                BookMarksCard(
-                  image: Image.asset(
-                    "assets/images/3.png",
-                    fit: BoxFit.cover,
-                  ),
-                  title: 'باب 1 تعارف',
-                  gradient: LinearGradient(
-                      colors: [Color(0xff9747FF), Color(0xffA795FC)]),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                BookMarksCard(
-                  image: Image.asset(
-                    "assets/images/4.png",
-                    fit: BoxFit.cover,
-                  ),
-                  title: 'باب 1 تعارف',
-                  gradient: LinearGradient(
-                      colors: [Color(0xff37B4D6), Color(0xff5BC9E7)]),
-                ),
-              ],
-            ))
+                child: ListView.builder(
+                  itemCount: bookmarkController.bookmarks.length,
+                  itemBuilder: (context, index) {
+                    final bookmark = bookmarkController.bookmarks[index];
+                    return ListTile(
+                      title: Text(bookmark.title),
+                      onTap: () {
+                        Get.toNamed(bookmark.routeName);
+                      },
+                    );
+                  },
+                )
+            )
           ],
         ),
       ),
