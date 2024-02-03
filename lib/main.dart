@@ -11,6 +11,8 @@ import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Quiz/MCQ%204.dart';
 import 'package:lhw/Quiz/MCQ%205.dart';
+import 'package:lhw/Quiz/MCQ%206.dart';
+import 'package:lhw/Result/ResultScreen.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
@@ -21,6 +23,7 @@ import 'package:lhw/test/Features/InteractiveImage.dart';
 import 'package:lhw/test/Features/ObjectivesTree.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'Mobile_Lesson & Flashcards/Lesson.dart';
 import 'navy.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -70,7 +73,7 @@ class MyApp extends StatelessWidget {
           case AuthStatus.undecided:
             return const LoadingScreen();  // your loading screen widget
           case AuthStatus.authenticated:
-            return  InteractiveImages();
+            return MCQ6();
           case AuthStatus.unauthenticated:
           default:
             return const LoginScreen();

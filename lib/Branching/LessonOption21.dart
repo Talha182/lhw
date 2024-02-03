@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/Result/ResultScreen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:lhw/models/question_model.dart';
+
+import '../QuizController.dart';
 
 class LessonOption21 extends StatefulWidget {
   @override
@@ -11,6 +15,8 @@ class LessonOption21 extends StatefulWidget {
 class _LessonOption21State extends State<LessonOption21> {
   bool isSelected = false;
   bool isAnswered = false;
+  final ResultsController resultsController = Get.put(ResultsController());
+
 
   int _current = 0;
   int _totalSteps = 100;
@@ -18,36 +24,27 @@ class _LessonOption21State extends State<LessonOption21> {
   String selectedAnswer = '';
   final List<Question> questions = [
     Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
+      question: 'Your first question text here',
+      options: ['Option 1', 'Option 2', 'Option 3'],
+      correctAnswer: 'Option 1',
+      correctExplanation: 'Correct explanation here.',
+      incorrectExplanation: 'Incorrect explanation here.',
+    ),  Question(
+      question: 'Your second question text here',
+      options: ['Option 1', 'Option 2', 'Option 3'],
+      correctAnswer: 'Option 1',
+      correctExplanation: 'Correct explanation here.',
+      incorrectExplanation: 'Incorrect explanation here.',
+    ), Question(
+      question: 'Your third question text here',
+      options: ['Option 1', 'Option 2', 'Option 3'],
+      correctAnswer: 'Option 1',
+      correctExplanation: 'Correct explanation here.',
+      incorrectExplanation: 'Incorrect explanation here.',
     ),
-    Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
-    ),
+    // Add more questions as needed
   ];
+
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
   List<bool> isSelectedList = [
@@ -92,31 +89,37 @@ class _LessonOption21State extends State<LessonOption21> {
           isSelectedList = [false, false, false]; // Reset for the next question
         });
       }
+      else {
+        // Show result screen
+        Get.to(() => ResultsScreen());
+
+      }
     });
+    Question currentQuestion = questions[questionIndex];
+    currentQuestion.userAnswer = selectedAnswer; // Add a userAnswer field to your Question class
+    resultsController.addQuestionAnswer(currentQuestion);
   }
 
-  void _showAnswerDialog(
-      BuildContext context, bool isCorrect, String explanation) {
+  void _showAnswerDialog(BuildContext context, bool isCorrect, String explanation) {
     showDialog(
       context: context,
       builder: (context) {
         return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           child: Stack(
             alignment: Alignment.topRight,
             children: [
               Container(
+                width: double.infinity, // Ensure the container takes full width
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: isCorrect? const Color(0xff9AC9C2) : const Color(0xffFB6262), // Outer container's color
+                  color: isCorrect ? const Color(0xff9AC9C2) : const Color(0xffFB6262),
                 ),
-                padding: const EdgeInsets.only(
-                    bottom: 4.0),
+                padding: const EdgeInsets.only(bottom: 4.0),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white, // Inner container's color
+                    color: Colors.white,
                   ),
                   padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                   child: SingleChildScrollView(
@@ -140,24 +143,24 @@ class _LessonOption21State extends State<LessonOption21> {
                                 : const Color(0xffFB6262),
                           ),
                         ),
+                        SizedBox(height: 10), // Add spacing before the text
                         Text(
-                          isCorrect
-                              ? "درست۔"
-                              : "غلط۔ $explanation",  // Added a space after "غلط۔" and then added the explanation for wrong answers.
+                          isCorrect ? "درست" : "غلط",
                           style: TextStyle(
                             fontFamily: "UrduType",
-                            color: isCorrect
-                                ? const Color(0xff47857C)
-                                : const Color(0xffFB6262),
+                            color: isCorrect ? const Color(0xff47857C) : const Color(0xffFB6262),
                             fontSize: 18,
                           ),
                           textAlign: TextAlign.center,
                         ),
-
+                        SizedBox(height: 10), // Add spacing before the explanation
                         Text(
                           explanation,
-                          style:
-                              const TextStyle(fontFamily: "UrduType", fontSize: 16),
+                          style: const TextStyle(
+                            fontFamily: "UrduType",
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -427,18 +430,3 @@ class QuizCard extends StatelessWidget {
   }
 }
 
-class Question {
-  final String question;
-  final List<String> options;
-  final String correctAnswer;
-  final String correctExplanation; // Correct explanation
-  final String incorrectExplanation; // Incorrect explanation
-
-  Question({
-    required this.question,
-    required this.options,
-    required this.correctAnswer,
-    required this.correctExplanation,
-    required this.incorrectExplanation,
-  });
-}
