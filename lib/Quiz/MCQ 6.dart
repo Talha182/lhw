@@ -245,11 +245,10 @@ class _MCQ6State extends State<MCQ6> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of items in a row.
                   childAspectRatio: (360 /
-                      400), // Adjust width & height here (original was 360/65)
+                      360), // Adjust width & height here (original was 360/65)
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
                 ),
-                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true, // To limit the height to its children
                 itemCount: questions[questionIndex].options.length,
                 itemBuilder: (context, index) {
@@ -267,43 +266,52 @@ class _MCQ6State extends State<MCQ6> {
               ),
             ),
             const Spacer(),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: Colors.black87.withOpacity(0.1),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Positioned(
+                bottom: 0,
+                child: Container(
+              child: Column(
                 children: [
-                  const Text(
-                    'آپ کا اسکور: 10 پوائنٹس',
-                    style: TextStyle(
-                        fontFamily: "UrduType", color: Color(0xff8E79FB)),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                    color: Colors.black87.withOpacity(0.1),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffFE8BD1),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      minimumSize: const Size(150, 37),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'جاری رہے',
-                      style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'آپ کا اسکور: 10 پوائنٹس',
+                          style: TextStyle(
+                              fontFamily: "UrduType", color: Color(0xff8E79FB)),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xffFE8BD1),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            minimumSize: const Size(150, 37),
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            'جاری رہے',
+                            style: TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+
                 ],
               ),
-            ),
+            ))
           ],
         ),
       ),
