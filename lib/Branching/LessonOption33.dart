@@ -1,5 +1,6 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -104,7 +105,10 @@ class _LessonOption33State extends State<LessonOption33> {
     }
 
     isDialogCurrentlyShown = true;
-    showDialog(
+    showAnimatedDialog(
+      curve: Curves.fastOutSlowIn,
+      animationType: DialogTransitionType.sizeFade,
+      duration: const Duration(seconds: 1),
       context: context,
       builder: (context) {
         return StatefulBuilder(

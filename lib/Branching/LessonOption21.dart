@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Result/ResultScreen.dart';
@@ -18,9 +20,7 @@ class _LessonOption21State extends State<LessonOption21> {
   bool isSelected = false;
   bool isAnswered = false;
   final ResultsController resultsController = Get.put(ResultsController());
-  final BookmarkController bookmarkController =   Get.put(BookmarkController());
-
-
+  final BookmarkController bookmarkController = Get.put(BookmarkController());
 
   int _current = 0;
   int _totalSteps = 100;
@@ -33,13 +33,15 @@ class _LessonOption21State extends State<LessonOption21> {
       correctAnswer: 'Option 1',
       correctExplanation: 'Correct explanation here.',
       incorrectExplanation: 'Incorrect explanation here.',
-    ),  Question(
+    ),
+    Question(
       question: 'Your second question text here',
       options: ['Option 1', 'Option 2', 'Option 3'],
       correctAnswer: 'Option 1',
       correctExplanation: 'Correct explanation here.',
       incorrectExplanation: 'Incorrect explanation here.',
-    ), Question(
+    ),
+    Question(
       question: 'Your third question text here',
       options: ['Option 1', 'Option 2', 'Option 3'],
       correctAnswer: 'Option 1',
@@ -48,7 +50,6 @@ class _LessonOption21State extends State<LessonOption21> {
     ),
     // Add more questions as needed
   ];
-
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
   List<bool> isSelectedList = [
@@ -92,25 +93,31 @@ class _LessonOption21State extends State<LessonOption21> {
           isAnswered = false;
           isSelectedList = [false, false, false]; // Reset for the next question
         });
-      }
-      else {
+      } else {
         // Show result screen
-        Get.to(() =>  ResultsScreen(),
+        Get.to(() => ResultsScreen(),
             transition: Transition.fade,
             duration: const Duration(milliseconds: 300));
       }
     });
     Question currentQuestion = questions[questionIndex];
-    currentQuestion.userAnswer = selectedAnswer; // Add a userAnswer field to your Question class
+    currentQuestion.userAnswer =
+        selectedAnswer; // Add a userAnswer field to your Question class
     resultsController.addQuestionAnswer(currentQuestion);
   }
 
-  void _showAnswerDialog(BuildContext context, bool isCorrect, String explanation) {
-    showDialog(
+  void _showAnswerDialog(
+      BuildContext context, bool isCorrect, String explanation) {
+    showAnimatedDialog(
+      curve: Curves.fastOutSlowIn,
+      animationType: DialogTransitionType.sizeFade,
+      duration: Duration(seconds: 1),
+      barrierDismissible: true,
       context: context,
       builder: (context) {
         return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           child: Stack(
             alignment: Alignment.topRight,
             children: [
@@ -118,7 +125,9 @@ class _LessonOption21State extends State<LessonOption21> {
                 width: double.infinity, // Ensure the container takes full width
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: isCorrect ? const Color(0xff9AC9C2) : const Color(0xffFB6262),
+                  color: isCorrect
+                      ? const Color(0xff9AC9C2)
+                      : const Color(0xffFB6262),
                 ),
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: Container(
@@ -148,17 +157,21 @@ class _LessonOption21State extends State<LessonOption21> {
                                 : const Color(0xffFB6262),
                           ),
                         ),
-                        const SizedBox(height: 10), // Add spacing before the text
+                        const SizedBox(
+                            height: 10), // Add spacing before the text
                         Text(
                           isCorrect ? "درست" : "غلط",
                           style: TextStyle(
                             fontFamily: "UrduType",
-                            color: isCorrect ? const Color(0xff47857C) : const Color(0xffFB6262),
+                            color: isCorrect
+                                ? const Color(0xff47857C)
+                                : const Color(0xffFB6262),
                             fontSize: 18,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 10), // Add spacing before the explanation
+                        const SizedBox(
+                            height: 10), // Add spacing before the explanation
                         Text(
                           explanation,
                           style: const TextStyle(
@@ -193,7 +206,6 @@ class _LessonOption21State extends State<LessonOption21> {
     _totalSteps = questions.length; // Add this line
 
     return Scaffold(
-
       body: Stack(
         children: [
           Container(
@@ -210,102 +222,110 @@ class _LessonOption21State extends State<LessonOption21> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 60, left: 20, right: 10),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.back();
+                Column(children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 60, left: 20, right: 10),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: const Icon(
+                            Icons.close,
+                            size: 30,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                          child: TweenAnimationBuilder(
+                            tween: Tween<double>(
+                              begin: 0,
+                              end: _current /
+                                  questions
+                                      .length, // Correct end value for the tween
+                            ),
+                            duration: const Duration(milliseconds: 400),
+                            builder: (BuildContext context, double value,
+                                Widget? child) {
+                              return LinearPercentIndicator(
+                                lineHeight: 8.0,
+                                percent:
+                                    value, // Use the animated value for the percent
+                                backgroundColor: Colors.white,
+                                progressColor: const Color(0xffFE8BD1),
+                                barRadius: const Radius.circular(10),
+                              );
                             },
-                            child: const Icon(
-                              Icons.close,
-                              size: 30,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                            child: TweenAnimationBuilder(
-                              tween: Tween<double>(
-                                begin: 0,
-                                end: _current / questions.length, // Correct end value for the tween
-                              ),
-                              duration: const Duration(milliseconds: 400),
-                              builder: (BuildContext context, double value, Widget? child) {
-                                return LinearPercentIndicator(
-                                  lineHeight: 8.0,
-                                  percent: value, // Use the animated value for the percent
-                                  backgroundColor: Colors.white,
-                                  progressColor: const Color(0xffFE8BD1),
-                                  barRadius: const Radius.circular(10),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 5,),
-                          GestureDetector
-                            (
-                              onTap: () {
-                                final bookmarkController = Get.find<BookmarkController>();
-                                bookmarkController.addBookmark(
-                                  Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
-                                );
-                                // Optionally, show a snackbar or some feedback to the user
-                                Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
-                              },
-                              child: const Icon(Icons.bookmark_outline)),
-
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 30, top: 10),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: SvgPicture.asset(
-                          'assets/images/cloud.svg',
-                          width: 20,
-                          height: 20,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        questions[questionIndex].question,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontFamily: "UrduType", fontSize: 20),
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Column(
-                      children: List.generate(
-                        questions[questionIndex].options.length,
-                        (index) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: QuizCard(
-                            text: questions[questionIndex].options[index],
-                            imagePath: 'assets/images/quiz${index + 1}.png',
-                            color: optionColors[index],
-                            ontap: () => updateQuestion(
-                                questions[questionIndex].options[index], index),
-                            isCorrect: selectedAnswer ==
-                                questions[questionIndex].correctAnswer,
-                            isSelected:
-                                isSelectedList[index], // use the list here
                           ),
                         ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              final bookmarkController =
+                                  Get.find<BookmarkController>();
+                              bookmarkController.addBookmark(
+                                Bookmark(
+                                    title: 'LessonOption20',
+                                    routeName: '/lessonOption20'),
+                              );
+                              // Optionally, show a snackbar or some feedback to the user
+                              Get.snackbar('Bookmark Added',
+                                  'This page has been added to your bookmarks');
+                            },
+                            child: const Icon(Icons.bookmark_outline)),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 30, top: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: SvgPicture.asset(
+                        'assets/images/cloud.svg',
+                        width: 20,
+                        height: 20,
+                        fit: BoxFit.contain,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      questions[questionIndex].question,
+                      textAlign: TextAlign.center,
+                      style:
+                          const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Column(
+                    children: List.generate(
+                      questions[questionIndex].options.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: QuizCard(
+                          text: questions[questionIndex].options[index],
+                          imagePath: 'assets/images/quiz${index + 1}.png',
+                          color: optionColors[index],
+                          ontap: () => updateQuestion(
+                              questions[questionIndex].options[index], index),
+                          isCorrect: selectedAnswer ==
+                              questions[questionIndex].correctAnswer,
+                          isSelected:
+                              isSelectedList[index], // use the list here
+                        ),
+                      ),
+                    ).animate(interval: 200.ms).fade(duration: 200.ms),
+                  ),
+                ]),
               ],
             ),
           ),
@@ -388,7 +408,9 @@ class QuizCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: isSelected
-                ? (isCorrect ? const Color(0xff9AC9C2) : const Color(0xffFB6262))
+                ? (isCorrect
+                    ? const Color(0xff9AC9C2)
+                    : const Color(0xffFB6262))
                 : const Color(0xffB1B2B4),
           ),
           child: Padding(
@@ -443,4 +465,3 @@ class QuizCard extends StatelessWidget {
     );
   }
 }
-

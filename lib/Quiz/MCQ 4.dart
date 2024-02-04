@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import '../BookmarkController.dart';
 import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 
@@ -223,7 +223,7 @@ class _MCQ4State extends State<MCQ4> {
                               selectedOptionIndex, // Pass this value here
                         ),
                       ),
-                    ),
+                    ).animate(interval: 200.ms).fade(duration: 200.ms),
                   ),
                 ),
               ),

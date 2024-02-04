@@ -19,6 +19,7 @@ import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Quiz/MCQ%204.dart';
 import 'package:lhw/Quiz/MCQ%205.dart';
 import 'package:lhw/Quiz/MCQ%206.dart';
+import 'package:lhw/Reports/Reports_Learning.dart';
 import 'package:lhw/Result/ResultScreen.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
@@ -80,7 +81,7 @@ class MyApp extends StatelessWidget {
           case AuthStatus.undecided:
             return const LoadingScreen();  // your loading screen widget
           case AuthStatus.authenticated:
-            return  const InteractiveImages();
+            return ReportsScreen();
           case AuthStatus.unauthenticated:
           default:
             return const LoginScreen();

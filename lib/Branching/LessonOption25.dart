@@ -1,5 +1,6 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -251,7 +252,7 @@ class _LessonOption25State extends State<LessonOption25> {
                           index == selectedOptionIndex, // Pass this value here
                         ),
                       ),
-                    ),
+                    ).animate(interval: 200.ms).fade(duration: 200.ms),
                   ),
                   const Spacer(),
                   Column(

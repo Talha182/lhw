@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/models/question_model.dart';
@@ -6,24 +7,37 @@ import '../QuizController.dart';
 
 class ResultsScreen extends StatelessWidget {
   void _showOptionsDialog(BuildContext context, Question question) {
-    showDialog(
+    showAnimatedDialog(
+      curve: Curves.fastOutSlowIn,
+      animationType: DialogTransitionType.sizeFade,
+      duration: const Duration(seconds: 1),
+      barrierDismissible: true,
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(question.question),
+          title: Text(question.question,style: TextStyle(
+            fontFamily: "UrduType"
+          ),textAlign: TextAlign.center,),
           content: SingleChildScrollView(
             child: ListBody(
               children: question.options.map((option) {
                 // Highlight incorrect answers in red and the correct one in green
                 return Container(
-                  margin: const EdgeInsets.only(bottom: 8),
-                  padding: const EdgeInsets.all(10),
-                  color: option == question.correctAnswer
-                      ? Colors.green[100]
-                      : Colors.red[100], // Mark incorrect options in red
-                  child: Text(
-                    option,
-                    style: const TextStyle(fontSize: 16),
+                  margin: const EdgeInsets.only(bottom: 12),
+                  padding: const EdgeInsets.all(13),
+                  decoration: BoxDecoration(
+                    color: option == question.correctAnswer
+                        ? Colors.green[100]
+                        : Colors.red[100], // Mark incorrect options in red
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Text(
+                      option,
+                      style: const TextStyle(fontSize: 16,fontFamily: "UrduType"),
+                    ),
                   ),
                 );
               }).toList(),
@@ -45,15 +59,7 @@ class ResultsScreen extends StatelessWidget {
     final ResultsController controller = Get.find<ResultsController>();
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(40),
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: AppBar(
-            elevation: 0,
-          ),
-        ),
-      ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -68,7 +74,7 @@ class ResultsScreen extends StatelessWidget {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 20, top: 20),
+              padding: const EdgeInsets.only(right: 20, top: 80),
               child: Align(
                 alignment: Alignment.topRight,
                 child: SvgPicture.asset(
@@ -80,7 +86,7 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 40),
+              padding: const EdgeInsets.only(top: 100),
               child: Align(
                 alignment: Alignment.center,
                 child: Column(

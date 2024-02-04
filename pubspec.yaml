@@ -72,6 +72,7 @@ dependencies:
   audioplayers: ^5.2.1
   flutter_animate: ^4.5.0
   draggable_fab: ^0.1.4
+  flutter_animated_dialog: ^2.0.1
 
 
 

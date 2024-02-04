@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -304,65 +305,67 @@ class _LessonOption26State extends State<LessonOption26> {
     );
   }
 
-  void showCustomDialog0(String dialogText, String dialogImage) {
-    Get.dialog(
-      Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 10),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: 250,
-            maxWidth: MediaQuery.of(Get.context!).size.width - 50,
+  void showCustomDialog0(BuildContext context, String dialogText, String dialogImage) {
+    showAnimatedDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Builder(
-                  builder: (context) {
-                    return Align(
-                      alignment: Alignment.topRight,
-                      child: GestureDetector(
-                        onTap: () => Navigator.pop(context), // Use the Builder's context here
-                        child: const Icon(Icons.close),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 10),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: 250,
+              maxWidth: MediaQuery.of(context).size.width - 50,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Builder(
+                    builder: (context) {
+                      return Align(
+                        alignment: Alignment.topRight,
+                        child: GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: const Icon(Icons.close),
+                        ),
+                      );
+                    },
+                  ),
+                  Text(
+                    'غذائیت کی صورتحال',
+                    style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text(
+                            dialogText,
+                            style: const TextStyle(
+                                fontFamily: "UrduType", fontSize: 14, color: Color(0xff7A7D84)),
+                          ),
+                          SizedBox(height: 10),
+                          Image.asset(
+                            dialogImage,
+                            fit: BoxFit.cover,
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                ),
-                Text(
-                  'غذائیت کی صورتحال',
-                  style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Text(
-                          dialogText,
-                          style: const TextStyle(
-                              fontFamily: "UrduType", fontSize: 14, color: Color(0xff7A7D84)),
-                        ),
-                        SizedBox(height: 10),
-                        Image.asset(
-                          dialogImage,
-                          fit: BoxFit.cover,
-                        ),
-                      ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-      barrierDismissible: true,
+        );
+      },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -507,7 +510,7 @@ class _LessonOption26State extends State<LessonOption26> {
                           top: area.position.dy,
                           left: area.position.dx,
                           child: GestureDetector(
-                            onTap: () => showCustomDialog0(area.dialogText, area.dialogImage),
+                            onTap: () => showCustomDialog0(context  ,area.dialogText, area.dialogImage),
                             child: Container(
                               width: 45,
                               height: 45,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -264,7 +265,7 @@ class _LessonOption24State extends State<LessonOption24> {
                           isOptionSelected: index == selectedOptionIndex,
                         ),
                       ),
-                    ),
+                    ).animate(interval: 200.ms).fade(duration: 200.ms),
                   ),
                   const Spacer(),
                   Positioned(
