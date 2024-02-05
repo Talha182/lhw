@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
-import '../BookmarkController.dart';
-import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 
 class LessonOption32 extends StatefulWidget {
   const LessonOption32({super.key});
@@ -19,8 +15,6 @@ class _LessonOption32State extends State<LessonOption32> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
-  final BookmarkController bookmarkController =   Get.put(BookmarkController());
-
   List<bool> _isDragSuccessful = [
     false,
     false,
@@ -31,7 +25,13 @@ class _LessonOption32State extends State<LessonOption32> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+        ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -46,7 +46,7 @@ class _LessonOption32State extends State<LessonOption32> {
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
+              padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
               child: Column(
                 children: [
                   Row(
@@ -65,6 +65,7 @@ class _LessonOption32State extends State<LessonOption32> {
                         width: 5,
                       ),
                       Expanded(
+                        child: SizedBox(
                           child: TweenAnimationBuilder(
                             tween: Tween<double>(begin: 0, end: 2.2),
                             duration: const Duration(milliseconds: 400),
@@ -79,20 +80,8 @@ class _LessonOption32State extends State<LessonOption32> {
                               );
                             },
                           ),
-                      ),
-                      const SizedBox(width: 5,),
-                      GestureDetector
-                        (
-                          onTap: () {
-                            final bookmarkController = Get.find<BookmarkController>();
-                            bookmarkController.addBookmark(
-                              Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
-                            );
-                            // Optionally, show a snackbar or some feedback to the user
-                            Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
-                          },
-                          child: const Icon(Icons.bookmark_outline)),
-
+                        ),
+                      )
                     ],
                   ),
                   Padding(

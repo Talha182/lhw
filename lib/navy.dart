@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/FAB_Page/BottomModalSheet.dart';
 import 'package:lhw/Courses_Tab/Courses_tabbar.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
-import 'package:lhw/notification/notifications_screen.dart';
 
 import 'Discussion_Group/DiscussionGroups.dart';
 import 'Mobile_HomePage/home_page.dart';

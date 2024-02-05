@@ -47,6 +47,8 @@ class _HomePageState extends State<HomePage> {
   bool showFirstMessage = false;
   bool showSecondMessage = false;
 
+
+
   @override
   void initState() {
     super.initState();
@@ -90,6 +92,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: PreferredSize(
@@ -333,7 +337,7 @@ class _HomePageState extends State<HomePage> {
                                                               duration:
                                                                   const Duration(
                                                                       milliseconds:
-                                                                          400));
+                                                                          300));
                                                         },
                                                         child: const Row(
                                                           mainAxisSize:
@@ -1348,9 +1352,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                     ),
                     onTap: () {
-                      Get.to(() => const NotificationScreen(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
+                      Get.to(() => const NotificationScreen());
                     },
                   ),
                 ],

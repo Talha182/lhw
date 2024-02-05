@@ -1,7 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:get/get.dart';
 import 'package:lhw/main.dart';
-import 'package:lhw/notification/notifications_screen.dart';
 
 class FirebaseApi {
   final _firebaseMessaging = FirebaseMessaging.instance;

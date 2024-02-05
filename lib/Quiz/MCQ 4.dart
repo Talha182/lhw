@@ -131,7 +131,7 @@ class _MCQ4State extends State<MCQ4> {
         child: Padding(
           padding:
               const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
-          child: Column(
+          child: ListView(
             children: [
               Row(
                 children: [
