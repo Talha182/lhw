@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Bookmarks.dart';
@@ -21,39 +20,17 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   bool _isChecked = false;
+
   void _toggleVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
 
-  final TextEditingController idController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  TextEditingController idController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final _storage = const FlutterSecureStorage();
-
-  // Assuming SignUpController exists and has email and password TextEditingControllers
-  final SignUpController controller = Get.put(SignUpController());
-
-  @override
-  void initState() {
-    super.initState();
-    _loadCredentials();
-  }
-
-  Future<void> _loadCredentials() async {
-    final storedEmail = await _storage.read(key: "email");
-    final storedPassword = await _storage.read(key: "password");
-    if (storedEmail != null && storedPassword != null) {
-      controller.email.text = storedEmail;
-      controller.password.text = storedPassword;
-    }
-  }
-
-  Future<void> _saveCredentials(String email, String password) async {
-    await _storage.write(key: "email", value: email);
-    await _storage.write(key: "password", value: password);
-  }
 
   bool areFieldsEmpty(TextEditingController emailController,
       TextEditingController passwordController) {
@@ -67,65 +44,71 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 36),
+        child: ListView(
           children: [
-            const Center(
-                child: Text(
-              "خوش آمدید",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 30),
-            )),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "میں نئے ہیں؟",
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        fontSize: 20,
-                        color: Color(0xff878787)),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      controller.clearLoginFields();
-                      Get.to(() => const SignUpScreen(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    },
-                    child: const Text(
-                      "سائن اپ",
-                      style: TextStyle(
-                          fontFamily: "UrduType",
-                          fontSize: 20,
-                          color: Color(0xffFE8BD1)),
-                    ),
-                  ),
-                  const Text(
-                    "LHW",
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        fontSize: 20,
-                        color: Color(0xff878787)),
-                  ),
-                ],
+            const Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Text(
+                "خوش آمدید",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontFamily: "UrduType", fontSize: 24),
+                textDirection: TextDirection.ltr,
               ),
             ),
-            const SizedBox(
-              height: 30,
+            GestureDetector(
+              onTap: () {
+                controller.clearLoginFields();
+                Get.to(() => const SignUpScreen(),
+                    transition: Transition.fade,
+                    duration: const Duration(milliseconds: 300));
+              },
+              child: const Text.rich(
+                TextSpan(children: [
+                  TextSpan(
+                    text: "LHW",
+                    style: TextStyle(
+                        fontFamily: "UrduType",
+                        fontSize: 14,
+                        color: Color(0xff878787)),
+                  ),
+                  TextSpan(
+                    text: " میں نئے ہیں؟",
+                    style: TextStyle(
+                        fontFamily: "UrduType",
+                        fontSize: 14,
+                        color: Color(0xff878787)),
+                  ),
+                  TextSpan(
+                    text: "سائن اپ کریں",
+                    style: TextStyle(
+                        fontFamily: "UrduType",
+                        fontSize: 14,
+                        color: Color(0xffFE8BD1)),
+                  ),
+                ]),
+                textDirection: TextDirection.rtl,
+                textAlign: TextAlign.center,
+              ),
             ),
-            const Text(
-              "لیڈی ہیلتھ ورکر کا شناختی نمبر*",
-              style: TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 16,
-                  color: Color(0xff0F0D18)),
+
+            const Padding(
+              padding: EdgeInsets.only(right: 8, top: 36, bottom: 16),
+              child: Text.rich(
+                TextSpan(children: [
+                  TextSpan(
+                    text: "لیڈی ہیلتھ ورکر کا شناختی نمبر",
+                  ),
+                  TextSpan(text: "*", style: TextStyle(color: Colors.red))
+                ]),
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                    fontFamily: "UrduType",
+                    fontSize: 14,
+                    color: Color(0xff0F0D18)),
+              ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
+
             TextField(
               controller: controller.email,
               keyboardType: TextInputType.phone,
@@ -150,24 +133,38 @@ class _LoginScreenState extends State<LoginScreen> {
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
-                    color: Color(0xffCDD1E0),
+                    color: Color(0xfff28bc9),
+                    width: 2,
                   ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 25,
+
+            const Padding(
+              padding: EdgeInsets.only(top: 30.0, bottom: 16, right: 8),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text:    "پاس ورڈ",
+                      style: TextStyle(
+                          fontFamily: "UrduType",
+                          fontSize: 14,
+                          color: Color(0xff0F0D18)),
+                    ), TextSpan(
+                      text: " *",
+                      style: TextStyle(
+                          fontFamily: "UrduType",
+                          fontSize: 14,
+                          color: Color(0xffff0000)),
+                    )
+                  ],
+
+                ),
+                textDirection: TextDirection.rtl,
+              ),
             ),
-            const Text(
-              "پاس ورڈ",
-              style: TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 16,
-                  color: Color(0xff0F0D18)),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
+
             TextField(
                 controller: controller.password,
                 obscureText: _obscureText,
@@ -201,40 +198,77 @@ class _LoginScreenState extends State<LoginScreen> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       borderSide: const BorderSide(
-                        color: Color(0xffCDD1E0),
+                        color: Color(0xfff28bc9),
+                        width: 2,
                       ),
                     ))),
-            const SizedBox(
-              height: 20,
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (areFieldsEmpty(
+                      controller.email, controller.password)) {
+                    Fluttertoast.showToast(
+                        msg: "Please fill all the fields!",
+                        backgroundColor: Colors.red.withOpacity(0.1),
+                        textColor: Colors.red);
+                  } else {
+                    SignUpController.instance.Login(
+                        controller.email.text.trim(),
+                        controller.password.text.trim());
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  // shadowColor: Colors.red,
+                  padding: const EdgeInsets.all(15.0),
+                  backgroundColor: const Color(0xCDF36ABC), // Button color when not pressed
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24.0), // Set your desired border radius
+                  ),
+                ),
+                child: const Text(
+                  'لاگ ان کریں',
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    fontFamily: "UrduType",
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
-            Center(
-              child: SizedBox(
-                  width: Get.width,
-                  height: 45,
-                  child: RoundedButton(
-                      title: 'لاگ ان کریں',
-                      onTap: () {
-                        if (areFieldsEmpty(
-                            controller.email, controller.password)) {
-                          Fluttertoast.showToast(
-                              msg: "Please fill all the fields!",
-                              backgroundColor: Colors.red.withOpacity(0.1),
-                              textColor: Colors.red);
-                        } else {
-                          _login();
-                        }
-                      })),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Directionality(
-              textDirection: TextDirection.rtl,
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => const ForgotPasswordScreen(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 200));
+                    },
+                    child: const Text(
+                      "پاسورڈ بھول گئے ہیں؟",
+                      style: TextStyle(
+                          fontFamily: "UrduType",
+                          fontSize: 14,
+                          color: Color(0xffFE8BD1)),
+                    ),
+                  ),
                   Row(
                     children: [
+                      const Text(
+                        " مجھے یاد رکھیں",
+                        style: TextStyle(
+                            fontFamily: "UrduType",
+                            fontSize: 14,
+                            color: Color(0xff0F0D18)),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       CustomCheckbox(
                         value: _isChecked,
                         onChanged: (value) {
@@ -243,32 +277,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         },
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        "مجھے پہچانتے ہو",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 16,
-                            color: Color(0xff0F0D18)),
-                      ),
                     ],
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => const ForgotPasswordScreen(),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 200));
-                    },
-                    child: const Text(
-                      "پاسورڈ بھول گے؟",
-                      style: TextStyle(
-                          fontFamily: "UrduType",
-                          fontSize: 16,
-                          color: Color(0xffFE8BD1)),
-                    ),
-                  ),
+
+
                 ],
               ),
             ),
@@ -276,30 +288,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  void _login() async {
-    if (!areFieldsEmpty(controller.email, controller.password)) {
-      final email = controller.email.text.trim();
-      final password = controller.password.text.trim();
-      try {
-        await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
-        await _saveCredentials(email, password);
-        // Navigate to next screen or show success message
-      } on FirebaseAuthException catch (e) {
-        // Handle login error
-        Fluttertoast.showToast(
-            msg: e.message ?? "Login failed",
-            backgroundColor: Colors.red.withOpacity(0.1),
-            textColor: Colors.red);
-      }
-    } else {
-      Fluttertoast.showToast(
-          msg: "Please fill all the fields!",
-          backgroundColor: Colors.red.withOpacity(0.1),
-          textColor: Colors.red);
-    }
   }
 }
 
@@ -312,6 +300,7 @@ class RoundedButton extends StatelessWidget {
     required this.title,
     required this.onTap,
   });
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -358,7 +347,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         width: 24.0,
         height: 24.0,
         decoration: BoxDecoration(
-          border: Border.all(width: 1.0, color: const Color(0xffE5E5E5)),
+          border: Border.all(width: 1.0, color: const Color(0xffaba8a8)),
           borderRadius: BorderRadius.circular(4.0),
         ),
         child: widget.value ? const Icon(Icons.check, size: 20.0) : null,

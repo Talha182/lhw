@@ -14,6 +14,7 @@ import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
+import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20openview%202.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Quiz/MCQ%204.dart';
@@ -40,7 +41,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => Get.put(AuthenticationRepository()));
-  await Firebase.initializeApp();
   await FirebaseApi().initNotification();
 
   runApp(const MaterialApp(

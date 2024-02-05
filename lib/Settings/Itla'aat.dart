@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ItlaatScreen extends StatefulWidget {
@@ -10,6 +9,7 @@ class ItlaatScreen extends StatefulWidget {
 }
 
 class _ItlaatScreenState extends State<ItlaatScreen> {
+
   bool firstState = false;
   bool secondState = false;
   bool thirdState = false;

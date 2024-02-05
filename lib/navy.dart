@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/FAB_Page/BottomModalSheet.dart';
 import 'package:lhw/Courses_Tab/Courses_tabbar.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
-import 'package:lhw/notification/notifications_screen.dart';
 
 import 'Discussion_Group/DiscussionGroups.dart';
 import 'Mobile_HomePage/home_page.dart';
@@ -21,7 +20,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   final PageController _pageController = PageController();
 
   final List<Map<String, String>> imagesData = [
-    {'path': 'assets/images/home.svg', 'label': 'گھر'},
+    {'path': 'assets/images/home.svg', 'label': 'ٰھوم'},
     {'path': 'assets/images/courses.svg', 'label': 'کورسز'},
     {'path': 'assets/images/groups.svg', 'label': 'گروپس'},
     {'path': 'assets/images/report.svg', 'label': 'رپورٹ'},
@@ -48,6 +47,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           PageView(
@@ -105,8 +105,8 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
             ? const Icon(Icons.close, color: Colors.white)
             : Image.asset(
                 'assets/images/floatingaction.png',
-                width: 24,
-                height: 24,
+                width: 30,
+                height: 30,
                 color: Colors.white,
               ),
         onPressed: () {
@@ -119,7 +119,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
       bottomNavigationBar: Material(
         // elevation: 0.0, // Add this line for elevation
         child: BottomAppBar(
-          elevation: 50.0,
+          elevation: 0.0,
           padding: const EdgeInsets.symmetric(horizontal: 0),
           height: 70,
           shape: const CircularNotchedRectangle(),
@@ -140,15 +140,18 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                       children: [
                         SvgPicture.asset(
                           iconData['path']!,
-                          height: 18,
-                          width: 18,
+                          height: 20,
+                          width: 20,
                           color: isSelected ? const Color(0xffFE8BD1) : null,
+                        ),
+                        SizedBox(
+                          height: 4,
                         ),
                         Text(
                           iconData['label']!,
                           style: TextStyle(
                             fontFamily: 'UrduType',
-                            fontSize: 16,
+                            fontSize: 12,
                             color: isSelected ? const Color(0xffFE8BD1) : null,
                             fontWeight: FontWeight.w500,
                           ),
