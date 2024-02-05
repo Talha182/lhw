@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/JourneyMap.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
@@ -29,75 +30,271 @@ class _ModuleScreenState extends State<ModuleScreen> {
       {
         'cardText': 'متعدی بیماریوں کا تعارف',
         'imagePath': 'assets/images/image9.png',
+        'submoduleCount': 2, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                  ], buttonPositions: const [
+                    Offset(140, 520), // Position for Submodule 1
+                    Offset(100, 200), // Position for Submodule 2
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
       {
         'cardText': 'ٹی بی',
-        'imagePath': 'assets/images/image9.png',
+        'imagePath': 'assets/images/image10.png',
+        'submoduleCount': 3, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                    'Submodule 3 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                    'Description for Submodule 3',
+                  ], buttonPositions: const [
+                    Offset(50, 180), // Position for Submodule 1
+                    Offset(20, 350), // Position for Submodule 2
+                    Offset(150, 300), // Position for Submodule 3
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                    'assets/images/tick.svg', // Path to Submodule 3 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule3())),
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
       {
         'cardText': 'جنسی طور پر منتقل ہونے والی بیماریاں (STDs)',
-        'imagePath': 'assets/images/image10.png',
+        'imagePath': 'assets/images/image11.png',
+        'submoduleCount': 3, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                    'Submodule 3 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                    'Description for Submodule 3',
+                  ], buttonPositions: const [
+                    Offset(50, 180), // Position for Submodule 1
+                    Offset(20, 350), // Position for Submodule 2
+                    Offset(150, 300), // Position for Submodule 3
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                    'assets/images/tick.svg', // Path to Submodule 3 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule3())),
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
       {
         'cardText': 'HIV',
-        'imagePath': 'assets/images/image11.png',
+        'imagePath': 'assets/images/image12.png',
+        'submoduleCount': 3, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                    'Submodule 3 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                    'Description for Submodule 3',
+                  ], buttonPositions: const [
+                    Offset(50, 180), // Position for Submodule 1
+                    Offset(20, 350), // Position for Submodule 2
+                    Offset(150, 300), // Position for Submodule 3
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                    'assets/images/tick.svg', // Path to Submodule 3 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule3())),
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
       {
         'cardText': 'ہیپاٹائٹس',
-        'imagePath': 'assets/images/image12.png',
+        'imagePath': 'assets/images/image13.png',
+        'submoduleCount': 3, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                    'Submodule 3 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                    'Description for Submodule 3',
+                  ], buttonPositions: const [
+                    Offset(50, 180), // Position for Submodule 1
+                    Offset(20, 350), // Position for Submodule 2
+                    Offset(150, 300), // Position for Submodule 3
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                    'assets/images/tick.svg', // Path to Submodule 3 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule3())),
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
       {
         'cardText': 'ملیریا',
-        'imagePath': 'assets/images/image13.png',
+        'imagePath': 'assets/images/image9.png',
+        'submoduleCount': 3, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                    'Submodule 3 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                    'Description for Submodule 3',
+                  ], buttonPositions: const [
+                    Offset(50, 180), // Position for Submodule 1
+                    Offset(20, 350), // Position for Submodule 2
+                    Offset(150, 300), // Position for Submodule 3
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                    'assets/images/tick.svg', // Path to Submodule 3 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule3())),
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
       {
         'cardText': 'ڈینگی',
-        'imagePath': 'assets/images/image13.png',
+        'imagePath': 'assets/images/image10.png',
+        'submoduleCount': 3, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                    'Submodule 3 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                    'Description for Submodule 3',
+                  ], buttonPositions: const [
+                    Offset(50, 180), // Position for Submodule 1
+                    Offset(20, 350), // Position for Submodule 2
+                    Offset(150, 300), // Position for Submodule 3
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                    'assets/images/tick.svg', // Path to Submodule 3 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule3())),
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
       {
-        'cardText': 'کورونا وائرس ',
-        'imagePath': 'assets/images/image13.png',
+        'cardText': 'کورونا وائرس (COVID-19)',
+        'imagePath': 'assets/images/image11.png',
+        'submoduleCount': 3, // Number of submodules for this module
         'onTap': () {
-          Get.to(() => const Course_DropDown(),
+          Get.to(
+              () => JourneyMapScreen(submoduleTitles: const [
+                    'Submodule 1 Title',
+                    'Submodule 2 Title',
+                    'Submodule 3 Title',
+                  ], submoduleDescriptions: const [
+                    'Description for Submodule 1',
+                    'Description for Submodule 2',
+                    'Description for Submodule 3',
+                  ], buttonPositions: const [
+                    Offset(50, 180), // Position for Submodule 1
+                    Offset(20, 350), // Position for Submodule 2
+                    Offset(150, 300), // Position for Submodule 3
+                  ], iconPaths: const [
+                    'assets/images/book.svg', // Path to Submodule 1 icon
+                    'assets/images/trophy.svg', // Path to Submodule 2 icon
+                    'assets/images/tick.svg', // Path to Submodule 3 icon
+                  ], navigateActions: [
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule1())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule2())),
+                    () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Submodule3())),
+                  ]),
               transition: Transition.fade,
               duration: const Duration(milliseconds: 400));
-        }, // Define your onTap action here
+        },
       },
+
       // Add more modules as needed
     ];
 

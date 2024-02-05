@@ -373,7 +373,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                               child: SvgPicture.asset("assets/images/book.svg",
                                   color: currentUnlockedLevel >= 2
                                       ? Colors.white
-                                      : null)),
+                                      : null)), 
                         ),
                       ),
                     ),
