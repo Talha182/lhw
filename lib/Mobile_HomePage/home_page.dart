@@ -683,7 +683,8 @@ class _HomePageState extends State<HomePage> {
                                                     ),
                                                     GestureDetector(
                                                       child: const Icon(Icons
-                                                          .arrow_forward_ios),
+                                                          .arrow_forward_ios,
+                                                      size: 14,),
                                                       onTap: () async {
                                                         await AuthenticationRepository
                                                             .instance
@@ -777,7 +778,7 @@ class _HomePageState extends State<HomePage> {
                                                     // Icon button on the right
                                                     GestureDetector(
                                                       child: const Icon(Icons
-                                                          .arrow_forward_ios),
+                                                          .arrow_forward_ios, size: 14,),
                                                       onTap: () {},
                                                     ),
                                                     const SizedBox(
