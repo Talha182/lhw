@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/Mobile_HomePage/home_page.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
@@ -59,12 +60,12 @@ class MyApp extends StatelessWidget {
       home: Obx(() {
         switch (AuthenticationRepository.instance.authStatus.value) {
           case AuthStatus.undecided:
-            return const LoadingScreen();  // your loading screen widget
+            return const HomePage();  // your loading screen widget
           case AuthStatus.authenticated:
-            return const InteractiveImages();
+            return const HomePage();
           case AuthStatus.unauthenticated:
           default:
-            return const LoginScreen();
+            return const HomePage();
         }
       }),
     );
