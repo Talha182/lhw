@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:flutter_animate/flutter_animate.dart';
 class JourneyMapScreen extends StatelessWidget {
   final List<String> submoduleTitles;
   final List<String> submoduleDescriptions;
   final List<Offset> buttonPositions;
-  final List<String> iconPaths; // Paths to the submodule icons
-  final List<Function()> navigateActions; // List of navigation actions
-
+  final List<String> iconPaths;
+  final List<Function()> navigateActions;
+  final List<int> numberOfQuizzes;
+  final List<String>
+      titleAlignments; // New parameter for individual title alignments
 
   JourneyMapScreen({
     Key? key,
@@ -16,30 +18,52 @@ class JourneyMapScreen extends StatelessWidget {
     required this.submoduleDescriptions,
     required this.buttonPositions,
     required this.iconPaths,
-    required this.navigateActions, // Include this in the constructor
-  })  : assert(submoduleDescriptions.length == submoduleTitles.length),
-        assert(buttonPositions.length == submoduleTitles.length),
-        assert(iconPaths.length == submoduleTitles.length),
-        assert(navigateActions.length ==
-            submoduleTitles.length), // Ensure lists are of equal length
+    required this.navigateActions,
+    required this.numberOfQuizzes,
+    required this.titleAlignments, // Make sure to pass this parameter
+  })  : assert(submoduleTitles.length == submoduleDescriptions.length),
+        assert(submoduleTitles.length == buttonPositions.length),
+        assert(submoduleTitles.length == iconPaths.length),
+        assert(submoduleTitles.length == navigateActions.length),
+        assert(submoduleTitles.length == numberOfQuizzes.length),
+        assert(submoduleTitles.length ==
+            titleAlignments.length), // Ensure the new list matches in length
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: const Alignment(0, -0.2),
-              colors: [
-                const Color(0xff80B8FB).withOpacity(0.3),
-                Colors.transparent,
-              ],
+        body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: const Alignment(0, -0.2),
+                colors: [
+                  const Color(0xff80B8FB).withOpacity(0.3),
+                  Colors.transparent,
+                ],
+              ),
             ),
-          ),
-          child: Stack(
-            children: [
+            child: Stack(children: [
+              Positioned(
+                top: 70,
+                right: 30,
+                child: SvgPicture.asset(
+                  'assets/images/cloud.svg',
+                  width: 30,
+                  height: 30,
+                  fit: BoxFit.contain,
+                ),
+              ), Positioned(
+                top: 90,
+                left: 30,
+                child: SvgPicture.asset(
+                  'assets/images/cloud.svg',
+                  width: 30,
+                  height: 30,
+                  fit: BoxFit.contain,
+                ),
+              ),
               Positioned(
                   left: 10,
                   top: 180,
@@ -88,65 +112,89 @@ class JourneyMapScreen extends StatelessWidget {
 
               Stack(
                 children: List.generate(submoduleTitles.length, (index) {
+                  // Determine alignment based on the titleAlignments list
+                  bool isRightAligned = titleAlignments[index] == 'right';
+
                   return Positioned(
                     left: buttonPositions[index].dx,
                     top: buttonPositions[index].dy,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          submoduleTitles[index],
-                          style: TextStyle(
-                            fontFamily: "UrduType",
-                          ),
-                        ), // Display the submodule title
-                        SizedBox(width: 8), //
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: const Color(0xffD9D9D9)),
-                              shape: BoxShape.circle,
-                              color: Colors.white),
-                          child: Center(
-                            child: Container(
-                              width: 45,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: const Color(0xffFF6BC5),
-                              ),
-                              child: Center(
-                                child: IconButton(
-                                  onPressed: () =>
-                                      _showSubmoduleDialog(context, index),
-                                  icon: SvgPicture.asset(
-                                    iconPaths[index], // Use the SVG icon path
-                                    width: 24, // Set an appropriate size
-                                    height: 24,
-                                  ),
-                                  iconSize: 24, // Specify the icon size here
-                                ),
-                              ),
-                            ),
-                          ),
-                        ), // Spacing between title and icon button
-                      ],
-                    ),
+                    child: isRightAligned
+                        ? _buildRightAlignedRow(context, index)
+                        : _buildLeftAlignedRow(context, index),
                   );
                 }),
               ),
-            ],
-          )),
+            ].animate(interval: 120.ms). fade(duration: 120.ms)),));
+  }
+
+  Widget _buildLeftAlignedRow(BuildContext context, int index) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          submoduleTitles[index],textAlign: TextAlign.center,
+          style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+        ),
+        const SizedBox(width: 8),
+        _buildIconButton(context, index),
+      ],
+    );
+  }
+
+  Widget _buildRightAlignedRow(BuildContext context, int index) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildIconButton(context, index),
+        const SizedBox(width: 8),
+        Text(
+          submoduleTitles[index],
+          style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildIconButton(BuildContext context, int index) {
+    return Container(
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0xffD9D9D9)),
+        shape: BoxShape.circle,
+        color: Colors.white,
+      ),
+      child: Center(
+        child: Container(
+          width: 45,
+          height: 45,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(0xffFF6BC5),
+          ),
+          child: IconButton(
+            onPressed: () => _showSubmoduleDialog(context, index),
+            icon: SvgPicture.asset(
+              iconPaths[index],
+              width: 24,
+              height: 24,
+            ),
+            iconSize: 24,
+          ),
+        ),
+      ),
     );
   }
 
   void _showSubmoduleDialog(BuildContext context, int index) {
+    final moduleNumber = index + 1; // Calculate the module number
+    final quizzesCount =
+        numberOfQuizzes[index]; // Get the number of quizzes for this module
+
     showAnimatedDialog(
       curve: Curves.fastOutSlowIn,
       animationType: DialogTransitionType.sizeFade,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       barrierDismissible: true,
       context: context,
       builder: (BuildContext context) {
@@ -167,14 +215,15 @@ class JourneyMapScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "ماڈیول 1 - ذیلی ماڈل 1",
-                      style: TextStyle(
+                    Text(
+                      "ماڈیول  $moduleNumber  - ذیلی ماڈیول $moduleNumber",
+                      style: const TextStyle(
                           fontFamily: "UrduType", color: Color(0xff685F78)),
                     ),
-                    const Text(
-                      "پاکستان میں غذائیت کی صورتحال",
-                      style: TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    Text(
+                      submoduleTitles[index],
+                      style:
+                          const TextStyle(fontFamily: "UrduType", fontSize: 20),
                     ),
                     const SizedBox(height: 10),
                     Row(
@@ -183,8 +232,8 @@ class JourneyMapScreen extends StatelessWidget {
                         // SvgPicture.asset("assets/images/person_card.svg",
                         //     color: const Color(0xff685F78)),
                         const SizedBox(width: 8),
-                        const Text(
-                          "12 کوئز",
+                        Text(
+                          "$quizzesCount کوئز",
                           style: TextStyle(
                               fontSize: 15,
                               fontFamily: "UrduType",
@@ -198,9 +247,9 @@ class JourneyMapScreen extends StatelessWidget {
                               shape: BoxShape.circle, color: Color(0xff685F78)),
                         ),
                         const SizedBox(width: 8),
-                        // SvgPicture.asset("assets/images/clock.svg",
-                        //     color: const Color(0xff685F78)),
-                        const SizedBox(width: 8),
+                        SvgPicture.asset("assets/images/clock.svg",
+                            color: const Color(0xff685F78)),
+                        const SizedBox(width: 4),
                         const Text(
                           "01 گھنٹہ 30 منٹ",
                           textDirection: TextDirection.rtl,
@@ -217,15 +266,16 @@ class JourneyMapScreen extends StatelessWidget {
                       textDirection: TextDirection.rtl,
                       style: TextStyle(fontSize: 18, fontFamily: "UrduType"),
                     ),
-                     Text(
+                    Text(
                       submoduleDescriptions[index],
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: "UrduType",
+                          fontSize: 18,
                           color: Color(0xff7A7D84),
                           height: 1.2),
                       textAlign: TextAlign.justify,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     const Divider(thickness: 1),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -263,9 +313,7 @@ class JourneyMapScreen extends StatelessWidget {
                             ),
                             minimumSize: const Size(140, 40),
                           ),
-                          onPressed: () {
-
-                            },
+                          onPressed: () {},
                           child: const Text(
                             'کورس جاری رکھیں',
                             style: TextStyle(
