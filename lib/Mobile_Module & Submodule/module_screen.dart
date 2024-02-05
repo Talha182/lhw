@@ -27,7 +27,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
 
     final List<Map<String, dynamic>> moduleData = [
       {
-        'cardText': 'غذائیت کا تعارف',
+        'cardText': 'متعدی بیماریوں کا تعارف',
         'imagePath': 'assets/images/image9.png',
         'onTap': () {
           Get.to(() => const Course_DropDown(),
@@ -36,7 +36,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         }, // Define your onTap action here
       },
       {
-        'cardText': 'نوعمر لڑکیوں، حاملہ اور کی غذائی ضروریات',
+        'cardText': 'ٹی بی',
         'imagePath': 'assets/images/image9.png',
         'onTap': () {
           Get.to(() => const Course_DropDown(),
@@ -45,7 +45,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         }, // Define your onTap action here
       },
       {
-        'cardText': 'حمل کی غذائی ضروریات',
+        'cardText': 'جنسی طور پر منتقل ہونے والی بیماریاں (STDs)',
         'imagePath': 'assets/images/image10.png',
         'onTap': () {
           Get.to(() => const Course_DropDown(),
@@ -54,7 +54,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         }, // Define your onTap action here
       },
       {
-        'cardText': 'آئرن کی کمی/انیمیا',
+        'cardText': 'HIV',
         'imagePath': 'assets/images/image11.png',
         'onTap': () {
           Get.to(() => const Course_DropDown(),
@@ -63,7 +63,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         }, // Define your onTap action here
       },
       {
-        'cardText': 'وٹامن اے کی کمی',
+        'cardText': 'ہیپاٹائٹس',
         'imagePath': 'assets/images/image12.png',
         'onTap': () {
           Get.to(() => const Course_DropDown(),
@@ -72,7 +72,25 @@ class _ModuleScreenState extends State<ModuleScreen> {
         }, // Define your onTap action here
       },
       {
-        'cardText': 'آیوڈین کی کمی',
+        'cardText': 'ملیریا',
+        'imagePath': 'assets/images/image13.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      {
+        'cardText': 'ڈینگی',
+        'imagePath': 'assets/images/image13.png',
+        'onTap': () {
+          Get.to(() => const Course_DropDown(),
+              transition: Transition.fade,
+              duration: const Duration(milliseconds: 400));
+        }, // Define your onTap action here
+      },
+      {
+        'cardText': 'کورونا وائرس ',
         'imagePath': 'assets/images/image13.png',
         'onTap': () {
           Get.to(() => const Course_DropDown(),
