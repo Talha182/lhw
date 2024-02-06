@@ -13,7 +13,7 @@ class JourneyMapScreen extends StatelessWidget {
   final List<String>
       titleAlignments; // New parameter for individual title alignments
 
-  JourneyMapScreen({
+  const JourneyMapScreen({
     Key? key,
     required this.submoduleTitles,
     required this.submoduleDescriptions,
@@ -195,7 +195,7 @@ class JourneyMapScreen extends StatelessWidget {
         numberOfQuizzes[index]; // Get the number of quizzes for this module
 
     showAnimatedDialog(
-      curve: Curves.fastOutSlowIn,
+      curve: Curves.decelerate,
       animationType: DialogTransitionType.sizeFade,
       duration: const Duration(seconds: 1),
       barrierDismissible: true,
@@ -223,10 +223,14 @@ class JourneyMapScreen extends StatelessWidget {
                       style: const TextStyle(
                           fontFamily: "UrduType", color: Color(0xff685F78)),
                     ),
-                    Text(
-                      submoduleTitles[index],
-                      style:
-                          const TextStyle(fontFamily: "UrduType", fontSize: 20),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Text(
+                        submoduleTitles[index],
+                        style:
+                            const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Row(
@@ -234,25 +238,9 @@ class JourneyMapScreen extends StatelessWidget {
                         // Note: SvgPicture.asset requires the flutter_svg package.
                         // SvgPicture.asset("assets/images/person_card.svg",
                         //     color: const Color(0xff685F78)),
+
                         const SizedBox(width: 8),
-                        Text(
-                          "$quizzesCount کوئز",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: "UrduType",
-                              color: Color(0xff685F78)),
-                        ),
-                        const SizedBox(width: 8),
-                        Container(
-                          width: 5,
-                          height: 5,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Color(0xff685F78)),
-                        ),
-                        const SizedBox(width: 8),
-                        SvgPicture.asset("assets/images/clock.svg",
-                            color: const Color(0xff685F78)),
-                        const SizedBox(width: 4),
+
                         const Text(
                           "01 گھنٹہ 30 منٹ",
                           textDirection: TextDirection.rtl,
@@ -261,6 +249,29 @@ class JourneyMapScreen extends StatelessWidget {
                               fontFamily: "UrduType",
                               color: Color(0xff685F78)),
                         ),
+
+                        const Icon(Icons.watch_later_outlined, size: 16,),
+                        const SizedBox(width: 8),
+                        Container(
+                          width: 5,
+                          height: 5,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Color(0xff685F78)),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          "$quizzesCount کوئز",
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontFamily: "UrduType",
+                              color: Color(0xff685F78)),
+                        ),
+                        const SizedBox(width: 8),
+
+                        const SizedBox(width: 8),
+
+                        const SizedBox(width: 4),
+
                       ],
                     ),
                     const SizedBox(height: 5),
@@ -273,9 +284,10 @@ class JourneyMapScreen extends StatelessWidget {
                       submoduleDescriptions[index],
                       style: const TextStyle(
                           fontFamily: "UrduType",
-                          fontSize: 18,
+                          fontSize: 14,
+
                           color: Color(0xff7A7D84),
-                          height: 1.2),
+                          ),
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
