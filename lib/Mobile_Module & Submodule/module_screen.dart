@@ -25,7 +25,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double progressValue = 0.4; // Example variable to hold progress value
+    double progressValue = 0.5; // Example variable to hold progress value
 
     final List<Map<String, dynamic>> moduleData = [
       {
@@ -33,7 +33,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         'imagePath': 'assets/images/image9.png',
         'submoduleCount': 2, // Number of submodules for this module
         'isStart' : true,
-        'progressValue' : 0.4,
+        'progressValue' : 0.1,
         'onTap': () {
           Get.to(
               () => JourneyMapScreen(
@@ -72,7 +72,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         'imagePath': 'assets/images/image10.png',
         'submoduleCount': 4, // Number of submodules for this module
         'isStart' : true,
-        'progressValue' : 0.6,
+        'progressValue' : 0.2,
         'onTap': () {
           Get.to(
               () => JourneyMapScreen2(
@@ -122,8 +122,8 @@ class _ModuleScreenState extends State<ModuleScreen> {
         'cardText': 'جنسی بیماریاں',
         'imagePath': 'assets/images/image11.png',
         'submoduleCount': 2, // Number of submodules for this module
-        'isStart' : false,
-        'progressValue' : 0.0,
+        'isStart' : true,
+        'progressValue' : 0.3,
         'onTap': () {
           Get.to(
               () => JourneyMapScreen(
@@ -352,7 +352,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
     ];
 
     return Scaffold(
-      backgroundColor: Color(0xFFF6F6F6),
+      backgroundColor: const Color(0xFFF6F6F6),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 1.0,
@@ -399,7 +399,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         child: ListView(
           children: [
             Container(
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -424,6 +424,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                             fontFamily: 'UrduType',
                             color: Colors.white,
                             fontSize: 24,
+                            fontWeight: FontWeight.w500,
                             letterSpacing: 1)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -511,9 +512,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+
                     _feedbackButtonPressed
                         ? RatingBar.builder(
                             unratedColor: const Color(0xffC8CCFE),
@@ -570,8 +569,8 @@ class _ModuleScreenState extends State<ModuleScreen> {
             ),*/
 
             Container(
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.only(top: 16),
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.only(top: 16),
               width: double.infinity,
               color: Colors.white,
               child: Column(
@@ -587,49 +586,55 @@ class _ModuleScreenState extends State<ModuleScreen> {
 
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ...rowPadded([
-                        SvgPicture.asset('assets/images/module.svg'),
-                        const Text(
-                          '16 ماڈیولز',
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              color: Color(0xff7A7D84),
-                              fontSize: 15),
-                        ),
-                        const Text(
-                          '•',
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              color: Color(0xff232323),
-                              fontSize: 18),
-                        ),
-                        SvgPicture.asset('assets/images/person_card.svg'),
-                        const Text(
-                          '12 کوئز',
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              color: Color(0xff7A7D84),
-                              fontSize: 15),
-                        ),
-                        const Text(
-                          '•',
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              color: Color(0xff232323),
-                              fontSize: 18),
-                        ),
-                        const Text(
-                          '5h 45m کل لمبائی',
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              color: Color(0xff7A7D84),
-                              fontSize: 15),
-                        )
-                      ], 4)
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ...rowPadded([
+                          SvgPicture.asset('assets/images/module.svg'),
+                          const Text(
+                            '16 ماڈیولز',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff7A7D84),
+                                letterSpacing: 1,
+                                fontSize: 14),
+                          ),
+                          const Text(
+                            '•',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff232323),
+                                fontSize: 18),
+                          ),
+                          SvgPicture.asset('assets/images/person_card.svg'),
+                          const Text(
+                            '12 کوئز',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff7A7D84),
+                                letterSpacing: 1,
+                                fontSize: 14),
+                          ),
+                          const Text(
+                            '•',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff232323),
+                                fontSize: 18),
+                          ),
+                          const Text(
+                            '5h 45m کل لمبائی',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff7A7D84),
+                                letterSpacing: 1,
+                                fontSize: 14),
+                          )
+                        ], 4)
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
@@ -675,7 +680,8 @@ class _ModuleScreenState extends State<ModuleScreen> {
                               style: TextStyle(
                                   fontFamily: "UrduType",
                                   color: Colors.black,
-                                  fontSize: 15),
+                                  letterSpacing: 1,
+                                  fontSize: 14),
                             )
                           ],
                         ),
@@ -697,7 +703,8 @@ class _ModuleScreenState extends State<ModuleScreen> {
                           'کورس جاری رکھیں',
                           style: TextStyle(
                             fontFamily: "UrduType",
-                            fontSize: 16,
+                            fontSize: 14,
+                            letterSpacing: 1,
                             color: Colors.white,
                           ),
                         ),
