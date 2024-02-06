@@ -5,10 +5,11 @@ import 'Gradient_Circle_Progress_Bar.dart';
 class Module_DashBoard_Card extends StatelessWidget {
   const Module_DashBoard_Card(
       {Key? key,
-        required this.progressValue,
-        required this.showProgressBar,
-        required this.imagePath,
-        required this.cardText, required this.onClick})
+      required this.progressValue,
+      required this.showProgressBar,
+      required this.imagePath,
+      required this.cardText,
+      required this.onClick})
       : super(key: key);
 
   final double progressValue;
@@ -22,11 +23,10 @@ class Module_DashBoard_Card extends StatelessWidget {
     return GestureDetector(
       onTap: onClick,
       child: Container(
-        width: 400,
-        height: 75,
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.withOpacity(0.3)),
-            color: const Color(0xffE0E0E0).withOpacity(0.4),
+            color: const Color(0xffeaeaea).withOpacity(0.4),
             borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.only(left: 15, right: 15),
@@ -46,10 +46,14 @@ class Module_DashBoard_Card extends StatelessWidget {
                     const SizedBox(width: 15),
                     Text(
                       cardText, // Updated this line
-                      style: const TextStyle(fontFamily: 'UrduType', fontSize: 20),
-                      softWrap: true, // Set softWrap to true to enable text wrapping
+                      style: const TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 16,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w400),
+                      softWrap: true,
+                      // Set softWrap to true to enable text wrapping
                       overflow: TextOverflow.ellipsis, // or TextOverflow.fade
-
                     ),
                   ],
                 ),
