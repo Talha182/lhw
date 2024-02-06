@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Total.dart';
+import 'courses_item.dart';
+import 'total_courses.dart';
 import 'course_model.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class OnGoing extends StatelessWidget {
         itemCount: ongoingCourses.length,
         itemBuilder: (context, index) {
           final course = ongoingCourses[index];
-          return CourseItem(course: course); // Reuse the CourseItem widget from Total screen
+          return CourseCard(course: course); // Reuse the CourseItem widget from Total screen
         },
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/FAB_Page/BottomModalSheet.dart';
-import 'package:lhw/Courses_Tab/Courses_tabbar.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
+import 'package:lhw/course_tabbar/courses_tabbar.dart';
 
 import 'Discussion_Group/DiscussionGroups.dart';
 import 'Mobile_HomePage/home_page.dart';
@@ -28,7 +28,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
 
   final List<Widget> pages = [
     const HomePage(),
-    const CoursesPage_Tabbar(),
+    const Courses_Tabbar(),
     const GroupsDiscussion(showAppBar: true,),
     const ReportsScreen(),
   ];

@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Branching/LessonOption33.dart';
 import 'package:lhw/Comic_Strip/comic_strip.dart';
-import 'package:lhw/Courses_Tab/Courses_tabbar.dart';
-import 'package:lhw/Courses_Test/Tabbar.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/api/firebase_api.dart';
+import 'package:lhw/course_tabbar/courses_tabbar.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:lhw/navy.dart';
@@ -20,7 +19,8 @@ import 'package:lhw/splash/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'Courses_Test/course_provider.dart';
+import 'course_tabbar/course_provider.dart';
+
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
