@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -12,6 +14,8 @@ import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
 import '../QuizController.dart';
 
 class LessonOption21 extends StatefulWidget {
+  const LessonOption21({super.key});
+
   @override
   _LessonOption21State createState() => _LessonOption21State();
 }
@@ -111,7 +115,7 @@ class _LessonOption21State extends State<LessonOption21> {
     showAnimatedDialog(
       curve: Curves.fastOutSlowIn,
       animationType: DialogTransitionType.sizeFade,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       barrierDismissible: true,
       context: context,
       builder: (context) {

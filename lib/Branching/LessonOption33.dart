@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';

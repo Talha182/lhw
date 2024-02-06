@@ -2,38 +2,20 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Bookmarks.dart';
-import 'package:lhw/Branching/LessonOption21.dart';
-import 'package:lhw/Branching/LessonOption24.dart';
-import 'package:lhw/Branching/LessonOption25.dart';
 import 'package:lhw/Branching/LessonOption33.dart';
 import 'package:lhw/Comic_Strip/comic_strip.dart';
-import 'package:lhw/Image_Hotspot/LessonOption26.dart';
-import 'package:lhw/Interactive%20Image/LessonOption32.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20open%20view.dart';
-import 'package:lhw/Mobile_Module%20&%20Submodule/Course_dropdown%20openview%202.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
 import 'package:lhw/Presentation/Presentation.dart';
-import 'package:lhw/Quiz/MCQ%204.dart';
-import 'package:lhw/Quiz/MCQ%205.dart';
-import 'package:lhw/Quiz/MCQ%206.dart';
-import 'package:lhw/Reports/Reports_Learning.dart';
-import 'package:lhw/Result/ResultScreen.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
+import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
-import 'package:lhw/test/Features/InteractiveImage.dart';
-import 'package:lhw/test/Features/ObjectivesTree.dart';
+import 'package:lhw/splash/splash.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
-import 'Mobile_Lesson & Flashcards/Lesson.dart';
-import 'navy.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -75,13 +57,12 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-
       home: Obx(() {
         switch (AuthenticationRepository.instance.authStatus.value) {
           case AuthStatus.undecided:
-            return const LoadingScreen();  // your loading screen widget
+            return const LoadingScreen(); // your loading screen widget
           case AuthStatus.authenticated:
-            return const ModuleScreen();
+            return const Custom_NavBar();
           case AuthStatus.unauthenticated:
           default:
             return const LoginScreen();

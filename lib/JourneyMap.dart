@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+
 class JourneyMapScreen extends StatelessWidget {
   final List<String> submoduleTitles;
   final List<String> submoduleDescriptions;
@@ -34,97 +35,98 @@ class JourneyMapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: const Alignment(0, -0.2),
-                colors: [
-                  const Color(0xff80B8FB).withOpacity(0.3),
-                  Colors.transparent,
-                ],
-              ),
-            ),
-            child: Stack(children: [
-              Positioned(
-                top: 70,
-                right: 30,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-              ), Positioned(
-                top: 90,
-                left: 30,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              Positioned(
-                  left: 10,
-                  top: 180,
-                  child: SvgPicture.asset("assets/images/path.svg")),
-              Positioned(
-                  left: 15,
-                  top: 190,
-                  child: SvgPicture.asset("assets/images/path_dots.svg")),
-              Positioned(
-                  left: 10,
-                  top: 110,
-                  child: SvgPicture.asset("assets/images/pencil.svg")),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: const Alignment(0, -0.2),
+          colors: [
+            const Color(0xff80B8FB).withOpacity(0.3),
+            Colors.transparent,
+          ],
+        ),
+      ),
+      child: Stack(
+          children: [
+        Positioned(
+          top: 70,
+          right: 30,
+          child: SvgPicture.asset(
+            'assets/images/cloud.svg',
+            width: 30,
+            height: 30,
+            fit: BoxFit.contain,
+          ),
+        ),
+        Positioned(
+          top: 90,
+          left: 30,
+          child: SvgPicture.asset(
+            'assets/images/cloud.svg',
+            width: 30,
+            height: 30,
+            fit: BoxFit.contain,
+          ),
+        ),
+        Positioned(
+            left: 10,
+            top: 180,
+            child: SvgPicture.asset("assets/images/path.svg")),
+        Positioned(
+            left: 15,
+            top: 190,
+            child: SvgPicture.asset("assets/images/path_dots.svg")),
+        Positioned(
+            left: 10,
+            top: 110,
+            child: SvgPicture.asset("assets/images/pencil.svg")),
 
-              // Bottom buildings
-              Positioned(
-                  bottom: 0,
-                  child: SvgPicture.asset("assets/images/build1.svg")),
-              Positioned(
-                  bottom: 0,
-                  left: 80,
-                  child: SvgPicture.asset("assets/images/build2.svg")),
-              Positioned(
-                  bottom: 0,
-                  left: 200,
-                  child: SvgPicture.asset("assets/images/build3.svg")),
-              Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: SvgPicture.asset("assets/images/build4.svg")),
-              Positioned(
-                  bottom: 0,
-                  child: SvgPicture.asset("assets/images/bottom.svg")),
-              Positioned(
-                  bottom: 60, // Adjust as needed
-                  right: 15, // Adjust as needed
-                  child: CircleAvatar(
-                    backgroundColor: const Color(0xffF6B3D0),
-                    radius: 30,
-                    child: Padding(
-                        padding: const EdgeInsets.only(bottom: 2),
-                        child: SvgPicture.asset(
-                          "assets/images/samina_instructor.svg",
-                          fit: BoxFit.fill,
-                        )),
+        // Bottom buildings
+        Positioned(
+            bottom: 0, child: SvgPicture.asset("assets/images/build1.svg")),
+        Positioned(
+            bottom: 0,
+            left: 80,
+            child: SvgPicture.asset("assets/images/build2.svg")),
+        Positioned(
+            bottom: 0,
+            left: 200,
+            child: SvgPicture.asset("assets/images/build3.svg")),
+        Positioned(
+            bottom: 0,
+            right: 0,
+            child: SvgPicture.asset("assets/images/build4.svg")),
+        Positioned(
+            bottom: 0, child: SvgPicture.asset("assets/images/bottom.svg")),
+        Positioned(
+            bottom: 60, // Adjust as needed
+            right: 15, // Adjust as needed
+            child: CircleAvatar(
+              backgroundColor: const Color(0xffF6B3D0),
+              radius: 30,
+              child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: SvgPicture.asset(
+                    "assets/images/samina_instructor.svg",
+                    fit: BoxFit.fill,
                   )),
+            )),
 
-              Stack(
-                children: List.generate(submoduleTitles.length, (index) {
-                  // Determine alignment based on the titleAlignments list
-                  bool isRightAligned = titleAlignments[index] == 'right';
+        Stack(
+          children: List.generate(submoduleTitles.length, (index) {
+            // Determine alignment based on the titleAlignments list
+            bool isRightAligned = titleAlignments[index] == 'right';
 
-                  return Positioned(
-                    left: buttonPositions[index].dx,
-                    top: buttonPositions[index].dy,
-                    child: isRightAligned
-                        ? _buildRightAlignedRow(context, index)
-                        : _buildLeftAlignedRow(context, index),
-                  );
-                }),
-              ),
-            ].animate(interval: 120.ms). fade(duration: 120.ms)),));
+            return Positioned(
+              left: buttonPositions[index].dx,
+              top: buttonPositions[index].dy,
+              child: isRightAligned
+                  ? _buildRightAlignedRow(context, index)
+                  : _buildLeftAlignedRow(context, index),
+            );
+          }),
+        ),
+      ].animate(interval: 120.ms).fade(duration: 120.ms)),
+    ));
   }
 
   Widget _buildLeftAlignedRow(BuildContext context, int index) {
@@ -132,7 +134,8 @@ class JourneyMapScreen extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          submoduleTitles[index],textAlign: TextAlign.center,
+          submoduleTitles[index],
+          textAlign: TextAlign.center,
           style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
         ),
         const SizedBox(width: 8),
@@ -313,7 +316,12 @@ class JourneyMapScreen extends StatelessWidget {
                             ),
                             minimumSize: const Size(140, 40),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pop(); // Close the dialog first
+                            navigateActions[
+                                index](); // Execute the navigation action
+                          },
                           child: const Text(
                             'کورس جاری رکھیں',
                             style: TextStyle(
@@ -343,8 +351,8 @@ class JourneyMapScreen extends StatelessWidget {
     //         TextButton(
     //           child: Text('Navigate'),
     //           onPressed: () {
-    //             Navigator.of(context).pop(); // Close the dialog first
-    //             navigateActions[index](); // Execute the navigation action
+    // Navigator.of(context).pop(); // Close the dialog first
+    // navigateActions[index](); // Execute the navigation action
     //           },
     //         ),
     //         TextButton(
