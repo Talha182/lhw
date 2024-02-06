@@ -6,7 +6,10 @@ import 'package:get/get.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import '../Login_SignUp/Login.dart';
+import '../course_tabbar/course_model.dart';
+import '../course_tabbar/course_provider.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';
 import '../notification/notifications_screen.dart';
@@ -90,10 +93,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Access the CoursesProvider
+    CoursesProvider coursesProvider = Provider.of<CoursesProvider>(context);
+
+    // Find the course with courseId 3
+    Course course = coursesProvider.courses.firstWhere((course) => course.courseId == 3);
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        backgroundColor: Color(0xFFF1F1F1),
+        backgroundColor: const Color(0xFFF1F1F1),
         floatingActionButton: Container(
           margin: const EdgeInsets.only(bottom: 72.0),
           child: Row(
@@ -343,8 +352,8 @@ class _HomePageState extends State<HomePage> {
                                   height: 20,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: const BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(16)),
                                     color: Colors.white,
@@ -432,13 +441,13 @@ class _HomePageState extends State<HomePage> {
                                                     CrossAxisAlignment.end,
                                                 // Aligns children to the start of the Column.
                                                 children: [
-                                                  const Padding(
+                                                   Padding(
                                                     padding: EdgeInsets.only(
                                                       right: 10,
                                                       bottom: 16,
                                                     ),
                                                     child: Text(
-                                                      'خاندانی منصوبہ بندی',
+                                                      course.title,
                                                       style: TextStyle(
                                                           fontFamily:
                                                               "UrduType",
@@ -458,9 +467,9 @@ class _HomePageState extends State<HomePage> {
                                                         const SizedBox(
                                                           width: 8,
                                                         ),
-                                                        const Text(
-                                                          '24  ماڈیول',
-                                                          style: TextStyle(
+                                                         Text(
+                                                          '${course.moduleCount}  ماڈیول',
+                                                          style: const TextStyle(
                                                               fontFamily:
                                                                   "UrduType",
                                                               fontSize: 12),
@@ -567,14 +576,16 @@ class _HomePageState extends State<HomePage> {
                                             Flexible(
                                               flex: 1,
                                               child: Container(
+                                                height: 100,
                                                 decoration: BoxDecoration(
-                                                    color: Colors.black,
+                                                    color: Colors.white,
+                                                    border: Border.all(color: Colors.grey.shade200),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10)),
                                                 child: Image.asset(
-                                                  "assets/images/team.png",
-                                                  fit: BoxFit.fill,
+                                                  course.imagePath,
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                             ),

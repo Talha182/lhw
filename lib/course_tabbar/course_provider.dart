@@ -101,8 +101,8 @@ class CoursesProvider with ChangeNotifier {
       title: 'متعدی بیماریاں',
       gradient:
           const LinearGradient(colors: [Color(0xff89E4FE), Color(0xff18A3C8)]),
-      quizCount: 64,
-      moduleCount: 64,
+      quizCount: 24,
+      moduleCount: 8,
       imagePath: 'assets/images/immunization-ico.png',
       isStart: true,
       isCompleted: false,
@@ -469,4 +469,5 @@ class CoursesProvider with ChangeNotifier {
 
   List<Course> get ongoingCourses =>
       _courses.where((course) => course.isStart).toList();
+
 }

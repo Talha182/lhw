@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'course_provider.dart';
 
 class OnGoingCourses extends StatelessWidget {
+  const OnGoingCourses({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<Course> ongoingCourses = Provider.of<CoursesProvider>(context).ongoingCourses;
