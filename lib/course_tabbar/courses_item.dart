@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'ArrowContainer.dart';
+import 'ModuleTest/ModuleScreenTest.dart';
 import 'course_model.dart';
 
 class CourseCard extends StatelessWidget {
@@ -12,7 +13,7 @@ class CourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progressValue = 0.75;
+    const progressValue = 0.75;
     return Container(
       width: double.infinity,
       height: 200,
@@ -24,17 +25,15 @@ class CourseCard extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            bottom: -26,
+            bottom: 0,
             left: 0,
             child: Image.asset(
               course.imagePath,
-              width: 190,
-              height: 190,
-              fit: BoxFit.contain,
+              scale: 0.9,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 15, top: 20, bottom: 10),
+            padding: const EdgeInsets.only(top: 20, bottom: 10),
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: Column(
@@ -43,111 +42,128 @@ class CourseCard extends StatelessWidget {
                   course.isCompleted
                       ? ArrowContainer(text: course.arrowText)
                       : course.isStart
-                      ? SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: CircleProgressBar(
-                      strokeWidth: 4.0,
-                      backgroundColor: const Color(0xffE6D0B0),
-                      foregroundColor: Colors.white,
-                      value: progressValue,
-                      child: Center(
-                        child: Text(
-                          '${(progressValue * 100).toStringAsFixed(0)}%',
-                          style: const TextStyle(
-                            fontFamily: 'UrduType',
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                      : const SizedBox(
-                    height: 50,
-                    width: 50,
-                  ),
+                          ? Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircleProgressBar(
+                                  strokeWidth: 4.0,
+                                  backgroundColor: const Color(0xffE6D0B0),
+                                  foregroundColor: Colors.white,
+                                  value: progressValue,
+                                  child: Center(
+                                    child: Text(
+                                      '${(progressValue * 100).toStringAsFixed(0)}%',
+                                      style: const TextStyle(
+                                        fontFamily: 'UrduType',
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(
+                              height: 50,
+                              width: 50,
+                            ),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    course.title,
-                    style: const TextStyle(
-                      fontFamily: 'UrduType',
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: Text(
+                      course.title,
+                      style: const TextStyle(
+                        fontFamily: 'UrduType',
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/module.svg',
-                        color: Colors.white,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        '${course.moduleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
-                        style: const TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 15,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/module.svg',
                           color: Colors.white,
-                          fontWeight: FontWeight.w600,
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        width: 5,
-                        height: 5,
-                        decoration: const BoxDecoration(
+                        const SizedBox(width: 6),
+                        Text(
+                          '${course.moduleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
+                          style: const TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          width: 5,
+                          height: 5,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        SvgPicture.asset(
+                          'assets/images/quiz.svg',
                           color: Colors.white,
-                          shape: BoxShape.circle,
                         ),
-                      ),
-                      const SizedBox(width: 6),
-                      SvgPicture.asset(
-                        'assets/images/quiz.svg',
-                        color: Colors.white,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        '${course.quizCount} کوئز', // Example text, replace with dynamic data if necessary
-                        style: const TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                        const SizedBox(width: 6),
+                        Text(
+                          '${course.quizCount} کوئز', // Example text, replace with dynamic data if necessary
+                          style: const TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   course.isStart
-                      ? ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.white.withOpacity(0.5),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                      ? Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white.withOpacity(0.5),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              minimumSize: const Size(120, 30),
                             ),
-                            minimumSize: const Size(120, 30),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'جاری رہے',
-                            style: TextStyle(
-                              fontFamily: 'UrduType',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ModuleScreenTest(course: course),
                             ),
                           ),
-                        )
+                            child: const Text(
+                              'جاری رہے',
+                              style: TextStyle(
+                                fontFamily: 'UrduType',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                      )
                       : const SizedBox(
                           height: 0,
                         ),

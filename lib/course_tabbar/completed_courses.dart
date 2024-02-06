@@ -5,7 +5,7 @@ import 'courses_item.dart';
 import 'course_model.dart';
 import 'course_provider.dart';
 
-class CompleteCoursesScreen extends StatelessWidget {
+class CompletedCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Fetching the list of completed courses using Provider

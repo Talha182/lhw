@@ -128,10 +128,10 @@ class _Courses_TabbarState extends State<Courses_Tabbar> {
             child: TabBarView(
               children: <Widget>[
 
-                Total(),
-                CompleteCoursesScreen(),
+                TotalCourses(),
+                CompletedCourses(),
 
-                OnGoing(),
+                OnGoingCourses(),
 
               ],
             ),

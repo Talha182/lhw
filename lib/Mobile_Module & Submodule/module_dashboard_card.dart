@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'Gradient_Circle_Progress_Bar.dart';
 
-class Module_DashBoard_Card extends StatelessWidget {
-  const Module_DashBoard_Card(
+class Module_Card extends StatelessWidget {
+  const Module_Card(
       {Key? key,
       required this.progressValue,
       required this.showProgressBar,
@@ -24,6 +24,7 @@ class Module_DashBoard_Card extends StatelessWidget {
       onTap: onClick,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+        margin: EdgeInsets.symmetric( vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.withOpacity(0.3)),
             color: const Color(0xffeaeaea).withOpacity(0.4),

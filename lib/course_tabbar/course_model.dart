@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'ModuleTest/module_model.dart';
+
 //course model
 class Course {
   final int courseId;
@@ -12,6 +14,7 @@ class Course {
   final bool isCompleted;
   final double progress; // New attribute for progress percentage
   final String arrowText;
+  final List<Module> modules;
 
   Course({
     required this.courseId,
@@ -24,5 +27,7 @@ class Course {
     this.isStart = false,
     this.isCompleted = false,
     this.progress = 0.0, // Default to 0.0
+    required this.modules, // add this line
+
   });
 }

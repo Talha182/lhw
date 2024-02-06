@@ -557,17 +557,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
                 ),
               ),
             ),
-           /* Positioned(
-              bottom: -15,
-              left: 0,
-              child: Image.asset(
-                'assets/images/module.png', // replace with your image name
-                width: 180, // Set your width
-                height: 180,
-                fit: BoxFit.contain, // Set your height
-              ),
-            ),*/
-
             Container(
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.only(top: 16),
@@ -718,7 +707,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                     children: moduleData
                         .map((module) => Padding(
                       padding: const EdgeInsets.only(bottom: 14.0),
-                      child: Module_DashBoard_Card(
+                      child: Module_Card(
                         onClick: module['onTap'],
                         progressValue: module['progressValue'] != null ? double.parse(module['progressValue'].toString()) : 0.0,
                         // Example progress value
