@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Branching/LessonOption33.dart';
 import 'package:lhw/Comic_Strip/comic_strip.dart';
+import 'package:lhw/Courses_Tab/Courses_tabbar.dart';
+import 'package:lhw/Courses_Test/Tabbar.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Mobile_Module%20&%20Submodule/module_screen.dart';
 import 'package:lhw/Presentation/Presentation.dart';
@@ -15,7 +17,10 @@ import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
 import 'package:lhw/splash/splash.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'Courses_Test/course_provider.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -44,30 +49,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      navigatorKey: navigatorKey,
-      routes: {'/notification_screen': (context) => const NotificationScreen()},
-      debugShowCheckedModeBanner: false,
-      builder: (context, child) => ResponsiveBreakpoints.builder(
-        child: child!,
-        breakpoints: [
-          const Breakpoint(start: 0, end: 450, name: MOBILE),
-          const Breakpoint(start: 451, end: 800, name: TABLET),
-          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-        ],
+    return ChangeNotifierProvider(
+      create: (context) => CoursesProvider(),
+      child: GetMaterialApp(
+        navigatorKey: navigatorKey,
+        routes: {'/notification_screen': (context) => const NotificationScreen()},
+        debugShowCheckedModeBanner: false,
+        builder: (context, child) => ResponsiveBreakpoints.builder(
+          child: child!,
+          breakpoints: [
+            const Breakpoint(start: 0, end: 450, name: MOBILE),
+            const Breakpoint(start: 451, end: 800, name: TABLET),
+            const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+            const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+          ],
+        ),
+        home: Obx(() {
+          switch (AuthenticationRepository.instance.authStatus.value) {
+            case AuthStatus.undecided:
+              return const LoadingScreen(); // your loading screen widget
+            case AuthStatus.authenticated:
+              return const Courses_Tabbar();
+            case AuthStatus.unauthenticated:
+            default:
+              return const LoginScreen();
+          }
+        }),
       ),
-      home: Obx(() {
-        switch (AuthenticationRepository.instance.authStatus.value) {
-          case AuthStatus.undecided:
-            return const LoadingScreen(); // your loading screen widget
-          case AuthStatus.authenticated:
-            return const ModuleScreen();
-          case AuthStatus.unauthenticated:
-          default:
-            return const LoginScreen();
-        }
-      }),
     );
   }
 }
