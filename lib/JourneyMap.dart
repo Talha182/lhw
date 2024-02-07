@@ -223,13 +223,12 @@ class JourneyMapScreen extends StatelessWidget {
                       style: const TextStyle(
                           fontFamily: "UrduType", color: Color(0xff685F78)),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Text(
                         submoduleTitles[index],
-                        style:
-                            const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                        style: const TextStyle(
+                            fontFamily: "UrduType", fontSize: 20),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -250,7 +249,10 @@ class JourneyMapScreen extends StatelessWidget {
                               color: Color(0xff685F78)),
                         ),
 
-                        const Icon(Icons.watch_later_outlined, size: 16,),
+                        const Icon(
+                          Icons.watch_later_outlined,
+                          size: 16,
+                        ),
                         const SizedBox(width: 8),
                         Container(
                           width: 5,
@@ -271,7 +273,6 @@ class JourneyMapScreen extends StatelessWidget {
                         const SizedBox(width: 8),
 
                         const SizedBox(width: 4),
-
                       ],
                     ),
                     const SizedBox(height: 5),
@@ -283,11 +284,10 @@ class JourneyMapScreen extends StatelessWidget {
                     Text(
                       submoduleDescriptions[index],
                       style: const TextStyle(
-                          fontFamily: "UrduType",
-                          fontSize: 14,
-
-                          color: Color(0xff7A7D84),
-                          ),
+                        fontFamily: "UrduType",
+                        fontSize: 14,
+                        color: Color(0xff7A7D84),
+                      ),
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
@@ -329,16 +329,18 @@ class JourneyMapScreen extends StatelessWidget {
                             minimumSize: const Size(140, 40),
                           ),
                           onPressed: () {
-                            Navigator.of(context).pop(); // Close the dialog first
+                            Navigator.of(context)
+                                .pop(); // Close the dialog first
                             // Directly invoking the first function in the list of navigate actions for the example
                             if (navigateActions[index] is List<Function()>) {
                               // Safely check if the first item in the nested list is a function and then invoke it
-                              if (navigateActions[index].isNotEmpty && navigateActions[index][0] is Function) {
-                                navigateActions[index][0](); // Execute the first navigation action
+                              if (navigateActions[index].isNotEmpty &&
+                                  navigateActions[index][0] is Function) {
+                                navigateActions[index][
+                                    0](); // Execute the first navigation action
                               }
                             }
                           },
-
                           child: const Text(
                             'کورس جاری رکھیں',
                             style: TextStyle(

@@ -447,8 +447,9 @@ class _HomePageState extends State<HomePage> {
                                                     CrossAxisAlignment.end,
                                                 // Aligns children to the start of the Column.
                                                 children: [
-                                                   Padding(
-                                                    padding: const EdgeInsets.only(
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
                                                       right: 10,
                                                       bottom: 16,
                                                     ),
@@ -473,7 +474,7 @@ class _HomePageState extends State<HomePage> {
                                                         const SizedBox(
                                                           width: 8,
                                                         ),
-                                                         Text(
+                                                        Text(
                                                           '${lastVisitedCourse.moduleCount}  ماڈیول',
                                                           style: const TextStyle(
                                                               fontFamily:
@@ -585,7 +586,9 @@ class _HomePageState extends State<HomePage> {
                                                 height: 100,
                                                 decoration: BoxDecoration(
                                                     color: Colors.white,
-                                                    border: Border.all(color: Colors.grey.shade200),
+                                                    border: Border.all(
+                                                        color: Colors
+                                                            .grey.shade200),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10)),
@@ -699,9 +702,10 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                                     ),
                                                     GestureDetector(
-                                                      child: const Icon(Icons
-                                                          .arrow_forward_ios,
-                                                      size: 14,),
+                                                      child: const Icon(
+                                                        Icons.arrow_forward_ios,
+                                                        size: 14,
+                                                      ),
                                                       onTap: () async {
                                                         await AuthenticationRepository
                                                             .instance
@@ -794,8 +798,10 @@ class _HomePageState extends State<HomePage> {
                                                     ),
                                                     // Icon button on the right
                                                     GestureDetector(
-                                                      child: const Icon(Icons
-                                                          .arrow_forward_ios, size: 14,),
+                                                      child: const Icon(
+                                                        Icons.arrow_forward_ios,
+                                                        size: 14,
+                                                      ),
                                                       onTap: () {},
                                                     ),
                                                     const SizedBox(
