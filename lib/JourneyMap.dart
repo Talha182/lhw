@@ -8,7 +8,7 @@ class JourneyMapScreen extends StatelessWidget {
   final List<String> submoduleDescriptions;
   final List<Offset> buttonPositions;
   final List<String> iconPaths;
-  final List<Function()> navigateActions;
+  final List<List<void Function()>> navigateActions;
   final List<int> numberOfQuizzes;
   final List<String>
       titleAlignments; // New parameter for individual title alignments
@@ -329,11 +329,16 @@ class JourneyMapScreen extends StatelessWidget {
                             minimumSize: const Size(140, 40),
                           ),
                           onPressed: () {
-                            Navigator.of(context)
-                                .pop(); // Close the dialog first
-                            navigateActions[
-                                index](); // Execute the navigation action
+                            Navigator.of(context).pop(); // Close the dialog first
+                            // Directly invoking the first function in the list of navigate actions for the example
+                            if (navigateActions[index] is List<Function()>) {
+                              // Safely check if the first item in the nested list is a function and then invoke it
+                              if (navigateActions[index].isNotEmpty && navigateActions[index][0] is Function) {
+                                navigateActions[index][0](); // Execute the first navigation action
+                              }
+                            }
                           },
+
                           child: const Text(
                             'کورس جاری رکھیں',
                             style: TextStyle(
