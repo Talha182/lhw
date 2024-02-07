@@ -1,10 +1,12 @@
 import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import 'ArrowContainer.dart';
 import 'ModuleTest/ModuleScreenTest.dart';
 import 'course_model.dart';
+import 'course_provider.dart';
 
 class CourseCard extends StatelessWidget {
   final Course course;
@@ -137,8 +139,8 @@ class CourseCard extends StatelessWidget {
                   ),
                   course.isStart
                       ? Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                        child: ElevatedButton(
+                          padding: const EdgeInsets.only(right: 15.0),
+                          child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               primary: Colors.white.withOpacity(0.5),
                               elevation: 0,
@@ -147,12 +149,16 @@ class CourseCard extends StatelessWidget {
                               ),
                               minimumSize: const Size(120, 30),
                             ),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ModuleScreenTest(course: course),
-                            ),
-                          ),
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ModuleScreenTest(course: course),
+                              ),
+                            ).then((_) {
+    // Assuming 'course' is the course object for the navigated course
+    Provider.of<CoursesProvider>(context, listen: false).setLastVisitedCourse(course);
+    }),
                             child: const Text(
                               'جاری رہے',
                               style: TextStyle(
@@ -163,7 +169,7 @@ class CourseCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                      )
+                        )
                       : const SizedBox(
                           height: 0,
                         ),

@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/custom_widgets/Line_chart.dart';
+import 'package:lhw/loading_screen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import '../Login_SignUp/Login.dart';
@@ -93,14 +94,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Access the CoursesProvider
-    CoursesProvider coursesProvider = Provider.of<CoursesProvider>(context);
-
-    // Find the course with courseId 3
-    Course course = coursesProvider.courses.firstWhere((course) => course.courseId == 3);
+    // Accessing the CoursesProvider
+    final provider = Provider.of<CoursesProvider>(context);
+    final lastVisitedCourse = provider.lastVisitedCourse;
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    if (provider.isLoading) {
+      return const Scaffold(
+        body: Center(
+          child: LoadingScreen(), // Show a loading indicator
+        ),
+      );
+    }
     return Scaffold(
         backgroundColor: const Color(0xFFF1F1F1),
         floatingActionButton: Container(
@@ -442,13 +448,13 @@ class _HomePageState extends State<HomePage> {
                                                 // Aligns children to the start of the Column.
                                                 children: [
                                                    Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                       right: 10,
                                                       bottom: 16,
                                                     ),
                                                     child: Text(
-                                                      course.title,
-                                                      style: TextStyle(
+                                                      lastVisitedCourse!.title,
+                                                      style: const TextStyle(
                                                           fontFamily:
                                                               "UrduType",
                                                           fontSize: 14),
@@ -468,7 +474,7 @@ class _HomePageState extends State<HomePage> {
                                                           width: 8,
                                                         ),
                                                          Text(
-                                                          '${course.moduleCount}  ماڈیول',
+                                                          '${lastVisitedCourse.moduleCount}  ماڈیول',
                                                           style: const TextStyle(
                                                               fontFamily:
                                                                   "UrduType",
@@ -584,7 +590,7 @@ class _HomePageState extends State<HomePage> {
                                                         BorderRadius.circular(
                                                             10)),
                                                 child: Image.asset(
-                                                  course.imagePath,
+                                                  lastVisitedCourse!.imagePath,
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
