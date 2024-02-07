@@ -1,96 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../JourneyMap.dart';
-import '../JourneyMap2.dart';
 import 'ModuleTest/module_model.dart';
 import 'course_model.dart';
 
 // course provider
 class CoursesProvider with ChangeNotifier {
   final List<Course> _courses = [
-      Course(
-        courseId: 1,
-        title: 'تعارف ٹریننگ کا طریقہ کار',
-        gradient:
-        const LinearGradient(colors: [Color(0xffEAAF58), Color(0xffF4D6A9)]),
-        quizCount: 64,
-        moduleCount: 64,
-        imagePath: 'assets/images/two_women.png',
-        isStart: true,
-        modules: [
-          Module(
-            moduleId: 1,
-            title: 'متعدی بیماریوں کا تعارف',
-            imagePath: 'assets/images/image9.png',
-            isStart: false,
-            progressValue: 0.5,
-            onTap: () {
-              Get.to(
-                      () =>
-                      JourneyMapScreen(
-                        submoduleTitles: const [
-                          'متعدی بیماریوں کا تعارف',
-                          'متعدی بیماریوں کی مثالیں۔',
-                        ],
-                        submoduleDescriptions: const [
-                          'اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی، جو بیکٹیریا، وائرس، پھپھوندی، یا پیراسائٹ جیسے جانداروں کی وجہ سے ہونے والی بیماریاں ہیں. آپ جانیں گی  کہ یہ بیماریاں کس طرح ایک شخص سے دوسرے شخص میں، کیڑے مکوڑوں یا جانوروں کے ذریعے، اور بعض اوقات آلودہ غذا یا پانی پینے سے پھیل سکتی ہیں۔',
-                          "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔ "
-                        ],
-                        buttonPositions: const [
-                          Offset(120, 520), // Position for Submodule 1
-                          Offset(70, 200), // Position for Submodule 2
-                        ],
-                        iconPaths: const [
-                          'assets/images/tick.svg', // Path to Submodule 2 icon
-                          'assets/images/book.svg', // Path to Submodule 1 icon
-                        ],
-                        navigateActions: [
-                          [
-                            // Wrap the Get.to call to ignore its Future return value
-                                () {
-                              Get.to(() => Feature1(nextFeatures: [
-                                // Passing subsequent features as next actions
+    Course(
+      courseId: 1,
+      title: 'تعارف ٹریننگ کا طریقہ کار',
+      gradient:
+          const LinearGradient(colors: [Color(0xffEAAF58), Color(0xffF4D6A9)]),
+      quizCount: 64,
+      moduleCount: 64,
+      imagePath: 'assets/images/two_women.png',
+      isStart: true,
+      modules: [
+        Module(
+          moduleId: 1,
+          title: 'متعدی بیماریوں کا تعارف',
+          imagePath: 'assets/images/image9.png',
+          isStart: false,
+          progressValue: 0.5,
+          onTap: () {
+            Get.to(
+                () => JourneyMapScreen(
+                      submoduleTitles: const [
+                        'متعدی بیماریوں کا تعارف',
+                        'متعدی بیماریوں کی مثالیں۔',
+                      ],
+                      submoduleDescriptions: const [
+                        'اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی، جو بیکٹیریا، وائرس، پھپھوندی، یا پیراسائٹ جیسے جانداروں کی وجہ سے ہونے والی بیماریاں ہیں. آپ جانیں گی  کہ یہ بیماریاں کس طرح ایک شخص سے دوسرے شخص میں، کیڑے مکوڑوں یا جانوروں کے ذریعے، اور بعض اوقات آلودہ غذا یا پانی پینے سے پھیل سکتی ہیں۔',
+                        "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔ "
+                      ],
+                      buttonPositions: const [
+                        Offset(120, 520), // Position for Submodule 1
+                        Offset(70, 200), // Position for Submodule 2
+                      ],
+                      iconPaths: const [
+                        'assets/images/tick.svg', // Path to Submodule 2 icon
+                        'assets/images/book.svg', // Path to Submodule 1 icon
+                      ],
+                      navigateActions: [
+                        [
+                          // Wrap the Get.to call to ignore its Future return value
+                          () {
+                            Get.to(() => Feature1(
+                                  nextFeatures: [
+                                    // Passing subsequent features as next actions
                                     () {
-                                  Get.to(() => Feature2(nextFeatures: [
-                                        () => Get.to(() => Feature3(nextFeatures: [])),
-                                  ]));
-                                },
-                                // If directly going to Feature3 is an option
-                                    () => Get.to(() => Feature3(nextFeatures: [])),
-                              ]));
-                            },
-                          ],
-                          [
-                            // For Submodule 2, navigating directly to Feature3
-                                () => Get.to(() => Feature3(nextFeatures: [])),
-                          ],
+                                      Get.to(() => Feature2(nextFeatures: [
+                                            () => Get.to(() => const Feature3(
+                                                nextFeatures: [])),
+                                          ]));
+                                    },
+                                    // If directly going to Feature3 is an option
+                                    () => Get.to(
+                                        () => const Feature3(nextFeatures: [])),
+                                  ],
+                                  title: 'Title For 1',
+                                  description: 'Description for 1',
+                                ));
+                          },
                         ],
+                        [
+                          // For Submodule 2, navigating directly to Feature3
+                          () => Get.to(() => const Feature3(nextFeatures: [])),
+                        ],
+                      ],
+                      numberOfQuizzes: const [1, 1],
+                      titleAlignments: const ['left', 'left'],
+                    ),
+                transition: Transition.fade,
+                duration: const Duration(milliseconds: 400));
 
-                        numberOfQuizzes: const [1, 1],
-                        titleAlignments: const ['left', 'left'],
-                      ),
-                  transition: Transition.fade,
-                  duration: const Duration(milliseconds: 400));
-
-              // Define what happens when you tap this module
-            },
-            submoduleCount: 2,
-          ),
-          Module(
-            moduleId: 1,
-            title: 'متعدی بیماریوں کا تعارف',
-            imagePath: 'assets/images/image9.png',
-            isStart: false,
-            progressValue: 0.5,
-            onTap: () {
-              // Define what happens when you tap this module
-            },
-            submoduleCount: 2,
-          ),
-        ],
-      ),
+            // Define what happens when you tap this module
+          },
+          submoduleCount: 2,
+        ),
+        Module(
+          moduleId: 1,
+          title: 'متعدی بیماریوں کا تعارف',
+          imagePath: 'assets/images/image9.png',
+          isStart: false,
+          progressValue: 0.5,
+          onTap: () {
+            // Define what happens when you tap this module
+          },
+          submoduleCount: 2,
+        ),
+      ],
+    ),
     // Course(
     //   courseId: 2,
     //   title: 'کمیونٹی کے ساتھ مل کر کام کرنا',
@@ -521,50 +523,58 @@ class CoursesProvider with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('lastVisitedCourseId', course.courseId);
   }
+
   Future<void> _loadLastVisitedCourse() async {
     final prefs = await SharedPreferences.getInstance();
     final lastVisitedCourseId = prefs.getInt('lastVisitedCourseId');
 
     if (lastVisitedCourseId != null) {
-      _lastVisitedCourse = _courses.firstWhere((course) => course.courseId == lastVisitedCourseId, orElse: () => null!);
+      _lastVisitedCourse = _courses.firstWhere(
+          (course) => course.courseId == lastVisitedCourseId,
+          orElse: () => null!);
     } else {
-      _lastVisitedCourse = _courses.firstWhere((course) => course.courseId == 1, orElse: () => null!);
+      _lastVisitedCourse = _courses.firstWhere((course) => course.courseId == 1,
+          orElse: () => null!);
       await prefs.setInt('lastVisitedCourseId', 1);
     }
     _isLoading = false; // Update the loading flag
     notifyListeners();
   }
-
 }
 
-
-
 class Feature1 extends StatelessWidget {
-  final List<Function> nextFeatures;
+  final String title;
+  final String description;
+  final List<Function()> nextFeatures;
 
-  const Feature1({Key? key, required this.nextFeatures}) : super(key: key);
+  const Feature1(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.nextFeatures})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Feature 1")),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            if (nextFeatures.isNotEmpty) {
-              // Remove the first element (current feature) and navigate to the next one
-              var nextFeature = nextFeatures.removeAt(0);
-              nextFeature.call();
-            } else {
-              // No more features, navigate back or to another relevant screen
-            }
-          },
-          child: Text("Next"),
+      appBar: AppBar(title: Text(title)),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(description, style: TextStyle(fontSize: 16)),
+            ElevatedButton(
+              onPressed: nextFeatures.isNotEmpty ? nextFeatures[0] : null,
+              child: Text('Next'),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
 class Feature2 extends StatelessWidget {
   final List<Function()> nextFeatures;
 
@@ -573,7 +583,7 @@ class Feature2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Feature 2")),
+      appBar: AppBar(title: const Text("Feature 2")),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -583,7 +593,7 @@ class Feature2 extends StatelessWidget {
               nextFeature();
             }
           },
-          child: Text("Next"),
+          child: const Text("Next"),
         ),
       ),
     );
@@ -598,17 +608,15 @@ class Feature3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Feature 3")),
+      appBar: AppBar(title: const Text("Feature 3")),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             // This might be the last feature, handle accordingly
           },
-          child: Text("Done"),
+          child: const Text("Done"),
         ),
       ),
     );
   }
 }
-
-
