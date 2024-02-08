@@ -11,72 +11,58 @@ import '../models/submodule_model.dart';
 
 // course provider
 class CoursesProvider with ChangeNotifier {
-  List<Course> _courses = [];
-
-
-
-  void _initializeCourses() {
-    var featuresForFirstSubmodule = <Function()>[];
-    var featuresForSecondSubmodule = <Function()>[];
-
-    // Placeholder functions for initializing features, to be replaced
-    Function() feature1Screen = () => Get.to(() => Feature1Screen(features: featuresForFirstSubmodule, currentFeatureIndex: 0));
-    Function() feature2Screen = () => Get.to(() => Feature2Screen(features: featuresForFirstSubmodule, currentFeatureIndex: 1));
-    Function() lessonOption26Screen = () => Get.to(() => LessonOption26());
-
-    // Assign features to their respective lists
-    featuresForFirstSubmodule.addAll([feature1Screen, feature2Screen]);
-    featuresForSecondSubmodule.addAll([lessonOption26Screen]);
-
-    // Now, create the course with submodules, referencing the feature lists
-    _courses = [
-      Course(
-        courseId: 1,
-        title: 'تعارف ٹریننگ کا طریقہ کار',
-        gradient: const LinearGradient(colors: [Color(0xffEAAF58), Color(0xffF4D6A9)]),
-        quizCount: 64,
-        moduleCount: 64,
-        imagePath: 'assets/images/two_women.png',
-        isStart: true,
-        modules: [
-          Module(
-            moduleId: 1,
-            title: 'متعدی بیماریوں کا تعارف',
-            imagePath: 'assets/images/image9.png',
-            isStart: false,
-            progressValue: 0.5,
-            onTap: () {},
-            submodules: [
-              Submodule(
-                title: 'متعدی بیماریوں کا تعارف',
-                description: 'اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی...',
-                buttonPosition: const Offset(120, 520),
-                iconPath: 'assets/images/tick.svg',
-                features: featuresForFirstSubmodule,
-                numberOfQuizzes: 1,
-                titleAlignment: 'left',
-              ),
-              Submodule(
-                title: 'متعدی بیماریوں کی مثالیں۔',
-                description: "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا...",
-                buttonPosition: const Offset(70, 200),
-                iconPath: 'assets/images/book.svg',
-                features: featuresForSecondSubmodule,
-                numberOfQuizzes: 1,
-                titleAlignment: 'left',
-              ),
-            ],
-            submoduleCount: 2,
-          ),
-          // Additional modules can be initialized here...
-        ],
-      ),
-    ];
-
-    notifyListeners(); // Notify listeners if your UI needs to update based on these changes
-  }
-
-  List<Course> get courses => _courses;
+  final List<Course> _courses = [
+    Course(
+      courseId: 1,
+      title: 'تعارف ٹریننگ کا طریقہ کار',
+      gradient:
+          const LinearGradient(colors: [Color(0xffEAAF58), Color(0xffF4D6A9)]),
+      quizCount: 64,
+      moduleCount: 64,
+      imagePath: 'assets/images/two_women.png',
+      isStart: true,
+      modules: [
+        Module(
+          moduleId: 1,
+          title: 'متعدی بیماریوں کا تعارف',
+          imagePath: 'assets/images/image9.png',
+          isStart: false,
+          progressValue: 0.5,
+          onTap: () {
+            // Define navigation logic here, adjusted as per your framework's navigation system
+          },
+          submodules: [
+            Submodule(
+              title: 'متعدی بیماریوں کا تعارف',
+              description:
+                  'اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی، جو بیکٹیریا، وائرس، پھپھوندی، یا پیراسائٹ جیسے جانداروں کی وجہ سے ہونے والی بیماریاں ہیں. آپ جانیں گی  کہ یہ بیماریاں کس طرح ایک شخص سے دوسرے شخص میں، کیڑے مکوڑوں یا جانوروں کے ذریعے، اور بعض اوقات آلودہ غذا یا پانی پینے سے پھیل سکتی ہیں۔',
+              buttonPosition: const Offset(120, 520),
+              iconPath: 'assets/images/tick.svg',
+              features: [
+                () => Get.to(const MCQ4()),
+              ],
+              numberOfQuizzes: 1,
+              titleAlignment: 'left',
+            ),
+            Submodule(
+              title: 'متعدی بیماریوں کی مثالیں۔',
+              description:
+                  "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔ ",
+              buttonPosition: const Offset(70, 200),
+              iconPath: 'assets/images/book.svg',
+              features: [
+                () => Get.to(() => const LessonOption26()), // Navigate using GetX
+              ],
+              numberOfQuizzes: 1,
+              titleAlignment: 'left',
+            ),
+          ],
+          submoduleCount: 2,
+        ),
+        // You can define more modules here...
+      ],
+    ),
+  ];
 
   // Course(
   //   courseId: 2,
@@ -478,6 +464,7 @@ class CoursesProvider with ChangeNotifier {
   //     isStart: false,
   //     isCompleted: true),
 
+  List<Course> get courses => _courses;
 
   List<Course> get ongoingCourses =>
       _courses.where((course) => course.isStart).toList();
@@ -497,7 +484,6 @@ class CoursesProvider with ChangeNotifier {
 
   CoursesProvider() {
     _loadLastVisitedCourse();
-    _initializeCourses();
   }
   void setLastVisitedCourse(Course course) async {
     _lastVisitedCourse = course;
@@ -546,11 +532,12 @@ class FeatureScreenTemplate extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Content for $featureTitle", style: TextStyle(fontSize: 20)),
-            SizedBox(height: 20),
+            Text("Content for $featureTitle", style: const TextStyle(fontSize: 20)),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => onNext(),
-              child: Text(isLastFeature ? 'Return to Journey Map' : 'Next Feature'),
+              child: Text(
+                  isLastFeature ? 'Return to Journey Map' : 'Next Feature'),
             ),
           ],
         ),
@@ -563,7 +550,9 @@ class Feature1Screen extends StatelessWidget {
   final List<Function> features;
   final int currentFeatureIndex;
 
-  Feature1Screen({Key? key, required this.features, this.currentFeatureIndex = 0}) : super(key: key);
+  Feature1Screen(
+      {Key? key, required this.features, this.currentFeatureIndex = 0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -584,7 +573,9 @@ class Feature2Screen extends StatelessWidget {
   final List<Function> features;
   final int currentFeatureIndex;
 
-  Feature2Screen({Key? key, required this.features, this.currentFeatureIndex = 1}) : super(key: key);
+  Feature2Screen(
+      {Key? key, required this.features, this.currentFeatureIndex = 1})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -597,7 +588,8 @@ class Feature2Screen extends StatelessWidget {
           Get.back(); // Return to the JourneyMap screen
         }
       },
-      isLastFeature: true, // Mark as the last feature if it's the end of the feature list
+      isLastFeature:
+          true, // Mark as the last feature if it's the end of the feature list
     );
   }
 }
