@@ -3,9 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
+import '../../JourneyMap.dart';
 import '../../Mobile_Module & Submodule/module_dashboard_card.dart';
 import '../../custom_widgets/Row_Column_Padding.dart';
-import '../course_model.dart';
+import '../../models/course_model.dart';
 
 class ModuleScreenTest extends StatefulWidget {
   final Course course;
@@ -323,18 +324,22 @@ class _ModuleScreenTestState extends State<ModuleScreenTest> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount:
-                    course.modules.length, // Use modules.length from the course
+                itemCount: course.modules.length,
                 itemBuilder: (context, index) {
                   final module = course.modules[index];
-                  return Module_Card(
-                    progressValue: module.progressValue,
-                    showProgressBar: module
-                        .isStart, // Assuming this decides if the progress bar should be shown
-                    imagePath: module.imagePath,
-                    cardText: module.title,
-                    onClick: module.onTap,
+                  return
+                   Module_Card(
+                      progressValue: module.progressValue,
+                      showProgressBar: module.isStart,
+                      imagePath: module.imagePath,
+                      cardText: module.title, onClick: () {
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context) => JourneyMapScreen(module: module)),
+                     );
+                    },
                   );
+
                 },
               ),
             ),

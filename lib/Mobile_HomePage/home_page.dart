@@ -9,7 +9,7 @@ import 'package:lhw/loading_screen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import '../Login_SignUp/Login.dart';
-import '../course_tabbar/course_model.dart';
+import '../models/course_model.dart';
 import '../course_tabbar/course_provider.dart';
 import '../custom_widgets/circular_progress_bar_with circle.dart';
 import '../custom_widgets/gradient_circle.dart';

@@ -14,7 +14,8 @@ import '../Quiz_Widgets/QuizCard.dart';
 import '../Quiz_Widgets/Question.dart';
 
 class LessonOption33 extends StatefulWidget {
-  const LessonOption33({super.key});
+  final String videoPath;
+  const LessonOption33({super.key, required this.videoPath});
 
   @override
   State<LessonOption33> createState() => _LessonOption33State();
@@ -207,7 +208,7 @@ class _LessonOption33State extends State<LessonOption33> {
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset("assets/videos/demo.mp4");
+    _videoController = VideoPlayerController.asset(widget.videoPath);
     flickManager = FlickManager(videoPlayerController: _videoController);
 
     _videoController.addListener(_videoListener);

@@ -1,5 +1,9 @@
 import 'dart:ui';
 
+import 'package:lhw/models/submodule_model.dart';
+
+import '../course_tabbar/course_provider.dart';
+
 class Module {
   final int moduleId;
   final String title;
@@ -8,6 +12,8 @@ class Module {
   final bool isStart;
   final double progressValue;
   final VoidCallback onTap;
+  final List<Submodule> submodules;
+
 
   Module({
     required this.moduleId,
@@ -17,5 +23,10 @@ class Module {
     this.isStart = false,
     this.progressValue = 0.0,
     required this.onTap,
+    required this.submodules,
+
   });
 }
+
+
+

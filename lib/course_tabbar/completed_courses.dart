@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'courses_item.dart';
-import 'course_model.dart';
+import '../models/course_model.dart';
 import 'course_provider.dart';
 
 class CompletedCourses extends StatelessWidget {

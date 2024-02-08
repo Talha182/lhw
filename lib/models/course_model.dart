@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ModuleTest/module_model.dart';
+import 'module_model.dart';
 
 //course model
 class Course {

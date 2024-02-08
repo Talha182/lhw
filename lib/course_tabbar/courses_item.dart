@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import 'ArrowContainer.dart';
+import '../custom_widgets/ArrowContainer.dart';
 import 'ModuleTest/ModuleScreenTest.dart';
-import 'course_model.dart';
+import '../models/course_model.dart';
 import 'course_provider.dart';
 
 class CourseCard extends StatelessWidget {
