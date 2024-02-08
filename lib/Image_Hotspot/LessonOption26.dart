@@ -552,7 +552,8 @@ class _LessonOption26State extends State<LessonOption26> {
                       ),
                       minimumSize: const Size(150, 37),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     child: const Text(
                       'جاری رہے',
                       style: TextStyle(
