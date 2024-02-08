@@ -39,7 +39,7 @@ class CoursesProvider with ChangeNotifier {
               buttonPosition: const Offset(120, 520),
               iconPath: 'assets/images/tick.svg',
               features: [
-                () => Get.to(const MCQ4()),
+                () => Get.to( MCQ4()),
               ],
               numberOfQuizzes: 1,
               titleAlignment: 'left',
@@ -64,31 +64,7 @@ class CoursesProvider with ChangeNotifier {
     ),
   ];
 
-  // Course(
-  //   courseId: 2,
-  //   title: 'کمیونٹی کے ساتھ مل کر کام کرنا',
-  //   gradient:
-  //   const LinearGradient(colors: [Color(0xffED8DCE), Color(0xffF4B9E1)]),
-  //   quizCount: 64,
-  //   moduleCount: 64,
-  //   imagePath: 'assets/images/1.png',
-  //   isStart: true,
-  //   isCompleted: false,
-  //   modules: [
-  //     Module(
-  //       moduleId: 1,
-  //       title: 'Module 1',
-  //       imagePath: 'assets/images/image11.png',
-  //       isStart: true,
-  //       progressValue: 0.5,
-  //       onTap: () {
-  //         // Define what happens when you tap this module
-  //       },
-  //       submoduleCount: 2,
-  //     ),
-  //     // Add more modules as needed
-  //   ],
-  // ),
+
   // Course(
   //   courseId: 3,
   //   title: 'متعدی بیماریاں',
@@ -509,87 +485,5 @@ class CoursesProvider with ChangeNotifier {
     }
     _isLoading = false; // Update the loading flag
     notifyListeners();
-  }
-}
-
-class FeatureScreenTemplate extends StatelessWidget {
-  final String featureTitle;
-  final Function onNext;
-  final bool isLastFeature;
-
-  const FeatureScreenTemplate({
-    Key? key,
-    required this.featureTitle,
-    required this.onNext,
-    this.isLastFeature = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(featureTitle)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Content for $featureTitle", style: const TextStyle(fontSize: 20)),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => onNext(),
-              child: Text(
-                  isLastFeature ? 'Return to Journey Map' : 'Next Feature'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Feature1Screen extends StatelessWidget {
-  final List<Function> features;
-  final int currentFeatureIndex;
-
-  Feature1Screen(
-      {Key? key, required this.features, this.currentFeatureIndex = 0})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FeatureScreenTemplate(
-      featureTitle: 'Feature 1',
-      onNext: () {
-        if (currentFeatureIndex + 1 < features.length) {
-          features[currentFeatureIndex + 1]();
-        } else {
-          Get.back(); // Return to the JourneyMap screen
-        }
-      },
-    );
-  }
-}
-
-class Feature2Screen extends StatelessWidget {
-  final List<Function> features;
-  final int currentFeatureIndex;
-
-  Feature2Screen(
-      {Key? key, required this.features, this.currentFeatureIndex = 1})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FeatureScreenTemplate(
-      featureTitle: 'Feature 2',
-      onNext: () {
-        if (currentFeatureIndex + 1 < features.length) {
-          features[currentFeatureIndex + 1]();
-        } else {
-          Get.back(); // Return to the JourneyMap screen
-        }
-      },
-      isLastFeature:
-          true, // Mark as the last feature if it's the end of the feature list
-    );
   }
 }
