@@ -111,7 +111,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
             TextField(
               controller: controller.email,
-              keyboardType: TextInputType.phone,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
               decoration: InputDecoration(
