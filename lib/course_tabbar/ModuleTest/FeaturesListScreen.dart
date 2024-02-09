@@ -3,14 +3,23 @@ import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../models/submodule_model.dart';
+
 class FeaturesListScreen extends StatelessWidget {
   final Submodule submodule;
   final String courseTitle; // Add this line
+  final int courseQuizCount;
+  final int courseModuleCount;
+  final String imagePath;
+  final Gradient gradient;
 
   const FeaturesListScreen({
     Key? key,
     required this.submodule,
-    required this.courseTitle, // Add this line
+    required this.courseTitle,
+    required this.courseQuizCount,
+    required this.courseModuleCount,
+    required this.imagePath,
+    required this.gradient, // Add this line
   }) : super(key: key);
 
   @override
@@ -30,68 +39,78 @@ class FeaturesListScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 120,
                 decoration: BoxDecoration(
-                    color: Colors.purple,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'CourseTitle', // Example text, replace with dynamic data if necessary
-                          style: TextStyle(
-                            fontFamily: 'UrduType',
-                            fontSize: 25,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
+                  gradient: gradient,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            courseTitle, // Example text, replace with dynamic data if necessary
+                            style: const TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 25,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/module.svg',
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 6),
-                            const Text(
-                              '12 ماڈیولز', // Example text, replace with dynamic data if necessary
-                              style: TextStyle(
-                                fontFamily: 'UrduType',
-                                fontSize: 15,
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/module.svg',
                                 color: Colors.white,
-                                fontWeight: FontWeight.w600,
                               ),
-                            ),
-                            const SizedBox(width: 8),
-                            Container(
-                              width: 5,
-                              height: 5,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
+                              const SizedBox(width: 6),
+                              Text(
+                                '${courseModuleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
+                                style: const TextStyle(
+                                  fontFamily: 'UrduType',
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 6),
-                            Image.asset(
-                              'assets/images/quiz.png',
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 6),
-                            const Text(
-                              '12 کوئز', // Example text, replace with dynamic data if necessary
-                              style: TextStyle(
-                                fontFamily: 'UrduType',
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
+                              const SizedBox(width: 8),
+                              Container(
+                                width: 5,
+                                height: 5,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
                               ),
-                            ),
-                          ],
-                        )
-                      ]),
+                              const SizedBox(width: 6),
+                              Text(
+                                '${courseQuizCount} کوئز', // Example text, replace with dynamic data if necessary
+                                style: const TextStyle(
+                                  fontFamily: 'UrduType',
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      left: 0,
+                      bottom: 0,
+                      child: Image.asset(
+                        imagePath,
+                        color: Colors.white,
+                        scale: 2.5,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
@@ -154,7 +173,8 @@ class FeaturesListScreen extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),
-              ), const SizedBox(
+              ),
+              const SizedBox(
                 height: 18,
               ),
               Expanded(

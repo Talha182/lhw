@@ -381,13 +381,13 @@ class _HomePageState extends State<HomePage> {
                                             children: <Widget>[
                                               GestureDetector(
                                                 onTap: () {
-                                                  Get.to(
-                                                      () =>
-                                                          const LessonPageTabBar(),
-                                                      transition:
-                                                          Transition.fade,
-                                                      duration: const Duration(
-                                                          milliseconds: 300));
+                                                  // Get.to(
+                                                  //     () =>
+                                                  //         const LessonPageTabBar(),
+                                                  //     transition:
+                                                  //         Transition.fade,
+                                                  //     duration: const Duration(
+                                                  //         milliseconds: 300));
                                                 },
                                                 child: const Row(
                                                   mainAxisSize:

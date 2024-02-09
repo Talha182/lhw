@@ -9,12 +9,23 @@ import 'models/module_model.dart';
 import 'models/submodule_model.dart'; // Assume this contains definitions for Module and Submodule
 
 class JourneyMapScreen extends StatelessWidget {
-  final Module module;  final String courseTitle; // Add this line
+  final Module module;
+  final String courseTitle; // Add this line
+  final Gradient gradient;
+  final int courseQuizCount;
+  final int courseModuleCount;
+  final String imagePath;
 
+  const JourneyMapScreen(
+      {Key? key,
+      required this.module,
+      required this.courseTitle,
+      required this.gradient,
+      required this.courseQuizCount,
+      required this.courseModuleCount,
+      required this.imagePath})
+      : super(key: key);
 
-  const JourneyMapScreen({Key? key, required this.module, required this.courseTitle}) : super(key: key);
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +34,10 @@ class JourneyMapScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: const Alignment(0, -0.2),
-            colors: [const Color(0xff80B8FB).withOpacity(0.3), Colors.transparent],
+            colors: [
+              const Color(0xff80B8FB).withOpacity(0.3),
+              Colors.transparent
+            ],
           ),
         ),
         child: Stack(
@@ -31,12 +45,14 @@ class JourneyMapScreen extends StatelessWidget {
             Positioned(
               top: 70,
               right: 30,
-              child: SvgPicture.asset('assets/images/cloud.svg', width: 30, height: 30),
+              child: SvgPicture.asset('assets/images/cloud.svg',
+                  width: 30, height: 30),
             ),
             Positioned(
               top: 90,
               left: 30,
-              child: SvgPicture.asset('assets/images/cloud.svg', width: 30, height: 30),
+              child: SvgPicture.asset('assets/images/cloud.svg',
+                  width: 30, height: 30),
             ),
             Positioned(
               left: 10,
@@ -84,7 +100,8 @@ class JourneyMapScreen extends StatelessWidget {
                 radius: 30,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset("assets/images/samina_instructor.svg", fit: BoxFit.fill),
+                  child: SvgPicture.asset("assets/images/samina_instructor.svg",
+                      fit: BoxFit.fill),
                 ),
               ),
             ),
@@ -96,7 +113,9 @@ class JourneyMapScreen extends StatelessWidget {
               return Positioned(
                 left: submodule.buttonPosition.dx,
                 top: submodule.buttonPosition.dy,
-                child: isRightAligned ? _buildRightAlignedRow(context, submodule) : _buildLeftAlignedRow(context, submodule),
+                child: isRightAligned
+                    ? _buildRightAlignedRow(context, submodule)
+                    : _buildLeftAlignedRow(context, submodule),
               );
             }).toList(),
           ],
@@ -199,13 +218,11 @@ class JourneyMapScreen extends StatelessWidget {
                           fontFamily: "UrduType",
                           color: Color(0xff685F78),
                           fontSize: 20,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 16),
                     Row(
                       children: [
-
                         const Text(
                           "01 گھنٹہ 30 منٹ",
                           textDirection: TextDirection.rtl,
@@ -214,7 +231,6 @@ class JourneyMapScreen extends StatelessWidget {
                               fontFamily: "UrduType",
                               color: Color(0xff685F78)),
                         ),
-
                         const Icon(
                           Icons.watch_later_outlined,
                           size: 16,
@@ -242,8 +258,7 @@ class JourneyMapScreen extends StatelessWidget {
                       style: const TextStyle(
                           fontFamily: "UrduType",
                           fontSize: 14,
-                          color: Color(0xff7A7D84)
-                      ),
+                          color: Color(0xff7A7D84)),
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
@@ -286,7 +301,7 @@ class JourneyMapScreen extends StatelessWidget {
                           ),
                           onPressed: () {
                             Navigator.pop(context);
-                            navigateToSubmoduleFeatures( submodule);
+                            navigateToSubmoduleFeatures(submodule);
                           },
                           child: const Text(
                             'کورس جاری رکھیں',
@@ -309,24 +324,29 @@ class JourneyMapScreen extends StatelessWidget {
     );
   }
 
-  // void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
-  //   // Check if a controller already exists and reset it, or create a new one
-  //   if (Get.isRegistered<FeatureNavigationController>()) {
-  //     var existingController = Get.find<FeatureNavigationController>();
-  //     existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
-  //   } else {
-  //     Get.put(FeatureNavigationController(
-  //       navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
-  //       navigateBackToJourneyMap: () => Get.back(),
-  //     )); // Optionally use a unique tag for each submodule if needed
-  //   }
-  //
-  //   // Navigate to the first feature callback
-  //   Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
-  // }
-  void navigateToSubmoduleFeatures( Submodule submodule) {
-    Get.to(() => FeaturesListScreen(submodule: submodule, courseTitle: courseTitle, // Pass the course title here
+  void navigateToSubmoduleFeatures(Submodule submodule) {
+    Get.to(() => FeaturesListScreen(
+          submodule: submodule,
+          courseTitle: courseTitle,
+          courseQuizCount: courseQuizCount,
+          courseModuleCount: courseModuleCount,
+          imagePath: imagePath,
+          gradient: gradient, // Pass the course title here
         ));
   }
-
 }
+// void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
+//   // Check if a controller already exists and reset it, or create a new one
+//   if (Get.isRegistered<FeatureNavigationController>()) {
+//     var existingController = Get.find<FeatureNavigationController>();
+//     existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
+//   } else {
+//     Get.put(FeatureNavigationController(
+//       navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
+//       navigateBackToJourneyMap: () => Get.back(),
+//     )); // Optionally use a unique tag for each submodule if needed
+//   }
+//
+//   // Navigate to the first feature callback
+//   Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
+// }

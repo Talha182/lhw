@@ -9,110 +9,124 @@ import 'controllers/feature_navigation.dart';
 import 'course_tabbar/ModuleTest/FeaturesListScreen.dart';
 import 'models/module_model.dart';
 import 'models/submodule_model.dart';
+
 class JourneyMapScreen2 extends StatelessWidget {
   final Module module;
-  final String courseTitle;
+  final String courseTitle; // Add this line
+  final Gradient gradient;
+  final int courseQuizCount;
+  final int courseModuleCount;
+  final String imagePath;
 
-  const JourneyMapScreen2({Key? key, required this.module, required this.courseTitle}) : super(key: key);
-
-
+  const JourneyMapScreen2(
+      {Key? key,
+      required this.module,
+      required this.courseTitle,
+      required this.gradient,
+      required this.courseQuizCount,
+      required this.courseModuleCount,
+      required this.imagePath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: const Alignment(0, -0.2),
-                colors: [
-                  const Color(0xff80B8FB).withOpacity(0.3),
-                  Colors.transparent,
-                ],
-              ),
-            ),
-            child: Stack(children: [
-              Positioned(
-                top: 70,
-                right: 30,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-              ), Positioned(
-                top: 90,
-                left: 30,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              Positioned(
-                  left: 10,
-                  top: 180,
-                  child: SvgPicture.asset("assets/images/path2.svg")),
-              Positioned(
-                  left: 15,
-                  top: 190,
-                  child: SvgPicture.asset("assets/images/path_dots2.svg")),
-              Positioned(
-                  left: 10,
-                  top: 110,
-                  child: SvgPicture.asset("assets/images/pencil.svg")),
-
-              // Bottom buildings
-              Positioned(
-                  bottom: 0,
-                  child: SvgPicture.asset("assets/images/build1.svg")),
-              Positioned(
-                  bottom: 0,
-                  left: 80,
-                  child: SvgPicture.asset("assets/images/build2.svg")),
-              Positioned(
-                  bottom: 0,
-                  left: 200,
-                  child: SvgPicture.asset("assets/images/build3.svg")),
-              Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: SvgPicture.asset("assets/images/build4.svg")),
-              Positioned(
-                  bottom: 0,
-                  child: SvgPicture.asset("assets/images/bottom.svg")),
-              Positioned(
-                  bottom: 60, // Adjust as needed
-                  right: 15, // Adjust as needed
-                  child: CircleAvatar(
-                    backgroundColor: const Color(0xffF6B3D0),
-                    radius: 30,
-                    child: Padding(
-                        padding: const EdgeInsets.only(bottom: 2),
-                        child: SvgPicture.asset(
-                          "assets/images/samina_instructor.svg",
-                          fit: BoxFit.fill,
-                        )),
-                  )),
-
-              ...module.submodules.asMap().entries.map((entry) {
-                int index = entry.key;
-                Submodule submodule = module.submodules[index];
-                bool isRightAligned = submodule.titleAlignment == 'right';
-
-                return Positioned(
-                  left: submodule.buttonPosition.dx,
-                  top: submodule.buttonPosition.dy,
-                  child: isRightAligned ? _buildRightAlignedRow(context, submodule) : _buildLeftAlignedRow(context, submodule),
-                );
-              }).toList(),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: const Alignment(0, -0.2),
+            colors: [
+              const Color(0xff80B8FB).withOpacity(0.3),
+              Colors.transparent,
             ],
-            ),
+          ),
         ),
+        child: Stack(
+          children: [
+            Positioned(
+              top: 70,
+              right: 30,
+              child: SvgPicture.asset(
+                'assets/images/cloud.svg',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Positioned(
+              top: 90,
+              left: 30,
+              child: SvgPicture.asset(
+                'assets/images/cloud.svg',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Positioned(
+                left: 10,
+                top: 180,
+                child: SvgPicture.asset("assets/images/path2.svg")),
+            Positioned(
+                left: 15,
+                top: 190,
+                child: SvgPicture.asset("assets/images/path_dots2.svg")),
+            Positioned(
+                left: 10,
+                top: 110,
+                child: SvgPicture.asset("assets/images/pencil.svg")),
+
+            // Bottom buildings
+            Positioned(
+                bottom: 0, child: SvgPicture.asset("assets/images/build1.svg")),
+            Positioned(
+                bottom: 0,
+                left: 80,
+                child: SvgPicture.asset("assets/images/build2.svg")),
+            Positioned(
+                bottom: 0,
+                left: 200,
+                child: SvgPicture.asset("assets/images/build3.svg")),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: SvgPicture.asset("assets/images/build4.svg")),
+            Positioned(
+                bottom: 0, child: SvgPicture.asset("assets/images/bottom.svg")),
+            Positioned(
+                bottom: 60, // Adjust as needed
+                right: 15, // Adjust as needed
+                child: CircleAvatar(
+                  backgroundColor: const Color(0xffF6B3D0),
+                  radius: 30,
+                  child: Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: SvgPicture.asset(
+                        "assets/images/samina_instructor.svg",
+                        fit: BoxFit.fill,
+                      )),
+                )),
+
+            ...module.submodules.asMap().entries.map((entry) {
+              int index = entry.key;
+              Submodule submodule = module.submodules[index];
+              bool isRightAligned = submodule.titleAlignment == 'right';
+
+              return Positioned(
+                left: submodule.buttonPosition.dx,
+                top: submodule.buttonPosition.dy,
+                child: isRightAligned
+                    ? _buildRightAlignedRow(context, submodule)
+                    : _buildLeftAlignedRow(context, submodule),
+              );
+            }).toList(),
+          ],
+        ),
+      ),
     );
   }
+
   Widget _buildLeftAlignedRow(BuildContext context, Submodule submodule) {
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -172,6 +186,7 @@ class JourneyMapScreen2 extends StatelessWidget {
       ),
     );
   }
+
   void _showSubmoduleDialog(BuildContext context, Submodule submodule) {
     final int quizzesCount = submodule.numberOfQuizzes;
 
@@ -206,13 +221,11 @@ class JourneyMapScreen2 extends StatelessWidget {
                           fontFamily: "UrduType",
                           color: Color(0xff685F78),
                           fontSize: 20,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 16),
                     Row(
                       children: [
-
                         const Text(
                           "01 گھنٹہ 30 منٹ",
                           textDirection: TextDirection.rtl,
@@ -221,7 +234,6 @@ class JourneyMapScreen2 extends StatelessWidget {
                               fontFamily: "UrduType",
                               color: Color(0xff685F78)),
                         ),
-
                         const Icon(
                           Icons.watch_later_outlined,
                           size: 16,
@@ -249,8 +261,7 @@ class JourneyMapScreen2 extends StatelessWidget {
                       style: const TextStyle(
                           fontFamily: "UrduType",
                           fontSize: 14,
-                          color: Color(0xff7A7D84)
-                      ),
+                          color: Color(0xff7A7D84)),
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
@@ -316,10 +327,17 @@ class JourneyMapScreen2 extends StatelessWidget {
       },
     );
   }
-  void navigateToSubmoduleFeatures( Submodule submodule) {
-    Get.to(() => FeaturesListScreen(submodule: submodule, courseTitle: courseTitle,));
-  }
 
+  void navigateToSubmoduleFeatures(Submodule submodule) {
+    Get.to(() => FeaturesListScreen(
+          submodule: submodule,
+          courseTitle: courseTitle,
+          courseQuizCount: courseQuizCount,
+          courseModuleCount: courseModuleCount,
+          imagePath: imagePath,
+          gradient: gradient, // Pass the course title here
+        ));
+  }
 }
 // void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
 //   // Check if a controller already exists and reset it, or create a new one

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'courses_item.dart';
+import 'courses_card.dart';
 import 'total_courses.dart';
 import '../models/course_model.dart';
 import 'package:provider/provider.dart';
