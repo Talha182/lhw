@@ -214,7 +214,7 @@ class _LessonState extends State<Lesson> {
                           size: 20,
                         ),
                         onTap: () {
-                          Get.to(() =>  ModuleScreenTest(course: widget.course),
+                          Get.off(() =>  ModuleScreenTest(course: widget.course),
                               transition: Transition.fade,
                               duration: const Duration(milliseconds: 400));
                         },
