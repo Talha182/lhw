@@ -366,9 +366,9 @@ class _ModuleScreenTestState extends State<ModuleScreenTest> {
                     },
                   );
                 },
-              ),
+              ).animate().fade(duration: 400.ms),
             ),
-          ],
+          ]
         ),
       ),
     );

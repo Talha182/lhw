@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -55,7 +56,8 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.courseTitle, // Example text, replace with dynamic data if necessary
+                            widget
+                                .courseTitle, // Example text, replace with dynamic data if necessary
                             style: const TextStyle(
                               fontFamily: 'UrduType',
                               fontSize: 25,
@@ -188,7 +190,10 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                   itemBuilder: (context, index) {
                     final feature = widget.submodule.featureCallbacks[index];
                     return ListTile(
-                      leading: Icon(feature.icon, color: feature.isCompleted ? Colors.green : feature.iconColor),
+                      leading: Icon(feature.icon,
+                          color: feature.isCompleted
+                              ? Colors.green
+                              : feature.iconColor),
                       title: Text(
                         feature.title,
                         style: const TextStyle(
@@ -216,9 +221,8 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                       },
                     );
                   },
-                ),
+                ).animate().fade(duration: 400.ms),
               ),
-
             ],
           ),
         ),
