@@ -10,8 +10,9 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/models/question_model.dart';
 
 import '../BookmarkController.dart';
-import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
+import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
 import '../QuizController.dart';
+import '../controllers/feature_navigation.dart';
 
 class LessonOption21 extends StatefulWidget {
   const LessonOption21({super.key});
@@ -25,6 +26,7 @@ class _LessonOption21State extends State<LessonOption21> {
   bool isAnswered = false;
   final ResultsController resultsController = Get.put(ResultsController());
   final BookmarkController bookmarkController = Get.put(BookmarkController());
+  final navigationController = Get.find<FeatureNavigationController>();
 
   int _current = 0;
   int _totalSteps = 100;
@@ -349,7 +351,9 @@ class _LessonOption21State extends State<LessonOption21> {
                       ),
                       minimumSize: const Size(150, 37),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      navigationController.navigateToNextFeatureOrBack();
+                    },
                     child: const Text(
                       'جاری رہے',
                       style: TextStyle(

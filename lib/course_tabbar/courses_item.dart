@@ -117,8 +117,8 @@ class CourseCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 6),
-                        SvgPicture.asset(
-                          'assets/images/quiz.svg',
+                        Image.asset(
+                          'assets/images/quiz.png',
                           color: Colors.white,
                         ),
                         const SizedBox(width: 6),

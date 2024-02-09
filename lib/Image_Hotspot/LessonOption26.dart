@@ -3,11 +3,12 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/flash_cards_screen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../BookmarkController.dart';
+import '../controllers/feature_navigation.dart';
 
 class LessonOption26 extends StatefulWidget {
   const LessonOption26({super.key});
@@ -23,7 +24,8 @@ class _LessonOption26State extends State<LessonOption26> {
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
-  final BookmarkController bookmarkController =   Get.put(BookmarkController());
+  final BookmarkController bookmarkController = Get.put(BookmarkController());
+  final navigationController = Get.find<FeatureNavigationController>();
 
   final List<ClickableArea> clickableAreas = [
     ClickableArea(
@@ -42,7 +44,6 @@ class _LessonOption26State extends State<LessonOption26> {
       dialogImage: 'assets/images/touch.png',
     ),
   ];
-
 
   void showCustomDialog() {
     Get.dialog(
@@ -305,7 +306,8 @@ class _LessonOption26State extends State<LessonOption26> {
     );
   }
 
-  void showCustomDialog0(BuildContext context, String dialogText, String dialogImage) {
+  void showCustomDialog0(
+      BuildContext context, String dialogText, String dialogImage) {
     showAnimatedDialog(
       context: context,
       barrierDismissible: true,
@@ -338,7 +340,8 @@ class _LessonOption26State extends State<LessonOption26> {
                   ),
                   Text(
                     'غذائیت کی صورتحال',
-                    style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    style:
+                        const TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
                   Expanded(
                     child: SingleChildScrollView(
@@ -347,7 +350,9 @@ class _LessonOption26State extends State<LessonOption26> {
                           Text(
                             dialogText,
                             style: const TextStyle(
-                                fontFamily: "UrduType", fontSize: 14, color: Color(0xff7A7D84)),
+                                fontFamily: "UrduType",
+                                fontSize: 14,
+                                color: Color(0xff7A7D84)),
                           ),
                           SizedBox(height: 10),
                           Image.asset(
@@ -369,9 +374,7 @@ class _LessonOption26State extends State<LessonOption26> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -384,7 +387,8 @@ class _LessonOption26State extends State<LessonOption26> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 60 , left: 20, right: 20, bottom: 5),
+          padding:
+              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
           child: Stack(
             children: [
               Column(
@@ -407,11 +411,10 @@ class _LessonOption26State extends State<LessonOption26> {
                       Expanded(
                         child: SizedBox(
                           child: TweenAnimationBuilder(
-                            tween: Tween<double>(
-                                begin: 0, end: 2.2),
+                            tween: Tween<double>(begin: 0, end: 2.2),
                             duration: const Duration(milliseconds: 400),
-                            builder:
-                                (BuildContext context, double value, Widget? child) {
+                            builder: (BuildContext context, double value,
+                                Widget? child) {
                               return LinearPercentIndicator(
                                 lineHeight: 8.0,
                                 percent: 1,
@@ -421,23 +424,30 @@ class _LessonOption26State extends State<LessonOption26> {
                               );
                             },
                           ),
-
                         ),
-                      )   , const SizedBox(width: 5,),
-                      GestureDetector
-                        (
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
                           onTap: () {
-                            final bookmarkController = Get.find<BookmarkController>();
+                            final bookmarkController =
+                                Get.find<BookmarkController>();
                             bookmarkController.addBookmark(
-                              Bookmark(title: 'LessonOption20', routeName: '/lessonOption20'),
+                              Bookmark(
+                                  title: 'LessonOption20',
+                                  routeName: '/lessonOption20'),
                             );
                             // Optionally, show a snackbar or some feedback to the user
-                            Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                            Get.snackbar('Bookmark Added',
+                                'This page has been added to your bookmarks');
                           },
-                          child: const Icon(Icons.bookmark_outline)),                 ],
+                          child: const Icon(Icons.bookmark_outline)),
+                    ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right:10,top: 10,bottom: 10),
+                    padding:
+                        const EdgeInsets.only(right: 10, top: 10, bottom: 10),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: SvgPicture.asset(
@@ -451,10 +461,9 @@ class _LessonOption26State extends State<LessonOption26> {
                   const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      "آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔"
-                      ,textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontFamily: "UrduType", fontSize: 20),
+                      "آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                     ),
                   ),
                   const SizedBox(
@@ -470,16 +479,18 @@ class _LessonOption26State extends State<LessonOption26> {
                       children: [
                         Positioned.fill(
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: PhotoView(
-                                imageProvider: const AssetImage('assets/images/LessonOption26.png'),
-                                minScale: PhotoViewComputedScale.contained,
-                                maxScale: PhotoViewComputedScale.contained * 2,
-                                backgroundDecoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  color: Colors.transparent,
-                                ),
+                            borderRadius: BorderRadius.circular(10),
+                            child: PhotoView(
+                              imageProvider: const AssetImage(
+                                  'assets/images/LessonOption26.png'),
+                              minScale: PhotoViewComputedScale.contained,
+                              maxScale: PhotoViewComputedScale.contained * 2,
+                              backgroundDecoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Colors.transparent,
                               ),
+                            ),
                           ),
                         ),
                         Positioned(
@@ -506,28 +517,30 @@ class _LessonOption26State extends State<LessonOption26> {
                                 // child: Image.asset("assets/images/team.png"),
                               ),
                             )),
-                        ...clickableAreas.map((area) => Positioned(
-                          top: area.position.dy,
-                          left: area.position.dx,
-                          child: GestureDetector(
-                            onTap: () => showCustomDialog0(context  ,area.dialogText, area.dialogImage),
-                            child: Container(
-                              width: 45,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/images/lesson_26.png',
-                                  width: 30,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )).toList(),
-
+                        ...clickableAreas
+                            .map((area) => Positioned(
+                                  top: area.position.dy,
+                                  left: area.position.dx,
+                                  child: GestureDetector(
+                                    onTap: () => showCustomDialog0(context,
+                                        area.dialogText, area.dialogImage),
+                                    child: Container(
+                                      width: 45,
+                                      height: 45,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Center(
+                                        child: Image.asset(
+                                          'assets/images/lesson_26.png',
+                                          width: 30,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
                       ],
                     ),
                   ),
@@ -553,6 +566,7 @@ class _LessonOption26State extends State<LessonOption26> {
                       minimumSize: const Size(150, 37),
                     ),
                     onPressed: () {
+                      navigationController.navigateToNextFeatureOrBack();
                     },
                     child: const Text(
                       'جاری رہے',
@@ -581,7 +595,7 @@ class _LessonOption26State extends State<LessonOption26> {
                           fit: BoxFit.fill,
                         )),
                   )),
-              Positioned(top: 200,left:70,child: ArrowContainer())
+              Positioned(top: 200, left: 70, child: ArrowContainer())
             ],
           ),
         ),
@@ -589,8 +603,6 @@ class _LessonOption26State extends State<LessonOption26> {
     );
   }
 }
-
-
 
 class ArrowContainer extends StatelessWidget {
   @override
@@ -601,11 +613,11 @@ class ArrowContainer extends StatelessWidget {
       child: CustomPaint(
         painter: ArrowPainter(),
         child: const Center(
-          child: Text('انٹرایکٹو عنصر دکھائیں۔',style: TextStyle(
-            color: Colors.white,
-            fontFamily: "UrduType",
-            fontSize: 13
-          ),),
+          child: Text(
+            'انٹرایکٹو عنصر دکھائیں۔',
+            style: TextStyle(
+                color: Colors.white, fontFamily: "UrduType", fontSize: 13),
+          ),
         ),
       ),
     );
@@ -645,12 +657,12 @@ class ArrowPainter extends CustomPainter {
     canvas.drawPath(path, paint);
   }
 
-
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
 }
+
 class ClickableArea {
   final Offset position;
   final String dialogText;

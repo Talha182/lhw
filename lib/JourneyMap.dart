@@ -3,6 +3,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'controllers/feature_navigation.dart';
 import 'models/module_model.dart';
 import 'models/submodule_model.dart'; // Assume this contains definitions for Module and Submodule
 
@@ -282,6 +283,7 @@ class JourneyMapScreen extends StatelessWidget {
                             minimumSize: const Size(140, 40),
                           ),
                           onPressed: () {
+                            Navigator.pop(context);
                             navigateToSubmoduleFeatures(context, submodule);
                           },
                           child: const Text(
@@ -306,41 +308,19 @@ class JourneyMapScreen extends StatelessWidget {
   }
 
   void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
-    // Instantiate and register the controller
-    Get.put(FeatureNavigationController(
-      navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
-      navigateBackToJourneyMap: () => Get.back(),
-    )); // Optionally use a unique tag for each submodule
+    // Check if a controller already exists and reset it, or create a new one
+    if (Get.isRegistered<FeatureNavigationController>()) {
+      var existingController = Get.find<FeatureNavigationController>();
+      existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
+    } else {
+      Get.put(FeatureNavigationController(
+        navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
+        navigateBackToJourneyMap: () => Get.back(),
+      )); // Optionally use a unique tag for each submodule if needed
+    }
 
     // Navigate to the first feature callback
-    if (submodule.navigateToFeatureCallbacks.isNotEmpty) {
-      submodule.navigateToFeatureCallbacks.first();
-    }
-  }
-
-}
-class FeatureNavigationController extends GetxController {
-  var currentFeatureIndex = 0.obs;
-  final List<void Function()> navigateToFeatureCallbacks;
-  final VoidCallback navigateBackToJourneyMap;
-
-  FeatureNavigationController({
-    required this.navigateToFeatureCallbacks,
-    required this.navigateBackToJourneyMap,
-  });
-
-  void navigateToNextFeatureOrBack() {
-    // Increment the index to move to the next feature
-    currentFeatureIndex.value++;
-
-    // Check if the current feature is beyond the last one
-    if (currentFeatureIndex.value < navigateToFeatureCallbacks.length) {
-      // There is a next feature, so navigate to it
-      navigateToFeatureCallbacks[currentFeatureIndex.value]();
-    } else {
-      // No more features, navigate back to the JourneyMapScreen directly
-      navigateBackToJourneyMap();
-    }
+    Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
   }
 
 }

@@ -40,8 +40,8 @@ class Module_Card extends StatelessWidget {
                   children: [
                     Image.asset(
                       imagePath, // Updated this line
-                      width: 50,
-                      height: 50,
+                      width: 40,
+                      height: 40,
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(width: 15),

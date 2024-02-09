@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
+
+import '../controllers/feature_navigation.dart';
 
 class ComicStrip extends StatefulWidget {
   const ComicStrip({super.key});
@@ -19,6 +22,7 @@ class _ComicStripState extends State<ComicStrip>
   late List<Widget> _carouselItems;
   late AnimationController _progressController;
   late Animation<double> _progressAnimation;
+  final navigationController = Get.find<FeatureNavigationController>();
 
   @override
   void initState() {
@@ -218,7 +222,10 @@ class _ComicStripState extends State<ComicStrip>
                     ),
                     minimumSize: const Size(150, 37),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    navigationController.navigateToNextFeatureOrBack();
+
+                  },
                   child: const Text(
                     'جاری رہے',
                     style: TextStyle(
@@ -282,3 +289,4 @@ class _ComicStripState extends State<ComicStrip>
     );
   }
 }
+

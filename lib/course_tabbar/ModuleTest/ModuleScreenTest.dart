@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 import '../../JourneyMap.dart';
+import '../../JourneyMap2.dart';
 import '../../Mobile_Module & Submodule/module_dashboard_card.dart';
 import '../../custom_widgets/Row_Column_Padding.dart';
 import '../../models/course_model.dart';
@@ -146,7 +148,7 @@ class _ModuleScreenTestState extends State<ModuleScreenTest> {
                                 color: Colors.white, size: 6),
                             const SizedBox(width: 8),
                             SvgPicture.asset(
-                              'assets/images/quiz.svg',
+                              'assets/images/person_card.svg',
                               color: Colors.white,
                             ),
                             const SizedBox(width: 6),
@@ -327,19 +329,26 @@ class _ModuleScreenTestState extends State<ModuleScreenTest> {
                 itemCount: course.modules.length,
                 itemBuilder: (context, index) {
                   final module = course.modules[index];
-                  return
-                   Module_Card(
-                      progressValue: module.progressValue,
-                      showProgressBar: module.isStart,
-                      imagePath: module.imagePath,
-                      cardText: module.title, onClick: () {
-                     Navigator.push(
-                       context,
-                       MaterialPageRoute(builder: (context) => JourneyMapScreen(module: module)),
-                     );
+                  return Module_Card(
+                    progressValue: module.progressValue,
+                    showProgressBar: module.isStart,
+                    imagePath: module.imagePath,
+                    cardText: module.title,
+                    onClick: () {
+                      // Check if the module has more than three submodules
+                      if (module.submoduleCount > 3) {
+                        // Navigate to JourneyMapScreen2 if more than three submodules
+                        Get.to(() => JourneyMapScreen2(module: module),
+                            transition: Transition.fade,
+                            duration: const Duration(milliseconds: 300));
+                      } else {
+                        // Navigate to JourneyMapScreen if three or fewer submodules
+                        Get.to(() => JourneyMapScreen(module: module),
+                            transition: Transition.fade,
+                            duration: const Duration(milliseconds: 300));
+                      }
                     },
                   );
-
                 },
               ),
             ),

@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../controllers/feature_navigation.dart';
 
 class InteractiveImages extends StatefulWidget {
   const InteractiveImages({Key? key}) : super(key: key);
@@ -58,7 +62,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'showDialog': true,
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'تھوک کے نمونے جمع کرنے سے پہلے مریض کو گرم پانی سے نہا  لینے یا گرم مشروب پینے کی رہنمائی کریں۔ اس سے بلغم کو نکلنے میں مدد ملے گی۔',
+      'dialogText':
+          'تھوک کے نمونے جمع کرنے سے پہلے مریض کو گرم پانی سے نہا  لینے یا گرم مشروب پینے کی رہنمائی کریں۔ اس سے بلغم کو نکلنے میں مدد ملے گی۔',
       'dragDropEnabled': false, // Add this line for each image
     },
     {
@@ -100,12 +105,14 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'showDialog': true,
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'مریض کو ایک گہری سانس لینے اور اسے 5 سیکنڈ کے لئے اپنے سینے میں رکھنے کے لئے کہیں۔.',
+      'dialogText':
+          'مریض کو ایک گہری سانس لینے اور اسے 5 سیکنڈ کے لئے اپنے سینے میں رکھنے کے لئے کہیں۔.',
       'dragDropEnabled': false, // Add this line for each image
     },
     {
       'image': 'assets/script11/Script11-19.jpg',
-      'guide': 'ڈبی کو صاف کرنے کے لئے ٹشو کو لیں اور پھر اسے کوڑے میں پھینک دیں۔',
+      'guide':
+          'ڈبی کو صاف کرنے کے لئے ٹشو کو لیں اور پھر اسے کوڑے میں پھینک دیں۔',
       'touchArea': const Rect.fromLTWH(200, 100, 200, 200),
       'showDialog': false,
       'swipeEnabled': false,
@@ -130,7 +137,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       'showDialog': true,
       'swipeEnabled': false,
       'longPressAction': 'showMessage', // Custom action identifier
-      'dialogText': 'نمونے کا جائزہ لیں اور اس بات کا یقین کریں کہ لیا گیا نمونہ بلغم ہی ہو، منہ یا ناک کی رطوبت نہ ہو۔',
+      'dialogText':
+          'نمونے کا جائزہ لیں اور اس بات کا یقین کریں کہ لیا گیا نمونہ بلغم ہی ہو، منہ یا ناک کی رطوبت نہ ہو۔',
       'dragDropEnabled': false, // Add this line for each image
     },
     {
@@ -224,6 +232,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     await audioPlayer.play(AssetSource('sounds/DragDrop.mp3'));
   }
 
+  final navigationController = Get.find<FeatureNavigationController>();
+
   @override
   Widget build(BuildContext context) {
     // Extracting the touch area properties for the current image
@@ -239,7 +249,6 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     bool dragDropEnabled =
         imagesInfo[currentIndex]['dragDropEnabled'] ?? false; // New line
     String currentImagePath = imagesInfo[currentIndex]['image'];
-
 
     var draggableImage = hasBeenDroppedSuccessfully
         ? Image.asset('assets/script11/Script11-14.png',
@@ -411,12 +420,14 @@ class _InteractiveImagesState extends State<InteractiveImages> {
         child: Stack(
           children: [
             AnimatedSwitcher(
-              duration: const Duration(milliseconds: 500), // Customize animation duration
+              duration: const Duration(
+                  milliseconds: 500), // Customize animation duration
               transitionBuilder: (Widget child, Animation<double> animation) {
                 return FadeTransition(opacity: animation, child: child);
               },
               child: Container(
-                key: ValueKey<String>(currentImagePath), // Unique key for animation
+                key: ValueKey<String>(
+                    currentImagePath), // Unique key for animation
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(currentImagePath),
@@ -458,6 +469,16 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                 ),
               ),
             ),
+            Positioned(
+                left: 10,
+                top: 20,
+                child: IconButton(
+                  onPressed: () {
+                    navigationController.navigateToNextFeatureOrBack();
+                  },
+                  icon: Icon(Icons.close),
+                  color: Colors.black,
+                )),
             Positioned(
                 bottom: 80, // Adjust as needed
                 right: 20, // Adjust as needed

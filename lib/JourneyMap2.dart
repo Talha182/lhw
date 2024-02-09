@@ -2,33 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-class JourneyMapScreen2 extends StatelessWidget {
-  final List<String> submoduleTitles;
-  final List<String> submoduleDescriptions;
-  final List<Offset> buttonPositions;
-  final List<String> iconPaths;
-  final List<Function()> navigateActions;
-  final List<int> numberOfQuizzes;
-  final List<String>
-      titleAlignments; // New parameter for individual title alignments
+import 'package:get/get.dart';
 
-  JourneyMapScreen2({
-    Key? key,
-    required this.submoduleTitles,
-    required this.submoduleDescriptions,
-    required this.buttonPositions,
-    required this.iconPaths,
-    required this.navigateActions,
-    required this.numberOfQuizzes,
-    required this.titleAlignments, // Make sure to pass this parameter
-  })  : assert(submoduleTitles.length == submoduleDescriptions.length),
-        assert(submoduleTitles.length == buttonPositions.length),
-        assert(submoduleTitles.length == iconPaths.length),
-        assert(submoduleTitles.length == navigateActions.length),
-        assert(submoduleTitles.length == numberOfQuizzes.length),
-        assert(submoduleTitles.length ==
-            titleAlignments.length), // Ensure the new list matches in length
-        super(key: key);
+import 'controllers/feature_navigation.dart';
+import 'models/module_model.dart';
+import 'models/submodule_model.dart';
+class JourneyMapScreen2 extends StatelessWidget {
+  final Module module;
+
+  const JourneyMapScreen2({Key? key, required this.module}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,52 +94,52 @@ class JourneyMapScreen2 extends StatelessWidget {
                         )),
                   )),
 
-              Stack(
-                children: List.generate(submoduleTitles.length, (index) {
-                  // Determine alignment based on the titleAlignments list
-                  bool isRightAligned = titleAlignments[index] == 'right';
+              ...module.submodules.asMap().entries.map((entry) {
+                int index = entry.key;
+                Submodule submodule = module.submodules[index];
+                bool isRightAligned = submodule.titleAlignment == 'right';
 
-                  return Positioned(
-                    left: buttonPositions[index].dx,
-                    top: buttonPositions[index].dy,
-                    child: isRightAligned
-                        ? _buildRightAlignedRow(context, index)
-                        : _buildLeftAlignedRow(context, index),
-                  );
-                }),
-              ),
-            ].animate(interval:120.ms).fade(duration:120.ms)),));
+                return Positioned(
+                  left: submodule.buttonPosition.dx,
+                  top: submodule.buttonPosition.dy,
+                  child: isRightAligned ? _buildRightAlignedRow(context, submodule) : _buildLeftAlignedRow(context, submodule),
+                );
+              }).toList(),
+            ],
+            ),
+        ),
+    );
   }
-
-  Widget _buildLeftAlignedRow(BuildContext context, int index) {
+  Widget _buildLeftAlignedRow(BuildContext context, Submodule submodule) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          submoduleTitles[index],
+          submodule.title,
+          textAlign: TextAlign.center,
           style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
         ),
         const SizedBox(width: 8),
-        _buildIconButton(context, index),
+        _buildIconButton(context, submodule),
       ],
     );
   }
 
-  Widget _buildRightAlignedRow(BuildContext context, int index) {
+  Widget _buildRightAlignedRow(BuildContext context, Submodule submodule) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildIconButton(context, index),
+        _buildIconButton(context, submodule),
         const SizedBox(width: 8),
         Text(
-          submoduleTitles[index],
+          submodule.title,
           style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
         ),
       ],
     );
   }
 
-  Widget _buildIconButton(BuildContext context, int index) {
+  Widget _buildIconButton(BuildContext context, Submodule submodule) {
     return Container(
       width: 60,
       height: 60,
@@ -173,9 +157,9 @@ class JourneyMapScreen2 extends StatelessWidget {
             color: Color(0xffFF6BC5),
           ),
           child: IconButton(
-            onPressed: () => _showSubmoduleDialog(context, index),
+            onPressed: () => _showSubmoduleDialog(context, submodule),
             icon: SvgPicture.asset(
-              iconPaths[index],
+              submodule.iconPath,
               width: 24,
               height: 24,
             ),
@@ -185,14 +169,11 @@ class JourneyMapScreen2 extends StatelessWidget {
       ),
     );
   }
-
-  void _showSubmoduleDialog(BuildContext context, int index) {
-    final moduleNumber = index + 1; // Calculate the module number
-    final quizzesCount =
-        numberOfQuizzes[index]; // Get the number of quizzes for this module
+  void _showSubmoduleDialog(BuildContext context, Submodule submodule) {
+    final int quizzesCount = submodule.numberOfQuizzes;
 
     showAnimatedDialog(
-      curve: Curves.fastOutSlowIn,
+      curve: Curves.decelerate,
       animationType: DialogTransitionType.sizeFade,
       duration: const Duration(seconds: 1),
       barrierDismissible: true,
@@ -214,30 +195,33 @@ class JourneyMapScreen2 extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "ماڈیول  $moduleNumber  - ذیلی ماڈیول $moduleNumber",
+                      submodule.title,
                       style: const TextStyle(
-                          fontFamily: "UrduType", color: Color(0xff685F78)),
+                          fontFamily: "UrduType",
+                          color: Color(0xff685F78),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                      ),
                     ),
-                    Text(
-                      submoduleTitles[index],
-                      style:
-                          const TextStyle(fontFamily: "UrduType", fontSize: 20),
-                    ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 16),
                     Row(
                       children: [
-                        // Note: SvgPicture.asset requires the flutter_svg package.
-                        // SvgPicture.asset("assets/images/person_card.svg",
-                        //     color: const Color(0xff685F78)),
-                        const SizedBox(width: 8),
-                        Text(
-                          "$quizzesCount کوئز",
+
+                        const Text(
+                          "01 گھنٹہ 30 منٹ",
+                          textDirection: TextDirection.rtl,
                           style: TextStyle(
                               fontSize: 15,
                               fontFamily: "UrduType",
                               color: Color(0xff685F78)),
+                        ),
+
+                        const Icon(
+                          Icons.watch_later_outlined,
+                          size: 16,
                         ),
                         const SizedBox(width: 8),
                         Container(
@@ -247,32 +231,23 @@ class JourneyMapScreen2 extends StatelessWidget {
                               shape: BoxShape.circle, color: Color(0xff685F78)),
                         ),
                         const SizedBox(width: 8),
-                        SvgPicture.asset("assets/images/clock.svg",
-                            color: const Color(0xff685F78)),
-                        const SizedBox(width: 4),
-                        const Text(
-                          "01 گھنٹہ 30 منٹ",
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                              fontSize: 15,
+                        Text(
+                          "$quizzesCount کوئز",
+                          style: const TextStyle(
+                              fontSize: 14,
                               fontFamily: "UrduType",
                               color: Color(0xff685F78)),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 5),
-                    const Text(
-                      "تفصیل",
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(fontSize: 18, fontFamily: "UrduType"),
-                    ),
+                    const SizedBox(height: 8),
                     Text(
-                      submoduleDescriptions[index],
+                      submodule.description,
                       style: const TextStyle(
                           fontFamily: "UrduType",
-                          fontSize: 18,
-                          color: Color(0xff7A7D84),
-                          height: 1.2),
+                          fontSize: 14,
+                          color: Color(0xff7A7D84)
+                      ),
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
@@ -313,7 +288,10 @@ class JourneyMapScreen2 extends StatelessWidget {
                             ),
                             minimumSize: const Size(140, 40),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                            navigateToSubmoduleFeatures(context, submodule);
+                          },
                           child: const Text(
                             'کورس جاری رکھیں',
                             style: TextStyle(
@@ -334,4 +312,21 @@ class JourneyMapScreen2 extends StatelessWidget {
       },
     );
   }
+  void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
+    // Check if a controller already exists and reset it, or create a new one
+    if (Get.isRegistered<FeatureNavigationController>()) {
+      var existingController = Get.find<FeatureNavigationController>();
+      existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
+    } else {
+      Get.put(FeatureNavigationController(
+        navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
+        navigateBackToJourneyMap: () => Get.back(),
+      )); // Optionally use a unique tag for each submodule if needed
+    }
+
+    // Navigate to the first feature callback
+    Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
+  }
+
+
 }

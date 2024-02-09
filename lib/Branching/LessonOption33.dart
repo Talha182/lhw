@@ -9,9 +9,10 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:video_player/video_player.dart';
 
 import '../BookmarkController.dart';
-import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
+import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
 import '../Quiz_Widgets/QuizCard.dart';
 import '../Quiz_Widgets/Question.dart';
+import '../controllers/feature_navigation.dart';
 
 class LessonOption33 extends StatefulWidget {
   final String videoPath;
@@ -20,6 +21,7 @@ class LessonOption33 extends StatefulWidget {
   @override
   State<LessonOption33> createState() => _LessonOption33State();
 }
+
 
 class _LessonOption33State extends State<LessonOption33> {
   bool isSelected = false;
@@ -31,6 +33,8 @@ class _LessonOption33State extends State<LessonOption33> {
   int? selectedOptionIndex;
   bool isDialogShown = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
+  final navigationController = Get.find<FeatureNavigationController>();
+
 
   final List<Question> questions = [
     Question(
@@ -359,54 +363,7 @@ class _LessonOption33State extends State<LessonOption33> {
                   minimumSize: const Size(150, 37),
                 ),
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: SizedBox(
-                          width: 350, // Set the width
-                          height: 220, // Set the height
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Align(
-                                    alignment: Alignment.topRight,
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Icon(Icons.close),
-                                    )),
-                                const Text(
-                                  'غذائیت کی صورتحال',
-                                  style: TextStyle(
-                                      fontFamily: "UrduType", fontSize: 20),
-                                ),
-                                const Expanded(
-                                  child: SingleChildScrollView(
-                                    child: Text(
-                                      'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
-                                      style: TextStyle(
-                                          fontFamily: "UrduType",
-                                          fontSize: 14,
-                                          color: Color(0xff7A7D84)),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 5,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
+                  navigationController.navigateToNextFeatureOrBack();
                 },
                 child: const Text(
                   'جاری رہے',

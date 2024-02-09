@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart'; // Ensure you have the GetX package imported
 
 class Submodule {
+  final int submoduleID;
   final String title;
   final String description;
   final Offset buttonPosition;
@@ -12,6 +13,7 @@ class Submodule {
   final String titleAlignment;
 
   Submodule({
+    required this.submoduleID,
     required this.title,
     required this.description,
     required this.buttonPosition,

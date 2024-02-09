@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../BookmarkController.dart';
-import '../Mobile_Lesson & Flashcards/Lesson_Option20.dart';
+import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
 
 class LessonOption24 extends StatefulWidget {
   const LessonOption24({super.key});
