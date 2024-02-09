@@ -35,9 +35,7 @@ class CoursesProvider with ChangeNotifier {
           imagePath: 'assets/moduleIcons/module1.png',
           isStart: false,
           progressValue: 0.5,
-          onTap: () {
-            // Define navigation logic here, adjusted as per your framework's navigation system
-          },
+
           submodules: [
             Submodule(
               submoduleID: 1,
@@ -45,9 +43,7 @@ class CoursesProvider with ChangeNotifier {
               description: 'اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی، جو بیکٹیریا، وائرس، پھپھوندی، یا پیراسائٹ جیسے جانداروں کی وجہ سے ہونے والی بیماریاں ہیں. آپ جانیں گی کہ یہ بیماریاں کس طرح ایک شخص سے دوسرے شخص میں، کیڑے مکوڑوں یا جانوروں کے ذریعے، اور بعض اوقات آلودہ غذا یا پانی پینے سے پھیل سکتی ہیں۔',
               buttonPosition: const Offset(120, 520),
               iconPath: 'assets/images/tick.svg',
-              navigateToFeatureCallbacks: [
-                    () => Get.to(() => const LessonOption33(videoPath: 'assets/videos/demo.mp4')),
-              ],
+
               numberOfQuizzes: 1,
               titleAlignment: 'left',
               featureCallbacks: [
@@ -64,18 +60,7 @@ class CoursesProvider with ChangeNotifier {
               description: "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔",
               buttonPosition: const Offset(70, 200),
               iconPath: 'assets/images/book.svg',
-              navigateToFeatureCallbacks: [
-                    () => Get.to(() => const Presentation(
-                  assetImages: [
-                    'assets/presentations/presentation1.png',
-                    'assets/presentations/presentation2.png',
-                    'assets/presentations/presentation3.png',
-                    'assets/presentations/presentation4.png',
-                    'assets/presentations/presentation5.png',
-                    'assets/presentations/presentation6.png',
-                  ],
-                )),
-              ],
+
               numberOfQuizzes: 1,
               titleAlignment: 'left',
               featureCallbacks: [

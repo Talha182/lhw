@@ -11,7 +11,6 @@ class Module {
   final int submoduleCount;
   final bool isStart;
   final double progressValue;
-  final VoidCallback onTap;
   final List<Submodule> submodules;
 
 
@@ -22,7 +21,6 @@ class Module {
     required this.submoduleCount,
     this.isStart = false,
     this.progressValue = 0.0,
-    required this.onTap,
     required this.submodules,
 
   });
