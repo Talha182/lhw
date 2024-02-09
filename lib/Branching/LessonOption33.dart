@@ -14,16 +14,16 @@ import '../Quiz_Widgets/QuizCard.dart';
 import '../Quiz_Widgets/Question.dart';
 import '../controllers/feature_navigation.dart';
 
-class LessonOption33 extends StatefulWidget {
+class InteractiveAnimationVideo extends StatefulWidget {
   final String videoPath;
-  const LessonOption33({super.key, required this.videoPath});
+  const InteractiveAnimationVideo({super.key, required this.videoPath});
 
   @override
-  State<LessonOption33> createState() => _LessonOption33State();
+  State<InteractiveAnimationVideo> createState() =>
+      _InteractiveAnimationVideoState();
 }
 
-
-class _LessonOption33State extends State<LessonOption33> {
+class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
   bool isSelected = false;
   bool isAnswered = false;
   int _current = 0;
@@ -34,7 +34,6 @@ class _LessonOption33State extends State<LessonOption33> {
   bool isDialogShown = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   // final navigationController = Get.find<FeatureNavigationController>();
-
 
   final List<Question> questions = [
     Question(
