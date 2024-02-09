@@ -232,7 +232,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
     await audioPlayer.play(AssetSource('sounds/DragDrop.mp3'));
   }
 
-  final navigationController = Get.find<FeatureNavigationController>();
+  // final navigationController = Get.find<FeatureNavigationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -474,8 +474,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                 top: 20,
                 child: IconButton(
                   onPressed: () {
-                    navigationController.navigateToNextFeatureOrBack();
-                  },
+Get.back();                  },
                   icon: Icon(Icons.close),
                   color: Colors.black,
                 )),

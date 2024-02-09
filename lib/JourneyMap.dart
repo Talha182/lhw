@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'controllers/feature_navigation.dart';
+import 'course_tabbar/ModuleTest/FeaturesListScreen.dart';
 import 'models/module_model.dart';
 import 'models/submodule_model.dart'; // Assume this contains definitions for Module and Submodule
 
@@ -284,7 +285,7 @@ class JourneyMapScreen extends StatelessWidget {
                           ),
                           onPressed: () {
                             Navigator.pop(context);
-                            navigateToSubmoduleFeatures(context, submodule);
+                            navigateToSubmoduleFeatures( submodule);
                           },
                           child: const Text(
                             'کورس جاری رکھیں',
@@ -307,20 +308,23 @@ class JourneyMapScreen extends StatelessWidget {
     );
   }
 
-  void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
-    // Check if a controller already exists and reset it, or create a new one
-    if (Get.isRegistered<FeatureNavigationController>()) {
-      var existingController = Get.find<FeatureNavigationController>();
-      existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
-    } else {
-      Get.put(FeatureNavigationController(
-        navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
-        navigateBackToJourneyMap: () => Get.back(),
-      )); // Optionally use a unique tag for each submodule if needed
-    }
-
-    // Navigate to the first feature callback
-    Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
+  // void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
+  //   // Check if a controller already exists and reset it, or create a new one
+  //   if (Get.isRegistered<FeatureNavigationController>()) {
+  //     var existingController = Get.find<FeatureNavigationController>();
+  //     existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
+  //   } else {
+  //     Get.put(FeatureNavigationController(
+  //       navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
+  //       navigateBackToJourneyMap: () => Get.back(),
+  //     )); // Optionally use a unique tag for each submodule if needed
+  //   }
+  //
+  //   // Navigate to the first feature callback
+  //   Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
+  // }
+  void navigateToSubmoduleFeatures( Submodule submodule) {
+    Get.to(() => FeaturesListScreen(submodule: submodule));
   }
 
 }

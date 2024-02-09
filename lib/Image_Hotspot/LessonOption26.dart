@@ -25,7 +25,7 @@ class _LessonOption26State extends State<LessonOption26> {
   String selectedAnswer = '';
   int? selectedOptionIndex;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
-  final navigationController = Get.find<FeatureNavigationController>();
+  // final navigationController = Get.find<FeatureNavigationController>();
 
   final List<ClickableArea> clickableAreas = [
     ClickableArea(
@@ -566,7 +566,8 @@ class _LessonOption26State extends State<LessonOption26> {
                       minimumSize: const Size(150, 37),
                     ),
                     onPressed: () {
-                      navigationController.navigateToNextFeatureOrBack();
+                      // navigationController.navigateToNextFeatureOrBack();
+                      Get.back();
                     },
                     child: const Text(
                       'جاری رہے',

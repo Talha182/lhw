@@ -74,7 +74,7 @@ class _PresentationState extends State<Presentation> {
           ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
     ),
   ];
-  final navigationController = Get.find<FeatureNavigationController>();
+  // final navigationController = Get.find<FeatureNavigationController>();
 
   List<Color> optionColors = [
     const Color(0xffF2F2F2),
@@ -501,7 +501,7 @@ class _PresentationState extends State<Presentation> {
                   minimumSize: const Size(150, 37),
                 ),
                 onPressed: () {
-                  navigationController.navigateToNextFeatureOrBack();
+                  // navigationController.navigateToNextFeatureOrBack();
                 },
                 child: const Text(
                   'جاری رہے',

@@ -21,7 +21,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
   final int _totalSteps = 100;
   bool _isLastCardFlipped = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
-  final navigationController = Get.find<FeatureNavigationController>();
+  // final navigationController = Get.find<FeatureNavigationController>();
 
   final CarouselController _carouselController = CarouselController();
 
@@ -248,7 +248,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                 minimumSize: const Size(150, 37),
               ),
               onPressed: () {
-                navigationController.navigateToNextFeatureOrBack();
+                // navigationController.navigateToNextFeatureOrBack();
               },
               // onPressed: _isLastCardFlipped
               //     ? () {

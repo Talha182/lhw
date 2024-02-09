@@ -22,7 +22,7 @@ class _ComicStripState extends State<ComicStrip>
   late List<Widget> _carouselItems;
   late AnimationController _progressController;
   late Animation<double> _progressAnimation;
-  final navigationController = Get.find<FeatureNavigationController>();
+  // final navigationController = Get.find<FeatureNavigationController>();
 
   @override
   void initState() {
@@ -223,8 +223,8 @@ class _ComicStripState extends State<ComicStrip>
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: () {
-                    navigationController.navigateToNextFeatureOrBack();
-
+                    // navigationController.navigateToNextFeatureOrBack();
+                    Get.back();
                   },
                   child: const Text(
                     'جاری رہے',

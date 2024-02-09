@@ -92,16 +92,16 @@ class _LessonOption20State extends State<LessonOption20> {
                   ),
                   GestureDetector(
                       onTap: () {
-                        final bookmarkController =
-                            Get.find<BookmarkController>();
-                        bookmarkController.addBookmark(
-                          Bookmark(
-                              title: 'LessonOption20',
-                              routeName: '/lessonOption20'),
-                        );
-                        // Optionally, show a snackbar or some feedback to the user
-                        Get.snackbar('Bookmark Added',
-                            'This page has been added to your bookmarks');
+                        // final bookmarkController =
+                        //     Get.find<BookmarkController>();
+                        // bookmarkController.addBookmark(
+                        //   Bookmark(
+                        //       title: 'LessonOption20',
+                        //       routeName: '/lessonOption20'),
+                        // );
+                        // // Optionally, show a snackbar or some feedback to the user
+                        // Get.snackbar('Bookmark Added',
+                        //     'This page has been added to your bookmarks');
                       },
                       child: const Icon(Icons.bookmark_outline)),
                 ],

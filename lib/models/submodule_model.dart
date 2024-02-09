@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; // Ensure you have the GetX package imported
+import 'package:get/get.dart';
+
+import 'feature_tile_model.dart'; // Ensure you have the GetX package imported
 
 class Submodule {
   final int submoduleID;
@@ -11,6 +13,7 @@ class Submodule {
   final List<void Function()> navigateToFeatureCallbacks;
   final int numberOfQuizzes;
   final String titleAlignment;
+  final List<FeatureCallback> featureCallbacks;
 
   Submodule({
     required this.submoduleID,
@@ -21,6 +24,7 @@ class Submodule {
     required this.navigateToFeatureCallbacks, // Adjusted to callback functions
     required this.numberOfQuizzes,
     required this.titleAlignment,
+    required this.featureCallbacks
   });
 
 

@@ -33,7 +33,7 @@ class _LessonOption33State extends State<LessonOption33> {
   int? selectedOptionIndex;
   bool isDialogShown = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
-  final navigationController = Get.find<FeatureNavigationController>();
+  // final navigationController = Get.find<FeatureNavigationController>();
 
 
   final List<Question> questions = [
@@ -363,7 +363,8 @@ class _LessonOption33State extends State<LessonOption33> {
                   minimumSize: const Size(150, 37),
                 ),
                 onPressed: () {
-                  navigationController.navigateToNextFeatureOrBack();
+                  // navigationController.navigateToNextFeatureOrBack();
+                  Get.back();
                 },
                 child: const Text(
                   'جاری رہے',
