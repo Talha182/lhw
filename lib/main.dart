@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/flash_cards_screen.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/api/firebase_api.dart';
@@ -20,8 +21,9 @@ import 'course_tabbar/course_provider.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> main() async {  Get.put(CourseController()); // Make sure it's available app-wide
+
+WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => Get.put(AuthenticationRepository()));
   await FirebaseApi().initNotification();
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return const Custom_NavBar();
+              return const Courses_Tabbar();
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();

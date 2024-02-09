@@ -338,12 +338,12 @@ class _ModuleScreenTestState extends State<ModuleScreenTest> {
                       // Check if the module has more than three submodules
                       if (module.submoduleCount > 3) {
                         // Navigate to JourneyMapScreen2 if more than three submodules
-                        Get.to(() => JourneyMapScreen2(module: module),
+                        Get.to(() => JourneyMapScreen2(module: module, courseTitle: course.title,),
                             transition: Transition.fade,
                             duration: const Duration(milliseconds: 300));
                       } else {
                         // Navigate to JourneyMapScreen if three or fewer submodules
-                        Get.to(() => JourneyMapScreen(module: module),
+                        Get.to(() => JourneyMapScreen(module: module, courseTitle: course.title,),
                             transition: Transition.fade,
                             duration: const Duration(milliseconds: 300));
                       }

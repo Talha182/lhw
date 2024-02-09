@@ -572,49 +572,15 @@ class CoursesProvider with ChangeNotifier {
   }
 }
 
-class Feature1 extends StatelessWidget {
-  const Feature1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // final navigationController = Get.find<FeatureNavigationController>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Feature Screen'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // navigationController.navigateToNextFeatureOrBack();
-          },
-          child: const Text('Next'),
-        ),
-      ),
-    );
-  }
-}
-
-class Feature2 extends StatelessWidget {
-  const Feature2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // final navigationController = Get.find<FeatureNavigationController>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Feature 2'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate back to the JourneyMapScreen
-            // navigationController.navigateToNextFeatureOrBack();
-          },
-          child: const Text('Back to Journey Map'),
-        ),
-      ),
-    );
-  }
+class CourseController extends GetxController {
+  var currentCourse = Course(
+    courseId: 1,
+    title: 'متعدی بیماریاں',
+    gradient: const LinearGradient(colors: [Color(0xff89E4FE), Color(0xff18A3C8)]),
+    quizCount: 12,
+    moduleCount: 8,
+    imagePath: 'assets/images/immunization-ico.png',
+    isStart: true,
+    modules: [],
+  ).obs; // Initially set to the course you showed or fetch dynamically
 }

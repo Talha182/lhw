@@ -3,16 +3,17 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:lhw/course_tabbar/ModuleTest/FeaturesListScreen.dart';
 
 import 'JourneyMap.dart';
 import 'controllers/feature_navigation.dart';
+import 'course_tabbar/ModuleTest/FeaturesListScreen.dart';
 import 'models/module_model.dart';
 import 'models/submodule_model.dart';
 class JourneyMapScreen2 extends StatelessWidget {
   final Module module;
+  final String courseTitle;
 
-  const JourneyMapScreen2({Key? key, required this.module}) : super(key: key);
+  const JourneyMapScreen2({Key? key, required this.module, required this.courseTitle}) : super(key: key);
 
 
 
@@ -315,23 +316,23 @@ class JourneyMapScreen2 extends StatelessWidget {
       },
     );
   }
-  // void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
-  //   // Check if a controller already exists and reset it, or create a new one
-  //   if (Get.isRegistered<FeatureNavigationController>()) {
-  //     var existingController = Get.find<FeatureNavigationController>();
-  //     existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
-  //   } else {
-  //     Get.put(FeatureNavigationController(
-  //       navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
-  //       navigateBackToJourneyMap: () => Get.back(),
-  //     )); // Optionally use a unique tag for each submodule if needed
-  //   }
-  //
-  //   // Navigate to the first feature callback
-  //   Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
-  // }
   void navigateToSubmoduleFeatures( Submodule submodule) {
-    Get.to(() => FeaturesListScreen(submodule: submodule));
+    Get.to(() => FeaturesListScreen(submodule: submodule, courseTitle: courseTitle,));
   }
 
 }
+// void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
+//   // Check if a controller already exists and reset it, or create a new one
+//   if (Get.isRegistered<FeatureNavigationController>()) {
+//     var existingController = Get.find<FeatureNavigationController>();
+//     existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
+//   } else {
+//     Get.put(FeatureNavigationController(
+//       navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
+//       navigateBackToJourneyMap: () => Get.back(),
+//     )); // Optionally use a unique tag for each submodule if needed
+//   }
+//
+//   // Navigate to the first feature callback
+//   Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
+// }

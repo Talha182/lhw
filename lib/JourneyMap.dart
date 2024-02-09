@@ -9,9 +9,10 @@ import 'models/module_model.dart';
 import 'models/submodule_model.dart'; // Assume this contains definitions for Module and Submodule
 
 class JourneyMapScreen extends StatelessWidget {
-  final Module module;
+  final Module module;  final String courseTitle; // Add this line
 
-  const JourneyMapScreen({Key? key, required this.module}) : super(key: key);
+
+  const JourneyMapScreen({Key? key, required this.module, required this.courseTitle}) : super(key: key);
 
   
   @override
@@ -324,7 +325,8 @@ class JourneyMapScreen extends StatelessWidget {
   //   Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
   // }
   void navigateToSubmoduleFeatures( Submodule submodule) {
-    Get.to(() => FeaturesListScreen(submodule: submodule));
+    Get.to(() => FeaturesListScreen(submodule: submodule, courseTitle: courseTitle, // Pass the course title here
+        ));
   }
 
 }
