@@ -9,9 +9,9 @@ import 'package:lhw/Result/ResultScreen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/models/question_model.dart';
 
-import '../BookmarkController.dart';
+import '../controllers/BookmarkController.dart';
 import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
-import '../QuizController.dart';
+import '../controllers/QuizController.dart';
 import '../controllers/feature_navigation.dart';
 
 class LessonOption21 extends StatefulWidget {

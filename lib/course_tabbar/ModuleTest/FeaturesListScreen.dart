@@ -4,7 +4,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../models/submodule_model.dart';
 
-class FeaturesListScreen extends StatelessWidget {
+class FeaturesListScreen extends StatefulWidget {
   final Submodule submodule;
   final String courseTitle; // Add this line
   final int courseQuizCount;
@@ -23,10 +23,15 @@ class FeaturesListScreen extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<FeaturesListScreen> createState() => _FeaturesListScreenState();
+}
+
+class _FeaturesListScreenState extends State<FeaturesListScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(courseTitle), // Use the course title here
+        title: Text(widget.courseTitle), // Use the course title here
       ),
       body: Padding(
         padding: const EdgeInsets.all(14),
@@ -39,7 +44,7 @@ class FeaturesListScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 120,
                 decoration: BoxDecoration(
-                  gradient: gradient,
+                  gradient: widget.gradient,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Stack(
@@ -50,7 +55,7 @@ class FeaturesListScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            courseTitle, // Example text, replace with dynamic data if necessary
+                            widget.courseTitle, // Example text, replace with dynamic data if necessary
                             style: const TextStyle(
                               fontFamily: 'UrduType',
                               fontSize: 25,
@@ -69,7 +74,7 @@ class FeaturesListScreen extends StatelessWidget {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                '${courseModuleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
+                                '${widget.courseModuleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
                                 style: const TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 15,
@@ -88,7 +93,7 @@ class FeaturesListScreen extends StatelessWidget {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                '${courseQuizCount} کوئز', // Example text, replace with dynamic data if necessary
+                                '${widget.courseQuizCount} کوئز', // Example text, replace with dynamic data if necessary
                                 style: const TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 15,
@@ -105,7 +110,7 @@ class FeaturesListScreen extends StatelessWidget {
                       left: 0,
                       bottom: 0,
                       child: Image.asset(
-                        imagePath,
+                        widget.imagePath,
                         color: Colors.white,
                         scale: 2.5,
                       ),
@@ -165,7 +170,7 @@ class FeaturesListScreen extends StatelessWidget {
                 height: 18,
               ),
               Text(
-                submodule
+                widget.submodule
                     .title, // Example text, replace with dynamic data if necessary
                 style: const TextStyle(
                   fontFamily: 'UrduType',
@@ -179,27 +184,41 @@ class FeaturesListScreen extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: submodule.featureCallbacks.length,
+                  itemCount: widget.submodule.featureCallbacks.length,
                   itemBuilder: (context, index) {
-                    final feature = submodule.featureCallbacks[index];
+                    final feature = widget.submodule.featureCallbacks[index];
                     return ListTile(
-                      leading: Icon(feature.icon,
-                          color: feature
-                              .iconColor), // Uses icon and color based on completion
+                      leading: Icon(feature.icon, color: feature.isCompleted ? Colors.green : feature.iconColor),
                       title: Text(
                         feature.title,
                         style: const TextStyle(
                           fontFamily: 'UrduType',
-                          fontSize: 18,
-                          color: Colors.black,
+                          fontSize: 15,
+                          color: Color(0xff685F78),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      onTap: feature.callback,
+                      subtitle: Text(
+                        feature.duration,
+                        style: const TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      onTap: () async {
+                        // Correctly call the callback function and await its completion
+                        await feature.callback();
+                        // After returning from the navigation, mark the feature as completed
+                        setState(() {
+                          feature.isCompleted = true;
+                        });
+                      },
                     );
                   },
                 ),
               ),
+
             ],
           ),
         ),

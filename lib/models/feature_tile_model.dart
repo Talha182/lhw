@@ -5,13 +5,15 @@ enum FeatureType { video, presentation, quiz }
 class FeatureCallback {
   final String title;
   final FeatureType featureType;
-  final void Function() callback;
+  final Future<void> Function() callback; // Ensure this is a Future function
   bool isCompleted; // Attribute to indicate completion status
+  final String duration;
 
-  FeatureCallback({
+  FeatureCallback( {
     required this.title,
     required this.featureType,
     required this.callback,
+    required this.duration,
     this.isCompleted = false, // Default is not completed
   });
 
@@ -21,7 +23,7 @@ class FeatureCallback {
     } else {
       switch (featureType) {
         case FeatureType.video:
-          return Icons.videocam; // Example icon for video
+          return Icons.play_arrow; // Example icon for video
         case FeatureType.presentation:
           return Icons.slideshow; // Example icon for presentation
         case FeatureType.quiz:
@@ -33,6 +35,6 @@ class FeatureCallback {
   }
 
   Color get iconColor {
-    return isCompleted ? Colors.green : Colors.black; // Green for completed, black for others
+    return isCompleted ? Color(0xff9AC9C2) : Color(0xff685F78); // Green for completed, black for others
   }
 }

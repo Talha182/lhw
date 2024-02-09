@@ -3,12 +3,14 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'controllers/feature_navigation.dart';
-import 'course_tabbar/ModuleTest/FeaturesListScreen.dart';
-import 'models/module_model.dart';
-import 'models/submodule_model.dart'; // Assume this contains definitions for Module and Submodule
 
-class JourneyMapScreen extends StatelessWidget {
+import 'JourneyMap.dart';
+import '../controllers/feature_navigation.dart';
+import '../course_tabbar/ModuleTest/FeaturesListScreen.dart';
+import '../models/module_model.dart';
+import '../models/submodule_model.dart';
+
+class JourneyMapScreen2 extends StatelessWidget {
   final Module module;
   final String courseTitle; // Add this line
   final Gradient gradient;
@@ -16,7 +18,7 @@ class JourneyMapScreen extends StatelessWidget {
   final int courseModuleCount;
   final String imagePath;
 
-  const JourneyMapScreen(
+  const JourneyMapScreen2(
       {Key? key,
       required this.module,
       required this.courseTitle,
@@ -36,7 +38,7 @@ class JourneyMapScreen extends StatelessWidget {
             end: const Alignment(0, -0.2),
             colors: [
               const Color(0xff80B8FB).withOpacity(0.3),
-              Colors.transparent
+              Colors.transparent,
             ],
           ),
         ),
@@ -45,66 +47,67 @@ class JourneyMapScreen extends StatelessWidget {
             Positioned(
               top: 70,
               right: 30,
-              child: SvgPicture.asset('assets/images/cloud.svg',
-                  width: 30, height: 30),
+              child: SvgPicture.asset(
+                'assets/images/cloud.svg',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
             ),
             Positioned(
               top: 90,
               left: 30,
-              child: SvgPicture.asset('assets/images/cloud.svg',
-                  width: 30, height: 30),
-            ),
-            Positioned(
-              left: 10,
-              top: 180,
-              child: SvgPicture.asset("assets/images/path.svg"),
-            ),
-            Positioned(
-              left: 15,
-              top: 190,
-              child: SvgPicture.asset("assets/images/path_dots.svg"),
-            ),
-            Positioned(
-              left: 10,
-              top: 110,
-              child: SvgPicture.asset("assets/images/pencil.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              child: SvgPicture.asset("assets/images/build1.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 80,
-              child: SvgPicture.asset("assets/images/build2.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 200,
-              child: SvgPicture.asset("assets/images/build3.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: SvgPicture.asset("assets/images/build4.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              child: SvgPicture.asset("assets/images/bottom.svg"),
-            ),
-            Positioned(
-              bottom: 60,
-              right: 15,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset("assets/images/samina_instructor.svg",
-                      fit: BoxFit.fill),
-                ),
+              child: SvgPicture.asset(
+                'assets/images/cloud.svg',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
               ),
             ),
+            Positioned(
+                left: 10,
+                top: 180,
+                child: SvgPicture.asset("assets/images/path2.svg")),
+            Positioned(
+                left: 15,
+                top: 190,
+                child: SvgPicture.asset("assets/images/path_dots2.svg")),
+            Positioned(
+                left: 10,
+                top: 110,
+                child: SvgPicture.asset("assets/images/pencil.svg")),
+
+            // Bottom buildings
+            Positioned(
+                bottom: 0, child: SvgPicture.asset("assets/images/build1.svg")),
+            Positioned(
+                bottom: 0,
+                left: 80,
+                child: SvgPicture.asset("assets/images/build2.svg")),
+            Positioned(
+                bottom: 0,
+                left: 200,
+                child: SvgPicture.asset("assets/images/build3.svg")),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: SvgPicture.asset("assets/images/build4.svg")),
+            Positioned(
+                bottom: 0, child: SvgPicture.asset("assets/images/bottom.svg")),
+            Positioned(
+                bottom: 60, // Adjust as needed
+                right: 15, // Adjust as needed
+                child: CircleAvatar(
+                  backgroundColor: const Color(0xffF6B3D0),
+                  radius: 30,
+                  child: Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: SvgPicture.asset(
+                        "assets/images/samina_instructor.svg",
+                        fit: BoxFit.fill,
+                      )),
+                )),
+
             ...module.submodules.asMap().entries.map((entry) {
               int index = entry.key;
               Submodule submodule = module.submodules[index];
@@ -302,6 +305,7 @@ class JourneyMapScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.pop(context);
                             navigateToSubmoduleFeatures(submodule);
+                            // navigateToSubmoduleFeatures(context, submodule);
                           },
                           child: const Text(
                             'کورس جاری رکھیں',

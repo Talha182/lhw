@@ -2,7 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'BookmarkController.dart';
+import 'controllers/BookmarkController.dart';
 
 class BookmarkScreen extends StatefulWidget {
   const BookmarkScreen({super.key});

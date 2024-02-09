@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart'; // Ensure GetX is added to your pubspec.yaml
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:lhw/BookmarkController.dart';
+import 'package:lhw/controllers/BookmarkController.dart';
 
 import '../controllers/feature_navigation.dart'; // Adjust the import path based on your project structure
 

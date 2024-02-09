@@ -3,7 +3,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/models/question_model.dart';
-import '../QuizController.dart';
+import '../controllers/QuizController.dart';
 
 class ResultsScreen extends StatelessWidget {
   void _showOptionsDialog(BuildContext context, Question question) {

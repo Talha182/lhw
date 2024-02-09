@@ -7,7 +7,7 @@ import 'package:lhw/Mobile_Lesson%20&%20Flashcards/flash_cards_screen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:photo_view/photo_view.dart';
 
-import '../BookmarkController.dart';
+import '../controllers/BookmarkController.dart';
 import '../controllers/feature_navigation.dart';
 
 class LessonOption26 extends StatefulWidget {
