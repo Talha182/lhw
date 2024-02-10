@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Branching/LessonOption21.dart';
 import 'package:lhw/Comic_Strip/comic_strip.dart';
+import 'package:lhw/Infographics/infographics.dart';
+import 'package:lhw/Infographics/vertical_infographics.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
@@ -19,6 +21,7 @@ import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
+import 'package:lhw/test/Features/InteractiveImage.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -74,22 +77,26 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return const FlashCardsScreen(
-                cardData: [
-                  {
-                    'frontImage': 'assets/images/1.png',
-                    'title': 'Title 1',
-                    'titleColor': Colors.red, // Add the color of the title
-
-                    'description': 'Description 1',
-                  },
-                  {
-                    'frontImage': 'assets/images/2.png',
-                    'title': 'Title 2',
-                    'titleColor': Colors.red, // Add the color of the title
-
-                    'description': 'Description 2',
-                  },
+              return VerticalInfographics(
+                imagePaths: [
+                  'assets/presentations/presentation1.png',
+                  'assets/presentations/presentation2.png',
+                  'assets/presentations/presentation1.png',
+                  'assets/presentations/presentation2.png',
+                  'assets/presentations/presentation1.png',
+                  'assets/presentations/presentation2.png',
+                  'assets/presentations/presentation1.png',
+                  'assets/presentations/presentation2.png',
+                ],
+                imageTexts: [
+                  'Image 1',
+                  'Image 2',
+                  'Image 1',
+                  'Image 2',
+                  'Image 1',
+                  'Image 2',
+                  'Image 1',
+                  'Image 2',
                 ],
               );
             case AuthStatus.unauthenticated:

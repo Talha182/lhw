@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:lhw/Presentation/presentation_model.dart';
+import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
 import '../Quiz_Widgets/QuizCard.dart';
 
@@ -48,9 +49,9 @@ class _PresentationState extends State<Presentation> {
   void initState() {
     super.initState();
     // Initialize the questionAttempted list with false values for each question
-    questionAttempted = List<bool>.filled(widget.presentationModel.questions.length, false);
+    questionAttempted =
+        List<bool>.filled(widget.presentationModel.questions.length, false);
   }
-
 
 // Update the 'updateQuestion' method
   // Update the 'updateQuestion' method
@@ -69,7 +70,6 @@ class _PresentationState extends State<Presentation> {
       }
       questionAttempted[questionIndex] = true; // Mark the question as attempted
     });
-
 
     Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < widget.presentationModel.questions.length - 1) {
@@ -98,7 +98,8 @@ class _PresentationState extends State<Presentation> {
   }
 
   void navigateToNextImage() {
-    bool isLastImage = currentPage == widget.presentationModel.assetImages.length - 1;
+    bool isLastImage =
+        currentPage == widget.presentationModel.assetImages.length - 1;
 
     if (!isLastImage) {
       // Move to the next image
@@ -118,9 +119,6 @@ class _PresentationState extends State<Presentation> {
       }
     }
   }
-
-
-
 
   void navigateToPreviousImage() {
     if (currentPage > 0) {
@@ -364,23 +362,33 @@ class _PresentationState extends State<Presentation> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Stack(children: [
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black87.withOpacity(0.2)),
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          image: DecorationImage(
-                              image: AssetImage(widget
-                                  .presentationModel.assetImages[currentPage]),
-                              fit: BoxFit.cover)),
-                    ),
+                    PinchZoomReleaseUnzoomWidget(
+                        minScale: 0.8,
+                        maxScale: 4,
+                        resetDuration: const Duration(milliseconds: 200),
+                        boundaryMargin: const EdgeInsets.only(bottom: 0),
+                        clipBehavior: Clip.none,
+                        useOverlay: true,
+                        maxOverlayOpacity: 0.5,
+                        overlayColor: Colors.black,
+                        fingersRequiredToPinch: 2,
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black87.withOpacity(0.2)),
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              image: DecorationImage(
+                                  image: AssetImage(widget.presentationModel
+                                      .assetImages[currentPage]),
+                                  fit: BoxFit.fill)),
+                        )),
                     Positioned(
                       left: 10,
                       top: 100,
                       child: GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           navigateToPreviousImage();
                         },
                         child: Container(
@@ -389,14 +397,13 @@ class _PresentationState extends State<Presentation> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black.withOpacity(0.4)),
-
-                            child: const Center(
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                size: 16,
-                                color: Colors.white,
-                              ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              size: 16,
+                              color: Colors.white,
                             ),
+                          ),
                         ),
                       ),
                     ),
@@ -632,8 +639,19 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
               controller: _pageController,
               itemCount: widget.assetImages.length,
               itemBuilder: (context, index) {
-                return Image.asset(widget.assetImages[index],
-                    fit: BoxFit.contain);
+                return PinchZoomReleaseUnzoomWidget(
+                    minScale: 0.8,
+                    maxScale: 4,
+                    resetDuration: const Duration(milliseconds: 200),
+                    boundaryMargin: const EdgeInsets.only(bottom: 0),
+                    clipBehavior: Clip.none,
+                    useOverlay: true,
+                    maxOverlayOpacity: 0.5,
+                    overlayColor: Colors.black,
+                    fingersRequiredToPinch: 2,
+                  child: Image.asset(widget.assetImages[index],
+                      fit: BoxFit.contain),
+                );
               },
             ),
             Positioned(

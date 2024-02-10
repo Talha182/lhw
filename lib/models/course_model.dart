@@ -28,5 +28,6 @@ class Course {
     this.isCompleted = false,
     this.progress = 0.0, // Default to 0.0
     required this.modules, // add this line
+
   });
 }

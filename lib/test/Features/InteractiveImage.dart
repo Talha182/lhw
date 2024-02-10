@@ -474,7 +474,8 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                 top: 20,
                 child: IconButton(
                   onPressed: () {
-Get.back();                  },
+                    Get.back();
+                  },
                   icon: Icon(Icons.close),
                   color: Colors.black,
                 )),

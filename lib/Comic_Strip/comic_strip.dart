@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
+import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
 class ComicStrip extends StatefulWidget {
   final List<List<String>> imagePairs;
@@ -64,18 +65,26 @@ class _ComicStripState extends State<ComicStrip>
   }
 
   Widget _buildContainer(String imagePath) {
-    return Container(
-      width: double.infinity,
-      height: 180,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: PinchZoom(
-        resetDuration: const Duration(milliseconds: 100),
-        maxScale: 2.5,
-        child: ClipRRect(
+    return Expanded(
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset(imagePath, fit: BoxFit.cover),
+        ),
+        child: PinchZoomReleaseUnzoomWidget(
+          minScale: 0.8,
+          maxScale: 4,
+          resetDuration: const Duration(milliseconds: 200),
+          boundaryMargin: const EdgeInsets.only(bottom: 0),
+          clipBehavior: Clip.none,
+          useOverlay: true,
+          maxOverlayOpacity: 0.5,
+          overlayColor: Colors.black,
+          fingersRequiredToPinch: 2,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(imagePath, fit: BoxFit.cover),
+          ),
         ),
       ),
     );
@@ -154,29 +163,31 @@ class _ComicStripState extends State<ComicStrip>
                 const SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: CarouselSlider.builder(
-                    itemCount: _carouselItems.length,
-                    itemBuilder: (context, index, realIdx) {
-                      return _carouselItems[index];
-                    },
-                    options: CarouselOptions(
-                      viewportFraction: 1,
-                      height: 400,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _current = index;
-                        });
-
-                        double endValue =
-                            index / (widget.imagePairs.length - 1).toDouble();
-                        _progressAnimation =
-                            Tween<double>(begin: _progress, end: endValue)
-                                .animate(_progressController);
-
-                        _progressController.forward(from: 0);
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: CarouselSlider.builder(
+                      itemCount: _carouselItems.length,
+                      itemBuilder: (context, index, realIdx) {
+                        return _carouselItems[index];
                       },
+                      options: CarouselOptions(
+                        viewportFraction: 1,
+                        height: 600,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current = index;
+                          });
+
+                          double endValue =
+                              index / (widget.imagePairs.length - 1).toDouble();
+                          _progressAnimation =
+                              Tween<double>(begin: _progress, end: endValue)
+                                  .animate(_progressController);
+
+                          _progressController.forward(from: 0);
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -198,7 +209,7 @@ class _ComicStripState extends State<ComicStrip>
                     );
                   }).toList(),
                 ),
-                const Spacer(),
+                // const Spacer(),
                 Divider(
                   height: 1,
                   thickness: 1,
