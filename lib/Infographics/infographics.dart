@@ -78,34 +78,10 @@ class _InfographicsState extends State<Infographics>
           //   child:
           //       _buildRectangleContainer(borderColor, text), // Pass 'text' here
           // ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: widget.imagePaths.asMap().entries.map((entry) {
-                return GestureDetector(
-                  onTap: () => _carouselController.animateToPage(entry.key),
-                  child: Container(
-                    width: 8.0,
-                    height: 8.0,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 2.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _current == entry.key
-                          ? const Color(0xff9AC9C2)
-                          : const Color.fromRGBO(0, 0, 0, 0.4),
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-          ),
         ],
       ),
     );
   }
-
   Widget _buildCircleAndRectangleContainer(
       String imagePath, Color borderColor, String text) {
     return Stack(
@@ -239,16 +215,32 @@ class _InfographicsState extends State<Infographics>
                         setState(() {
                           _current = index;
                         });
-
-                        double endValue =
-                            index / (widget.imagePaths.length - 1).toDouble();
-                        _progressAnimation =
-                            Tween<double>(begin: _progress, end: endValue)
-                                .animate(_progressController);
-
-                        _progressController.forward(from: 0);
                       },
                     ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 30, // Adjust as needed
+                  left: 0,
+                  right: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(widget.imagePaths.length, (index) {
+                      return GestureDetector(
+                        onTap: () => _carouselController.animateToPage(index),
+                        child: Container(
+                          width: 10.0,
+                          height: 10.0,
+                          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _current == index
+                                ? const Color(0xff9AC9C2) // Highlighted dot color
+                                : const Color.fromRGBO(0, 0, 0, 0.4), // Non-highlighted dot color
+                          ),
+                        ),
+                      );
+                    }),
                   ),
                 ),
                 const SizedBox(

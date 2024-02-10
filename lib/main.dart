@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return VerticalInfographics(
+              return Infographics(
                 imagePaths: [
                   'assets/presentations/presentation1.png',
                   'assets/presentations/presentation2.png',
