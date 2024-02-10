@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:lhw/Image_Hotspot/LessonOption26.dart';
+import 'package:lhw/Image_Hotspot/image_hotspot.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
@@ -155,7 +155,7 @@ class _Course_DropDownState extends State<Course_DropDown> {
                           ),
                           onPressed: () {
                             Navigator.of(context).pop(); // Close the dialog
-                            Get.to(const LessonOption26(),
+                            Get.to(const ImageHotspot(),
                                     transition: Transition.fade,
                                     duration:
                                         const Duration(milliseconds: 400))!

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../Image_Hotspot/LessonOption26.dart';
+import '../Image_Hotspot/image_hotspot.dart';
 
 class Course_DropDown2 extends StatefulWidget {
   const Course_DropDown2({super.key});
@@ -139,7 +139,7 @@ class _Course_DropDown2State extends State<Course_DropDown2> {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop(); // Close the dialog
-                          Get.to(const LessonOption26(),
+                          Get.to(const ImageHotspot(),
                                   transition: Transition.fade,
                                   duration: const Duration(milliseconds: 400))!
                               .then((value) {

@@ -10,14 +10,14 @@ import 'package:photo_view/photo_view.dart';
 import '../controllers/BookmarkController.dart';
 import '../controllers/feature_navigation.dart';
 
-class LessonOption26 extends StatefulWidget {
-  const LessonOption26({super.key});
+class ImageHotspot extends StatefulWidget {
+  const ImageHotspot({super.key});
 
   @override
-  State<LessonOption26> createState() => _LessonOption26State();
+  State<ImageHotspot> createState() => _ImageHotspotState();
 }
 
-class _LessonOption26State extends State<LessonOption26> {
+class _ImageHotspotState extends State<ImageHotspot> {
   bool isSelected = false;
   bool isAnswered = false;
 
@@ -29,218 +29,22 @@ class _LessonOption26State extends State<LessonOption26> {
 
   final List<ClickableArea> clickableAreas = [
     ClickableArea(
-      position: Offset(200, 40), // Adjust positions as needed
+      position: const Offset(200, 40), // Adjust positions as needed
       dialogText: 'یہ پہلا کلک ایبل علاقہ ہے۔',
       dialogImage: 'assets/images/lesson_26.png',
     ),
     ClickableArea(
-      position: Offset(150, 180),
+      position: const Offset(150, 180),
       dialogText: 'یہ دوسرا کلک ایبل علاقہ ہے۔',
       dialogImage: 'assets/images/fatigue.png',
     ),
     ClickableArea(
-      position: Offset(220, 310),
+      position: const Offset(220, 310),
       dialogText: 'یہ تیسرا کلک ایبل علاقہ ہے۔',
       dialogImage: 'assets/images/touch.png',
     ),
   ];
 
-  void showCustomDialog() {
-    Get.dialog(
-      Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(20.0), // This is the critical line
-        ),
-        insetPadding:
-            const EdgeInsets.symmetric(horizontal: 10), // Add this line
-        child: ConstrainedBox(
-          // Add this widget
-          constraints: BoxConstraints(
-            maxHeight: 250,
-            maxWidth: MediaQuery.of(Get.context!).size.width - 50,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                    alignment: Alignment.topRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(Icons.close),
-                    )),
-                const Text(
-                  'غذائیت کی صورتحال',
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                ),
-                const Expanded(
-                  child: SingleChildScrollView(
-                    child: Text(
-                      'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
-                      style: TextStyle(
-                          fontFamily: "UrduType",
-                          fontSize: 14,
-                          color: Color(0xff7A7D84)),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 5,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-      barrierDismissible: true, // allows dismissing by touching outside
-    );
-  }
-
-  void showCustomDialog2() {
-    Get.dialog(
-      Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(20.0), // This is the critical line
-        ),
-        insetPadding:
-            const EdgeInsets.symmetric(horizontal: 10), // Add this line
-        child: ConstrainedBox(
-          // Add this widget
-          constraints: BoxConstraints(
-            maxHeight: 250,
-            maxWidth: MediaQuery.of(Get.context!).size.width - 50,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                    alignment: Alignment.topRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(Icons.close),
-                    )),
-                const Text(
-                  'غذائیت کی صورتحال',
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                ),
-                const Expanded(
-                  child: SingleChildScrollView(
-                    child: Text(
-                      'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
-                      style: TextStyle(
-                          fontFamily: "UrduType",
-                          fontSize: 14,
-                          color: Color(0xff7A7D84)),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 5,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-      barrierDismissible: true, // allows dismissing by touching outside
-    );
-  }
-
-  void showCustomDialog3() {
-    Get.dialog(
-      Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(20.0), // This is the critical line
-        ),
-        insetPadding:
-            const EdgeInsets.symmetric(horizontal: 10), // Add this line
-        child: ConstrainedBox(
-          // Add this widget
-          constraints: BoxConstraints(
-            maxHeight: 250,
-            maxWidth: MediaQuery.of(Get.context!).size.width - 50,
-          ),
-          child: Stack(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(
-                    flex: 2, // This will occupy 2/3 of the row
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(
-                              10.0), // Adjust the padding as needed
-                          child: Text(
-                            'غذائیت کی صورتحال',
-                            style: TextStyle(
-                              fontFamily: "UrduType",
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Padding(
-                              padding: EdgeInsets.all(
-                                  16.0), // Adjust the padding as needed
-                              child: Text(
-                                'Lorem ipsum dolor یہ ایک انٹرایکٹو بٹن ہے۔ آپ اسے ایڈیٹر کے اوپری ٹول بار میں اپنی مرضی کے مطابق بنا سکتے ہیں اور ٹول ٹپس یا ونڈوز میں اضافی مواد شامل کر سکتے ہیں۔ تصاویر، ویڈیوز، آڈیوز، ٹائم لائنز، پی ڈی ایف، انٹرایکٹو سوالات شامل کریں... جو بھی آپ کی ضرورت ہے!',
-                                style: TextStyle(
-                                  fontFamily: "UrduType",
-                                  fontSize: 14,
-                                  color: Color(0xff7A7D84),
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 5,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1.5.toInt(), // This will occupy 1/3 of the row
-                    child: Image.asset(
-                      'assets/images/LessonOption26.png',
-                      height: double.infinity,
-                      fit: BoxFit
-                          .cover, // Stretch the image to cover the entire container
-                    ),
-                  ),
-                ],
-              ),
-              Positioned(
-                top: 10, // Adjust the top position as needed
-                right: 10, // Adjust the right position as needed
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.close,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      barrierDismissible: true, // allows dismissing by touching outside
-    );
-  }
 
   void showCustomDialog4() {
     Get.dialog(
@@ -338,10 +142,10 @@ class _LessonOption26State extends State<LessonOption26> {
                       );
                     },
                   ),
-                  Text(
+                  const Text(
                     'غذائیت کی صورتحال',
                     style:
-                        const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                        TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
                   Expanded(
                     child: SingleChildScrollView(
@@ -354,7 +158,7 @@ class _LessonOption26State extends State<LessonOption26> {
                                 fontSize: 14,
                                 color: Color(0xff7A7D84)),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Image.asset(
                             dialogImage,
                             fit: BoxFit.cover,
@@ -470,35 +274,21 @@ class _LessonOption26State extends State<LessonOption26> {
                     height: 20,
                   ),
                   Container(
-                    width: 350,
-                    height: 420,
+                    width: 360,
+                    height: 350,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(image: AssetImage(
+                        'assets/images/LessonOption26.png',),fit: BoxFit.cover)
                     ),
                     child: Stack(
                       children: [
-                        Positioned.fill(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: PhotoView(
-                              imageProvider: const AssetImage(
-                                  'assets/images/LessonOption26.png'),
-                              minScale: PhotoViewComputedScale.contained,
-                              maxScale: PhotoViewComputedScale.contained * 2,
-                              backgroundDecoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: Colors.transparent,
-                              ),
-                            ),
-                          ),
-                        ),
                         Positioned(
                             top: 10, // Adjust as needed
                             left: 15, // Adjust as needed
                             child: GestureDetector(
                               onTap: () {
-                                showCustomDialog2();
+                                showCustomDialog4();
                               },
                               child: Container(
                                 child: Center(
@@ -527,7 +317,7 @@ class _LessonOption26State extends State<LessonOption26> {
                                     child: Container(
                                       width: 45,
                                       height: 45,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Center(

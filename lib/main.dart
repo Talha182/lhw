@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Branching/LessonOption21.dart';
 import 'package:lhw/Comic_Strip/comic_strip.dart';
+import 'package:lhw/Image_Hotspot/image_hotspot.dart';
 import 'package:lhw/Infographics/infographics.dart';
 import 'package:lhw/Infographics/vertical_infographics.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
@@ -77,28 +78,7 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return Infographics(
-                imagePaths: [
-                  'assets/presentations/presentation1.png',
-                  'assets/presentations/presentation2.png',
-                  'assets/presentations/presentation1.png',
-                  'assets/presentations/presentation2.png',
-                  'assets/presentations/presentation1.png',
-                  'assets/presentations/presentation2.png',
-                  'assets/presentations/presentation1.png',
-                  'assets/presentations/presentation2.png',
-                ],
-                imageTexts: [
-                  'Image 1',
-                  'Image 2',
-                  'Image 1',
-                  'Image 2',
-                  'Image 1',
-                  'Image 2',
-                  'Image 1',
-                  'Image 2',
-                ],
-              );
+              return ImageHotspot();
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();

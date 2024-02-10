@@ -5,7 +5,7 @@ import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Comic_Strip/comic_strip.dart';
-import '../Image_Hotspot/LessonOption26.dart';
+import '../Image_Hotspot/image_hotspot.dart';
 import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
 import '../models/feature_tile_model.dart';
 import '../models/module_model.dart';

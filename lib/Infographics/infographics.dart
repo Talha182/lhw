@@ -229,8 +229,8 @@ class _InfographicsState extends State<Infographics>
                       return GestureDetector(
                         onTap: () => _carouselController.animateToPage(index),
                         child: Container(
-                          width: 10.0,
-                          height: 10.0,
+                          width: 8.0,
+                          height: 8.0,
                           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
