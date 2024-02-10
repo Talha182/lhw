@@ -11,7 +11,7 @@ import 'package:video_player/video_player.dart';
 import '../controllers/BookmarkController.dart';
 import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
 import '../Quiz_Widgets/QuizCard.dart';
-import '../Quiz_Widgets/Question.dart';
+import '../Quiz_Widgets/question_model.dart';
 import '../controllers/feature_navigation.dart';
 
 class InteractiveAnimationVideo extends StatefulWidget {

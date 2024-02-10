@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Branching/LessonOption33.dart';
+import 'package:lhw/Branching/interactive_animation_video.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Comic_Strip/comic_strip.dart';
@@ -69,17 +69,17 @@ class CoursesProvider with ChangeNotifier {
                   featureType: FeatureType.presentation,
                   duration: "3 منٹ 2 سیکنڈ",
                   callback: () async {
-                    await Get.to(() => const Presentation(
-                          assetImages: [
-                            'assets/presentations/presentation1.png',
-                            'assets/presentations/presentation2.png',
-                            'assets/presentations/presentation3.png',
-                            'assets/presentations/presentation4.png',
-                            'assets/presentations/presentation5.png',
-                            'assets/presentations/presentation6.png',
-                          ],
-                        ));
-                    return;
+                    // await Get.to(() => const Presentation(
+                    //       assetImages: [
+                    //         'assets/presentations/presentation1.png',
+                    //         'assets/presentations/presentation2.png',
+                    //         'assets/presentations/presentation3.png',
+                    //         'assets/presentations/presentation4.png',
+                    //         'assets/presentations/presentation5.png',
+                    //         'assets/presentations/presentation6.png',
+                    //       ],
+                    //     ));
+                    // return;
                   },
                 ),
               ],

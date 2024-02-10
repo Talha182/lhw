@@ -1,22 +1,24 @@
 import 'dart:async';
+import 'package:lhw/Presentation/presentation_model.dart';
+
+import '../Quiz_Widgets/QuizCard.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../controllers/BookmarkController.dart';
+import '../Branching/LessonOption24.dart';
 import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
-import '../Quiz_Widgets/Question.dart';
 import '../Quiz_Widgets/QuizCard.dart';
 import 'package:flutter/services.dart';
 
+import '../controllers/BookmarkController.dart';
 import '../controllers/feature_navigation.dart';
 
 class Presentation extends StatefulWidget {
-  final List<String> assetImages; // Add this line
-
-  const Presentation({super.key, required this.assetImages});
+  final PresentationModel presentationModel;
+  const Presentation({super.key, required this.presentationModel});
 
   @override
   State<Presentation> createState() => _PresentationState();
@@ -26,55 +28,13 @@ class _PresentationState extends State<Presentation> {
   bool isPlaying = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   int currentPage = 0;
-  // final List<String> assetImages = [
-  //   'assets/presentations/presentation1.png',
-  //   'assets/presentations/presentation2.png',
-  //   'assets/presentations/presentation3.png',
-  //   'assets/presentations/presentation4.png',
-  //   'assets/presentations/presentation5.png',
-  //   'assets/presentations/presentation6.png',
-  // ];
+
   bool isSelected = false;
   bool isAnswered = false;
-  int _current = 0;
-  int _totalSteps = 100;
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
   bool isDialogShown = false;
-  final List<Question> questions = [
-    Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
-    ),
-    Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
-    ),
-  ];
-  // final navigationController = Get.find<FeatureNavigationController>();
 
   List<Color> optionColors = [
     const Color(0xffF2F2F2),
@@ -91,7 +51,8 @@ class _PresentationState extends State<Presentation> {
       isAnswered = true;
       isSelected = true;
       selectedOptionIndex = index; // Add this line
-      if (selectedAnswer == questions[questionIndex].correctAnswer) {
+      if (selectedAnswer ==
+          widget.presentationModel.questions[questionIndex].correctAnswer) {
         optionColors[index] = Colors.green[100]!;
       } else {
         optionColors[index] = Colors.red[100]!;
@@ -99,16 +60,73 @@ class _PresentationState extends State<Presentation> {
     });
 
     Future.delayed(const Duration(seconds: 2), () {
-      if (questionIndex < questions.length - 1) {
+      if (questionIndex < widget.presentationModel.questions.length - 1) {
         setState(() {
           questionIndex++;
-          _current = ((questionIndex / questions.length) * 1).toInt();
           optionColors = [Colors.white, Colors.white, Colors.white];
           isAnswered = false; // Reset for the next question
           isSelected = false; // Reset isSelected
           selectedOptionIndex = null; // Reset selectedOptionIndex
         });
       }
+    });
+  }
+
+  void showQuestionDialogForImage(int imageIndex) {
+    // Adjusted to ensure it uses the correct question index based on the image
+    questionIndex =
+        imageIndex - 1; // Assuming each image has a corresponding question
+    if (questionIndex < 0 ||
+        questionIndex >= widget.presentationModel.questions.length) {
+      return; // No question for this image or out of bounds, so return early
+    }
+    showDialogWithQuestionOptions();
+  }
+
+  void navigateToNextImage() {
+    bool isLastImage = currentPage == widget.presentationModel.assetImages.length - 1;
+
+    if (!isLastImage) {
+      // Move to the next image
+      currentPage++;
+      resetQuestionState(); // Reset the options when moving to the next image
+
+      // Check if showQuestionDialog is true for the current image's corresponding question
+      if (widget.presentationModel.showQuestionDialog[currentPage - 1]) {
+        // Show the dialog for the current image's corresponding question
+        showQuestionDialogForImage(currentPage);
+      }
+    } else {
+      // If it's the last image, show the dialog for the last image's corresponding question (if needed)
+      if (widget.presentationModel.showQuestionDialog.isNotEmpty &&
+          widget.presentationModel.showQuestionDialog.last) {
+        showQuestionDialogForImage(currentPage + 1);
+      }
+    }
+  }
+
+
+
+
+  void navigateToPreviousImage() {
+    if (currentPage > 0) {
+      setState(() {
+        currentPage--; // Move to the previous image
+        resetQuestionState(); // Optionally reset question state here as well
+      });
+    }
+  }
+
+  void resetQuestionState() {
+    setState(() {
+      isSelected = false;
+      isAnswered = false;
+      selectedOptionIndex = null;
+      optionColors = [
+        const Color(0xffF2F2F2),
+        const Color(0xffF2F2F2),
+        const Color(0xffF2F2F2)
+      ]; // Reset color states if needed
     });
   }
 
@@ -138,27 +156,34 @@ class _PresentationState extends State<Presentation> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        questions[questionIndex].question,
+                        widget.presentationModel.questions[questionIndex]
+                            .question,
                         style: const TextStyle(
                             fontSize: 20, fontFamily: "UrduType"),
                       ),
                       const SizedBox(height: 10),
                       ...List.generate(
-                        questions[questionIndex].options.length,
+                        widget.presentationModel.questions[questionIndex]
+                            .options.length,
                         (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: QuizCard(
-                            text: questions[questionIndex].options[index],
+                            text: widget.presentationModel
+                                .questions[questionIndex].options[index],
                             ontap: () {
                               setState(() {
                                 updateQuestion(
-                                    questions[questionIndex].options[index],
+                                    widget
+                                        .presentationModel
+                                        .questions[questionIndex]
+                                        .options[index],
                                     index);
                               });
                             },
                             color: optionColors[index],
                             isCorrect: selectedAnswer ==
-                                questions[questionIndex].correctAnswer,
+                                widget.presentationModel
+                                    .questions[questionIndex].correctAnswer,
                             isSelected: isSelected,
                             isOptionSelected: index == selectedOptionIndex,
                           ),
@@ -207,6 +232,7 @@ class _PresentationState extends State<Presentation> {
       },
     ).then((_) {
       isDialogCurrentlyShown = false;
+      resetQuestionState(); // Ensure state is reset after dialog is dismissed
     });
   }
 
@@ -214,7 +240,7 @@ class _PresentationState extends State<Presentation> {
     const duration = Duration(
         seconds: 2); // Change the duration according to your preference
     _slideshowTimer = Timer.periodic(duration, (Timer timer) {
-      if (currentPage < widget.assetImages.length - 1) {
+      if (currentPage < widget.presentationModel.assetImages.length - 1) {
         setState(() {
           currentPage++;
         });
@@ -238,7 +264,8 @@ class _PresentationState extends State<Presentation> {
     super.dispose();
   }
 
-  double get progress => (currentPage + 1) / widget.assetImages.length;
+  double get progress =>
+      (currentPage + 1) / widget.presentationModel.assetImages.length;
 
   @override
   Widget build(BuildContext context) {
@@ -331,8 +358,8 @@ class _PresentationState extends State<Presentation> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
                           image: DecorationImage(
-                              image:
-                                  AssetImage(widget.assetImages[currentPage]),
+                              image: AssetImage(widget
+                                  .presentationModel.assetImages[currentPage]),
                               fit: BoxFit.cover)),
                     ),
                     Positioned(
@@ -346,10 +373,7 @@ class _PresentationState extends State<Presentation> {
                             color: Colors.black.withOpacity(0.4)),
                         child: GestureDetector(
                           onTap: () {
-                            setState(() {
-                              currentPage =
-                                  (currentPage - 1) % widget.assetImages.length;
-                            });
+                            navigateToPreviousImage();
                           },
                           child: const Center(
                             child: Icon(
@@ -364,30 +388,28 @@ class _PresentationState extends State<Presentation> {
                     Positioned(
                       right: 10,
                       top: 100,
-                      child: Container(
+                      child: GestureDetector(
+                        onTap: () {
+                          navigateToNextImage();
+                          stopSlideshow(); // Add this to stop the slideshow if manually navigating
+
+                          // showDialogWithQuestionOptions(); // Add this line to show the custom dialog.
+                        },
+                        child: Container(
                           width: 35,
                           height: 35,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black.withOpacity(0.4)),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                currentPage = (currentPage + 1) %
-                                    widget.assetImages.length;
-                              });
-                              stopSlideshow(); // Add this to stop the slideshow if manually navigating
-
-                              // showDialogWithQuestionOptions(); // Add this line to show the custom dialog.
-                            },
-                            child: const Center(
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16,
-                                color: Colors.white,
-                              ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: Colors.white,
                             ),
-                          )),
+                          ),
+                        ),
+                      ),
                     ),
                     Positioned(
                       bottom: 0,
@@ -461,7 +483,8 @@ class _PresentationState extends State<Presentation> {
                                 onTap: () {
                                   Get.to(
                                       () => FullScreenImagePage(
-                                          assetImages: widget.assetImages,
+                                          assetImages: widget
+                                              .presentationModel.assetImages,
                                           initialPage: currentPage),
                                       transition: Transition.fade,
                                       duration:
@@ -500,9 +523,7 @@ class _PresentationState extends State<Presentation> {
                   ),
                   minimumSize: const Size(150, 37),
                 ),
-                onPressed: () {
-                  // navigationController.navigateToNextFeatureOrBack();
-                },
+                onPressed: () {},
                 child: const Text(
                   'جاری رہے',
                   style: TextStyle(
@@ -650,6 +671,76 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class QuizCard extends StatelessWidget {
+  final String text;
+  final Function ontap;
+  final Color color;
+  final bool isCorrect;
+  final bool isSelected;
+  final bool isAnswered;
+  final bool isOptionSelected; // Define this parameter
+
+  const QuizCard({
+    Key? key,
+    required this.text,
+    required this.ontap,
+    this.color = const Color(0xffF2F2F2),
+    this.isCorrect = false,
+    this.isSelected = false,
+    this.isAnswered = false,
+    this.isOptionSelected = false, // Initialize this parameter
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: isAnswered ? null : () => ontap(),
+      child: Container(
+        width: 380,
+        height: 80,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black87.withOpacity(0.1)),
+          borderRadius: BorderRadius.circular(10),
+          color: color,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              children: [
+                Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black87.withOpacity(0.2)),
+                    shape: BoxShape.circle,
+                    color: isOptionSelected // Use the parameter here
+                        ? (isCorrect ? Colors.green : Colors.red)
+                        : Colors.transparent,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: Color(0xff7A7D84),
+                      fontFamily: 'UrduType',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

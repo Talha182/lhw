@@ -2,12 +2,14 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lhw/Branching/LessonOption21.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/flash_cards_screen.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/Presentation/Presentation.dart';
+import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/course_tabbar/courses_tabbar.dart';
 import 'package:lhw/firebase_options.dart';
@@ -19,12 +21,12 @@ import 'package:lhw/repositories/authentication_repository/authentication_reposi
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'Presentation/presentation_question_model.dart';
 import 'course_tabbar/course_provider.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => Get.put(AuthenticationRepository()));
@@ -71,7 +73,64 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return const Courses_Tabbar();
+              return Presentation(
+                presentationModel: PresentationModel(
+                  assetImages: [
+                    'assets/presentations/presentation1.png',
+                    'assets/presentations/presentation2.png',
+                    'assets/presentations/presentation3.png',
+                    'assets/presentations/presentation4.png',
+                  ],
+                  questions: [
+                    Question(
+                        question: "Question 1",
+                        options: [
+                          'Option 1',
+                          'Option 2',
+                          'Option 3',
+                        ],
+                        correctAnswer: "Option 1",
+                        correctExplanation: 'Correct Explanation',
+                        incorrectExplanation: 'Incorrext Explanation'),
+                    Question(
+                        question: "Question 2",
+                        options: [
+                          'Option 1',
+                          'Option 2',
+                          'Option 3',
+                        ],
+                        correctAnswer: "Option 3",
+                        correctExplanation: 'Correct Explanation',
+                        incorrectExplanation: 'Incorrext Explanation'),
+                    Question(
+                        question: "Question 3",
+                        options: [
+                          'Option 1',
+                          'Option 2',
+                          'Option 3',
+                        ],
+                        correctAnswer: "Option 3",
+                        correctExplanation: 'Correct Explanation',
+                        incorrectExplanation: 'Incorrext Explanation'),
+                    Question(
+                        question: "Question4",
+                        options: [
+                          'Option 1',
+                          'Option 2',
+                          'Option 3',
+                        ],
+                        correctAnswer: "Option 3",
+                        correctExplanation: 'Correct Explanation',
+                        incorrectExplanation: 'Incorrext Explanation'),
+                  ],
+                  showQuestionDialog: [
+                    true,
+                    true,
+                    false,
+                    true
+                  ], // Indicates dialog preferences
+                ),
+              );
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();
