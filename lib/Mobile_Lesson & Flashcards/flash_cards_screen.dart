@@ -3,14 +3,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart'; // Ensure GetX is added to your pubspec.yaml
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/controllers/BookmarkController.dart';
 
 import '../controllers/feature_navigation.dart'; // Adjust the import path based on your project structure
 
 class FlashCardsScreen extends StatefulWidget {
-  final List<Map<String, String>> cardData;
+  final List<Map<String, dynamic>> cardData;
 
   const FlashCardsScreen({Key? key, required this.cardData}) : super(key: key);
 
@@ -23,11 +23,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
   final int _totalSteps = 100;
   bool _isLastCardFlipped = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
-  // final navigationController = Get.find<FeatureNavigationController>();
-
   final CarouselController _carouselController = CarouselController();
-
-  // Instantiating the BookmarkController
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +54,9 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0,
-                          end:
-                              ((_current + 1) / widget.cardData.length) * _totalSteps),
+                          end: ((_current + 1) / widget.cardData.length) * _totalSteps),
                       duration: const Duration(milliseconds: 400),
-                      builder:
-                          (BuildContext context, double value, Widget? child) {
+                      builder: (BuildContext context, double value, Widget? child) {
                         return LinearPercentIndicator(
                           lineHeight: 8.0,
                           percent: min(value / _totalSteps, 1.0),
@@ -77,19 +71,18 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                     width: 5,
                   ),
                   GestureDetector(
-                      onTap: () {
-                        final bookmarkController =
-                            Get.find<BookmarkController>();
-                        bookmarkController.addBookmark(
-                          Bookmark(
-                              title: 'LessonOption20',
-                              routeName: '/lessonOption20'),
-                        );
-                        // Optionally, show a snackbar or some feedback to the user
-                        Get.snackbar('Bookmark Added',
-                            'This page has been added to your bookmarks');
-                      },
-                      child: const Icon(Icons.bookmark_outline)),
+                    onTap: () {
+                      final bookmarkController = Get.find<BookmarkController>();
+                      bookmarkController.addBookmark(
+                        Bookmark(
+                          title: 'LessonOption20',
+                          routeName: '/lessonOption20',
+                        ),
+                      );
+                      Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                    },
+                    child: const Icon(Icons.bookmark_outline),
+                  ),
                 ],
               ),
             ),
@@ -125,47 +118,57 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                   return FlipCard(
                     onFlip: () {
                       setState(() {
-                        _isLastCardFlipped = index ==widget.cardData.length - 1;
+                        _isLastCardFlipped = index == widget.cardData.length - 1;
                       });
                     },
                     direction: FlipDirection.HORIZONTAL,
                     front: Container(
                       width: 280,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                              color: const Color(0xffF07DB2), width: 2)),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: const Color(0xffF07DB2), width: 2),
+                      ),
                       child: Center(
-                        child: Text(
-                          widget.cardData[index]['frontText'] ?? '', // Use default value if null
-
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 25,
-                            fontFamily: "UrduType",
-                            color: Colors.black, // Text color
-                          ),
+                        child: Image.asset(
+                          widget.cardData[index]['frontImage'] ?? '', // Use default value if null
+                          width: 250,
+                          height: 250,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     back: Container(
                       width: 280,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                              color: const Color(0xffF07DB2), width: 2)),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: const Color(0xffF07DB2), width: 2),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Center(
-                          child: Text(
-                            widget.cardData[index]['backText'] ?? '', // Use default value if null
-
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 25,
-                              fontFamily: "UrduType",
-                              color: Colors.black, // Text color
-                            ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                widget.cardData[index]['title'] ?? '', // Use default value if null
+                                textAlign: TextAlign.center,
+                                style:  TextStyle(
+                                  fontSize: 25,
+                                  fontFamily: "UrduType",
+                                  color: widget.cardData[index]['titleColor'] ?? Colors.black, // Use color from the array
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                widget.cardData[index]['description'] ?? '', // Use default value if null
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: "UrduType",
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -195,17 +198,17 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               children: List.generate(
                 widget.cardData.length,
                 // Use the length of cardData for dynamic indicator count
-                (index) {
+                    (index) {
                   return Container(
                     width: 8.0,
                     height: 8.0,
                     margin: const EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 2.0),
+                      vertical: 10.0,
+                      horizontal: 2.0,
+                    ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _current == index
-                          ? const Color(0xff9AC9C2)
-                          : const Color(0xffeaedee),
+                      color: _current == index ? const Color(0xff9AC9C2) : const Color(0xffeaedee),
                     ),
                   );
                 },
@@ -223,8 +226,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 side: const BorderSide(color: Colors.white, width: 2),
-                backgroundColor:
-                    _isLastCardFlipped ? const Color(0xffFE8BD1) : Colors.grey,
+                backgroundColor: _isLastCardFlipped ? const Color(0xffFE8BD1) : Colors.grey,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
@@ -232,13 +234,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                 minimumSize: const Size(150, 37),
               ),
               onPressed: () {
-                // navigationController.navigateToNextFeatureOrBack();
+                // Do something when the button is pressed
               },
-              // onPressed: _isLastCardFlipped
-              //     ? () {
-              //   // handle the button press logic here
-              // }
-              //     : null, // null disables the button
               child: const Text(
                 'جاری رہے',
                 style: TextStyle(

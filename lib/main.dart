@@ -77,19 +77,18 @@ class MyApp extends StatelessWidget {
               return const FlashCardsScreen(
                 cardData: [
                   {
-                    'frontText': ' ٹی۔ بی کیا ہے؟',
-                    'backText':
-                        'یہ مرض جرثومے، بیکٹیریا کی وجہ سے پھیلتا ہے، جو کہ جسم کے کسی بھی حصے میں رہ سکتا ہے۔',
+                    'frontImage': 'assets/images/1.png',
+                    'title': 'Title 1',
+                    'titleColor': Colors.red, // Add the color of the title
+
+                    'description': 'Description 1',
                   },
                   {
-                    'frontText': ' جسم کے کس حصے کو متاثر کرتا ہے؟',
-                    'backText':
-                    'اس سے جسم کے کئی حصے متاثر ہو سکتے ہیں مثلاً پھیپھڑے، آنتیں ، ہڈیاں ، جوڑ ، گردے وغیرہ,  تاہم پھیپھڑوں کی ٹی بی سب سے زیادہ عام ہے۔',
-                  },
-                  {
-                    'frontText': ' کس عمر کے لوگ زیادہ متاثر ہوتے ہیں؟',
-                    'backText':
-                    'کسی بھی عمر کا فرد اس سے متاثر ہو سکتا ہے۔  پہلے حملے میں جب جراثیم جسم میں داخل ہوتے ہیں تو اکثر ان کا پتہ نہیں چلتا کیونکہ اس کی علامات بہت معمولی ہوتی ہیں۔  لیکن ایسے افراد جن کی قوت مدافعت کم ہو، وہ پہلے حملے میں ہی متاثر ہو سکتے ہیں۔ ',
+                    'frontImage': 'assets/images/2.png',
+                    'title': 'Title 2',
+                    'titleColor': Colors.red, // Add the color of the title
+
+                    'description': 'Description 2',
                   },
                 ],
               );
