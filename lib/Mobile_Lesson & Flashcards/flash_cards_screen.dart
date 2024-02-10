@@ -10,7 +10,9 @@ import 'package:lhw/controllers/BookmarkController.dart';
 import '../controllers/feature_navigation.dart'; // Adjust the import path based on your project structure
 
 class FlashCardsScreen extends StatefulWidget {
-  const FlashCardsScreen({Key? key}) : super(key: key);
+  final List<Map<String, String>> cardData;
+
+  const FlashCardsScreen({Key? key, required this.cardData}) : super(key: key);
 
   @override
   _FlashCardsScreenState createState() => _FlashCardsScreenState();
@@ -27,24 +29,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
 
   // Instantiating the BookmarkController
 
-  List<Map<String, dynamic>> cardData = [
-    {
-      'frontText': ' ٹی۔ بی کیا ہے؟',
-      'backText':
-          'یہ مرض جرثومے، بیکٹیریا کی وجہ سے پھیلتا ہے، جو کہ جسم کے کسی بھی حصے میں رہ سکتا ہے۔',
-    },
-    {
-      'frontText': ' جسم کے کس حصے کو متاثر کرتا ہے؟',
-      'backText':
-          'اس سے جسم کے کئی حصے متاثر ہو سکتے ہیں مثلاً پھیپھڑے، آنتیں ، ہڈیاں ، جوڑ ، گردے وغیرہ,  تاہم پھیپھڑوں کی ٹی بی سب سے زیادہ عام ہے۔',
-    },
-    {
-      'frontText': ' کس عمر کے لوگ زیادہ متاثر ہوتے ہیں؟',
-      'backText':
-          'کسی بھی عمر کا فرد اس سے متاثر ہو سکتا ہے۔  پہلے حملے میں جب جراثیم جسم میں داخل ہوتے ہیں تو اکثر ان کا پتہ نہیں چلتا کیونکہ اس کی علامات بہت معمولی ہوتی ہیں۔  لیکن ایسے افراد جن کی قوت مدافعت کم ہو، وہ پہلے حملے میں ہی متاثر ہو سکتے ہیں۔ ',
-    },
-    // Add more cards as needed
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +59,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                       tween: Tween<double>(
                           begin: 0,
                           end:
-                              ((_current + 1) / cardData.length) * _totalSteps),
+                              ((_current + 1) / widget.cardData.length) * _totalSteps),
                       duration: const Duration(milliseconds: 400),
                       builder:
                           (BuildContext context, double value, Widget? child) {
@@ -122,7 +106,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(8),
               child: Text(
                 'ٹی بی  اور اس کی علامات۔',
                 textAlign: TextAlign.center,
@@ -130,18 +114,18 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Transform.translate(
               offset: const Offset(-40, 0),
               child: CarouselSlider.builder(
                 carouselController: _carouselController,
-                itemCount: cardData.length,
+                itemCount: widget.cardData.length,
                 itemBuilder: (BuildContext context, int index, int realIndex) {
                   return FlipCard(
                     onFlip: () {
                       setState(() {
-                        _isLastCardFlipped = index == cardData.length - 1;
+                        _isLastCardFlipped = index ==widget.cardData.length - 1;
                       });
                     },
                     direction: FlipDirection.HORIZONTAL,
@@ -153,8 +137,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                               color: const Color(0xffF07DB2), width: 2)),
                       child: Center(
                         child: Text(
-                          cardData[index][
-                              'frontText'], // Text to display on the front side
+                          widget.cardData[index]['frontText'] ?? '', // Use default value if null
+
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 25,
@@ -174,8 +158,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Center(
                           child: Text(
-                            cardData[index][
-                                'backText'], // Text to display on the front side
+                            widget.cardData[index]['backText'] ?? '', // Use default value if null
+
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 25,
@@ -189,7 +173,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                   );
                 },
                 options: CarouselOptions(
-                  height: 420.0,
+                  height: 380.0,
                   enlargeCenterPage: false,
                   onPageChanged: (index, reason) {
                     setState(() {
@@ -209,7 +193,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                cardData.length,
+                widget.cardData.length,
                 // Use the length of cardData for dynamic indicator count
                 (index) {
                   return Container(

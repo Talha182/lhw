@@ -43,7 +43,17 @@ class _PresentationState extends State<Presentation> {
   ];
   Timer? _slideshowTimer;
 
+  List<bool> questionAttempted = []; // New list to track attempted questions
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the questionAttempted list with false values for each question
+    questionAttempted = List<bool>.filled(widget.presentationModel.questions.length, false);
+  }
+
+
 // Update the 'updateQuestion' method
+  // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
     if (isAnswered) return;
     setState(() {
@@ -57,7 +67,9 @@ class _PresentationState extends State<Presentation> {
       } else {
         optionColors[index] = Colors.red[100]!;
       }
+      questionAttempted[questionIndex] = true; // Mark the question as attempted
     });
+
 
     Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < widget.presentationModel.questions.length - 1) {
@@ -72,13 +84,15 @@ class _PresentationState extends State<Presentation> {
     });
   }
 
+  // Update the 'showQuestionDialogForImage' method
   void showQuestionDialogForImage(int imageIndex) {
     // Adjusted to ensure it uses the correct question index based on the image
     questionIndex =
         imageIndex - 1; // Assuming each image has a corresponding question
     if (questionIndex < 0 ||
-        questionIndex >= widget.presentationModel.questions.length) {
-      return; // No question for this image or out of bounds, so return early
+        questionIndex >= widget.presentationModel.questions.length ||
+        questionAttempted[questionIndex]) {
+      return; // No question for this image, question already attempted, or out of bounds, so return early
     }
     showDialogWithQuestionOptions();
   }
@@ -365,23 +379,24 @@ class _PresentationState extends State<Presentation> {
                     Positioned(
                       left: 10,
                       top: 100,
-                      child: Container(
-                        width: 35,
-                        height: 35,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black.withOpacity(0.4)),
-                        child: GestureDetector(
-                          onTap: () {
-                            navigateToPreviousImage();
-                          },
-                          child: const Center(
-                            child: Icon(
-                              Icons.arrow_back_ios_new,
-                              size: 16,
-                              color: Colors.white,
+                      child: GestureDetector(
+                        onTap: (){
+                          navigateToPreviousImage();
+                        },
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black.withOpacity(0.4)),
+
+                            child: const Center(
+                              child: Icon(
+                                Icons.arrow_back_ios_new,
+                                size: 16,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
                         ),
                       ),
                     ),

@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Branching/LessonOption21.dart';
+import 'package:lhw/Comic_Strip/comic_strip.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
 import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
@@ -73,63 +74,24 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return Presentation(
-                presentationModel: PresentationModel(
-                  assetImages: [
-                    'assets/presentations/presentation1.png',
-                    'assets/presentations/presentation2.png',
-                    'assets/presentations/presentation3.png',
-                    'assets/presentations/presentation4.png',
-                  ],
-                  questions: [
-                    Question(
-                        question: "Question 1",
-                        options: [
-                          'Option 1',
-                          'Option 2',
-                          'Option 3',
-                        ],
-                        correctAnswer: "Option 1",
-                        correctExplanation: 'Correct Explanation',
-                        incorrectExplanation: 'Incorrext Explanation'),
-                    Question(
-                        question: "Question 2",
-                        options: [
-                          'Option 1',
-                          'Option 2',
-                          'Option 3',
-                        ],
-                        correctAnswer: "Option 3",
-                        correctExplanation: 'Correct Explanation',
-                        incorrectExplanation: 'Incorrext Explanation'),
-                    Question(
-                        question: "Question 3",
-                        options: [
-                          'Option 1',
-                          'Option 2',
-                          'Option 3',
-                        ],
-                        correctAnswer: "Option 3",
-                        correctExplanation: 'Correct Explanation',
-                        incorrectExplanation: 'Incorrext Explanation'),
-                    Question(
-                        question: "Question4",
-                        options: [
-                          'Option 1',
-                          'Option 2',
-                          'Option 3',
-                        ],
-                        correctAnswer: "Option 3",
-                        correctExplanation: 'Correct Explanation',
-                        incorrectExplanation: 'Incorrext Explanation'),
-                  ],
-                  showQuestionDialog: [
-                    true,
-                    true,
-                    false,
-                    true
-                  ], // Indicates dialog preferences
-                ),
+              return const FlashCardsScreen(
+                cardData: [
+                  {
+                    'frontText': ' ٹی۔ بی کیا ہے؟',
+                    'backText':
+                        'یہ مرض جرثومے، بیکٹیریا کی وجہ سے پھیلتا ہے، جو کہ جسم کے کسی بھی حصے میں رہ سکتا ہے۔',
+                  },
+                  {
+                    'frontText': ' جسم کے کس حصے کو متاثر کرتا ہے؟',
+                    'backText':
+                    'اس سے جسم کے کئی حصے متاثر ہو سکتے ہیں مثلاً پھیپھڑے، آنتیں ، ہڈیاں ، جوڑ ، گردے وغیرہ,  تاہم پھیپھڑوں کی ٹی بی سب سے زیادہ عام ہے۔',
+                  },
+                  {
+                    'frontText': ' کس عمر کے لوگ زیادہ متاثر ہوتے ہیں؟',
+                    'backText':
+                    'کسی بھی عمر کا فرد اس سے متاثر ہو سکتا ہے۔  پہلے حملے میں جب جراثیم جسم میں داخل ہوتے ہیں تو اکثر ان کا پتہ نہیں چلتا کیونکہ اس کی علامات بہت معمولی ہوتی ہیں۔  لیکن ایسے افراد جن کی قوت مدافعت کم ہو، وہ پہلے حملے میں ہی متاثر ہو سکتے ہیں۔ ',
+                  },
+                ],
               );
             case AuthStatus.unauthenticated:
             default:

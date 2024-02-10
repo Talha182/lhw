@@ -1,14 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
-import '../controllers/feature_navigation.dart';
-
 class ComicStrip extends StatefulWidget {
-  const ComicStrip({super.key});
+  final List<List<String>> imagePairs;
+
+  const ComicStrip({
+    Key? key,
+    required this.imagePairs,
+  }) : super(key: key);
 
   @override
   _ComicStripState createState() => _ComicStripState();
@@ -17,24 +21,20 @@ class ComicStrip extends StatefulWidget {
 class _ComicStripState extends State<ComicStrip>
     with SingleTickerProviderStateMixin {
   int _current = 0;
-  int _testing = 3;
   double _progress = 0.0;
   late List<Widget> _carouselItems;
   late AnimationController _progressController;
   late Animation<double> _progressAnimation;
-  // final navigationController = Get.find<FeatureNavigationController>();
-
+  bool _isLiked = false;
+  bool _isDisliked = false;
   @override
   void initState() {
     super.initState();
 
-    _carouselItems = [
-      _buildSlide('assets/images/Strip1.png', 'assets/images/Strip2.png'),
-      _buildSlide('assets/images/Strip1.png', 'assets/images/Strip2.png'),
-      _buildSlide('assets/images/Strip1.png', 'assets/images/Strip2.png'),
-      _buildSlide('assets/images/Strip1.png', 'assets/images/Strip2.png'),
-      _buildSlide('assets/images/Strip1.png', 'assets/images/Strip2.png'),
-    ];
+    _carouselItems = widget.imagePairs.map((pair) {
+      return _buildSlide(pair[0], pair[1]);
+    }).toList();
+
     _progressController = AnimationController(
         duration: const Duration(milliseconds: 400), vsync: this)
       ..addListener(() {
@@ -50,15 +50,14 @@ class _ComicStripState extends State<ComicStrip>
     super.dispose();
   }
 
-  Widget _buildSlide(String imagePathA, String imagePathB) {
+  Widget _buildSlide(String imagePathTop, String imagePathBottom) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 5.0), // Add horizontal padding here
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: Column(
         children: [
-          _buildContainer(imagePathA),
+          _buildContainer(imagePathTop),
           const SizedBox(height: 20),
-          _buildContainer(imagePathB),
+          _buildContainer(imagePathBottom),
         ],
       ),
     );
@@ -67,7 +66,7 @@ class _ComicStripState extends State<ComicStrip>
   Widget _buildContainer(String imagePath) {
     return Container(
       width: double.infinity,
-      height: 200,
+      height: 180,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -85,35 +84,31 @@ class _ComicStripState extends State<ComicStrip>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(
-          0,
-        ),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
       body: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: const Alignment(0, -0.2),
-              colors: [
-                const Color(0xff80B8FB).withOpacity(0.5),
-                Colors.transparent,
-              ],
-            )),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: const Alignment(0, -0.2),
+                colors: [
+                  const Color(0xff80B8FB).withOpacity(0.5),
+                  Colors.transparent,
+                ],
+              ),
+            ),
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
                   child: Row(
                     children: [
-                      const InkWell(
-                        child: Icon(
+                      InkWell(
+                        onTap: () {
+                          // Handle close button tap
+                          Get.back();
+                        },
+                        child: const Icon(
                           Icons.close,
                           size: 30,
                         ),
@@ -162,28 +157,28 @@ class _ComicStripState extends State<ComicStrip>
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: CarouselSlider.builder(
-                      itemCount: _carouselItems.length,
-                      itemBuilder: (context, index, realIdx) {
-                        return _carouselItems[index];
+                    itemCount: _carouselItems.length,
+                    itemBuilder: (context, index, realIdx) {
+                      return _carouselItems[index];
+                    },
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      height: 400,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _current = index;
+                        });
+
+                        double endValue =
+                            index / (widget.imagePairs.length - 1).toDouble();
+                        _progressAnimation =
+                            Tween<double>(begin: _progress, end: endValue)
+                                .animate(_progressController);
+
+                        _progressController.forward(from: 0);
                       },
-                      options: CarouselOptions(
-                        viewportFraction: 1,
-                        height: 440,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current = index;
-                          });
-
-                          double endValue =
-                              index / (_carouselItems.length - 1).toDouble();
-                          _progressAnimation =
-                              Tween<double>(begin: _progress, end: endValue)
-                                  .animate(_progressController);
-
-                          _progressController.forward(
-                              from: 0); // Start the animation
-                        },
-                      )),
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -223,7 +218,6 @@ class _ComicStripState extends State<ComicStrip>
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: () {
-                    // navigationController.navigateToNextFeatureOrBack();
                     Get.back();
                   },
                   child: const Text(
@@ -239,47 +233,65 @@ class _ComicStripState extends State<ComicStrip>
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height / 2 -
-                (50 *
-                    1.5), // Centering based on 3 buttons of approx height 50 each
+            top: MediaQuery.of(context).size.height / 2 - (50 * 1.5),
             right: 10,
             child: Column(
               children: [
-                InkWell(
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.black87.withOpacity(0.4),
-                        shape: BoxShape.circle),
-                    child: (Center(
-                        child:
-                            SvgPicture.asset("assets/images/thumbDown.svg"))),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black87.withOpacity(0.4),
+                    shape: BoxShape.circle,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isLiked = !_isLiked;
+                        // Handle like button tap
+                      });
+                    },
+                    icon: Icon(
+                      _isLiked ? Icons.favorite : Icons.favorite_border,
+                      color: _isLiked ? Colors.red : Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
-                InkWell(
-                  child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.black87.withOpacity(0.4),
-                          shape: BoxShape.circle),
-                      child: Center(
-                          child:
-                              SvgPicture.asset("assets/images/thumbDown.svg"))),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black87.withOpacity(0.4),
+                      shape: BoxShape.circle),
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isDisliked = !_isDisliked;
+                        // Handle dislike button tap
+                      });
+                    },
+                    icon: Icon(
+                      _isDisliked
+                          ? Icons.thumb_down
+                          : Icons.thumb_down_alt_outlined,
+                      color: _isDisliked ? Colors.blue : Colors.white,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 10),
-                InkWell(
-                  child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.black87.withOpacity(0.4),
-                          shape: BoxShape.circle),
-                      child: Center(
-                          child: SvgPicture.asset(
-                              "assets/images/full_screen.svg"))),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black87.withOpacity(0.4),
+                      shape: BoxShape.circle),
+                  child: IconButton(
+                    onPressed: () {
+                      // Handle full screen tap
+                      Get.to(() => FullScreenComicStrip(
+                            imagePairs: widget.imagePairs,
+                          ));
+                    },
+                    icon: const Icon(
+                      Icons.fullscreen,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -290,3 +302,70 @@ class _ComicStripState extends State<ComicStrip>
   }
 }
 
+class FullScreenComicStrip extends StatelessWidget {
+  final List<List<String>> imagePairs;
+
+  const FullScreenComicStrip({Key? key, required this.imagePairs})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            SystemChrome.setPreferredOrientations(
+                [DeviceOrientation.portraitUp]);
+            Get.back();
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: imagePairs
+              .map((pair) => _buildComicStrip(pair[0], pair[1]))
+              .toList(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildComicStrip(String imagePathTop, String imagePathBottom) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildContainer(imagePathTop),
+          const SizedBox(width: 20),
+          _buildContainer(imagePathBottom),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContainer(String imagePath) {
+    return Container(
+      width: 320,
+      height: 250,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: PinchZoom(
+        resetDuration: const Duration(milliseconds: 100),
+        maxScale: 2.5,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.asset(imagePath, fit: BoxFit.cover),
+        ),
+      ),
+    );
+  }
+}
