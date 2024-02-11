@@ -18,6 +18,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'course_tabbar/course_provider.dart';
+import 'models/flash_cards_screen_model.dart';
 import 'models/image_hotspot_model.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();

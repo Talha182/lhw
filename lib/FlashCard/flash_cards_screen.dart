@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/controllers/BookmarkController.dart';
 
-import '../controllers/feature_navigation.dart'; // Adjust the import path based on your project structure
+import '../controllers/feature_navigation.dart';
+import '../models/flash_cards_screen_model.dart'; // Adjust the import path based on your project structure
 
 class FlashCardsScreen extends StatefulWidget {
   final FlashCardScreenModel flashCardScreenModel;
 
-  const FlashCardsScreen({Key? key, required this.flashCardScreenModel}) : super(key: key);
+  const FlashCardsScreen({Key? key, required this.flashCardScreenModel})
+      : super(key: key);
 
   @override
   _FlashCardsScreenState createState() => _FlashCardsScreenState();
@@ -54,9 +56,12 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0,
-                          end: ((_current + 1) / widget.flashCardScreenModel.cards.length) * _totalSteps),
+                          end: ((_current + 1) /
+                                  widget.flashCardScreenModel.cards.length) *
+                              _totalSteps),
                       duration: const Duration(milliseconds: 400),
-                      builder: (BuildContext context, double value, Widget? child) {
+                      builder:
+                          (BuildContext context, double value, Widget? child) {
                         return LinearPercentIndicator(
                           lineHeight: 8.0,
                           percent: min(value / _totalSteps, 1.0),
@@ -79,7 +84,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                           routeName: '/lessonOption20',
                         ),
                       );
-                      Get.snackbar('Bookmark Added', 'This page has been added to your bookmarks');
+                      Get.snackbar('Bookmark Added',
+                          'This page has been added to your bookmarks');
                     },
                     child: const Icon(Icons.bookmark_outline),
                   ),
@@ -98,12 +104,12 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8),
+            Padding(
+              padding: const EdgeInsets.all(8),
               child: Text(
-                'ٹی بی  اور اس کی علامات۔',
+                widget.flashCardScreenModel.title,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: "UrduType", fontSize: 30),
+                style: const TextStyle(fontFamily: "UrduType", fontSize: 30),
               ),
             ),
             const SizedBox(
@@ -115,12 +121,14 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                 carouselController: _carouselController,
                 itemCount: widget.flashCardScreenModel.cards.length,
                 itemBuilder: (BuildContext context, int index, int realIndex) {
-                  final card = widget.flashCardScreenModel.cards[index]; // Use card from the model
+                  final card = widget.flashCardScreenModel
+                      .cards[index]; // Use card from the model
 
                   return FlipCard(
                     onFlip: () {
                       setState(() {
-                        _isLastCardFlipped = index == widget.flashCardScreenModel.cards.length - 1;
+                        _isLastCardFlipped = index ==
+                            widget.flashCardScreenModel.cards.length - 1;
                       });
                     },
                     direction: FlipDirection.HORIZONTAL,
@@ -128,7 +136,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                       width: 280,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: const Color(0xffF07DB2), width: 2),
+                        border: Border.all(
+                            color: const Color(0xffF07DB2), width: 2),
                       ),
                       child: Center(
                         child: Image.asset(
@@ -143,7 +152,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                       width: 280,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: const Color(0xffF07DB2), width: 2),
+                        border: Border.all(
+                            color: const Color(0xffF07DB2), width: 2),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -154,11 +164,10 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                               Text(
                                 card.heading,
                                 textAlign: TextAlign.center,
-                                style:  TextStyle(
-                                  fontSize: 25,
-                                  fontFamily: "UrduType",
-                                  color: card.titleColor
-                                ),
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontFamily: "UrduType",
+                                    color: card.titleColor),
                               ),
                               const SizedBox(height: 10),
                               Text(
@@ -200,7 +209,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               children: List.generate(
                 widget.flashCardScreenModel.cards.length,
                 // Use the length of cardData for dynamic indicator count
-                    (index) {
+                (index) {
                   return Container(
                     width: 8.0,
                     height: 8.0,
@@ -210,7 +219,9 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _current == index ? const Color(0xff9AC9C2) : const Color(0xffeaedee),
+                      color: _current == index
+                          ? const Color(0xff9AC9C2)
+                          : const Color(0xffeaedee),
                     ),
                   );
                 },
@@ -228,7 +239,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 side: const BorderSide(color: Colors.white, width: 2),
-                backgroundColor: _isLastCardFlipped ? const Color(0xffFE8BD1) : Colors.grey,
+                backgroundColor:
+                    _isLastCardFlipped ? const Color(0xffFE8BD1) : Colors.grey,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
@@ -252,30 +264,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
       ),
     );
   }
-}
-
-class FlashCardScreenModel {
-  final String title; // Main heading for the screen
-  final List<FlashCard> cards; // List of flashcard objects
-
-  FlashCardScreenModel({
-    required this.title,
-    required this.cards,
-  });
-}
-
-class FlashCard {
-  final String frontImage; // Path to the image on the front side
-  final String heading; // Title displayed on the back side
-  final String description; // Optional description on the back side
-  final Color? titleColor; // Optional color for the title
-
-  FlashCard({
-    required this.frontImage,
-    required this.heading,
-    required this.description,
-    this.titleColor,
-  });
 }
 
 class Bookmark {
