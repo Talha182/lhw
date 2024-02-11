@@ -2,7 +2,7 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../Bookmarks.dart';
-import '../../Discussion_Group/DiscussionGroups.dart';
+import '../../DiscussionGroup/DiscussionGroups.dart';
 import '../../Mobile_Lesson & Flashcards/Lesson.dart';
 import '../../models/course_model.dart';
 import '../course_provider.dart';

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:lhw/models/submodule_model.dart';
 
-import '../course_tabbar/course_provider.dart';
 
 class Module {
   final int moduleId;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../controllers/signup_controller.dart';
+import 'Login.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});

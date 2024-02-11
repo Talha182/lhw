@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/controllers/BookmarkController.dart';
 
-import '../controllers/feature_navigation.dart';
 import '../models/flash_cards_screen_model.dart'; // Adjust the import path based on your project structure
 
 class FlashCardsScreen extends StatefulWidget {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../custom_widgets/Row_Column_Padding.dart';
-import '../custom_widgets/progress_bar.dart';
+import '../CustomWidgets/Row_Column_Padding.dart';
+import '../CustomWidgets/progress_bar.dart';
+
 
 class CourseSubModules extends StatelessWidget {
   const CourseSubModules({super.key});

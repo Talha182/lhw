@@ -3,8 +3,8 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import '../CourseTabbar/ModuleScreen/FeaturesListScreen.dart';
 import '../controllers/feature_navigation.dart';
-import '../course_tabbar/ModuleScreen/FeaturesListScreen.dart';
 import '../models/module_model.dart';
 import '../models/submodule_model.dart'; // Assume this contains definitions for Module and Submodule
 

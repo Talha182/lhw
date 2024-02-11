@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Discussion_Group/MessageScreen.dart';
+
+import 'MessageScreen.dart';
 
 class GroupsDiscussion extends StatelessWidget {
   final bool showAppBar; // Add this line

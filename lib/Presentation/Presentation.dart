@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
-import '../Quiz_Widgets/QuizCard.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +10,6 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../Branching/LessonOption24.dart';
 import '../FlashCard/flash_cards_screen.dart';
-import '../Quiz_Widgets/QuizCard.dart';
 import 'package:flutter/services.dart';
 
 import '../controllers/BookmarkController.dart';

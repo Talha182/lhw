@@ -8,7 +8,7 @@ import 'package:lhw/Profile/edit_profile.dart';
 import 'package:lhw/controllers/profile_controller.dart';
 import 'package:lhw/models/user_model.dart';
 
-import '../Login_SignUp/Login.dart';
+import '../LoginSignUp/Login.dart';
 import '../repositories/authentication_repository/authentication_repository.dart';
 
 class ProfileScreen extends StatefulWidget {

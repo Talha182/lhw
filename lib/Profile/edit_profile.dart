@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/Profile/Profile.dart';
 import 'package:lhw/controllers/profile_controller.dart';
 import 'package:lhw/models/user_model.dart';
+
+import '../LoginSignUp/Login.dart';
 
 class ProfileEdit extends StatefulWidget {
   ProfileEdit({Key? key}) : super(key: key);

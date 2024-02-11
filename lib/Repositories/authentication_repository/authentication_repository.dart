@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/controllers/signup_controller.dart';
 import 'package:lhw/navy.dart';
 import 'package:lhw/splash/splash.dart';
 
+import '../../LoginSignUp/Login.dart';
 import 'auth_status.dart';
 import 'exceptions/signup_exceptions.dart';
 

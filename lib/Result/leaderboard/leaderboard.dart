@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lhw/custom_widgets/Row_Column_Padding.dart';
+
+import '../../CustomWidgets/Row_Column_Padding.dart';
 
 class LeaderBoard extends StatelessWidget {
   const LeaderBoard({super.key});
@@ -10,7 +11,7 @@ class LeaderBoard extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xffFDCD31),
+      backgroundColor: const Color(0xffFDCD31),
       body: Stack(
         children: [
           Positioned(
@@ -22,7 +23,7 @@ class LeaderBoard extends StatelessWidget {
                 height: 200,
                 fit: BoxFit.contain,
               )),
-          Positioned(
+          const Positioned(
               top: 20,
               left: 70,
               child: Text(
@@ -58,13 +59,13 @@ class LeaderBoard extends StatelessWidget {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.white,
-                        border: Border.all(color: Color(0xffC4C4C4))),
+                        border: Border.all(color: const Color(0xffC4C4C4))),
                     child: Image.asset(
                       "assets/images/person1.png",
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "جیکسن",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
@@ -73,7 +74,7 @@ class LeaderBoard extends StatelessWidget {
                     style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff3D3D3D)),
+                        color: const Color(0xff3D3D3D)),
                   ),
                 ],
               )),
@@ -86,7 +87,7 @@ class LeaderBoard extends StatelessWidget {
                   Container(
                     width: 110,
                     height: 110,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
                     ),
@@ -95,7 +96,7 @@ class LeaderBoard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "جیکسن",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
@@ -104,7 +105,7 @@ class LeaderBoard extends StatelessWidget {
                     style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff3D3D3D)),
+                        color: const Color(0xff3D3D3D)),
                   ),
                 ],
               )),
@@ -119,13 +120,13 @@ class LeaderBoard extends StatelessWidget {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.white,
-                        border: Border.all(color: Color(0xffC4C4C4))),
+                        border: Border.all(color: const Color(0xffC4C4C4))),
                     child: Image.asset(
                       "assets/images/person3.png",
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "ایما",
                     style: TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
@@ -134,7 +135,7 @@ class LeaderBoard extends StatelessWidget {
                     style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff3D3D3D)),
+                        color: const Color(0xff3D3D3D)),
                   ),
                 ],
               )),
@@ -144,16 +145,16 @@ class LeaderBoard extends StatelessWidget {
               width: screenWidth,
               height: 0.6 *
                   screenHeight, // This ensures the container stretches till the bottom
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               child: Padding(
-                  padding: EdgeInsets.all(25),
+                  padding: const EdgeInsets.all(25),
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -172,21 +173,21 @@ class LeaderBoard extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ...columnPadded([
-                            Leaderboard_Card(name: 'ٹم ہڈسن', number: '5',),
-                            Leaderboard_Card(number: '6', name: 'کیتھرین مرفی',),
-                            Leaderboard_Card(name: 'بروکلین سیمنز', number: '7',),
-                            Leaderboard_Card(name: 'Name', number: '8',),
+                            const Leaderboard_Card(name: 'ٹم ہڈسن', number: '5',),
+                            const Leaderboard_Card(number: '6', name: 'کیتھرین مرفی',),
+                            const Leaderboard_Card(name: 'بروکلین سیمنز', number: '7',),
+                            const Leaderboard_Card(name: 'Name', number: '8',),
                           ], 10)
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       ElevatedButton(
@@ -200,12 +201,12 @@ class LeaderBoard extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          minimumSize: Size(150, 37),
+                          minimumSize: const Size(150, 37),
                         ),
                         onPressed: () {
 
                         },
-                        child: Text(
+                        child: const Text(
                           'منسوخ کریں۔',
                           style: TextStyle(
                             fontFamily: 'UrduType',
@@ -239,11 +240,11 @@ class Leaderboard_Card extends StatelessWidget {
         Text(
           number,
           style: GoogleFonts.raleway(
-              color: Color(0xff7A7D84),
+              color: const Color(0xff7A7D84),
               fontSize: 20,
               fontWeight: FontWeight.w500),
         ),
-        SizedBox(
+        const SizedBox(
           width: 15,
         ),
         Expanded(
@@ -253,7 +254,7 @@ class Leaderboard_Card extends StatelessWidget {
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(10)),
             child: Padding(
-              padding: EdgeInsets.only(left: 10,right: 15),
+              padding: const EdgeInsets.only(left: 10,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -262,7 +263,7 @@ class Leaderboard_Card extends StatelessWidget {
                       Container(
                         width: 50,
                         height: 50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.asset(
@@ -270,12 +271,12 @@ class Leaderboard_Card extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
                         name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: "UrduType",
                             color: Color(0xff7A7D84),
                             fontSize: 17),
@@ -286,7 +287,7 @@ class Leaderboard_Card extends StatelessWidget {
                     "3",
                     style: GoogleFonts.raleway(
                         fontSize: 20,
-                        color: Color(0xff7A7D84),
+                        color: const Color(0xff7A7D84),
                         fontWeight: FontWeight.w500),
                   )
                 ],

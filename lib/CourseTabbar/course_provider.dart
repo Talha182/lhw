@@ -4,7 +4,6 @@ import 'package:lhw/InteractiveAnimationVideo/interactive_animation_video.dart';
 import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Comic_Strip/comic_strip.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import '../Presentation/presentation_question_model.dart';
 import '../models/feature_model.dart';

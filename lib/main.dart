@@ -4,20 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/InteractiveAnimationVideo/interactive_animation_video.dart';
 import 'package:lhw/FlashCard/flash_cards_screen.dart';
-import 'package:lhw/Interactive%20Image/LessonOption32.dart';
-import 'package:lhw/Login_SignUp/Login.dart';
-import 'package:lhw/Quiz_Widgets/question_model.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
-import 'package:lhw/Image_Hotspot/ImageHotspot.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'course_tabbar/course_provider.dart';
+import 'CourseTabbar/course_provider.dart';
+import 'LoginSignUp/Login.dart';
 import 'models/flash_cards_screen_model.dart';
 import 'models/image_hotspot_model.dart';
 

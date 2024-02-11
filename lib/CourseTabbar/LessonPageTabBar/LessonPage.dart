@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:lhw/course_tabbar/ModuleScreen/ModuleScreen.dart';
 
+import '../../CustomWidgets/Row_Column_Padding.dart';
 import '../../Mobile_Lesson & Flashcards/inforgraphics_carousel.dart';
-import '../../custom_widgets/Row_Column_Padding.dart';
 import '../../models/course_model.dart';
+import '../ModuleScreen/ModuleScreen.dart';
 
 class Lesson extends StatefulWidget {
   final Course course;

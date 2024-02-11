@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Login_SignUp/Login.dart';
 import 'package:lhw/controllers/signup_controller.dart';
 import 'package:lhw/models/user_model.dart';
+
+import 'Login.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

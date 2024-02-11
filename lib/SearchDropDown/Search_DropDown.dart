@@ -1,10 +1,10 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:lhw/Search_DropDown/Courses_SearchDropDown.dart';
-import 'package:lhw/Search_DropDown/Groups_SearchDropDown.dart';
 
 import '../Reports/Resources_Bookmark.dart';
 import '../Reports/Resources_Pdf.dart';
+import 'Courses_SearchDropDown.dart';
+import 'Groups_SearchDropDown.dart';
 
 class SearchDropdown extends StatefulWidget {
   const SearchDropdown({super.key});

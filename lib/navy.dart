@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lhw/FAB_Page/BottomModalSheet.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
-import 'package:lhw/course_tabbar/courses_tabbar.dart';
 
-import 'Discussion_Group/DiscussionGroups.dart';
-import 'Mobile_HomePage/home_page.dart';
+import 'CourseTabbar/courses_tabbar.dart';
+import 'DiscussionGroup/DiscussionGroups.dart';
+import 'FABPage/BottomModalSheet.dart';
+import 'MobileHomePage/home_page.dart';
+
 
 class Custom_NavBar extends StatefulWidget {
   const Custom_NavBar({super.key});

@@ -4,10 +4,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
+import '../../CustomWidgets/Row_Column_Padding.dart';
 import '../../JourneyMaps/JourneyMap.dart';
 import '../../JourneyMaps/JourneyMap2.dart';
 import '../../Mobile_Module & Submodule/module_dashboard_card.dart';
-import '../../custom_widgets/Row_Column_Padding.dart';
 import '../../models/course_model.dart';
 
 class ModuleScreen extends StatefulWidget {

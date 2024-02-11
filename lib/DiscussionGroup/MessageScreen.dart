@@ -3,7 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:collection';
 
 import 'package:get/get.dart';
-import 'package:lhw/Discussion_Group/Messaging_Settings.dart';
+
+import 'Messaging_Settings.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
