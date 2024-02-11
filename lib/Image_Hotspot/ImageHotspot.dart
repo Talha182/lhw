@@ -19,7 +19,42 @@ class ImageHotspot extends StatefulWidget {
   State<ImageHotspot> createState() => _ImageHotspotState();
 }
 
-class _ImageHotspotState extends State<ImageHotspot> {
+class _ImageHotspotState extends State<ImageHotspot>
+    with SingleTickerProviderStateMixin {
+  bool _isFullScreen = false;
+  GlobalKey _imageKey = GlobalKey();
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    _scaleAnimation = Tween(begin: 1.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _toggleFullScreen() {
+    setState(() {
+      _isFullScreen = !_isFullScreen;
+      if (_isFullScreen) {
+        _animationController.forward();
+      } else {
+        _animationController.reverse();
+      }
+    });
+  }
+
   void _showDialog(BuildContext context, String dialogText) {
     showAnimatedDialog(
       context: context,
@@ -41,179 +76,293 @@ class _ImageHotspotState extends State<ImageHotspot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: const Alignment(0, -0.2),
-            colors: [
-              const Color(0xff80B8FB).withOpacity(0.3),
-              Colors.transparent,
-            ],
-          ),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 500),
+        child: _isFullScreen
+            ? _buildFullScreenImage(context)
+            : _buildNormalView(context),
+      ),
+    );
+  }
+
+  Widget _buildNormalView(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: const Alignment(0, -0.2),
+          colors: [
+            const Color(0xff80B8FB).withOpacity(0.3),
+            Colors.transparent,
+          ],
         ),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(
-                          context); // This will navigate back when tapped
-                    },
-                    child: const Icon(
-                      Icons.close,
-                      size: 30,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    child: SizedBox(
-                      child: TweenAnimationBuilder(
-                        tween: Tween<double>(begin: 0, end: 2.2),
-                        duration: const Duration(milliseconds: 400),
-                        builder: (BuildContext context, double value,
-                            Widget? child) {
-                          return LinearPercentIndicator(
-                            lineHeight: 8.0,
-                            percent: 1,
-                            backgroundColor: Colors.white,
-                            progressColor: const Color(0xffFE8BD1),
-                            barRadius: const Radius.circular(10),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                      onTap: () {}, child: const Icon(Icons.bookmark_outline)),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: SvgPicture.asset(
-                    'assets/images/cloud.svg',
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-              Text(
-                "آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(widget.imageHotspotModel.imagePath),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 20,
-                        left: 20,
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black.withOpacity(0.4),
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              'assets/images/touch.svg',
-                              width: 30,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          // child: Image.asset("assets/images/team.png"),
-                        ),
-                      ),
-                      ...widget.imageHotspotModel.hotspots.map((hotspot) {
-                        return Positioned(
-                          left: hotspot.offset.dx,
-                          top: hotspot.offset.dy,
-                          child: GestureDetector(
-                            onTap: () =>
-                                _showDialog(context, hotspot.dialogText),
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image:
-                                      AssetImage('assets/images/lesson_26.png'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
-                color: Colors.black87.withOpacity(0.1),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xffFE8BD1),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  minimumSize: const Size(150, 37),
-                ),
-                onPressed: () {
-                  // navigationController.navigateToNextFeatureOrBack();
-                  Get.back();
-                },
-                child: const Text(
-                  'جاری رہے',
-                  style: TextStyle(
-                    fontFamily: 'UrduType',
-                    fontSize: 15,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
+        child: Column(
+          children: [
+            _buildTopBar(context),
+            _buildImageContainer(context),
+            _buildContinueButton(),
+          ],
         ),
       ),
     );
   }
+
+  Widget _buildTopBar(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: const Icon(Icons.close, size: 30),
+            ),
+            const SizedBox(width: 5),
+            Expanded(
+              child: LinearPercentIndicator(
+                lineHeight: 8.0,
+                percent: 1,
+                backgroundColor: Colors.white,
+                progressColor: const Color(0xffFE8BD1),
+                barRadius: const Radius.circular(10),
+              ),
+            ),
+            const SizedBox(width: 5),
+            GestureDetector(
+              onTap: () {},
+              child: const Icon(Icons.bookmark_outline),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: SvgPicture.asset(
+              'assets/images/cloud.svg',
+              width: 20,
+              height: 20,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 15),
+          child: Text(
+            "آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontFamily: "UrduType", fontSize: 20),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildImageContainer(BuildContext context) {
+    return Expanded(
+      child: Container(
+        key: _imageKey, // Use the key here
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(widget.imageHotspotModel.imagePath),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // Define your onTap functionality here for the top left button
+                    print("Top left button tapped");
+                  },
+                  child: Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black.withOpacity(0.4),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        'assets/images/touch.svg',
+                        width: 30,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    _toggleFullScreen();
+                  },
+                  child: Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black.withOpacity(0.4),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        'assets/images/full_screen.svg',
+                        width: 30,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            ..._buildHotspots(context), // Use the spread operator here
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildHotspots(BuildContext context) {
+    final containerRenderBox =
+        _imageKey.currentContext?.findRenderObject() as RenderBox?;
+    final containerSize = containerRenderBox?.size ?? Size.zero;
+
+    return widget.imageHotspotModel.hotspots.map((hotspot) {
+      // Calculate relative positions (this is a simplistic approach, you might need to adjust based on your container's padding/margin)
+      final double relativeX = hotspot.offset.dx / containerSize.width;
+      final double relativeY = hotspot.offset.dy / containerSize.height;
+
+      return Positioned(
+        left: _isFullScreen
+            ? relativeX * MediaQuery.of(context).size.width
+            : hotspot.offset.dx,
+        top: _isFullScreen
+            ? relativeY * MediaQuery.of(context).size.height
+            : hotspot.offset.dy,
+        child: GestureDetector(
+          onTap: () => _showDialog(context, hotspot.dialogText),
+          child: Container(
+            width: 50, // Consider making this responsive as well
+            height: 50, // Consider making this responsive as well
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/lesson_26.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+      );
+    }).toList();
+  }
+
+  Widget _buildContinueButton() {
+    return Column(
+      children: [
+        const Divider(),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xffFE8BD1),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            minimumSize: const Size(150, 37),
+          ),
+          onPressed: () => Get.back(),
+          child: const Text(
+            'جاری رہے',
+            style: TextStyle(
+              fontFamily: 'UrduType',
+              fontSize: 15,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFullScreenImage(BuildContext context) {
+    return  ScaleTransition(
+          scale: _scaleAnimation,
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(widget.imageHotspotModel.imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        // Define your onTap functionality here for the top left button
+                        print("Top left button tapped");
+                      },
+                      child: Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black.withOpacity(0.4),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'assets/images/touch.svg',
+                            width: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        _toggleFullScreen();
+                      },
+                      child: Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black.withOpacity(0.4),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'assets/images/full_screen.svg',
+                            width: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                ..._buildHotspots(context), // Use the spread operator here
+              ],
+            ),
+          ),
+        );
+  }
 }
-
-
 
 class ArrowContainer extends StatelessWidget {
   @override
