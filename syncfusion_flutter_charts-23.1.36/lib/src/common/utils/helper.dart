@@ -939,28 +939,28 @@ num getValueByPercentage(num value1, num value2) {
 Widget renderChartTitle(StateProperties stateProperties) {
   Widget titleWidget;
   final dynamic widget = stateProperties.chart;
-  if (widget.title.text != null && widget.title.text.isNotEmpty == true) {
+  if (widget.heading.text != null && widget.heading.text.isNotEmpty == true) {
     final SfChartThemeData chartTheme =
         stateProperties.renderingDetails.chartTheme;
     titleWidget = Container(
       margin: EdgeInsets.fromLTRB(widget.margin.left, widget.margin.top,
           widget.margin.right, widget.margin.bottom),
-      alignment: (widget.title.alignment == ChartAlignment.near)
+      alignment: (widget.heading.alignment == ChartAlignment.near)
           ? Alignment.topLeft
-          : (widget.title.alignment == ChartAlignment.far)
+          : (widget.heading.alignment == ChartAlignment.far)
               ? Alignment.topRight
-              : (widget.title.alignment == ChartAlignment.center)
+              : (widget.heading.alignment == ChartAlignment.center)
                   ? Alignment.topCenter
                   : Alignment.topCenter,
       child: Container(
           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
           decoration: BoxDecoration(
-              color: widget.title.backgroundColor ??
+              color: widget.heading.backgroundColor ??
                   chartTheme.titleBackgroundColor,
               border: Border.all(
-                  color: widget.title.borderColor ?? chartTheme.titleTextColor,
-                  width: widget.title.borderWidth)),
-          child: Text(widget.title.text,
+                  color: widget.heading.borderColor ?? chartTheme.titleTextColor,
+                  width: widget.heading.borderWidth)),
+          child: Text(widget.heading.text,
               style: chartTheme.titleTextStyle,
               textScaleFactor: 1.2,
               overflow: TextOverflow.clip,

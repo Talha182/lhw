@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../controllers/BookmarkController.dart';
-import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
+import '../FlashCard/flash_cards_screen.dart';
 
 class MCQ6 extends StatefulWidget {
   const MCQ6({super.key});

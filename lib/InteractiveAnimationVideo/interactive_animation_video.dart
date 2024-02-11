@@ -9,14 +9,18 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:video_player/video_player.dart';
 
 import '../controllers/BookmarkController.dart';
-import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
+import '../FlashCard/flash_cards_screen.dart';
 import '../Quiz_Widgets/QuizCard.dart';
 import '../Quiz_Widgets/question_model.dart';
 import '../controllers/feature_navigation.dart';
+import '../models/interactive_animation_model.dart';
 
 class InteractiveAnimationVideo extends StatefulWidget {
-  final String videoPath;
-  const InteractiveAnimationVideo({super.key, required this.videoPath});
+  final InteractiveAnimationVideoModel interactiveAnimationVideoModel;
+  const InteractiveAnimationVideo({
+    super.key,
+    required this.interactiveAnimationVideoModel,
+  });
 
   @override
   State<InteractiveAnimationVideo> createState() =>
@@ -24,6 +28,10 @@ class InteractiveAnimationVideo extends StatefulWidget {
 }
 
 class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
+  late VideoPlayerController _videoController;
+  late FlickManager flickManager;
+  late Set<int> _shownQuestions; // Track which questions have been shown
+  bool _isDialogCurrentlyShown = false;
   bool isSelected = false;
   bool isAnswered = false;
   int _current = 0;
@@ -35,38 +43,42 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   // final navigationController = Get.find<FeatureNavigationController>();
 
-  final List<Question> questions = [
-    Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
-    ),
-    Question(
-      question:
-          'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-      options: [
-        'بچے کی پیدائش کے بعد بھاری مادہ عام ہے. یہ دھیرے دھیرے کم ہو جائے گا، گلابی اور پھر سفید ہو جائے گا، بالکل آپ کے ماہواری کی طرح۔',
-        'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-        'یہ انفیکشن کی نشاندہی کرسکتا ہے۔ میں مزید معائنے کے لیے آپ کو ہیلتھ سنٹر ریفر کروں گا۔'
-      ],
-      correctAnswer:
-          'آپ کو مزید آرام کرنا چاہئے۔ یہ بچے کی پیدائش کے بعد آپ کی ضرورت سے زیادہ سرگرمی کی وجہ سے ہو سکتا ہے۔',
-      correctExplanation:
-          ' حیض کے خون سے مشابہ بھاری مادہ بچے کی پیدائش کے بعد ایک عام واقعہ ہے۔',
-      incorrectExplanation:
-          ' اگرچہ آرام ضروری ہے، یہ بھاری خارج ہونے والے مادہ کو براہ راست متاثر نہیں کرتا ہے جو کہ بعد از پیدائش صحت یابی کا ایک عام حصہ ہے۔',
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _videoController = VideoPlayerController.asset(
+        widget.interactiveAnimationVideoModel.videoPath)
+      ..initialize().then((_) {
+        setState(() {});
+      })
+      ..addListener(_videoListener);
+    flickManager = FlickManager(videoPlayerController: _videoController);
+    _shownQuestions = {};
+  }
+
+  @override
+  void dispose() {
+    _videoController.removeListener(_videoListener);
+    _videoController.dispose();
+    flickManager.dispose();
+    super.dispose();
+  }
+
+  void _videoListener() {
+    Duration position = _videoController.value.position;
+    for (int i = 0;
+        i < widget.interactiveAnimationVideoModel.questionDurations.length;
+        i++) {
+      if (position >=
+              widget.interactiveAnimationVideoModel.questionDurations[i] &&
+          !_shownQuestions.contains(i)) {
+        _videoController.pause();
+        _shownQuestions.add(i);
+        showDialogWithQuestionOptions(i); // Show question at index i
+        break; // Exit loop after showing a question
+      }
+    }
+  }
 
   List<Color> optionColors = [
     const Color(0xffF2F2F2),
@@ -82,7 +94,9 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
       isAnswered = true;
       isSelected = true;
       selectedOptionIndex = index; // Add this line
-      if (selectedAnswer == questions[questionIndex].correctAnswer) {
+      if (selectedAnswer ==
+          widget.interactiveAnimationVideoModel.questions[questionIndex]
+              .correctAnswer) {
         optionColors[index] = Colors.green[100]!;
       } else {
         optionColors[index] = Colors.red[100]!;
@@ -90,10 +104,14 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
     });
 
     Future.delayed(const Duration(seconds: 2), () {
-      if (questionIndex < questions.length - 1) {
+      if (questionIndex <
+          widget.interactiveAnimationVideoModel.questions.length - 1) {
         setState(() {
           questionIndex++;
-          _current = ((questionIndex / questions.length) * 1).toInt();
+          _current = ((questionIndex /
+                      widget.interactiveAnimationVideoModel.questions.length) *
+                  1)
+              .toInt();
           optionColors = [Colors.white, Colors.white, Colors.white];
           isAnswered = false; // Reset for the next question
           isSelected = false; // Reset isSelected
@@ -105,7 +123,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
 
   bool isDialogCurrentlyShown = false;
 
-  void showDialogWithQuestionOptions() {
+  void showDialogWithQuestionOptions(int questionIndex) {
     if (isDialogCurrentlyShown) {
       return; // Return early if dialog is currently shown
     }
@@ -132,27 +150,34 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        questions[questionIndex].question,
+                        widget.interactiveAnimationVideoModel
+                            .questions[questionIndex].question,
                         style: const TextStyle(
                             fontSize: 20, fontFamily: "UrduType"),
                       ),
                       const SizedBox(height: 10),
                       ...List.generate(
-                        questions[questionIndex].options.length,
+                        widget.interactiveAnimationVideoModel
+                            .questions[questionIndex].options.length,
                         (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: QuizCard(
-                            text: questions[questionIndex].options[index],
+                            text: widget.interactiveAnimationVideoModel
+                                .questions[questionIndex].options[index],
                             ontap: () {
                               setState(() {
                                 updateQuestion(
-                                    questions[questionIndex].options[index],
+                                    widget
+                                        .interactiveAnimationVideoModel
+                                        .questions[questionIndex]
+                                        .options[index],
                                     index);
                               });
                             },
                             color: optionColors[index],
                             isCorrect: selectedAnswer ==
-                                questions[questionIndex].correctAnswer,
+                                widget.interactiveAnimationVideoModel
+                                    .questions[questionIndex].correctAnswer,
                             isSelected: isSelected,
                             isOptionSelected: index == selectedOptionIndex,
                           ),
@@ -205,34 +230,11 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
     });
   }
 
-  late VideoPlayerController _videoController;
-
-  late FlickManager flickManager;
-  @override
-  void initState() {
-    super.initState();
-    _videoController = VideoPlayerController.asset(widget.videoPath);
-    flickManager = FlickManager(videoPlayerController: _videoController);
-
-    _videoController.addListener(_videoListener);
-  }
-
-  @override
-  void dispose() {
-    _videoController.removeListener(_videoListener);
-    _videoController.dispose();
-    flickManager.dispose();
-    super.dispose();
-  }
-
-  void _videoListener() {
-    Duration position = _videoController.value.position;
-    if (position >= const Duration(seconds: 3) && !isDialogShown) {
-      _videoController.pause(); // Pause the video here
-      isDialogShown = true;
-      showDialogWithQuestionOptions();
-      _videoController.removeListener(_videoListener);
-    }
+  void _handleAnswer(String selectedAnswer, int questionIndex) {
+    // Handle the selected answer here
+    // You can use setState to update UI based on user's selection
+    // Once answered, resume video playback
+    _videoController.play();
   }
 
   @override
@@ -381,3 +383,4 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
     );
   }
 }
+

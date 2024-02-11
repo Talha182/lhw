@@ -10,9 +10,9 @@ import 'package:lhw/controllers/BookmarkController.dart';
 import '../controllers/feature_navigation.dart'; // Adjust the import path based on your project structure
 
 class FlashCardsScreen extends StatefulWidget {
-  final List<Map<String, dynamic>> cardData;
+  final FlashCardScreenModel flashCardScreenModel;
 
-  const FlashCardsScreen({Key? key, required this.cardData}) : super(key: key);
+  const FlashCardsScreen({Key? key, required this.flashCardScreenModel}) : super(key: key);
 
   @override
   _FlashCardsScreenState createState() => _FlashCardsScreenState();
@@ -54,7 +54,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                     child: TweenAnimationBuilder(
                       tween: Tween<double>(
                           begin: 0,
-                          end: ((_current + 1) / widget.cardData.length) * _totalSteps),
+                          end: ((_current + 1) / widget.flashCardScreenModel.cards.length) * _totalSteps),
                       duration: const Duration(milliseconds: 400),
                       builder: (BuildContext context, double value, Widget? child) {
                         return LinearPercentIndicator(
@@ -113,12 +113,14 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               offset: const Offset(-40, 0),
               child: CarouselSlider.builder(
                 carouselController: _carouselController,
-                itemCount: widget.cardData.length,
+                itemCount: widget.flashCardScreenModel.cards.length,
                 itemBuilder: (BuildContext context, int index, int realIndex) {
+                  final card = widget.flashCardScreenModel.cards[index]; // Use card from the model
+
                   return FlipCard(
                     onFlip: () {
                       setState(() {
-                        _isLastCardFlipped = index == widget.cardData.length - 1;
+                        _isLastCardFlipped = index == widget.flashCardScreenModel.cards.length - 1;
                       });
                     },
                     direction: FlipDirection.HORIZONTAL,
@@ -130,7 +132,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                       ),
                       child: Center(
                         child: Image.asset(
-                          widget.cardData[index]['frontImage'] ?? '', // Use default value if null
+                          card.frontImage,
                           width: 250,
                           height: 250,
                           fit: BoxFit.cover,
@@ -150,17 +152,17 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                widget.cardData[index]['title'] ?? '', // Use default value if null
+                                card.heading,
                                 textAlign: TextAlign.center,
                                 style:  TextStyle(
                                   fontSize: 25,
                                   fontFamily: "UrduType",
-                                  color: widget.cardData[index]['titleColor'] ?? Colors.black, // Use color from the array
+                                  color: card.titleColor
                                 ),
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                widget.cardData[index]['description'] ?? '', // Use default value if null
+                                card.description,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 18,
@@ -196,7 +198,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                widget.cardData.length,
+                widget.flashCardScreenModel.cards.length,
                 // Use the length of cardData for dynamic indicator count
                     (index) {
                   return Container(
@@ -250,6 +252,30 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
       ),
     );
   }
+}
+
+class FlashCardScreenModel {
+  final String title; // Main heading for the screen
+  final List<FlashCard> cards; // List of flashcard objects
+
+  FlashCardScreenModel({
+    required this.title,
+    required this.cards,
+  });
+}
+
+class FlashCard {
+  final String frontImage; // Path to the image on the front side
+  final String heading; // Title displayed on the back side
+  final String description; // Optional description on the back side
+  final Color? titleColor; // Optional color for the title
+
+  FlashCard({
+    required this.frontImage,
+    required this.heading,
+    required this.description,
+    this.titleColor,
+  });
 }
 
 class Bookmark {

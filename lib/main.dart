@@ -2,7 +2,11 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lhw/InteractiveAnimationVideo/interactive_animation_video.dart';
+import 'package:lhw/FlashCard/flash_cards_screen.dart';
+import 'package:lhw/Interactive%20Image/LessonOption32.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
+import 'package:lhw/Quiz_Widgets/question_model.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
@@ -65,15 +69,39 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return ImageHotspot(imageHotspotModel: ImageHotspotModel(imagePath: 'assets/images/LessonOption26.png', hotspots: [
-                HotspotData(
-                  dialogText: 'This is Hotspot 1.',
-                  offset: Offset(100, 200),
-                ),
-                HotspotData(
-                  dialogText: 'This is Hotspot 2.',
-                  offset: Offset(200, 300),
-                ),
+              return FlashCardsScreen(
+                  flashCardScreenModel:
+                      FlashCardScreenModel(title: "title", cards: [
+                FlashCard(
+                    frontImage: "assets/images/1.png",
+                    heading: "title",
+                    titleColor: Colors.black,
+                    description: 'asdadasd'),
+                FlashCard(
+                    frontImage: "assets/images/flashcards/2.png",
+                    heading: "title",
+                    titleColor: Colors.black,
+                    description: 'asdadaddds'),
+                FlashCard(
+                    frontImage: "assets/images/flashcards/3.png",
+                    heading: "title",
+                    titleColor: Colors.black,
+                    description: 'qeqweqwe'),
+                FlashCard(
+                    frontImage: "assets/images/flashcards/4.png",
+                    heading: "title",
+                    titleColor: Colors.black,
+                    description: 'qwqweqweqwe'),
+                FlashCard(
+                    frontImage: "assets/images/flashcards/5.png",
+                    heading: "title",
+                    titleColor: Colors.black,
+                    description: 'qweqewqwe'),
+                FlashCard(
+                    frontImage: "assets/images/flashcards/6.png",
+                    heading: "title",
+                    titleColor: Colors.black,
+                    description: 'qwqewqweqwe'),
               ]));
             case AuthStatus.unauthenticated:
             default:

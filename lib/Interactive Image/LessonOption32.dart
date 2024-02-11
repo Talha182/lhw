@@ -25,13 +25,6 @@ class _LessonOption32State extends State<LessonOption32> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -46,7 +39,7 @@ class _LessonOption32State extends State<LessonOption32> {
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
+              padding: const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 5),
               child: Column(
                 children: [
                   Row(

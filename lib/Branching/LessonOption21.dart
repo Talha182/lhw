@@ -10,7 +10,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/models/question_model.dart';
 
 import '../controllers/BookmarkController.dart';
-import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
+import '../FlashCard/flash_cards_screen.dart';
 import '../controllers/QuizController.dart';
 import '../controllers/feature_navigation.dart';
 

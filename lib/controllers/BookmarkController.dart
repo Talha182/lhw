@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
+import '../FlashCard/flash_cards_screen.dart';
 
 class BookmarkController extends GetxController {
   var bookmarks = <Bookmark>[].obs;
