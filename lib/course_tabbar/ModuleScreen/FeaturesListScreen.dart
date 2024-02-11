@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../../Presentation/Presentation.dart';
+import '../../Presentation/presentation_model.dart';
+import '../../models/feature_model.dart';
 import '../../models/submodule_model.dart';
 
 class FeaturesListScreen extends StatefulWidget {
@@ -186,9 +190,9 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: widget.submodule.featureCallbacks.length,
+                  itemCount: widget.submodule.Features.length,
                   itemBuilder: (context, index) {
-                    final feature = widget.submodule.featureCallbacks[index];
+                    final feature = widget.submodule.Features[index];
                     return ListTile(
                       leading: Icon(feature.icon,
                           color: feature.isCompleted
@@ -212,9 +216,31 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                         ),
                       ),
                       onTap: () async {
-                        // Correctly call the callback function and await its completion
-                        await feature.callback();
-                        // After returning from the navigation, mark the feature as completed
+                        switch (feature.featureType) {
+                          case FeatureType.presentation:
+                            if (feature.relatedData != null) {
+                              // Cast the relatedData to PresentationModel
+                              PresentationModel presentationModel =
+                                  feature.relatedData as PresentationModel;
+                              // Navigate to the presentation screen with the specific data
+                              await Get.to(() => Presentation(
+                                  presentationModel: presentationModel));
+                            }
+                            break;
+                          case FeatureType.video:
+                            // Handle video feature tap
+                            // Example: Navigate to video player screen
+                            break;
+                          case FeatureType.quiz:
+                            // Handle quiz feature tap
+                            // Example: Navigate to quiz screen
+                            break;
+                          default:
+                            // Handle any other feature types or undefined case
+                            break;
+                        }
+
+                        // Mark the feature as completed after returning from navigation
                         setState(() {
                           feature.isCompleted = true;
                         });

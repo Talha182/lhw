@@ -2,12 +2,12 @@ import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/course_tabbar/ModuleScreen/ModuleScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../custom_widgets/ArrowContainer.dart';
 import 'LessonPageTabBar/LessonPageTabbar.dart';
-import 'ModuleTest/ModuleScreenTest.dart';
 import '../models/course_model.dart';
 import 'course_provider.dart';
 
@@ -25,7 +25,7 @@ class CourseCard extends StatelessWidget {
       await prefs.setBool(isFirstVisitKey, false);
       await Get.to(() => LessonPageTabBar(course: course),transition: Transition.fade,duration: Duration(milliseconds: 300));
     } else {
-      await Get.to(() => ModuleScreenTest(course: course),transition: Transition.fade,duration: Duration(milliseconds: 300));
+      await Get.to(() => ModuleScreen(course: course),transition: Transition.fade,duration: Duration(milliseconds: 300));
     }
   }
 

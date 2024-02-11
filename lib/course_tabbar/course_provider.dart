@@ -5,9 +5,9 @@ import 'package:lhw/Presentation/Presentation.dart';
 import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Comic_Strip/comic_strip.dart';
-import '../Image_Hotspot/image_hotspot.dart';
 import '../Mobile_Lesson & Flashcards/flash_cards_screen.dart';
-import '../models/feature_tile_model.dart';
+import '../Presentation/presentation_question_model.dart';
+import '../models/feature_model.dart';
 import '../models/module_model.dart';
 import '../models/course_model.dart';
 import '../models/submodule_model.dart';
@@ -42,16 +42,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/tick.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -64,27 +59,28 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Presentation on Infectious Diseases',
                   featureType: FeatureType.presentation,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => Presentation(
-                            presentationModel: PresentationModel(
-                                assetImages: [
-                                  'assets/presentations/presentation1.png',
-                                  'assets/presentations/presentation2.png',
-                                  'assets/presentations/presentation3.png',
-                                  'assets/presentations/presentation4.png',
-                                  'assets/presentations/presentation5.png',
-                                  'assets/presentations/presentation6.png',
-                                ],
-                                questions: [],
-                                showQuestionDialog: [
-                                  ])));
-                    return;
-                  },
+                  relatedData: PresentationModel(
+                    assetImages: [
+                      'assets/presentations/presentation1.png',
+                      'assets/presentations/presentation2.png',
+                    ],
+                    questions: [
+                      Question(
+                        question: 'Specific question',
+                        options: ['Option 1', 'Option 2', 'Option 3'],
+                        correctAnswer: 'Option 1',
+                        correctExplanation: 'This is why option 1 is correct.',
+                        incorrectExplanation:
+                            'This is why the other options are incorrect.',
+                      ),
+                    ],
+                    showQuestionDialog: [true, false],
+                  ),
                 ),
               ],
             ),
@@ -109,26 +105,16 @@ class CoursesProvider with ChangeNotifier {
 
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
-                FeatureCallback(
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -141,7 +127,7 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 3,
               titleAlignment: 'left',
-              featureCallbacks: [],
+              Features: [],
             ),
             Submodule(
               submoduleID: 3,
@@ -152,16 +138,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'right',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -174,26 +155,16 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 5,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
-                FeatureCallback(
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -216,16 +187,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/tick.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -238,16 +204,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -270,36 +231,21 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/tick.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
-                FeatureCallback(
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
-                FeatureCallback(
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -312,7 +258,7 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [],
+              Features: [],
             ),
           ],
           submoduleCount: 2,
@@ -333,26 +279,16 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/tick.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
-                FeatureCallback(
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -365,26 +301,16 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
-                FeatureCallback(
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -407,16 +333,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/tick.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -429,16 +350,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -461,16 +377,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/tick.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -483,16 +394,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -515,16 +421,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/tick.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -537,16 +438,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'right',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -559,16 +455,11 @@ class CoursesProvider with ChangeNotifier {
               iconPath: 'assets/images/book.svg',
               numberOfQuizzes: 1,
               titleAlignment: 'left',
-              featureCallbacks: [
-                FeatureCallback(
+              Features: [
+                Feature(
                   title: 'Lesson Option Video',
                   featureType: FeatureType.video,
                   duration: "3 منٹ 2 سیکنڈ",
-                  callback: () async {
-                    await Get.to(() => const InteractiveAnimationVideo(
-                        videoPath: 'assets/videos/demo.mp4'));
-                    return;
-                  },
                 ),
               ],
             ),
@@ -587,8 +478,22 @@ class CoursesProvider with ChangeNotifier {
   List<Course> get completedCourses =>
       _courses.where((course) => course.isCompleted).toList();
 
-  Course getCourseById(int courseId) {
-    return _courses.firstWhere((course) => course.courseId == courseId);
+  // Inside CoursesProvider
+
+  Course? getCourseById(int courseId) {
+    return _courses.firstWhereOrNull((course) => course.courseId == courseId);
+  }
+
+  Module? getModuleById(int courseId, int moduleId) {
+    var course = getCourseById(courseId);
+    return course?.modules
+        .firstWhereOrNull((module) => module.moduleId == moduleId);
+  }
+
+  Submodule? getSubmoduleById(int courseId, int moduleId, int submoduleId) {
+    var module = getModuleById(courseId, moduleId);
+    return module?.submodules
+        .firstWhereOrNull((submodule) => submodule.submoduleID == submoduleId);
   }
 
   Course? _lastVisitedCourse;

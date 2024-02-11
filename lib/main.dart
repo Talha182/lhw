@@ -2,32 +2,19 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Branching/LessonOption21.dart';
-import 'package:lhw/Comic_Strip/comic_strip.dart';
-import 'package:lhw/Image_Hotspot/image_hotspot.dart';
-import 'package:lhw/Infographics/infographics.dart';
-import 'package:lhw/Infographics/vertical_infographics.dart';
 import 'package:lhw/Login_SignUp/Login.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/Lesson_Option20.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/flash_cards_screen.dart';
-import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
-import 'package:lhw/Presentation/Presentation.dart';
-import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:lhw/api/firebase_api.dart';
-import 'package:lhw/course_tabbar/courses_tabbar.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
-import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
-import 'package:lhw/test/Features/InteractiveImage.dart';
+import 'package:lhw/Image_Hotspot/ImageHotspot.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'Presentation/presentation_question_model.dart';
 import 'course_tabbar/course_provider.dart';
+import 'models/image_hotspot_model.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -78,7 +65,16 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return ImageHotspot();
+              return ImageHotspot(imageHotspotModel: ImageHotspotModel(imagePath: 'assets/images/LessonOption26.png', hotspots: [
+                HotspotData(
+                  dialogText: 'This is Hotspot 1.',
+                  offset: Offset(100, 200),
+                ),
+                HotspotData(
+                  dialogText: 'This is Hotspot 2.',
+                  offset: Offset(200, 300),
+                ),
+              ]));
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();

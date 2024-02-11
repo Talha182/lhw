@@ -4,9 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
+import '../course_tabbar/ModuleScreen/FeaturesListScreen.dart';
 import 'JourneyMap.dart';
 import '../controllers/feature_navigation.dart';
-import '../course_tabbar/ModuleTest/FeaturesListScreen.dart';
 import '../models/module_model.dart';
 import '../models/submodule_model.dart';
 

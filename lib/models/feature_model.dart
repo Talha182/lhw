@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 
 enum FeatureType { video, presentation, quiz }
 
-class FeatureCallback {
+class Feature {
   final String title;
   final FeatureType featureType;
-  final Future<void> Function() callback; // Ensure this is a Future function
   bool isCompleted; // Attribute to indicate completion status
   final String duration;
+  final dynamic relatedData; // Optional field to hold related data
 
-  FeatureCallback( {
+
+  Feature({
     required this.title,
     required this.featureType,
-    required this.callback,
     required this.duration,
     this.isCompleted = false, // Default is not completed
+    this.relatedData, // Added this line
+
   });
 
   IconData get icon {
@@ -35,6 +37,6 @@ class FeatureCallback {
   }
 
   Color get iconColor {
-    return isCompleted ? Color(0xff9AC9C2) : Color(0xff685F78); // Green for completed, black for others
+    return isCompleted ? const Color(0xff9AC9C2) : const Color(0xff685F78); // Green for completed, black for others
   }
 }

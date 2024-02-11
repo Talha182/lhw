@@ -10,16 +10,16 @@ import '../../Mobile_Module & Submodule/module_dashboard_card.dart';
 import '../../custom_widgets/Row_Column_Padding.dart';
 import '../../models/course_model.dart';
 
-class ModuleScreenTest extends StatefulWidget {
+class ModuleScreen extends StatefulWidget {
   final Course course;
 
-  const ModuleScreenTest({Key? key, required this.course}) : super(key: key);
+  const ModuleScreen({Key? key, required this.course}) : super(key: key);
 
   @override
-  State<ModuleScreenTest> createState() => _ModuleScreenTestState();
+  State<ModuleScreen> createState() => _ModuleScreenState();
 }
 
-class _ModuleScreenTestState extends State<ModuleScreenTest> {
+class _ModuleScreenState extends State<ModuleScreen> {
   bool _feedbackButtonPressed = false;
 
   @override

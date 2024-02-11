@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/course_tabbar/ModuleScreen/ModuleScreen.dart';
 
 import '../../Mobile_Lesson & Flashcards/inforgraphics_carousel.dart';
-import '../../Mobile_Module & Submodule/module_screen.dart';
 import '../../custom_widgets/Row_Column_Padding.dart';
 import '../../models/course_model.dart';
-import '../ModuleTest/ModuleScreenTest.dart';
 
 class Lesson extends StatefulWidget {
   final Course course;
@@ -153,7 +152,7 @@ class _LessonState extends State<Lesson> {
                           ),
                           onPressed: () {
                             Get.off(
-                                () => ModuleScreenTest(course: widget.course),
+                                () => ModuleScreen(course: widget.course),
                                 transition: Transition.fade,
                                 duration: const Duration(milliseconds: 400));
                           },
@@ -214,7 +213,7 @@ class _LessonState extends State<Lesson> {
                           size: 20,
                         ),
                         onTap: () {
-                          Get.off(() =>  ModuleScreenTest(course: widget.course),
+                          Get.off(() =>  ModuleScreen(course: widget.course),
                               transition: Transition.fade,
                               duration: const Duration(milliseconds: 400));
                         },
