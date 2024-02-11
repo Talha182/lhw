@@ -2,11 +2,12 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/InteractiveAnimationVideo/interactive_animation_video.dart';
+import 'package:lhw/CourseTabbar/courses_tabbar.dart';
 import 'package:lhw/FlashCard/flash_cards_screen.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
+import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
@@ -16,7 +17,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'CourseTabbar/course_provider.dart';
 import 'LoginSignUp/Login.dart';
 import 'models/flash_cards_screen_model.dart';
-import 'models/image_hotspot_model.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -27,6 +27,7 @@ Future<void> main() async {
   await FirebaseApi().initNotification();
 
   runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
 }
@@ -67,40 +68,7 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return FlashCardsScreen(
-                  flashCardScreenModel:
-                      FlashCardScreenModel(title: "title", cards: [
-                FlashCard(
-                    frontImage: "assets/images/1.png",
-                    heading: "title",
-                    titleColor: Colors.black,
-                    description: 'asdadasd'),
-                FlashCard(
-                    frontImage: "assets/images/flashcards/2.png",
-                    heading: "title",
-                    titleColor: Colors.black,
-                    description: 'asdadaddds'),
-                FlashCard(
-                    frontImage: "assets/images/flashcards/3.png",
-                    heading: "title",
-                    titleColor: Colors.black,
-                    description: 'qeqweqwe'),
-                FlashCard(
-                    frontImage: "assets/images/flashcards/4.png",
-                    heading: "title",
-                    titleColor: Colors.black,
-                    description: 'qwqweqweqwe'),
-                FlashCard(
-                    frontImage: "assets/images/flashcards/5.png",
-                    heading: "title",
-                    titleColor: Colors.black,
-                    description: 'qweqewqwe'),
-                FlashCard(
-                    frontImage: "assets/images/flashcards/6.png",
-                    heading: "title",
-                    titleColor: Colors.black,
-                    description: 'qwqewqweqwe'),
-              ]));
+              return Custom_NavBar();
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();

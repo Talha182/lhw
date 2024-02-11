@@ -42,7 +42,9 @@ class _ModuleScreenState extends State<ModuleScreen> {
                 padding: const EdgeInsets.only(left: 20),
                 child: InkWell(
                   child: const Icon(Icons.arrow_back),
-                  onTap: () {},
+                  onTap: () {
+                    Get.back();
+                  },
                 ),
               ),
               Padding(

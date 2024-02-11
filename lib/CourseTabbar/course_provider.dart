@@ -521,7 +521,9 @@ class CoursesProvider with ChangeNotifier {
       _lastVisitedCourse = _courses.firstWhere(
           (course) => course.courseId == lastVisitedCourseId,
           orElse: () => null!);
-    } else {
+    }
+
+    else {
       _lastVisitedCourse = _courses.firstWhere((course) => course.courseId == 1,
           orElse: () => null!);
       await prefs.setInt('lastVisitedCourseId', 1);

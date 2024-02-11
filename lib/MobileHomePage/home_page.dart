@@ -7,6 +7,9 @@ import 'package:lhw/Mobile_Lesson%20&%20Flashcards/lesson_page_tabbar.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../CourseTabbar/LessonPageTabBar/LessonPageTabbar.dart';
+import '../CourseTabbar/ModuleScreen/ModuleScreen.dart';
 import '../CourseTabbar/course_provider.dart';
 import '../CustomWidgets/Line_chart.dart';
 import '../CustomWidgets/circular_progress_bar_with circle.dart';
@@ -91,12 +94,44 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+  Future<void> navigateToLastVisitedCourse(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    final lastVisitedCourseId = prefs.getInt('lastVisitedCourseId') ?? 1; // Default to 1 if not found
+
+
+    // Assuming you have a method to fetch the course by ID
+    final course = await CoursesProvider().getCourseById(lastVisitedCourseId);
+    final isFirstVisitKey = 'isFirstVisit_${course!.courseId}';
+    final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
+
+
+    // Navigate to ModuleScreen with the obtained course
+    if (isFirstVisit) {
+      await prefs.setBool(isFirstVisitKey, false);
+      await Get.to(() => LessonPageTabBar(course: course),transition: Transition.fade,duration: Duration(milliseconds: 300));
+
+    }
+    if (course != null) {
+      Get.to(() => ModuleScreen(course: course));
+    } else {
+      // Handle the case where the course is not found (optional)
+      print("Course not found!");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     // Accessing the CoursesProvider
     final provider = Provider.of<CoursesProvider>(context);
+
+    final totalCourses  = provider.courses;
     final lastVisitedCourse = provider.lastVisitedCourse;
+    final completedCourses = provider.completedCourses;
+    final completedCourseCount = completedCourses.length;
+    final remainingCoursesCount = totalCourses.length - completedCourses.length;
+
+
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -270,9 +305,9 @@ class _HomePageState extends State<HomePage> {
                                                 padding: EdgeInsets.only(
                                                     right: screenWidth / 6,
                                                     top: 16),
-                                                child: const Text(
-                                                  "3",
-                                                  style: TextStyle(
+                                                child: Text(
+                                                    '$completedCourseCount',
+                                                  style: const TextStyle(
                                                       fontSize: 18,
                                                       fontFamily: ""),
                                                 ),
@@ -340,9 +375,9 @@ class _HomePageState extends State<HomePage> {
                                                 padding: EdgeInsets.only(
                                                     right: screenWidth / 6,
                                                     top: 16),
-                                                child: const Text(
-                                                  "12",
-                                                  style: TextStyle(
+                                                child:  Text(
+                                                  "${remainingCoursesCount}",
+                                                  style: const TextStyle(
                                                       fontSize: 18,
                                                       fontFamily: ""),
                                                 ),
@@ -389,11 +424,11 @@ class _HomePageState extends State<HomePage> {
                                                   //     duration: const Duration(
                                                   //         milliseconds: 300));
                                                 },
-                                                child: const Row(
+                                                child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
                                                   children: [
-                                                    Padding(
+                                                    const Padding(
                                                       padding: EdgeInsets.only(
                                                           top: 8.0),
                                                       child: Icon(
@@ -404,20 +439,25 @@ class _HomePageState extends State<HomePage> {
                                                         size: 14,
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width:
                                                           5, // space between Text and Icon
                                                     ),
-                                                    Text(
-                                                      "کورس پر جائیں",
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              'UrduType',
-                                                          fontSize: 14,
-                                                          color:
-                                                              Color(0xffFE8BD1),
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                                    GestureDetector(
+                                                      onTap: () => navigateToLastVisitedCourse(context),
+
+                                                      child: const Text(
+
+                                                        "کورس پر جائیں",
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                'UrduType',
+                                                            fontSize: 14,
+                                                            color:
+                                                                Color(0xffFE8BD1),
+                                                            fontWeight:
+                                                                FontWeight.w500),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
