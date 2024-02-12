@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../BranchingScenarios/TextBranchingScenario.dart';
+
 class ResultsController extends GetxController {
   // Observable list to hold questions and user answers
   var questionsAndAnswers = <Question>[].obs;
