@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -6,16 +5,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Result/ResultScreen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:lhw/models/question_model.dart';
 
 import '../controllers/BookmarkController.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import '../controllers/QuizController.dart';
-import '../controllers/feature_navigation.dart';
 
 class TextBranchingScenario extends StatefulWidget {
-  final TextBranchingScenarioModel model;
-
-  const TextBranchingScenario({super.key, required this.model});
+  final TextBranchingScenarioModel textBranchingScenarioModel;
+  const TextBranchingScenario({super.key, required this.textBranchingScenarioModel});
 
   @override
   _TextBranchingScenarioState createState() => _TextBranchingScenarioState();
@@ -52,22 +50,22 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
       isSelectedList[index] = true;
       String explanation;
 
-      if (selectedAnswer == widget.model.questions[questionIndex].correctAnswer) {
+      if (selectedAnswer == widget.textBranchingScenarioModel.questions[questionIndex].correctAnswer) {
         optionColors[index] = Colors.green[100]!;
-        explanation = widget.model.questions[questionIndex].correctExplanation;
+        explanation = widget.textBranchingScenarioModel.questions[questionIndex].correctExplanation;
       } else {
         optionColors[index] = Colors.red[100]!;
-        explanation = widget.model.questions[questionIndex].incorrectExplanation;
+        explanation = widget.textBranchingScenarioModel.questions[questionIndex].incorrectExplanation;
       }
 
       _showAnswerDialog(
           context,
-          selectedAnswer == widget.model.questions[questionIndex].correctAnswer,
+          selectedAnswer == widget.textBranchingScenarioModel.questions[questionIndex].correctAnswer,
           explanation);
     });
 
     Future.delayed(const Duration(seconds: 2), () {
-      if (questionIndex < widget.model.questions.length - 1) {
+      if (questionIndex < widget.textBranchingScenarioModel.questions.length - 1) {
         setState(() {
           questionIndex++;
           _current = questionIndex + 1; // Update current question number
@@ -82,7 +80,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
             duration: const Duration(milliseconds: 300));
       }
     });
-    Question currentQuestion = widget.model.questions[questionIndex];
+    Question currentQuestion = widget.textBranchingScenarioModel.questions[questionIndex];
     currentQuestion.userAnswer =
         selectedAnswer; // Add a userAnswer field to your Question class
     resultsController.addQuestionAnswer(currentQuestion);
@@ -99,7 +97,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
       builder: (context) {
         return Dialog(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           child: Stack(
             alignment: Alignment.topRight,
             children: [
@@ -185,7 +183,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
 
   @override
   Widget build(BuildContext context) {
-    _totalSteps = widget.model.questions.length; // Add this line
+    _totalSteps = widget.textBranchingScenarioModel.questions.length; // Add this line
 
     return Scaffold(
       body: Stack(
@@ -207,7 +205,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
                 Column(children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 60, left: 20, right: 10),
+                    const EdgeInsets.only(top: 60, left: 20, right: 10),
                     child: Row(
                       children: [
                         GestureDetector(
@@ -227,7 +225,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
                             tween: Tween<double>(
                               begin: 0,
                               end: _current /
-                                  widget.model.questions
+                                  widget.textBranchingScenarioModel.questions
                                       .length, // Correct end value for the tween
                             ),
                             duration: const Duration(milliseconds: 400),
@@ -236,7 +234,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
                               return LinearPercentIndicator(
                                 lineHeight: 8.0,
                                 percent:
-                                    value, // Use the animated value for the percent
+                                value, // Use the animated value for the percent
                                 backgroundColor: Colors.white,
                                 progressColor: const Color(0xffFE8BD1),
                                 barRadius: const Radius.circular(10),
@@ -250,7 +248,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
                         GestureDetector(
                             onTap: () {
                               final bookmarkController =
-                                  Get.find<BookmarkController>();
+                              Get.find<BookmarkController>();
                               bookmarkController.addBookmark(
                                 Bookmark(
                                     title: 'LessonOption20',
@@ -279,24 +277,34 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Text(
-                      widget.modelquestions[questionIndex].question,
+                      widget.textBranchingScenarioModel.questions[questionIndex].question,
                       textAlign: TextAlign.center,
                       style:
-                          const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                      const TextStyle(fontFamily: "UrduType", fontSize: 20),
                     ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Column(
-                    children: widget.model.questions[questionIndex].options.map((option) => QuizCard(
-                      option: option,
-                      onTap: () => updateQuestion(option.text, option),
-                      color: optionColors[widget.model.questions[questionIndex].options.indexOf(option)],
-                      isSelected: isSelectedList[widget.model.questions[questionIndex].options.indexOf(option)],
-                    )).toList(),
-                  )
-
+                    children: List.generate(
+                      widget.textBranchingScenarioModel.questions[questionIndex].options.length,
+                          (index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: QuizCard(
+                          text: widget.textBranchingScenarioModel.questions[questionIndex].options[index],
+                          imagePath: 'assets/images/quiz${index + 1}.png',
+                          color: optionColors[index],
+                          ontap: () => updateQuestion(
+                              widget.textBranchingScenarioModel.questions[questionIndex].options[index], index),
+                          isCorrect: selectedAnswer ==
+                              widget.textBranchingScenarioModel.questions[questionIndex].correctAnswer,
+                          isSelected:
+                          isSelectedList[index], // use the list here
+                        ),
+                      ),
+                    ).animate(interval: 200.ms).fade(duration: 200.ms),
+                  ),
                 ]),
               ],
             ),
@@ -352,23 +360,29 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
 }
 
 class QuizCard extends StatelessWidget {
-  final Option option;
-  final Function onTap;
+  final String text;
+  final String imagePath;
+  final Function ontap;
   final Color color;
+  final bool isCorrect;
   final bool isSelected;
+  final bool isAnswered;
 
   const QuizCard({
     Key? key,
-    required this.option,
-    required this.onTap,
+    required this.text,
+    required this.imagePath,
+    required this.ontap,
     this.color = Colors.white,
+    this.isCorrect = false,
     this.isSelected = false,
+    this.isAnswered = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap(),
+      onTap: isAnswered ? null : () => ontap(),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Container(
@@ -376,31 +390,58 @@ class QuizCard extends StatelessWidget {
           height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: color,
+            color: isSelected
+                ? (isCorrect
+                ? const Color(0xff9AC9C2)
+                : const Color(0xffFB6262))
+                : const Color(0xffB1B2B4),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: ImageIcon(
-                  AssetImage(option.iconPath),
-                  size: 24, // Adjust size as needed
-                  color: isSelected ? Colors.green : Colors.black,
-                ),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: Container(
+              width: 360,
+              height: 120,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black87.withOpacity(0.1)),
+                borderRadius: BorderRadius.circular(10),
+                color: color,
               ),
-              Expanded(
-                child: Text(
-                  option.text,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Color(0xff7A7D84),
-                    fontFamily: 'UrduType',
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Row(
+                      children: [
+                        Center(
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(imagePath),
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            text,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Color(0xff7A7D84),
+                              fontFamily: 'UrduType',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -408,31 +449,11 @@ class QuizCard extends StatelessWidget {
   }
 }
 
+
 class TextBranchingScenarioModel {
   final List<Question> questions;
 
-  TextBranchingScenarioModel({required this.questions});
-}
-class Option {
-  final String text;
-  final String iconPath;
-
-  Option({required this.text, required this.iconPath});
-}
-
-class Question {
-  final String question;
-  final List<Option> options;
-  final String correctAnswer;
-  final String correctExplanation;
-  final String incorrectExplanation;
-  String userAnswer = '';
-
-  Question({
-    required this.question,
-    required this.options,
-    required this.correctAnswer,
-    required this.correctExplanation,
-    required this.incorrectExplanation,
+  TextBranchingScenarioModel({
+    required this.questions
   });
 }

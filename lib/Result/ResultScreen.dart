@@ -6,6 +6,8 @@ import 'package:lhw/models/question_model.dart';
 import '../controllers/QuizController.dart';
 
 class ResultsScreen extends StatelessWidget {
+  const ResultsScreen({super.key});
+
   void _showOptionsDialog(BuildContext context, Question question) {
     showAnimatedDialog(
       curve: Curves.fastOutSlowIn,
@@ -15,7 +17,7 @@ class ResultsScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(question.question,style: TextStyle(
+          title: Text(question.question,style: const TextStyle(
             fontFamily: "UrduType"
           ),textAlign: TextAlign.center,),
           content: SingleChildScrollView(
@@ -115,7 +117,7 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
             Obx(() => Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 130),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 150),
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
