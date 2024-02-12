@@ -1,4 +1,4 @@
-import '../Branching/LessonOption24.dart';
+import '../BranchingScenarios/ImageBranchingScenario.dart';
 
 class InteractiveAnimationVideoModel {
   final String videoPath;

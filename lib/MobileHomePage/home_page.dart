@@ -15,10 +15,10 @@ import '../CustomWidgets/Line_chart.dart';
 import '../CustomWidgets/circular_progress_bar_with circle.dart';
 import '../CustomWidgets/gradient_circle.dart';
 import '../LoginSignUp/Login.dart';
-import '../models/course_model.dart';
 import '../notification/notifications_screen.dart';
 import '../repositories/authentication_repository/authentication_repository.dart';
 import '../utils/is_first_time_check.dart';
+import '../courses_test/test_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -94,47 +94,88 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+  // Future<void> navigateToLastVisitedCourse(BuildContext context) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   // Attempt to get the last visited course ID from SharedPreferences
+  //   final lastVisitedCourseId = prefs.getInt('lastVisitedCourseId');
+  //
+  //   // Initialize your CoursesProvider instance
+  //   final coursesProvider = CoursesProvider();
+  //
+  //   // Load courses if not already loaded
+  //   // Make sure that the courses are loaded before attempting to access them
+  //   if (coursesProvider.courses.isEmpty) {
+  //     await coursesProvider.loadCourses();
+  //   }
+  //
+  //   TestCourseModel? course;
+  //
+  //   if (lastVisitedCourseId != null) {
+  //     // Try to find the course by the last visited ID
+  //     course = coursesProvider.getCourseById(lastVisitedCourseId);
+  //   }
+  //
+  //   // If no last visited course is found, or the list was empty, default to courseId 1
+  //   if (course == null) {
+  //     course = coursesProvider.getCourseById(1);
+  //   }
+  //
+  //   // Assuming course with ID 1 always exists, but it's good to check for null
+  //   if (course != null) {
+  //     final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
+  //     final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
+  //
+  //     if (isFirstVisit) {
+  //       await prefs.setBool(isFirstVisitKey, false);
+  //       // Navigate with fade transition
+  //       await Get.to(() => LessonPageTabBar(course: course!), transition: Transition.fade, duration: Duration(milliseconds: 300));
+  //     } else {
+  //       // Navigate without checking for first visit
+  //       Get.to(() => ModuleScreen(course: course!));
+  //     }
+  //   } else {
+  //     // Handle the case where even the default course is not found
+  //     print("Default course not found!");
+  //   }
+  // }
   Future<void> navigateToLastVisitedCourse(BuildContext context) async {
-    final prefs = await SharedPreferences.getInstance();
-    final lastVisitedCourseId = prefs.getInt('lastVisitedCourseId') ?? 1; // Default to 1 if not found
+    // Directly use the lastVisitedCourse from the provider
+    final provider = Provider.of<CoursesProvider>(context, listen: false); // Added listen: false for accessing outside build method.
+    TestCourseModel? course = provider.lastVisitedCourse;
 
-
-    // Assuming you have a method to fetch the course by ID
-    final course = await CoursesProvider().getCourseById(lastVisitedCourseId);
-    final isFirstVisitKey = 'isFirstVisit_${course!.courseId}';
-    final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
-
-
-    // Navigate to ModuleScreen with the obtained course
-    if (isFirstVisit) {
-      await prefs.setBool(isFirstVisitKey, false);
-      await Get.to(() => LessonPageTabBar(course: course),transition: Transition.fade,duration: Duration(milliseconds: 300));
-
-    }
     if (course != null) {
-      Get.to(() => ModuleScreen(course: course));
+      final prefs = await SharedPreferences.getInstance();
+      final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
+      final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
+
+      if (isFirstVisit) {
+        await prefs.setBool(isFirstVisitKey, false);
+        // Navigate with fade transition
+        await Get.to(() => LessonPageTabBar(course: course), transition: Transition.fade, duration: Duration(milliseconds: 300));
+      } else {
+        // Navigate without checking for first visit
+        Get.to(() => ModuleScreen(course: course));
+      }
     } else {
-      // Handle the case where the course is not found (optional)
-      print("Course not found!");
+      // Handle the case where there is no last visited course
+      print("No last visited course found!");
+      // Optionally, navigate to a default course or show an error message
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
     // Accessing the CoursesProvider
     final provider = Provider.of<CoursesProvider>(context);
-
-    final totalCourses  = provider.courses;
+    final totalCourses = provider.courses;
     final lastVisitedCourse = provider.lastVisitedCourse;
     final completedCourses = provider.completedCourses;
     final completedCourseCount = completedCourses.length;
     final remainingCoursesCount = totalCourses.length - completedCourses.length;
-
-
-
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+
     if (provider.isLoading) {
       return const Scaffold(
         body: Center(
@@ -306,7 +347,7 @@ class _HomePageState extends State<HomePage> {
                                                     right: screenWidth / 6,
                                                     top: 16),
                                                 child: Text(
-                                                    '$completedCourseCount',
+                                                  '$completedCourseCount',
                                                   style: const TextStyle(
                                                       fontSize: 18,
                                                       fontFamily: ""),
@@ -375,7 +416,7 @@ class _HomePageState extends State<HomePage> {
                                                 padding: EdgeInsets.only(
                                                     right: screenWidth / 6,
                                                     top: 16),
-                                                child:  Text(
+                                                child: Text(
                                                   "${remainingCoursesCount}",
                                                   style: const TextStyle(
                                                       fontSize: 18,
@@ -444,19 +485,20 @@ class _HomePageState extends State<HomePage> {
                                                           5, // space between Text and Icon
                                                     ),
                                                     GestureDetector(
-                                                      onTap: () => navigateToLastVisitedCourse(context),
-
+                                                      onTap: () =>
+                                                          navigateToLastVisitedCourse(
+                                                              context),
                                                       child: const Text(
-
                                                         "کورس پر جائیں",
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 'UrduType',
                                                             fontSize: 14,
-                                                            color:
-                                                                Color(0xffFE8BD1),
+                                                            color: Color(
+                                                                0xffFE8BD1),
                                                             fontWeight:
-                                                                FontWeight.w500),
+                                                                FontWeight
+                                                                    .w500),
                                                       ),
                                                     ),
                                                   ],
