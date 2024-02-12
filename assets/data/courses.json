@@ -15,7 +15,7 @@
         {
           "moduleId": 1,
           "title": "Module 1: Basics",
-          "imagePath": "assets/images/2.png",
+          "imagePath": "assets/moduleIcons/module1.png",
           "submoduleCount": 4,
           "isStart": true,
           "progressValue": 0.25,
@@ -65,7 +65,7 @@
         {
           "moduleId": 2,
           "title": "Module 2: Intermediate",
-          "imagePath": "assets/images/module2.jpg",
+          "imagePath": "assets/moduleIcons/module2.png",
           "submoduleCount": 3,
           "isStart": false,
           "progressValue": 0.5,
@@ -105,7 +105,7 @@
         {
           "moduleId": 3,
           "title": "Module 3: Advanced",
-          "imagePath": "assets/images/module3.jpg",
+          "imagePath": "assets/moduleIcons/module3.png",
           "submoduleCount": 2,
           "isStart": false,
           "progressValue": 0.8,
