@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lhw/courses_test/test_model.dart';
 import 'package:provider/provider.dart';
 
 import 'courses_card.dart';
@@ -8,7 +9,7 @@ import 'course_provider.dart';
 class TotalCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Course> courses = Provider.of<CoursesProvider>(context).courses;
+    List<TestCourseModel> courses = Provider.of<CoursesProvider>(context).courses;
 
     return Scaffold(
       body: ListView.builder(

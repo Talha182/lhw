@@ -97,6 +97,7 @@ flutter:
     - assets/sounds/
     - assets/moduleIcons/
     - assets/presentations/
+    - assets/data/
 
   fonts:
     - family: UrduType

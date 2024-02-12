@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
 import 'package:lhw/CourseTabbar/courses_tabbar.dart';
 import 'package:lhw/FlashCard/flash_cards_screen.dart';
 import 'package:lhw/api/firebase_api.dart';
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen(); // your loading screen widget
             case AuthStatus.authenticated:
-              return Custom_NavBar();
+              return const TextBranchingScenario();
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();

@@ -6,8 +6,8 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../Presentation/Presentation.dart';
 import '../../Presentation/presentation_model.dart';
+import '../../courses_test/test_model.dart';
 import '../../models/feature_model.dart';
-import '../../models/submodule_model.dart';
 
 class FeaturesListScreen extends StatefulWidget {
   final Submodule submodule;
@@ -190,9 +190,9 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: widget.submodule.Features.length,
+                  itemCount: widget.submodule.features.length,
                   itemBuilder: (context, index) {
-                    final feature = widget.submodule.Features[index];
+                    final feature = widget.submodule.features[index];
                     return ListTile(
                       leading: Icon(feature.icon,
                           color: feature.isCompleted
@@ -215,36 +215,36 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      onTap: () async {
-                        switch (feature.featureType) {
-                          case FeatureType.presentation:
-                            if (feature.relatedData != null) {
-                              // Cast the relatedData to PresentationModel
-                              PresentationModel presentationModel =
-                                  feature.relatedData as PresentationModel;
-                              // Navigate to the presentation screen with the specific data
-                              await Get.to(() => Presentation(
-                                  presentationModel: presentationModel));
-                            }
-                            break;
-                          case FeatureType.video:
-                            // Handle video feature tap
-                            // Example: Navigate to video player screen
-                            break;
-                          case FeatureType.quiz:
-                            // Handle quiz feature tap
-                            // Example: Navigate to quiz screen
-                            break;
-                          default:
-                            // Handle any other feature types or undefined case
-                            break;
-                        }
-
-                        // Mark the feature as completed after returning from navigation
-                        setState(() {
-                          feature.isCompleted = true;
-                        });
-                      },
+                      // onTap: () async {
+                      //   switch (feature.featureType) {
+                      //     case FeatureType.presentation:
+                      //       if (feature.relatedData != null) {
+                      //         // Cast the relatedData to PresentationModel
+                      //         PresentationModel presentationModel =
+                      //             feature.relatedData as PresentationModel;
+                      //         // Navigate to the presentation screen with the specific data
+                      //         await Get.to(() => Presentation(
+                      //             presentationModel: presentationModel));
+                      //       }
+                      //       break;
+                      //     case FeatureType.video:
+                      //       // Handle video feature tap
+                      //       // Example: Navigate to video player screen
+                      //       break;
+                      //     case FeatureType.quiz:
+                      //       // Handle quiz feature tap
+                      //       // Example: Navigate to quiz screen
+                      //       break;
+                      //     default:
+                      //       // Handle any other feature types or undefined case
+                      //       break;
+                      //   }
+                      //
+                      //   // Mark the feature as completed after returning from navigation
+                      //   setState(() {
+                      //     feature.isCompleted = true;
+                      //   });
+                      // },
                     );
                   },
                 ).animate().fade(duration: 400.ms),

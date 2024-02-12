@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/courses_test/test_model.dart';
 
 import '../../CustomWidgets/Row_Column_Padding.dart';
 import '../../Mobile_Lesson & Flashcards/inforgraphics_carousel.dart';
@@ -9,7 +10,7 @@ import '../../models/course_model.dart';
 import '../ModuleScreen/ModuleScreen.dart';
 
 class Lesson extends StatefulWidget {
-  final Course course;
+  final TestCourseModel course;
   const Lesson({super.key, required this.course});
 
   @override
@@ -56,6 +57,9 @@ class _LessonState extends State<Lesson> {
 
   @override
   Widget build(BuildContext context) {
+    Color startColor = Color(int.parse(widget.course.gradient['start']!.replaceAll('#', '0xff')));
+    Color endColor = Color(int.parse(widget.course.gradient['end']!.replaceAll('#', '0xff')));
+
     return Scaffold(
         body: Stack(
       children: [
@@ -68,8 +72,14 @@ class _LessonState extends State<Lesson> {
                   width: Get.width,
                   height: 170,
                   decoration: BoxDecoration(
-                    gradient: widget.course.gradient,
-                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        startColor,
+                        endColor,
+                      ],
+                    ),                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20, top: 20),

@@ -1,0 +1,138 @@
+{
+  "courses": [
+    {
+      "courseId": 1,
+      "title": "Introduction to LHW",
+      "gradient": {"start": "#ff9a9e", "end": "#fad0c4"},
+      "quizCount": 5,
+      "moduleCount": 3,
+      "imagePath": "assets/images/1.png",
+      "isStart": true,
+      "isCompleted": false,
+      "progress": 0.3,
+      "arrowText": "START",
+      "modules": [
+        {
+          "moduleId": 1,
+          "title": "Module 1: Basics",
+          "imagePath": "assets/images/2.png",
+          "submoduleCount": 4,
+          "isStart": true,
+          "progressValue": 0.25,
+          "submodules": [
+            {
+              "submoduleId": 1,
+              "title": "Variables and Data Types",
+              "description": "Learn about variables and data types in programming.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/variables_icon.png",
+              "numberOfQuizzes": 2,
+              "titleAlignment": "left",
+              "features": []
+            },
+            {
+              "submoduleId": 2,
+              "title": "Control Structures",
+              "description": "Understand control structures such as loops and conditionals.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/control_icon.png",
+              "numberOfQuizzes": 3,
+              "titleAlignment": "right",
+              "features": []
+            },
+            {
+              "submoduleId": 3,
+              "title": "Functions",
+              "description": "Learn about functions and their importance in programming.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/functions_icon.png",
+              "numberOfQuizzes": 1,
+              "titleAlignment": "left",
+              "features": []
+            },
+            {
+              "submoduleId": 4,
+              "title": "Arrays and Lists",
+              "description": "Explore arrays and lists as data structures in programming.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/arrays_icon.png",
+              "numberOfQuizzes": 2,
+              "titleAlignment": "right",
+              "features": []
+            }
+          ]
+        },
+        {
+          "moduleId": 2,
+          "title": "Module 2: Intermediate",
+          "imagePath": "assets/images/module2.jpg",
+          "submoduleCount": 3,
+          "isStart": false,
+          "progressValue": 0.5,
+          "submodules": [
+            {
+              "submoduleId": 5,
+              "title": "Object-Oriented Programming",
+              "description": "Understand the principles of object-oriented programming.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/oop_icon.png",
+              "numberOfQuizzes": 2,
+              "titleAlignment": "left",
+              "features": []
+            },
+            {
+              "submoduleId": 6,
+              "title": "Exception Handling",
+              "description": "Learn how to handle exceptions and errors in code.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/exceptions_icon.png",
+              "numberOfQuizzes": 1,
+              "titleAlignment": "right",
+              "features": []
+            },
+            {
+              "submoduleId": 7,
+              "title": "File Handling",
+              "description": "Explore file handling operations in programming.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/files_icon.png",
+              "numberOfQuizzes": 2,
+              "titleAlignment": "left",
+              "features": []
+            }
+          ]
+        },
+        {
+          "moduleId": 3,
+          "title": "Module 3: Advanced",
+          "imagePath": "assets/images/module3.jpg",
+          "submoduleCount": 2,
+          "isStart": false,
+          "progressValue": 0.8,
+          "submodules": [
+            {
+              "submoduleId": 8,
+              "title": "Concurrency",
+              "description": "Understand concurrency and parallelism in programming.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/concurrency_icon.png",
+              "numberOfQuizzes": 3,
+              "titleAlignment": "right",
+              "features": []
+            },
+            {
+              "submoduleId": 9,
+              "title": "Data Structures",
+              "description": "Explore advanced data structures and algorithms.",
+              "buttonPosition": {"dx": 0.0, "dy": 0.0},
+              "iconPath": "assets/icons/datastructures_icon.png",
+              "numberOfQuizzes": 2,
+              "titleAlignment": "left",
+              "features": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

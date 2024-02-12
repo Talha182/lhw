@@ -2,17 +2,17 @@ import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/courses_test/test_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../CustomWidgets/ArrowContainer.dart';
 import 'LessonPageTabBar/LessonPageTabbar.dart';
-import '../models/course_model.dart';
 import 'ModuleScreen/ModuleScreen.dart';
 import 'course_provider.dart';
 
 class CourseCard extends StatelessWidget {
-  final Course course;
+  final TestCourseModel course;
 
   const CourseCard({Key? key, required this.course}) : super(key: key);
   // Function to check first visit and navigate accordingly
@@ -31,6 +31,9 @@ class CourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color startColor = Color(int.parse(course.gradient['start']!.replaceAll('#', '0xff')));
+    Color endColor = Color(int.parse(course.gradient['end']!.replaceAll('#', '0xff')));
+
     const progressValue = 0.75;
     return Container(
       width: double.infinity,
@@ -38,8 +41,14 @@ class CourseCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12, top: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        gradient: course.gradient,
-      ),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            startColor,
+            endColor,
+          ],
+        ),      ),
       child: Stack(
         children: [
           Positioned(

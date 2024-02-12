@@ -5,8 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import '../CourseTabbar/ModuleScreen/FeaturesListScreen.dart';
 import '../controllers/feature_navigation.dart';
-import '../models/module_model.dart';
-import '../models/submodule_model.dart'; // Assume this contains definitions for Module and Submodule
+import '../courses_test/test_model.dart';
 
 class JourneyMapScreen extends StatelessWidget {
   final Module module;
@@ -110,9 +109,14 @@ class JourneyMapScreen extends StatelessWidget {
               Submodule submodule = module.submodules[index];
               bool isRightAligned = submodule.titleAlignment == 'right';
 
+              Offset buttonPosition = Offset(
+                submodule.buttonPosition['dx'] ?? 0.0, // Provide a default value in case the key doesn't exist
+                submodule.buttonPosition['dy'] ?? 0.0,
+              );
+
               return Positioned(
-                left: submodule.buttonPosition.dx,
-                top: submodule.buttonPosition.dy,
+                left: buttonPosition.dx,
+                top: buttonPosition.dy,
                 child: isRightAligned
                     ? _buildRightAlignedRow(context, submodule)
                     : _buildLeftAlignedRow(context, submodule),

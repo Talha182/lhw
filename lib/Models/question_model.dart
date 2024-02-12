@@ -3,7 +3,6 @@ class Question {
   final List<String> options;
   final String correctAnswer;
   String userAnswer; // To store user's selected answer
-
   final String correctExplanation; // Correct explanation
   final String incorrectExplanation; // Incorrect explanation
 

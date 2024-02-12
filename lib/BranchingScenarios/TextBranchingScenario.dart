@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -7,21 +6,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Result/ResultScreen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:lhw/models/question_model.dart';
 
 import '../controllers/BookmarkController.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import '../controllers/QuizController.dart';
 import '../controllers/feature_navigation.dart';
 
-class LessonOption21 extends StatefulWidget {
-  const LessonOption21({super.key});
+class TextBranchingScenario extends StatefulWidget {
+  final TextBranchingScenarioModel model;
+
+  const TextBranchingScenario({super.key, required this.model});
 
   @override
-  _LessonOption21State createState() => _LessonOption21State();
+  _TextBranchingScenarioState createState() => _TextBranchingScenarioState();
 }
 
-class _LessonOption21State extends State<LessonOption21> {
+class _TextBranchingScenarioState extends State<TextBranchingScenario> {
   bool isSelected = false;
   bool isAnswered = false;
   final ResultsController resultsController = Get.put(ResultsController());
@@ -32,30 +32,6 @@ class _LessonOption21State extends State<LessonOption21> {
   int _totalSteps = 100;
   int questionIndex = 0;
   String selectedAnswer = '';
-  final List<Question> questions = [
-    Question(
-      question: 'سوال: "پاکستان کی کس شہر میں بادشاہی مسجد واقع ہے؟"',
-      options: ['اختیارات 1', 'Option 2', 'Option 3'],
-      correctAnswer: 'Option 1',
-      correctExplanation: 'Correct explanation here.',
-      incorrectExplanation: 'Incorrect explanation here.',
-    ),
-    Question(
-      question: 'Your second question text here',
-      options: ['Option 1', 'Option 2', 'Option 3'],
-      correctAnswer: 'Option 1',
-      correctExplanation: 'Correct explanation here.',
-      incorrectExplanation: 'Incorrect explanation here.',
-    ),
-    Question(
-      question: 'Your third question text here',
-      options: ['Option 1', 'Option 2', 'Option 3'],
-      correctAnswer: 'Option 1',
-      correctExplanation: 'Correct explanation here.',
-      incorrectExplanation: 'Incorrect explanation here.',
-    ),
-    // Add more questions as needed
-  ];
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
   List<bool> isSelectedList = [
@@ -76,22 +52,22 @@ class _LessonOption21State extends State<LessonOption21> {
       isSelectedList[index] = true;
       String explanation;
 
-      if (selectedAnswer == questions[questionIndex].correctAnswer) {
+      if (selectedAnswer == widget.model.questions[questionIndex].correctAnswer) {
         optionColors[index] = Colors.green[100]!;
-        explanation = questions[questionIndex].correctExplanation;
+        explanation = widget.model.questions[questionIndex].correctExplanation;
       } else {
         optionColors[index] = Colors.red[100]!;
-        explanation = questions[questionIndex].incorrectExplanation;
+        explanation = widget.model.questions[questionIndex].incorrectExplanation;
       }
 
       _showAnswerDialog(
           context,
-          selectedAnswer == questions[questionIndex].correctAnswer,
+          selectedAnswer == widget.model.questions[questionIndex].correctAnswer,
           explanation);
     });
 
     Future.delayed(const Duration(seconds: 2), () {
-      if (questionIndex < questions.length - 1) {
+      if (questionIndex < widget.model.questions.length - 1) {
         setState(() {
           questionIndex++;
           _current = questionIndex + 1; // Update current question number
@@ -106,7 +82,7 @@ class _LessonOption21State extends State<LessonOption21> {
             duration: const Duration(milliseconds: 300));
       }
     });
-    Question currentQuestion = questions[questionIndex];
+    Question currentQuestion = widget.model.questions[questionIndex];
     currentQuestion.userAnswer =
         selectedAnswer; // Add a userAnswer field to your Question class
     resultsController.addQuestionAnswer(currentQuestion);
@@ -209,7 +185,7 @@ class _LessonOption21State extends State<LessonOption21> {
 
   @override
   Widget build(BuildContext context) {
-    _totalSteps = questions.length; // Add this line
+    _totalSteps = widget.model.questions.length; // Add this line
 
     return Scaffold(
       body: Stack(
@@ -251,7 +227,7 @@ class _LessonOption21State extends State<LessonOption21> {
                             tween: Tween<double>(
                               begin: 0,
                               end: _current /
-                                  questions
+                                  widget.model.questions
                                       .length, // Correct end value for the tween
                             ),
                             duration: const Duration(milliseconds: 400),
@@ -303,7 +279,7 @@ class _LessonOption21State extends State<LessonOption21> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Text(
-                      questions[questionIndex].question,
+                      widget.modelquestions[questionIndex].question,
                       textAlign: TextAlign.center,
                       style:
                           const TextStyle(fontFamily: "UrduType", fontSize: 20),
@@ -313,24 +289,14 @@ class _LessonOption21State extends State<LessonOption21> {
                     height: 10,
                   ),
                   Column(
-                    children: List.generate(
-                      questions[questionIndex].options.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: QuizCard(
-                          text: questions[questionIndex].options[index],
-                          imagePath: 'assets/images/quiz${index + 1}.png',
-                          color: optionColors[index],
-                          ontap: () => updateQuestion(
-                              questions[questionIndex].options[index], index),
-                          isCorrect: selectedAnswer ==
-                              questions[questionIndex].correctAnswer,
-                          isSelected:
-                              isSelectedList[index], // use the list here
-                        ),
-                      ),
-                    ).animate(interval: 200.ms).fade(duration: 200.ms),
-                  ),
+                    children: widget.model.questions[questionIndex].options.map((option) => QuizCard(
+                      option: option,
+                      onTap: () => updateQuestion(option.text, option),
+                      color: optionColors[widget.model.questions[questionIndex].options.indexOf(option)],
+                      isSelected: isSelectedList[widget.model.questions[questionIndex].options.indexOf(option)],
+                    )).toList(),
+                  )
+
                 ]),
               ],
             ),
@@ -386,29 +352,23 @@ class _LessonOption21State extends State<LessonOption21> {
 }
 
 class QuizCard extends StatelessWidget {
-  final String text;
-  final String imagePath;
-  final Function ontap;
+  final Option option;
+  final Function onTap;
   final Color color;
-  final bool isCorrect;
   final bool isSelected;
-  final bool isAnswered;
 
   const QuizCard({
     Key? key,
-    required this.text,
-    required this.imagePath,
-    required this.ontap,
+    required this.option,
+    required this.onTap,
     this.color = Colors.white,
-    this.isCorrect = false,
     this.isSelected = false,
-    this.isAnswered = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isAnswered ? null : () => ontap(),
+      onTap: () => onTap(),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Container(
@@ -416,61 +376,63 @@ class QuizCard extends StatelessWidget {
           height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: isSelected
-                ? (isCorrect
-                    ? const Color(0xff9AC9C2)
-                    : const Color(0xffFB6262))
-                : const Color(0xffB1B2B4),
+            color: color,
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 4),
-            child: Container(
-              width: 360,
-              height: 120,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black87.withOpacity(0.1)),
-                borderRadius: BorderRadius.circular(10),
-                color: color,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: ImageIcon(
+                  AssetImage(option.iconPath),
+                  size: 24, // Adjust size as needed
+                  color: isSelected ? Colors.green : Colors.black,
+                ),
               ),
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      children: [
-                        Center(
-                          child: Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(imagePath),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            text,
-                            textAlign: TextAlign.justify,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Color(0xff7A7D84),
-                              fontFamily: 'UrduType',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+              Expanded(
+                child: Text(
+                  option.text,
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Color(0xff7A7D84),
+                    fontFamily: 'UrduType',
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
     );
   }
+}
+
+class TextBranchingScenarioModel {
+  final List<Question> questions;
+
+  TextBranchingScenarioModel({required this.questions});
+}
+class Option {
+  final String text;
+  final String iconPath;
+
+  Option({required this.text, required this.iconPath});
+}
+
+class Question {
+  final String question;
+  final List<Option> options;
+  final String correctAnswer;
+  final String correctExplanation;
+  final String incorrectExplanation;
+  String userAnswer = '';
+
+  Question({
+    required this.question,
+    required this.options,
+    required this.correctAnswer,
+    required this.correctExplanation,
+    required this.incorrectExplanation,
+  });
 }

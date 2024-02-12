@@ -299,7 +299,9 @@ class _PresentationState extends State<Presentation> {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.back();
+                    },
                     child: const Icon(
                       Icons.close,
                       size: 30,
