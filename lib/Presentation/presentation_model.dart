@@ -2,11 +2,19 @@
     class PresentationModel {
       final List<String> assetImages;
       final List<Question> questions;
-      final List<bool> showQuestionDialog; // New list to indicate whether to show dialog
+      final List<bool> showQuestionDialog;
 
       PresentationModel({
         required this.assetImages,
         required this.questions,
-        required this.showQuestionDialog, // Ensure this is included in constructor
+        required this.showQuestionDialog,
       });
+
+      factory PresentationModel.fromJson(Map<String, dynamic> json) {
+        return PresentationModel(
+          assetImages: List<String>.from(json['assetImages']),
+          questions: List<Question>.from(json['questions'].map((x) => Question.fromJson(x))),
+          showQuestionDialog: List<bool>.from(json['showQuestionDialog']),
+        );
+      }
     }

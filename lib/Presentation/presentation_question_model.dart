@@ -12,4 +12,14 @@ class Question {
     required this.correctExplanation,
     required this.incorrectExplanation,
   });
+
+  factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
+      question: json['question'],
+      options: List<String>.from(json['options']),
+      correctAnswer: json['correctAnswer'],
+      correctExplanation: json['correctExplanation'],
+      incorrectExplanation: json['incorrectExplanation'],
+    );
+  }
 }

@@ -28,7 +28,34 @@
               "iconPath": "assets/icons/variables_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": ["assets/images/1.png", "assets/images/2.png"],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": ["A storage location", "A loop construct", "None of the above"],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      } ,
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": ["A storage location","A loop construct", "None of the above"],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [true,true]
+                  }
+                }
+              ]
             },
             {
               "submoduleId": 2,

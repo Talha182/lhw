@@ -7,7 +7,6 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../Presentation/Presentation.dart';
 import '../../Presentation/presentation_model.dart';
 import '../../courses_test/test_model.dart';
-import '../../models/feature_model.dart';
 
 class FeaturesListScreen extends StatefulWidget {
   final Submodule submodule;
@@ -215,36 +214,15 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      // onTap: () async {
-                      //   switch (feature.featureType) {
-                      //     case FeatureType.presentation:
-                      //       if (feature.relatedData != null) {
-                      //         // Cast the relatedData to PresentationModel
-                      //         PresentationModel presentationModel =
-                      //             feature.relatedData as PresentationModel;
-                      //         // Navigate to the presentation screen with the specific data
-                      //         await Get.to(() => Presentation(
-                      //             presentationModel: presentationModel));
-                      //       }
-                      //       break;
-                      //     case FeatureType.video:
-                      //       // Handle video feature tap
-                      //       // Example: Navigate to video player screen
-                      //       break;
-                      //     case FeatureType.quiz:
-                      //       // Handle quiz feature tap
-                      //       // Example: Navigate to quiz screen
-                      //       break;
-                      //     default:
-                      //       // Handle any other feature types or undefined case
-                      //       break;
-                      //   }
-                      //
-                      //   // Mark the feature as completed after returning from navigation
-                      //   setState(() {
-                      //     feature.isCompleted = true;
-                      //   });
-                      // },
+                      onTap: () async {
+                        if (feature.featureType == FeatureType.presentation) {
+                          PresentationModel presentationModel =
+                              feature.relatedData as PresentationModel;
+                          // Using Get.to for navigation
+                          await Get.to(() => Presentation(
+                              presentationModel: presentationModel));
+                        }
+                      },
                     );
                   },
                 ).animate().fade(duration: 400.ms),

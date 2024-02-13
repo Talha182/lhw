@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../Presentation/presentation_model.dart';
+
 class TestCourseModel {
   final int courseId;
   final String title;
@@ -117,35 +119,49 @@ class Submodule {
 }
 
 // Assuming the enum FeatureType is defined as shown previously
-enum FeatureType { video, presentation, quiz }
+enum FeatureType { video, presentation, quiz, unknown }
 
 class Feature {
-  final String title;
+  final String title; // Example of a String field that might cause the error
   final FeatureType featureType;
-  bool isCompleted; // Attribute to indicate completion status
+  bool isCompleted; // Example bool field that might cause the error
   final String duration;
   final dynamic relatedData; // Optional field to hold related data
 
   Feature({
     required this.title,
     required this.featureType,
-    this.isCompleted = false, // Default is not completed
+    required this.isCompleted,
     required this.duration,
     this.relatedData,
   });
 
+  // factory Feature.fromJson(Map<String, dynamic> json) {
+  //   var relatedData;
+  //   if (json['featureType'] == 'presentation') {
+  //     relatedData = PresentationModel.fromJson(json['presentationModel']);
+  //   } else if (json['featureType'] == 'video') {
+  //     // relatedData = VideoModel.fromJson(json['videoModel']);
+  //   }
   factory Feature.fromJson(Map<String, dynamic> json) {
+    FeatureType featureType = FeatureType.values.firstWhere(
+          (type) => type.toString().split('.').last == json['featureType'],
+      orElse: () => FeatureType.unknown,
+    );
+
+    dynamic relatedData;
+    if (featureType == FeatureType.presentation && json.containsKey('presentationModel')) {
+      relatedData = PresentationModel.fromJson(json['presentationModel']);
+    }
     return Feature(
-      title: json['title'],
-      featureType: FeatureType.values.firstWhere(
-            (e) => e.toString().split('.').last == json['featureType'],
-        orElse: () => FeatureType.video, // Default to video if not found
-      ),
-      isCompleted: json['isCompleted'],
-      duration: json['duration'],
-      relatedData: json['relatedData'],
+      title: json['title'] as String? ?? 'Default Title',
+      featureType: featureType,
+      isCompleted: json['isCompleted'] as bool? ?? false,
+      duration: json['duration'] as String? ?? 'Default duration',
+      relatedData: relatedData,
     );
   }
+
 
   IconData get icon {
     if (isCompleted) {
