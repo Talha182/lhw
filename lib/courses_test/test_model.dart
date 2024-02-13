@@ -46,7 +46,8 @@ class TestCourseModel {
       isCompleted: json['isCompleted'],
       progress: json['progress'].toDouble(),
       arrowText: json['arrowText'],
-      modules: List<Module>.from(json['modules'].map((x) => Module.fromJson(x))),
+      modules:
+          List<Module>.from(json['modules'].map((x) => Module.fromJson(x))),
     );
   }
 }
@@ -78,7 +79,8 @@ class Module {
       submoduleCount: json['submoduleCount'],
       isStart: json['isStart'],
       progressValue: json['progressValue'].toDouble(),
-      submodules: List<Submodule>.from(json['submodules'].map((x) => Submodule.fromJson(x))),
+      submodules: List<Submodule>.from(
+          json['submodules'].map((x) => Submodule.fromJson(x))),
     );
   }
 }
@@ -113,7 +115,8 @@ class Submodule {
       iconPath: json['iconPath'],
       numberOfQuizzes: json['numberOfQuizzes'],
       titleAlignment: json['titleAlignment'],
-      features: List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
+      features:
+          List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
     );
   }
 }
@@ -145,12 +148,13 @@ class Feature {
   //   }
   factory Feature.fromJson(Map<String, dynamic> json) {
     FeatureType featureType = FeatureType.values.firstWhere(
-          (type) => type.toString().split('.').last == json['featureType'],
+      (type) => type.toString().split('.').last == json['featureType'],
       orElse: () => FeatureType.unknown,
     );
 
     dynamic relatedData;
-    if (featureType == FeatureType.presentation && json.containsKey('presentationModel')) {
+    if (featureType == FeatureType.presentation &&
+        json.containsKey('presentationModel')) {
       relatedData = PresentationModel.fromJson(json['presentationModel']);
     }
     return Feature(
@@ -161,7 +165,6 @@ class Feature {
       relatedData: relatedData,
     );
   }
-
 
   IconData get icon {
     if (isCompleted) {
@@ -181,16 +184,18 @@ class Feature {
   }
 
   Color get iconColor {
-    return isCompleted ? const Color(0xff9AC9C2) : const Color(0xff685F78); // Green for completed, purple for others
+    return isCompleted
+        ? const Color(0xff9AC9C2)
+        : const Color(0xff685F78); // Green for completed, purple for others
   }
 }
 
 Future<List<TestCourseModel>> fetchCourses() async {
   String jsonString = await rootBundle.loadString('assets/data/courses.json');
   final jsonData = json.decode(jsonString) as Map<String, dynamic>;
-  return List<TestCourseModel>.from(jsonData['courses'].map((x) => TestCourseModel.fromJson(x)));
+  return List<TestCourseModel>.from(
+      jsonData['courses'].map((x) => TestCourseModel.fromJson(x)));
 }
-
 
 // Future<List<TestCourseModel>> fetchCourses() async {
 //   String jsonString = await rootBundle.loadString('assets/data/courses.json');

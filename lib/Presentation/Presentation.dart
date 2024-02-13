@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -640,15 +639,15 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
               itemCount: widget.assetImages.length,
               itemBuilder: (context, index) {
                 return PinchZoomReleaseUnzoomWidget(
-                    minScale: 0.8,
-                    maxScale: 4,
-                    resetDuration: const Duration(milliseconds: 200),
-                    boundaryMargin: const EdgeInsets.only(bottom: 0),
-                    clipBehavior: Clip.none,
-                    useOverlay: true,
-                    maxOverlayOpacity: 0.5,
-                    overlayColor: Colors.black,
-                    fingersRequiredToPinch: 2,
+                  minScale: 0.8,
+                  maxScale: 4,
+                  resetDuration: const Duration(milliseconds: 200),
+                  boundaryMargin: const EdgeInsets.only(bottom: 0),
+                  clipBehavior: Clip.none,
+                  useOverlay: true,
+                  maxOverlayOpacity: 0.5,
+                  overlayColor: Colors.black,
+                  fingersRequiredToPinch: 2,
                   child: Image.asset(widget.assetImages[index],
                       fit: BoxFit.contain),
                 );

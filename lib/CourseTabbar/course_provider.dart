@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:get/get.dart'; // If you're using GetX for other purposes
+import 'package:get/get.dart';
 import 'package:lhw/courses_test/test_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../courses_test/test_model.dart';
 
 class CoursesProvider with ChangeNotifier {
   List<TestCourseModel> _courses = [];
