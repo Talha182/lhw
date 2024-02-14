@@ -411,7 +411,6 @@
                       "assets/Script 10/Script 10-9.png",
                       "assets/Script 10/Script 10-10.png",
                       "assets/Script 10/Script 10-11.png"
-
                     ],
                     "questions": [
                       {
@@ -505,15 +504,153 @@
                       "swipeAction": "",
                       "draggableImage": "assets/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
-                        "dx": 80,
-                        "dy": 180
+                        "dx": 160,
+                        "dy": 260
                       },
                       "dragTargetPosition": {
-                        "dx": 200,
+                        "dx": 450,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
-                      "moveToNextOnDrop": false
+                      "moveToNextOnDrop": true
+                    },
+                    {
+                      "image": "assets/script11/Script11-04.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-05.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 50,
+                        "top": 100,
+                        "width": 200,
+                        "height": 200
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showTimer",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-10.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-11.png",
+                      "draggableImageInitialPosition": {
+                        "dx": 160,
+                        "dy": 260
+                      },
+                      "dragTargetPosition": {
+                        "dx": 450,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/script11/Script11-11.png",
+                      "moveToNextOnDrop": true
+                    },
+                    {
+                      "image": "assets/script11/Script11-13.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-22.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 100,
+                        "top": 100,
+                        "width": 100,
+                        "height": 100
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-23.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-25.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-26.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": ""
                     }
                   ]
                 },
