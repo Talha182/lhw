@@ -453,7 +453,11 @@ class QuizCard extends StatelessWidget {
 class TextBranchingScenarioModel {
   final List<Question> questions;
 
-  TextBranchingScenarioModel({
-    required this.questions
-  });
+  TextBranchingScenarioModel({required this.questions});
+
+  factory TextBranchingScenarioModel.fromJson(Map<String, dynamic> json) {
+    var questionsFromJson = json['questions'] as List;
+    List<Question> questionList = questionsFromJson.map((questionJson) => Question.fromJson(questionJson)).toList();
+    return TextBranchingScenarioModel(questions: questionList);
+  }
 }

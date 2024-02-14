@@ -117,76 +117,84 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             Transform.translate(
               offset: const Offset(-40, 0),
               child: CarouselSlider.builder(
+
                 carouselController: _carouselController,
                 itemCount: widget.flashCardModel.cards.length,
                 itemBuilder: (BuildContext context, int index, int realIndex) {
-                  final card = widget.flashCardModel
-                      .cards[index]; // Use card from the model
+                  final card = widget
+                      .flashCardModel.cards[index]; // Use card from the model
 
                   return FlipCard(
                     onFlip: () {
                       setState(() {
-                        _isLastCardFlipped = index ==
-                            widget.flashCardModel.cards.length - 1;
+                        _isLastCardFlipped =
+                            index == widget.flashCardModel.cards.length - 1;
                       });
                     },
                     direction: FlipDirection.HORIZONTAL,
                     front: Container(
-                      width: 280,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                            color: const Color(0xffF07DB2), width: 2),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                image: AssetImage(card.frontImage),
+                                fit: BoxFit.fill)
+                            // border: Border.all(
+                            //     color: const Color(0xffF07DB2), width: 2),
+                            ),
+
+                      ), back: Container(
+                        width: 280,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                image: AssetImage(card.backImage),
+                                fit: BoxFit.fill)
+                            // border: Border.all(
+                            //     color: const Color(0xffF07DB2), width: 2),
+                            ),
+
                       ),
-                      child: Center(
-                        child: Image.asset(
-                          card.frontImage,
-                          width: 250,
-                          height: 250,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    back: Container(
-                      width: 280,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                            color: const Color(0xffF07DB2), width: 2),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                card.heading,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontFamily: "UrduType",
-                                    color: card.titleColor),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                card.description,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: "UrduType",
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    // back: Container(
+                    //   width: 280,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(15),
+                    //     border: Border.all(
+                    //         color: const Color(0xffF07DB2), width: 2),
+                    //   ),
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.symmetric(horizontal: 30),
+                    //     child: Center(
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: [
+                    //           Text(
+                    //             card.heading,
+                    //             textAlign: TextAlign.center,
+                    //             style: TextStyle(
+                    //                 fontSize: 25,
+                    //                 fontFamily: "UrduType",
+                    //                 color: card.titleColor),
+                    //           ),
+                    //           const SizedBox(height: 10),
+                    //           Text(
+                    //             card.description,
+                    //             textAlign: TextAlign.center,
+                    //             style: const TextStyle(
+                    //               fontSize: 18,
+                    //               fontFamily: "UrduType",
+                    //               color: Colors.black,
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   );
                 },
                 options: CarouselOptions(
-                  height: 380.0,
+                  height: 450.0,
                   enlargeCenterPage: false,
                   onPageChanged: (index, reason) {
                     setState(() {

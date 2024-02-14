@@ -21,23 +21,26 @@ class FlashCardScreenModel {
 
 class FlashCard {
   final String frontImage;
-  final String heading;
-  final String description;
-  final Color? titleColor;
+  final String backImage;
+  // final String heading;
+  // final String description;
+  // final Color? titleColor;
 
   FlashCard({
     required this.frontImage,
-    required this.heading,
-    required this.description,
-    this.titleColor,
+    required this.backImage,
+    // required this.heading,
+    // required this.description,
+    // this.titleColor,
   });
 
   factory FlashCard.fromJson(Map<String, dynamic> json) {
     return FlashCard(
       frontImage: json['frontImage'],
-      heading: json['heading'],
-      description: json['description'],
-      titleColor: _parseColor(json['titleColor']),
+      backImage: json['backImage'],
+      // heading: json['heading'],
+      // description: json['description'],
+      // titleColor: _parseColor(json['titleColor']),
     );
   }
 

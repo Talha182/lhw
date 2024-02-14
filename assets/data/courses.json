@@ -158,7 +158,7 @@
           "progressValue": 0.5,
           "submodules": [
             {
-              "submoduleId": 5,
+              "submoduleId": 1,
               "title": " ٹی بی کے متعلق اہم معلومات",
               "description": "یہاں، آپ ٹی بی کے بارے میں سیکھیں گی، جو ایک سنگین متعدی بیماری ہے۔ یہ بنیادی طور پر پھیپھڑوں کو متاثر کرتی ہے۔ اس سبق میں اس بات کا احاطہ کیا گیا ہے کہ ٹی بی ہوا کے ذریعے ایک شخص سے دوسرے شخص میں کیسے پھیلتی ہے اور ابتدائی تشخیص اور علاج کی اہمیت کیا ہے۔",
               "buttonPosition": {
@@ -170,45 +170,116 @@
               "titleAlignment": "left",
               "features": [
                 {
-                  "featureId": 2,
+                  "featureId": 1,
                   "featureType": "comicStrips",
                   "title": "Comic Strip Example",
                   "isCompleted": false,
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/images/comic1_top.png",
-                      "imagePathBottom": "assets/images/comic1_bottom.png"
+                      "imagePathTop": "assets/Script 3/Script 3-01.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
                     },
                     {
-                      "imagePathTop": "assets/images/comic2_top.png",
-                      "imagePathBottom": "assets/images/comic2_bottom.png"
+                      "imagePathTop": "assets/Script 3/Script 3-03.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-05.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-07.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-09.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-11.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-13.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-15.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-17.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-19.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-21.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-23.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
                     }
                   ]
                 },
                 {
-                  "featureId": 3,
+                  "featureId": 2,
                   "featureType": "flashCards",
                   "title": "Flashcards Example",
                   "isCompleted": false,
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/images/flashcard_front1.png",
-                      "heading": "Flashcard 1 Heading",
-                      "description": "This is a description for Flashcard 1.",
-                      "titleColor": "#FF0000"
+                      "frontImage": "assets/Script 5/Script 5-02.png",
+                      "backImage": "assets/Script 5/Script 5-01.png"
                     },
                     {
-                      "frontImage": "assets/images/flashcard_front2.png",
-                      "heading": "Flashcard 2 Heading",
-                      "description": "This is a description for Flashcard 2.",
-                      "titleColor": "#00FF00"
+                      "frontImage": "assets/Script 5/Script 5-04.png",
+                      "backImage": "assets/Script 5/Script 5-03.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-06.png",
+                      "backImage": "assets/Script 5/Script 5-05.png"
                     }
                   ]
                 },
                 {
-                  "featureId": 4,
+                  "featureId": 3,
+                  "featureType": "infographics",
+                  "title": "Infographics Example",
+                  "isCompleted": false,
+                  "duration": "2 mins",
+                  "infographics": [
+                    {
+                      "imagePath": "assets/images/infographic1.png",
+                      "text": "Infographic 1 Description"
+                    },
+                    {
+                      "imagePath": "assets/images/infographic2.png",
+                      "text": "Infographic 2 Description"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "submoduleId": 2,
+              "title": "احتیاطی تدابیر اور غلط فہمیاں",
+              "description": "اس سبق کا مقصد ٹی بی کے بارے میں عام غلط فہمیوں کو دور کرنا ہے اور آپ کو اس کے پھیلاؤ کو روکنے کے لئے احتیاطی تدابیر کے بارے میں تعلیم دینا ہے، جیسے ماسک پہننا اور رہنے کی جگہوں میں اچھی ہوا کی آمد و رفت کو یقینی بنانا۔",
+              "buttonPosition": {
+                "dx": 115.0,
+                "dy": 370.0
+              },
+              "iconPath": "assets/icons/exceptions_icon.png",
+              "numberOfQuizzes": 1,
+              "titleAlignment": "left",
+              "features": [
+                {
+                  "featureId": 1,
                   "featureType": "infographics",
                   "title": "Infographics Example",
                   "isCompleted": false,
@@ -225,7 +296,7 @@
                   ]
                 },
                 {
-                  "featureId": 5,
+                  "featureId": 2,
                   "featureType": "interactiveAnimationVideo",
                   "title": "Interactive Animation Video Example",
                   "isCompleted": false,
@@ -274,6 +345,247 @@
                       "incorrectExplanation": "This is not the correct capital of France."
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "submoduleId": 3,
+              "title": "ممکنہ مریض کی صورت میں اقدامات",
+              "description": "اگر آپ کسی ایسے شخص کا سامنا کرتی ہیں جسے ٹی بی ہوسکتی ہے تو آپ ان کا ٹیسٹ کروانے اور طبی دیکھ بھال حاصل کرنے کا درست طریقہ سیکھیں گی۔",
+              "buttonPosition": {
+                "dx": 0.0,
+                "dy": 265.0
+              },
+              "iconPath": "assets/icons/files_icon.png",
+              "numberOfQuizzes": 2,
+              "titleAlignment": "right",
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "comicStrips",
+                  "title": "Comic Strip Example",
+                  "isCompleted": false,
+                  "duration": "3 mins",
+                  "comicStrips": [
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-01.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-03.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-05.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-07.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-09.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-11.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-13.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-15.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-17.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-19.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-21.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-23.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                },
+                {
+                  "featureId": 4,
+                  "featureType": "imageHotspot",
+                  "title": "Image Hotspot Example",
+                  "isCompleted": false,
+                  "duration": "10 mins",
+                  "imageHotspot": {
+                    "imagePath": "assets/images/lessonOption26.png",
+                    "hotspots": [
+                      {
+                        "dialogText": "Hotspot 1 Description",
+                        "offset": {
+                          "dx": 100.0,
+                          "dy": 200.0
+                        }
+                      },
+                      {
+                        "dialogText": "Hotspot 2 Description",
+                        "offset": {
+                          "dx": 150.0,
+                          "dy": 250.0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 5,
+                  "featureType": "imageBranchingScenario",
+                  "title": "Image Branching Scenario Example",
+                  "isCompleted": false,
+                  "duration": "10 mins",
+                  "imageBranchingScenarioModel": {
+                    "questions": [
+                      {
+                        "question": "What do you see?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "path/to/image1.jpg",
+                          "path/to/image2.jpg"
+                        ]
+                      }
+                    ]
+                  }
                 },
                 {
                   "featureId": 6,
@@ -347,55 +659,170 @@
                 },
                 {
                   "featureId": 7,
-                  "featureType": "imageHotspot",
-                  "title": "Image Hotspot Example",
-                  "isCompleted": false,
-                  "duration": "10 mins",
-                  "imageHotspot": {
-                    "imagePath": "assets/images/lessonOption26.png",
-                    "hotspots": [
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
                       {
-                        "dialogText": "Hotspot 1 Description",
-                        "offset": {"dx": 100.0, "dy": 200.0}
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
                       },
                       {
-                        "dialogText": "Hotspot 2 Description",
-                        "offset": {"dx": 150.0, "dy": 250.0}
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 8,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                },
+                {
+                  "featureId": 9,
+                  "featureType": "flashCards",
+                  "title": "Flashcards Example",
+                  "isCompleted": false,
+                  "duration": "5 mins",
+                  "flashCards": [
+                    {
+                      "frontImage": "assets/Script 5/Script 5-02.png",
+                      "backImage": "assets/Script 5/Script 5-01.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-04.png",
+                      "backImage": "assets/Script 5/Script 5-03.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-06.png",
+                      "backImage": "assets/Script 5/Script 5-05.png"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 10,
+                  "featureType": "textBranchingScenario",
+                  "title": "Text Branching Scenario Example",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "textBranchingScenarioModel": {
+                    "questions": [
+                      {
+                        "question": "Here's your first question?",
+                        "options": [
+                          "Option A",
+                          "Option B",
+                          "Option C"
+                        ],
+                        "correctAnswer": "Option A",
+                        "correctExplanation": "Here's why A is correct...",
+                        "incorrectExplanation": "Here's why this option is incorrect...",
+                        "userAnswer": ""
                       }
                     ]
                   }
                 }
-
               ]
             },
             {
-              "submoduleId": 6,
-              "title": "احتیاطی تدابیر اور غلط فہمیاں",
-              "description": "اس سبق کا مقصد ٹی بی کے بارے میں عام غلط فہمیوں کو دور کرنا ہے اور آپ کو اس کے پھیلاؤ کو روکنے کے لئے احتیاطی تدابیر کے بارے میں تعلیم دینا ہے، جیسے ماسک پہننا اور رہنے کی جگہوں میں اچھی ہوا کی آمد و رفت کو یقینی بنانا۔",
-              "buttonPosition": {
-                "dx": 115.0,
-                "dy": 370.0
-              },
-              "iconPath": "assets/icons/exceptions_icon.png",
-              "numberOfQuizzes": 1,
-              "titleAlignment": "left",
-              "features": []
-            },
-            {
-              "submoduleId": 7,
-              "title": "ممکنہ مریض کی صورت میں اقدامات",
-              "description": "اگر آپ کسی ایسے شخص کا سامنا کرتی ہیں جسے ٹی بی ہوسکتی ہے تو آپ ان کا ٹیسٹ کروانے اور طبی دیکھ بھال حاصل کرنے کا درست طریقہ سیکھیں گی۔",
-              "buttonPosition": {
-                "dx": 0.0,
-                "dy": 265.0
-              },
-              "iconPath": "assets/icons/files_icon.png",
-              "numberOfQuizzes": 2,
-              "titleAlignment": "right",
-              "features": []
-            },
-            {
-              "submoduleId": 8,
+              "submoduleId": 4,
               "title": "علاج میں معاونت",
               "description": "اس حصے میں اس بات پر تبادلہ خیال کیا گیا ہے کہ علاج کے دوران ٹی بی کے مریضوں کی مدد کیسے کی جائے، ادویات کی پابندی پر زور دیا جائے اور پیشرفت کی نگران ہیلتھ ورکر کے فرائض  پر زور دیا جائے۔",
               "buttonPosition": {
@@ -405,7 +832,157 @@
               "iconPath": "assets/icons/files_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "infographics",
+                  "title": "Infographics Example",
+                  "isCompleted": false,
+                  "duration": "2 mins",
+                  "infographics": [
+                    {
+                      "imagePath": "assets/images/infographic1.png",
+                      "text": "Infographic 1 Description"
+                    },
+                    {
+                      "imagePath": "assets/images/infographic2.png",
+                      "text": "Infographic 2 Description"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "imageBranchingScenario",
+                  "title": "Image Branching Scenario Example",
+                  "isCompleted": false,
+                  "duration": "10 mins",
+                  "imageBranchingScenarioModel": {
+                    "questions": [
+                      {
+                        "question": "What do you see?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "path/to/image1.jpg",
+                          "path/to/image2.jpg"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "comicStrips",
+                  "title": "Comic Strip Example",
+                  "isCompleted": false,
+                  "duration": "3 mins",
+                  "comicStrips": [
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-01.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-03.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-05.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-07.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-09.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-11.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-13.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-15.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-17.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-19.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-21.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-23.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 4,
+                  "featureType": "imageHotspot",
+                  "title": "Image Hotspot Example",
+                  "isCompleted": false,
+                  "duration": "10 mins",
+                  "imageHotspot": {
+                    "imagePath": "assets/images/lessonOption26.png",
+                    "hotspots": [
+                      {
+                        "dialogText": "Hotspot 1 Description",
+                        "offset": {
+                          "dx": 100.0,
+                          "dy": 200.0
+                        }
+                      },
+                      {
+                        "dialogText": "Hotspot 2 Description",
+                        "offset": {
+                          "dx": 150.0,
+                          "dy": 250.0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 5,
+                  "featureType": "textBranchingScenario",
+                  "title": "Text Branching Scenario Example",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "textBranchingScenarioModel": {
+                    "questions": [
+                      {
+                        "question": "Here's your first question?",
+                        "options": [
+                          "Option A",
+                          "Option B",
+                          "Option C"
+                        ],
+                        "correctAnswer": "Option A",
+                        "correctExplanation": "Here's why A is correct...",
+                        "incorrectExplanation": "Here's why this option is incorrect...",
+                        "userAnswer": ""
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         },
@@ -418,7 +995,7 @@
           "progressValue": 0.8,
           "submodules": [
             {
-              "submoduleId": 8,
+              "submoduleId": 1,
               "title": "جنسی بیماریاں: تعریف، اقسام اور علامات",
               "description": "اس سبق میں، آپ جنسی طور پر منتقل ہونے والی بیماریوں (ایس ٹی ڈیز) ، ان کی اقسام اور عام علامات کے بارے میں سیکھیں گی۔ اس میں ایس ٹی ڈی کی منتقلی اور محفوظ جنسی طریقوں اور باقاعدگی سے جانچ کی اہمیت کو بیان کیا گیا ہے۔",
               "buttonPosition": {
@@ -428,10 +1005,80 @@
               "iconPath": "assets/icons/concurrency_icon.png",
               "numberOfQuizzes": 3,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "flashCards",
+                  "title": "Flashcards Example",
+                  "isCompleted": false,
+                  "duration": "5 mins",
+                  "flashCards": [
+                    {
+                      "frontImage": "assets/Script 5/Script 5-02.png",
+                      "backImage": "assets/Script 5/Script 5-01.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-04.png",
+                      "backImage": "assets/Script 5/Script 5-03.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-06.png",
+                      "backImage": "assets/Script 5/Script 5-05.png"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 2,
               "title": "جنسی بیماریوں کا علاج اور بچاو",
               "description": "یہ سبق آپ کو ایس ٹی ڈی کے لئے دستیاب علاج اور ان کی منتقلی کو روکنے کے طریقوں کے بارے میں رہنمائی کرے گا. یہ ایس ٹی ڈی کی روک تھام میں تعلیم، کنڈوم کے استعمال اور ویکسینیشن  کے کردار پر زور دیتا ہے۔",
               "buttonPosition": {
@@ -441,7 +1088,82 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "comicStrips",
+                  "title": "Comic Strip Example",
+                  "isCompleted": false,
+                  "duration": "3 mins",
+                  "comicStrips": [
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-01.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-03.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-05.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-07.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-09.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-11.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-13.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-15.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-17.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-19.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-21.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-23.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "infographics",
+                  "title": "Infographics Example",
+                  "isCompleted": false,
+                  "duration": "2 mins",
+                  "infographics": [
+                    {
+                      "imagePath": "assets/images/infographic1.png",
+                      "text": "Infographic 1 Description"
+                    },
+                    {
+                      "imagePath": "assets/images/infographic2.png",
+                      "text": "Infographic 2 Description"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -454,7 +1176,7 @@
           "progressValue": 0.8,
           "submodules": [
             {
-              "submoduleId": 8,
+              "submoduleId": 1,
               "title": "یچ آئی وی / ایڈز کی منتقلی اور علامات",
               "description": "اس سبق میں، آپ ایچ آئی وی / ایڈز کے بارے میں مزید  سیکھیں گی۔ اس بات پر توجہ دی جاۓ گی کہ وائرس لوگوں کے درمیان یہ بماری  کیسے منتقل ہوتی  ہے اور متاثرہ افراد میں ظاہر ہونے والی علامات  کیا ہیں۔ روک تھام اور جلد تشخیص کے لئے ان پہلوؤں کو سمجھنا بہت ضروری ہے۔",
               "buttonPosition": {
@@ -464,10 +1186,110 @@
               "iconPath": "assets/icons/concurrency_icon.png",
               "numberOfQuizzes": 3,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "Interactive Animation Video Example",
+                  "isCompleted": false,
+                  "duration": "4 mins",
+                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
+                  "questions": [
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 2,
               "title": "ایچ آئی وی / ایڈز کے ٹیسٹ، علاج اور\n افواہیں",
               "description": "یہ سبق آپ کو ہیپاٹائٹس کی تشخیص، بیماری کے انتظام کے لئے دستیاب علاج، اور احتیاط کے طریقوں اور ویکسینیشن سمیت مؤثر روک تھام کی حکمت عملی کے بارے میں رہنمائی کرے گا۔",
               "buttonPosition": {
@@ -477,7 +1299,107 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "Interactive Animation Video Example",
+                  "isCompleted": false,
+                  "duration": "4 mins",
+                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
+                  "questions": [
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                }
+              ]
             }
           ]
         },
@@ -490,7 +1412,7 @@
           "progressValue": 0.8,
           "submodules": [
             {
-              "submoduleId": 8,
+              "submoduleId": 1,
               "title": "ہیپاٹائٹس: وجوہات، پھیلاؤ اور علامات",
               "description": "یہاں، آپ ہیپاٹائٹس کے بارے میں پڑھیں گی۔ یہ جگر کی سوزش ہوتی ہے جو مختلف وائرسوں کی وجہ سے ہوتی ہے. آپ اس بارے میں سیکھیں گے کہ یہ وائرس کیسے پھیلتے ہیں، ہیپاٹائٹس کی علامات، اور بیماری کا جلد پتہ لگانا اور اس کا علاج کرنا کیوں ضروری ہے۔",
               "buttonPosition": {
@@ -500,10 +1422,116 @@
               "iconPath": "assets/icons/concurrency_icon.png",
               "numberOfQuizzes": 3,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "comicStrips",
+                  "title": "Comic Strip Example",
+                  "isCompleted": false,
+                  "duration": "3 mins",
+                  "comicStrips": [
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-01.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-03.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-05.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-07.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-09.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-11.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-13.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-15.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-17.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-19.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-21.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-23.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 2,
               "title": "ہیپاٹائٹس کی تشخیص، علاج اور\n روک تھام",
               "description": "یہ سبق آپ کو ہیپاٹائٹس کی تشخیص، بیماری کے انتظام کے لئے دستیاب علاج، اور احتیاط کے طریقوں اور ویکسینیشن سمیت مؤثر روک تھام کی حکمت عملی کے بارے میں رہنمائی کرے گا۔",
               "buttonPosition": {
@@ -513,7 +1541,55 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "flashCards",
+                  "title": "Flashcards Example",
+                  "isCompleted": false,
+                  "duration": "5 mins",
+                  "flashCards": [
+                    {
+                      "frontImage": "assets/Script 5/Script 5-02.png",
+                      "backImage": "assets/Script 5/Script 5-01.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-04.png",
+                      "backImage": "assets/Script 5/Script 5-03.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-06.png",
+                      "backImage": "assets/Script 5/Script 5-05.png"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "imageHotspot",
+                  "title": "Image Hotspot Example",
+                  "isCompleted": false,
+                  "duration": "10 mins",
+                  "imageHotspot": {
+                    "imagePath": "assets/images/lessonOption26.png",
+                    "hotspots": [
+                      {
+                        "dialogText": "Hotspot 1 Description",
+                        "offset": {
+                          "dx": 100.0,
+                          "dy": 200.0
+                        }
+                      },
+                      {
+                        "dialogText": "Hotspot 2 Description",
+                        "offset": {
+                          "dx": 150.0,
+                          "dy": 250.0
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         },
@@ -526,7 +1602,7 @@
           "progressValue": 0.8,
           "submodules": [
             {
-              "submoduleId": 8,
+              "submoduleId": 1,
               "title": "ملیریا کے اسباب، پھیلاؤ اور علامات",
               "description": "اس سبق میں، آپ ملیریا کے بارے میں سیکھیں گی، جو مچھروں سے پھیلنے والی بیماری ہے۔ یہ انسانوں میں کیسے منتقل ہوتا ہے، دیکھنے کے لئے علامات، اور بیماری کی روک تھام میں مچھروں پر قابو پانے کی اہمیت پر توجہ دی گئ ہے۔",
               "buttonPosition": {
@@ -536,10 +1612,150 @@
               "iconPath": "assets/icons/concurrency_icon.png",
               "numberOfQuizzes": 3,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "flashCards",
+                  "title": "Flashcards Example",
+                  "isCompleted": false,
+                  "duration": "5 mins",
+                  "flashCards": [
+                    {
+                      "frontImage": "assets/Script 5/Script 5-02.png",
+                      "backImage": "assets/Script 5/Script 5-01.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-04.png",
+                      "backImage": "assets/Script 5/Script 5-03.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-06.png",
+                      "backImage": "assets/Script 5/Script 5-05.png"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 2,
               "title": "ملیریا کی تشخیص، علاج اور روک تھام",
               "description": "اس حصے میں ملیریا کی تشخیص کیسے کی جاتی ہے، علاج  اور مچھروں کے کاٹنے سے بچنے کے لئے مچھر دانیوں اور کیڑوں کو روکنے والی ادویات کا استعمال جیسے احتیاطی اقدامات پر تبادلہ خیال کیا گیا ہے۔",
               "buttonPosition": {
@@ -549,7 +1765,126 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -562,7 +1897,7 @@
           "progressValue": 0.8,
           "submodules": [
             {
-              "submoduleId": 8,
+              "submoduleId": 1,
               "title": "ڈینگی اور اس کا پھیلاؤ",
               "description": "آپ ڈینگی کے بارے میں سیکھیں گی، جو مچھروں کے ذریعے پھیلنے والا وائرل انفیکشن ہے۔ یہ سبق اس بات پر توجہ دیتا ہے کہ ڈینگی کیسے پھیلتا ہے، وہ حالات جو اس کے پھیلاؤ کو بڑھاتے ہیں، اور مچھروں کی افزائش کے مقامات کو کم کرنے کے لئے کھڑے پانی کو ختم کرنے کی اہمیت۔",
               "buttonPosition": {
@@ -572,10 +1907,132 @@
               "iconPath": "assets/icons/concurrency_icon.png",
               "numberOfQuizzes": 3,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "Interactive Animation Video Example",
+                  "isCompleted": false,
+                  "duration": "4 mins",
+                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
+                  "questions": [
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 2,
               "title": "ڈینگی کی علامات، تشخیص، علاج اور\n روک تھام",
               "description": "اس سبق میں ڈینگی کی علامات، اس کی تشخیص، دستیاب علاج، اور ڈینگی کی روک تھام کے لئے جامع حکمت عملی بتائی گئی ہے۔  اس میں مچھروں کی آبادی کو کنٹرول کرنے کے لئے کمیونٹی کی کوششیں بھی شامل ہیں۔",
               "buttonPosition": {
@@ -585,7 +2042,99 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "flashCards",
+                  "title": "Flashcards Example",
+                  "isCompleted": false,
+                  "duration": "5 mins",
+                  "flashCards": [
+                    {
+                      "frontImage": "assets/Script 5/Script 5-02.png",
+                      "backImage": "assets/Script 5/Script 5-01.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-04.png",
+                      "backImage": "assets/Script 5/Script 5-03.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-06.png",
+                      "backImage": "assets/Script 5/Script 5-05.png"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -598,7 +2147,7 @@
           "progressValue": 0.8,
           "submodules": [
             {
-              "submoduleId": 8,
+              "submoduleId": 1,
               "title": "کورونا کی منتقلی اور علامات",
               "description": "اس سبق میں، آپ کورونا وائرس (کووڈ 19) کے بارے میں سیکھیں گے، بشمول یہ کہ یہ لوگوں کے درمیان کیسے منتقل ہوتا ہے اور متاثرہ افراد کو جو علامات کا سامنا کرنا پڑ سکتا ہے. یہ اس کے پھیلاؤ کو روکنے میں ماسک اور سماجی دوری کی اہمیت کو اجاگر کرتا ہے۔",
               "buttonPosition": {
@@ -608,10 +2157,189 @@
               "iconPath": "assets/icons/concurrency_icon.png",
               "numberOfQuizzes": 3,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "Interactive Animation Video Example",
+                  "isCompleted": false,
+                  "duration": "4 mins",
+                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
+                  "questions": [
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "comicStrips",
+                  "title": "Comic Strip Example",
+                  "isCompleted": false,
+                  "duration": "3 mins",
+                  "comicStrips": [
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-01.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-03.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-05.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-07.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-09.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-11.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-13.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-15.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-17.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-19.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-21.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-23.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 2,
               "title": "کورونا وائرس سے بچاؤ اور احتیاتی اقدامات",
               "description": "یہ حصہ کورونا وائرس کی منتقلی کو روکنے، کووڈ 19 کے مریضوں کی دیکھ بھال اور ذہنی صحت کی مدد کے بارے میں رہنمائی فراہم کرتا ہے۔ اس میں غذائی تغذیہ کی مدد اور وائرس سے متعلق عام خرافات کو مسترد کرنے پر بھی توجہ دی گئی ہے۔",
               "buttonPosition": {
@@ -621,10 +2349,148 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "left",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "Interactive Animation Video Example",
+                  "isCompleted": false,
+                  "duration": "4 mins",
+                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
+                  "questions": [
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    }
+                  ]
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "flashCards",
+                  "title": "Flashcards Example",
+                  "isCompleted": false,
+                  "duration": "5 mins",
+                  "flashCards": [
+                    {
+                      "frontImage": "assets/Script 5/Script 5-02.png",
+                      "backImage": "assets/Script 5/Script 5-01.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-04.png",
+                      "backImage": "assets/Script 5/Script 5-03.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 5/Script 5-06.png",
+                      "backImage": "assets/Script 5/Script 5-05.png"
+                    }
+                  ]
+                },
+                {
+                  "featureId": 4,
+                  "featureType": "infographics",
+                  "title": "Infographics Example",
+                  "isCompleted": false,
+                  "duration": "2 mins",
+                  "infographics": [
+                    {
+                      "imagePath": "assets/images/infographic1.png",
+                      "text": "Infographic 1 Description"
+                    },
+                    {
+                      "imagePath": "assets/images/infographic2.png",
+                      "text": "Infographic 2 Description"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 3,
               "title": "کورونا کے مریض کی دیکھ بھال",
               "description": "یہ سبق  کوویڈ 19 کے مریضوں کی مؤثر دیکھ بھال اور انتظام کے بارے میں اہم معلومات دیتا ہے ، جس میں حفاظتی اقدامات ، علاج کے پروٹوکول اور مریضوں کی فلاح و بہبود  پر توجہ شامل ہے ۔ یہ مواصلات، ہمدردانہ دیکھ بھال، اور صحت کی دیکھ بھال کی نئی حکمت عملیوں کو اپنانے کی اہمیت پر زور دیتا ہے۔",
               "buttonPosition": {
@@ -634,10 +2500,199 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "right",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "submoduleId": 9,
+              "submoduleId": 4,
               "title": "کورونا وائرس سے متعلق\n معاونت ذہنی صحت، غذائیت اور\n افواہوں کا خاتمہ",
               "description": "ہم اس سبق میں غذائیت کے ذریعے قوت مدافعت اور ذہنی صحت کو بہتر کرنے کے طریقے پرہیں گے۔ یہ  کورونہ کے دوران تناؤ اور پریشانی کم  کرنے کے بارے میں مشورہ دیتا ہے۔ یہ وائرس کے بارے میں عام اور خاص غلط فہمیوں کو دور کرتا ہے۔ درست معلومات اور صحت عامہ کی تجاویز کو فروغ دیتا ہے۔",
               "buttonPosition": {
@@ -647,7 +2702,183 @@
               "iconPath": "assets/icons/datastructures_icon.png",
               "numberOfQuizzes": 2,
               "titleAlignment": "right",
-              "features": []
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "interactiveImage",
+                  "title": "Interactive Images for Learning",
+                  "isCompleted": false,
+                  "duration": "15 mins",
+                  "interactiveImageModel": [
+                    {
+                      "image": "assets/script11/Script11-01.jpg",
+                      "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                      "touchArea": {
+                        "left": 460,
+                        "top": 80,
+                        "width": 130,
+                        "height": 160
+                      },
+                      "showDialog": false,
+                      "dialogText": "Click on the right side",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": ""
+                    },
+                    {
+                      "image": "assets/script11/Script11-02.jpg",
+                      "guide": "",
+                      "touchArea": {
+                        "left": 370,
+                        "top": 310,
+                        "width": 310,
+                        "height": 80
+                      },
+                      "showDialog": true,
+                      "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو۔",
+                      "swipeEnabled": false,
+                      "longPressEnabled": false,
+                      "longPressAction": "",
+                      "dragDropEnabled": false,
+                      "swipeAction": "nextImage"
+                    },
+                    {
+                      "image": "assets/script11/Script11-03.jpg",
+                      "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
+                      "touchArea": {
+                        "left": 0,
+                        "top": 0,
+                        "width": 0,
+                        "height": 0
+                      },
+                      "showDialog": false,
+                      "swipeEnabled": false,
+                      "longPressEnabled": true,
+                      "longPressAction": "showMessage",
+                      "dragDropEnabled": true,
+                      "swipeAction": "",
+                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImageInitialPosition": {
+                        "dx": 80,
+                        "dy": 180
+                      },
+                      "dragTargetPosition": {
+                        "dx": 200,
+                        "dy": 180
+                      },
+                      "newDraggableImage": "assets/images/1.png",
+                      "moveToNextOnDrop": false
+                    }
+                  ]
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "comicStrips",
+                  "title": "Comic Strip Example",
+                  "isCompleted": false,
+                  "duration": "3 mins",
+                  "comicStrips": [
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-01.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-03.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-05.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-07.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-09.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-11.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-13.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-15.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-17.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-19.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-21.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
+                    },
+                    {
+                      "imagePathTop": "assets/Script 3/Script 3-23.png",
+                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

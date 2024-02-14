@@ -409,7 +409,7 @@ class Question {
   final String correctAnswer;
   final String correctExplanation;
   final String incorrectExplanation;
-  final List<String> imagePaths; // New property to hold image paths
+  final List<String> imagePaths;
 
   Question({
     required this.question,
@@ -417,11 +417,30 @@ class Question {
     required this.correctAnswer,
     required this.correctExplanation,
     required this.incorrectExplanation,
-    required this.imagePaths, // Initialize in the constructor
+    required this.imagePaths,
   });
+
+  factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
+      question: json['question'],
+      options: List<String>.from(json['options']),
+      correctAnswer: json['correctAnswer'],
+      correctExplanation: json['correctExplanation'],
+      incorrectExplanation: json['incorrectExplanation'],
+      imagePaths: List<String>.from(json['imagePaths']),
+    );
+  }
 }
+
 
 class ImageBranchingScenarioModel {
   final List<Question> questions;
+
   ImageBranchingScenarioModel({required this.questions});
+
+  factory ImageBranchingScenarioModel.fromJson(Map<String, dynamic> json) {
+    var questionsFromJson = json['questions'] as List;
+    List<Question> questionList = questionsFromJson.map((questionJson) => Question.fromJson(questionJson)).toList();
+    return ImageBranchingScenarioModel(questions: questionList);
+  }
 }

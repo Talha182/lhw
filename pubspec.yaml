@@ -100,6 +100,8 @@ flutter:
     - assets/presentations/
     - assets/data/
     - assets/lottie/
+    - assets/Script 3/
+    - assets/Script 5/
 
   fonts:
     - family: UrduType

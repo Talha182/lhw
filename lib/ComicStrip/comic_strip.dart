@@ -63,13 +63,14 @@ class _ComicStripState extends State<ComicStrip>
       ),
     );
   }
-
   Widget _buildContainer(String imagePath) {
     return Expanded(
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(20),
+
         ),
         child: PinchZoomReleaseUnzoomWidget(
           minScale: 0.8,
@@ -83,12 +84,13 @@ class _ComicStripState extends State<ComicStrip>
           fingersRequiredToPinch: 2,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset(imagePath, fit: BoxFit.cover),
+            child: Image.asset(imagePath, fit: BoxFit.cover), // Updated to BoxFit.cover
           ),
         ),
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

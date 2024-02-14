@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/BranchingScenarios/ImageBranchingScenario.dart';
+import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
 import 'package:lhw/ComicStrip/comic_strip.dart';
 import 'package:lhw/Infographics/infographics.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -18,7 +20,6 @@ import '../../models/image_hotspot_model.dart';
 import '../../models/interactive_images_model.dart';
 
 class FeaturesListScreen extends StatefulWidget {
-
   final Submodule submodule;
   final String courseTitle; // Add this line
   final int courseQuizCount;
@@ -254,30 +255,58 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           }
                         }
                         if (feature.featureType == FeatureType.infographics) {
-                          InfographicsModel infographicsModel = feature.relatedData as InfographicsModel;
+                          InfographicsModel infographicsModel =
+                              feature.relatedData as InfographicsModel;
                           // Assuming you have a route or method to display the infographics
-                          await Get.to(() => InfographicScreen(infographicsModel: infographicsModel));
+                          await Get.to(() => InfographicScreen(
+                              infographicsModel: infographicsModel));
                         }
-                        if (feature.featureType == FeatureType.interactiveAnimationVideo) {
-                          InteractiveAnimationVideoModel interactiveAnimationVideoModel = feature.relatedData as InteractiveAnimationVideoModel;
-                          await Get.to(() => InteractiveAnimationVideo(interactiveAnimationVideoModel: interactiveAnimationVideoModel));
+                        if (feature.featureType ==
+                            FeatureType.interactiveAnimationVideo) {
+                          InteractiveAnimationVideoModel
+                              interactiveAnimationVideoModel =
+                              feature.relatedData
+                                  as InteractiveAnimationVideoModel;
+                          await Get.to(() => InteractiveAnimationVideo(
+                              interactiveAnimationVideoModel:
+                                  interactiveAnimationVideoModel));
                         }
-                        if (feature.featureType == FeatureType.interactiveImage) {
-                          List<InteractiveImageModel> interactiveImageModels = feature.relatedData as List<InteractiveImageModel>;
+                        if (feature.featureType ==
+                            FeatureType.interactiveImage) {
+                          List<InteractiveImageModel> interactiveImageModels =
+                              feature.relatedData
+                                  as List<InteractiveImageModel>;
                           // Assuming you have an InteractiveImages widget that takes a list of InteractiveImageModel
-                          await Get.to(() => InteractiveImages(feature: feature)); // Update this line to match how you initialize your InteractiveImages widget
+                          await Get.to(() => InteractiveImages(
+                              feature:
+                                  feature)); // Update this line to match how you initialize your InteractiveImages widget
                         }
                         if (feature.featureType == FeatureType.imageHotspot) {
-                          ImageHotspotModel imageHotspotModel = feature.relatedData as ImageHotspotModel;
-                          await Get.to(() => ImageHotspot(imageHotspotModel: imageHotspotModel));
+                          ImageHotspotModel imageHotspotModel =
+                              feature.relatedData as ImageHotspotModel;
+                          await Get.to(() => ImageHotspot(
+                              imageHotspotModel: imageHotspotModel));
                         }
-
-
-
-
-
-
-
+                        if (feature.featureType ==
+                            FeatureType.imageBranchingScenario) {
+                          ImageBranchingScenarioModel
+                              imageBranchingScenarioModel = feature.relatedData
+                                  as ImageBranchingScenarioModel;
+                          await Get.to(() => ImageBranchingScenario(
+                                imageBranchingScenarioModel:
+                                    imageBranchingScenarioModel,
+                              ));
+                        }
+                        if (feature.featureType ==
+                            FeatureType.textBranchingScenario) {
+                          TextBranchingScenarioModel
+                              textBranchingScenarioModel =
+                              feature.relatedData as TextBranchingScenarioModel;
+                          await Get.to(() => TextBranchingScenario(
+                                textBranchingScenarioModel:
+                                    textBranchingScenarioModel,
+                              ));
+                        }
                       },
                     );
                   },

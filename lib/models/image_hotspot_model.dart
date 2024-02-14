@@ -21,7 +21,6 @@ class HotspotData {
   HotspotData({required this.dialogText, required this.offset});
 
   factory HotspotData.fromJson(Map<String, dynamic> json) {
-    // Use 'dx' and 'dy' keys instead of 'x' and 'y'
     double dx = (json['offset']['dx'] != null) ? json['offset']['dx'].toDouble() : 0.0;
     double dy = (json['offset']['dy'] != null) ? json['offset']['dy'].toDouble() : 0.0;
 

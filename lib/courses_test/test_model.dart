@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lhw/models/interactive_images_model.dart';
 
+import '../BranchingScenarios/ImageBranchingScenario.dart';
+import '../BranchingScenarios/TextBranchingScenario.dart';
 import '../Infographics/infographics.dart';
 import '../InteractiveAnimationVideo/interactive_animation_video.dart';
 import '../Presentation/presentation_model.dart';
@@ -210,15 +212,13 @@ class Feature {
         json.containsKey('imageHotspot')) {
       relatedData = ImageHotspotModel.fromJson(json['imageHotspot']);
     }
-    if (featureType == FeatureType.textBranchingScenario &&
-        json.containsKey('textBranchingScenarioModel')) {
-      relatedData =
-          PresentationModel.fromJson(json['textBranchingScenarioModel']);
+    if (featureType == FeatureType.textBranchingScenario) {
+      relatedData = TextBranchingScenarioModel.fromJson(
+          json['textBranchingScenarioModel']);
     }
-    if (featureType == FeatureType.imageBranchingScenario &&
-        json.containsKey('imageBranchingScenarioModel')) {
-      relatedData =
-          PresentationModel.fromJson(json['imageBranchingScenarioModel']);
+    if (featureType == FeatureType.imageBranchingScenario) {
+      relatedData = ImageBranchingScenarioModel.fromJson(
+          json['imageBranchingScenarioModel']);
     }
 
     return Feature(
