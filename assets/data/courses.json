@@ -368,52 +368,28 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-01.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
+                      "imagePathTop": "assets/Script 9/Script 9-01.png",
+                      "imagePathBottom": "assets/Script 9/Script 9-02.png"
                     },
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-03.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
+                      "imagePathTop": "assets/Script 9/Script 9-03.png",
+                      "imagePathBottom": "assets/Script 9/Script 9-04.png"
                     },
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-05.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
+                      "imagePathTop": "assets/Script 9/Script 9-05.png",
+                      "imagePathBottom": "assets/Script 9/Script 9-06.png"
                     },
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-07.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
+                      "imagePathTop": "assets/Script 9/Script 9-07.png",
+                      "imagePathBottom": "assets/Script 9/Script 9-08.png"
                     },
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-09.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
+                      "imagePathTop": "assets/Script 9/Script 9-09.png",
+                      "imagePathBottom": "assets/Script 9/Script 9-10.png"
                     },
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-11.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-13.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-15.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-17.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-19.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-21.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-23.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                      "imagePathTop": "assets/Script 9/Script 9-11.png",
+                      "imagePathBottom": "assets/Script 9/Script 9-12.png"
                     }
                   ]
                 },
@@ -424,12 +400,18 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/Script 10/Script 10-01.png",
+                      "assets/Script 10/Script 10-02.png",
+                      "assets/Script 10/Script 10-03.png",
+                      "assets/Script 10/Script 10-04.png",
+                      "assets/Script 10/Script 10-5.png",
+                      "assets/Script 10/Script 10-6.png",
+                      "assets/Script 10/Script 10-7.png",
+                      "assets/Script 10/Script 10-8.png",
+                      "assets/Script 10/Script 10-9.png",
+                      "assets/Script 10/Script 10-10.png",
+                      "assets/Script 10/Script 10-11.png"
+
                     ],
                     "questions": [
                       {

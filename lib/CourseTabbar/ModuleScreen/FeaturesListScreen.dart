@@ -46,7 +46,12 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.courseTitle), // Use the course title here
+        title: Text(
+          widget.submodule.title,
+          style: TextStyle(
+            fontFamily: "UrduType",
+          ),
+        ), // Use the course title here
       ),
       body: Padding(
         padding: const EdgeInsets.all(14),

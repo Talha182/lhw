@@ -102,6 +102,8 @@ flutter:
     - assets/lottie/
     - assets/Script 3/
     - assets/Script 5/
+    - assets/Script 9/
+    - assets/Script 10/
 
   fonts:
     - family: UrduType

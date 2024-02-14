@@ -63,14 +63,13 @@ class _ComicStripState extends State<ComicStrip>
       ),
     );
   }
+
   Widget _buildContainer(String imagePath) {
     return Expanded(
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(20),
-
         ),
         child: PinchZoomReleaseUnzoomWidget(
           minScale: 0.8,
@@ -84,13 +83,13 @@ class _ComicStripState extends State<ComicStrip>
           fingersRequiredToPinch: 2,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset(imagePath, fit: BoxFit.cover), // Updated to BoxFit.cover
+            child: Image.asset(imagePath,
+                fit: BoxFit.cover), // Updated to BoxFit.cover
           ),
         ),
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -181,8 +180,8 @@ class _ComicStripState extends State<ComicStrip>
                             _current = index;
                           });
 
-                          double endValue =
-                              index / (widget.comicStripsModel.length - 1).toDouble();
+                          double endValue = index /
+                              (widget.comicStripsModel.length - 1).toDouble();
                           _progressAnimation =
                               Tween<double>(begin: _progress, end: endValue)
                                   .animate(_progressController);
@@ -342,9 +341,10 @@ class FullScreenComicStrip extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: comicStripsModel.map((comicStrip) =>
-              _buildComicStrip(comicStrip.imagePathTop, comicStrip.imagePathBottom)
-          ).toList(),
+          children: comicStripsModel
+              .map((comicStrip) => _buildComicStrip(
+                  comicStrip.imagePathTop, comicStrip.imagePathBottom))
+              .toList(),
         ),
       ),
     );
@@ -382,6 +382,7 @@ class FullScreenComicStrip extends StatelessWidget {
     );
   }
 }
+
 class ComicStripModel {
   final String imagePathTop;
   final String imagePathBottom;
