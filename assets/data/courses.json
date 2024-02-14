@@ -74,8 +74,8 @@
                       }
                     ],
                     "showQuestionDialog": [
-                      false,
-                      false,
+                      true,
+                      true,
                       false,
                       false,
                       false,
@@ -438,7 +438,7 @@
                       }
                     ],
                     "showQuestionDialog": [
-                      false,
+                      true,
                       false,
                       false,
                       false,

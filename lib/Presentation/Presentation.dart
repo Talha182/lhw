@@ -48,7 +48,8 @@ class _PresentationState extends State<Presentation> {
     super.initState();
     // Initialize the questionAttempted list with false values for each question
     questionAttempted =
-        List<bool>.filled(widget.presentationModel.questions.length, false);
+    List<bool>.filled(widget.presentationModel.questions.length, false);
+
     _pageController = PageController();
   }
 
@@ -96,54 +97,26 @@ class _PresentationState extends State<Presentation> {
     showDialogWithQuestionOptions();
   }
 
-  // void navigateToNextImage() {
-  //   bool isLastImage =
-  //       currentPage == widget.presentationModel.assetImages.length - 1;
-  //
-  //   if (!isLastImage) {
-  //     // Move to the next image
-  //     currentPage++;
-  //     resetQuestionState(); // Reset the options when moving to the next image
-  //
-  //     // Check if showQuestionDialog is true for the current image's corresponding question
-  //     if (widget.presentationModel.showQuestionDialog[currentPage - 1]) {
-  //       // Show the dialog for the current image's corresponding question
-  //       showQuestionDialogForImage(currentPage);
-  //     }
-  //   } else {
-  //     // If it's the last image, show the dialog for the last image's corresponding question (if needed)
-  //     if (widget.presentationModel.showQuestionDialog.isNotEmpty &&
-  //         widget.presentationModel.showQuestionDialog.last) {
-  //       showQuestionDialogForImage(currentPage + 1);
-  //     }
-  //   }
-  // }
-  //
-  // void navigateToPreviousImage() {
-  //   if (currentPage > 0) {
-  //     setState(() {
-  //       currentPage--; // Move to the previous image
-  //       resetQuestionState(); // Optionally reset question state here as well
-  //     });
-  //   }
-  // }
   void navigateToNextImage() {
-    int totalImages = widget.presentationModel.assetImages.length;
-    bool isLastImage = currentPage == totalImages - 1;
+    bool isLastImage =
+        currentPage == widget.presentationModel.assetImages.length - 1;
 
     if (!isLastImage) {
       // Animate to the next page
       _pageController.animateToPage(
-        currentPage + 1,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
+        ++currentPage,
+        duration: const Duration(milliseconds: 300), // Customize the duration as needed
+        curve: Curves.easeInOut, // Customize the animation curve as needed
       );
-      // Increment currentPage in the onPageChanged callback of PageView.builder
+      // Check if showQuestionDialog is true for the current image's corresponding question
+      if (widget.presentationModel.showQuestionDialog[currentPage - 1]) {
+        // Show the dialog for the current image's corresponding question
+        showQuestionDialogForImage(currentPage);
+      }
     } else {
-      // Handle the last image scenario as per your logic
+      // If it's the last image, show the dialog for the last image's corresponding question (if needed)
       if (widget.presentationModel.showQuestionDialog.isNotEmpty &&
           widget.presentationModel.showQuestionDialog.last) {
-        // Adjusted to account for the PageView's onPageChanged handling currentPage
         showQuestionDialogForImage(currentPage + 1);
       }
     }
@@ -151,15 +124,18 @@ class _PresentationState extends State<Presentation> {
 
   void navigateToPreviousImage() {
     if (currentPage > 0) {
-      // Animate to the previous page
-      _pageController.animateToPage(
-        currentPage - 1,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-      // currentPage is decremented in the onPageChanged callback of PageView.builder
+      setState(() {
+        // Animate to the previous page
+        _pageController.animateToPage(
+          --currentPage,
+          duration: const Duration(milliseconds: 300), // Customize the duration as needed
+          curve: Curves.easeInOut, // Customize the animation curve as needed
+        );
+        resetQuestionState(); // Optionally reset question state here as well
+      });
     }
   }
+
 
   void resetQuestionState() {
     setState(() {
@@ -209,7 +185,7 @@ class _PresentationState extends State<Presentation> {
                       ...List.generate(
                         widget.presentationModel.questions[questionIndex]
                             .options.length,
-                        (index) => Padding(
+                            (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: QuizCard(
                             text: widget.presentationModel
@@ -243,7 +219,7 @@ class _PresentationState extends State<Presentation> {
                             backgroundColor: isSelected
                                 ? const Color(0xffFE8BD1) // Original color
                                 : Colors
-                                    .grey, // Grey color when option not selected
+                                .grey, // Grey color when option not selected
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -252,11 +228,10 @@ class _PresentationState extends State<Presentation> {
                           ),
                           onPressed: isSelected
                               ? () {
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog when button is pressed
-                                }
-                              : null,
-                          // Set to null when option is not selected, making it non-clickable
+                            Navigator.of(context)
+                                .pop(); // Close the dialog when button is pressed
+                          }
+                              : null, // Set to null when option is not selected, making it non-clickable
                           child: const Text(
                             'جاری رہے',
                             style: TextStyle(
@@ -307,7 +282,6 @@ class _PresentationState extends State<Presentation> {
   void dispose() {
     _slideshowTimer?.cancel();
     _pageController.dispose();
-
     super.dispose();
   }
 
@@ -330,7 +304,7 @@ class _PresentationState extends State<Presentation> {
         ),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 5),
+          const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 5),
           child: Column(
             children: [
               Row(
@@ -344,31 +318,42 @@ class _PresentationState extends State<Presentation> {
                       size: 30,
                     ),
                   ),
-                  const SizedBox(width: 5),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   Expanded(
-                    child: LinearPercentIndicator(
-                      lineHeight: 8.0,
-                      percent: (currentPage + 1) /
-                          widget.presentationModel.assetImages.length,
-                      backgroundColor: Colors.white,
-                      progressColor: const Color(0xffFE8BD1),
-                      barRadius: const Radius.circular(10),
+                    child: TweenAnimationBuilder(
+                      tween: Tween<double>(begin: 0, end: 2.2),
+                      duration: const Duration(milliseconds: 400),
+                      builder:
+                          (BuildContext context, double value, Widget? child) {
+                        return LinearPercentIndicator(
+                          lineHeight: 8.0,
+                          percent: 1,
+                          backgroundColor: Colors.white,
+                          progressColor: const Color(0xffFE8BD1),
+                          barRadius: const Radius.circular(10),
+                        );
+                      },
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  GestureDetector(
-                    onTap: () {
-                      final bookmarkController = Get.find<BookmarkController>();
-                      bookmarkController.addBookmark(
-                        Bookmark(
-                            title: 'LessonOption20',
-                            routeName: '/lessonOption20'),
-                      );
-                      Get.snackbar('Bookmark Added',
-                          'This page has been added to your bookmarks');
-                    },
-                    child: const Icon(Icons.bookmark_outline),
+                  const SizedBox(
+                    width: 5,
                   ),
+                  GestureDetector(
+                      onTap: () {
+                        final bookmarkController =
+                        Get.find<BookmarkController>();
+                        bookmarkController.addBookmark(
+                          Bookmark(
+                              title: 'LessonOption20',
+                              routeName: '/lessonOption20'),
+                        );
+                        // Optionally, show a snackbar or some feedback to the user
+                        Get.snackbar('Bookmark Added',
+                            'This page has been added to your bookmarks');
+                      },
+                      child: const Icon(Icons.bookmark_outline)),
                 ],
               ),
               Padding(
@@ -383,83 +368,84 @@ class _PresentationState extends State<Presentation> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
               Container(
                 height: 320,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   // color: Colors.red
                 ),
                 child: Column(
                   children: [
-                    Container(
-                      height: 240,
-                      child: Stack(
-                        children: [
-                          PageView.builder(
-                            controller: _pageController,
-                            itemCount: widget.presentationModel.assetImages.length,
-                            onPageChanged: (int page) {
-                              setState(() {
-                                currentPage = page;
-                              });
-                            },
-                            itemBuilder: (context, index) {
-                              return Image.asset(
-                                widget.presentationModel.assetImages[index],
-                                fit: BoxFit.fill,
-                              );
-                            },
-                          ),
-                        Positioned(
-                          left: 10,
-                          top: 100,
-                          child: GestureDetector(
-                            onTap: () => navigateToPreviousImage(),
-                            child: Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.black.withOpacity(0.4)
+                    Expanded(
+                      child: SizedBox(
+                        // height: 240,
+                          child: Stack(
+                            children: [
+                              PageView.builder(
+                                controller: _pageController,
+                                itemCount: widget.presentationModel.assetImages.length,
+                                onPageChanged: (int page) {
+                                  setState(() {
+                                    currentPage = page;
+                                  });
+                                },
+                                itemBuilder: (context, index) {
+                                  return Image.asset(
+                                    widget.presentationModel.assetImages[index],
+                                    fit: BoxFit.fill,
+                                  );
+                                },
                               ),
-                              child: const Icon(Icons.arrow_back_ios_new, size: 16, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 10,
-                          top: 100,
-                          child: GestureDetector(
-                            onTap: () {
-                              navigateToNextImage();
-                              stopSlideshow();
-                            },
-                            child: Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.black.withOpacity(0.4)
+                              Positioned(
+                                left: 10,
+                                top: 100,
+                                child: GestureDetector(
+                                  onTap: () => navigateToPreviousImage(),
+                                  child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.black.withOpacity(0.4)
+                                    ),
+                                    child: const Icon(Icons.arrow_back_ios_new, size: 16, color: Colors.white),
+                                  ),
+                                ),
                               ),
-                              child: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          left: 0,
-                          child: LinearPercentIndicator(
-                            lineHeight: 8.0,
-                            percent: (currentPage + 1) / widget.presentationModel.assetImages.length,
-                            backgroundColor: Colors.white,
-                            progressColor: const Color(0xffFE8BD1),
-                            barRadius: const Radius.circular(10),
-                          ),
-                        )
-                        ],
-                      )
+                              Positioned(
+                                right: 10,
+                                top: 100,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    navigateToNextImage();
+                                    stopSlideshow();
+                                  },
+                                  child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.black.withOpacity(0.4)
+                                    ),
+                                    child: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                left: 0,
+                                child: LinearPercentIndicator(
+                                  lineHeight: 8.0,
+                                  percent: (currentPage + 1) / widget.presentationModel.assetImages.length,
+                                  backgroundColor: Colors.white,
+                                  progressColor: const Color(0xffFE8BD1),
+                                  barRadius: const Radius.circular(10),
+                                ),
+                              )
+                            ],
+                          )
 
+                      ),
                     ),
 
                     Material(
@@ -502,31 +488,31 @@ class _PresentationState extends State<Presentation> {
                                   ),
                                 ),
                               ),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0xffEBEBEB)),
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                      () => FullScreenImagePage(
-                                      assetImages: widget
-                                          .presentationModel.assetImages,
-                                      initialPage: currentPage),
-                                  transition: Transition.fade,
-                                  duration:
-                                  const Duration(milliseconds: 300));
-                            },
-                            child: Center(
-                              child: SvgPicture.asset(
-                                "assets/images/full_screen.svg",
-                                color: Colors.black,
-                              ),
-                            ),
-                          )
-                        )
+                              Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xffEBEBEB)),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(
+                                              () => FullScreenImagePage(
+                                              assetImages: widget
+                                                  .presentationModel.assetImages,
+                                              initialPage: currentPage),
+                                          transition: Transition.fade,
+                                          duration:
+                                          const Duration(milliseconds: 300));
+                                    },
+                                    child: Center(
+                                      child: SvgPicture.asset(
+                                        "assets/images/full_screen.svg",
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  )
+                              )
                             ],
                           ),
                         ),
@@ -536,141 +522,15 @@ class _PresentationState extends State<Presentation> {
                 ),
               ),
 
-              // Expanded(
-              //   child: Column(
-              //     children: [
-              //       Expanded(
-              //         child: ClipRRect(
-              //           borderRadius: BorderRadius.circular(10),
-              //           child: Stack(children: [
-              //             Container(
-              //               height: 300,
-              //               child: Column(
-              //                 children: [
-              //                   PageView.builder(
-              //                     controller: _pageController,
-              //                     itemCount: widget.presentationModel.assetImages.length,
-              //                     onPageChanged: (int page) {
-              //                       setState(() {
-              //                         currentPage = page;
-              //                       });
-              //                     },
-              //                     itemBuilder: (context, index) {
-              //                       return Image.asset(
-              //                         widget.presentationModel.assetImages[index],
-              //                         fit: BoxFit.fill,
-              //                       );
-              //                     },
-              //                   ),
-              //                   Material(
-              //                     elevation: 1,
-              //                     child: Container(
-              //                       width: double.infinity,
-              //                       height: 70,
-              //                       decoration: BoxDecoration(
-              //                         color: Colors.white,
-              //                         borderRadius: BorderRadius.circular(10),
-              //                       ),
-              //                       child: Padding(
-              //                         padding: const EdgeInsets.symmetric(horizontal: 20),
-              //                         child: Row(
-              //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //                           children: [
-              //                             GestureDetector(
-              //                               onTap: () {
-              //                                 setState(() {
-              //                                   isPlaying = !isPlaying;
-              //                                 });
-              //                                 if (isPlaying) {
-              //                                   startSlideshow();
-              //                                 } else {
-              //                                   stopSlideshow();
-              //                                 }
-              //                               },
-              //                               child: Container(
-              //                                 width: 40,
-              //                                 height: 40,
-              //                                 decoration: const BoxDecoration(
-              //                                   shape: BoxShape.circle,
-              //                                   color: Color(0xffEBEBEB),
-              //                                 ),
-              //                                 child: Icon(
-              //                                   isPlaying ? Icons.pause : Icons.play_arrow_outlined,
-              //                                   size: 25,
-              //                                 ),
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ),
-              //                     ),
-              //                   ),
-              //
-              //                 ],
-              //               )
-              //
-              //             ),
-              //             Positioned(
-              //               left: 10,
-              //               top: 100,
-              //               child: GestureDetector(
-              //                 onTap: () => navigateToPreviousImage(),
-              //                 child: Container(
-              //                   width: 35,
-              //                   height: 35,
-              //                   decoration: BoxDecoration(
-              //                       shape: BoxShape.circle,
-              //                       color: Colors.black.withOpacity(0.4)
-              //                   ),
-              //                   child: const Icon(Icons.arrow_back_ios_new, size: 16, color: Colors.white),
-              //                 ),
-              //               ),
-              //             ),
-              //             Positioned(
-              //               right: 10,
-              //               top: 100,
-              //               child: GestureDetector(
-              //                 onTap: () {
-              //                   navigateToNextImage();
-              //                   stopSlideshow();
-              //                 },
-              //                 child: Container(
-              //                   width: 35,
-              //                   height: 35,
-              //                   decoration: BoxDecoration(
-              //                       shape: BoxShape.circle,
-              //                       color: Colors.black.withOpacity(0.4)
-              //                   ),
-              //                   child: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
-              //                 ),
-              //               ),
-              //             ),
-              //             Positioned(
-              //               bottom: 0,
-              //               right: 0,
-              //               left: 0,
-              //               child: LinearPercentIndicator(
-              //                 lineHeight: 8.0,
-              //                 percent: (currentPage + 1) / widget.presentationModel.assetImages.length,
-              //                 backgroundColor: Colors.white,
-              //                 progressColor: const Color(0xffFE8BD1),
-              //                 barRadius: const Radius.circular(10),
-              //               ),
-              //             ),
-              //           ]),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // Controls for slideshow and fullscreen mode
-
+              const Spacer(),
               Divider(
                 height: 1,
                 thickness: 1,
                 color: Colors.black87.withOpacity(0.1),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(
+                height: 5,
+              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xffFE8BD1),
@@ -680,9 +540,7 @@ class _PresentationState extends State<Presentation> {
                   ),
                   minimumSize: const Size(150, 37),
                 ),
-                onPressed: () {
-                  // Navigate or perform an action when the button is pressed
-                },
+                onPressed: () {},
                 child: const Text(
                   'جاری رہے',
                   style: TextStyle(
@@ -699,6 +557,7 @@ class _PresentationState extends State<Presentation> {
     );
   }
 }
+
 
 class FullScreenImagePage extends StatefulWidget {
   final List<String> assetImages;
