@@ -9,23 +9,19 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
-class Infographics extends StatefulWidget {
-  final List<String> imagePaths;
-  final List<String> imageTexts; // Add this line
+class InfographicScreen extends StatefulWidget {
+  final InfographicsModel infographicsModel;
 
-  const Infographics({
-    Key? key,
-    required this.imagePaths,
-    required this.imageTexts, // Add this line
-  })  : assert(imagePaths.length == imageTexts.length,
-            'Image paths and texts must have the same length.'),
-        super(key: key); // Add assertion to check lengths match
+  const InfographicScreen({super.key, required this.infographicsModel});
+
+
+
 
   @override
-  _InfographicsState createState() => _InfographicsState();
+  _InfographicScreenState createState() => _InfographicScreenState();
 }
 
-class _InfographicsState extends State<Infographics>
+class _InfographicScreenState extends State<InfographicScreen>
     with SingleTickerProviderStateMixin {
   int _current = 0;
   double _progress = 0.0;
@@ -37,13 +33,11 @@ class _InfographicsState extends State<Infographics>
   @override
   void initState() {
     super.initState();
-    _carouselItems = List.generate(widget.imagePaths.length, (index) {
-      Color borderColor = random.nextBool()
-          ? const Color(0xffAEDDBF)
-          : const Color(0xffF49FC6); // Randomly choose the color
-      return _buildSlide(widget.imagePaths[index], borderColor,
-          widget.imageTexts[index]); // Pass corresponding text here
+    _carouselItems = List.generate(widget.infographicsModel.infographics.length, (index) {
+      Color borderColor = random.nextBool() ? const Color(0xffAEDDBF) : const Color(0xffF49FC6);
+      return _buildSlide(widget.infographicsModel.infographics[index].imagePath, borderColor, widget.infographicsModel.infographics[index].text);
     });
+
 
     _progressController = AnimationController(
         duration: const Duration(milliseconds: 400), vsync: this)
@@ -225,7 +219,7 @@ class _InfographicsState extends State<Infographics>
                   right: 0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(widget.imagePaths.length, (index) {
+                    children: List.generate(widget.infographicsModel.infographics.length, (index) {
                       return GestureDetector(
                         onTap: () => _carouselController.animateToPage(index),
                         child: Container(
@@ -281,6 +275,31 @@ class _InfographicsState extends State<Infographics>
           ),
         ],
       ),
+    );
+  }
+}
+class InfographicsModel {
+  final List<Infographic> infographics;
+
+  InfographicsModel({required this.infographics});
+
+  factory InfographicsModel.fromJson(Map<String, dynamic> json) {
+    var list = json['infographics'] as List;
+    List<Infographic> infographicsList = list.map((i) => Infographic.fromJson(i)).toList();
+    return InfographicsModel(infographics: infographicsList);
+  }
+}
+
+class Infographic {
+  final String imagePath;
+  final String text;
+
+  Infographic({required this.imagePath, required this.text});
+
+  factory Infographic.fromJson(Map<String, dynamic> json) {
+    return Infographic(
+      imagePath: json['imagePath'],
+      text: json['text'],
     );
   }
 }

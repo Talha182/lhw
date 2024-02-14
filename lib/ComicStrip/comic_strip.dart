@@ -8,11 +8,11 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
 class ComicStrip extends StatefulWidget {
-  final List<List<String>> imagePairs;
+  final List<ComicStripModel> comicStripsModel;
 
   const ComicStrip({
     Key? key,
-    required this.imagePairs,
+    required this.comicStripsModel,
   }) : super(key: key);
 
   @override
@@ -32,8 +32,8 @@ class _ComicStripState extends State<ComicStrip>
   void initState() {
     super.initState();
 
-    _carouselItems = widget.imagePairs.map((pair) {
-      return _buildSlide(pair[0], pair[1]);
+    _carouselItems = widget.comicStripsModel.map((comicStrip) {
+      return _buildSlide(comicStrip.imagePathTop, comicStrip.imagePathBottom);
     }).toList();
 
     _progressController = AnimationController(
@@ -180,7 +180,7 @@ class _ComicStripState extends State<ComicStrip>
                           });
 
                           double endValue =
-                              index / (widget.imagePairs.length - 1).toDouble();
+                              index / (widget.comicStripsModel.length - 1).toDouble();
                           _progressAnimation =
                               Tween<double>(begin: _progress, end: endValue)
                                   .animate(_progressController);
@@ -295,7 +295,7 @@ class _ComicStripState extends State<ComicStrip>
                     onPressed: () {
                       // Handle full screen tap
                       Get.to(() => FullScreenComicStrip(
-                            imagePairs: widget.imagePairs,
+                            comicStripsModel: widget.comicStripsModel,
                           ));
                     },
                     icon: const Icon(
@@ -314,9 +314,9 @@ class _ComicStripState extends State<ComicStrip>
 }
 
 class FullScreenComicStrip extends StatelessWidget {
-  final List<List<String>> imagePairs;
+  final List<ComicStripModel> comicStripsModel;
 
-  const FullScreenComicStrip({Key? key, required this.imagePairs})
+  const FullScreenComicStrip({Key? key, required this.comicStripsModel})
       : super(key: key);
 
   @override
@@ -340,9 +340,9 @@ class FullScreenComicStrip extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: imagePairs
-              .map((pair) => _buildComicStrip(pair[0], pair[1]))
-              .toList(),
+          children: comicStripsModel.map((comicStrip) =>
+              _buildComicStrip(comicStrip.imagePathTop, comicStrip.imagePathBottom)
+          ).toList(),
         ),
       ),
     );
@@ -377,6 +377,19 @@ class FullScreenComicStrip extends StatelessWidget {
           child: Image.asset(imagePath, fit: BoxFit.cover),
         ),
       ),
+    );
+  }
+}
+class ComicStripModel {
+  final String imagePathTop;
+  final String imagePathBottom;
+
+  ComicStripModel({required this.imagePathTop, required this.imagePathBottom});
+
+  factory ComicStripModel.fromJson(Map<String, dynamic> json) {
+    return ComicStripModel(
+      imagePathTop: json['imagePathTop'] as String,
+      imagePathBottom: json['imagePathBottom'] as String,
     );
   }
 }

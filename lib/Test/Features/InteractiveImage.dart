@@ -6,11 +6,13 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../Models/interactive_images_model.dart';
+import '../../courses_test/test_model.dart';
+import '../../models/interactive_images_model.dart';
 import '../../controllers/feature_navigation.dart';
 
-class InteractiveImages extends StatefulWidget {
-  const InteractiveImages({Key? key}) : super(key: key);
+class InteractiveImages extends StatefulWidget {final Feature feature;
+
+const InteractiveImages({Key? key, required this.feature}) : super(key: key);
 
   @override
   _InteractiveImagesState createState() => _InteractiveImagesState();
@@ -163,52 +165,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
   //     'dragDropEnabled': false, // Add this line for each image
   //   },
   // ];
-  final List<InteractiveImageModel> imagesInfo = [
-    InteractiveImageModel(
-      image: 'assets/script11/Script11-01.jpg',
-      guide: 'مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔',
-      touchArea: const Rect.fromLTWH(460, 80, 130, 160),
-      showDialog: false,
-      dialogText: 'Click on the right side',
-      swipeEnabled: false,
-      longPressEnabled: false,
-      longPressAction: '',
-      dragDropEnabled: false,
-      swipeAction: '',
-    ),
-    InteractiveImageModel(
-      image: 'assets/script11/Script11-02.jpg',
-      guide: '',
-      touchArea: const Rect.fromLTWH(370, 310, 310, 80),
-      showDialog: true,
-      swipeEnabled: false,
-      swipeAction: 'nextImage',
-      dialogText:
-          'بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ  ہو ۔',
-      longPressEnabled: false,
-      longPressAction: '',
-      dragDropEnabled: false,
-    ),
-    InteractiveImageModel(
-      image: 'assets/script11/Script11-03.jpg',
-      guide: 'شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔',
-      touchArea: const Rect.fromLTWH(0, 0, 0, 0),
-      showDialog: false,
-      swipeEnabled: false,
-      longPressEnabled: true,
-      longPressAction: 'showMessage',
-      dialogText: '',
-      dragDropEnabled: true,
-      swipeAction: '',
-      draggableImage: 'assets/script11/Script11-03.jpg',
-      draggableImageInitialPosition: const Offset(80, 180),
-      dragTargetPosition: const Offset(200, 180),
-      newDraggableImage: 'assets/images/1.png',
-      moveToNextOnDrop: false,
-      // newBackgroundImage: 'assets/script11/Script11-02.jpg',
-    ),
-    // Continue for other images following the same pattern...
-  ];
+  List<InteractiveImageModel> get imagesInfo => widget.feature.relatedData;
   bool isMessageVisible = false;
   bool showTimerIcon = false;
   Timer? iconTimer;

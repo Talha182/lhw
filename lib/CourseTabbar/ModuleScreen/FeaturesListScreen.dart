@@ -2,13 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lhw/ComicStrip/comic_strip.dart';
+import 'package:lhw/Infographics/infographics.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../../FlashCard/flash_cards_screen.dart';
+import '../../ImageHotspot/ImageHotspot.dart';
+import '../../InteractiveAnimationVideo/interactive_animation_video.dart';
 import '../../Presentation/Presentation.dart';
 import '../../Presentation/presentation_model.dart';
+import '../../Test/Features/InteractiveImage.dart';
 import '../../courses_test/test_model.dart';
+import '../../models/flash_cards_screen_model.dart';
+import '../../models/image_hotspot_model.dart';
+import '../../models/interactive_images_model.dart';
 
 class FeaturesListScreen extends StatefulWidget {
+
   final Submodule submodule;
   final String courseTitle; // Add this line
   final int courseQuizCount;
@@ -222,6 +232,52 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           await Get.to(() => Presentation(
                               presentationModel: presentationModel));
                         }
+                        if (feature.featureType == FeatureType.comicStrips) {
+                          List<ComicStripModel> comicStripModels =
+                              feature.relatedData as List<ComicStripModel>;
+                          // Adjust navigation based on your actual ComicStrip widget's constructor
+                          await Get.to(() =>
+                              ComicStrip(comicStripsModel: comicStripModels));
+                        }
+
+                        if (feature.featureType == FeatureType.flashCards) {
+                          if (feature.relatedData is List<FlashCard>) {
+                            // Ensure this matches your model structure
+                            List<FlashCard> flashCards = feature.relatedData;
+                            FlashCardScreenModel flashCardScreenModel =
+                                FlashCardScreenModel(
+                                    title: feature.title,
+                                    cards:
+                                        flashCards); // Assuming constructor matches this
+                            await Get.to(() => FlashCardsScreen(
+                                flashCardModel: flashCardScreenModel));
+                          }
+                        }
+                        if (feature.featureType == FeatureType.infographics) {
+                          InfographicsModel infographicsModel = feature.relatedData as InfographicsModel;
+                          // Assuming you have a route or method to display the infographics
+                          await Get.to(() => InfographicScreen(infographicsModel: infographicsModel));
+                        }
+                        if (feature.featureType == FeatureType.interactiveAnimationVideo) {
+                          InteractiveAnimationVideoModel interactiveAnimationVideoModel = feature.relatedData as InteractiveAnimationVideoModel;
+                          await Get.to(() => InteractiveAnimationVideo(interactiveAnimationVideoModel: interactiveAnimationVideoModel));
+                        }
+                        if (feature.featureType == FeatureType.interactiveImage) {
+                          List<InteractiveImageModel> interactiveImageModels = feature.relatedData as List<InteractiveImageModel>;
+                          // Assuming you have an InteractiveImages widget that takes a list of InteractiveImageModel
+                          await Get.to(() => InteractiveImages(feature: feature)); // Update this line to match how you initialize your InteractiveImages widget
+                        }
+                        if (feature.featureType == FeatureType.imageHotspot) {
+                          ImageHotspotModel imageHotspotModel = feature.relatedData as ImageHotspotModel;
+                          await Get.to(() => ImageHotspot(imageHotspotModel: imageHotspotModel));
+                        }
+
+
+
+
+
+
+
                       },
                     );
                   },

@@ -75,6 +75,7 @@ dependencies:
   pinch_zoom_release_unzoom: ^1.0.3
   flutter_animated_dialog: ^2.0.1
   provider: ^6.1.1
+  lottie: ^3.0.0
 
 
 
@@ -98,6 +99,7 @@ flutter:
     - assets/moduleIcons/
     - assets/presentations/
     - assets/data/
+    - assets/lottie/
 
   fonts:
     - family: UrduType

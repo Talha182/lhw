@@ -7,12 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:video_player/video_player.dart';
-
 import '../Quiz/MCQ 4.dart';
 import '../controllers/BookmarkController.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import '../controllers/feature_navigation.dart';
-import '../models/interactive_animation_model.dart';
 
 class InteractiveAnimationVideo extends StatefulWidget {
   final InteractiveAnimationVideoModel interactiveAnimationVideoModel;
@@ -383,3 +381,57 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
   }
 }
 
+class InteractiveAnimationVideoModel {
+  final String videoPath;
+  final List<Question> questions;
+  final List<Duration> questionDurations;
+
+  InteractiveAnimationVideoModel({
+    required this.videoPath,
+    required this.questions,
+    required this.questionDurations,
+  });
+
+  factory InteractiveAnimationVideoModel.fromJson(Map<String, dynamic> json) {
+    List<Question> questions = (json['questions'] as List)
+        .map((questionJson) => Question.fromJson(questionJson))
+        .toList();
+    List<Duration> questionDurations = (json['questionDurations'] as List)
+        .map((durationString) => Duration(seconds: int.parse(durationString.split(":").last)))
+        .toList();
+
+    return InteractiveAnimationVideoModel(
+      videoPath: json['videoPath'],
+      questions: questions,
+      questionDurations: questionDurations,
+    );
+  }
+}
+class Question {
+  final String question;
+  final List<String> options;
+  final String correctAnswer;
+  final String correctExplanation;
+  final String incorrectExplanation;
+  // final List<String> imagePaths;
+
+  Question({
+    required this.question,
+    required this.options,
+    required this.correctAnswer,
+    required this.correctExplanation,
+    required this.incorrectExplanation,
+    // required this.imagePaths,
+  });
+
+  factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
+      question: json['question'],
+      options: List<String>.from(json['options']),
+      correctAnswer: json['correctAnswer'],
+      correctExplanation: json['correctExplanation'],
+      incorrectExplanation: json['incorrectExplanation'],
+      // imagePaths: List<String>.from(json['imagePaths']),
+    );
+  }
+}

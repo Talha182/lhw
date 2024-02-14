@@ -231,22 +231,22 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   List<Widget> _buildHotspots(BuildContext context) {
-    final containerRenderBox =
+        final containerRenderBox =
         _imageKey.currentContext?.findRenderObject() as RenderBox?;
-    final containerSize = containerRenderBox?.size ?? Size.zero;
+        final containerSize = containerRenderBox?.size ?? Size.zero;
 
-    return widget.imageHotspotModel.hotspots.map((hotspot) {
-      // Calculate relative positions (this is a simplistic approach, you might need to adjust based on your container's padding/margin)
-      final double relativeX = hotspot.offset.dx / containerSize.width;
-      final double relativeY = hotspot.offset.dy / containerSize.height;
+        return widget.imageHotspotModel.hotspots.map((hotspot) {
+          // Calculate relative positions (this is a simplistic approach, you might need to adjust based on your container's padding/margin)
+          final double relativeX = hotspot.offset.dx / containerSize.width;
+          final double relativeY = hotspot.offset.dy / containerSize.height;
 
-      return Positioned(
-        left: _isFullScreen
-            ? relativeX * MediaQuery.of(context).size.width
-            : hotspot.offset.dx,
-        top: _isFullScreen
-            ? relativeY * MediaQuery.of(context).size.height
-            : hotspot.offset.dy,
+          return Positioned(
+            left: _isFullScreen
+                ? relativeX * MediaQuery.of(context).size.width
+                : hotspot.offset.dx,
+            top: _isFullScreen
+                ? relativeY * MediaQuery.of(context).size.height
+                : hotspot.offset.dy,
         child: GestureDetector(
           onTap: () => _showDialog(context, hotspot.dialogText),
           child: Container(

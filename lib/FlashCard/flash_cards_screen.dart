@@ -10,9 +10,9 @@ import 'package:lhw/controllers/BookmarkController.dart';
 import '../models/flash_cards_screen_model.dart'; // Adjust the import path based on your project structure
 
 class FlashCardsScreen extends StatefulWidget {
-  final FlashCardScreenModel flashCardScreenModel;
+  final FlashCardScreenModel flashCardModel;
 
-  const FlashCardsScreen({Key? key, required this.flashCardScreenModel})
+  const FlashCardsScreen({Key? key, required this.flashCardModel})
       : super(key: key);
 
   @override
@@ -56,7 +56,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                       tween: Tween<double>(
                           begin: 0,
                           end: ((_current + 1) /
-                                  widget.flashCardScreenModel.cards.length) *
+                                  widget.flashCardModel.cards.length) *
                               _totalSteps),
                       duration: const Duration(milliseconds: 400),
                       builder:
@@ -106,7 +106,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(
-                widget.flashCardScreenModel.title,
+                widget.flashCardModel.title,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontFamily: "UrduType", fontSize: 30),
               ),
@@ -118,16 +118,16 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               offset: const Offset(-40, 0),
               child: CarouselSlider.builder(
                 carouselController: _carouselController,
-                itemCount: widget.flashCardScreenModel.cards.length,
+                itemCount: widget.flashCardModel.cards.length,
                 itemBuilder: (BuildContext context, int index, int realIndex) {
-                  final card = widget.flashCardScreenModel
+                  final card = widget.flashCardModel
                       .cards[index]; // Use card from the model
 
                   return FlipCard(
                     onFlip: () {
                       setState(() {
                         _isLastCardFlipped = index ==
-                            widget.flashCardScreenModel.cards.length - 1;
+                            widget.flashCardModel.cards.length - 1;
                       });
                     },
                     direction: FlipDirection.HORIZONTAL,
@@ -206,7 +206,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                widget.flashCardScreenModel.cards.length,
+                widget.flashCardModel.cards.length,
                 // Use the length of cardData for dynamic indicator count
                 (index) {
                   return Container(

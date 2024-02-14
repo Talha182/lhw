@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lhw/models/interactive_images_model.dart';
 
+import '../Infographics/infographics.dart';
+import '../InteractiveAnimationVideo/interactive_animation_video.dart';
 import '../Presentation/presentation_model.dart';
+import '../ComicStrip/comic_strip.dart';
+import '../models/flash_cards_screen_model.dart';
+import '../models/image_hotspot_model.dart';
 
 class TestCourseModel {
   final int courseId;
@@ -122,7 +128,21 @@ class Submodule {
 }
 
 // Assuming the enum FeatureType is defined as shown previously
-enum FeatureType { video, presentation, quiz, unknown }
+enum FeatureType {
+  video,
+  presentation,
+  quiz,
+  comicStrips,
+  flashCards,
+  infographics,
+  interactiveAnimationVideo,
+  interactiveImage,
+  imageHotspot,
+  textBranchingScenario,
+  imageBranchingScenario,
+  animationVideo,
+  unknown
+}
 
 class Feature {
   final String title; // Example of a String field that might cause the error
@@ -139,13 +159,6 @@ class Feature {
     this.relatedData,
   });
 
-  // factory Feature.fromJson(Map<String, dynamic> json) {
-  //   var relatedData;
-  //   if (json['featureType'] == 'presentation') {
-  //     relatedData = PresentationModel.fromJson(json['presentationModel']);
-  //   } else if (json['featureType'] == 'video') {
-  //     // relatedData = VideoModel.fromJson(json['videoModel']);
-  //   }
   factory Feature.fromJson(Map<String, dynamic> json) {
     FeatureType featureType = FeatureType.values.firstWhere(
       (type) => type.toString().split('.').last == json['featureType'],
@@ -157,6 +170,57 @@ class Feature {
         json.containsKey('presentationModel')) {
       relatedData = PresentationModel.fromJson(json['presentationModel']);
     }
+    // Correction in Feature.fromJson for handling comic strips
+    if (json.containsKey('comicStrips')) {
+      List<dynamic> comicStripsJson = json['comicStrips'] as List;
+      relatedData = comicStripsJson
+          .map((csJson) =>
+              ComicStripModel.fromJson(csJson as Map<String, dynamic>))
+          .toList();
+    }
+
+    if (json.containsKey('flashCards')) {
+      List<dynamic> flashCardsJson = json['flashCards'] as List;
+      relatedData = flashCardsJson
+          .map((fcJson) => FlashCard.fromJson(fcJson as Map<String, dynamic>))
+          .toList();
+    }
+
+    if (featureType == FeatureType.infographics &&
+        json.containsKey('infographics')) {
+      var infographicsJson = json['infographics'] as List;
+      relatedData =
+          InfographicsModel.fromJson({'infographics': infographicsJson});
+    }
+
+    if (featureType == FeatureType.interactiveAnimationVideo &&
+        json.containsKey('videoPath')) {
+      relatedData = InteractiveAnimationVideoModel.fromJson(json);
+    }
+
+    if (featureType == FeatureType.interactiveImage &&
+        json.containsKey('interactiveImageModel')) {
+      List<dynamic> imagesInfoJson = json['interactiveImageModel'] as List;
+      relatedData = imagesInfoJson
+          .map((imageJson) => InteractiveImageModel.fromJson(imageJson))
+          .toList();
+    }
+    // Hotspot Image
+    if (featureType == FeatureType.imageHotspot &&
+        json.containsKey('imageHotspot')) {
+      relatedData = ImageHotspotModel.fromJson(json['imageHotspot']);
+    }
+    if (featureType == FeatureType.textBranchingScenario &&
+        json.containsKey('textBranchingScenarioModel')) {
+      relatedData =
+          PresentationModel.fromJson(json['textBranchingScenarioModel']);
+    }
+    if (featureType == FeatureType.imageBranchingScenario &&
+        json.containsKey('imageBranchingScenarioModel')) {
+      relatedData =
+          PresentationModel.fromJson(json['imageBranchingScenarioModel']);
+    }
+
     return Feature(
       title: json['title'] as String? ?? 'Default Title',
       featureType: featureType,
@@ -177,6 +241,22 @@ class Feature {
           return Icons.slideshow; // Example icon for presentation
         case FeatureType.quiz:
           return Icons.question_answer; // Example icon for quiz
+        case FeatureType.comicStrips:
+          return Icons.image; // Example icon for comic strips
+        case FeatureType.flashCards:
+          return Icons.flash_on; // Example icon for flash cards
+        case FeatureType.infographics:
+          return Icons.insert_chart; // Example icon for infographics
+        case FeatureType.interactiveAnimationVideo:
+          return Icons.videocam; // Example icon for interactive animation video
+        case FeatureType.interactiveImage:
+          return Icons.image_aspect_ratio; // Example icon for interactive image
+        case FeatureType.imageHotspot:
+          return Icons.image; // Example icon for hotspot image
+        case FeatureType.textBranchingScenario:
+          return Icons.text_fields; // Example icon for text branching scenario
+        case FeatureType.imageBranchingScenario:
+          return Icons.image; // Example icon for image branching scenario
         default:
           return Icons.help; // Default icon
       }
@@ -244,3 +324,10 @@ Future<List<TestCourseModel>> fetchCourses() async {
 //     }).toList(),
 //   )).toList();
 // }
+// factory Feature.fromJson(Map<String, dynamic> json) {
+//   var relatedData;
+//   if (json['featureType'] == 'presentation') {
+//     relatedData = PresentationModel.fromJson(json['presentationModel']);
+//   } else if (json['featureType'] == 'video') {
+//     // relatedData = VideoModel.fromJson(json['videoModel']);
+//   }
