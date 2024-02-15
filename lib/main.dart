@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
+import 'package:lhw/CourseTabbar/courses_tabbar.dart';
 import 'package:lhw/FlashCard/flash_cards_screen.dart';
 import 'package:lhw/ImageHotspot/ImageHotspot.dart';
 import 'package:lhw/api/firebase_api.dart';
@@ -10,6 +11,7 @@ import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:lhw/models/flash_cards_screen_model.dart';
 import 'package:lhw/models/image_hotspot_model.dart';
+import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:lhw/repositories/authentication_repository/auth_status.dart';
 import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
@@ -69,12 +71,7 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen();
             case AuthStatus.authenticated:
-              return FlashCardsScreen(flashCardModel: FlashCardScreenModel(title: 'title', cards: [
-                FlashCard(frontImage: 'assets/images/1.png', backImage: 'assets/images/2.png'),
-                FlashCard(frontImage: 'assets/images/1.png', backImage: 'assets/images/2.png'),
-                FlashCard(frontImage: 'assets/images/1.png', backImage: 'assets/images/2.png'),
-              ]));
-
+              return Custom_NavBar();
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();

@@ -8,7 +8,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../CourseTabbar/LessonPageTabBar/LessonPageTabbar.dart';
-import '../CourseTabbar/ModuleScreen/ModuleScreen.dart';
+import '../ModuleScreen/ModuleScreen.dart';
 import '../CourseTabbar/course_provider.dart';
 import '../CustomWidgets/Line_chart.dart';
 import '../CustomWidgets/circular_progress_bar_with circle.dart';

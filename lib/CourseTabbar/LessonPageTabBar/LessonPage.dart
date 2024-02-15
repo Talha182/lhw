@@ -7,7 +7,7 @@ import 'package:lhw/courses_test/test_model.dart';
 import '../../CustomWidgets/Row_Column_Padding.dart';
 import '../../Mobile_Lesson & Flashcards/inforgraphics_carousel.dart';
 import '../../models/course_model.dart';
-import '../ModuleScreen/ModuleScreen.dart';
+import '../../ModuleScreen/ModuleScreen.dart';
 
 class Lesson extends StatefulWidget {
   final TestCourseModel course;

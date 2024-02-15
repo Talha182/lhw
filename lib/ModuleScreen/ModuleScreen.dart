@@ -5,10 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/courses_test/test_model.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
-import '../../CustomWidgets/Row_Column_Padding.dart';
-import '../../JourneyMaps/JourneyMap.dart';
-import '../../JourneyMaps/JourneyMap2.dart';
-import '../../Mobile_Module & Submodule/module_dashboard_card.dart';
+import '../CustomWidgets/Row_Column_Padding.dart';
+import '../JourneyMaps/JourneyMap.dart';
+import '../JourneyMaps/JourneyMap2.dart';
+import '../Mobile_Module & Submodule/module_dashboard_card.dart';
 
 class ModuleScreen extends StatefulWidget {
   final TestCourseModel course;

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 
 import '../FlashCard/flash_cards_screen.dart';
 import 'package:flutter/services.dart';
@@ -25,7 +26,7 @@ class _PresentationState extends State<Presentation> {
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   int currentPage = 0;
   late PageController _pageController;
-
+  bool hasVisitedLastImage = false; // Added variable to track last image visit
   bool isSelected = false;
   bool isAnswered = false;
   int questionIndex = 0;
@@ -44,11 +45,18 @@ class _PresentationState extends State<Presentation> {
   @override
   void initState() {
     super.initState();
-    // Initialize the questionAttempted list with false values for each question
     questionAttempted =
         List<bool>.filled(widget.presentationModel.questions.length, false);
-
     _pageController = PageController();
+    _pageController.addListener(() {
+      // Update hasVisitedLastImage when the last image is reached
+      if (_pageController.page ==
+          widget.presentationModel.assetImages.length - 1) {
+        setState(() {
+          hasVisitedLastImage = true;
+        });
+      }
+    });
   }
 
 // Update the 'updateQuestion' method
@@ -406,9 +414,14 @@ class _PresentationState extends State<Presentation> {
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20),
                                 ),
-                                child: Image.asset(
-                                  widget.presentationModel.assetImages[index],
-                                  fit: BoxFit.fill,
+                                child: PinchZoom(
+                                  resetDuration:
+                                      const Duration(milliseconds: 100),
+                                  maxScale: 3.0,
+                                  child: Image.asset(
+                                    widget.presentationModel.assetImages[index],
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               );
                             },
@@ -426,9 +439,16 @@ class _PresentationState extends State<Presentation> {
                                   onTap: () {
                                     Get.to(
                                         () => FullScreenImagePage(
-                                            assetImages: widget
-                                                .presentationModel.assetImages,
-                                            initialPage: currentPage, questions: widget.presentationModel.questions, showQuestionDialog: widget.presentationModel.showQuestionDialog,),
+                                              assetImages: widget
+                                                  .presentationModel
+                                                  .assetImages,
+                                              initialPage: currentPage,
+                                              questions: widget
+                                                  .presentationModel.questions,
+                                              showQuestionDialog: widget
+                                                  .presentationModel
+                                                  .showQuestionDialog,
+                                            ),
                                         transition: Transition.fade,
                                         duration:
                                             const Duration(milliseconds: 300));
@@ -552,7 +572,11 @@ class _PresentationState extends State<Presentation> {
                     ),
                     minimumSize: const Size(150, 37),
                   ),
-                  onPressed: () {},
+                  onPressed: hasVisitedLastImage
+                      ? () {
+                    Get.back();
+                        }
+                      : null,
                   child: const Text(
                     'جاری رہے',
                     style: TextStyle(
@@ -582,7 +606,8 @@ class FullScreenImagePage extends StatefulWidget {
     Key? key,
     required this.assetImages,
     required this.initialPage,
-    required this.questions, required this.showQuestionDialog,
+    required this.questions,
+    required this.showQuestionDialog,
   }) : super(key: key);
 
   @override
@@ -615,8 +640,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
   void initState() {
     super.initState();
     _currentPage = widget.initialPage;
-    questionAttempted =
-    List<bool>.filled(widget.questions.length, false);
+    questionAttempted = List<bool>.filled(widget.questions.length, false);
 
     _pageController = PageController();
     _pageController = PageController(initialPage: _currentPage);
@@ -648,8 +672,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
       isAnswered = true;
       isSelected = true;
       selectedOptionIndex = index; // Add this line
-      if (selectedAnswer ==
-          widget.questions[questionIndex].correctAnswer) {
+      if (selectedAnswer == widget.questions[questionIndex].correctAnswer) {
         optionColors[index] = Colors.green[100]!;
       } else {
         optionColors[index] = Colors.red[100]!;
@@ -763,34 +786,29 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.questions[questionIndex]
-                            .question,
+                        widget.questions[questionIndex].question,
                         style: const TextStyle(
                             fontSize: 20, fontFamily: "UrduType"),
                       ),
                       const SizedBox(height: 10),
                       ...List.generate(
-                        widget.questions[questionIndex]
-                            .options.length,
+                        widget.questions[questionIndex].options.length,
                         (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: HorizontalQuizCard(
-                            text: widget
-                                .questions[questionIndex].options[index],
+                            text:
+                                widget.questions[questionIndex].options[index],
                             ontap: () {
                               setState(() {
                                 updateQuestion(
-                                    widget
-
-                                        .questions[questionIndex]
+                                    widget.questions[questionIndex]
                                         .options[index],
                                     index);
                               });
                             },
                             color: optionColors[index],
                             isCorrect: selectedAnswer ==
-                                widget
-                                    .questions[questionIndex].correctAnswer,
+                                widget.questions[questionIndex].correctAnswer,
                             isSelected: isSelected,
                             isOptionSelected: index == selectedOptionIndex,
                           ),
@@ -1042,6 +1060,7 @@ class QuizCard extends StatelessWidget {
     );
   }
 }
+
 class HorizontalQuizCard extends StatelessWidget {
   final String text;
   final Function ontap;

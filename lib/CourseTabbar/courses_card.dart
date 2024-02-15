@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../CustomWidgets/ArrowContainer.dart';
 import 'LessonPageTabBar/LessonPageTabbar.dart';
-import 'ModuleScreen/ModuleScreen.dart';
+import '../ModuleScreen/ModuleScreen.dart';
 import 'course_provider.dart';
 
 class CourseCard extends StatelessWidget {
