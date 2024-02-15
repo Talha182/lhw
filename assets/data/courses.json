@@ -177,53 +177,43 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-01.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-03.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-05.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-07.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-09.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-11.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-13.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-15.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-17.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-19.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-21.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-23.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                      "title": "Comic Strip 1",
+                      "imagePairs": [
+                        {
+                          "topImage": "assets/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/Script 3/Script 3-4.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                        }
+
+                      ]
                     }
+
                   ]
                 },
                 {
@@ -368,29 +358,43 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 9/Script 9-01.png",
-                      "imagePathBottom": "assets/Script 9/Script 9-02.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 9/Script 9-03.png",
-                      "imagePathBottom": "assets/Script 9/Script 9-04.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 9/Script 9-05.png",
-                      "imagePathBottom": "assets/Script 9/Script 9-06.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 9/Script 9-07.png",
-                      "imagePathBottom": "assets/Script 9/Script 9-08.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 9/Script 9-09.png",
-                      "imagePathBottom": "assets/Script 9/Script 9-10.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 9/Script 9-11.png",
-                      "imagePathBottom": "assets/Script 9/Script 9-12.png"
+                      "title": "Comic Strip 1",
+                      "imagePairs": [
+                        {
+                          "topImage": "assets/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/Script 3/Script 3-4.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                        }
+
+                      ]
                     }
+
                   ]
                 },
                 {
@@ -1003,53 +1007,43 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-01.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-03.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-05.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-07.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-09.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-11.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-13.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-15.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-17.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-19.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-21.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-23.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                      "title": "Comic Strip 1",
+                      "imagePairs": [
+                        {
+                          "topImage": "assets/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/Script 3/Script 3-4.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                        }
+
+                      ]
                     }
+
                   ]
                 },
                 {
@@ -1216,53 +1210,43 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-01.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-03.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-05.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-07.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-09.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-11.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-13.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-15.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-17.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-19.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-21.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-23.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                      "title": "Comic Strip 1",
+                      "imagePairs": [
+                        {
+                          "topImage": "assets/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/Script 3/Script 3-4.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                        }
+
+                      ]
                     }
+
                   ]
                 },
                 {
@@ -1598,53 +1582,43 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-01.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-03.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-05.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-07.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-09.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-11.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-13.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-15.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-17.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-19.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-21.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-23.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                      "title": "Comic Strip 1",
+                      "imagePairs": [
+                        {
+                          "topImage": "assets/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/Script 3/Script 3-4.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                        }
+
+                      ]
                     }
+
                   ]
                 }
               ]
@@ -2406,53 +2380,43 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-01.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-03.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-05.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-07.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-09.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-11.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-13.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-15.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-17.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-19.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-21.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-23.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                      "title": "Comic Strip 1",
+                      "imagePairs": [
+                        {
+                          "topImage": "assets/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/Script 3/Script 3-4.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                        }
+
+                      ]
                     }
+
                   ]
                 }
               ]
@@ -2948,53 +2912,43 @@
                   "duration": "3 mins",
                   "comicStrips": [
                     {
-                      "imagePathTop": "assets/Script 3/Script 3-01.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-02.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-03.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-04.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-05.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-06.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-07.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-08.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-09.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-10.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-11.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-12.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-13.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-14.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-15.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-16.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-17.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-18.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-19.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-20.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-21.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-22.png"
-                    },
-                    {
-                      "imagePathTop": "assets/Script 3/Script 3-23.png",
-                      "imagePathBottom": "assets/Script 3/Script 3-24.png"
+                      "title": "Comic Strip 1",
+                      "imagePairs": [
+                        {
+                          "topImage": "assets/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/Script 3/Script 3-4.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                        }, {
+                          "topImage": "assets/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                        }
+
+                      ]
                     }
+
                   ]
                 }
               ]

@@ -31,9 +31,13 @@ class _ComicStripState extends State<ComicStrip>
   @override
   void initState() {
     super.initState();
+    // Flatten all image pairs from all comic strip models into a single list
+    List<ImagePair> allImagePairs =
+        widget.comicStripsModel.expand((model) => model.imagePairs).toList();
 
-    _carouselItems = widget.comicStripsModel.map((comicStrip) {
-      return _buildSlide(comicStrip.imagePathTop, comicStrip.imagePathBottom);
+    // Generate carousel items for each image pair
+    _carouselItems = allImagePairs.map((imagePair) {
+      return _buildSlide(imagePair.topImage, imagePair.bottomImage);
     }).toList();
 
     _progressController = AnimationController(
@@ -66,25 +70,22 @@ class _ComicStripState extends State<ComicStrip>
 
   Widget _buildContainer(String imagePath) {
     return Expanded(
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: PinchZoomReleaseUnzoomWidget(
-          minScale: 0.8,
-          maxScale: 4,
-          resetDuration: const Duration(milliseconds: 200),
-          boundaryMargin: const EdgeInsets.only(bottom: 0),
-          clipBehavior: Clip.none,
-          useOverlay: true,
-          maxOverlayOpacity: 0.5,
-          overlayColor: Colors.black,
-          fingersRequiredToPinch: 2,
-          child: ClipRRect(
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => FullScreenImageView(imagePath: imagePath));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset(imagePath,
-                fit: BoxFit.cover), // Updated to BoxFit.cover
+          ),
+          child: PinchZoom(
+            resetDuration: const Duration(milliseconds: 100),
+            maxScale: 2.5,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(imagePath, fit: BoxFit.cover),
+            ),
           ),
         ),
       ),
@@ -153,12 +154,13 @@ class _ComicStripState extends State<ComicStrip>
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(10),
+                Padding(
+                  padding: const EdgeInsets.all(10),
                   child: Text(
-                    'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
+                    widget.comicStripsModel.first.title,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: "UrduType", fontSize: 22),
+                    style:
+                        const TextStyle(fontFamily: "UrduType", fontSize: 22),
                   ),
                 ),
                 const SizedBox(
@@ -174,19 +176,24 @@ class _ComicStripState extends State<ComicStrip>
                       },
                       options: CarouselOptions(
                         viewportFraction: 1,
-                        height: 600,
+                        height: double.infinity,
                         onPageChanged: (index, reason) {
                           setState(() {
                             _current = index;
                           });
 
-                          double endValue = index /
-                              (widget.comicStripsModel.length - 1).toDouble();
-                          _progressAnimation =
-                              Tween<double>(begin: _progress, end: endValue)
-                                  .animate(_progressController);
+                          if (_carouselItems.length > 1) {
+                            double endValue =
+                                index / (_carouselItems.length - 1).toDouble();
+                            _progressAnimation =
+                                Tween<double>(begin: _progress, end: endValue)
+                                    .animate(_progressController);
 
-                          _progressController.forward(from: 0);
+                            _progressController.forward(from: 0);
+                          } else {
+                            // If there's only one item, set progress to full because there's nowhere to slide.
+                            _progress = 1.0;
+                          }
                         },
                       ),
                     ),
@@ -204,8 +211,8 @@ class _ComicStripState extends State<ComicStrip>
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: _current == index
-                            ? const Color(0xff9AC9C2)
-                            : const Color.fromRGBO(0, 0, 0, 0.1),
+                            ? const Color(0xffFE8BD1)
+                            : const Color(0xffD1D7DC).withOpacity(0.3),
                       ),
                     );
                   }).toList(),
@@ -342,8 +349,10 @@ class FullScreenComicStrip extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: comicStripsModel
-              .map((comicStrip) => _buildComicStrip(
-                  comicStrip.imagePathTop, comicStrip.imagePathBottom))
+              .expand((comicStripModel) => comicStripModel.imagePairs.map(
+                    (imagePair) => _buildComicStrip(
+                        imagePair.topImage, imagePair.bottomImage),
+                  ))
               .toList(),
         ),
       ),
@@ -383,16 +392,71 @@ class FullScreenComicStrip extends StatelessWidget {
   }
 }
 
-class ComicStripModel {
-  final String imagePathTop;
-  final String imagePathBottom;
+class ImagePair {
+  final String topImage;
+  final String bottomImage;
 
-  ComicStripModel({required this.imagePathTop, required this.imagePathBottom});
+  ImagePair({required this.topImage, required this.bottomImage});
+
+  factory ImagePair.fromJson(Map<String, dynamic> json) {
+    return ImagePair(
+      topImage: json['topImage'],
+      bottomImage: json['bottomImage'],
+    );
+  }
+}
+
+class ComicStripModel {
+  final String title;
+  final List<ImagePair> imagePairs;
+
+  ComicStripModel({required this.title, required this.imagePairs});
 
   factory ComicStripModel.fromJson(Map<String, dynamic> json) {
+    List<ImagePair> imagePairs =
+        (json['imagePairs'] as List).map((i) => ImagePair.fromJson(i)).toList();
+
     return ComicStripModel(
-      imagePathTop: json['imagePathTop'] as String,
-      imagePathBottom: json['imagePathBottom'] as String,
+      title: json['title'],
+      imagePairs: imagePairs,
+    );
+  }
+}
+
+class FullScreenImageView extends StatelessWidget {
+  final String imagePath;
+
+  const FullScreenImageView({Key? key, required this.imagePath})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          Center(
+            child: PinchZoom(
+              resetDuration: const Duration(milliseconds: 100),
+              maxScale: 3.0,
+              child: Image.asset(imagePath, fit: BoxFit.contain),
+            ),
+          ),
+          Positioned(
+            top: 20,
+            left: 30,
+            child: IconButton(
+              icon: const Icon(Icons.close, size: 30, color: Colors.black),
+              onPressed: () {
+                SystemChrome.setPreferredOrientations(
+                    [DeviceOrientation.portraitUp]);
+                Get.back();
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

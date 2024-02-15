@@ -7,7 +7,6 @@ import 'DiscussionGroup/DiscussionGroups.dart';
 import 'FABPage/BottomModalSheet.dart';
 import 'MobileHomePage/home_page.dart';
 
-
 class Custom_NavBar extends StatefulWidget {
   const Custom_NavBar({super.key});
 
@@ -30,7 +29,9 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
   final List<Widget> pages = [
     const HomePage(),
     const Courses_Tabbar(),
-    const GroupsDiscussion(showAppBar: true,),
+    const GroupsDiscussion(
+      showAppBar: true,
+    ),
     const ReportsScreen(),
   ];
 
@@ -42,7 +43,6 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +98,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         backgroundColor: const Color(0xffFE8BD1),
         child: showSheet
             ? const Icon(Icons.close, color: Colors.white)
@@ -120,11 +118,11 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
       bottomNavigationBar: Material(
         // elevation: 0.0, // Add this line for elevation
         child: BottomAppBar(
-          elevation: 0.0,
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          height: 70,
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 0.1,
+            elevation: 0.0,
+            padding: const EdgeInsets.symmetric(horizontal: 0),
+            height: 70,
+            shape: const CircularNotchedRectangle(),
+            notchMargin: 0.1,
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: Row(
@@ -164,12 +162,14 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                   // Adjust the padding based on the item's label
                   if (iconData['label'] == 'کورسز') {
                     return Padding(
-                      padding: const EdgeInsets.only(left: 20.0), // move it to the left
+                      padding: const EdgeInsets.only(
+                          left: 20.0), // move it to the left
                       child: navBarItem,
                     );
                   } else if (iconData['label'] == 'گروپس') {
                     return Padding(
-                      padding: const EdgeInsets.only(right: 20.0), // move it to the right
+                      padding: const EdgeInsets.only(
+                          right: 20.0), // move it to the right
                       child: navBarItem,
                     );
                   } else {
@@ -177,8 +177,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                   }
                 }).toList(),
               ),
-            )
-        ),
+            )),
       ),
     );
   }

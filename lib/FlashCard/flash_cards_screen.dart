@@ -25,6 +25,15 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
   bool _isLastCardFlipped = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   final CarouselController _carouselController = CarouselController();
+  late List<bool> _flippedStates;
+  bool isCurrentFlipped = false; // Add this line
+
+  @override
+  void initState() {
+    super.initState();
+    _flippedStates =
+        List<bool>.filled(widget.flashCardModel.cards.length, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +126,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
             Transform.translate(
               offset: const Offset(-40, 0),
               child: CarouselSlider.builder(
-
                 carouselController: _carouselController,
                 itemCount: widget.flashCardModel.cards.length,
                 itemBuilder: (BuildContext context, int index, int realIndex) {
@@ -127,34 +135,38 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                   return FlipCard(
                     onFlip: () {
                       setState(() {
+                        _flippedStates[index] =
+                            true; // Mark the card as flipped
                         _isLastCardFlipped =
-                            index == widget.flashCardModel.cards.length - 1;
+                            index == widget.flashCardModel.cards.length - 1 &&
+                                _flippedStates.every((state) => state);
+                        isCurrentFlipped =
+                            true; // Update isCurrentFlipped to true here
                       });
                     },
                     direction: FlipDirection.HORIZONTAL,
                     front: Container(
-                        width: 280,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage(card.frontImage),
-                                fit: BoxFit.fill)
-                            // border: Border.all(
-                            //     color: const Color(0xffF07DB2), width: 2),
-                            ),
-
-                      ), back: Container(
-                        width: 280,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage(card.backImage),
-                                fit: BoxFit.fill)
-                            // border: Border.all(
-                            //     color: const Color(0xffF07DB2), width: 2),
-                            ),
-
-                      ),
+                      width: 280,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: AssetImage(card.frontImage),
+                              fit: BoxFit.fill)
+                          // border: Border.all(
+                          //     color: const Color(0xffF07DB2), width: 2),
+                          ),
+                    ),
+                    back: Container(
+                      width: 280,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: AssetImage(card.backImage),
+                              fit: BoxFit.fill)
+                          // border: Border.all(
+                          //     color: const Color(0xffF07DB2), width: 2),
+                          ),
+                    ),
                     // back: Container(
                     //   width: 280,
                     //   decoration: BoxDecoration(
@@ -194,18 +206,25 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                   );
                 },
                 options: CarouselOptions(
-                  height: 450.0,
-                  enlargeCenterPage: false,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
-                  aspectRatio: 16 / 9,
-                  autoPlay: false,
-                  enableInfiniteScroll: false,
-                  viewportFraction: 0.78,
-                ),
+                    height: 450.0,
+                    enlargeCenterPage: false,
+                    onPageChanged: (index, reason) {
+                      if (isCurrentFlipped || _flippedStates[index]) {
+                        // This check ensures the next card is accessible only if the current is flipped
+                        setState(() {
+                          _current = index;
+                          isCurrentFlipped = _flippedStates[
+                              index]; // Update based on the new current card's flipped state
+                        });
+                      }
+                    },
+                    aspectRatio: 16 / 9,
+                    autoPlay: false,
+                    enableInfiniteScroll: false,
+                    viewportFraction: 0.78,
+                    scrollPhysics: isCurrentFlipped
+                        ? const PageScrollPhysics()
+                        : const NeverScrollableScrollPhysics()),
               ),
             ),
             const SizedBox(
@@ -258,7 +277,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                 // Do something when the button is pressed
               },
               child: const Text(
-                'جاری رہے',
+                "back",
                 style: TextStyle(
                   fontFamily: 'UrduType',
                   fontSize: 15,

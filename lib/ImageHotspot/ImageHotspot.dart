@@ -72,6 +72,9 @@ class _ImageHotspotState extends State<ImageHotspot>
       },
     );
   }
+  bool _areAllHotspotsTapped() {
+    return widget.imageHotspotModel.hotspots.every((hotspot) => hotspot.isTapped);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -231,30 +234,29 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   List<Widget> _buildHotspots(BuildContext context) {
-        final containerRenderBox =
-        _imageKey.currentContext?.findRenderObject() as RenderBox?;
-        final containerSize = containerRenderBox?.size ?? Size.zero;
+    final containerRenderBox = _imageKey.currentContext?.findRenderObject() as RenderBox?;
+    final containerSize = containerRenderBox?.size ?? Size.zero;
 
-        return widget.imageHotspotModel.hotspots.map((hotspot) {
-          // Calculate relative positions (this is a simplistic approach, you might need to adjust based on your container's padding/margin)
-          final double relativeX = hotspot.offset.dx / containerSize.width;
-          final double relativeY = hotspot.offset.dy / containerSize.height;
+    return widget.imageHotspotModel.hotspots.map((hotspot) {
+      final double relativeX = hotspot.offset.dx / containerSize.width;
+      final double relativeY = hotspot.offset.dy / containerSize.height;
 
-          return Positioned(
-            left: _isFullScreen
-                ? relativeX * MediaQuery.of(context).size.width
-                : hotspot.offset.dx,
-            top: _isFullScreen
-                ? relativeY * MediaQuery.of(context).size.height
-                : hotspot.offset.dy,
+      return Positioned(
+        left: _isFullScreen ? relativeX * MediaQuery.of(context).size.width : hotspot.offset.dx,
+        top: _isFullScreen ? relativeY * MediaQuery.of(context).size.height : hotspot.offset.dy,
         child: GestureDetector(
-          onTap: () => _showDialog(context, hotspot.dialogText),
+          onTap: () {
+            _showDialog(context, hotspot.dialogText);
+            setState(() {
+              hotspot.isTapped = true; // Update isTapped to true when tapped
+            });
+          },
           child: Container(
-            width: 50, // Consider making this responsive as well
-            height: 50, // Consider making this responsive as well
-            decoration: const BoxDecoration(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/lesson_26.png'),
+                image: AssetImage(hotspot.isTapped ? 'assets/images/2.png' : 'assets/images/lesson_26.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -264,7 +266,10 @@ class _ImageHotspotState extends State<ImageHotspot>
     }).toList();
   }
 
+
   Widget _buildContinueButton() {
+    bool allHotspotsTapped = _areAllHotspotsTapped(); // Check if all hotspots are tapped
+
     return Column(
       children: [
         const Divider(),
@@ -277,7 +282,7 @@ class _ImageHotspotState extends State<ImageHotspot>
             ),
             minimumSize: const Size(150, 37),
           ),
-          onPressed: () => Get.back(),
+          onPressed: allHotspotsTapped ? () => Get.back() : null, // Enable or disable based on allHotspotsTapped
           child: const Text(
             'جاری رہے',
             style: TextStyle(

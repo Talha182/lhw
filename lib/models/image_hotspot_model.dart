@@ -17,8 +17,10 @@ class ImageHotspotModel {
 class HotspotData {
   final String dialogText;
   final Offset offset;
+  bool isTapped; // Add this line
 
-  HotspotData({required this.dialogText, required this.offset});
+
+  HotspotData({required this.dialogText, required this.offset,this.isTapped = false});
 
   factory HotspotData.fromJson(Map<String, dynamic> json) {
     double dx = (json['offset']['dx'] != null) ? json['offset']['dx'].toDouble() : 0.0;
