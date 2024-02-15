@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/CourseTabbar/courses_tabbar.dart';
+import 'package:lhw/Presentation/Presentation.dart';
+import 'package:lhw/Presentation/presentation_model.dart';
 import 'package:lhw/Test/Features/InteractiveImage.dart';
 import 'package:lhw/api/firebase_api.dart';
 import 'package:lhw/firebase_options.dart';
@@ -66,7 +68,7 @@ class MyApp extends StatelessWidget {
             case AuthStatus.undecided:
               return const LoadingScreen();
             case AuthStatus.authenticated:
-              return  const Custom_NavBar();
+              return const Courses_Tabbar();
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();
