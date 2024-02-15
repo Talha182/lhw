@@ -301,7 +301,7 @@
                   "title": "Interactive Animation Video Example",
                   "isCompleted": false,
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "videoPath": "assets/videos/demo.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",

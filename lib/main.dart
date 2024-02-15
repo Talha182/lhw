@@ -64,9 +64,9 @@ class MyApp extends StatelessWidget {
         home: Obx(() {
           switch (AuthenticationRepository.instance.authStatus.value) {
             case AuthStatus.undecided:
-              return const LoadingScreen(); // your loading screen widget
+              return const LoadingScreen();
             case AuthStatus.authenticated:
-              return  const Courses_Tabbar();
+              return  const Custom_NavBar();
             case AuthStatus.unauthenticated:
             default:
               return const LoginScreen();
