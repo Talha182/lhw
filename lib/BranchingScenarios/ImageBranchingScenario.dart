@@ -84,7 +84,9 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario> {
                   Row(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.back();
+                        },
                         child: const Icon(
                           Icons.close,
                           size: 30,

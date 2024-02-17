@@ -64,14 +64,7 @@ class _InfographicScreenState extends State<InfographicScreen>
           Center(
               child: _buildCircleAndRectangleContainer(
                   imagePath, borderColor, text)),
-          // Center(child: _buildCircleContainer(imagePath, borderColor)),
-          // Positioned(
-          //   bottom:
-          //       70, // Adjust this value to position the rectangle as desired above the circle
-          //   left: 60,
-          //   child:
-          //       _buildRectangleContainer(borderColor, text), // Pass 'text' here
-          // ),
+
         ],
       ),
     );
@@ -143,7 +136,7 @@ class _InfographicScreenState extends State<InfographicScreen>
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
                   child: Row(
                     children: [
                       InkWell(

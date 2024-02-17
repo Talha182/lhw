@@ -55,9 +55,14 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               padding: const EdgeInsets.only(top: 70, left: 20, right: 20),
               child: Row(
                 children: [
-                  const Icon(
-                    Icons.close,
-                    size: 30,
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: const Icon(
+                      Icons.close,
+                      size: 30,
+                    ),
                   ),
                   const SizedBox(width: 5),
                   Expanded(
@@ -274,7 +279,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
                 minimumSize: const Size(150, 37),
               ),
               onPressed: () {
-                // Do something when the button is pressed
+                Get.back();
               },
               child: const Text(
                 "back",

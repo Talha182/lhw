@@ -111,7 +111,7 @@ class _ComicStripState extends State<ComicStrip>
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
                   child: Row(
                     children: [
                       InkWell(
