@@ -22,20 +22,22 @@ class InfographicScreen extends StatefulWidget {
 }
 
 class _InfographicScreenState extends State<InfographicScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   int _current = 0;
   double _progress = 0.0;
   late List<Widget> _carouselItems;
   late AnimationController _progressController;
   late Animation<double> _progressAnimation;
   Random random = Random();
-
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
   @override
   void initState() {
     super.initState();
     _carouselItems = List.generate(widget.infographicsModel.infographics.length, (index) {
       Color borderColor = random.nextBool() ? const Color(0xffAEDDBF) : const Color(0xffF49FC6);
       return _buildSlide(widget.infographicsModel.infographics[index].imagePath, borderColor, widget.infographicsModel.infographics[index].text);
+
     });
 
 
@@ -46,11 +48,27 @@ class _InfographicScreenState extends State<InfographicScreen>
           _progress = _progressAnimation.value;
         });
       });
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+      setState(() {});
+    });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
   }
 
   @override
   void dispose() {
     _progressController.dispose();
+    _cloudPumpAnimationController.dispose();
     super.dispose();
   }
 
@@ -168,25 +186,20 @@ class _InfographicScreenState extends State<InfographicScreen>
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 30),
+                  padding: const EdgeInsets.only(right: 30, top: 10),
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: SvgPicture.asset(
-                      'assets/images/cloud.svg',
-                      width: 20,
-                      height: 20,
-                      fit: BoxFit.contain,
+                    child: ScaleTransition(
+                      scale: _cloudPumpAnimation,
+                      child: SvgPicture.asset(
+                        'assets/images/cloud.svg',
+                        width: 20,
+                        height: 20,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),
-                // const Padding(
-                //   padding: EdgeInsets.all(10),
-                //   child: Text(
-                //     'آپ ڈیلیوری کے بعد چوتھے دن ماں سے ملنے جاتے ہیں۔ وہ اچانک بھاری اندام نہانی خارج ہونے کی شکایت کرتی ہے۔',
-                //     textAlign: TextAlign.center,
-                //     style: TextStyle(fontFamily: "UrduType", fontSize: 22),
-                //   ),
-                // ),
 
                 Expanded(
                   child: CarouselSlider.builder(

@@ -27,6 +27,7 @@ class _InteractiveImagesState extends State<InteractiveImages> {
   bool isMessageVisible = false;
   bool showTimerIcon = false;
   Timer? iconTimer;
+  bool showTimerGif = false;
 
   @override
   void initState() {
@@ -50,6 +51,15 @@ class _InteractiveImagesState extends State<InteractiveImages> {
       DeviceOrientation.landscapeLeft,
     ]);
     super.dispose();
+  }
+
+  void showGifTemporarily() {
+    setState(() => showTimerGif = true);
+    Future.delayed(const Duration(seconds: 5), () {
+      if (mounted) {
+        setState(() => showTimerGif = false);
+      }
+    });
   }
 
   void showMessageTemporarily() {
@@ -228,13 +238,13 @@ class _InteractiveImagesState extends State<InteractiveImages> {
               );
             } else if (currentImage.longPressAction == 'showTimer') {
               setState(() {
-                showTimerIcon = true;
+                showTimerGif = true;
               });
               iconTimer?.cancel(); // Cancel any existing timer
               iconTimer = Timer(const Duration(seconds: 5), () {
                 if (mounted) {
                   setState(() {
-                    showTimerIcon = false;
+                    showTimerGif = false;
                   });
                 }
               });
@@ -329,14 +339,14 @@ class _InteractiveImagesState extends State<InteractiveImages> {
                 )),
             draggableWidget(currentImage),
             dragTargetWidget(currentImage),
-            if (showTimerIcon)
-              const Positioned(
-                bottom: 100,
-                right: 100,
-                child: Icon(
-                  Icons.timer, // You can choose an appropriate icon
-                  size: 60,
-                  color: Colors.blue,
+            if (showTimerGif)
+              Positioned(
+                bottom: 100, // Adjust as needed
+                right: 100, // Adjust as needed
+                child: Image.asset(
+                  'assets/gifs/Stopwatch.gif', // Specify your GIF file path here
+                  width: 100, // Adjust size as needed
+                  height: 100, // Adjust size as needed
                 ),
               ),
           ],

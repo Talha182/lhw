@@ -20,11 +20,13 @@ class ImageHotspot extends StatefulWidget {
 }
 
 class _ImageHotspotState extends State<ImageHotspot>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   bool _isFullScreen = false;
   GlobalKey _imageKey = GlobalKey();
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
 
   @override
   void initState() {
@@ -36,11 +38,28 @@ class _ImageHotspotState extends State<ImageHotspot>
     _scaleAnimation = Tween(begin: 1.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+    _cloudPumpAnimationController.dispose();
+
     super.dispose();
   }
 
@@ -72,8 +91,10 @@ class _ImageHotspotState extends State<ImageHotspot>
       },
     );
   }
+
   bool _areAllHotspotsTapped() {
-    return widget.imageHotspotModel.hotspots.every((hotspot) => hotspot.isTapped);
+    return widget.imageHotspotModel.hotspots
+        .every((hotspot) => hotspot.isTapped);
   }
 
   @override
@@ -143,12 +164,16 @@ class _ImageHotspotState extends State<ImageHotspot>
           padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
           child: Align(
             alignment: Alignment.centerRight,
-            child: SvgPicture.asset(
-              'assets/images/cloud.svg',
-              width: 20,
-              height: 20,
-              fit: BoxFit.contain,
+            child: ScaleTransition(
+              scale: _cloudPumpAnimation,
+              child: SvgPicture.asset(
+                'assets/images/cloud.svg',
+                width: 20,
+                height: 20,
+                fit: BoxFit.contain,
+              ),
             ),
+
           ),
         ),
         const Padding(
@@ -234,7 +259,8 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   List<Widget> _buildHotspots(BuildContext context) {
-    final containerRenderBox = _imageKey.currentContext?.findRenderObject() as RenderBox?;
+    final containerRenderBox =
+        _imageKey.currentContext?.findRenderObject() as RenderBox?;
     final containerSize = containerRenderBox?.size ?? Size.zero;
 
     return widget.imageHotspotModel.hotspots.map((hotspot) {
@@ -242,8 +268,12 @@ class _ImageHotspotState extends State<ImageHotspot>
       final double relativeY = hotspot.offset.dy / containerSize.height;
 
       return Positioned(
-        left: _isFullScreen ? relativeX * MediaQuery.of(context).size.width : hotspot.offset.dx,
-        top: _isFullScreen ? relativeY * MediaQuery.of(context).size.height : hotspot.offset.dy,
+        left: _isFullScreen
+            ? relativeX * MediaQuery.of(context).size.width
+            : hotspot.offset.dx,
+        top: _isFullScreen
+            ? relativeY * MediaQuery.of(context).size.height
+            : hotspot.offset.dy,
         child: GestureDetector(
           onTap: () {
             _showDialog(context, hotspot.dialogText);
@@ -256,7 +286,9 @@ class _ImageHotspotState extends State<ImageHotspot>
             height: 50,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(hotspot.isTapped ? 'assets/images/2.png' : 'assets/images/lesson_26.png'),
+                image: AssetImage(hotspot.isTapped
+                    ? 'assets/images/2.png'
+                    : 'assets/images/lesson_26.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -266,9 +298,9 @@ class _ImageHotspotState extends State<ImageHotspot>
     }).toList();
   }
 
-
   Widget _buildContinueButton() {
-    bool allHotspotsTapped = _areAllHotspotsTapped(); // Check if all hotspots are tapped
+    bool allHotspotsTapped =
+        _areAllHotspotsTapped(); // Check if all hotspots are tapped
 
     return Column(
       children: [
@@ -282,7 +314,9 @@ class _ImageHotspotState extends State<ImageHotspot>
             ),
             minimumSize: const Size(150, 37),
           ),
-          onPressed: allHotspotsTapped ? () => Get.back() : null, // Enable or disable based on allHotspotsTapped
+          onPressed: allHotspotsTapped
+              ? () => Get.back()
+              : null, // Enable or disable based on allHotspotsTapped
           child: const Text(
             'جاری رہے',
             style: TextStyle(
@@ -297,75 +331,75 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   Widget _buildFullScreenImage(BuildContext context) {
-    return  ScaleTransition(
-          scale: _scaleAnimation,
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(widget.imageHotspotModel.imagePath),
-                fit: BoxFit.cover,
+    return ScaleTransition(
+      scale: _scaleAnimation,
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(widget.imageHotspotModel.imagePath),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // Define your onTap functionality here for the top left button
+                    print("Top left button tapped");
+                  },
+                  child: Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black.withOpacity(0.4),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        'assets/images/touch.svg',
+                        width: 30,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        // Define your onTap functionality here for the top left button
-                        print("Top left button tapped");
-                      },
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.black.withOpacity(0.4),
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            'assets/images/touch.svg',
-                            width: 30,
-                          ),
-                        ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    _toggleFullScreen();
+                  },
+                  child: Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black.withOpacity(0.4),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        'assets/images/full_screen.svg',
+                        width: 30,
                       ),
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _toggleFullScreen();
-                      },
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.black.withOpacity(0.4),
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            'assets/images/full_screen.svg',
-                            width: 30,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                ..._buildHotspots(context), // Use the spread operator here
-              ],
+              ),
             ),
-          ),
-        );
+            ..._buildHotspots(context), // Use the spread operator here
+          ],
+        ),
+      ),
+    );
   }
 }
 

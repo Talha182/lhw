@@ -104,6 +104,7 @@ flutter:
     - assets/Script 5/
     - assets/Script 9/
     - assets/Script 10/
+    - assets/gifs/
 
   fonts:
     - family: UrduType

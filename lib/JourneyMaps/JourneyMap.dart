@@ -7,7 +7,7 @@ import '../CourseTabbar/ModuleScreen/FeaturesListScreen.dart';
 import '../controllers/feature_navigation.dart';
 import '../courses_test/test_model.dart';
 
-class JourneyMapScreen extends StatelessWidget {
+class JourneyMapScreen extends StatefulWidget {
   final Module module;
   final String courseTitle; // Add this line
   final Gradient gradient;
@@ -26,106 +26,249 @@ class JourneyMapScreen extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+  State<JourneyMapScreen> createState() => _JourneyMapScreenState();
+}
 
+class _JourneyMapScreenState extends State<JourneyMapScreen>
+    with TickerProviderStateMixin {
+  late AnimationController _cloudAnimationController1;
+  late Animation<double> _cloudAnimation1;
+  late AnimationController _cloudAnimationController2;
+  late Animation<double> _cloudAnimation2;
+  late AnimationController _pathAnimationController;
+  late Animation<Offset> _slideAnimation;
+  late Animation<double> _fadeAnimation;
+  late AnimationController _avatarAnimationController;
+  late Animation<double> _bounceAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _pathAnimationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 1), end: Offset.zero)
+        .animate(CurvedAnimation(
+            parent: _pathAnimationController, curve: Curves.ease));
+    _fadeAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_pathAnimationController);
+    _pathAnimationController.forward();
+
+    _avatarAnimationController = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 800),
+        lowerBound: 0.0,
+        upperBound: 0.1)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _avatarAnimationController.stop();
+        } else if (status == AnimationStatus.dismissed) {
+          _avatarAnimationController.forward();
+        }
+      });
+    _bounceAnimation = CurvedAnimation(
+        parent: _avatarAnimationController, curve: Curves.elasticOut);
+
+    _avatarAnimationController.forward();
+
+    // Initialize with a default duration, but without using MediaQuery.
+    _cloudAnimationController1 = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 10),
+    );
+    _cloudAnimationController2 = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 10),
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final screenWidth = MediaQuery.of(context).size.width;
+
+      // Configure the animations now that you have the screen width.
+      _cloudAnimation1 = Tween(begin: -50.0, end: screenWidth)
+          .animate(_cloudAnimationController1)
+        ..addListener(() {
+          setState(
+              () {}); // Call setState if needed to rebuild the widget with updated values
+        })
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            _cloudAnimationController1.repeat();
+          }
+        });
+      _cloudAnimationController1.forward();
+
+      _cloudAnimation2 = Tween(begin: -30.0, end: screenWidth)
+          .animate(_cloudAnimationController2)
+        ..addListener(() {
+          setState(() {}); // Same here for the second animation
+        })
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            _cloudAnimationController2.repeat();
+          }
+        });
+      _cloudAnimationController2.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _cloudAnimationController1.dispose();
+    _cloudAnimationController2.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: const Alignment(0, -0.2),
-            colors: [
-              const Color(0xff80B8FB).withOpacity(0.3),
-              Colors.transparent
-            ],
-          ),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              top: 70,
-              right: 30,
-              child: SvgPicture.asset('assets/images/cloud.svg',
-                  width: 30, height: 30),
-            ),
-            Positioned(
-              top: 90,
-              left: 30,
-              child: SvgPicture.asset('assets/images/cloud.svg',
-                  width: 30, height: 30),
-            ),
-            Positioned(
-              left: 10,
-              top: 180,
-              child: SvgPicture.asset("assets/images/path.svg"),
-            ),
-            Positioned(
-              left: 15,
-              top: 190,
-              child: SvgPicture.asset("assets/images/path_dots.svg"),
-            ),
-            Positioned(
-              left: 10,
-              top: 110,
-              child: SvgPicture.asset("assets/images/pencil.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              child: SvgPicture.asset("assets/images/build1.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 80,
-              child: SvgPicture.asset("assets/images/build2.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 200,
-              child: SvgPicture.asset("assets/images/build3.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: SvgPicture.asset("assets/images/build4.svg"),
-            ),
-            Positioned(
-              bottom: 0,
-              child: SvgPicture.asset("assets/images/bottom.svg"),
-            ),
-            Positioned(
-              bottom: 60,
-              right: 15,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset("assets/images/samina_instructor.svg",
-                      fit: BoxFit.fill),
-                ),
+      body: AnimatedBuilder(
+        animation: Listenable.merge(
+            [_cloudAnimationController1, _cloudAnimationController2]),
+        builder: (context, child) {
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: const Alignment(0, -0.2),
+                colors: [
+                  const Color(0xff80B8FB).withOpacity(0.3),
+                  Colors.transparent
+                ],
               ),
             ),
-            ...module.submodules.asMap().entries.map((entry) {
-              int index = entry.key;
-              Submodule submodule = module.submodules[index];
-              bool isRightAligned = submodule.titleAlignment == 'right';
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 70,
+                  right: _cloudAnimation1.value,
+                  child: SvgPicture.asset('assets/images/cloud.svg',
+                      width: 30, height: 30),
+                ),
+                Positioned(
+                  top: 90,
+                  left: _cloudAnimation2.value,
+                  child: SvgPicture.asset('assets/images/cloud.svg',
+                      width: 30, height: 30),
+                ),
+                Positioned(
+                  left: 10,
+                  top: 180,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: SvgPicture.asset("assets/images/path.svg"),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 15,
+                  top: 190,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: SvgPicture.asset("assets/images/path_dots.svg"),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 10,
+                  top: 110,
+                  child: SvgPicture.asset("assets/images/pencil.svg"),
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: SvgPicture.asset("assets/images/build1.svg"),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 80,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: SvgPicture.asset("assets/images/build2.svg"),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 200,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: SvgPicture.asset("assets/images/build3.svg"),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: SvgPicture.asset("assets/images/build4.svg"),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: SvgPicture.asset("assets/images/bottom.svg"),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 60,
+                  right: 15,
+                  child: ScaleTransition(
+                    scale: _bounceAnimation,
+                    child: CircleAvatar(
+                      backgroundColor: const Color(0xffF6B3D0),
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 2),
+                        child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            fit: BoxFit.fill),
+                      ),
+                    ),
+                  ),
+                ),
+                ...widget.module.submodules.asMap().entries.map((entry) {
+                  int index = entry.key;
+                  Submodule submodule = widget.module.submodules[index];
+                  bool isRightAligned = submodule.titleAlignment == 'right';
 
-              Offset buttonPosition = Offset(
-                submodule.buttonPosition['dx'] ?? 0.0, // Provide a default value in case the key doesn't exist
-                submodule.buttonPosition['dy'] ?? 0.0,
-              );
+                  Offset buttonPosition = Offset(
+                    submodule.buttonPosition['dx'] ?? 0.0,
+                    submodule.buttonPosition['dy'] ?? 0.0,
+                  );
 
-              return Positioned(
-                left: buttonPosition.dx,
-                top: buttonPosition.dy,
-                child: isRightAligned
-                    ? _buildRightAlignedRow(context, submodule)
-                    : _buildLeftAlignedRow(context, submodule),
-              );
-            }).toList(),
-          ],
-        ),
+                  return Positioned(
+                    left: buttonPosition.dx,
+                    top: buttonPosition.dy,
+                    child: isRightAligned
+                        ? _buildRightAlignedRow(context, submodule)
+                        : _buildLeftAlignedRow(context, submodule),
+                  );
+                }).toList(),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -333,11 +476,11 @@ class JourneyMapScreen extends StatelessWidget {
   void navigateToSubmoduleFeatures(Submodule submodule) {
     Get.to(() => FeaturesListScreen(
           submodule: submodule,
-          courseTitle: courseTitle,
-          courseQuizCount: courseQuizCount,
-          courseModuleCount: courseModuleCount,
-          imagePath: imagePath,
-          gradient: gradient, // Pass the course title here
+          courseTitle: widget.courseTitle,
+          courseQuizCount: widget.courseQuizCount,
+          courseModuleCount: widget.courseModuleCount,
+          imagePath: widget.imagePath,
+          gradient: widget.gradient, // Pass the course title here
         ));
   }
 }

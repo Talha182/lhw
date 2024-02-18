@@ -24,7 +24,8 @@ class InteractiveAnimationVideo extends StatefulWidget {
       _InteractiveAnimationVideoState();
 }
 
-class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
+class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
+    with SingleTickerProviderStateMixin {
   late VideoPlayerController _videoController;
   late FlickManager flickManager;
   late Set<int> _shownQuestions; // Track which questions have been shown
@@ -38,7 +39,8 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
   int? selectedOptionIndex;
   bool isDialogShown = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
-  // final navigationController = Get.find<FeatureNavigationController>();
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
 
   @override
   void initState() {
@@ -51,6 +53,21 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
       ..addListener(_videoListener);
     flickManager = FlickManager(videoPlayerController: _videoController);
     _shownQuestions = {};
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
   }
 
   @override
@@ -58,6 +75,8 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
     _videoController.removeListener(_videoListener);
     _videoController.dispose();
     flickManager.dispose();
+    _cloudPumpAnimationController.dispose();
+
     super.dispose();
   }
 
@@ -301,14 +320,17 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 20, bottom: 10),
+                padding: const EdgeInsets.only(right: 20, bottom: 5, top: 10),
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: SvgPicture.asset(
-                    'assets/images/cloud.svg',
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
+                  child: ScaleTransition(
+                    scale: _cloudPumpAnimation,
+                    child: SvgPicture.asset(
+                      'assets/images/cloud.svg',
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
@@ -397,7 +419,8 @@ class InteractiveAnimationVideoModel {
         .map((questionJson) => Question.fromJson(questionJson))
         .toList();
     List<Duration> questionDurations = (json['questionDurations'] as List)
-        .map((durationString) => Duration(seconds: int.parse(durationString.split(":").last)))
+        .map((durationString) =>
+            Duration(seconds: int.parse(durationString.split(":").last)))
         .toList();
 
     return InteractiveAnimationVideoModel(
@@ -407,6 +430,7 @@ class InteractiveAnimationVideoModel {
     );
   }
 }
+
 class Question {
   final String question;
   final List<String> options;

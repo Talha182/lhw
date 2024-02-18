@@ -19,8 +19,7 @@ class ComicStrip extends StatefulWidget {
   _ComicStripState createState() => _ComicStripState();
 }
 
-class _ComicStripState extends State<ComicStrip>
-    with SingleTickerProviderStateMixin {
+class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
   int _current = 0;
   double _progress = 0.0;
   late List<Widget> _carouselItems;
@@ -28,6 +27,9 @@ class _ComicStripState extends State<ComicStrip>
   late Animation<double> _progressAnimation;
   bool _isLiked = false;
   bool _isDisliked = false;
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
+
   @override
   void initState() {
     super.initState();
@@ -47,11 +49,28 @@ class _ComicStripState extends State<ComicStrip>
           _progress = _progressAnimation.value;
         });
       });
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
   }
 
   @override
   void dispose() {
     _progressController.dispose();
+    _cloudPumpAnimationController.dispose();
+
     super.dispose();
   }
 
@@ -72,7 +91,13 @@ class _ComicStripState extends State<ComicStrip>
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          Get.to(() => FullScreenImageView(imagePath: imagePath));
+          Navigator.of(context).push(PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                FadeTransition(
+              opacity: animation,
+              child: FullScreenImageView(imagePath: imagePath),
+            ),
+          ));
         },
         child: Container(
           decoration: BoxDecoration(
@@ -143,19 +168,23 @@ class _ComicStripState extends State<ComicStrip>
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 30),
+                  padding: const EdgeInsets.only(right: 30, top: 10),
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: SvgPicture.asset(
-                      'assets/images/cloud.svg',
-                      width: 20,
-                      height: 20,
-                      fit: BoxFit.contain,
+                    child: ScaleTransition(
+                      scale: _cloudPumpAnimation,
+                      child: SvgPicture.asset(
+                        'assets/images/cloud.svg',
+                        width: 20,
+                        height: 20,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding:
+                      const EdgeInsets.only(bottom: 10, left: 10, right: 10),
                   child: Text(
                     widget.comicStripsModel.first.title,
                     textAlign: TextAlign.center,

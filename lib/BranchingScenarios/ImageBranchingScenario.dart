@@ -17,7 +17,8 @@ class ImageBranchingScenario extends StatefulWidget {
   State<ImageBranchingScenario> createState() => _ImageBranchingScenarioState();
 }
 
-class _ImageBranchingScenarioState extends State<ImageBranchingScenario> {
+class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
+    with SingleTickerProviderStateMixin {
   bool isSelected = false;
   bool isAnswered = false;
 
@@ -29,6 +30,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario> {
   final CarouselController _carouselController = CarouselController();
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
 
 // Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
@@ -62,6 +65,33 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _cloudPumpAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -78,8 +108,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario> {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 0, left: 20, right: 20),
-              child: ListView(
+              padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
+              child: Column(
                 children: [
                   Row(
                     children: [
@@ -134,182 +164,197 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario> {
                     padding: const EdgeInsets.only(right: 10, bottom: 10),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: SvgPicture.asset(
-                        'assets/images/cloud.svg',
-                        width: 20,
-                        height: 20,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                  Material(
-                    elevation: 2.0, // Adjust the elevation level as desired
-                    borderRadius: BorderRadius.circular(
-                        10), // To match the Container's border radius
-                    child: Container(
-                      width: double.infinity,
-                      height: 340,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              color: Colors.black87.withOpacity(0.1))),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Container(
-                              width: double.infinity,
-                              height: 160,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: CarouselSlider(
-                                  options: CarouselOptions(
-                                    aspectRatio: 16 / 9,
-                                    enlargeCenterPage: true,
-                                    scrollDirection: Axis.horizontal,
-                                    autoPlay: false,
-                                    viewportFraction:
-                                        1.0, // Ensure each page takes up the full carousel width
-                                  ),
-                                  carouselController:
-                                      _carouselController, // Ensure you've connected the CarouselController
-                                  items: widget.imageBranchingScenarioModel
-                                      .questions[questionIndex].imagePaths
-                                      .map((imagePath) {
-                                    return Builder(
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 5.0),
-                                          decoration: const BoxDecoration(
-                                            color: Colors.amber,
-                                          ),
-                                          child: Image.asset(imagePath,
-                                              fit: BoxFit.cover),
-                                        );
-                                      },
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Text(
-                              widget.imageBranchingScenarioModel
-                                  .questions[questionIndex].question,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontFamily: "UrduType", fontSize: 22),
-                            ),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xffFE8BD1),
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                minimumSize: const Size(150, 37),
-                              ),
-                              onPressed: () {
-                                _carouselController.nextPage(
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.linear);
-                              },
-                              child: const Text(
-                                'اگلے',
-                                style: TextStyle(
-                                  fontFamily: 'UrduType',
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Center(
-                    child: Text(
-                      "بہترین آپشن کا انتخاب کریں۔",
-                      style: TextStyle(fontFamily: "UrduType", fontSize: 23),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Column(
-                    children: List.generate(
-                      widget.imageBranchingScenarioModel
-                          .questions[questionIndex].options.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: QuizCard(
-                          text: widget.imageBranchingScenarioModel
-                              .questions[questionIndex].options[index],
-                          ontap: () => updateQuestion(
-                              widget.imageBranchingScenarioModel
-                                  .questions[questionIndex].options[index],
-                              index),
-                          color: optionColors[index],
-                          isCorrect: selectedAnswer ==
-                              widget.imageBranchingScenarioModel
-                                  .questions[questionIndex].correctAnswer,
-                          isSelected: isSelected,
-                          isOptionSelected: index == selectedOptionIndex,
+                      child: ScaleTransition(
+                        scale: _cloudPumpAnimation,
+                        child: SvgPicture.asset(
+                          'assets/images/cloud.svg',
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.contain,
                         ),
                       ),
-                    ).animate(interval: 200.ms).fade(duration: 200.ms),
+                    ),
                   ),
-                  const Spacer(),
-                  Positioned(
-                      bottom: 0,
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Divider(
-                              height: 1,
-                              thickness: 1,
-                              color: Colors.black87.withOpacity(0.1),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              width: 150,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffFE8BD1),
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const Center(
-                                child: Text(
-                                  'جاری رہے',
-                                  style: TextStyle(
-                                    fontFamily: 'UrduType',
-                                    fontSize: 15,
-                                    color: Colors.white,
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        Material(
+                          elevation:
+                              2.0, // Adjust the elevation level as desired
+                          borderRadius: BorderRadius.circular(
+                              10), // To match the Container's border radius
+                          child: Container(
+                            width: double.infinity,
+                            height: 340,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                    color: Colors.black87.withOpacity(0.1))),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 160,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: CarouselSlider(
+                                        options: CarouselOptions(
+                                          aspectRatio: 16 / 9,
+                                          enlargeCenterPage: true,
+                                          scrollDirection: Axis.horizontal,
+                                          autoPlay: false,
+                                          viewportFraction:
+                                              1.0, // Ensure each page takes up the full carousel width
+                                        ),
+                                        carouselController:
+                                            _carouselController, // Ensure you've connected the CarouselController
+                                        items: widget
+                                            .imageBranchingScenarioModel
+                                            .questions[questionIndex]
+                                            .imagePaths
+                                            .map((imagePath) {
+                                          return Builder(
+                                            builder: (BuildContext context) {
+                                              return Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5.0),
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.amber,
+                                                ),
+                                                child: Image.asset(imagePath,
+                                                    fit: BoxFit.cover),
+                                              );
+                                            },
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            )
-                          ],
+                                Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Text(
+                                    widget.imageBranchingScenarioModel
+                                        .questions[questionIndex].question,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontFamily: "UrduType", fontSize: 22),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xffFE8BD1),
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      minimumSize: const Size(150, 37),
+                                    ),
+                                    onPressed: () {
+                                      _carouselController.nextPage(
+                                          duration:
+                                              const Duration(milliseconds: 300),
+                                          curve: Curves.linear);
+                                    },
+                                    child: const Text(
+                                      'اگلے',
+                                      style: TextStyle(
+                                        fontFamily: 'UrduType',
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ))
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Center(
+                          child: Text(
+                            "بہترین آپشن کا انتخاب کریں۔",
+                            style:
+                                TextStyle(fontFamily: "UrduType", fontSize: 23),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Column(
+                          children: List.generate(
+                            widget.imageBranchingScenarioModel
+                                .questions[questionIndex].options.length,
+                            (index) => Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: QuizCard(
+                                text: widget.imageBranchingScenarioModel
+                                    .questions[questionIndex].options[index],
+                                ontap: () => updateQuestion(
+                                    widget
+                                        .imageBranchingScenarioModel
+                                        .questions[questionIndex]
+                                        .options[index],
+                                    index),
+                                color: optionColors[index],
+                                isCorrect: selectedAnswer ==
+                                    widget.imageBranchingScenarioModel
+                                        .questions[questionIndex].correctAnswer,
+                                isSelected: isSelected,
+                                isOptionSelected: index == selectedOptionIndex,
+                              ),
+                            ),
+                          ).animate(interval: 200.ms).fade(duration: 200.ms),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 15, top: 5),
+                          child: Column(
+                            children: [
+                              Divider(
+                                height: 1,
+                                thickness: 1,
+                                color: Colors.black87.withOpacity(0.1),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                width: 150,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xffFE8BD1),
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: const Center(
+                                  child: Text(
+                                    'جاری رہے',
+                                    style: TextStyle(
+                                      fontFamily: 'UrduType',
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -434,7 +479,6 @@ class Question {
   }
 }
 
-
 class ImageBranchingScenarioModel {
   final List<Question> questions;
 
@@ -442,7 +486,9 @@ class ImageBranchingScenarioModel {
 
   factory ImageBranchingScenarioModel.fromJson(Map<String, dynamic> json) {
     var questionsFromJson = json['questions'] as List;
-    List<Question> questionList = questionsFromJson.map((questionJson) => Question.fromJson(questionJson)).toList();
+    List<Question> questionList = questionsFromJson
+        .map((questionJson) => Question.fromJson(questionJson))
+        .toList();
     return ImageBranchingScenarioModel(questions: questionList);
   }
 }

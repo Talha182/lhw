@@ -20,17 +20,47 @@ class TextBranchingScenario extends StatefulWidget {
   _TextBranchingScenarioState createState() => _TextBranchingScenarioState();
 }
 
-class _TextBranchingScenarioState extends State<TextBranchingScenario> {
+class _TextBranchingScenarioState extends State<TextBranchingScenario>
+    with SingleTickerProviderStateMixin {
   bool isSelected = false;
   bool isAnswered = false;
   final ResultsController resultsController = Get.put(ResultsController());
   final BookmarkController bookmarkController = Get.put(BookmarkController());
-  // final navigationController = Get.find<FeatureNavigationController>();
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
 
   int _current = 0;
   int _totalSteps = 100;
   int questionIndex = 0;
   String selectedAnswer = '';
+  @override
+  void initState() {
+    super.initState();
+    // Initialize other parts of initState...
+
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _cloudPumpAnimationController.dispose();
+    // Dispose other controllers...
+    super.dispose();
+  }
 
   List<Color> optionColors = [Colors.white, Colors.white, Colors.white];
   List<bool> isSelectedList = [
@@ -276,12 +306,16 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario> {
                     padding: const EdgeInsets.only(right: 30, top: 10),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: SvgPicture.asset(
-                        'assets/images/cloud.svg',
-                        width: 20,
-                        height: 20,
-                        fit: BoxFit.contain,
+                      child: ScaleTransition(
+                        scale: _cloudPumpAnimation,
+                        child: SvgPicture.asset(
+                          'assets/images/cloud.svg',
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.contain,
+                        ),
                       ),
+
                     ),
                   ),
                   Padding(

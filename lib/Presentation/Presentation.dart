@@ -21,7 +21,8 @@ class Presentation extends StatefulWidget {
   State<Presentation> createState() => _PresentationState();
 }
 
-class _PresentationState extends State<Presentation> {
+class _PresentationState extends State<Presentation>
+    with TickerProviderStateMixin {
   bool isPlaying = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   int currentPage = 0;
@@ -33,6 +34,8 @@ class _PresentationState extends State<Presentation> {
   String selectedAnswer = '';
   int? selectedOptionIndex;
   bool isDialogShown = false;
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
 
   List<Color> optionColors = [
     const Color(0xffF2F2F2),
@@ -57,6 +60,21 @@ class _PresentationState extends State<Presentation> {
         });
       }
     });
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
   }
 
 // Update the 'updateQuestion' method
@@ -295,6 +313,7 @@ class _PresentationState extends State<Presentation> {
   void dispose() {
     _slideshowTimer?.cancel();
     _pageController.dispose();
+    _cloudPumpAnimationController.dispose();
     super.dispose();
   }
 
@@ -371,14 +390,17 @@ class _PresentationState extends State<Presentation> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 10, top: 20),
+                padding: const EdgeInsets.only(right: 20, top: 10),
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: SvgPicture.asset(
-                    'assets/images/cloud.svg',
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
+                  child: ScaleTransition(
+                    scale: _cloudPumpAnimation,
+                    child: SvgPicture.asset(
+                      'assets/images/cloud.svg',
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
@@ -574,7 +596,7 @@ class _PresentationState extends State<Presentation> {
                   ),
                   onPressed: hasVisitedLastImage
                       ? () {
-                    Get.back();
+                          Get.back();
                         }
                       : null,
                   child: const Text(

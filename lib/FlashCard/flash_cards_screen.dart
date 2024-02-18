@@ -19,7 +19,8 @@ class FlashCardsScreen extends StatefulWidget {
   _FlashCardsScreenState createState() => _FlashCardsScreenState();
 }
 
-class _FlashCardsScreenState extends State<FlashCardsScreen> {
+class _FlashCardsScreenState extends State<FlashCardsScreen>
+    with SingleTickerProviderStateMixin {
   int _current = 0;
   final int _totalSteps = 100;
   bool _isLastCardFlipped = false;
@@ -27,12 +28,35 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
   final CarouselController _carouselController = CarouselController();
   late List<bool> _flippedStates;
   bool isCurrentFlipped = false; // Add this line
+  late AnimationController _cloudPumpAnimationController;
+  late Animation<double> _cloudPumpAnimation;
 
   @override
   void initState() {
     super.initState();
     _flippedStates =
         List<bool>.filled(widget.flashCardModel.cards.length, false);
+    _cloudPumpAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _cloudPumpAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _cloudPumpAnimationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _cloudPumpAnimationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -109,12 +133,16 @@ class _FlashCardsScreenState extends State<FlashCardsScreen> {
               padding: const EdgeInsets.only(right: 30, top: 15),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: SvgPicture.asset(
-                  'assets/images/cloud.svg',
-                  width: 20,
-                  height: 20,
-                  fit: BoxFit.contain,
+                child: ScaleTransition(
+                  scale: _cloudPumpAnimation,
+                  child: SvgPicture.asset(
+                    'assets/images/cloud.svg',
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.contain,
+                  ),
                 ),
+
               ),
             ),
             Padding(
