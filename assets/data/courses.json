@@ -1033,52 +1033,36 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 11.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 12.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/Script 3/Script 3-04.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 13.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 14.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 15.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 16.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 17.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 18.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 19.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 20.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 21.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 22.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 23.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 24.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/Script 3/Script 3-16.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/Script 3/Script 3-19.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/Script 3/Script 3-20.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/Script 3/Script 3-22.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/Script 3/Script 3-24.png"
+                          "topImage": "assets/Script 22/Artboard 1 copy 25.png",
+                          "bottomImage": "assets/Script 22/Artboard 1 copy 26.png"
                         }
                       ]
                     }
@@ -1164,12 +1148,13 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/Script 25/Artboard 1.png",
+                      "assets/Script 25/Artboard 2.png",
+                      "assets/Script 25/Artboard 3.png",
+                      "assets/Script 25/Artboard 4.png",
+                      "assets/Script 25/Artboard 5.png",
+                      "assets/Script 25/Artboard 6.png",
+                      "assets/Script 25/Artboard 7.png"
                     ],
                     "questions": [
                       {
@@ -1213,17 +1198,38 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
+                      "frontImage": "assets/Script 26/Artboard 12@2x.png",
+                      "backImage": "assets/Script 26/Artboard 10@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
+                      "frontImage": "assets/Script 26/Artboard 14@2x.png",
+                      "backImage": "assets/Script 26/Artboard 13@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
+                      "frontImage": "assets/Script 26/Artboard 16@2x.png",
+                      "backImage": "assets/Script 26/Artboard 15@2x.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 26/Artboard 18@2x.png",
+                      "backImage": "assets/Script 26/Artboard 19@2x.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 26/Artboard 20@2x.png",
+                      "backImage": "assets/Script 26/Artboard 22@2x.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 26/Artboard 23@2x.png",
+                      "backImage": "assets/Script 26/Artboard 24@2x.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 26/Artboard 25@2x.png",
+                      "backImage": "assets/Script 26/Artboard 26@2x.png"
+                    },
+                    {
+                      "frontImage": "assets/Script 26/Artboard 27@2x.png",
+                      "backImage": "assets/Script 26/Artboard 10@2x.png"
                     }
+
                   ]
                 }
               ]
@@ -1251,53 +1257,30 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                          "topImage": "assets/Script 27/Artboard 14.png",
+                          "bottomImage": "assets/Script 27/Artboard 15.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/Script 3/Script 3-04.png"
+                          "topImage": "assets/Script 27/Artboard 16.png",
+                          "bottomImage": "assets/Script 27/Artboard 17.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                          "topImage": "assets/Script 27/Artboard 18.png",
+                          "bottomImage": "assets/Script 27/Artboard 19.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                          "topImage": "assets/Script 27/Artboard 20.png",
+                          "bottomImage": "assets/Script 27/Artboard 21.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                          "topImage": "assets/Script 27/Artboard 22.png",
+                          "bottomImage": "assets/Script 27/Artboard 23.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/Script 3/Script 3-12.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/Script 3/Script 3-14.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/Script 3/Script 3-16.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/Script 3/Script 3-19.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/Script 3/Script 3-20.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/Script 3/Script 3-22.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/Script 3/Script 3-24.png"
+                          "topImage": "assets/Script 27/Artboard 24.png",
+                          "bottomImage": "assets/Script 27/Artboard 25.png"
                         }
+
                       ]
                     }
                   ]
@@ -1514,12 +1497,14 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/Script 32/Artboard 1.png",
+                      "assets/Script 32/Artboard 2.png",
+                      "assets/Script 32/Artboard 3.png",
+                      "assets/Script 32/Artboard 4.png",
+                      "assets/Script 32/Artboard 5.png",
+                      "assets/Script 32/Artboard 6.png",
+                      "assets/Script 32/Artboard 7.png",
+                      "assets/Script 32/Artboard 10.png"
                     ],
                     "questions": [
                       {
@@ -1586,12 +1571,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/Script 33/Artboard 1.png",
+                      "assets/Script 33/Artboard 2.png",
+                      "assets/Script 33/Artboard 3.png",
+                      "assets/Script 33/Artboard 4.png",
+                      "assets/Script 33/Artboard 5.png",
+                      "assets/Script 33/Artboard 6.png"
                     ],
                     "questions": [
                       {
@@ -1638,16 +1623,16 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                          "topImage": "assets/Script 34/Artboard 1 copy 2.png",
+                          "bottomImage": "assets/Script 34/Artboard 1 copy 3.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/Script 3/Script 3-04.png"
+                          "topImage": "assets/Script 34/Artboard 1 copy 4.png",
+                          "bottomImage": "assets/Script 34/Artboard 1 copy 5.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                          "topImage": "assets/Script 34/Artboard 1 copy 2.png",
+                          "bottomImage": "assets/Script 34/Artboard 1 copy 2.png"
                         },
                         {
                           "topImage": "assets/Script 3/Script 3-07.png",
