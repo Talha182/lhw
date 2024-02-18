@@ -442,7 +442,7 @@ class _PresentationState extends State<Presentation>
                                   maxScale: 3.0,
                                   child: Image.asset(
                                     widget.presentationModel.assetImages[index],
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.fitWidth,
                                   ),
                                 ),
                               );
@@ -906,7 +906,7 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
                           image: AssetImage(
                             widget.assetImages[index],
                           ),
-                          fit: BoxFit.fill)),
+                          fit: BoxFit.fitWidth)),
                 );
               },
             ),
