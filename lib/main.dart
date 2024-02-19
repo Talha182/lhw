@@ -10,6 +10,7 @@ import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'CourseTabbar/course_provider.dart';
 import 'LoginSignUp/Login.dart';
 
@@ -17,11 +18,13 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
 
 
-  runApp(const MaterialApp(
+  runApp( MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+    home: MyApp(isLoggedIn: isLoggedIn,),
   ));
 }
 
@@ -35,7 +38,9 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool isLoggedIn;
+
+  const MyApp({Key? key, required this.isLoggedIn}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +61,7 @@ class MyApp extends StatelessWidget {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-        home: const LoginScreen(),
+        home: isLoggedIn ? const Custom_NavBar() : const LoginScreen(),
       ),
     );
   }

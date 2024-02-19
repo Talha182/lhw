@@ -131,6 +131,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             color: Color(0xff878787)),
                       ),
                       GestureDetector(
+                        onTap: () {
+                          Get.back;
+                        },
                         child: const Text(
                           "لاگ ان کریں",
                           style: TextStyle(

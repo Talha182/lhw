@@ -58,8 +58,8 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
       }
     });
     _pathAnimationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
-    _slideAnimation = Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero)
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 1), end: Offset.zero)
         .animate(CurvedAnimation(
             parent: _pathAnimationController, curve: Curves.ease));
     _fadeAnimation =
@@ -68,7 +68,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
 
     _avatarAnimationController = AnimationController(
         vsync: this,
-        duration: const Duration(milliseconds: 800),
+        duration: Duration(milliseconds: 800),
         lowerBound: 0.0,
         upperBound: 0.1)
       ..addStatusListener((status) {
@@ -86,11 +86,11 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
     // Initialize with a default duration, but without using MediaQuery.
     _cloudAnimationController1 = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 10),
+      duration: Duration(seconds: 10),
     );
     _cloudAnimationController2 = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 10),
+      duration: Duration(seconds: 10),
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -243,11 +243,8 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                   children: [
                     Expanded(
                       child: ListView.builder(
-                        controller:
-                            _scrollController, // Use the scroll controller here
-                        padding: EdgeInsets.only(
-                            bottom:
-                                _bottomPadding), // Dynamic padding based on scrolling
+                        controller: _scrollController, // Use the scroll controller here
+                        padding: EdgeInsets.only(bottom: _bottomPadding), // Dynamic padding based on scrolling
                         itemCount: widget.module.submodules.length,
                         reverse: true, // The list is visually reversed.
                         itemBuilder: (BuildContext context, int index) {
@@ -467,7 +464,7 @@ class StepperTile extends StatelessWidget {
             child: Text(
               submodule.title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: "UrduType",
                 fontSize: 20,

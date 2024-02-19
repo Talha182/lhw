@@ -41,6 +41,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     _loadUserData();
   }
+  Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', false);
+    // Navigate back to the login screen...
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
+    );}
 
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
@@ -188,13 +195,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 "${user!.dob}", "${user!.name}"),
                             createDetailGroup("یو سی کا نام", "فون نمبر",
                                 "دہلی یونیورسٹی", "${user!.phone}"),
+                            createDetailGroup("LHW شناختی نمبر", "سروس کے سال",
+                                "${user!.nic}", "${user!.yearsExperience}"),
                             createDetailGroup(
-                                "LHW شناختی نمبر",
-                                "سروس کے سال",
-                                "${user!.nic}",
-                                "${user!.yearsExperience}"),
-                            createDetailGroup("ای میل", "گاؤں",
-                                "${user!.email}", "دہلی"),
+                                "ای میل", "گاؤں", "${user!.email}", "دہلی"),
                           ],
                         ),
                       ),

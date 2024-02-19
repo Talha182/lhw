@@ -57,6 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
       final prefs = await SharedPreferences.getInstance();
       String userJson = json.encode(user.toJson());
       await prefs.setString('userData', userJson);
+      await prefs.setBool('isLoggedIn', true);
+
 
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
