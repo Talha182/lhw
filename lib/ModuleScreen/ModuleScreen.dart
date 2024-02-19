@@ -346,27 +346,27 @@ class _ModuleScreenState extends State<ModuleScreen> {
                   cardText: module.title,
                   onClick: () {
                     // Check if the module has more than three submodules
-                    if (module.submoduleCount > 3) {
-                      // Navigate to JourneyMapScreen2 if more than three submodules
-                      Get.to(
-                          () => JourneyMapScreen2(
-                                module: module,
-                                courseTitle: course.title,
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    startColor,
-                                    endColor,
-                                  ],
-                                ),
-                                courseQuizCount: course.quizCount,
-                                courseModuleCount: course.moduleCount,
-                                imagePath: course.imagePath,
-                              ),
-                          transition: Transition.fade,
-                          duration: const Duration(milliseconds: 300));
-                    } else {
+                    // if (module.submoduleCount > 3) {
+                    //   // Navigate to JourneyMapScreen2 if more than three submodules
+                    //   Get.to(
+                    //       () => JourneyMapScreen2(
+                    //             module: module,
+                    //             courseTitle: course.title,
+                    //             gradient: LinearGradient(
+                    //               begin: Alignment.topLeft,
+                    //               end: Alignment.bottomRight,
+                    //               colors: [
+                    //                 startColor,
+                    //                 endColor,
+                    //               ],
+                    //             ),
+                    //             courseQuizCount: course.quizCount,
+                    //             courseModuleCount: course.moduleCount,
+                    //             imagePath: course.imagePath,
+                    //           ),
+                    //       transition: Transition.fade,
+                    //       duration: const Duration(milliseconds: 300));
+                    // } else {
                       // Navigate to JourneyMapScreen if three or fewer submodules
                       Get.to(
                           () => JourneyMapScreen(
@@ -387,7 +387,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
                           transition: Transition.fade,
                           duration: const Duration(milliseconds: 300));
                     }
-                  },
                 );
               },
             ).animate().fade(duration: 400.ms),

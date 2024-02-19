@@ -287,8 +287,8 @@ class _ImageHotspotState extends State<ImageHotspot>
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(hotspot.isTapped
-                    ? 'assets/images/2.png'
-                    : 'assets/images/lesson_26.png'),
+                    ? 'assets/images/Hotspot---Green.png'
+                    : 'assets/images/Hotspot---Pink.png'),
                 fit: BoxFit.cover,
               ),
             ),

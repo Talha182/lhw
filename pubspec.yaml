@@ -75,8 +75,9 @@ dependencies:
   pinch_zoom_release_unzoom: ^1.0.3
   flutter_animated_dialog: ^2.0.1
   provider: ^6.1.1
-  lottie: ^3.0.0
-
+  lottie: 2.7.0
+  easy_stepper:
+    path: easy_stepper-0.8.3
 
 
 

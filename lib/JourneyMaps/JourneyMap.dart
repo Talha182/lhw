@@ -40,10 +40,23 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
   late Animation<double> _fadeAnimation;
   late AnimationController _avatarAnimationController;
   late Animation<double> _bounceAnimation;
+  late ScrollController _scrollController;
+  late double _bottomPadding;
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
+    _bottomPadding = 100.0; // Start with 100.0 padding from the bottom
+    // Listener to detect scroll events
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels > 0) {
+        // User has started scrolling, reduce padding to 0 to allow scrolling to the bottom
+        setState(() {
+          _bottomPadding = 0.0;
+        });
+      }
+    });
     _pathAnimationController =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
     _slideAnimation = Tween<Offset>(begin: Offset(0, 1), end: Offset.zero)
@@ -115,218 +128,147 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
   void dispose() {
     _cloudAnimationController1.dispose();
     _cloudAnimationController2.dispose();
+    _scrollController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedBuilder(
-        animation: Listenable.merge(
-            [_cloudAnimationController1, _cloudAnimationController2]),
-        builder: (context, child) {
-          return Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: const Alignment(0, -0.2),
-                colors: [
-                  const Color(0xff80B8FB).withOpacity(0.3),
-                  Colors.transparent
-                ],
-              ),
-            ),
-            child: Stack(
-              children: [
-                Positioned(
-                  top: 70,
-                  right: _cloudAnimation1.value,
-                  child: SvgPicture.asset('assets/images/cloud.svg',
-                      width: 30, height: 30),
-                ),
-                Positioned(
-                  top: 90,
-                  left: _cloudAnimation2.value,
-                  child: SvgPicture.asset('assets/images/cloud.svg',
-                      width: 30, height: 30),
-                ),
-                Positioned(
-                  left: 10,
-                  top: 180,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: SvgPicture.asset("assets/images/path.svg"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 15,
-                  top: 190,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: SvgPicture.asset("assets/images/path_dots.svg"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 10,
-                  top: 110,
-                  child: SvgPicture.asset("assets/images/pencil.svg"),
-                ),
-                Positioned(
-                  bottom: 0,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: SvgPicture.asset("assets/images/build1.svg"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 80,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: SvgPicture.asset("assets/images/build2.svg"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 200,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: SvgPicture.asset("assets/images/build3.svg"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: SvgPicture.asset("assets/images/build4.svg"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: SvgPicture.asset("assets/images/bottom.svg"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 60,
-                  right: 15,
-                  child: ScaleTransition(
-                    scale: _bounceAnimation,
-                    child: CircleAvatar(
-                      backgroundColor: const Color(0xffF6B3D0),
-                      radius: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 2),
-                        child: SvgPicture.asset(
-                            "assets/images/samina_instructor.svg",
-                            fit: BoxFit.fill),
-                      ),
-                    ),
-                  ),
-                ),
-                ...widget.module.submodules.asMap().entries.map((entry) {
-                  int index = entry.key;
-                  Submodule submodule = widget.module.submodules[index];
-                  bool isRightAligned = submodule.titleAlignment == 'right';
-
-                  Offset buttonPosition = Offset(
-                    submodule.buttonPosition['dx'] ?? 0.0,
-                    submodule.buttonPosition['dy'] ?? 0.0,
-                  );
-
-                  return Positioned(
-                    left: buttonPosition.dx,
-                    top: buttonPosition.dy,
-                    child: isRightAligned
-                        ? _buildRightAlignedRow(context, submodule)
-                        : _buildLeftAlignedRow(context, submodule),
-                  );
-                }).toList(),
+      body: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: const Alignment(0, -0.2),
+              colors: [
+                const Color(0xff80B8FB).withOpacity(0.3),
+                Colors.transparent
               ],
             ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildLeftAlignedRow(BuildContext context, Submodule submodule) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          submodule.title,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
-        ),
-        const SizedBox(width: 8),
-        _buildIconButton(context, submodule),
-      ],
-    );
-  }
-
-  Widget _buildRightAlignedRow(BuildContext context, Submodule submodule) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _buildIconButton(context, submodule),
-        const SizedBox(width: 8),
-        Text(
-          submodule.title,
-          style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildIconButton(BuildContext context, Submodule submodule) {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xffD9D9D9)),
-        shape: BoxShape.circle,
-        color: Colors.white,
-      ),
-      child: Center(
-        child: Container(
-          width: 45,
-          height: 45,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color(0xffFF6BC5),
           ),
-          child: IconButton(
-            onPressed: () => _showSubmoduleDialog(context, submodule),
-            icon: SvgPicture.asset(
-              submodule.iconPath,
-              width: 24,
-              height: 24,
-            ),
-            iconSize: 24,
+          width: double.infinity,
+          height: MediaQuery.of(context)
+              .size
+              .height, // Ensure the container fills the screen height
+          child: Stack(
+            children: [
+              Positioned(
+                top: 70,
+                right: _cloudAnimation1.value,
+                child: SvgPicture.asset('assets/images/cloud.svg',
+                    width: 30, height: 30),
+              ),
+              Positioned(
+                top: 90,
+                left: _cloudAnimation2.value,
+                child: SvgPicture.asset('assets/images/cloud.svg',
+                    width: 30, height: 30),
+              ),
+              Positioned(
+                bottom: 0,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: SvgPicture.asset("assets/images/build1.svg"),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 80,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: SvgPicture.asset("assets/images/build2.svg"),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 200,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: SvgPicture.asset("assets/images/build3.svg"),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: SvgPicture.asset("assets/images/build4.svg"),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: SvgPicture.asset("assets/images/bottom.svg"),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 60,
+                right: 15,
+                child: ScaleTransition(
+                  scale: _bounceAnimation,
+                  child: CircleAvatar(
+                    backgroundColor: const Color(0xffF6B3D0),
+                    radius: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: SvgPicture.asset(
+                          "assets/images/samina_instructor.svg",
+                          fit: BoxFit.fill),
+                    ),
+                  ),
+                ),
+              ),
+              // Your existing stepper code as one layer
+              Positioned.fill(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        controller: _scrollController, // Use the scroll controller here
+                        padding: EdgeInsets.only(bottom: _bottomPadding), // Dynamic padding based on scrolling
+                        itemCount: widget.module.submodules.length,
+                        reverse: true, // The list is visually reversed.
+                        itemBuilder: (BuildContext context, int index) {
+                          Submodule submodule = widget.module.submodules[index];
+                          bool isVisualLast = index == 0;
+                          bool isVisualFirst =
+                              index == widget.module.submodules.length - 1;
+
+                          return StepperTile(
+                            submodule: submodule,
+                            onTap: () =>
+                                _showSubmoduleDialog(context, submodule),
+                            isFirst: isVisualFirst,
+                            isLast: isVisualLast,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Position your images at the bottom of the screen
+            ],
           ),
         ),
       ),
@@ -484,18 +426,96 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
         ));
   }
 }
-// void navigateToSubmoduleFeatures(BuildContext context, Submodule submodule) {
-//   // Check if a controller already exists and reset it, or create a new one
-//   if (Get.isRegistered<FeatureNavigationController>()) {
-//     var existingController = Get.find<FeatureNavigationController>();
-//     existingController.resetControllerWithNewCallbacks(submodule.navigateToFeatureCallbacks);
-//   } else {
-//     Get.put(FeatureNavigationController(
-//       navigateToFeatureCallbacks: submodule.navigateToFeatureCallbacks,
-//       navigateBackToJourneyMap: () => Get.back(),
-//     )); // Optionally use a unique tag for each submodule if needed
-//   }
-//
-//   // Navigate to the first feature callback
-//   Get.find<FeatureNavigationController>().navigateToNextFeatureOrBack();
-// }
+
+class StepperTile extends StatelessWidget {
+  final Submodule submodule;
+  final VoidCallback onTap;
+  final bool isFirst;
+  final bool isLast;
+
+  const StepperTile({
+    Key? key,
+    required this.submodule,
+    required this.onTap,
+    this.isFirst = false,
+    this.isLast = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Define the icon size for consistent layout
+    final double iconSize = 60.0;
+
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Icon positioned at the top
+          CircleAvatar(
+            radius: iconSize / 2,
+            backgroundColor: Colors.grey.shade300,
+            child: Icon(Icons.circle,
+                size: iconSize, color: Colors.blue), // Replace with your icon
+          ),
+          // Title positioned below the icon
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              submodule.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: "UrduType",
+                fontSize: 20,
+              ),
+            ),
+          ),
+          // Dotted line painter conditionally rendered
+          if (!isLast)
+            Padding(
+              padding: const EdgeInsets.all(
+                  8.0), // Adjust space between the title and the dotted line
+              child: CustomPaint(
+                painter: DottedLinePainter(),
+                child: Container(
+                  width: double.infinity,
+                  height: 50, // Adjust the space for the dotted line as needed
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class DottedLinePainter extends CustomPainter {
+  final Color color;
+  final double height;
+  final double width;
+
+  DottedLinePainter(
+      {this.color = Colors.grey, this.height = 1, this.width = 10});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = color
+      ..strokeWidth = height;
+
+    double dashWidth = width;
+    double dashSpace = width;
+    double startX = 0;
+    while (startX < size.height) {
+      canvas.drawLine(Offset(size.width / 2, startX),
+          Offset(size.width / 2, startX + dashWidth), paint);
+      startX += dashWidth + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
+  }
+}
