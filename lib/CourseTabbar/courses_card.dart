@@ -11,30 +11,51 @@ import 'LessonPageTabBar/LessonPageTabbar.dart';
 import '../ModuleScreen/ModuleScreen.dart';
 import 'course_provider.dart';
 
-class CourseCard extends StatelessWidget {
+class CourseCard extends StatefulWidget {
   final TestCourseModel course;
 
   const CourseCard({Key? key, required this.course}) : super(key: key);
+
+  @override
+  State<CourseCard> createState() => _CourseCardState();
+}
+
+class _CourseCardState extends State<CourseCard> {
   // Function to check first visit and navigate accordingly
   Future<void> navigateBasedOnVisitStatus(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
-    final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
+    final isFirstVisitKey = 'isFirstVisit_${widget.course.courseId}';
     final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
 
     if (isFirstVisit) {
       await prefs.setBool(isFirstVisitKey, false);
-      await Get.to(() => LessonPageTabBar(course: course),transition: Transition.fade,duration: Duration(milliseconds: 300));
+      await Get.to(() => LessonPageTabBar(course: widget.course),transition: Transition.fade,duration: Duration(milliseconds: 300));
     } else {
-      await Get.to(() => ModuleScreen(course: course),transition: Transition.fade,duration: Duration(milliseconds: 300));
+      await Get.to(() => ModuleScreen(course: widget.course),transition: Transition.fade,duration: Duration(milliseconds: 300));
     }
   }
+  @override
+  void initState() {
+    super.initState();
+    updateCourseAndModulesProgress();
+  }
+
+  void updateCourseAndModulesProgress() {
+    widget.course.modules.forEach((module) {
+      module.updateProgressValue(); // Update each module's progress
+    });
+    widget.course.updateCourseCompletionProgress(); // Update the course progress based on modules
+
+    setState(() {}); // Trigger a rebuild to reflect updates
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    Color startColor = Color(int.parse(course.gradient['start']!.replaceAll('#', '0xff')));
-    Color endColor = Color(int.parse(course.gradient['end']!.replaceAll('#', '0xff')));
+    Color startColor = Color(int.parse(widget.course.gradient['start']!.replaceAll('#', '0xff')));
+    Color endColor = Color(int.parse(widget.course.gradient['end']!.replaceAll('#', '0xff')));
 
-    const progressValue = 0.75;
+    double progressValue = widget.course.progress;
     return Container(
       width: double.infinity,
       height: 200,
@@ -55,7 +76,7 @@ class CourseCard extends StatelessWidget {
             bottom: 0,
             left: 0,
             child: Image.asset(
-              course.imagePath,
+              widget.course.imagePath,
               scale: 0.9,
             ),
           ),
@@ -66,9 +87,9 @@ class CourseCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  course.isCompleted
-                      ? ArrowContainer(text: course.arrowText)
-                      : course.isStart
+                  widget.course.isCompleted
+                      ? ArrowContainer(text: widget.course.arrowText)
+                      : widget.course.isStart
                           ? Padding(
                               padding: const EdgeInsets.only(right: 15.0),
                               child: SizedBox(
@@ -102,7 +123,7 @@ class CourseCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 15.0),
                     child: Text(
-                      course.title,
+                      widget.course.title,
                       style: const TextStyle(
                         fontFamily: 'UrduType',
                         fontSize: 18,
@@ -124,7 +145,7 @@ class CourseCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          '${course.moduleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
+                          '${widget.course.moduleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
                           style: const TextStyle(
                             fontFamily: 'UrduType',
                             fontSize: 15,
@@ -148,7 +169,7 @@ class CourseCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          '${course.quizCount} کوئز', // Example text, replace with dynamic data if necessary
+                          '${widget.course.quizCount} کوئز', // Example text, replace with dynamic data if necessary
                           style: const TextStyle(
                             fontFamily: 'UrduType',
                             fontSize: 15,
@@ -162,7 +183,7 @@ class CourseCard extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  course.isStart
+                  widget.course.isStart
                       ? Padding(
                           padding: const EdgeInsets.only(right: 15.0),
                           child: ElevatedButton(
@@ -179,7 +200,7 @@ class CourseCard extends StatelessWidget {
                               // Update the last visited course using Provider after navigation completes
                               Provider.of<CoursesProvider>(context,
                                       listen: false)
-                                  .setLastVisitedCourse(course);
+                                  .setLastVisitedCourse(widget.course);
                             },
                             child: const Text(
                               'جاری رہے',

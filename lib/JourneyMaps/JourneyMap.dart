@@ -243,8 +243,11 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                   children: [
                     Expanded(
                       child: ListView.builder(
-                        controller: _scrollController, // Use the scroll controller here
-                        padding: EdgeInsets.only(bottom: _bottomPadding), // Dynamic padding based on scrolling
+                        controller:
+                            _scrollController, // Use the scroll controller here
+                        padding: EdgeInsets.only(
+                            bottom:
+                                _bottomPadding), // Dynamic padding based on scrolling
                         itemCount: widget.module.submodules.length,
                         reverse: true, // The list is visually reversed.
                         itemBuilder: (BuildContext context, int index) {

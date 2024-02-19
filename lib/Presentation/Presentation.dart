@@ -317,6 +317,7 @@ class _PresentationState extends State<Presentation>
     super.dispose();
   }
 
+
   double get progress =>
       (currentPage + 1) / widget.presentationModel.assetImages.length;
 

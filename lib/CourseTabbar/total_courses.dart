@@ -11,6 +11,7 @@ class TotalCourses extends StatelessWidget {
   Widget build(BuildContext context) {
     List<TestCourseModel> courses = Provider.of<CoursesProvider>(context).courses;
 
+
     return Scaffold(
       body: ListView.builder(
         itemCount: courses.length,

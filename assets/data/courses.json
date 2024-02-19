@@ -21,6 +21,7 @@
           "imagePath": "assets/moduleIcons/module1.png",
           "submoduleCount": 2,
           "isStart": true,
+          "isCompleted": true,
           "progressValue": 0.25,
           "submodules": [
             {
@@ -39,6 +40,7 @@
                   "featureId": 1,
                   "featureType": "presentation",
                   "duration": "5 mins",
+                  "isCompleted": false,
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
@@ -101,6 +103,8 @@
                   "featureId": 1,
                   "featureType": "presentation",
                   "duration": "5 mins",
+                  "isCompleted": true,
+
                   "title": "متعدی بیماریوں کا تعارف",
                   "presentationModel": {
                     "assetImages": [
@@ -155,6 +159,8 @@
           "imagePath": "assets/moduleIcons/module2.png",
           "submoduleCount": 4,
           "isStart": false,
+          "isCompleted": false,
+
           "progressValue": 0.5,
           "submodules": [
             {
@@ -1126,6 +1132,7 @@
           "title": "جنسی بیماریاں",
           "imagePath": "assets/moduleIcons/module3.png",
           "submoduleCount": 2,
+          "isCompleted": true,
           "isStart": false,
           "progressValue": 0.8,
           "submodules": [
@@ -1309,6 +1316,7 @@
           "title": "یچ آئی وی",
           "imagePath": "assets/moduleIcons/module4.png",
           "submoduleCount": 2,
+          "isCompleted": true,
           "isStart": false,
           "progressValue": 0.8,
           "submodules": [
@@ -1547,6 +1555,7 @@
           "title": "ہیپاٹائٹس",
           "imagePath": "assets/moduleIcons/module5.png",
           "submoduleCount": 2,
+          "isCompleted": true,
           "isStart": false,
           "progressValue": 0.8,
           "submodules": [
@@ -1742,6 +1751,7 @@
           "title": "ملیریا",
           "imagePath": "assets/moduleIcons/module6.png",
           "submoduleCount": 2,
+          "isCompleted": true,
           "isStart": false,
           "progressValue": 0.8,
           "submodules": [
@@ -2037,6 +2047,7 @@
           "title": "ڈینگی",
           "imagePath": "assets/moduleIcons/module7.png",
           "submoduleCount": 2,
+          "isCompleted": true,
           "isStart": false,
           "progressValue": 0.8,
           "submodules": [
@@ -2287,6 +2298,7 @@
           "title": "کرونا وائرس",
           "imagePath": "assets/moduleIcons/module8.png",
           "submoduleCount": 4,
+          "isCompleted": true,
           "isStart": false,
           "progressValue": 0.8,
           "submodules": [

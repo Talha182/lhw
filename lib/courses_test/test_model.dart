@@ -21,7 +21,7 @@ class TestCourseModel {
   final String imagePath;
   final bool isStart;
   final bool isCompleted;
-  final double progress;
+  double progress;
   final String arrowText;
   final List<Module> modules;
 
@@ -58,6 +58,21 @@ class TestCourseModel {
           List<Module>.from(json['modules'].map((x) => Module.fromJson(x))),
     );
   }
+  // Method to update course progress
+  void updateCourseCompletionProgress() {
+    // Count how many modules are marked as completed
+    int completedModules = modules.where((module) => module.isCompleted).length;
+
+    // Calculate the course progress as a ratio of completed modules to total modules
+    if (modules.isNotEmpty) {
+      this.progress = completedModules / modules.length;
+    } else {
+      // If there are no modules, progress is undefined or could be set to 0.0
+      this.progress = 0.0;
+    }
+  }
+
+
 }
 
 class Module {
@@ -66,18 +81,19 @@ class Module {
   final String imagePath;
   final int submoduleCount;
   final bool isStart;
-  final double progressValue;
+  final bool isCompleted;
+  double progressValue;
   final List<Submodule> submodules;
 
-  Module({
-    required this.moduleId,
-    required this.title,
-    required this.imagePath,
-    required this.submoduleCount,
-    required this.isStart,
-    required this.progressValue,
-    required this.submodules,
-  });
+  Module(
+      {required this.moduleId,
+      required this.title,
+      required this.imagePath,
+      required this.submoduleCount,
+      required this.isStart,
+      required this.progressValue,
+      required this.submodules,
+      required this.isCompleted});
 
   factory Module.fromJson(Map<String, dynamic> json) {
     return Module(
@@ -89,7 +105,29 @@ class Module {
       progressValue: json['progressValue'].toDouble(),
       submodules: List<Submodule>.from(
           json['submodules'].map((x) => Submodule.fromJson(x))),
+      isCompleted: json['isCompleted'],
     );
+  }
+  // Method to calculate progress based on completed features
+  // Add this method to calculate progress
+  void updateProgressValue() {
+    int totalFeatures = 0;
+    int completedFeatures = 0;
+
+    for (Submodule submodule in submodules) {
+      for (Feature feature in submodule.features) {
+        totalFeatures += 1;
+        if (feature.isCompleted) {
+          completedFeatures += 1;
+        }
+      }
+    }
+
+    if (totalFeatures > 0) {
+      progressValue = completedFeatures / totalFeatures;
+    } else {
+      progressValue = 0.0;
+    }
   }
 }
 
@@ -277,57 +315,3 @@ Future<List<TestCourseModel>> fetchCourses() async {
       jsonData['courses'].map((x) => TestCourseModel.fromJson(x)));
 }
 
-// Future<List<TestCourseModel>> fetchCourses() async {
-//   String jsonString = await rootBundle.loadString('assets/data/courses.json');
-//   final jsonData = json.decode(jsonString)['courses'] as List<dynamic>;
-//   return jsonData.map((courseJson) => TestCourseModel(
-//     courseId: courseJson['courseId'],
-//     title: courseJson['title'],
-//     gradientStart: courseJson['gradient']['start'],
-//     gradientEnd: courseJson['gradient']['end'],
-//     quizCount: courseJson['quizCount'],
-//     moduleCount: courseJson['moduleCount'],
-//     imagePath: courseJson['imagePath'],
-//     isStart: courseJson['isStart'],
-//     isCompleted: courseJson['isCompleted'],
-//     progress: courseJson['progress'],
-//     arrowText: courseJson['arrowText'],
-//     modules: (courseJson['modules'] as List<dynamic>).map((moduleJson) {
-//       return Module(
-//         moduleId: moduleJson['moduleId'],
-//         title: moduleJson['title'],
-//         imagePath: moduleJson['imagePath'],
-//         submoduleCount: moduleJson['submoduleCount'],
-//         isStart: moduleJson['isStart'],
-//         progressValue: moduleJson['progressValue'],
-//         submodules: (moduleJson['submodules'] as List<dynamic>).map((submoduleJson) {
-//           return Submodule(
-//             submoduleId: submoduleJson['submoduleId'],
-//             title: submoduleJson['title'],
-//             description: submoduleJson['description'],
-//             buttonPosition: Map<String, dynamic>.from(submoduleJson['buttonPosition']),
-//             iconPath: submoduleJson['iconPath'],
-//             numberOfQuizzes: submoduleJson['numberOfQuizzes'],
-//             titleAlignment: submoduleJson['titleAlignment'],
-//             features: (submoduleJson['features'] as List<dynamic>).map((featureJson) {
-//               return Feature(
-//                 title: featureJson['title'],
-//                 featureType: featureJson['featureType'],
-//                 isCompleted: featureJson['isCompleted'],
-//                 duration: featureJson['duration'],
-//                 relatedData: featureJson['relatedData'],
-//               );
-//             }).toList(),
-//           );
-//         }).toList(),
-//       );
-//     }).toList(),
-//   )).toList();
-// }
-// factory Feature.fromJson(Map<String, dynamic> json) {
-//   var relatedData;
-//   if (json['featureType'] == 'presentation') {
-//     relatedData = PresentationModel.fromJson(json['presentationModel']);
-//   } else if (json['featureType'] == 'video') {
-//     // relatedData = VideoModel.fromJson(json['videoModel']);
-//   }
