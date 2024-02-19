@@ -357,6 +357,10 @@ class _ModuleScreenState extends State<ModuleScreen> {
                   imagePath: module.imagePath,
                   cardText: module.title,
                   onClick: () {
+                    setState(() {
+                      course.modules[index].isStart = true; // Update the module's isStart to true
+
+                    });
                       Get.to(
                           () => JourneyMapScreen(
                                 module: module,

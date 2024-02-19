@@ -19,8 +19,8 @@ class TestCourseModel {
   final int quizCount;
   final int moduleCount;
   final String imagePath;
-  final bool isStart;
-  final bool isCompleted;
+  bool isStart;
+  bool isCompleted;
   double progress;
   final String arrowText;
   final List<Module> modules;
@@ -33,7 +33,7 @@ class TestCourseModel {
     required this.moduleCount,
     required this.imagePath,
     required this.isStart,
-    required this.isCompleted,
+    this.isCompleted = false, // Default to false
     required this.progress,
     required this.arrowText,
     required this.modules,
@@ -52,7 +52,7 @@ class TestCourseModel {
       imagePath: json['imagePath'],
       isStart: json['isStart'],
       isCompleted: json['isCompleted'],
-      progress: json['progress'].toDouble(),
+      progress: json['progress'] ?? 0.0,
       arrowText: json['arrowText'],
       modules:
           List<Module>.from(json['modules'].map((x) => Module.fromJson(x))),
@@ -60,19 +60,28 @@ class TestCourseModel {
   }
   // Method to update course progress
   void updateCourseCompletionProgress() {
-    // Count how many modules are marked as completed
-    int completedModules = modules.where((module) => module.isCompleted).length;
+    double totalProgress = 0.0;
 
-    // Calculate the course progress as a ratio of completed modules to total modules
-    if (modules.isNotEmpty) {
-      this.progress = completedModules / modules.length;
-    } else {
-      // If there are no modules, progress is undefined or could be set to 0.0
-      this.progress = 0.0;
+    // Ensure modules have updated their progress and completion status
+    for (Module module in modules) {
+      module.updateCompletionStatus();
+      module.updateProgressValue();
+      totalProgress += module.progressValue;
     }
+
+    // Calculate overall course progress
+    this.progress = modules.isNotEmpty ? totalProgress / modules.length : 0.0;
   }
 
-
+  // Method to update course completion status
+  void updateCourseCompletionStatus() {
+    // Check if all modules and their submodules are completed
+    this.isCompleted = modules.every((module) {
+      module
+          .updateCompletionStatus(); // Ensure module completion status is up to date
+      return module.isCompleted;
+    });
+  }
 }
 
 class Module {
@@ -80,20 +89,21 @@ class Module {
   final String title;
   final String imagePath;
   final int submoduleCount;
-  final bool isStart;
-  final bool isCompleted;
+  bool isStart;
+  bool isCompleted;
   double progressValue;
   final List<Submodule> submodules;
 
-  Module(
-      {required this.moduleId,
-      required this.title,
-      required this.imagePath,
-      required this.submoduleCount,
-      required this.isStart,
-      required this.progressValue,
-      required this.submodules,
-      required this.isCompleted});
+  Module({
+    required this.moduleId,
+    required this.title,
+    required this.imagePath,
+    required this.submoduleCount,
+    required this.isStart,
+    this.isCompleted = false, // Default to false
+    required this.progressValue,
+    required this.submodules,
+  });
 
   factory Module.fromJson(Map<String, dynamic> json) {
     return Module(
@@ -102,7 +112,7 @@ class Module {
       imagePath: json['imagePath'],
       submoduleCount: json['submoduleCount'],
       isStart: json['isStart'],
-      progressValue: json['progressValue'].toDouble(),
+      progressValue: json['progressValue'] ?? 0.0,
       submodules: List<Submodule>.from(
           json['submodules'].map((x) => Submodule.fromJson(x))),
       isCompleted: json['isCompleted'],
@@ -111,23 +121,29 @@ class Module {
   // Method to calculate progress based on completed features
   // Add this method to calculate progress
   void updateProgressValue() {
-    int totalFeatures = 0;
-    int completedFeatures = 0;
+    int completedSubmodules = 0;
 
+    // Update submodule completion status based on features
     for (Submodule submodule in submodules) {
-      for (Feature feature in submodule.features) {
-        totalFeatures += 1;
-        if (feature.isCompleted) {
-          completedFeatures += 1;
-        }
+      submodule.updateCompletionStatus();
+      if (submodule.isCompleted) {
+        completedSubmodules++;
       }
     }
 
-    if (totalFeatures > 0) {
-      progressValue = completedFeatures / totalFeatures;
-    } else {
-      progressValue = 0.0;
-    }
+    // Calculate module progress based on completed submodules
+    progressValue =
+        submodules.isNotEmpty ? completedSubmodules / submodules.length : 0.0;
+  }
+
+  // Method to update module's completion status
+  void updateCompletionStatus() {
+    // Check if all submodules and their features are completed
+    this.isCompleted = submodules.every((submodule) {
+      submodule
+          .updateCompletionStatus(); // Ensure submodule completion status is up to date
+      return submodule.isCompleted;
+    });
   }
 }
 
@@ -139,6 +155,7 @@ class Submodule {
   final String iconPath;
   final int numberOfQuizzes;
   final String titleAlignment;
+  bool isCompleted;
   final List<Feature> features;
 
   Submodule({
@@ -147,6 +164,7 @@ class Submodule {
     required this.description,
     required this.buttonPosition,
     required this.iconPath,
+    this.isCompleted = false, // Default to false
     required this.numberOfQuizzes,
     required this.titleAlignment,
     required this.features,
@@ -163,7 +181,15 @@ class Submodule {
       titleAlignment: json['titleAlignment'],
       features:
           List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
+      isCompleted: json['isCompleted'],
     );
+  }
+  // Method to check and update completion status
+  void updateCompletionStatus() {
+    // Check if all features are completed
+    this.isCompleted = features.every((feature) => feature.isCompleted);
+
+    // You can include additional logic here if needed, for example, to perform actions when a submodule is completed
   }
 }
 
@@ -194,7 +220,7 @@ class Feature {
   Feature({
     required this.title,
     required this.featureType,
-    required this.isCompleted,
+    this.isCompleted = false, // Default to false
     required this.duration,
     this.relatedData,
   });
@@ -314,4 +340,3 @@ Future<List<TestCourseModel>> fetchCourses() async {
   return List<TestCourseModel>.from(
       jsonData['courses'].map((x) => TestCourseModel.fromJson(x)));
 }
-
