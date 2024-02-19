@@ -15,7 +15,13 @@ import '../controllers/BookmarkController.dart';
 
 class Presentation extends StatefulWidget {
   final PresentationModel presentationModel;
-  const Presentation({super.key, required this.presentationModel});
+  final VoidCallback? onCompleted; // Optional callback
+
+  const Presentation({
+    Key? key,
+    required this.presentationModel,
+    this.onCompleted, // Accept the callback
+  }) : super(key: key);
 
   @override
   State<Presentation> createState() => _PresentationState();
@@ -317,7 +323,6 @@ class _PresentationState extends State<Presentation>
     super.dispose();
   }
 
-
   double get progress =>
       (currentPage + 1) / widget.presentationModel.assetImages.length;
 
@@ -597,7 +602,9 @@ class _PresentationState extends State<Presentation>
                   ),
                   onPressed: hasVisitedLastImage
                       ? () {
-                          Get.back();
+                          widget.onCompleted
+                              ?.call(); // Call the callback to mark completion
+                          Get.back(); // Optionally navigate back or perform other navigation
                         }
                       : null,
                   child: const Text(

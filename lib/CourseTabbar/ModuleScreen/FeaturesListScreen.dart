@@ -232,11 +232,16 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                       ),
                       onTap: () async {
                         if (feature.featureType == FeatureType.presentation) {
-                          PresentationModel presentationModel =
-                              feature.relatedData as PresentationModel;
-                          // Using Get.to for navigation
+                          PresentationModel presentationModel = feature.relatedData as PresentationModel;
+                          // Pass a callback function to mark the feature as completed
                           await Get.to(() => Presentation(
-                              presentationModel: presentationModel));
+                            presentationModel: presentationModel,
+                            onCompleted: () {
+                              setState(() {
+                                feature.isCompleted = true; // Mark the feature as completed
+                              });
+                            },
+                          ));
                         }
                         if (feature.featureType == FeatureType.comicStrips) {
                           List<ComicStripModel> comicStripModels =

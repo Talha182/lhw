@@ -19,12 +19,15 @@ class ModuleScreen extends StatefulWidget {
   State<ModuleScreen> createState() => _ModuleScreenState();
 }
 
-class _ModuleScreenState extends State<ModuleScreen> {
+class _ModuleScreenState extends State<ModuleScreen>
+    with WidgetsBindingObserver {
   bool _feedbackButtonPressed = false;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this); // Add observer
+
     updateModulesProgress();
   }
 
@@ -35,11 +38,24 @@ class _ModuleScreenState extends State<ModuleScreen> {
     setState(() {}); // Trigger a rebuild to update the UI
   }
   @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this); // Remove observer
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      // Screen is back in focus
+      updateModulesProgress();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final course = widget.course;
-    double progressValue =
-        course.progress; // Assume this is a value between 0.0 and 1.0
-    // Convert hex color strings to Color objects
+    double progressValue = course.progress;
     Color startColor =
         Color(int.parse(course.gradient['start']!.replaceAll('#', '0xff')));
     Color endColor =
@@ -352,15 +368,15 @@ class _ModuleScreenState extends State<ModuleScreen> {
               itemBuilder: (context, index) {
                 final module = course.modules[index];
                 return Module_Card(
-                  progressValue: module.progressValue,
-                  showProgressBar: module.isStart,
-                  imagePath: module.imagePath,
-                  cardText: module.title,
-                  onClick: () {
-                    setState(() {
-                      course.modules[index].isStart = true; // Update the module's isStart to true
-
-                    });
+                    progressValue: module.progressValue,
+                    showProgressBar: module.isStart,
+                    imagePath: module.imagePath,
+                    cardText: module.title,
+                    onClick: () {
+                      setState(() {
+                        course.modules[index].isStart =
+                            true; // Update the module's isStart to true
+                      });
                       Get.to(
                           () => JourneyMapScreen(
                                 module: module,
@@ -379,8 +395,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                               ),
                           transition: Transition.fade,
                           duration: const Duration(milliseconds: 300));
-                    }
-                );
+                    });
               },
             ).animate().fade(duration: 400.ms),
           ),
