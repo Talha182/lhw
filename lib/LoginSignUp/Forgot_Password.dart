@@ -3,7 +3,6 @@ import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../controllers/signup_controller.dart';
 import 'Login.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -16,7 +15,6 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   bool showVerificationCode = false;
   final _formkey = GlobalKey<FormState>();
-  final controller = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +72,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 height: 5,
               ),
               FlutterPhoneNumberField(
-                controller: controller.phoneNo,
                 showCountryFlag: true,
                 showDropdownIcon: false,
                 textAlign: TextAlign.right,

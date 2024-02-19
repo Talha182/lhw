@@ -15,7 +15,6 @@ import '../CustomWidgets/circular_progress_bar_with circle.dart';
 import '../CustomWidgets/gradient_circle.dart';
 import '../LoginSignUp/Login.dart';
 import '../notification/notifications_screen.dart';
-import '../repositories/authentication_repository/authentication_repository.dart';
 import '../utils/is_first_time_check.dart';
 import '../courses_test/test_model.dart';
 
@@ -787,13 +786,8 @@ class _HomePageState extends State<HomePage> {
                                                         Icons.arrow_forward_ios,
                                                         size: 14,
                                                       ),
-                                                      onTap: () async {
-                                                        await AuthenticationRepository
-                                                            .instance
-                                                            .Logout();
-                                                        // Redirect to the login page after logging out.
-                                                        Get.offAll(() =>
-                                                            const LoginScreen());
+                                                      onTap: () {
+
                                                       },
                                                     ),
                                                     const SizedBox(

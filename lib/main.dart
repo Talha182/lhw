@@ -8,8 +8,6 @@ import 'package:lhw/firebase_options.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
-import 'package:lhw/repositories/authentication_repository/auth_status.dart';
-import 'package:lhw/repositories/authentication_repository/authentication_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'CourseTabbar/course_provider.dart';
@@ -19,9 +17,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((value) => Get.put(AuthenticationRepository()));
-  await FirebaseApi().initNotification();
+
 
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -60,17 +56,7 @@ class MyApp extends StatelessWidget {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-        home: Obx(() {
-          switch (AuthenticationRepository.instance.authStatus.value) {
-            case AuthStatus .undecided:
-              return const LoadingScreen();
-            case AuthStatus.authenticated:
-              return const Courses_Tabbar();
-            case AuthStatus.unauthenticated:
-            default:
-              return const LoginScreen();
-          }
-        }),
+        home: const LoginScreen(),
       ),
     );
   }

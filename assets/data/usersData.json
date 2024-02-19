@@ -1,0 +1,44 @@
+{
+  "usersData": [
+    {
+      "id": 1,
+      "name": "lwh",
+      "email": "lhw@123.org",
+      "phone": "03159223072",
+      "nic": "21201",
+      "id_no": "4544435",
+      "dob": "1994-09-06",
+      "village": "vil1",
+      "uc_name": "uc1",
+      "years_experience": 5,
+      "email_verified_at": null,
+      "password": "11223344",
+      "image": "uploads/170833645240.png",
+      "role_id": null,
+      "status": "active",
+      "remember_token": null,
+      "created_at": "2023-12-13 01:08:08",
+      "updated_at": "2024-02-19 14:54:12"
+    },
+    {
+      "id": 2,
+      "name": "سارہ احمد",
+      "email": "sara@phcglobal.org",
+      "phone": "09120510934",
+      "nic": "1213123123122",
+      "id_no": "۱۲۱۳۱۲",
+      "dob": "1999-09-09",
+      "village": "vil1",
+      "uc_name": "uc1",
+      "years_experience": 0,
+      "email_verified_at": null,
+      "password": "$2y$10$8p0saLZ1I5uSjtxZKAScueWu4UQn.K5TF.SzlSudHkEXpCP8p1qRy",
+      "image": "uploads/170833767573.png",
+      "role_id": null,
+      "status": "active",
+      "remember_token": null,
+      "created_at": "2024-02-16 17:29:54",
+      "updated_at": "2024-02-19 15:14:35"
+    }
+  ]
+}

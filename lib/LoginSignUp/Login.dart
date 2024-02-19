@@ -1,9 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
-import '../controllers/signup_controller.dart';
+import 'package:lhw/navy.dart';
+import 'package:lhw/models/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Forgot_Password.dart';
 import 'SignUp.dart';
 
@@ -24,21 +26,76 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  TextEditingController idController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  Future<void> _loadUsers() async {
+    final String response = await DefaultAssetBundle.of(context)
+        .loadString('assets/data/usersData.json');
+    final data = await json.decode(response);
+    setState(() {
+      _users.addAll(
+          List<User>.from(data["usersData"].map((x) => User.fromJson(x))));
+    });
+  }
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  @override
+  void initState() {
+    super.initState();
+    _loadUsers();
+  }
+
+
+
+  void _login() async {
+    final String email = emailController.text.trim();
+    final String password = passwordController.text.trim();
+
+    final User? user = _users.firstWhereOrNull(
+          (user) => user.email == email && user.password == password,
+    );
+
+    if (user != null) {
+      // Serialize and save user data to local storage
+      final prefs = await SharedPreferences.getInstance();
+      String userJson = json.encode(user.toJson());
+      await prefs.setString('userData', userJson);
+
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
+    } else {
+      print("Login failed for email: $email");
+      // Show an error message
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Login Failed'),
+          content: Text('Invalid email or password. Please try again.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final List<User> _users = []; // This will hold the parsed users
 
   bool areFieldsEmpty(TextEditingController emailController,
       TextEditingController passwordController) {
     return emailController.text.trim().isEmpty ||
         passwordController.text.trim().isEmpty;
   }
-
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SignUpController());
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 36),
@@ -55,7 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             GestureDetector(
               onTap: () {
-                controller.clearLoginFields();
                 Get.to(() => const SignUpScreen(),
                     transition: Transition.fade,
                     duration: const Duration(milliseconds: 300));
@@ -88,7 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 textAlign: TextAlign.center,
               ),
             ),
-
             const Padding(
               padding: EdgeInsets.only(right: 8, top: 36, bottom: 16),
               child: Text.rich(
@@ -105,11 +160,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Color(0xff0F0D18)),
               ),
             ),
-
             TextField(
-              controller: controller.email,
-              textAlign: TextAlign.right,
-              textDirection: TextDirection.rtl,
+              controller: emailController,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(
                     vertical: 10.0,
@@ -135,19 +187,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
             const Padding(
               padding: EdgeInsets.only(top: 30.0, bottom: 16, right: 8),
               child: Text.rich(
                 TextSpan(
                   children: [
                     TextSpan(
-                      text:    "پاس ورڈ",
+                      text: "پاس ورڈ",
                       style: TextStyle(
                           fontFamily: "UrduType",
                           fontSize: 14,
                           color: Color(0xff0F0D18)),
-                    ), TextSpan(
+                    ),
+                    TextSpan(
                       text: " *",
                       style: TextStyle(
                           fontFamily: "UrduType",
@@ -155,18 +207,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Color(0xffff0000)),
                     )
                   ],
-
                 ),
                 textDirection: TextDirection.rtl,
               ),
             ),
-
             TextField(
-                controller: controller.password,
+              controller: passwordController,
                 obscureText: _obscureText,
-                textAlign: TextAlign.right,
                 decoration: InputDecoration(
-                    prefixIcon: IconButton(
+                    suffixIcon: IconButton(
                       icon: Icon(
                         _obscureText
                             ? Icons.remove_red_eye_outlined
@@ -198,29 +247,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 2,
                       ),
                     ))),
-
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24),
               child: ElevatedButton(
                 onPressed: () {
-                  if (areFieldsEmpty(
-                      controller.email, controller.password)) {
-                    Fluttertoast.showToast(
-                        msg: "Please fill all the fields!",
-                        backgroundColor: Colors.red.withOpacity(0.1),
-                        textColor: Colors.red);
-                  } else {
-                    SignUpController.instance.Login(
-                        controller.email.text.trim(),
-                        controller.password.text.trim());
-                  }
+                  _login();
                 },
                 style: ElevatedButton.styleFrom(
                   // shadowColor: Colors.red,
                   padding: const EdgeInsets.all(15.0),
-                  backgroundColor: const Color(0xCDF36ABC), // Button color when not pressed
+                  backgroundColor:
+                      const Color(0xCDF36ABC), // Button color when not pressed
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0), // Set your desired border radius
+                    borderRadius: BorderRadius.circular(
+                        24.0), // Set your desired border radius
                   ),
                 ),
                 child: const Text(
@@ -233,7 +274,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
@@ -275,8 +315,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-
-
                 ],
               ),
             ),

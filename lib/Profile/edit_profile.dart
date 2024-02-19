@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Profile/Profile.dart';
-import 'package:lhw/controllers/profile_controller.dart';
-import 'package:lhw/models/user_model.dart';
 
 import '../LoginSignUp/Login.dart';
 
@@ -35,7 +32,6 @@ class _ProfileEditState extends State<ProfileEdit> {
 
   @override
   Widget build(BuildContext context) {
-    final controller  = Get.put(ProfileController());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
@@ -129,7 +125,6 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
               TextField(
-                controller: controller.name,
                 textAlign: TextAlign.right,
                 textDirection: TextDirection.rtl,
                 decoration: InputDecoration(
@@ -185,7 +180,6 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
           TextField(
-            controller: controller.dob,
             textAlign: TextAlign.right,
             textDirection: TextDirection.rtl,
             readOnly: true,
@@ -542,7 +536,6 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
               TextField(
-                controller: controller.email,
                 textAlign: TextAlign.right,
                 keyboardType: TextInputType.emailAddress,
                 textDirection: TextDirection.rtl,
@@ -601,7 +594,6 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
               TextField(
-                controller: controller.id,
                 textAlign: TextAlign.right,
                 textDirection: TextDirection.rtl,
                 keyboardType: TextInputType.phone,
