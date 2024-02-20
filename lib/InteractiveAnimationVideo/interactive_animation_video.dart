@@ -383,13 +383,15 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                   ),
                   minimumSize: const Size(150, 37),
                 ),
-                onPressed: _videoController.value.position == _videoController.value.duration
+                onPressed: (_videoController.value.position.inSeconds >= _videoController.value.duration.inSeconds - 1)
                     ? () {
                   // Call the callback to mark completion or navigate back
                   widget.onCompleted?.call();
                   Get.back();
                 }
                     : null, // Button is disabled until the video finishes
+
+
                 child: const Text(
                   'جاری رہے',
                   style: TextStyle(

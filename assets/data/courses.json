@@ -32,51 +32,53 @@
               "features": [
                 {
                   "featureId": 1,
-                  "featureType": "presentation",
-                  "duration": "5 mins",
-                  "title": "Introduction to Variables",
-                  "presentationModel": {
-                    "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
-                    ],
-                    "questions": [
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      },
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      }
-                    ],
-                    "showQuestionDialog": [
-                      true,
-                      true,
-                      false,
-                      false,
-                      false,
-                      false
-                    ]
-                  }
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "Interactive Animation Video Example",
+                  "duration": "4 mins",
+                  "videoPath": "assets/videos/demo.mp4",
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
+                  "questions": [
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    }
+                  ]
                 }
               ]
             },
