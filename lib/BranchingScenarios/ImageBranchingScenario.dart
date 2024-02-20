@@ -10,8 +10,10 @@ import '../FlashCard/flash_cards_screen.dart';
 
 class ImageBranchingScenario extends StatefulWidget {
   final ImageBranchingScenarioModel imageBranchingScenarioModel;
+  final VoidCallback? onCompleted; // Optional callback
+
   const ImageBranchingScenario(
-      {super.key, required this.imageBranchingScenarioModel});
+      {super.key, required this.imageBranchingScenarioModel,this.onCompleted});
 
   @override
   State<ImageBranchingScenario> createState() => _ImageBranchingScenarioState();
@@ -161,7 +163,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(right: 10),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: ScaleTransition(
@@ -336,15 +338,26 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                 width: 150,
                                 height: 35,
                                 decoration: BoxDecoration(
-                                    color: const Color(0xffFE8BD1),
+                                    color: isAnswered && questionIndex == widget.imageBranchingScenarioModel.questions.length - 1
+                                        ? const Color(0xffFE8BD1) // Button enabled color
+                                        : Colors.grey, // Button disabled color
                                     borderRadius: BorderRadius.circular(30)),
-                                child: const Center(
-                                  child: Text(
-                                    'جاری رہے',
-                                    style: TextStyle(
-                                      fontFamily: 'UrduType',
-                                      fontSize: 15,
-                                      color: Colors.white,
+                                child: TextButton(
+                                  onPressed: isAnswered && questionIndex == widget.imageBranchingScenarioModel.questions.length - 1
+                                      ? () {
+                                    if(widget.onCompleted != null) {
+                                      widget.onCompleted!(); // Optionally call the completion callback if provided
+                                    }
+                                    Get.back();                                  }
+                                      : null, // Disable button if not the last question or not answered
+                                  child: const Center(
+                                    child: Text(
+                                      'جاری رہے',
+                                      style: TextStyle(
+                                        fontFamily: 'UrduType',
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -380,12 +393,12 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
 
 class QuizCard extends StatelessWidget {
   final String text;
-  final Function ontap;
+  final VoidCallback ontap;
   final Color color;
   final bool isCorrect;
   final bool isSelected;
   final bool isAnswered;
-  final bool isOptionSelected; // Define this parameter
+  final bool isOptionSelected;
 
   const QuizCard({
     Key? key,
@@ -395,53 +408,48 @@ class QuizCard extends StatelessWidget {
     this.isCorrect = false,
     this.isSelected = false,
     this.isAnswered = false,
-    this.isOptionSelected = false, // Initialize this parameter
+    this.isOptionSelected = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: isAnswered ? null : () => ontap(),
-      child: Expanded(
-        child: Container(
-          width: 360,
-          height: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: color,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Row(
-                children: [
-                  Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Colors.black87.withOpacity(0.2)),
-                      shape: BoxShape.circle,
-                      color: isOptionSelected // Use the parameter here
-                          ? (isCorrect ? Colors.green : Colors.red)
-                          : Colors.transparent,
+      onTap: isAnswered ? null : ontap,
+      child: Container(
+        width: 360,
+        height: 70,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: color,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              children: [
+                Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black87.withOpacity(0.2)),
+                    shape: BoxShape.circle,
+                    color: isOptionSelected ? (isCorrect ? Colors.green : Colors.red) : Colors.transparent,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Color(0xff7A7D84),
+                      fontFamily: 'UrduType',
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      text,
-                      textAlign: TextAlign.justify,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Color(0xff7A7D84),
-                        fontFamily: 'UrduType',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

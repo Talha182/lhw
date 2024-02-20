@@ -44,17 +44,17 @@ class FeaturesListScreen extends StatefulWidget {
 }
 
 class _FeaturesListScreenState extends State<FeaturesListScreen> {
-
   // Updated method to check and update the course completion status
   void _checkAndUpdateCourseCompletion() {
     bool allFeaturesCompleted =
-    widget.submodule.features.every((feature) => feature.isCompleted);
+        widget.submodule.features.every((feature) => feature.isCompleted);
     if (allFeaturesCompleted) {
       // Get the provider instance and call the method to update course completion status
       Provider.of<CoursesProvider>(context, listen: false)
           .updateCourseCompletionStatus();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -266,8 +266,19 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           List<ComicStripModel> comicStripModels =
                               feature.relatedData as List<ComicStripModel>;
                           // Adjust navigation based on your actual ComicStrip widget's constructor
-                          await Get.to(() =>
-                              ComicStrip(comicStripsModel: comicStripModels));
+                          await Get.to(() => ComicStrip(
+                                comicStripsModel: comicStripModels,
+                                onCompleted: () {
+                                  setState(() {
+                                    feature.isCompleted =
+                                        true; // Mark the feature as completed
+                                    _checkAndUpdateCourseCompletion();
+                                  });
+                                  Provider.of<CoursesProvider>(context,
+                                          listen: false)
+                                      .updateProgress();
+                                },
+                              ));
                         }
 
                         if (feature.featureType == FeatureType.flashCards) {
@@ -280,7 +291,18 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                     cards:
                                         flashCards); // Assuming constructor matches this
                             await Get.to(() => FlashCardsScreen(
-                                flashCardModel: flashCardScreenModel));
+                                  flashCardModel: flashCardScreenModel,
+                                  onCompleted: () {
+                                    setState(() {
+                                      feature.isCompleted =
+                                          true; // Mark the feature as completed
+                                      _checkAndUpdateCourseCompletion();
+                                    });
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .updateProgress();
+                                  },
+                                ));
                           }
                         }
                         if (feature.featureType == FeatureType.infographics) {
@@ -288,7 +310,18 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                               feature.relatedData as InfographicsModel;
                           // Assuming you have a route or method to display the infographics
                           await Get.to(() => InfographicScreen(
-                              infographicsModel: infographicsModel));
+                                infographicsModel: infographicsModel,
+                                onCompleted: () {
+                                  setState(() {
+                                    feature.isCompleted =
+                                        true; // Mark the feature as completed
+                                    _checkAndUpdateCourseCompletion();
+                                  });
+                                  Provider.of<CoursesProvider>(context,
+                                          listen: false)
+                                      .updateProgress();
+                                },
+                              ));
                         }
                         if (feature.featureType ==
                             FeatureType.interactiveAnimationVideo) {
@@ -327,7 +360,18 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           ImageHotspotModel imageHotspotModel =
                               feature.relatedData as ImageHotspotModel;
                           await Get.to(() => ImageHotspot(
-                              imageHotspotModel: imageHotspotModel));
+                                imageHotspotModel: imageHotspotModel,
+                                onCompleted: () {
+                                  setState(() {
+                                    feature.isCompleted =
+                                        true; // Mark the feature as completed
+                                    _checkAndUpdateCourseCompletion();
+                                  });
+                                  Provider.of<CoursesProvider>(context,
+                                          listen: false)
+                                      .updateProgress();
+                                },
+                              ));
                         }
                         if (feature.featureType ==
                             FeatureType.imageBranchingScenario) {
@@ -337,6 +381,16 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           await Get.to(() => ImageBranchingScenario(
                                 imageBranchingScenarioModel:
                                     imageBranchingScenarioModel,
+                                onCompleted: () {
+                                  setState(() {
+                                    feature.isCompleted =
+                                        true; // Mark the feature as completed
+                                    _checkAndUpdateCourseCompletion();
+                                  });
+                                  Provider.of<CoursesProvider>(context,
+                                          listen: false)
+                                      .updateProgress();
+                                },
                               ));
                         }
                         if (feature.featureType ==
@@ -347,6 +401,16 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           await Get.to(() => TextBranchingScenario(
                                 textBranchingScenarioModel:
                                     textBranchingScenarioModel,
+                                onCompleted: () {
+                                  setState(() {
+                                    feature.isCompleted =
+                                        true; // Mark the feature as completed
+                                    _checkAndUpdateCourseCompletion();
+                                  });
+                                  Provider.of<CoursesProvider>(context,
+                                          listen: false)
+                                      .updateProgress();
+                                },
                               ));
                         }
                       },

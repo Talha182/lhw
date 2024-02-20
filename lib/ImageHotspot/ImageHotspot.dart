@@ -9,10 +9,12 @@ import '../models/image_hotspot_model.dart';
 
 class ImageHotspot extends StatefulWidget {
   final ImageHotspotModel imageHotspotModel;
+  final VoidCallback? onCompleted; // Optional callback
 
   const ImageHotspot({
     Key? key,
     required this.imageHotspotModel,
+    this.onCompleted
   }) : super(key: key);
 
   @override
@@ -315,8 +317,14 @@ class _ImageHotspotState extends State<ImageHotspot>
             minimumSize: const Size(150, 37),
           ),
           onPressed: allHotspotsTapped
-              ? () => Get.back()
-              : null, // Enable or disable based on allHotspotsTapped
+              ? () {
+            // This will only execute on the last slide
+            if(widget.onCompleted != null) {
+              widget.onCompleted!(); // Optionally call the completion callback if provided
+            }
+            Get.back();
+          }
+              : null,
           child: const Text(
             'جاری رہے',
             style: TextStyle(

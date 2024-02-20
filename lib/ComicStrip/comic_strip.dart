@@ -9,10 +9,13 @@ import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
 class ComicStrip extends StatefulWidget {
   final List<ComicStripModel> comicStripsModel;
+  final VoidCallback? onCompleted; // Optional callback
+
 
   const ComicStrip({
     Key? key,
     required this.comicStripsModel,
+    this.onCompleted
   }) : super(key: key);
 
   @override
@@ -265,9 +268,15 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                     ),
                     minimumSize: const Size(150, 37),
                   ),
-                  onPressed: () {
+                  onPressed: _current == _carouselItems.length - 1
+                      ? () {
+                    // This callback will only be executed if the user is on the last slide
+                    if (widget.onCompleted != null) {
+                      widget.onCompleted!();
+                    }
                     Get.back();
-                  },
+                  }
+                      : null, // Disable the button until the last slide is reached
                   child: const Text(
                     'جاری رہے',
                     style: TextStyle(
@@ -277,6 +286,7 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                     ),
                   ),
                 )
+
               ],
             ),
           ),

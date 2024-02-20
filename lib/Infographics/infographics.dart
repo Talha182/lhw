@@ -11,11 +11,10 @@ import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
 class InfographicScreen extends StatefulWidget {
   final InfographicsModel infographicsModel;
+  final VoidCallback? onCompleted; // Optional callback
 
-  const InfographicScreen({super.key, required this.infographicsModel});
-
-
-
+  const InfographicScreen(
+      {super.key, required this.infographicsModel, this.onCompleted});
 
   @override
   _InfographicScreenState createState() => _InfographicScreenState();
@@ -34,12 +33,13 @@ class _InfographicScreenState extends State<InfographicScreen>
   @override
   void initState() {
     super.initState();
-    _carouselItems = List.generate(widget.infographicsModel.infographics.length, (index) {
-      Color borderColor = random.nextBool() ? const Color(0xffAEDDBF) : const Color(0xffF49FC6);
-      return _buildSlide(widget.infographicsModel.infographics[index].imagePath, borderColor, widget.infographicsModel.infographics[index].text);
-
+    _carouselItems =
+        List.generate(widget.infographicsModel.infographics.length, (index) {
+      Color borderColor =
+          random.nextBool() ? const Color(0xffAEDDBF) : const Color(0xffF49FC6);
+      return _buildSlide(widget.infographicsModel.infographics[index].imagePath,
+          borderColor, widget.infographicsModel.infographics[index].text);
     });
-
 
     _progressController = AnimationController(
         duration: const Duration(milliseconds: 400), vsync: this)
@@ -59,8 +59,8 @@ class _InfographicScreenState extends State<InfographicScreen>
         curve: Curves.easeInOut,
       ),
     )..addListener(() {
-      setState(() {});
-    });
+        setState(() {});
+      });
 
     _cloudPumpAnimationController.repeat(reverse: true);
   }
@@ -82,11 +82,11 @@ class _InfographicScreenState extends State<InfographicScreen>
           Center(
               child: _buildCircleAndRectangleContainer(
                   imagePath, borderColor, text)),
-
         ],
       ),
     );
   }
+
   Widget _buildCircleAndRectangleContainer(
       String imagePath, Color borderColor, String text) {
     return Stack(
@@ -200,7 +200,6 @@ class _InfographicScreenState extends State<InfographicScreen>
                     ),
                   ),
                 ),
-
                 Expanded(
                   child: CarouselSlider.builder(
                     carouselController: _carouselController,
@@ -225,18 +224,22 @@ class _InfographicScreenState extends State<InfographicScreen>
                   right: 0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(widget.infographicsModel.infographics.length, (index) {
+                    children: List.generate(
+                        widget.infographicsModel.infographics.length, (index) {
                       return GestureDetector(
                         onTap: () => _carouselController.animateToPage(index),
                         child: Container(
                           width: 8.0,
                           height: 8.0,
-                          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 5.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: _current == index
-                                ? const Color(0xff9AC9C2) // Highlighted dot color
-                                : const Color.fromRGBO(0, 0, 0, 0.4), // Non-highlighted dot color
+                                ? const Color(
+                                    0xff9AC9C2) // Highlighted dot color
+                                : const Color.fromRGBO(
+                                    0, 0, 0, 0.4), // Non-highlighted dot color
                           ),
                         ),
                       );
@@ -264,9 +267,15 @@ class _InfographicScreenState extends State<InfographicScreen>
                     ),
                     minimumSize: const Size(150, 37),
                   ),
-                  onPressed: () {
+                  onPressed: _current == _carouselItems.length - 1
+                      ? () {
+                    // This will only execute on the last slide
+                    if(widget.onCompleted != null) {
+                      widget.onCompleted!(); // Optionally call the completion callback if provided
+                    }
                     Get.back();
-                  },
+                  }
+                      : null,
                   child: const Text(
                     'جاری رہے',
                     style: TextStyle(
@@ -284,6 +293,7 @@ class _InfographicScreenState extends State<InfographicScreen>
     );
   }
 }
+
 class InfographicsModel {
   final List<Infographic> infographics;
 
@@ -291,7 +301,8 @@ class InfographicsModel {
 
   factory InfographicsModel.fromJson(Map<String, dynamic> json) {
     var list = json['infographics'] as List;
-    List<Infographic> infographicsList = list.map((i) => Infographic.fromJson(i)).toList();
+    List<Infographic> infographicsList =
+        list.map((i) => Infographic.fromJson(i)).toList();
     return InfographicsModel(infographics: infographicsList);
   }
 }

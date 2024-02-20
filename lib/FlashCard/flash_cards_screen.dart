@@ -11,8 +11,10 @@ import '../models/flash_cards_screen_model.dart'; // Adjust the import path base
 
 class FlashCardsScreen extends StatefulWidget {
   final FlashCardScreenModel flashCardModel;
+  final VoidCallback? onCompleted; // Optional callback
 
-  const FlashCardsScreen({Key? key, required this.flashCardModel})
+  const FlashCardsScreen(
+      {Key? key, required this.flashCardModel, this.onCompleted})
       : super(key: key);
 
   @override
@@ -142,7 +144,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                     fit: BoxFit.contain,
                   ),
                 ),
-
               ),
             ),
             Padding(
@@ -299,18 +300,22 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
               style: ElevatedButton.styleFrom(
                 side: const BorderSide(color: Colors.white, width: 2),
                 backgroundColor:
-                    _isLastCardFlipped ? const Color(0xffFE8BD1) : Colors.grey,
+                    const Color(0xffFE8BD1) ,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
                 minimumSize: const Size(150, 37),
               ),
-              onPressed: () {
+              onPressed: _isLastCardFlipped ? (){
+                if (widget.onCompleted != null) {
+                  widget.onCompleted!();
+                }
                 Get.back();
-              },
+              } : null,
+
               child: const Text(
-                "back",
+                'جاری رہے',
                 style: TextStyle(
                   fontFamily: 'UrduType',
                   fontSize: 15,

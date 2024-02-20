@@ -58,8 +58,8 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
       }
     });
     _pathAnimationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _slideAnimation = Tween<Offset>(begin: Offset(0, 1), end: Offset.zero)
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _slideAnimation = Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero)
         .animate(CurvedAnimation(
             parent: _pathAnimationController, curve: Curves.ease));
     _fadeAnimation =
@@ -68,7 +68,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
 
     _avatarAnimationController = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
         lowerBound: 0.0,
         upperBound: 0.1)
       ..addStatusListener((status) {
@@ -86,11 +86,11 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
     // Initialize with a default duration, but without using MediaQuery.
     _cloudAnimationController1 = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 10),
+      duration: const Duration(seconds: 10),
     );
     _cloudAnimationController2 = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 10),
+      duration: const Duration(seconds: 10),
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -447,27 +447,38 @@ class StepperTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Define the icon size for consistent layout
-    final double iconSize = 60.0;
 
     return InkWell(
       onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Icon positioned at the top
-          CircleAvatar(
-            radius: iconSize / 2,
-            backgroundColor: Colors.grey.shade300,
-            child: Icon(Icons.circle,
-                size: iconSize, color: Colors.blue), // Replace with your icon
+          Container(
+            width: 70,
+            height: 70,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: const Color(0xffFBE4F2), width: 2.0),
+            ),
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                  color: Color(0xffFE8BD1), shape: BoxShape.circle),
+              child: Center(
+                child: Icon(
+                  submodule.isCompleted ? Icons.check : Icons.start,
+                  color: submodule.isCompleted ? Colors.green : Colors.white,
+                ),
+              ),
+            ),
           ),
           // Title positioned below the icon
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
             child: Text(
               submodule.title,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: "UrduType",
                 fontSize: 20,

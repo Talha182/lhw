@@ -31,11 +31,11 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   late VideoPlayerController _videoController;
   late FlickManager flickManager;
   late Set<int> _shownQuestions; // Track which questions have been shown
-  bool _isDialogCurrentlyShown = false;
+  final bool _isDialogCurrentlyShown = false;
   bool isSelected = false;
   bool isAnswered = false;
   int _current = 0;
-  int _totalSteps = 100;
+  final int _totalSteps = 100;
   int questionIndex = 0;
   String selectedAnswer = '';
   int? selectedOptionIndex;
@@ -43,7 +43,6 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
-
   @override
   void initState() {
     super.initState();
@@ -384,12 +383,13 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                   ),
                   minimumSize: const Size(150, 37),
                 ),
-                onPressed: () {
-                  // navigationController.navigateToNextFeatureOrBack();
-                  widget.onCompleted
-                      ?.call(); // Call the callback to mark completion
+                onPressed: _videoController.value.position == _videoController.value.duration
+                    ? () {
+                  // Call the callback to mark completion or navigate back
+                  widget.onCompleted?.call();
                   Get.back();
-                },
+                }
+                    : null, // Button is disabled until the video finishes
                 child: const Text(
                   'جاری رہے',
                   style: TextStyle(

@@ -13,8 +13,10 @@ import '../controllers/QuizController.dart';
 
 class TextBranchingScenario extends StatefulWidget {
   final TextBranchingScenarioModel textBranchingScenarioModel;
+  final VoidCallback? onCompleted; // Optional callback
+
   const TextBranchingScenario(
-      {super.key, required this.textBranchingScenarioModel});
+      {super.key, required this.textBranchingScenarioModel,this.onCompleted});
 
   @override
   _TextBranchingScenarioState createState() => _TextBranchingScenarioState();
@@ -375,10 +377,14 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                       ),
                       minimumSize: const Size(150, 37),
                     ),
-                    onPressed: () {
-                      // navigationController.navigateToNextFeatureOrBack();
-                      Get.back();
-                    },
+                    onPressed: isAnswered && questionIndex == widget.textBranchingScenarioModel.questions.length - 1
+                        ? () {
+                      if(widget.onCompleted != null) {
+                        widget.onCompleted!(); // Optionally call the completion callback if provided
+                      }
+                      Get.back();                                  }
+                        : null, // Disable button if not the last question or not answered
+
                     child: const Text(
                       'جاری رہے',
                       style: TextStyle(
