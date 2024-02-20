@@ -166,10 +166,8 @@ class Submodule {
   final int submoduleId;
   final String title;
   final String description;
-  final Map<String, double> buttonPosition;
   final String iconPath;
   final int numberOfQuizzes;
-  final String titleAlignment;
   bool isCompleted;
   final List<Feature> features;
 
@@ -177,11 +175,9 @@ class Submodule {
     required this.submoduleId,
     required this.title,
     required this.description,
-    required this.buttonPosition,
     required this.iconPath,
     this.isCompleted = false, // Default to false
     required this.numberOfQuizzes,
-    required this.titleAlignment,
     required this.features,
   });
 
@@ -190,10 +186,8 @@ class Submodule {
       submoduleId: json['submoduleId'],
       title: json['title'],
       description: json['description'],
-      buttonPosition: Map<String, double>.from(json['buttonPosition']),
       iconPath: json['iconPath'],
       numberOfQuizzes: json['numberOfQuizzes'],
-      titleAlignment: json['titleAlignment'],
       features:
           List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
       isCompleted: json['isCompleted'] as bool? ?? false,

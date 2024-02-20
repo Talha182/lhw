@@ -24,7 +24,7 @@ class Module_Card extends StatelessWidget {
       onTap: onClick,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        margin: EdgeInsets.symmetric( vertical: 10, horizontal: 10),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.withOpacity(0.3)),
             color: const Color(0xffeaeaea).withOpacity(0.4),

@@ -32,9 +32,9 @@ class JourneyMapScreen extends StatefulWidget {
 class _JourneyMapScreenState extends State<JourneyMapScreen>
     with TickerProviderStateMixin {
   late AnimationController _cloudAnimationController1;
-  late Animation<double> _cloudAnimation1;
+  Animation<double>? _cloudAnimation1;
   late AnimationController _cloudAnimationController2;
-  late Animation<double> _cloudAnimation2;
+  Animation<double>? _cloudAnimation2;
   late AnimationController _pathAnimationController;
   late Animation<Offset> _slideAnimation;
   late Animation<double> _fadeAnimation;
@@ -92,36 +92,37 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
       vsync: this,
       duration: const Duration(seconds: 10),
     );
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final screenWidth = MediaQuery.of(context).size.width;
-
-      // Configure the animations now that you have the screen width.
-      _cloudAnimation1 = Tween(begin: -50.0, end: screenWidth)
-          .animate(_cloudAnimationController1)
-        ..addListener(() {
-          setState(
-              () {}); // Call setState if needed to rebuild the widget with updated values
-        })
-        ..addStatusListener((status) {
-          if (status == AnimationStatus.completed) {
-            _cloudAnimationController1.repeat();
-          }
-        });
-      _cloudAnimationController1.forward();
-
-      _cloudAnimation2 = Tween(begin: -30.0, end: screenWidth)
-          .animate(_cloudAnimationController2)
-        ..addListener(() {
-          setState(() {}); // Same here for the second animation
-        })
-        ..addStatusListener((status) {
-          if (status == AnimationStatus.completed) {
-            _cloudAnimationController2.repeat();
-          }
-        });
-      _cloudAnimationController2.forward();
+      // Initialize the animations here
+      _setupAnimations(screenWidth);
     });
+  }
+
+  void _setupAnimations(double screenWidth) {
+    _cloudAnimation1 = Tween(begin: -50.0, end: screenWidth)
+        .animate(_cloudAnimationController1)
+      ..addListener(() {
+        setState(() {}); // Call setState if needed
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _cloudAnimationController1.repeat();
+        }
+      });
+    _cloudAnimationController1.forward();
+
+    _cloudAnimation2 = Tween(begin: -30.0, end: screenWidth)
+        .animate(_cloudAnimationController2)
+      ..addListener(() {
+        setState(() {}); // Same here
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _cloudAnimationController2.repeat();
+        }
+      });
+    _cloudAnimationController2.forward();
   }
 
   @override
@@ -156,13 +157,13 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
             children: [
               Positioned(
                 top: 70,
-                right: _cloudAnimation1.value,
+                right: _cloudAnimation1?.value ?? 0, // Use null-aware access
                 child: SvgPicture.asset('assets/images/cloud.svg',
                     width: 30, height: 30),
               ),
               Positioned(
                 top: 90,
-                left: _cloudAnimation2.value,
+                left: _cloudAnimation2?.value ?? 0, // Use null-aware access
                 child: SvgPicture.asset('assets/images/cloud.svg',
                     width: 30, height: 30),
               ),
