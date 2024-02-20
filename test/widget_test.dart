@@ -20,7 +20,7 @@ void main() {
     final mockDatabase = MockAppDatabase();
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(const MyApp(isLoggedIn: false,));
 
     // rest of your test code
   });

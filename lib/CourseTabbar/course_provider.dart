@@ -71,78 +71,42 @@ class CoursesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // New method to mark a module or submodule as completed
-  void markModuleOrSubmoduleAsCompleted(int courseId, int moduleId,
-      {int? submoduleId}) {
-    var course = getCourseById(courseId);
-    if (course != null) {
-      var module =
-          course.modules.firstWhereOrNull((m) => m.moduleId == moduleId);
-      if (module != null) {
-        if (submoduleId != null) {
-          var submodule = module.submodules
-              .firstWhereOrNull((s) => s.submoduleId == submoduleId);
-          if (submodule != null) {
-            submodule.isCompleted = true;
-          }
-        } else {
-          module.isCompleted = true;
-        }
-        updateCoursesProgress(
-            course); // Call this method to update the course's overall progress
-      }
-    }
-    notifyListeners();
-  }
-
-  void updateModuleProgress(int courseId, int moduleId, double progress) {
-    TestCourseModel? course =
-        _courses.firstWhereOrNull((c) => c.courseId == courseId);
-    Module? module =
-        course?.modules.firstWhereOrNull((m) => m.moduleId == moduleId);
-    if (module != null) {
-      module.progressValue = progress; // Update progress here
-      notifyListeners(); // Notify all listeners of change
-    }
-  }
-
-  // Method to update the course's overall progress based on modules/submodules completion
-  void updateCoursesProgress(TestCourseModel course) {
-    int completedModules = course.modules.where((m) => m.isCompleted).length;
-    if (completedModules == course.modules.length) {
-      course.isCompleted = true;
-    } else {
-      course.isCompleted = false;
-    }
-    notifyListeners();
-  }
-
   TestCourseModel? getCourseById(int courseId) {
     return _courses.firstWhereOrNull((course) => course.courseId == courseId);
   }
 
-  void updateProgressValue(int courseId, int moduleId, double progress,
-      {int? submoduleId}) {
-    // Find the course by ID
-    TestCourseModel? course =
-        _courses.firstWhereOrNull((c) => c.courseId == courseId);
-    if (course != null) {
-      // Find the module by ID within the course
-      Module? module =
-          course.modules.firstWhereOrNull((m) => m.moduleId == moduleId);
-      if (module != null) {
-        // If a submodule ID is provided, update the submodule's progress
-        if (submoduleId != null) {
-          Submodule? submodule = module.submodules
-              .firstWhereOrNull((s) => s.submoduleId == submoduleId);
-        } else {
-          // If no submodule ID is provided, update the module's progress
-          module.progressValue = progress;
-        }
-        notifyListeners(); // Notify all listeners of the change
-      }
-    }
+  void updateProgress() {
+    _courses.forEach((course) {
+      course.updateCourseCompletionProgress();
+    });
+    notifyListeners();
   }
 
-// Additional getters and methods as needed...
+  void updateCourseCompletionStatus() {
+    _courses.forEach((course) {
+      bool allFeaturesCompleted = course.modules.every((module) {
+        return module.submodules.every((submodule) {
+          return submodule.features.every((feature) => feature.isCompleted);
+        });
+      });
+      course.isCompleted = allFeaturesCompleted;
+    });
+    notifyListeners();
+  }
+
+
+
+  // Method to check if a course is completed and mark it accordingly
+  void checkAndUpdateCourseCompletion() {
+    _courses.forEach((course) {
+      if (course.isStart && !course.isCompleted) {
+        bool allModulesCompleted =
+            course.modules.every((module) => module.isCompleted);
+        if (allModulesCompleted) {
+          course.isCompleted = true;
+        }
+      }
+    });
+    notifyListeners();
+  }
 }

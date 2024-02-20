@@ -51,36 +51,45 @@ class TestCourseModel {
       moduleCount: json['moduleCount'],
       imagePath: json['imagePath'],
       isStart: json['isStart'],
-      isCompleted: json['isCompleted'],
+      isCompleted: json['isCompleted'] as bool? ?? false,
       progress: json['progress'] ?? 0.0,
       arrowText: json['arrowText'],
-      modules:
-          List<Module>.from(json['modules'].map((x) => Module.fromJson(x))),
+      modules: List<Module>.from(json['modules'].map((x) => Module.fromJson(x))),
     );
   }
+
   // Method to update course progress
   void updateCourseCompletionProgress() {
-    double totalProgress = 0.0;
+    int completedFeaturesCount = 0;
+    int totalFeaturesCount = 0;
 
-    // Ensure modules have updated their progress and completion status
+    // Iterate through modules
     for (Module module in modules) {
+      // Update module completion status and progress value
       module.updateCompletionStatus();
       module.updateProgressValue();
-      totalProgress += module.progressValue;
+
+      // Iterate through submodules
+      for (Submodule submodule in module.submodules) {
+        // Update submodule completion status
+        submodule.updateCompletionStatus();
+
+        // Update feature completion status and count completed features
+        for (Feature feature in submodule.features) {
+          totalFeaturesCount++;
+          if (feature.isCompleted) {
+            completedFeaturesCount++;
+          }
+        }
+      }
     }
 
     // Calculate overall course progress
-    this.progress = modules.isNotEmpty ? totalProgress / modules.length : 0.0;
-  }
-
-  // Method to update course completion status
-  void updateCourseCompletionStatus() {
-    // Check if all modules and their submodules are completed
-    this.isCompleted = modules.every((module) {
-      module
-          .updateCompletionStatus(); // Ensure module completion status is up to date
-      return module.isCompleted;
-    });
+    if (totalFeaturesCount > 0) {
+      progress = completedFeaturesCount / totalFeaturesCount;
+    } else {
+      progress = 0.0;
+    }
   }
 }
 
@@ -115,25 +124,30 @@ class Module {
       progressValue: json['progressValue'] ?? 0.0,
       submodules: List<Submodule>.from(
           json['submodules'].map((x) => Submodule.fromJson(x))),
-      isCompleted: json['isCompleted'],
+      isCompleted: json['isCompleted'] as bool? ?? false,
     );
   }
-  // Method to calculate progress based on completed features
-  // Add this method to calculate progress
+
+  // Method to calculate progress based on completed submodules and features
   void updateProgressValue() {
-    int completedSubmodules = 0;
+    int totalFeaturesCount = submodules
+        .map((submodule) => submodule.features.length)
+        .reduce((value, element) => value + element);
+    int completedFeaturesCount = submodules
+        .expand((submodule) => submodule.features)
+        .where((feature) => feature.isCompleted)
+        .length;
 
-    // Update submodule completion status based on features
-    for (Submodule submodule in submodules) {
-      submodule.updateCompletionStatus();
-      if (submodule.isCompleted) {
-        completedSubmodules++;
-      }
-    }
+    // Calculate equal portion of progress for each feature
+    double portionOfProgress = totalFeaturesCount > 0
+        ? 1 / totalFeaturesCount
+        : 0.0;
 
-    // Calculate module progress based on completed submodules
-    progressValue =
-        submodules.isNotEmpty ? completedSubmodules / submodules.length : 0.0;
+    // Calculate total progress based on completed features
+    double totalProgress = completedFeaturesCount * portionOfProgress;
+
+    // Update module progress value
+    progressValue = totalProgress;
   }
 
   // Method to update module's completion status
@@ -146,6 +160,7 @@ class Module {
     });
   }
 }
+
 
 class Submodule {
   final int submoduleId;
@@ -181,7 +196,7 @@ class Submodule {
       titleAlignment: json['titleAlignment'],
       features:
           List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
-      isCompleted: json['isCompleted'],
+      isCompleted: json['isCompleted'] as bool? ?? false,
     );
   }
   // Method to check and update completion status

@@ -14,10 +14,12 @@ import '../controllers/feature_navigation.dart';
 
 class InteractiveAnimationVideo extends StatefulWidget {
   final InteractiveAnimationVideoModel interactiveAnimationVideoModel;
-  const InteractiveAnimationVideo({
-    super.key,
-    required this.interactiveAnimationVideoModel,
-  });
+  final VoidCallback? onCompleted; // Optional callback
+
+  const InteractiveAnimationVideo(
+      {super.key,
+      required this.interactiveAnimationVideoModel,
+      this.onCompleted});
 
   @override
   State<InteractiveAnimationVideo> createState() =>
@@ -384,6 +386,8 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                 ),
                 onPressed: () {
                   // navigationController.navigateToNextFeatureOrBack();
+                  widget.onCompleted
+                      ?.call(); // Call the callback to mark completion
                   Get.back();
                 },
                 child: const Text(

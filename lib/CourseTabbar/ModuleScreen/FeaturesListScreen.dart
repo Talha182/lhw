@@ -7,6 +7,7 @@ import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
 import 'package:lhw/ComicStrip/comic_strip.dart';
 import 'package:lhw/Infographics/infographics.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 import '../../FlashCard/flash_cards_screen.dart';
 import '../../ImageHotspot/ImageHotspot.dart';
@@ -18,6 +19,7 @@ import '../../courses_test/test_model.dart';
 import '../../models/flash_cards_screen_model.dart';
 import '../../models/image_hotspot_model.dart';
 import '../../models/interactive_images_model.dart';
+import '../course_provider.dart';
 
 class FeaturesListScreen extends StatefulWidget {
   final Submodule submodule;
@@ -42,6 +44,17 @@ class FeaturesListScreen extends StatefulWidget {
 }
 
 class _FeaturesListScreenState extends State<FeaturesListScreen> {
+
+  // Updated method to check and update the course completion status
+  void _checkAndUpdateCourseCompletion() {
+    bool allFeaturesCompleted =
+    widget.submodule.features.every((feature) => feature.isCompleted);
+    if (allFeaturesCompleted) {
+      // Get the provider instance and call the method to update course completion status
+      Provider.of<CoursesProvider>(context, listen: false)
+          .updateCourseCompletionStatus();
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -232,16 +245,22 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                       ),
                       onTap: () async {
                         if (feature.featureType == FeatureType.presentation) {
-                          PresentationModel presentationModel = feature.relatedData as PresentationModel;
+                          PresentationModel presentationModel =
+                              feature.relatedData as PresentationModel;
                           // Pass a callback function to mark the feature as completed
                           await Get.to(() => Presentation(
-                            presentationModel: presentationModel,
-                            onCompleted: () {
-                              setState(() {
-                                feature.isCompleted = true; // Mark the feature as completed
-                              });
-                            },
-                          ));
+                                presentationModel: presentationModel,
+                                onCompleted: () {
+                                  setState(() {
+                                    feature.isCompleted =
+                                        true; // Mark the feature as completed
+                                    _checkAndUpdateCourseCompletion();
+                                  });
+                                  Provider.of<CoursesProvider>(context,
+                                          listen: false)
+                                      .updateProgress();
+                                },
+                              ));
                         }
                         if (feature.featureType == FeatureType.comicStrips) {
                           List<ComicStripModel> comicStripModels =
@@ -277,9 +296,22 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                               interactiveAnimationVideoModel =
                               feature.relatedData
                                   as InteractiveAnimationVideoModel;
-                          await Get.to(() => InteractiveAnimationVideo(
+                          await Get.to(
+                            () => InteractiveAnimationVideo(
                               interactiveAnimationVideoModel:
-                                  interactiveAnimationVideoModel));
+                                  interactiveAnimationVideoModel,
+                              onCompleted: () {
+                                setState(() {
+                                  feature.isCompleted =
+                                      true; // Mark the feature as completed
+                                  _checkAndUpdateCourseCompletion();
+                                });
+                                Provider.of<CoursesProvider>(context,
+                                        listen: false)
+                                    .updateProgress();
+                              },
+                            ),
+                          );
                         }
                         if (feature.featureType ==
                             FeatureType.interactiveImage) {

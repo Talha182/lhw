@@ -8,10 +8,10 @@
         "end": "#89E4FE"
       },
       "quizCount": 5,
-      "moduleCount": 2,
+      "moduleCount": 8,
       "imagePath": "assets/images/immunization-ico.png",
       "isStart": true,
-      "isCompleted": false,
+      "progress": 0.3,
       "arrowText": "START",
       "modules": [
         {
@@ -20,11 +20,10 @@
           "imagePath": "assets/moduleIcons/module1.png",
           "submoduleCount": 2,
           "isStart": true,
-          "isCompleted": true,
+          "progressValue": 0.25,
           "submodules": [
             {
               "submoduleId": 1,
-              "isCompleted": false,
               "title": "متعدی بیماریوں کا تعارف",
               "description": "اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی، جو بیکٹیریا، وائرس، پھپھوندی، یا پیراسائٹ جیسے جانداروں کی وجہ سے ہونے والی بیماریاں ہیں. آپ جانیں گی  کہ یہ بیماریاں کس طرح ایک شخص سے دوسرے شخص میں، کیڑے مکوڑوں یا جانوروں کے ذریعے، اور بعض اوقات آلودہ غذا یا پانی پینے سے پھیل سکتی ہیں۔",
               "buttonPosition": {
@@ -39,7 +38,6 @@
                   "featureId": 1,
                   "featureType": "presentation",
                   "duration": "5 mins",
-                  "isCompleted": false,
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
@@ -88,8 +86,6 @@
             },
             {
               "submoduleId": 2,
-              "isCompleted": true,
-
               "title": "متعدی بیماریوں کی مثالیں",
               "description": "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔",
               "buttonPosition": {
@@ -104,8 +100,6 @@
                   "featureId": 1,
                   "featureType": "presentation",
                   "duration": "5 mins",
-                  "isCompleted": false,
-
                   "title": "متعدی بیماریوں کا تعارف",
                   "presentationModel": {
                     "assetImages": [
@@ -155,149 +149,29 @@
           ]
         },
         {
-          "moduleId": 2,
-          "title": "ٹی بی",
-          "imagePath": "assets/moduleIcons/module2.png",
-          "submoduleCount": 4,
+          "moduleId": 4,
+          "title": "یچ آئی وی",
+          "imagePath": "assets/moduleIcons/module4.png",
+          "submoduleCount": 2,
           "isStart": false,
-          "isCompleted": true,
-
+          "progressValue": 0.8,
           "submodules": [
             {
               "submoduleId": 1,
-              "isCompleted": true,
-
-              "title": " ٹی بی کے متعلق اہم معلومات",
-              "description": "یہاں، آپ ٹی بی کے بارے میں سیکھیں گی، جو ایک سنگین متعدی بیماری ہے۔ یہ بنیادی طور پر پھیپھڑوں کو متاثر کرتی ہے۔ اس سبق میں اس بات کا احاطہ کیا گیا ہے کہ ٹی بی ہوا کے ذریعے ایک شخص سے دوسرے شخص میں کیسے پھیلتی ہے اور ابتدائی تشخیص اور علاج کی اہمیت کیا ہے۔",
+              "title": "یچ آئی وی / ایڈز کی منتقلی اور علامات",
+              "description": "اس سبق میں، آپ ایچ آئی وی / ایڈز کے بارے میں مزید  سیکھیں گی۔ اس بات پر توجہ دی جاۓ گی کہ وائرس لوگوں کے درمیان یہ بماری  کیسے منتقل ہوتی  ہے اور متاثرہ افراد میں ظاہر ہونے والی علامات  کیا ہیں۔ روک تھام اور جلد تشخیص کے لئے ان پہلوؤں کو سمجھنا بہت ضروری ہے۔",
               "buttonPosition": {
-                "dx": 60.0,
-                "dy": 620.0
+                "dx": 80.0,
+                "dy": 520.0
               },
-              "iconPath": "assets/icons/oop_icon.png",
-              "numberOfQuizzes": 2,
+              "iconPath": "assets/icons/concurrency_icon.png",
+              "numberOfQuizzes": 3,
               "titleAlignment": "left",
               "features": [
                 {
                   "featureId": 1,
-                  "featureType": "comicStrips",
-                  "title": "Comic Strip Example",
-                  "isCompleted": true,
-                  "duration": "3 mins",
-                  "comicStrips": [
-                    {
-                      "title": "Comic Strip 1",
-                      "imagePairs": [
-                        {
-                          "topImage": "assets/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/Script 3/Script 3-02.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/Script 3/Script 3-04.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/Script 3/Script 3-06.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/Script 3/Script 3-08.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/Script 3/Script 3-10.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/Script 3/Script 3-12.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/Script 3/Script 3-14.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/Script 3/Script 3-16.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/Script 3/Script 3-19.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/Script 3/Script 3-20.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/Script 3/Script 3-22.png"
-                        },
-                        {
-                          "topImage": "assets/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/Script 3/Script 3-24.png"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "featureId": 2,
-                  "featureType": "flashCards",
-                  "title": "Flashcards Example",
-                  "isCompleted": true,
-                  "duration": "5 mins",
-                  "flashCards": [
-                    {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
-                    },
-                    {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
-                    },
-                    {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "submoduleId": 2,
-              "isCompleted": true,
-
-              "title": "احتیاطی تدابیر اور غلط فہمیاں",
-              "description": "اس سبق کا مقصد ٹی بی کے بارے میں عام غلط فہمیوں کو دور کرنا ہے اور آپ کو اس کے پھیلاؤ کو روکنے کے لئے احتیاطی تدابیر کے بارے میں تعلیم دینا ہے، جیسے ماسک پہننا اور رہنے کی جگہوں میں اچھی ہوا کی آمد و رفت کو یقینی بنانا۔",
-              "buttonPosition": {
-                "dx": 115.0,
-                "dy": 370.0
-              },
-              "iconPath": "assets/icons/exceptions_icon.png",
-              "numberOfQuizzes": 1,
-              "titleAlignment": "left",
-              "features": [
-                {
-                  "featureId": 1,
-                  "featureType": "infographics",
-                  "title": "Infographics Example",
-                  "isCompleted": true,
-                  "duration": "2 mins",
-                  "infographics": [
-                    {
-                      "imagePath": "assets/images/infographic1.png",
-                      "text": "Infographic 1 Description"
-                    },
-                    {
-                      "imagePath": "assets/images/infographic2.png",
-                      "text": "Infographic 2 Description"
-                    }
-                  ]
-                },
-                {
-                  "featureId": 2,
                   "featureType": "interactiveAnimationVideo",
                   "title": "Interactive Animation Video Example",
-                  "isCompleted": true,
                   "duration": "4 mins",
                   "videoPath": "assets/videos/demo.mp4",
                   "questionDurations": [
@@ -343,13 +217,173 @@
                       "incorrectExplanation": "This is not the correct capital of France."
                     }
                   ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/presentations/presentation1.png",
+                      "assets/presentations/presentation2.png",
+                      "assets/presentations/presentation3.png",
+                      "assets/presentations/presentation4.png",
+                      "assets/presentations/presentation5.png",
+                      "assets/presentations/presentation6.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "submoduleId": 2,
+              "title": "ایچ آئی وی / ایڈز کے ٹیسٹ، علاج اور\n افواہیں",
+              "description": "یہ سبق آپ کو ہیپاٹائٹس کی تشخیص، بیماری کے انتظام کے لئے دستیاب علاج، اور احتیاط کے طریقوں اور ویکسینیشن سمیت مؤثر روک تھام کی حکمت عملی کے بارے میں رہنمائی کرے گا۔",
+              "buttonPosition": {
+                "dx": 20.0,
+                "dy": 200.0
+              },
+              "iconPath": "assets/icons/datastructures_icon.png",
+              "numberOfQuizzes": 2,
+              "titleAlignment": "left",
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "Interactive Animation Video Example",
+                  "duration": "4 mins",
+                  "videoPath": "assets/videos/demo.mp4",
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
+                  "questions": [
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    },
+                    {
+                      "question": "What is the capital of France?",
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
+                      "correctAnswer": "Paris",
+                      "correctExplanation": "Paris is the capital of France.",
+                      "incorrectExplanation": "This is not the correct capital of France."
+                    }
+                  ]
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "Introduction to Variables",
+                  "presentationModel": {
+                    "assetImages": [
+                      "assets/Script 32/Artboard 1.png",
+                      "assets/Script 32/Artboard 2.png",
+                      "assets/Script 32/Artboard 3.png",
+                      "assets/Script 32/Artboard 4.png",
+                      "assets/Script 32/Artboard 5.png",
+                      "assets/Script 32/Artboard 6.png",
+                      "assets/Script 32/Artboard 7.png",
+                      "assets/Script 32/Artboard 10.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
                 }
               ]
             }
-
           ]
         }
-
       ]
     }
   ]
