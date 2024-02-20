@@ -87,3 +87,18 @@ class User {
     };
   }
 }
+class UserCourseProgress {
+  int userId;
+  int courseId;
+  double courseProgress;
+  Map<int, double> moduleProgress; // Maps moduleId to progress
+
+  UserCourseProgress({
+    required this.userId,
+    required this.courseId,
+    this.courseProgress = 0.0,
+    Map<int, double>? moduleProgress,
+  }) : moduleProgress = moduleProgress ?? {};
+
+// Add methods to update progress, e.g., updateModuleProgress, updateCourseProgress
+}
