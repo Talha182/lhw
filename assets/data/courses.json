@@ -1633,17 +1633,40 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/scripts/Script 5/Script 5-02.png",
-                      "backImage": "assets/scripts/Script 5/Script 5-01.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/Script 5/Script 5-04.png",
-                      "backImage": "assets/scripts/Script 5/Script 5-03.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/Script 5/Script 5-06.png",
-                      "backImage": "assets/scripts/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/script 35/Artboard 23@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 24@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 25@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 26@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 27@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 28@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 29@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 30@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 31@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 32@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 33@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 34@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 35@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 36@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 37@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 38@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 39@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 40@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 41@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 42@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/script 35/Artboard 43@2x.png",
+                      "backImage": "assets/scripts/script 35/Artboard 44@2x.png"
                     }
+
                   ]
                 },
                 {
@@ -1698,12 +1721,13 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/scripts/script 37/Artboard 1.png",
+                      "assets/scripts/script 37/Artboard 2.png",
+                      "assets/scripts/script 37/Artboard 3.png",
+                      "assets/scripts/script 37/Artboard 4.png",
+                      "assets/scripts/script 37/Artboard 5.png",
+                      "assets/scripts/script 37/Artboard 6.png",
+                      "assets/scripts/script 37/Artboard 7.png"
                     ],
                     "questions": [
                       {
@@ -1815,17 +1839,25 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/scripts/Script 5/Script 5-02.png",
-                      "backImage": "assets/scripts/Script 5/Script 5-01.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/Script 5/Script 5-04.png",
-                      "backImage": "assets/scripts/Script 5/Script 5-03.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/Script 5/Script 5-06.png",
-                      "backImage": "assets/scripts/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/Script 39/Artboard 4@2x.png",
+                      "backImage": "assets/scripts/Script 39/Artboard 5@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/Script 39/Artboard 6@2x.png",
+                      "backImage": "assets/scripts/Script 39/Artboard 7@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/Script 39/Artboard 8@2x.png",
+                      "backImage": "assets/scripts/Script 39/Artboard 9@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/Script 39/Artboard 11@2x.png",
+                      "backImage": "assets/scripts/Script 39/Artboard 12@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/Script 39/Artboard 13@2x.png",
+                      "backImage": "assets/scripts/Script 39/Artboard 15@2x.png"
+                    },{
+                      "frontImage": "assets/scripts/Script 39/Artboard 15@2x.png",
+                      "backImage": "assets/scripts/Script 39/Artboard 2@2x.png"
                     }
+
                   ]
                 }
               ]
@@ -1845,12 +1877,11 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/scripts/Script 40/Artboard 1.png",
+                      "assets/scripts/Script 40/Artboard 2.png",
+                      "assets/scripts/Script 40/Artboard 3.png",
+                      "assets/scripts/Script 40/Artboard 4.png",
+                      "assets/scripts/Script 40/Artboard 5.png"
                     ],
                     "questions": [
                       {
