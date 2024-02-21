@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lhw/navy.dart';
 import 'package:lhw/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../services/user_service.dart';
 import 'Forgot_Password.dart';
 import 'SignUp.dart';
 
@@ -53,31 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     if (user != null) {
-      // Serialize and save user data to local storage
-      final prefs = await SharedPreferences.getInstance();
-      String userJson = json.encode(user.toJson());
-      await prefs.setString('userData', userJson);
-      await prefs.setBool('isLoggedIn', true);
-
-
+      await UserService.saveUser(user);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
     } else {
-      print("Login failed for email: $email");
-      // Show an error message
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Login Failed'),
-          content: Text('Invalid email or password. Please try again.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
+      // Show login failed message
     }
   }
 

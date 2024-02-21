@@ -33,9 +33,9 @@
                 {
                   "featureId": 1,
                   "featureType": "interactiveAnimationVideo",
-                  "title": "Interactive Animation Video Example",
+                  "title": "متعدی بیماریاں",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/demo.mp4",
+                  "videoPath": "assets/scripts/videos/demo.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -94,15 +94,15 @@
                   "featureId": 1,
                   "featureType": "presentation",
                   "duration": "5 mins",
-                  "title": "متعدی بیماریوں کا تعارف",
+                  "title": "متعدی بیماریوں کی تعریف ",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -161,59 +161,59 @@
                 {
                   "featureId": 1,
                   "featureType": "comicStrips",
-                  "title": "Comic Strip Example",
+                  "title": "ٹی بی کیا ہے؟",
                   "duration": "3 mins",
                   "comicStrips": [
                     {
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-02.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/Script 3/Script 3-04.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-04.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-06.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/Script 3/Script 3-22.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-21.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/Script 3/Script 3-24.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-23.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
                         }
                       ]
                     }
@@ -222,35 +222,35 @@
                 {
                   "featureId": 2,
                   "featureType": "flashCards",
-                  "title": "Flashcards Example",
+                  "title": "ٹی بی کے اثرات",
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-02.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-01.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-04.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-03.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-06.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-05.png"
                     }
                   ]
                 },
                 {
                   "featureId": 3,
                   "featureType": "infographics",
-                  "title": "Infographics Example",
+                  "title": " ٹی بی اور اس کی علامات",
                   "duration": "2 mins",
                   "infographics": [
                     {
-                      "imagePath": "assets/images/infographic1.png",
+                      "imagePath": "assets/scripts/images/infographic1.png",
                       "text": "Infographic 1 Description"
                     },
                     {
-                      "imagePath": "assets/images/infographic2.png",
+                      "imagePath": "assets/scripts/images/infographic2.png",
                       "text": "Infographic 2 Description"
                     }
                   ]
@@ -268,15 +268,15 @@
                 {
                   "featureId": 1,
                   "featureType": "infographics",
-                  "title": "Infographics Example",
+                  "title": "ٹی بی سے متاثرہ افراد کے لئے احتیاطی تدابیر",
                   "duration": "2 mins",
                   "infographics": [
                     {
-                      "imagePath": "assets/images/infographic1.png",
+                      "imagePath": "assets/scripts/images/infographic1.png",
                       "text": "Infographic 1 Description"
                     },
                     {
-                      "imagePath": "assets/images/infographic2.png",
+                      "imagePath": "assets/scripts/images/infographic2.png",
                       "text": "Infographic 2 Description"
                     }
                   ]
@@ -284,9 +284,9 @@
                 {
                   "featureId": 2,
                   "featureType": "interactiveAnimationVideo",
-                  "title": "Interactive Animation Video Example",
+                  "title": " ٹی بی کی  غلط فہمیوں کا خاتمہ ",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/demo.mp4",
+                  "videoPath": "assets/scripts/videos/demo.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -344,35 +344,35 @@
                 {
                   "featureId": 1,
                   "featureType": "comicStrips",
-                  "title": "Comic Strip Example",
+                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
                   "duration": "3 mins",
                   "comicStrips": [
                     {
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 9/Script 9-01.png",
-                          "bottomImage": "assets/Script 9/Script 9-02.png"
+                          "topImage": "assets/scripts/Script 9/Script 9-01.png",
+                          "bottomImage": "assets/scripts/Script 9/Script 9-02.png"
                         },
                         {
-                          "topImage": "assets/Script 9/Script 9-03.png",
-                          "bottomImage": "assets/Script 9/Script 9-04.png"
+                          "topImage": "assets/scripts/Script 9/Script 9-03.png",
+                          "bottomImage": "assets/scripts/Script 9/Script 9-04.png"
                         },
                         {
-                          "topImage": "assets/Script 9/Script 9-05.png",
-                          "bottomImage": "assets/Script 9/Script 9-06.png"
+                          "topImage": "assets/scripts/Script 9/Script 9-05.png",
+                          "bottomImage": "assets/scripts/Script 9/Script 9-06.png"
                         },
                         {
-                          "topImage": "assets/Script 9/Script 9-07.png",
-                          "bottomImage": "assets/Script 9/Script 9-08.png"
+                          "topImage": "assets/scripts/Script 9/Script 9-07.png",
+                          "bottomImage": "assets/scripts/Script 9/Script 9-08.png"
                         },
                         {
-                          "topImage": "assets/Script 9/Script 9-09.png",
-                          "bottomImage": "assets/Script 9/Script 9-10.png"
+                          "topImage": "assets/scripts/Script 9/Script 9-09.png",
+                          "bottomImage": "assets/scripts/Script 9/Script 9-10.png"
                         },
                         {
-                          "topImage": "assets/Script 9/Script 9-11.png",
-                          "bottomImage": "assets/Script 9/Script 9-12.png"
+                          "topImage": "assets/scripts/Script 9/Script 9-11.png",
+                          "bottomImage": "assets/scripts/Script 9/Script 9-12.png"
                         }
                       ]
                     }
@@ -382,20 +382,20 @@
                   "featureId": 2,
                   "featureType": "presentation",
                   "duration": "5 mins",
-                  "title": "Introduction to Variables",
+                  "title": " ممکنہ مریضوں کے بارے میں ہدایات",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/Script 10/Script 10-01.png",
-                      "assets/Script 10/Script 10-02.png",
-                      "assets/Script 10/Script 10-03.png",
-                      "assets/Script 10/Script 10-04.png",
-                      "assets/Script 10/Script 10-5.png",
-                      "assets/Script 10/Script 10-6.png",
-                      "assets/Script 10/Script 10-7.png",
-                      "assets/Script 10/Script 10-8.png",
-                      "assets/Script 10/Script 10-9.png",
-                      "assets/Script 10/Script 10-10.png",
-                      "assets/Script 10/Script 10-11.png"
+                      "assets/scripts/Script 10/Script 10-01.png",
+                      "assets/scripts/Script 10/Script 10-02.png",
+                      "assets/scripts/Script 10/Script 10-03.png",
+                      "assets/scripts/Script 10/Script 10-04.png",
+                      "assets/scripts/Script 10/Script 10-5.png",
+                      "assets/scripts/Script 10/Script 10-6.png",
+                      "assets/scripts/Script 10/Script 10-7.png",
+                      "assets/scripts/Script 10/Script 10-8.png",
+                      "assets/scripts/Script 10/Script 10-9.png",
+                      "assets/scripts/Script 10/Script 10-10.png",
+                      "assets/scripts/Script 10/Script 10-11.png"
                     ],
                     "questions": [
                       {
@@ -434,11 +434,11 @@
                 {
                   "featureId": 3,
                   "featureType": "interactiveImage",
-                  "title": "Interactive Images for Learning",
+                  "title": "بلغم  کے نمونے جمع کرنے  کا طریقہ کار",
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-title.png",
+                      "image": "assets/scripts/script11/Script11-title.png",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -455,7 +455,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -472,7 +472,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -489,7 +489,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -503,7 +503,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 160,
                         "dy": 260
@@ -515,7 +515,7 @@
                       "moveToNextOnDrop": true
                     },
                     {
-                      "image": "assets/script11/Script11-04.jpg",
+                      "image": "assets/scripts/script11/Script11-04.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -531,7 +531,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-05.jpg",
+                      "image": "assets/scripts/script11/Script11-05.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 50,
@@ -547,7 +547,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-10.jpg",
+                      "image": "assets/scripts/script11/Script11-10.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -561,7 +561,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-11.png",
+                      "draggableImage": "assets/scripts/script11/Script11-11.png",
                       "draggableImageInitialPosition": {
                         "dx": 160,
                         "dy": 260
@@ -570,11 +570,11 @@
                         "dx": 450,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/script11/Script11-11.png",
+                      "newDraggableImage": "assets/scripts/script11/Script11-11.png",
                       "moveToNextOnDrop": true
                     },
                     {
-                      "image": "assets/script11/Script11-13.jpg",
+                      "image": "assets/scripts/script11/Script11-13.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -590,7 +590,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-22.jpg",
+                      "image": "assets/scripts/script11/Script11-22.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 100,
@@ -606,7 +606,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-23.jpg",
+                      "image": "assets/scripts/script11/Script11-23.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -622,7 +622,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-25.jpg",
+                      "image": "assets/scripts/script11/Script11-25.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -638,7 +638,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-26.jpg",
+                      "image": "assets/scripts/script11/Script11-26.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -658,10 +658,10 @@
                 {
                   "featureId": 4,
                   "featureType": "imageHotspot",
-                  "title": "Image Hotspot Example",
+                  "title": "TB05 فارم بھرنے کی ہدایات ",
                   "duration": "10 mins",
                   "imageHotspot": {
-                    "imagePath": "assets/images/lessonOption26.png",
+                    "imagePath": "assets/scripts/images/lessonOption26.png",
                     "hotspots": [
                       {
                         "dialogText": "Hotspot 1 Description",
@@ -683,7 +683,7 @@
                 {
                   "featureId": 5,
                   "featureType": "imageBranchingScenario",
-                  "title": "Image Branching Scenario Example",
+                  "title": "ٹی بی کے علاج میں معاونت ",
                   "duration": "10 mins",
                   "imageBranchingScenarioModel": {
                     "questions": [
@@ -708,11 +708,11 @@
                 {
                   "featureId": 6,
                   "featureType": "interactiveImage",
-                  "title": "Interactive Images for Learning",
+                  "title": "  ٹی بی کے علاج کے مراحل",
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -729,7 +729,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -746,7 +746,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -760,7 +760,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -769,7 +769,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -778,15 +778,15 @@
                   "featureId": 7,
                   "featureType": "presentation",
                   "duration": "5 mins",
-                  "title": "Introduction to Variables",
+                  "title": "ٹی بی کے علاج کے لئے DOTS کا طریقہ کار",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -825,11 +825,11 @@
                 {
                   "featureId": 8,
                   "featureType": "interactiveImage",
-                  "title": "Interactive Images for Learning",
+                  "title": " ٹی بی کے تشخیص شدہ مریض کے علاج کے بارے میں خاص ہدایات ",
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -846,7 +846,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -863,7 +863,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -877,7 +877,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -886,7 +886,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -894,27 +894,36 @@
                 {
                   "featureId": 9,
                   "featureType": "flashCards",
-                  "title": "Flashcards Example",
+                  "title": "ٹی بی کی ادویات کا ردعمل",
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
+                      "frontImage": "assets/scripts/Script 17/Artboard 1.png",
+                      "backImage": "assets/scripts/Script 17/Artboard 30.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
-                    },
-                    {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/Script 17/Artboard 18.png",
+                      "backImage": "assets/scripts/Script 17/Artboard 17.png"
+                    },   {
+                      "frontImage": "assets/scripts/Script 17/Artboard 21.png",
+                      "backImage": "assets/scripts/Script 17/Artboard 20.png"
+                    }, {
+                      "frontImage": "assets/scripts/Script 17/Artboard 23.png",
+                      "backImage": "assets/scripts/Script 17/Artboard 22.png"
+                    }, {
+                      "frontImage": "assets/scripts/Script 17/Artboard 25.png",
+                      "backImage": "assets/scripts/Script 17/Artboard 24.png"
+                    },{
+                      "frontImage": "assets/scripts/Script 17/Artboard 29.png",
+                      "backImage": "assets/scripts/Script 17/Artboard 28.png"
                     }
+
                   ]
                 },
                 {
                   "featureId": 10,
                   "featureType": "textBranchingScenario",
-                  "title": "Text Branching Scenario Example",
+                  "title": "ٹی بی کی ادویات کا انتخاب ",
                   "duration": "15 mins",
                   "textBranchingScenarioModel": {
                     "questions": [
@@ -946,15 +955,15 @@
                 {
                   "featureId": 1,
                   "featureType": "infographics",
-                  "title": "Infographics Example",
+                  "title": "سبق کے مقاصد",
                   "duration": "2 mins",
                   "infographics": [
                     {
-                      "imagePath": "assets/images/infographic1.png",
+                      "imagePath": "assets/scripts/images/infographic1.png",
                       "text": "Infographic 1 Description"
                     },
                     {
-                      "imagePath": "assets/images/infographic2.png",
+                      "imagePath": "assets/scripts/images/infographic2.png",
                       "text": "Infographic 2 Description"
                     }
                   ]
@@ -962,7 +971,7 @@
                 {
                   "featureId": 2,
                   "featureType": "imageBranchingScenario",
-                  "title": "Image Branching Scenario Example",
+                  "title": "ادویات کی ابتدائی وصولی ",
                   "duration": "10 mins",
                   "imageBranchingScenarioModel": {
                     "questions": [
@@ -987,43 +996,43 @@
                 {
                   "featureId": 3,
                   "featureType": "comicStrips",
-                  "title": "Comic Strip Example",
+                  "title": " ٹی بی کے مریض کو زیر نگرانی دوا کھلانا ",
                   "duration": "3 mins",
                   "comicStrips": [
                     {
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 11.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 12.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 11.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 12.png"
                         },
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 13.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 14.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 13.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 14.png"
                         },
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 15.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 16.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 15.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 16.png"
                         },
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 17.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 18.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 17.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 18.png"
                         },
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 19.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 20.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 19.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 20.png"
                         },
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 21.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 22.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 21.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 22.png"
                         },
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 23.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 24.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 23.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 24.png"
                         },
                         {
-                          "topImage": "assets/Script 22/Artboard 1 copy 25.png",
-                          "bottomImage": "assets/Script 22/Artboard 1 copy 26.png"
+                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 25.png",
+                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 26.png"
                         }
                       ]
                     }
@@ -1035,7 +1044,7 @@
                   "title": "Image Hotspot Example",
                   "duration": "10 mins",
                   "imageHotspot": {
-                    "imagePath": "assets/images/lessonOption26.png",
+                    "imagePath": "assets/scripts/images/lessonOption26.png",
                     "hotspots": [
                       {
                         "dialogText": "Hotspot 1 Description",
@@ -1103,13 +1112,13 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/Script 25/Artboard 1.png",
-                      "assets/Script 25/Artboard 2.png",
-                      "assets/Script 25/Artboard 3.png",
-                      "assets/Script 25/Artboard 4.png",
-                      "assets/Script 25/Artboard 5.png",
-                      "assets/Script 25/Artboard 6.png",
-                      "assets/Script 25/Artboard 7.png"
+                      "assets/scripts/Script 25/Artboard 1.png",
+                      "assets/scripts/Script 25/Artboard 2.png",
+                      "assets/scripts/Script 25/Artboard 3.png",
+                      "assets/scripts/Script 25/Artboard 4.png",
+                      "assets/scripts/Script 25/Artboard 5.png",
+                      "assets/scripts/Script 25/Artboard 6.png",
+                      "assets/scripts/Script 25/Artboard 7.png"
                     ],
                     "questions": [
                       {
@@ -1152,36 +1161,36 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 26/Artboard 12@2x.png",
-                      "backImage": "assets/Script 26/Artboard 10@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 12@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 10@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 26/Artboard 14@2x.png",
-                      "backImage": "assets/Script 26/Artboard 13@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 14@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 13@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 26/Artboard 16@2x.png",
-                      "backImage": "assets/Script 26/Artboard 15@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 16@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 15@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 26/Artboard 18@2x.png",
-                      "backImage": "assets/Script 26/Artboard 19@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 18@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 19@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 26/Artboard 20@2x.png",
-                      "backImage": "assets/Script 26/Artboard 22@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 20@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 22@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 26/Artboard 23@2x.png",
-                      "backImage": "assets/Script 26/Artboard 24@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 23@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 24@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 26/Artboard 25@2x.png",
-                      "backImage": "assets/Script 26/Artboard 26@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 25@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 26@2x.png"
                     },
                     {
-                      "frontImage": "assets/Script 26/Artboard 27@2x.png",
-                      "backImage": "assets/Script 26/Artboard 10@2x.png"
+                      "frontImage": "assets/scripts/Script 26/Artboard 27@2x.png",
+                      "backImage": "assets/scripts/Script 26/Artboard 10@2x.png"
                     }
                   ]
                 }
@@ -1205,28 +1214,28 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 27/Artboard 14.png",
-                          "bottomImage": "assets/Script 27/Artboard 15.png"
+                          "topImage": "assets/scripts/Script 27/Artboard 14.png",
+                          "bottomImage": "assets/scripts/Script 27/Artboard 15.png"
                         },
                         {
-                          "topImage": "assets/Script 27/Artboard 16.png",
-                          "bottomImage": "assets/Script 27/Artboard 17.png"
+                          "topImage": "assets/scripts/Script 27/Artboard 16.png",
+                          "bottomImage": "assets/scripts/Script 27/Artboard 17.png"
                         },
                         {
-                          "topImage": "assets/Script 27/Artboard 18.png",
-                          "bottomImage": "assets/Script 27/Artboard 19.png"
+                          "topImage": "assets/scripts/Script 27/Artboard 18.png",
+                          "bottomImage": "assets/scripts/Script 27/Artboard 19.png"
                         },
                         {
-                          "topImage": "assets/Script 27/Artboard 20.png",
-                          "bottomImage": "assets/Script 27/Artboard 21.png"
+                          "topImage": "assets/scripts/Script 27/Artboard 20.png",
+                          "bottomImage": "assets/scripts/Script 27/Artboard 21.png"
                         },
                         {
-                          "topImage": "assets/Script 27/Artboard 22.png",
-                          "bottomImage": "assets/Script 27/Artboard 23.png"
+                          "topImage": "assets/scripts/Script 27/Artboard 22.png",
+                          "bottomImage": "assets/scripts/Script 27/Artboard 23.png"
                         },
                         {
-                          "topImage": "assets/Script 27/Artboard 24.png",
-                          "bottomImage": "assets/Script 27/Artboard 25.png"
+                          "topImage": "assets/scripts/Script 27/Artboard 24.png",
+                          "bottomImage": "assets/scripts/Script 27/Artboard 25.png"
                         }
                       ]
                     }
@@ -1239,11 +1248,11 @@
                   "duration": "2 mins",
                   "infographics": [
                     {
-                      "imagePath": "assets/images/infographic1.png",
+                      "imagePath": "assets/scripts/images/infographic1.png",
                       "text": "Infographic 1 Description"
                     },
                     {
-                      "imagePath": "assets/images/infographic2.png",
+                      "imagePath": "assets/scripts/images/infographic2.png",
                       "text": "Infographic 2 Description"
                     }
                   ]
@@ -1273,7 +1282,7 @@
                   "featureType": "interactiveAnimationVideo",
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "videoPath": "assets/scripts/videos/interactive_animation.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -1325,12 +1334,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -1381,7 +1390,7 @@
                   "featureType": "interactiveAnimationVideo",
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "videoPath": "assets/scripts/videos/interactive_animation.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -1433,14 +1442,14 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/Script 32/Artboard 1.png",
-                      "assets/Script 32/Artboard 2.png",
-                      "assets/Script 32/Artboard 3.png",
-                      "assets/Script 32/Artboard 4.png",
-                      "assets/Script 32/Artboard 5.png",
-                      "assets/Script 32/Artboard 6.png",
-                      "assets/Script 32/Artboard 7.png",
-                      "assets/Script 32/Artboard 10.png"
+                      "assets/scripts/Script 32/Artboard 1.png",
+                      "assets/scripts/Script 32/Artboard 2.png",
+                      "assets/scripts/Script 32/Artboard 3.png",
+                      "assets/scripts/Script 32/Artboard 4.png",
+                      "assets/scripts/Script 32/Artboard 5.png",
+                      "assets/scripts/Script 32/Artboard 6.png",
+                      "assets/scripts/Script 32/Artboard 7.png",
+                      "assets/scripts/Script 32/Artboard 10.png"
                     ],
                     "questions": [
                       {
@@ -1504,12 +1513,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/Script 33/Artboard 1.png",
-                      "assets/Script 33/Artboard 2.png",
-                      "assets/Script 33/Artboard 3.png",
-                      "assets/Script 33/Artboard 4.png",
-                      "assets/Script 33/Artboard 5.png",
-                      "assets/Script 33/Artboard 6.png"
+                      "assets/scripts/Script 33/Artboard 1.png",
+                      "assets/scripts/Script 33/Artboard 2.png",
+                      "assets/scripts/Script 33/Artboard 3.png",
+                      "assets/scripts/Script 33/Artboard 4.png",
+                      "assets/scripts/Script 33/Artboard 5.png",
+                      "assets/scripts/Script 33/Artboard 6.png"
                     ],
                     "questions": [
                       {
@@ -1556,52 +1565,52 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 34/Artboard 1 copy 2.png",
-                          "bottomImage": "assets/Script 34/Artboard 1 copy 3.png"
+                          "topImage": "assets/scripts/Script 34/Artboard 1 copy 2.png",
+                          "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 3.png"
                         },
                         {
-                          "topImage": "assets/Script 34/Artboard 1 copy 4.png",
-                          "bottomImage": "assets/Script 34/Artboard 1 copy 5.png"
+                          "topImage": "assets/scripts/Script 34/Artboard 1 copy 4.png",
+                          "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 5.png"
                         },
                         {
-                          "topImage": "assets/Script 34/Artboard 1 copy 2.png",
-                          "bottomImage": "assets/Script 34/Artboard 1 copy 2.png"
+                          "topImage": "assets/scripts/Script 34/Artboard 1 copy 2.png",
+                          "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 2.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/Script 3/Script 3-22.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-21.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/Script 3/Script 3-24.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-23.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
                         }
                       ]
                     }
@@ -1624,16 +1633,16 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-02.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-01.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-04.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-03.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-06.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-05.png"
                     }
                   ]
                 },
@@ -1643,7 +1652,7 @@
                   "title": "Image Hotspot Example",
                   "duration": "10 mins",
                   "imageHotspot": {
-                    "imagePath": "assets/images/lessonOption26.png",
+                    "imagePath": "assets/scripts/images/lessonOption26.png",
                     "hotspots": [
                       {
                         "dialogText": "Hotspot 1 Description",
@@ -1689,12 +1698,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -1737,7 +1746,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -1754,7 +1763,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -1771,7 +1780,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -1785,7 +1794,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -1794,7 +1803,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -1806,16 +1815,16 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-02.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-01.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-04.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-03.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-06.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-05.png"
                     }
                   ]
                 }
@@ -1836,12 +1845,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -1884,7 +1893,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -1901,7 +1910,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -1918,7 +1927,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -1932,7 +1941,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -1941,7 +1950,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -1971,7 +1980,7 @@
                   "featureType": "interactiveAnimationVideo",
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "videoPath": "assets/scripts/videos/interactive_animation.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -2023,7 +2032,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -2040,7 +2049,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -2057,7 +2066,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -2071,7 +2080,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -2080,7 +2089,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -2102,16 +2111,16 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-02.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-01.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-04.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-03.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-06.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-05.png"
                     }
                   ]
                 },
@@ -2122,7 +2131,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -2139,7 +2148,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -2156,7 +2165,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -2170,7 +2179,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -2179,7 +2188,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -2209,7 +2218,7 @@
                   "featureType": "interactiveAnimationVideo",
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "videoPath": "assets/scripts/videos/interactive_animation.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -2261,7 +2270,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -2278,7 +2287,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -2295,7 +2304,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -2309,7 +2318,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -2318,7 +2327,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -2333,52 +2342,52 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-02.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/Script 3/Script 3-04.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-04.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-06.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/Script 3/Script 3-22.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-21.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/Script 3/Script 3-24.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-23.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
                         }
                       ]
                     }
@@ -2401,12 +2410,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -2447,7 +2456,7 @@
                   "featureType": "interactiveAnimationVideo",
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/interactive_animation.mp4",
+                  "videoPath": "assets/scripts/videos/interactive_animation.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -2499,16 +2508,16 @@
                   "duration": "5 mins",
                   "flashCards": [
                     {
-                      "frontImage": "assets/Script 5/Script 5-02.png",
-                      "backImage": "assets/Script 5/Script 5-01.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-02.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-01.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-04.png",
-                      "backImage": "assets/Script 5/Script 5-03.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-04.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-03.png"
                     },
                     {
-                      "frontImage": "assets/Script 5/Script 5-06.png",
-                      "backImage": "assets/Script 5/Script 5-05.png"
+                      "frontImage": "assets/scripts/Script 5/Script 5-06.png",
+                      "backImage": "assets/scripts/Script 5/Script 5-05.png"
                     }
                   ]
                 },
@@ -2519,11 +2528,11 @@
                   "duration": "2 mins",
                   "infographics": [
                     {
-                      "imagePath": "assets/images/infographic1.png",
+                      "imagePath": "assets/scripts/images/infographic1.png",
                       "text": "Infographic 1 Description"
                     },
                     {
-                      "imagePath": "assets/images/infographic2.png",
+                      "imagePath": "assets/scripts/images/infographic2.png",
                       "text": "Infographic 2 Description"
                     }
                   ]
@@ -2545,7 +2554,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -2562,7 +2571,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -2579,7 +2588,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -2593,7 +2602,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -2602,7 +2611,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -2614,12 +2623,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -2662,7 +2671,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -2679,7 +2688,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -2696,7 +2705,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -2710,7 +2719,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -2719,7 +2728,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -2741,12 +2750,12 @@
                   "title": "Introduction to Variables",
                   "presentationModel": {
                     "assetImages": [
-                      "assets/presentations/presentation1.png",
-                      "assets/presentations/presentation2.png",
-                      "assets/presentations/presentation3.png",
-                      "assets/presentations/presentation4.png",
-                      "assets/presentations/presentation5.png",
-                      "assets/presentations/presentation6.png"
+                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/presentations/presentation2.png",
+                      "assets/scripts/presentations/presentation3.png",
+                      "assets/scripts/presentations/presentation4.png",
+                      "assets/scripts/presentations/presentation5.png",
+                      "assets/scripts/presentations/presentation6.png"
                     ],
                     "questions": [
                       {
@@ -2789,7 +2798,7 @@
                   "duration": "15 mins",
                   "interactiveImageModel": [
                     {
-                      "image": "assets/script11/Script11-01.jpg",
+                      "image": "assets/scripts/script11/Script11-01.jpg",
                       "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                       "touchArea": {
                         "left": 460,
@@ -2806,7 +2815,7 @@
                       "swipeAction": ""
                     },
                     {
-                      "image": "assets/script11/Script11-02.jpg",
+                      "image": "assets/scripts/script11/Script11-02.jpg",
                       "guide": "",
                       "touchArea": {
                         "left": 370,
@@ -2823,7 +2832,7 @@
                       "swipeAction": "nextImage"
                     },
                     {
-                      "image": "assets/script11/Script11-03.jpg",
+                      "image": "assets/scripts/script11/Script11-03.jpg",
                       "guide": "شاور اور گرم مشروب کے آئیکن کو مریض کے پاس لایں۔",
                       "touchArea": {
                         "left": 0,
@@ -2837,7 +2846,7 @@
                       "longPressAction": "showMessage",
                       "dragDropEnabled": true,
                       "swipeAction": "",
-                      "draggableImage": "assets/script11/Script11-03.jpg",
+                      "draggableImage": "assets/scripts/script11/Script11-03.jpg",
                       "draggableImageInitialPosition": {
                         "dx": 80,
                         "dy": 180
@@ -2846,7 +2855,7 @@
                         "dx": 200,
                         "dy": 180
                       },
-                      "newDraggableImage": "assets/images/1.png",
+                      "newDraggableImage": "assets/scripts/images/1.png",
                       "moveToNextOnDrop": false
                     }
                   ]
@@ -2861,52 +2870,52 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/Script 3/Script 3-02.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-01.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-02.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/Script 3/Script 3-04.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-03.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-04.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/Script 3/Script 3-06.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-05.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-06.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/Script 3/Script 3-08.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-07.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/Script 3/Script 3-10.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-09.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/Script 3/Script 3-12.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-11.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/Script 3/Script 3-14.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-13.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/Script 3/Script 3-16.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-15.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/Script 3/Script 3-19.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-17.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/Script 3/Script 3-20.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-19.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/Script 3/Script 3-22.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-21.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
                         },
                         {
-                          "topImage": "assets/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/Script 3/Script 3-24.png"
+                          "topImage": "assets/scripts/Script 3/Script 3-23.png",
+                          "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
                         }
                       ]
                     }

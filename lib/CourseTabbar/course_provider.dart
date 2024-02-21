@@ -64,6 +64,17 @@ class CoursesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> refreshCourseProgress() async {
+    // Example: Load courses again from a file or database
+    await loadCourses(); // Assuming this method reloads course data and recalculates progress
+
+    // Or, if you have specific logic to update progress, invoke that here
+
+    // Finally, notify listeners to refresh UI
+    notifyListeners();
+  }
+
+
   void setLastVisitedCourse(TestCourseModel course) async {
     _lastVisitedCourse = course;
     final prefs = await SharedPreferences.getInstance();

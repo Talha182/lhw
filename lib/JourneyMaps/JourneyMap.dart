@@ -134,6 +134,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

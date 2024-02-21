@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
+import 'package:lhw/services/user_service.dart';
 
 import 'CourseTabbar/courses_tabbar.dart';
 import 'DiscussionGroup/DiscussionGroups.dart';
@@ -178,6 +179,55 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                 }).toList(),
               ),
             )),
+      ),
+    );
+  }
+}
+
+class UserProfileScreen extends StatefulWidget {
+  const UserProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  _UserProfileScreenState createState() => _UserProfileScreenState();
+}
+
+class _UserProfileScreenState extends State<UserProfileScreen> {
+  int _userId = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserId();
+  }
+
+  Future<void> _fetchUserId() async {
+    int userId = await UserService.getCurrentUserId();
+    setState(() {
+      _userId = userId;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('User Profile'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Current User ID: $_userId',
+                style: TextStyle(fontSize: 20)),
+            ElevatedButton(
+              onPressed: () async {
+                await UserService.logout();
+                Navigator.of(context).pop(); // Assuming you go back to the login or home page
+              },
+              child: Text('Logout'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -90,31 +90,33 @@ flutter:
     - assets/images/
     - assets/videos/
     - assets/test/
-    - assets/script11/
     - assets/objectivesTree/
     - assets/sounds/
     - assets/moduleIcons/
-    - assets/presentations/
     - assets/data/
     - assets/lottie/
-    - assets/Script 3/
-    - assets/Script 5/
-    - assets/Script 9/
-    - assets/Script 10/
-    - assets/Script 22/
-    - assets/Script 25/
-    - assets/Script 26/
-    - assets/Script 27/
-    - assets/Script 30/
-    - assets/Script 32/
-    - assets/Script 33/
-    - assets/Script 34/
-    - assets/Script 35/
-    - assets/Script 36/
-    - assets/Script 37/
-    - assets/Script 39/
-    - assets/Script 40/
     - assets/gifs/
+    - assets/scripts/
+    - assets/scripts/presentations/
+    - assets/scripts/Script 3/
+    - assets/scripts/Script 5/
+    - assets/scripts/Script 9/
+    - assets/scripts/Script 10/
+    - assets/scripts/script11/
+    - assets/scripts/Script 17/
+    - assets/scripts/Script 22/
+    - assets/scripts/Script 25/
+    - assets/scripts/Script 26/
+    - assets/scripts/Script 27/
+    - assets/scripts/Script 30/
+    - assets/scripts/Script 32/
+    - assets/scripts/Script 33/
+    - assets/scripts/Script 34/
+    - assets/scripts/Script 35/
+    - assets/scripts/Script 36/
+    - assets/scripts/Script 37/
+    - assets/scripts/Script 39/
+    - assets/scripts/Script 40/
 
   fonts:
     - family: UrduType

@@ -1,11 +1,13 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/CourseTabbar/courses_tabbar.dart';
+import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lhw/services/user_service.dart'; // Adjust the import path as needed
 import 'CourseTabbar/course_provider.dart';
 import 'LoginSignUp/Login.dart';
 
@@ -13,16 +15,13 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final prefs = await SharedPreferences.getInstance();
-  final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  HttpOverrides.global = MyHttpOverrides();
 
+  // Use UserService to check if the user is logged in
+  bool isLoggedIn = await UserService.isLoggedIn();
 
-  runApp( MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MyApp(isLoggedIn: isLoggedIn,),
-  ));
+  runApp(MyApp(isLoggedIn: isLoggedIn));
 }
-
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {

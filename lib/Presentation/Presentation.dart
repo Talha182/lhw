@@ -54,6 +54,12 @@ class _PresentationState extends State<Presentation>
   @override
   void initState() {
     super.initState();
+
+    // Set landscape orientation
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     questionAttempted =
         List<bool>.filled(widget.presentationModel.questions.length, false);
     _pageController = PageController();
@@ -320,6 +326,12 @@ class _PresentationState extends State<Presentation>
     _slideshowTimer?.cancel();
     _pageController.dispose();
     _cloudPumpAnimationController.dispose();
+    // Set landscape orientation
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     super.dispose();
   }
 
@@ -329,27 +341,45 @@ class _PresentationState extends State<Presentation>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: const Alignment(0, -0.2),
-            colors: [
-              const Color(0xff80B8FB).withOpacity(0.3),
-              Colors.transparent,
-            ],
-          ),
-        ),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: Stack(
+          children: [
+            PageView.builder(
+              controller: _pageController,
+              itemCount: widget.presentationModel.assetImages.length,
+              onPageChanged: (index) {
+                setState(() {
+                  currentPage = index;
+                });
+              },
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                          image: AssetImage(
+                            widget.presentationModel.assetImages[index],
+                          ),
+                          fit: BoxFit.fill)),
+                );
+              },
+            ),
+            Positioned(
+              top: 20,
+              left: 20,
+              right: 20,
+              child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      await SystemChrome.setPreferredOrientations([
+                        DeviceOrientation.portraitUp,
+                        DeviceOrientation.portraitDown,
+                      ]);
+                      // Optionally wait for a short duration
+                      await Future.delayed(const Duration(milliseconds: 100));
+                      // Use Navigator.pop(context) if you're not using GetX
                       Get.back();
                     },
                     child: const Icon(
@@ -395,202 +425,47 @@ class _PresentationState extends State<Presentation>
                       child: const Icon(Icons.bookmark_outline)),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20, top: 10),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: ScaleTransition(
-                    scale: _cloudPumpAnimation,
-                    child: SvgPicture.asset(
-                      'assets/images/cloud.svg',
-                      width: 20,
-                      height: 20,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
-              const Spacer(),
-              Container(
-                height: 320,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 20, color: Colors.black.withOpacity(0.2))
-                    ]),
-                child: Column(
+            ),
+            Positioned(
+              top: 0,
+              bottom: 0,
+              left: 20,
+              right: 20,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
-                      child: SizedBox(
-                          // height: 240,
-                          child: Stack(
-                        children: [
-                          PageView.builder(
-                            controller: _pageController,
-                            itemCount:
-                                widget.presentationModel.assetImages.length,
-                            onPageChanged: (int page) {
-                              setState(() {
-                                currentPage = page;
-                              });
-                            },
-                            itemBuilder: (context, index) {
-                              return ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20),
-                                ),
-                                child: PinchZoom(
-                                  resetDuration:
-                                      const Duration(milliseconds: 100),
-                                  maxScale: 3.0,
-                                  child: Image.asset(
-                                    widget.presentationModel.assetImages[index],
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          Positioned(
-                            right: 10,
-                            bottom: 15,
-                            child: Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.transparent),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Get.to(
-                                        () => FullScreenImagePage(
-                                              assetImages: widget
-                                                  .presentationModel
-                                                  .assetImages,
-                                              initialPage: currentPage,
-                                              questions: widget
-                                                  .presentationModel.questions,
-                                              showQuestionDialog: widget
-                                                  .presentationModel
-                                                  .showQuestionDialog,
-                                            ),
-                                        transition: Transition.fade,
-                                        duration:
-                                            const Duration(milliseconds: 300));
-                                  },
-                                  child: Center(
-                                    child: SvgPicture.asset(
-                                      "assets/images/full_screen.svg",
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                )),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            left: 0,
-                            child: LinearPercentIndicator(
-                              lineHeight: 8.0,
-                              percent: (currentPage + 1) /
-                                  widget.presentationModel.assetImages.length,
-                              backgroundColor: const Color(0xffF5F5F5),
-                              progressColor: const Color(0xffFE8BD1),
-                              barRadius: const Radius.circular(10),
-                            ),
-                          )
-                        ],
-                      )),
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back_ios,
+                            color: Colors.white),
+                        onPressed: navigateToPreviousImage,
+                      ),
                     ),
                     Container(
-                      width: double.infinity,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                        ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black.withOpacity(0.5),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () => navigateToPreviousImage(),
-                              child: Container(
-                                width: 35,
-                                height: 35,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.black.withOpacity(0.4)),
-                                child: const Icon(Icons.arrow_back_ios_new,
-                                    size: 16, color: Colors.white),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isPlaying = !isPlaying;
-                                });
-                                if (isPlaying) {
-                                  startSlideshow();
-                                } else {
-                                  stopSlideshow();
-                                }
-                              },
-                              child: Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0xffEBEBEB),
-                                ),
-                                child: Icon(
-                                  isPlaying
-                                      ? Icons.pause
-                                      : Icons.play_arrow_outlined,
-                                  size: 25,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                navigateToNextImage();
-                                stopSlideshow();
-                              },
-                              child: Container(
-                                width: 35,
-                                height: 35,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.black.withOpacity(0.4)),
-                                child: const Icon(Icons.arrow_forward_ios,
-                                    size: 16, color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_forward_ios,
+                            color: Colors.white),
+                        onPressed: navigateToNextImage,
                       ),
                     ),
                   ],
                 ),
               ),
-              const Spacer(),
-              const Spacer(),
-              Divider(
-                height: 1,
-                thickness: 1,
-                color: Colors.black87.withOpacity(0.1),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Center(
+            ),
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xffFE8BD1),
@@ -617,8 +492,8 @@ class _PresentationState extends State<Presentation>
                   ),
                 ),
               ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

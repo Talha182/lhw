@@ -189,7 +189,7 @@ class Submodule {
       iconPath: json['iconPath'],
       numberOfQuizzes: json['numberOfQuizzes'],
       features:
-          List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
+      List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
       isCompleted: json['isCompleted'] as bool? ?? false,
     );
   }
@@ -236,7 +236,7 @@ class Feature {
 
   factory Feature.fromJson(Map<String, dynamic> json) {
     FeatureType featureType = FeatureType.values.firstWhere(
-      (type) => type.toString().split('.').last == json['featureType'],
+          (type) => type.toString().split('.').last == json['featureType'],
       orElse: () => FeatureType.unknown,
     );
 
@@ -250,7 +250,7 @@ class Feature {
       List<dynamic> comicStripsJson = json['comicStrips'] as List;
       relatedData = comicStripsJson
           .map((csJson) =>
-              ComicStripModel.fromJson(csJson as Map<String, dynamic>))
+          ComicStripModel.fromJson(csJson as Map<String, dynamic>))
           .toList();
     }
 

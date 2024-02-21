@@ -4,6 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lhw/loading_screen.dart';
+import 'package:lhw/navy.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -92,50 +93,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-  // Future<void> navigateToLastVisitedCourse(BuildContext context) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   // Attempt to get the last visited course ID from SharedPreferences
-  //   final lastVisitedCourseId = prefs.getInt('lastVisitedCourseId');
-  //
-  //   // Initialize your CoursesProvider instance
-  //   final coursesProvider = CoursesProvider();
-  //
-  //   // Load courses if not already loaded
-  //   // Make sure that the courses are loaded before attempting to access them
-  //   if (coursesProvider.courses.isEmpty) {
-  //     await coursesProvider.loadCourses();
-  //   }
-  //
-  //   TestCourseModel? course;
-  //
-  //   if (lastVisitedCourseId != null) {
-  //     // Try to find the course by the last visited ID
-  //     course = coursesProvider.getCourseById(lastVisitedCourseId);
-  //   }
-  //
-  //   // If no last visited course is found, or the list was empty, default to courseId 1
-  //   if (course == null) {
-  //     course = coursesProvider.getCourseById(1);
-  //   }
-  //
-  //   // Assuming course with ID 1 always exists, but it's good to check for null
-  //   if (course != null) {
-  //     final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
-  //     final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
-  //
-  //     if (isFirstVisit) {
-  //       await prefs.setBool(isFirstVisitKey, false);
-  //       // Navigate with fade transition
-  //       await Get.to(() => LessonPageTabBar(course: course!), transition: Transition.fade, duration: Duration(milliseconds: 300));
-  //     } else {
-  //       // Navigate without checking for first visit
-  //       Get.to(() => ModuleScreen(course: course!));
-  //     }
-  //   } else {
-  //     // Handle the case where even the default course is not found
-  //     print("Default course not found!");
-  //   }
-  // }
   Future<void> navigateToLastVisitedCourse(BuildContext context) async {
     // Directly use the lastVisitedCourse from the provider
     final provider = Provider.of<CoursesProvider>(context, listen: false); // Added listen: false for accessing outside build method.
@@ -616,7 +573,7 @@ class _HomePageState extends State<HomePage> {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          "${(value * 100).toStringAsFixed(1)}%",
+                                                          "${(lastVisitedCourse.progress * 100).toStringAsFixed(1)}%",
                                                           style:
                                                               const TextStyle(
                                                             fontFamily:
@@ -645,7 +602,7 @@ class _HomePageState extends State<HomePage> {
                                                           const Radius.circular(
                                                               10),
                                                       lineHeight: 6.0,
-                                                      percent: value,
+                                                      percent: lastVisitedCourse.progress,
                                                       backgroundColor:
                                                           const Color(
                                                               0xffEBEBF0),
@@ -787,7 +744,7 @@ class _HomePageState extends State<HomePage> {
                                                         size: 14,
                                                       ),
                                                       onTap: () {
-
+                                                        Get.to(() => UserProfileScreen());
                                                       },
                                                     ),
                                                     const SizedBox(
