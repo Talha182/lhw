@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lhw/navy.dart';
-import 'package:lhw/models/user_model.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../FloorDatabase/database.dart';
+import '../FloorDatabase/entity/user.dart';
+import '../models/user_model.dart';
 import '../services/user_service.dart';
 import 'Forgot_Password.dart';
 import 'SignUp.dart';
@@ -27,21 +30,17 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  Future<void> _loadUsers() async {
-    final String response = await DefaultAssetBundle.of(context)
-        .loadString('assets/data/usersData.json');
-    final data = await json.decode(response);
-    setState(() {
-      _users.addAll(
-          List<User>.from(data["usersData"].map((x) => User.fromJson(x))));
-    });
-  }
+  // Future<void> _loadUsers() async {
+  //   final String response = await DefaultAssetBundle.of(context)
+  //       .loadString('assets/data/usersData.json');
+  //   final data = await json.decode(response);
+  //   setState(() {
+  //     _users.addAll(
+  //         List<User>.from(data["usersData"].map((x) => User.fromJson(x))));
+  //   });
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    _loadUsers();
-  }
+
 
 
 
@@ -49,22 +48,24 @@ class _LoginScreenState extends State<LoginScreen> {
     final String email = emailController.text.trim();
     final String password = passwordController.text.trim();
 
-    final User? user = _users.firstWhereOrNull(
-          (user) => user.email == email && user.password == password,
-    );
+    // Assuming you have a way to get your AppDatabase instance.
+    // You might pass it down via a Provider or any other state management solution.
+    final database = Provider.of<AppDatabase>(context, listen: false);
+    final userDao = database.userDao;
+
+    final User? user = await userDao.findUserByEmailAndPassword(email, password);
 
     if (user != null) {
       await UserService.saveUser(user);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
     } else {
-      // Show login failed message
+      Fluttertoast.showToast(msg: "Login failed. Please check your credentials.");
     }
   }
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final List<User> _users = []; // This will hold the parsed users
 
   bool areFieldsEmpty(TextEditingController emailController,
       TextEditingController passwordController) {

@@ -14,6 +14,7 @@ class JourneyMapScreen extends StatefulWidget {
   final int courseQuizCount;
   final int courseModuleCount;
   final String imagePath;
+  final int courseId;
 
   const JourneyMapScreen(
       {Key? key,
@@ -22,6 +23,7 @@ class JourneyMapScreen extends StatefulWidget {
       required this.gradient,
       required this.courseQuizCount,
       required this.courseModuleCount,
+        required this.courseId,
       required this.imagePath})
       : super(key: key);
 
@@ -427,7 +429,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
           courseQuizCount: widget.courseQuizCount,
           courseModuleCount: widget.courseModuleCount,
           imagePath: widget.imagePath,
-          gradient: widget.gradient, // Pass the course title here
+          gradient: widget.gradient, courseId: widget.courseId, // Pass the course title here
         ));
   }
 }

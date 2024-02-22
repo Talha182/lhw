@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/CourseTabbar/courses_tabbar.dart';
 import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:lhw/services/user_service.dart'; // Adjust the import path as needed
 import 'CourseTabbar/course_provider.dart';
+import 'FloorDatabase/database.dart';
+import 'FloorDatabase/database_initializer.dart';
 import 'LoginSignUp/Login.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -17,11 +18,16 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
 
+  // Initialize the database and insert initial data
+  final appDatabase = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  DatabaseInitializer(appDatabase).insertInitialData();
+
   // Use UserService to check if the user is logged in
   bool isLoggedIn = await UserService.isLoggedIn();
 
-  runApp(MyApp(isLoggedIn: isLoggedIn));
+  runApp(MyApp(isLoggedIn: isLoggedIn, database: appDatabase));
 }
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -33,13 +39,17 @@ class MyHttpOverrides extends HttpOverrides {
 
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;
+  final AppDatabase database; // Add this line
 
-  const MyApp({Key? key, required this.isLoggedIn}) : super(key: key);
+  const MyApp({Key? key, required this.isLoggedIn, required this.database}) : super(key: key); // Update constructor
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CoursesProvider(),
+    return MultiProvider( // Changed to MultiProvider for future extensibility
+      providers: [
+        ChangeNotifierProvider(create: (context) => CoursesProvider()),
+        Provider<AppDatabase>.value(value: database), // Provide the database to the widget tree
+      ],
       child: GetMaterialApp(
         navigatorKey: navigatorKey,
         routes: {
@@ -55,7 +65,7 @@ class MyApp extends StatelessWidget {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-        home: isLoggedIn ? const Courses_Tabbar() : const LoginScreen(),
+        home: isLoggedIn ? const Custom_NavBar() : const LoginScreen(),
       ),
     );
   }

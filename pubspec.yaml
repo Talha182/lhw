@@ -38,9 +38,9 @@ dependencies:
   animations: ^2.0.8
   floor: ^1.4.2
   floor_generator: ^1.4.2
-  build_runner: ^2.4.6
+  build_runner: ^2.4.8
   mockito: ^5.4.2
-  sqflite: ^2.3.0
+  sqflite: ^2.3.2
   syncfusion_flutter_charts:
     path: syncfusion_flutter_charts-23.1.36
   path_provider: ^2.1.2
@@ -73,6 +73,8 @@ dependencies:
   lottie: 2.7.0
   easy_stepper:
     path: easy_stepper-0.8.3
+  path: ^1.8.3
+  analyzer: ^5.13.0
 
 
 

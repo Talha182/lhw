@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:lhw/models/user_model.dart';
+
+import '../FloorDatabase/entity/user.dart';
 
 class UserManager {
   final _storage = const FlutterSecureStorage();

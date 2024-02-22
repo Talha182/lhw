@@ -19,6 +19,7 @@ import '../../courses_test/test_model.dart';
 import '../../models/flash_cards_screen_model.dart';
 import '../../models/image_hotspot_model.dart';
 import '../../models/interactive_images_model.dart';
+import '../../services/user_service.dart';
 import '../course_provider.dart';
 
 class FeaturesListScreen extends StatefulWidget {
@@ -28,6 +29,7 @@ class FeaturesListScreen extends StatefulWidget {
   final int courseModuleCount;
   final String imagePath;
   final Gradient gradient;
+  final int courseId;
 
   const FeaturesListScreen({
     Key? key,
@@ -37,6 +39,7 @@ class FeaturesListScreen extends StatefulWidget {
     required this.courseModuleCount,
     required this.imagePath,
     required this.gradient, // Add this line
+    required this.courseId,
   }) : super(key: key);
 
   @override
