@@ -8,8 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:lhw/services/user_service.dart'; // Adjust the import path as needed
 import 'CourseTabbar/course_provider.dart';
-import 'FloorDatabase/database.dart';
-import 'FloorDatabase/database_initializer.dart';
+import 'Database/database_helper.dart';
 import 'LoginSignUp/Login.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -17,15 +16,13 @@ final navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-
-  // Initialize the database and insert initial data
-  final appDatabase = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
-  DatabaseInitializer(appDatabase).insertInitialData();
+  final dbHelper = DatabaseHelper.instance;
+  await dbHelper.setupDatabase(); // Ensure this is called
 
   // Use UserService to check if the user is logged in
   bool isLoggedIn = await UserService.isLoggedIn();
 
-  runApp(MyApp(isLoggedIn: isLoggedIn, database: appDatabase));
+  runApp(MyApp(isLoggedIn: isLoggedIn));
 }
 
 class MyHttpOverrides extends HttpOverrides {
@@ -39,16 +36,14 @@ class MyHttpOverrides extends HttpOverrides {
 
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;
-  final AppDatabase database; // Add this line
 
-  const MyApp({Key? key, required this.isLoggedIn, required this.database}) : super(key: key); // Update constructor
+  const MyApp({Key? key, required this.isLoggedIn}) : super(key: key); // Update constructor
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider( // Changed to MultiProvider for future extensibility
       providers: [
         ChangeNotifierProvider(create: (context) => CoursesProvider()),
-        Provider<AppDatabase>.value(value: database), // Provide the database to the widget tree
       ],
       child: GetMaterialApp(
         navigatorKey: navigatorKey,
@@ -65,7 +60,57 @@ class MyApp extends StatelessWidget {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-        home: isLoggedIn ? const Custom_NavBar() : const LoginScreen(),
+        home: isLoggedIn ? Custom_NavBar() : const LoginScreen(),
+      ),
+    );
+  }
+}
+
+
+
+class CourseDetailsScreen extends StatelessWidget {
+  final DatabaseHelper _dbHelper = DatabaseHelper.instance;
+
+  CourseDetailsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Course Details'),
+      ),
+      body: FutureBuilder<List<Course>>(
+        future: _dbHelper.getFullCourseDetails(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Error fetching data'));
+          } else if (snapshot.data == null || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No courses found'));
+          } else {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                final course = snapshot.data![index];
+                return ExpansionTile(
+                  title: Text(course.title),
+                  children: course.modules.map((module) {
+                    return ExpansionTile(
+                      title: Text(module.moduleName),
+                      children: module.submodules.map((submodule) {
+                        return ListTile(
+                          title: Text(submodule.submoduleName),
+                          subtitle: Text('Feature: ${submodule.features.join(', ')}'),
+                        );
+                      }).toList(),
+                    );
+                  }).toList(),
+                );
+              },
+            );
+          }
+        },
       ),
     );
   }

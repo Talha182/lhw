@@ -13,17 +13,17 @@ import '../models/flash_cards_screen_model.dart';
 import '../models/image_hotspot_model.dart';
 
 class TestCourseModel {
-  final int courseId;
-  final String title;
-  final Map<String, String> gradient;
-  final int quizCount;
-  final int moduleCount;
-  final String imagePath;
-  bool isStart;
-  bool isCompleted;
-  double progress;
-  final String arrowText;
-  final List<Module> modules;
+    final int courseId;
+    final String title;
+    final Map<String, String> gradient;
+    final int quizCount;
+    final int moduleCount;
+    final String imagePath;
+    bool isStart;
+    bool isCompleted;
+    double progress;
+    final String arrowText;
+    final List<Module> modules;
 
   TestCourseModel({
     required this.courseId,
@@ -95,7 +95,8 @@ class TestCourseModel {
 
 class Module {
   final int moduleId;
-  final String title;
+  final int courseId; // Added for referential integrity
+  final String title; // Renamed to match provided parameters
   final String imagePath;
   final int submoduleCount;
   bool isStart;
@@ -105,7 +106,8 @@ class Module {
 
   Module({
     required this.moduleId,
-    required this.title,
+    required this.courseId, // Added for referential integrity
+    required this.title, // Renamed to match provided parameters
     required this.imagePath,
     required this.submoduleCount,
     required this.isStart,
@@ -114,9 +116,11 @@ class Module {
     required this.submodules,
   });
 
+  // Method to convert JSON to Module object
   factory Module.fromJson(Map<String, dynamic> json) {
     return Module(
       moduleId: json['moduleId'],
+      courseId: json['courseId'],
       title: json['title'],
       imagePath: json['imagePath'],
       submoduleCount: json['submoduleCount'],
@@ -128,38 +132,39 @@ class Module {
     );
   }
 
-  // Method to calculate progress based on completed submodules and features
-  void updateProgressValue() {
-    int totalFeaturesCount = submodules
-        .map((submodule) => submodule.features.length)
-        .reduce((value, element) => value + element);
-    int completedFeaturesCount = submodules
-        .expand((submodule) => submodule.features)
-        .where((feature) => feature.isCompleted)
-        .length;
 
-    // Calculate equal portion of progress for each feature
-    double portionOfProgress = totalFeaturesCount > 0
-        ? 1 / totalFeaturesCount
-        : 0.0;
+    // Method to calculate progress based on completed submodules and features
+    void updateProgressValue() {
+      int totalFeaturesCount = submodules
+          .map((submodule) => submodule.features.length)
+          .reduce((value, element) => value + element);
+      int completedFeaturesCount = submodules
+          .expand((submodule) => submodule.features)
+          .where((feature) => feature.isCompleted)
+          .length;
 
-    // Calculate total progress based on completed features
-    double totalProgress = completedFeaturesCount * portionOfProgress;
+      // Calculate equal portion of progress for each feature
+      double portionOfProgress = totalFeaturesCount > 0
+          ? 1 / totalFeaturesCount
+          : 0.0;
 
-    // Update module progress value
-    progressValue = totalProgress;
+      // Calculate total progress based on completed features
+      double totalProgress = completedFeaturesCount * portionOfProgress;
+
+      // Update module progress value
+      progressValue = totalProgress;
+    }
+
+    // Method to update module's completion status
+    void updateCompletionStatus() {
+      // Check if all submodules and their features are completed
+      this.isCompleted = submodules.every((submodule) {
+        submodule
+            .updateCompletionStatus(); // Ensure submodule completion status is up to date
+        return submodule.isCompleted;
+      });
+    }
   }
-
-  // Method to update module's completion status
-  void updateCompletionStatus() {
-    // Check if all submodules and their features are completed
-    this.isCompleted = submodules.every((submodule) {
-      submodule
-          .updateCompletionStatus(); // Ensure submodule completion status is up to date
-      return submodule.isCompleted;
-    });
-  }
-}
 
 
 class Submodule {
@@ -349,3 +354,5 @@ Future<List<TestCourseModel>> fetchCourses() async {
   return List<TestCourseModel>.from(
       jsonData['courses'].map((x) => TestCourseModel.fromJson(x)));
 }
+
+

@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../FloorDatabase/entity/user.dart';
 import '../LoginSignUp/Login.dart';
 import '../models/user_model.dart';
 import 'edit_profile.dart';

@@ -5,7 +5,7 @@ import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import '../FloorDatabase/entity/user.dart';
+import '../models/user_model.dart';
 import 'Login.dart';
 
 class SignUpScreen extends StatefulWidget {

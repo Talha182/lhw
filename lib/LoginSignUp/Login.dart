@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:lhw/navy.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../FloorDatabase/database.dart';
-import '../FloorDatabase/entity/user.dart';
 import '../models/user_model.dart';
 import '../services/user_service.dart';
 import 'Forgot_Password.dart';
@@ -48,17 +46,26 @@ class _LoginScreenState extends State<LoginScreen> {
     final String email = emailController.text.trim();
     final String password = passwordController.text.trim();
 
-    // Assuming you have a way to get your AppDatabase instance.
-    // You might pass it down via a Provider or any other state management solution.
-    final database = Provider.of<AppDatabase>(context, listen: false);
-    final userDao = database.userDao;
+    // Load the JSON file from the assets directory
+    final String response = await DefaultAssetBundle.of(context).loadString('assets/data/usersData.json');
+    final data = await json.decode(response);
 
-    final User? user = await userDao.findUserByEmailAndPassword(email, password);
+    // Parse the JSON data to get the list of users
+    final List<dynamic> users = data['usersData'];
 
-    if (user != null) {
-      await UserService.saveUser(user);
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
+    // Look for a user with matching email and password
+    bool loginSuccess = false;
+    for (var userData in users) {
+      final User user = User.fromJson(userData); // Parse JSON data into User object
+      if (user.email == email && user.password == password) {
+        loginSuccess = true;
+        await UserService.saveUser(user);
+        break;
+      }
+    }
+
+    if (loginSuccess) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
     } else {
       Fluttertoast.showToast(msg: "Login failed. Please check your credentials.");
     }
