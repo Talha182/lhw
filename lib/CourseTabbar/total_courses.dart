@@ -9,7 +9,7 @@ import 'course_provider.dart';
 class TotalCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<TestCourseModel> courses = Provider.of<CoursesProvider>(context).courses;
+    List<Course> courses = Provider.of<CoursesProvider>(context).courses;
 
 
     return Scaffold(

@@ -25,6 +25,7 @@
           "submodules": [
             {
               "submoduleId": 1,
+              "moduleId": 1,
               "title": "متعدی بیماریوں کا تعارف",
               "description": "اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی، جو بیکٹیریا، وائرس، پھپھوندی، یا پیراسائٹ جیسے جانداروں کی وجہ سے ہونے والی بیماریاں ہیں. آپ جانیں گی  کہ یہ بیماریاں کس طرح ایک شخص سے دوسرے شخص میں، کیڑے مکوڑوں یا جانوروں کے ذریعے، اور بعض اوقات آلودہ غذا یا پانی پینے سے پھیل سکتی ہیں۔",
 
@@ -34,6 +35,7 @@
                 {
                   "featureId": 1,
                   "featureType": "interactiveAnimationVideo",
+                  "submoduleId": 1,
                   "title": "متعدی بیماریاں",
                   "duration": "4 mins",
                   "videoPath": "assets/scripts/videos/demo.mp4",
@@ -87,7 +89,7 @@
               "submoduleId": 2,
               "title": "متعدی بیماریوں کی مثالیں",
               "description": "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔",
-
+              "moduleId": 1,
               "iconPath": "assets/icons/control_icon.png",
               "numberOfQuizzes": 3,
               "features": [
@@ -95,6 +97,7 @@
                   "featureId": 1,
                   "featureType": "presentation",
                   "duration": "5 mins",
+                  "submoduleId": 2,
                   "title": "متعدی بیماریوں کی تعریف ",
                   "presentationModel": {
                     "assetImages": [

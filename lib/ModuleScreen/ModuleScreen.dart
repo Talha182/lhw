@@ -13,7 +13,7 @@ import '../JourneyMaps/JourneyMap2.dart';
 import '../Mobile_Module & Submodule/module_dashboard_card.dart';
 
 class ModuleScreen extends StatefulWidget {
-  final TestCourseModel course;
+  final Course course;
 
   const ModuleScreen({Key? key, required this.course}) : super(key: key);
 

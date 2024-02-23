@@ -11,7 +11,7 @@ class OnGoingCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<TestCourseModel> ongoingCourses = Provider.of<CoursesProvider>(context).ongoingCourses;
+    List<Course> ongoingCourses = Provider.of<CoursesProvider>(context).ongoingCourses;
 
     return Scaffold(
       body: ListView.builder(

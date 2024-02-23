@@ -6,12 +6,12 @@ import 'package:lhw/courses_test/test_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CoursesProvider with ChangeNotifier {
-  List<TestCourseModel> _courses = [];
-  TestCourseModel? _lastVisitedCourse;
+  List<Course> _courses = [];
+  Course? _lastVisitedCourse;
   bool _isLoading = true;
 
-  List<TestCourseModel> get courses => _courses;
-  TestCourseModel? get lastVisitedCourse => _lastVisitedCourse;
+  List<Course> get courses => _courses;
+  Course? get lastVisitedCourse => _lastVisitedCourse;
   bool get isLoading => _isLoading;
 
   CoursesProvider() {
@@ -26,14 +26,14 @@ class CoursesProvider with ChangeNotifier {
   }
 
   // Getter to get ongoing courses
-  List<TestCourseModel> get ongoingCourses {
+  List<Course> get ongoingCourses {
     return _courses
         .where((course) => course.isStart && !course.isCompleted)
         .toList();
   }
 
   // Getter to get completed courses
-  List<TestCourseModel> get completedCourses {
+  List<Course> get completedCourses {
     return _courses.where((course) => course.isCompleted).toList();
   }
 
@@ -42,7 +42,7 @@ class CoursesProvider with ChangeNotifier {
         await rootBundle.loadString('assets/data/courses.json');
     final data = await json.decode(response);
     _courses = (data['courses'] as List)
-        .map((i) => TestCourseModel.fromJson(i))
+        .map((i) => Course.fromJson(i))
         .toList();
   }
 
@@ -75,14 +75,14 @@ class CoursesProvider with ChangeNotifier {
   }
 
 
-  void setLastVisitedCourse(TestCourseModel course) async {
+  void setLastVisitedCourse(Course course) async {
     _lastVisitedCourse = course;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('lastVisitedCourseId', course.courseId);
     notifyListeners();
   }
 
-  TestCourseModel? getCourseById(int courseId) {
+  Course? getCourseById(int courseId) {
     return _courses.firstWhereOrNull((course) => course.courseId == courseId);
   }
 

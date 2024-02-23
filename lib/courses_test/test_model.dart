@@ -12,20 +12,20 @@ import '../ComicStrip/comic_strip.dart';
 import '../models/flash_cards_screen_model.dart';
 import '../models/image_hotspot_model.dart';
 
-class TestCourseModel {
-    final int courseId;
-    final String title;
-    final Map<String, String> gradient;
-    final int quizCount;
-    final int moduleCount;
-    final String imagePath;
-    bool isStart;
-    bool isCompleted;
-    double progress;
-    final String arrowText;
-    final List<Module> modules;
+class Course {
+  final int courseId;
+  final String title;
+  final Map<String, String> gradient;
+  final int quizCount;
+  final int moduleCount;
+  final String imagePath;
+  bool isStart;
+  bool isCompleted;
+  double progress;
+  final String arrowText;
+  final List<Module> modules;
 
-  TestCourseModel({
+  Course({
     required this.courseId,
     required this.title,
     required this.gradient,
@@ -39,26 +39,40 @@ class TestCourseModel {
     required this.modules,
   });
 
-  factory TestCourseModel.fromJson(Map<String, dynamic> json) {
-    return TestCourseModel(
-      courseId: json['courseId'],
-      title: json['title'],
-      gradient: {
-        'start': json['gradient']['start'],
-        'end': json['gradient']['end'],
-      },
-      quizCount: json['quizCount'],
-      moduleCount: json['moduleCount'],
-      imagePath: json['imagePath'],
-      isStart: json['isStart'],
+  factory Course.fromJson(Map<String, dynamic> json) {
+    // Handling gradient with more detailed null check
+    var gradientJson = json['gradient'] as Map<String, dynamic>? ?? {};
+    Map<String, String> gradient = {};
+    if (gradientJson.isNotEmpty) {
+      gradient = gradientJson.map((key, value) => MapEntry(key, value ?? '#FFFFFF'));
+    } else {
+      gradient = {"startColor": "#FFFFFF", "endColor": "#000000"}; // Default gradient
+    }
+
+    // Ensuring modules are safely parsed, handling potential null values within each module
+    var modulesJson = json['modules'] as List<dynamic>? ?? [];
+    List<Module> modules = [];
+    if (modulesJson.isNotEmpty) {
+      modules = modulesJson.map((e) => Module.fromJson(e as Map<String, dynamic>)).toList();
+    }
+
+    return Course(
+      courseId: json['courseId'] as int? ?? 0,
+      title: json['title'] as String? ?? 'Unknown Course',
+      gradient: gradient,
+      quizCount: json['quizCount'] as int? ?? 0,
+      moduleCount: json['moduleCount'] as int? ?? 0,
+      imagePath: json['imagePath'] as String? ?? '',
+      isStart: json['isStart'] as bool? ?? false,
       isCompleted: json['isCompleted'] as bool? ?? false,
-      progress: json['progress'] ?? 0.0,
-      arrowText: json['arrowText'],
-      modules: List<Module>.from(json['modules'].map((x) => Module.fromJson(x))),
+      progress: (json['progress'] as num?)?.toDouble() ?? 0.0,
+      arrowText: json['arrowText'] as String? ?? '',
+      modules: modules,
     );
   }
 
-  // Method to update course progress
+
+// Method to update course progress
   void updateCourseCompletionProgress() {
     int completedFeaturesCount = 0;
     int totalFeaturesCount = 0;
@@ -95,8 +109,8 @@ class TestCourseModel {
 
 class Module {
   final int moduleId;
-  final int courseId; // Added for referential integrity
-  final String title; // Renamed to match provided parameters
+  final int courseId;
+  final String title;
   final String imagePath;
   final int submoduleCount;
   bool isStart;
@@ -106,69 +120,73 @@ class Module {
 
   Module({
     required this.moduleId,
-    required this.courseId, // Added for referential integrity
-    required this.title, // Renamed to match provided parameters
+    required this.courseId,
+    required this.title,
     required this.imagePath,
     required this.submoduleCount,
     required this.isStart,
-    this.isCompleted = false, // Default to false
+    this.isCompleted = false,
     required this.progressValue,
     required this.submodules,
   });
 
-  // Method to convert JSON to Module object
   factory Module.fromJson(Map<String, dynamic> json) {
+    List<Submodule> submodulesList = [];
+    if (json['submodules'] != null) {
+      submodulesList = List<Map<String, dynamic>>.from(json['submodules'])
+          .map<Submodule>((submoduleJson) => Submodule.fromJson(submoduleJson))
+          .toList();
+    }
+
     return Module(
-      moduleId: json['moduleId'],
-      courseId: json['courseId'],
-      title: json['title'],
-      imagePath: json['imagePath'],
-      submoduleCount: json['submoduleCount'],
-      isStart: json['isStart'],
-      progressValue: json['progressValue'] ?? 0.0,
-      submodules: List<Submodule>.from(
-          json['submodules'].map((x) => Submodule.fromJson(x))),
+      moduleId: json['moduleId'] as int? ?? 0,
+      courseId: json['courseId'] as int? ?? 0,
+      title: json['title'] as String? ?? "Unknown Module",
+      imagePath: json['imagePath'] as String? ?? '',
+      submoduleCount: json['submoduleCount'] as int? ?? 0,
+      isStart: json['isStart'] as bool? ?? false,
       isCompleted: json['isCompleted'] as bool? ?? false,
+      progressValue: (json['progressValue'] as num?)?.toDouble() ?? 0.0,
+      submodules: submodulesList,
     );
   }
 
 
-    // Method to calculate progress based on completed submodules and features
-    void updateProgressValue() {
-      int totalFeaturesCount = submodules
-          .map((submodule) => submodule.features.length)
-          .reduce((value, element) => value + element);
-      int completedFeaturesCount = submodules
-          .expand((submodule) => submodule.features)
-          .where((feature) => feature.isCompleted)
-          .length;
+  // Method to calculate progress based on completed submodules and features
+  void updateProgressValue() {
+    int totalFeaturesCount = submodules
+        .map((submodule) => submodule.features.length)
+        .reduce((value, element) => value + element);
+    int completedFeaturesCount = submodules
+        .expand((submodule) => submodule.features)
+        .where((feature) => feature.isCompleted)
+        .length;
 
-      // Calculate equal portion of progress for each feature
-      double portionOfProgress = totalFeaturesCount > 0
-          ? 1 / totalFeaturesCount
-          : 0.0;
+    // Calculate equal portion of progress for each feature
+    double portionOfProgress =
+        totalFeaturesCount > 0 ? 1 / totalFeaturesCount : 0.0;
 
-      // Calculate total progress based on completed features
-      double totalProgress = completedFeaturesCount * portionOfProgress;
+    // Calculate total progress based on completed features
+    double totalProgress = completedFeaturesCount * portionOfProgress;
 
-      // Update module progress value
-      progressValue = totalProgress;
-    }
-
-    // Method to update module's completion status
-    void updateCompletionStatus() {
-      // Check if all submodules and their features are completed
-      this.isCompleted = submodules.every((submodule) {
-        submodule
-            .updateCompletionStatus(); // Ensure submodule completion status is up to date
-        return submodule.isCompleted;
-      });
-    }
+    // Update module progress value
+    progressValue = totalProgress;
   }
 
+  // Method to update module's completion status
+  void updateCompletionStatus() {
+    // Check if all submodules and their features are completed
+    this.isCompleted = submodules.every((submodule) {
+      submodule
+          .updateCompletionStatus(); // Ensure submodule completion status is up to date
+      return submodule.isCompleted;
+    });
+  }
+}
 
 class Submodule {
   final int submoduleId;
+  final int moduleId;
   final String title;
   final String description;
   final String iconPath;
@@ -178,26 +196,36 @@ class Submodule {
 
   Submodule({
     required this.submoduleId,
+    required this.moduleId,
     required this.title,
     required this.description,
     required this.iconPath,
-    this.isCompleted = false, // Default to false
     required this.numberOfQuizzes,
+    this.isCompleted = false,
     required this.features,
   });
 
   factory Submodule.fromJson(Map<String, dynamic> json) {
+    // Ensures 'features' is not null and is a list before mapping
+    List<Feature> parsedFeatures = [];
+    if (json['features'] != null && json['features'] is List) {
+      parsedFeatures = List<Map<String, dynamic>>.from(json['features'])
+          .map<Feature>((featureJson) => Feature.fromJson(featureJson))
+          .toList();
+    }
+
     return Submodule(
-      submoduleId: json['submoduleId'],
-      title: json['title'],
-      description: json['description'],
-      iconPath: json['iconPath'],
-      numberOfQuizzes: json['numberOfQuizzes'],
-      features:
-      List<Feature>.from(json['features'].map((x) => Feature.fromJson(x))),
+      submoduleId: json['submoduleId'] as int? ?? 0,
+      moduleId: json['moduleId'] as int? ?? 0,
+      title: json['title'] as String? ?? "Unknown Submodule",
+      description: json['description'] as String? ?? '',
+      iconPath: json['iconPath'] as String? ?? '',
+      numberOfQuizzes: json['numberOfQuizzes'] as int? ?? 0,
+      features: parsedFeatures,
       isCompleted: json['isCompleted'] as bool? ?? false,
     );
   }
+
   // Method to check and update completion status
   void updateCompletionStatus() {
     // Check if all features are completed
@@ -228,6 +256,7 @@ class Feature {
   final String title; // Example of a String field that might cause the error
   final FeatureType featureType;
   bool isCompleted; // Example bool field that might cause the error
+  final int submoduleId;
   final String duration;
   final dynamic relatedData; // Optional field to hold related data
 
@@ -236,16 +265,18 @@ class Feature {
     required this.featureType,
     this.isCompleted = false, // Default to false
     required this.duration,
+    required this.submoduleId,
     this.relatedData,
   });
 
-  factory Feature.fromJson(Map<String, dynamic> json) {
-    FeatureType featureType = FeatureType.values.firstWhere(
-          (type) => type.toString().split('.').last == json['featureType'],
-      orElse: () => FeatureType.unknown,
-    );
 
-    dynamic relatedData;
+  factory Feature.fromJson(Map<String, dynamic> json) {
+    final String title = json['title'] as String? ?? 'Unknown Feature';
+    final String duration = json['duration'] as String? ?? '0min'; // Default value if null
+    final featureType = _parseFeatureType(json['featureType'] as String? ?? '');
+    var relatedData = json['relatedData'] != null ? jsonDecode(json['relatedData'] as String) : <String, dynamic>{}; // Safe parsing with default
+
+
     if (featureType == FeatureType.presentation &&
         json.containsKey('presentationModel')) {
       relatedData = PresentationModel.fromJson(json['presentationModel']);
@@ -255,7 +286,7 @@ class Feature {
       List<dynamic> comicStripsJson = json['comicStrips'] as List;
       relatedData = comicStripsJson
           .map((csJson) =>
-          ComicStripModel.fromJson(csJson as Map<String, dynamic>))
+              ComicStripModel.fromJson(csJson as Map<String, dynamic>))
           .toList();
     }
 
@@ -300,10 +331,11 @@ class Feature {
     }
 
     return Feature(
-      title: json['title'] as String? ?? 'Default Title',
-      featureType: featureType,
-      isCompleted: json['isCompleted'] as bool? ?? false,
-      duration: json['duration'] as String? ?? 'Default duration',
+      title: title,
+      featureType: featureType, // Assuming this is parsed elsewhere
+      isCompleted: json['isCompleted'] == 1,
+      duration: duration,
+      submoduleId: json['submoduleId'] as int? ?? 0,
       relatedData: relatedData,
     );
   }
@@ -346,13 +378,61 @@ class Feature {
         ? const Color(0xff9AC9C2)
         : const Color(0xff685F78); // Green for completed, purple for others
   }
+
+  static FeatureType _parseFeatureType(String featureTypeStr) {
+    return FeatureType.values.firstWhere(
+          (e) => e.toString().split('.').last == featureTypeStr,
+      orElse: () => FeatureType.unknown,
+    );
+  }
+
+  static dynamic _parseRelatedData(FeatureType featureType, Map<String, dynamic> json) {
+    switch (featureType) {
+      case FeatureType.presentation:
+        return json.containsKey('presentationModel')
+            ? PresentationModel.fromJson(json['presentationModel'] as Map<String, dynamic>)
+            : null;
+      case FeatureType.comicStrips:
+        return json.containsKey('comicStrips')
+            ? List<dynamic>.from(json['comicStrips']).map((csJson) => ComicStripModel.fromJson(csJson as Map<String, dynamic>)).toList()
+            : [];
+      case FeatureType.flashCards:
+        return json.containsKey('flashCards')
+            ? List<dynamic>.from(json['flashCards']).map((fcJson) => FlashCard.fromJson(fcJson as Map<String, dynamic>)).toList()
+            : [];
+      case FeatureType.infographics:
+        return json.containsKey('infographics')
+            ? InfographicsModel.fromJson({'infographics': List<Map<String, dynamic>>.from(json['infographics'])})
+            : null;
+      case FeatureType.interactiveAnimationVideo:
+        return json.containsKey('videoPath')
+            ? InteractiveAnimationVideoModel.fromJson(json)
+            : null;
+      case FeatureType.interactiveImage:
+        return json.containsKey('interactiveImageModel')
+            ? List<dynamic>.from(json['interactiveImageModel']).map((imageJson) => InteractiveImageModel.fromJson(imageJson as Map<String, dynamic>)).toList()
+            : [];
+      case FeatureType.imageHotspot:
+        return json.containsKey('imageHotspot')
+            ? ImageHotspotModel.fromJson(json['imageHotspot'] as Map<String, dynamic>)
+            : null;
+      case FeatureType.textBranchingScenario:
+        return json.containsKey('textBranchingScenarioModel')
+            ? TextBranchingScenarioModel.fromJson(json['textBranchingScenarioModel'] as Map<String, dynamic>)
+            : null;
+      case FeatureType.imageBranchingScenario:
+        return json.containsKey('imageBranchingScenarioModel')
+            ? ImageBranchingScenarioModel.fromJson(json['imageBranchingScenarioModel'] as Map<String, dynamic>)
+            : null;
+      default:
+        return null;
+    }
+  }
 }
 
-Future<List<TestCourseModel>> fetchCourses() async {
+Future<List<Course>> fetchCourses() async {
   String jsonString = await rootBundle.loadString('assets/data/courses.json');
   final jsonData = json.decode(jsonString) as Map<String, dynamic>;
-  return List<TestCourseModel>.from(
-      jsonData['courses'].map((x) => TestCourseModel.fromJson(x)));
+  return List<Course>.from(
+      jsonData['courses'].map((x) => Course.fromJson(x)));
 }
-
-

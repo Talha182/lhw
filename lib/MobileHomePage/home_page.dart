@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> navigateToLastVisitedCourse(BuildContext context) async {
     // Directly use the lastVisitedCourse from the provider
     final provider = Provider.of<CoursesProvider>(context, listen: false); // Added listen: false for accessing outside build method.
-    TestCourseModel? course = provider.lastVisitedCourse;
+    Course? course = provider.lastVisitedCourse;
 
     if (course != null) {
       final prefs = await SharedPreferences.getInstance();

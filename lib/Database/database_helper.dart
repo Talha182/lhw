@@ -1,292 +1,297 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'dart:convert'; // For json encoding/decoding
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+import 'dart:convert'; // For json encoding/decoding
 
 class DatabaseHelper {
-  static final DatabaseHelper instance = DatabaseHelper._init();
+  static final _databaseName = "lhw_db.db";
+  static final _databaseVersion = 1;
+  static final coursesTable = 'courses_table';
+  static final modulesTable = 'modules_table';
+  static final submodulesTable = 'submodules_table';
+
+  DatabaseHelper._privateConstructor();
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+
   static Database? _database;
+  Future<Database> get database async => _database ??= await _initDatabase();
 
-  DatabaseHelper._init();
-
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDB('courses.db');
-    return _database!;
+  Future<Database> _initDatabase() async {
+    String path = join(await getDatabasesPath(), _databaseName);
+    return await openDatabase(path,
+        version: _databaseVersion, onCreate: _onCreate);
   }
 
-  Future<Database> _initDB(String filePath) async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, filePath);
-
-    return await openDatabase(path, version: 1, onCreate: _createDB);
-  }
-
-  Future _createDB(Database db, int version) async {
-    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    const textType = 'TEXT NOT NULL';
+  Future _onCreate(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE $coursesTable (
+        courseId INTEGER PRIMARY KEY,
+        title TEXT NOT NULL,
+        quizCount INTEGER NOT NULL,
+        moduleCount INTEGER NOT NULL,
+        imagePath TEXT NOT NULL,
+        isStart INTEGER NOT NULL,
+        isCompleted INTEGER NOT NULL,
+        progress REAL NOT NULL,
+        arrowText TEXT NOT NULL,
+        modules TEXT
+      )
+      ''');
 
     await db.execute('''
-CREATE TABLE courses (
-  courseId $idType,
-  title $textType,
-  gradient TEXT NOT NULL,
-  quizCount INTEGER NOT NULL,
-  moduleCount INTEGER NOT NULL,
-  imagePath TEXT NOT NULL,
-  isStart INTEGER NOT NULL,
-  isCompleted INTEGER NOT NULL,
-  progress REAL NOT NULL,
-  arrowText TEXT NOT NULL
-)
-''');
-
-
+      CREATE TABLE $modulesTable (
+        moduleId INTEGER PRIMARY KEY,
+        courseId INTEGER NOT NULL,
+        title TEXT NOT NULL,
+        imagePath TEXT NOT NULL,
+        submoduleCount INTEGER NOT NULL,
+        isStart INTEGER NOT NULL,
+        isCompleted INTEGER NOT NULL,
+        progressValue REAL NOT NULL,
+        subModules TEXT,
+        
+        FOREIGN KEY (courseId) REFERENCES $coursesTable(courseId)
+      )
+      ''');
     await db.execute('''
-CREATE TABLE modules (
-  moduleId $idType,
-  courseId INTEGER NOT NULL,
-  moduleName $textType,
-  FOREIGN KEY (courseId) REFERENCES courses(courseId) ON DELETE CASCADE
-)
-''');
-
-    await db.execute('''
-CREATE TABLE submodules (
-  submoduleId $idType,
+CREATE TABLE $submodulesTable (
+  submoduleId INTEGER PRIMARY KEY,
   moduleId INTEGER NOT NULL,
-  submoduleName $textType,
-  FOREIGN KEY (moduleId) REFERENCES modules(moduleId) ON DELETE CASCADE
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  iconPath TEXT NOT NULL,
+  numberOfQuizzes INTEGER NOT NULL,
+  isCompleted INTEGER NOT NULL DEFAULT 0,
+  FOREIGN KEY (moduleId) REFERENCES $modulesTable(moduleId)
 )
 ''');
 
-    await db.execute('''
-CREATE TABLE features (
-  featureId $idType,
-  submoduleId INTEGER NOT NULL,
-  featureName $textType,
-  FOREIGN KEY (submoduleId) REFERENCES submodules(submoduleId) ON DELETE CASCADE
-)
-''');
   }
 
-  // Methods to insert data into tables
-  Future<int> addCourse(String title) async {
-    final db = await instance.database;
-
-    // Check if the course already exists
-    final List<Map<String, dynamic>> existingCourse = await db.query(
-      'courses',
-      where: 'title = ?',
-      whereArgs: [title],
+  Future<void> insertCourse(TestCourseModel course) async {
+    final db = await database;
+    await db.insert(
+      coursesTable,
+      course.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
-
-    if (existingCourse.isNotEmpty) {
-      // Course already exists, return the existing course ID
-      return existingCourse.first['courseId'] as int;
-    } else {
-      // Course doesn't exist, add it and return the new course ID
-      return await db.insert('courses', {'title': title});
-    }
-  }
-  Future<int> addModule(int courseId, String moduleName) async {
-    final db = await instance.database;
-
-    // Check if the module already exists for the given course
-    final List<Map<String, dynamic>> existingModules = await db.query(
-      'modules',
-      where: 'courseId = ? AND moduleName = ?',
-      whereArgs: [courseId, moduleName],
-    );
-
-    if (existingModules.isNotEmpty) {
-      // Module already exists, return the existing module ID
-      return existingModules.first['moduleId'] as int;
-    } else {
-      // Module doesn't exist, add it and return the new module ID
-      return await db.insert('modules', {'courseId': courseId, 'moduleName': moduleName});
-    }
   }
 
-  Future<int> addSubmodule(int moduleId, String submoduleName) async {
-    final db = await instance.database;
+  Future<List<TestCourseModel>> courses() async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(coursesTable);
 
-    // Check if the submodule already exists for the given module
-    final List<Map<String, dynamic>> existingSubmodules = await db.query(
-      'submodules',
-      where: 'moduleId = ? AND submoduleName = ?',
-      whereArgs: [moduleId, submoduleName],
-    );
-
-    if (existingSubmodules.isNotEmpty) {
-      // Submodule already exists, return the existing submodule ID
-      return existingSubmodules.first['submoduleId'] as int;
-    } else {
-      // Submodule doesn't exist, add it and return the new submodule ID
-      return await db.insert('submodules', {'moduleId': moduleId, 'submoduleName': submoduleName});
-    }
-  }
-
-  Future<int> addFeature(int submoduleId, String featureName) async {
-    final db = await instance.database;
-
-    // Check if the feature already exists for the given submodule
-    final List<Map<String, dynamic>> existingFeatures = await db.query(
-      'features',
-      where: 'submoduleId = ? AND featureName = ?',
-      whereArgs: [submoduleId, featureName],
-    );
-
-    if (existingFeatures.isNotEmpty) {
-      // Feature already exists, return the existing feature ID
-      return existingFeatures.first['featureId'] as int;
-    } else {
-      // Feature doesn't exist, add it and return the new feature ID
-      return await db.insert('features', {'submoduleId': submoduleId, 'featureName': featureName});
-    }
-  }
-
-  // Method to retrieve courses with their modules, submodules, and features
-  // This is a basic example. You might need more complex queries to fetch nested data.
-  Future<List<Map<String, dynamic>>> getCourseDetails(int courseId) async {
-    final db = await instance.database;
-    final modules = await db.query(
-      'modules',
-      where: 'courseId = ?',
-      whereArgs: [courseId],
-    );
-    return modules;
-  }
-
-  Future close() async {
-    final db = await instance.database;
-    db.close();
-  }
-
-  Future<void> setupDatabase() async {
-    final dbHelper = DatabaseHelper.instance;
-
-    // Step 1: Add a course
-    final int courseId = await dbHelper.addCourse("Flutter Development");
-
-    // Step 2: Add two modules to the course
-    final int moduleId1 =
-        await dbHelper.addModule(courseId, "Introduction to Flutter");
-    final int moduleId2 =
-        await dbHelper.addModule(courseId, "Advanced Flutter Concepts");
-
-    // Step 3: Add three submodules to each module
-    // For Module 1
-    final int submoduleId1_1 =
-        await dbHelper.addSubmodule(moduleId1, "Setting Up for Flutter");
-    final int submoduleId1_2 =
-        await dbHelper.addSubmodule(moduleId1, "Dart Basics");
-    final int submoduleId1_3 =
-        await dbHelper.addSubmodule(moduleId1, "Flutter Widgets 101");
-
-    // For Module 2
-    final int submoduleId2_1 =
-        await dbHelper.addSubmodule(moduleId2, "State Management");
-    final int submoduleId2_2 =
-        await dbHelper.addSubmodule(moduleId2, "Animations in Flutter");
-    final int submoduleId2_3 =
-        await dbHelper.addSubmodule(moduleId2, "Networking & Persistence");
-
-    // Step 4: Add one feature to each submodule
-    // For Submodules in Module 1
-    await dbHelper.addFeature(submoduleId1_1, "Installation Guides");
-    await dbHelper.addFeature(
-        submoduleId1_2, "Variables, Types, and Collections");
-    await dbHelper.addFeature(
-        submoduleId1_3, "Introduction to Layouts and Common Widgets");
-
-    // For Submodules in Module 2
-    await dbHelper.addFeature(submoduleId2_1, "Provider and Riverpod");
-    await dbHelper.addFeature(submoduleId2_2, "Creating Custom Animations");
-    await dbHelper.addFeature(
-        submoduleId2_3, "Using HTTP and Storing Data Locally");
-  }
-
-  Future<List<Course>> getFullCourseDetails() async {
-    final db = await instance.database;
-    final List<Map<String, dynamic>> courseMaps = await db.query('courses');
-
-    List<Course> courses = [];
-    for (var courseMap in courseMaps) {
-      final List<Map<String, dynamic>> moduleMaps = await db.query(
-        'modules',
-        where: 'courseId = ?',
-        whereArgs: [courseMap['courseId']],
-      );
-
-      List<Module> modules = [];
-      for (var moduleMap in moduleMaps) {
-        final List<Map<String, dynamic>> submoduleMaps = await db.query(
-          'submodules',
-          where: 'moduleId = ?',
-          whereArgs: [moduleMap['moduleId']],
-        );
-
-        List<Submodule> submodules = [];
-        for (var submoduleMap in submoduleMaps) {
-          final List<Map<String, dynamic>> featureMaps = await db.query(
-            'features',
-            where: 'submoduleId = ?',
-            whereArgs: [submoduleMap['submoduleId']],
-          );
-
-          List<Feature> features = featureMaps
-              .map((m) => Feature(
-                  featureId: m['featureId'], featureName: m['featureName']))
-              .toList();
-          submodules.add(Submodule(
-              submoduleId: submoduleMap['submoduleId'],
-              submoduleName: submoduleMap['submoduleName'],
-              features: features));
-        }
-
-        modules.add(Module(
-            moduleId: moduleMap['moduleId'],
-            moduleName: moduleMap['moduleName'],
-            submodules: submodules));
-      }
-
-      courses.add(Course(
-          courseId: courseMap['courseId'],
-          title: courseMap['title'],
-          modules: modules));
-    }
-
-    return courses;
+    return List.generate(maps.length, (i) {
+      return TestCourseModel.fromMap(maps[i]);
+    });
   }
 }
 
-class Course {
+class TestCourseModel {
   final int courseId;
   final String title;
-  final List<Module> modules;
+  final int quizCount;
+  final int moduleCount;
+  final String imagePath;
+  bool isStart;
+  bool isCompleted;
+  double progress;
+  final String arrowText;
+  final List<TestModuleModel> modules;
 
-  Course({required this.courseId, required this.title, required this.modules});
+  TestCourseModel({
+    required this.courseId,
+    required this.title,
+    required this.quizCount,
+    required this.moduleCount,
+    required this.imagePath,
+    this.isStart = false,
+    this.isCompleted = false,
+    this.progress = 0.0,
+    required this.arrowText,
+    required this.modules,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'courseId': courseId,
+      'title': title,
+      'quizCount': quizCount,
+      'moduleCount': moduleCount,
+      'imagePath': imagePath,
+      'isStart': isStart ? 1 : 0,
+      'isCompleted': isCompleted ? 1 : 0,
+      'progress': progress,
+      'arrowText': arrowText,
+      'modules': jsonEncode(modules.map((module) => module.toMap()).toList()),
+    };
+  }
+
+  static TestCourseModel fromMap(Map<String, dynamic> map) {
+    return TestCourseModel(
+      courseId: map['courseId'],
+      title: map['title'],
+      quizCount: map['quizCount'],
+      moduleCount: map['moduleCount'],
+      imagePath: map['imagePath'],
+      isStart: map['isStart'] == 1,
+      isCompleted: map['isCompleted'] == 1,
+      progress: map['progress'],
+      arrowText: map['arrowText'],
+      modules: (jsonDecode(map['modules']) as List<dynamic>)
+          .map((moduleJson) => TestModuleModel.fromMap(moduleJson))
+          .toList(),
+    );
+  }
 }
 
-class Module {
+class TestModuleModel {
   final int moduleId;
-  final String moduleName;
-  final List<Submodule> submodules;
+  final int courseId;
+  final String title;
+  final String imagePath;
+  final int submoduleCount;
+  bool isStart;
+  bool isCompleted;
+  double progressValue;
+  final List<Submodule> submodules; // Add list of submodules
 
-  Module(
-      {required this.moduleId,
-      required this.moduleName,
-      required this.submodules});
+  TestModuleModel({
+    required this.moduleId,
+    required this.courseId,
+    required this.title,
+    required this.imagePath,
+    required this.submoduleCount,
+    this.isStart = false,
+    this.isCompleted = false,
+    this.progressValue = 0.0,
+    required this.submodules, // Initialize list of submodules
+  });
+  Map<String, dynamic> toMap() {
+    return {
+      'moduleId': moduleId,
+      'courseId': courseId,
+      'title': title,
+      'imagePath': imagePath,
+      'submoduleCount': submoduleCount,
+      'isStart': isStart ? 1 : 0,
+      'isCompleted': isCompleted ? 1 : 0,
+      'progressValue': progressValue,
+      'submodules':
+          jsonEncode(submodules.map((submodule) => submodule.toMap()).toList()),
+    };
+  }
+
+  static TestModuleModel fromMap(Map<String, dynamic> map) {
+    // This variable will hold the decoded submodules list
+    List<Submodule> decodedSubmodules = [];
+
+    // Check if 'submodules' is a string (encoded as JSON)
+    if (map['submodules'] is String) {
+      // If it's a string, decode it
+      List<dynamic> jsonList = jsonDecode(map['submodules']);
+      decodedSubmodules =
+          jsonList.map((json) => Submodule.fromMap(json)).toList();
+    } else if (map['submodules'] is List) {
+      // If it's already a List, use it directly
+      decodedSubmodules = (map['submodules'] as List)
+          .map((submoduleMap) => Submodule.fromMap(submoduleMap))
+          .toList();
+    } else {
+      print("Unexpected type for 'submodules', neither String nor List");
+    }
+
+    return TestModuleModel(
+      moduleId: map['moduleId'],
+      courseId: map['courseId'],
+      title: map['title'],
+      imagePath: map['imagePath'],
+      submoduleCount: map['submoduleCount'],
+      isStart: map['isStart'] == 1,
+      isCompleted: map['isCompleted'] == 1,
+      progressValue: map['progressValue'],
+      submodules: decodedSubmodules,
+    );
+  }
 }
 
 class Submodule {
   final int submoduleId;
-  final String submoduleName;
-  final List<Feature> features;
+  final int moduleId;
+  final String title;
+  final String description;
+  final String iconPath;
+  final int numberOfQuizzes;
+  bool isCompleted;
 
-  Submodule(
-      {required this.submoduleId,
-      required this.submoduleName,
-      required this.features});
+  Submodule({
+    required this.submoduleId,
+    required this.moduleId,
+    required this.title,
+    required this.description,
+    required this.iconPath,
+    required this.numberOfQuizzes,
+    this.isCompleted = false,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'submoduleId': submoduleId,
+      'moduleId': moduleId,
+      'title': title,
+      'description': description,
+      'iconPath': iconPath,
+      'numberOfQuizzes': numberOfQuizzes,
+      'isCompleted': isCompleted ? 1 : 0,
+    };
+  }
+
+  static Submodule fromMap(Map<String, dynamic> map) {
+    return Submodule(
+      submoduleId: map['submoduleId'],
+      moduleId: map['moduleId'],
+      title: map['title'],
+      description: map['description'],
+      iconPath: map['iconPath'],
+      numberOfQuizzes: map['numberOfQuizzes'],
+      isCompleted: map['isCompleted'] == 1,
+    );
+  }
+}
+
+class DataManager {
+  static Future<void> insertCoursesFromJson() async {
+    final String response =
+        await rootBundle.loadString('assets/data/test_data.json');
+    final data = json.decode(response);
+    final coursesList = data["courses"] as List;
+
+    for (var courseJson in coursesList) {
+      List<TestModuleModel> modules = (courseJson['modules'] as List)
+          .map((moduleJson) => TestModuleModel.fromMap(moduleJson))
+          .toList();
+      TestCourseModel course = TestCourseModel(
+        courseId: courseJson['courseId'],
+        title: courseJson['title'],
+        quizCount: courseJson['quizCount'],
+        moduleCount: courseJson['moduleCount'],
+        imagePath: courseJson['imagePath'],
+        isStart: courseJson['isStart'] ?? false,
+        isCompleted: courseJson['isCompleted'] ?? false,
+        progress: courseJson['progress'] ?? 0.0,
+        arrowText: courseJson['arrowText'],
+        modules: modules,
+      );
+      await DatabaseHelper.instance.insertCourse(course);
+    }
+  }
 }
 
 class Feature {

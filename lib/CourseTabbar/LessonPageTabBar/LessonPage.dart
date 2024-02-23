@@ -10,7 +10,7 @@ import '../../models/course_model.dart';
 import '../../ModuleScreen/ModuleScreen.dart';
 
 class Lesson extends StatefulWidget {
-  final TestCourseModel course;
+  final Course course;
   const Lesson({super.key, required this.course});
 
   @override

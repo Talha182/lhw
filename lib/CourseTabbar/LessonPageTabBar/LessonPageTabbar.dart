@@ -12,7 +12,7 @@ import 'LessonPage.dart';
 
 
 class LessonPageTabBar extends StatefulWidget {
-  final TestCourseModel course;
+  final Course course;
   const LessonPageTabBar({super.key, required this.course});
 
   @override

@@ -12,7 +12,7 @@ import '../ModuleScreen/ModuleScreen.dart';
 import 'course_provider.dart';
 
 class CourseCard extends StatefulWidget {
-  final TestCourseModel course;
+  final Course course;
 
   const CourseCard({Key? key, required this.course}) : super(key: key);
 
