@@ -16,6 +16,7 @@ class DatabaseHelper {
   static final coursesTable = 'courses_table';
   static final modulesTable = 'modules_table';
   static final submodulesTable = 'submodules_table';
+  static final featuresTable = 'features_table';
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -70,6 +71,14 @@ CREATE TABLE $submodulesTable (
   numberOfQuizzes INTEGER NOT NULL,
   isCompleted INTEGER NOT NULL DEFAULT 0,
   FOREIGN KEY (moduleId) REFERENCES $modulesTable(moduleId)
+)
+''');
+    await db.execute('''
+CREATE TABLE $featuresTable (
+  featureId INTEGER PRIMARY KEY,
+  submoduleId INTEGER NOT NULL,
+  featureName TEXT NOT NULL,
+  FOREIGN KEY (submoduleId) REFERENCES $submodulesTable(submoduleId)
 )
 ''');
   }
@@ -229,6 +238,7 @@ class Submodule {
   final String iconPath;
   final int numberOfQuizzes;
   bool isCompleted;
+  final List<Feature> features;
 
   Submodule({
     required this.submoduleId,
@@ -238,9 +248,12 @@ class Submodule {
     required this.iconPath,
     required this.numberOfQuizzes,
     this.isCompleted = false,
+    required this.features,
   });
 
   Map<String, dynamic> toMap() {
+    // Convert features list to a JSON string before saving to the database
+    var featuresMap = features.map((feature) => feature.toMap()).toList();
     return {
       'submoduleId': submoduleId,
       'moduleId': moduleId,
@@ -249,10 +262,23 @@ class Submodule {
       'iconPath': iconPath,
       'numberOfQuizzes': numberOfQuizzes,
       'isCompleted': isCompleted ? 1 : 0,
+      'features': jsonEncode(featuresMap), // Encoding the features list to a string
     };
   }
 
   static Submodule fromMap(Map<String, dynamic> map) {
+    // Handling the features either as a JSON-encoded string or as a direct list
+    List<Feature> decodedFeatures = [];
+    var featuresData = map['features'];
+    if (featuresData is String) {
+      // Decode if it's a string
+      List<dynamic> featuresList = jsonDecode(featuresData);
+      decodedFeatures = featuresList.map((f) => Feature.fromMap(f)).toList();
+    } else if (featuresData is List) {
+      // Directly use it if it's already a List
+      decodedFeatures = featuresData.map((f) => Feature.fromMap(f)).toList();
+    }
+
     return Submodule(
       submoduleId: map['submoduleId'],
       moduleId: map['moduleId'],
@@ -261,6 +287,7 @@ class Submodule {
       iconPath: map['iconPath'],
       numberOfQuizzes: map['numberOfQuizzes'],
       isCompleted: map['isCompleted'] == 1,
+      features: decodedFeatures,
     );
   }
 }
@@ -298,4 +325,15 @@ class Feature {
   final String featureName;
 
   Feature({required this.featureId, required this.featureName});
+
+  Map<String, dynamic> toMap() {
+    return {'featureId': featureId, 'featureName': featureName};
+  }
+
+  static Feature fromMap(Map<String, dynamic> map) {
+    return Feature(
+      featureId: map['featureId'],
+      featureName: map['featureName'],
+    );
+  }
 }

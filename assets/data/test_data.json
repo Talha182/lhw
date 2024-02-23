@@ -28,7 +28,17 @@
               "description": "Description of Submodule 1-1",
               "iconPath": "path/to/submodule1-1/icon",
               "numberOfQuizzes": 3,
-              "isCompleted": false
+              "isCompleted": false,
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureName": "Feature 1"
+                },
+                {
+                  "featureId": 2,
+                  "featureName": "Feature 2"
+                }
+              ]
             },
             {
               "submoduleId": 2,
@@ -37,7 +47,17 @@
               "description": "Description of Submodule 1-2",
               "iconPath": "path/to/submodule1-2/icon",
               "numberOfQuizzes": 2,
-              "isCompleted": false
+              "isCompleted": false,
+              "features": [
+                {
+                  "featureId": 1,
+                  "featureName": "Feature 1"
+                },
+                {
+                  "featureId": 2,
+                  "featureName": "Feature 2"
+                }
+              ]
             }
           ]
         }
