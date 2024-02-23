@@ -72,7 +72,6 @@ CREATE TABLE $submodulesTable (
   FOREIGN KEY (moduleId) REFERENCES $modulesTable(moduleId)
 )
 ''');
-
   }
 
   Future<void> insertCourse(TestCourseModel course) async {
