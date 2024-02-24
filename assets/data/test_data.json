@@ -8,6 +8,8 @@
       "imagePath": "path/to/image",
       "isStart": false,
       "isCompleted": false,
+      "gradientColors": ["#FF42A5F5", "#FF42A5F5"],
+
       "progress": 0.0,
       "arrowText": "Start",
       "modules": [
@@ -32,11 +34,21 @@
               "features": [
                 {
                   "featureId": 1,
-                  "featureName": "Feature 1"
+                  "featureName": "Feature 1",
+                  "title": "Introduction Video",
+                  "featureType": "video",
+                  "isCompleted": false,
+                  "submoduleId": 1,
+                  "duration": "5m"
                 },
                 {
                   "featureId": 2,
-                  "featureName": "Feature 2"
+                  "featureName": "Feature 2",
+                  "title": "Quiz 1",
+                  "featureType": "quiz",
+                  "isCompleted": false,
+                  "submoduleId": 1,
+                  "duration": "10m"
                 }
               ]
             },
@@ -50,12 +62,22 @@
               "isCompleted": false,
               "features": [
                 {
-                  "featureId": 1,
-                  "featureName": "Feature 1"
+                  "featureId": 3,
+                  "featureName": "Feature 3",
+                  "title": "Reading Material",
+                  "featureType": "reading",
+                  "isCompleted": false,
+                  "submoduleId": 2,
+                  "duration": "15m"
                 },
                 {
-                  "featureId": 2,
-                  "featureName": "Feature 2"
+                  "featureId": 4,
+                  "featureName": "Feature 4",
+                  "title": "Final Quiz",
+                  "featureType": "quiz",
+                  "isCompleted": false,
+                  "submoduleId": 2,
+                  "duration": "20m"
                 }
               ]
             }

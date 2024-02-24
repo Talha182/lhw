@@ -183,33 +183,60 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold)),
-                                ...module.submodules.map(
+                                ...module.submodules
+                                    .map(
                                       (submodule) => Padding(
-                                    padding: const EdgeInsets.only(left: 32.0, top: 8.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("- Submodule ID: ${submodule.submoduleId}", style: const TextStyle(fontSize: 14)),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 16.0),
-                                          child: Text("Title: ${submodule.title}", style: const TextStyle(fontSize: 14)),
+                                        padding: const EdgeInsets.only(
+                                            left: 32.0, top: 8.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                "- Submodule ID: ${submodule.submoduleId}",
+                                                style: const TextStyle(
+                                                    fontSize: 14)),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 16.0),
+                                              child: Text(
+                                                  "Title: ${submodule.title}",
+                                                  style: const TextStyle(
+                                                      fontSize: 14)),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 16.0),
+                                              child: Text(
+                                                  "Description: ${submodule.description}",
+                                                  style: const TextStyle(
+                                                      fontSize: 14)),
+                                            ),
+                                            // Display Features here
+                                            const Text("Features:",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            ...submodule.features
+                                                .map(
+                                                  (feature) => Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 32.0,
+                                                            top: 8.0),
+                                                    child: Text(
+                                                        "- Feature Name: ${feature.featureType}",
+                                                        style: const TextStyle(
+                                                            fontSize: 14)),
+                                                  ),
+                                                )
+                                                .toList(),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 16.0),
-                                          child: Text("Description: ${submodule.description}", style: const TextStyle(fontSize: 14)),
-                                        ),
-                                        // Display Features here
-                                        const Text("Features:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                                        ...submodule.features.map(
-                                              (feature) => Padding(
-                                            padding: const EdgeInsets.only(left: 32.0, top: 8.0),
-                                            child: Text("- Feature Name: ${feature.featureName}", style: const TextStyle(fontSize: 14)),
-                                          ),
-                                        ).toList(),
-                                      ],
-                                    ),
-                                  ),
-                                ).toList(),
+                                      ),
+                                    )
+                                    .toList(),
                               ],
                             ),
                           ),

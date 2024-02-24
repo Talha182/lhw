@@ -78,9 +78,14 @@ CREATE TABLE $featuresTable (
   featureId INTEGER PRIMARY KEY,
   submoduleId INTEGER NOT NULL,
   featureName TEXT NOT NULL,
+  title TEXT NOT NULL,
+  featureType INTEGER NOT NULL,
+  isCompleted INTEGER NOT NULL DEFAULT 0,
+  duration TEXT NOT NULL,
   FOREIGN KEY (submoduleId) REFERENCES $submodulesTable(submoduleId)
 )
 ''');
+
   }
 
   Future<void> insertCourse(TestCourseModel course) async {
@@ -292,10 +297,62 @@ class Submodule {
   }
 }
 
+
+enum FeatureType { video, quiz, reading }
+
+class Feature {
+  final int featureId;
+  final String featureName;
+  final String title;
+  final FeatureType featureType;
+  bool isCompleted;
+  final int submoduleId;
+  final String duration;
+
+  Feature({
+    required this.featureId,
+    required this.featureName,
+    required this.title,
+    required this.featureType,
+    this.isCompleted = false,
+    required this.submoduleId,
+    required this.duration,
+  });
+
+  // Convert string to FeatureType enum
+  static FeatureType _featureTypeFromString(String typeString) {
+    return FeatureType.values.firstWhere((type) => type.toString().split('.').last == typeString, orElse: () => FeatureType.video); // Default to video if not found
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'featureId': featureId,
+      'featureName': featureName,
+      'title': title,
+      'featureType': featureType.toString().split('.').last, // Convert enum to string
+      'isCompleted': isCompleted ? 1 : 0,
+      'submoduleId': submoduleId,
+      'duration': duration,
+    };
+  }
+
+  static Feature fromMap(Map<String, dynamic> map) {
+    return Feature(
+      featureId: map['featureId'],
+      featureName: map['featureName'],
+      title: map['title'],
+      featureType: _featureTypeFromString(map['featureType']),
+      isCompleted: map['isCompleted'] == 1,
+      submoduleId: map['submoduleId'],
+      duration: map['duration'],
+    );
+  }
+}
+
 class DataManager {
   static Future<void> insertCoursesFromJson() async {
     final String response =
-        await rootBundle.loadString('assets/data/test_data.json');
+    await rootBundle.loadString('assets/data/test_data.json');
     final data = json.decode(response);
     final coursesList = data["courses"] as List;
 
@@ -317,23 +374,5 @@ class DataManager {
       );
       await DatabaseHelper.instance.insertCourse(course);
     }
-  }
-}
-
-class Feature {
-  final int featureId;
-  final String featureName;
-
-  Feature({required this.featureId, required this.featureName});
-
-  Map<String, dynamic> toMap() {
-    return {'featureId': featureId, 'featureName': featureName};
-  }
-
-  static Feature fromMap(Map<String, dynamic> map) {
-    return Feature(
-      featureId: map['featureId'],
-      featureName: map['featureName'],
-    );
   }
 }
