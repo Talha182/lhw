@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/CourseTabbar/courses_tabbar.dart';
+import 'package:lhw/courses_test/test_model.dart';
 import 'package:lhw/navy.dart';
 import 'package:lhw/notification/notifications_screen.dart';
 import 'package:provider/provider.dart';
@@ -73,7 +74,7 @@ class CoursesScreen extends StatefulWidget {
 }
 
 class _CoursesScreenState extends State<CoursesScreen> {
-  late List<TestCourseModel> _courses;
+  late List<Course> _courses;
   bool _isLoading = true;
 
   @override

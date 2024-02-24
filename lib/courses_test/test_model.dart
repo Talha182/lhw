@@ -15,7 +15,7 @@ import '../models/image_hotspot_model.dart';
 class Course {
   final int courseId;
   final String title;
-  final Map<String, String> gradient;
+  final List<String> gradient;
   final int quizCount;
   final int moduleCount;
   final String imagePath;
@@ -39,22 +39,54 @@ class Course {
     required this.modules,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'courseId': courseId,
+      'title': title,
+      'quizCount': quizCount,
+      'moduleCount': moduleCount,
+      'imagePath': imagePath,
+      'isStart': isStart ? 1 : 0,
+      'isCompleted': isCompleted ? 1 : 0,
+      'progress': progress,
+      'arrowText': arrowText,
+      'gradient': jsonEncode(gradient),
+      'modules': jsonEncode(modules.map((module) => module.toMap()).toList()),
+    };
+  }
+  static Course fromMap(Map<String, dynamic> map) {
+    return Course(
+      courseId: map['courseId'],
+      title: map['title'],
+      quizCount: map['quizCount'],
+      moduleCount: map['moduleCount'],
+      imagePath: map['imagePath'],
+      isStart: map['isStart'] == 1,
+      isCompleted: map['isCompleted'] == 1,
+      progress: map['progress'],
+      arrowText: map['arrowText'],
+      gradient: (jsonDecode(map['gradient']) as List<dynamic>)
+          .map((color) => color.toString())
+          .toList(),
+      modules: (jsonDecode(map['modules']) as List<dynamic>)
+          .map((moduleJson) => Module.fromMap(moduleJson))
+          .toList(),
+    );
+  }
+
+
   factory Course.fromJson(Map<String, dynamic> json) {
-    // Handling gradient with more detailed null check
-    var gradientJson = json['gradient'] as Map<String, dynamic>? ?? {};
-    Map<String, String> gradient = {};
-    if (gradientJson.isNotEmpty) {
-      gradient = gradientJson.map((key, value) => MapEntry(key, value ?? '#FFFFFF'));
-    } else {
-      gradient = {"startColor": "#FFFFFF", "endColor": "#000000"}; // Default gradient
+    // Correctly handling gradient as a List<String>
+    List<String> gradient = [];
+    if (json['gradient'] != null) {
+      gradient = List<String>.from(json['gradient']);
     }
 
     // Ensuring modules are safely parsed, handling potential null values within each module
     var modulesJson = json['modules'] as List<dynamic>? ?? [];
-    List<Module> modules = [];
-    if (modulesJson.isNotEmpty) {
-      modules = modulesJson.map((e) => Module.fromJson(e as Map<String, dynamic>)).toList();
-    }
+    List<Module> modules = modulesJson.isNotEmpty
+        ? modulesJson.map((e) => Module.fromJson(e as Map<String, dynamic>)).toList()
+        : [];
 
     return Course(
       courseId: json['courseId'] as int? ?? 0,
@@ -129,6 +161,53 @@ class Module {
     required this.progressValue,
     required this.submodules,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'moduleId': moduleId,
+      'courseId': courseId,
+      'title': title,
+      'imagePath': imagePath,
+      'submoduleCount': submoduleCount,
+      'isStart': isStart ? 1 : 0,
+      'isCompleted': isCompleted ? 1 : 0,
+      'progressValue': progressValue,
+      'submodules':
+      jsonEncode(submodules.map((submodule) => submodule.toMap()).toList()),
+    };
+  }
+
+  static Module fromMap(Map<String, dynamic> map) {
+    // This variable will hold the decoded submodules list
+    List<Submodule> decodedSubmodules = [];
+
+    // Check if 'submodules' is a string (encoded as JSON)
+    if (map['submodules'] is String) {
+      // If it's a string, decode it
+      List<dynamic> jsonList = jsonDecode(map['submodules']);
+      decodedSubmodules =
+          jsonList.map((json) => Submodule.fromMap(json)).toList();
+    } else if (map['submodules'] is List) {
+      // If it's already a List, use it directly
+      decodedSubmodules = (map['submodules'] as List)
+          .map((submoduleMap) => Submodule.fromMap(submoduleMap))
+          .toList();
+    } else {
+      print("Unexpected type for 'submodules', neither String nor List");
+    }
+
+    return Module(
+      moduleId: map['moduleId'],
+      courseId: map['courseId'],
+      title: map['title'],
+      imagePath: map['imagePath'],
+      submoduleCount: map['submoduleCount'],
+      isStart: map['isStart'] == 1,
+      isCompleted: map['isCompleted'] == 1,
+      progressValue: map['progressValue'],
+      submodules: decodedSubmodules,
+    );
+  }
 
   factory Module.fromJson(Map<String, dynamic> json) {
     List<Submodule> submodulesList = [];
@@ -205,6 +284,47 @@ class Submodule {
     required this.features,
   });
 
+  Map<String, dynamic> toMap() {
+    // Convert features list to a JSON string before saving to the database
+    var featuresMap = features.map((feature) => feature.toMap()).toList();
+    return {
+      'submoduleId': submoduleId,
+      'moduleId': moduleId,
+      'title': title,
+      'description': description,
+      'iconPath': iconPath,
+      'numberOfQuizzes': numberOfQuizzes,
+      'isCompleted': isCompleted ? 1 : 0,
+      'features':
+      jsonEncode(featuresMap), // Encoding the features list to a string
+    };
+  }
+
+  static Submodule fromMap(Map<String, dynamic> map) {
+    // Handling the features either as a JSON-encoded string or as a direct list
+    List<Feature> decodedFeatures = [];
+    var featuresData = map['features'];
+    if (featuresData is String) {
+      // Decode if it's a string
+      List<dynamic> featuresList = jsonDecode(featuresData);
+      decodedFeatures = featuresList.map((f) => Feature.fromMap(f)).toList();
+    } else if (featuresData is List) {
+      // Directly use it if it's already a List
+      decodedFeatures = featuresData.map((f) => Feature.fromMap(f)).toList();
+    }
+
+    return Submodule(
+      submoduleId: map['submoduleId'],
+      moduleId: map['moduleId'],
+      title: map['title'],
+      description: map['description'],
+      iconPath: map['iconPath'],
+      numberOfQuizzes: map['numberOfQuizzes'],
+      isCompleted: map['isCompleted'] == 1,
+      features: decodedFeatures,
+    );
+  }
+
   factory Submodule.fromJson(Map<String, dynamic> json) {
     // Ensures 'features' is not null and is a list before mapping
     List<Feature> parsedFeatures = [];
@@ -253,29 +373,67 @@ enum FeatureType {
 }
 
 class Feature {
-  final String title; // Example of a String field that might cause the error
+  final int featureId;
+  final String title;
   final FeatureType featureType;
-  bool isCompleted; // Example bool field that might cause the error
+  bool isCompleted;
   final int submoduleId;
   final String duration;
   final dynamic relatedData; // Optional field to hold related data
 
   Feature({
+    required this.featureId,
     required this.title,
     required this.featureType,
-    this.isCompleted = false, // Default to false
-    required this.duration,
+    this.isCompleted = false,
     required this.submoduleId,
+    required this.duration,
     this.relatedData,
   });
 
+  // Convert string to FeatureType enum
+  static FeatureType _featureTypeFromString(String typeString) {
+    return FeatureType.values.firstWhere(
+            (type) => type.toString().split('.').last == typeString,
+        orElse: () => FeatureType.video); // Default to video if not found
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'featureId': featureId,
+      'title': title,
+      'featureType':
+      featureType.toString().split('.').last, // Convert enum to string
+      'isCompleted': isCompleted ? 1 : 0,
+      'submoduleId': submoduleId,
+      'duration': duration,
+      'relatedData':
+      relatedData != null ? jsonEncode(relatedData) : jsonEncode({}),
+    };
+  }
+
+  static Feature fromMap(Map<String, dynamic> map) {
+    return Feature(
+      featureId: map['featureId'],
+      title: map['title'],
+      featureType: _featureTypeFromString(map['featureType']),
+      isCompleted: map['isCompleted'] == 1,
+      submoduleId: map['submoduleId'],
+      duration: map['duration'],
+      relatedData:
+      map['relatedData'] != null ? jsonDecode(map['relatedData']) : null,
+    );
+  }
 
   factory Feature.fromJson(Map<String, dynamic> json) {
+    final int featureId = json['featureId'] as int? ?? 0;
     final String title = json['title'] as String? ?? 'Unknown Feature';
-    final String duration = json['duration'] as String? ?? '0min'; // Default value if null
+    final String duration =
+        json['duration'] as String? ?? '0min'; // Default value if null
     final featureType = _parseFeatureType(json['featureType'] as String? ?? '');
-    var relatedData = json['relatedData'] != null ? jsonDecode(json['relatedData'] as String) : <String, dynamic>{}; // Safe parsing with default
-
+    var relatedData = json['relatedData'] != null
+        ? jsonDecode(json['relatedData'] as String)
+        : <String, dynamic>{}; // Safe parsing with default
 
     if (featureType == FeatureType.presentation &&
         json.containsKey('presentationModel')) {
@@ -286,7 +444,7 @@ class Feature {
       List<dynamic> comicStripsJson = json['comicStrips'] as List;
       relatedData = comicStripsJson
           .map((csJson) =>
-              ComicStripModel.fromJson(csJson as Map<String, dynamic>))
+          ComicStripModel.fromJson(csJson as Map<String, dynamic>))
           .toList();
     }
 
@@ -336,7 +494,7 @@ class Feature {
       isCompleted: json['isCompleted'] == 1,
       duration: duration,
       submoduleId: json['submoduleId'] as int? ?? 0,
-      relatedData: relatedData,
+      relatedData: relatedData, featureId: featureId,
     );
   }
 
@@ -384,49 +542,6 @@ class Feature {
           (e) => e.toString().split('.').last == featureTypeStr,
       orElse: () => FeatureType.unknown,
     );
-  }
-
-  static dynamic _parseRelatedData(FeatureType featureType, Map<String, dynamic> json) {
-    switch (featureType) {
-      case FeatureType.presentation:
-        return json.containsKey('presentationModel')
-            ? PresentationModel.fromJson(json['presentationModel'] as Map<String, dynamic>)
-            : null;
-      case FeatureType.comicStrips:
-        return json.containsKey('comicStrips')
-            ? List<dynamic>.from(json['comicStrips']).map((csJson) => ComicStripModel.fromJson(csJson as Map<String, dynamic>)).toList()
-            : [];
-      case FeatureType.flashCards:
-        return json.containsKey('flashCards')
-            ? List<dynamic>.from(json['flashCards']).map((fcJson) => FlashCard.fromJson(fcJson as Map<String, dynamic>)).toList()
-            : [];
-      case FeatureType.infographics:
-        return json.containsKey('infographics')
-            ? InfographicsModel.fromJson({'infographics': List<Map<String, dynamic>>.from(json['infographics'])})
-            : null;
-      case FeatureType.interactiveAnimationVideo:
-        return json.containsKey('videoPath')
-            ? InteractiveAnimationVideoModel.fromJson(json)
-            : null;
-      case FeatureType.interactiveImage:
-        return json.containsKey('interactiveImageModel')
-            ? List<dynamic>.from(json['interactiveImageModel']).map((imageJson) => InteractiveImageModel.fromJson(imageJson as Map<String, dynamic>)).toList()
-            : [];
-      case FeatureType.imageHotspot:
-        return json.containsKey('imageHotspot')
-            ? ImageHotspotModel.fromJson(json['imageHotspot'] as Map<String, dynamic>)
-            : null;
-      case FeatureType.textBranchingScenario:
-        return json.containsKey('textBranchingScenarioModel')
-            ? TextBranchingScenarioModel.fromJson(json['textBranchingScenarioModel'] as Map<String, dynamic>)
-            : null;
-      case FeatureType.imageBranchingScenario:
-        return json.containsKey('imageBranchingScenarioModel')
-            ? ImageBranchingScenarioModel.fromJson(json['imageBranchingScenarioModel'] as Map<String, dynamic>)
-            : null;
-      default:
-        return null;
-    }
   }
 }
 

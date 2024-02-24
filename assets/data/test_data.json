@@ -8,7 +8,7 @@
       "imagePath": "path/to/image",
       "isStart": false,
       "isCompleted": false,
-      "gradientColors": ["#FF42A5F5", "#FF42A5F5"],
+      "gradient": ["#FF42A5F5", "#FF42A5F5"],
 
       "progress": 0.0,
       "arrowText": "Start",
@@ -34,7 +34,6 @@
               "features": [
                 {
                   "featureId": 1,
-                  "featureName": "Feature 1",
                   "title": "Introduction Video",
                   "featureType": "video",
                   "isCompleted": false,
@@ -43,7 +42,6 @@
                 },
                 {
                   "featureId": 2,
-                  "featureName": "Feature 2",
                   "title": "Quiz 1",
                   "featureType": "quiz",
                   "isCompleted": false,

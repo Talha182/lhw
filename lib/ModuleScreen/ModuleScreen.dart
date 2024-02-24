@@ -72,11 +72,8 @@ class _ModuleScreenState extends State<ModuleScreen>
   Widget build(BuildContext context) {
     final course = widget.course; // Accessing the course from widget property
     double progressValue = course.progress;
-    Color startColor =
-        Color(int.parse(course.gradient['start']!.replaceAll('#', '0xff')));
-    Color endColor =
-        Color(int.parse(course.gradient['end']!.replaceAll('#', '0xff')));
-
+    Color startColor = Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
+    Color endColor = Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

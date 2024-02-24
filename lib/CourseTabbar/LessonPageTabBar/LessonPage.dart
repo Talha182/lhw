@@ -57,9 +57,8 @@ class _LessonState extends State<Lesson> {
 
   @override
   Widget build(BuildContext context) {
-    Color startColor = Color(int.parse(widget.course.gradient['start']!.replaceAll('#', '0xff')));
-    Color endColor = Color(int.parse(widget.course.gradient['end']!.replaceAll('#', '0xff')));
-
+    Color startColor = Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
+    Color endColor = Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
     return Scaffold(
         body: Stack(
       children: [

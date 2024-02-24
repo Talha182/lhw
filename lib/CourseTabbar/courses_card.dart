@@ -52,9 +52,8 @@ class _CourseCardState extends State<CourseCard> {
 
   @override
   Widget build(BuildContext context) {
-    Color startColor = Color(int.parse(widget.course.gradient['start']!.replaceAll('#', '0xff')));
-    Color endColor = Color(int.parse(widget.course.gradient['end']!.replaceAll('#', '0xff')));
-
+    Color startColor = Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
+    Color endColor = Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
     double progressValue = widget.course.progress;
     return Container(
       width: double.infinity,
