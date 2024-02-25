@@ -426,6 +426,22 @@ class FullScreenComicStrip extends StatelessWidget {
   }
 }
 
+class ComicStripModel {
+  final String title;
+  final List<ImagePair> imagePairs;
+
+  ComicStripModel({required this.title, required this.imagePairs});
+
+  factory ComicStripModel.fromJson(Map<String, dynamic> json) {
+    var imagePairsList = json['imagePairs'] as List;
+    List<ImagePair> imagePairs = imagePairsList.map((i) => ImagePair.fromJson(i)).toList();
+    return ComicStripModel(
+      title: json['title'],
+      imagePairs: imagePairs,
+    );
+  }
+}
+
 class ImagePair {
   final String topImage;
   final String bottomImage;
@@ -440,24 +456,8 @@ class ImagePair {
   }
 }
 
-class ComicStripModel {
-  final String title;
-  final List<ImagePair> imagePairs;
 
-  ComicStripModel({required this.title, required this.imagePairs});
-
-  factory ComicStripModel.fromJson(Map<String, dynamic> json) {
-    List<ImagePair> imagePairs =
-        (json['imagePairs'] as List).map((i) => ImagePair.fromJson(i)).toList();
-
-    return ComicStripModel(
-      title: json['title'],
-      imagePairs: imagePairs,
-    );
-  }
-}
-
-class FullScreenImageView extends StatelessWidget {
+  class FullScreenImageView extends StatelessWidget {
   final String imagePath;
 
   const FullScreenImageView({Key? key, required this.imagePath})

@@ -360,8 +360,8 @@ enum FeatureType {
   video,
   presentation,
   quiz,
-  comicStrips,
-  flashCards,
+  comicStrip,
+  flashCard,
   infographics,
   interactiveAnimationVideo,
   interactiveImage,
@@ -392,25 +392,34 @@ class Feature {
   });
 
   static FeatureType _featureTypeFromString(String typeString) {
-    print("Parsing feature type: $typeString"); // Debugging print statement
-
     switch (typeString) {
       case "presentation":
         return FeatureType.presentation;
-      case "comicStrip": // Make sure this matches the JSON exactly
-        return FeatureType.comicStrips;
-    // Add other cases as necessary
+      case "comicStrip":
+        return FeatureType.comicStrip;
+      case "flashCard": // Add this case
+        return FeatureType.flashCard;
+      case "infographics": // Add this case
+        return FeatureType.infographics;
+      case "interactiveAnimationVideo": // Add this case
+        return FeatureType.interactiveAnimationVideo;
+      case "imageHotspot": // Add this case
+        return FeatureType.imageHotspot;
+      case "imageBranchingScenario": // Add this case
+        return FeatureType.imageBranchingScenario;
+      case "textBranchingScenario": // Add this case
+        return FeatureType.textBranchingScenario;
       default:
         return FeatureType.unknown;
     }
   }
 
-
   Map<String, dynamic> toMap() {
     return {
       'featureId': featureId,
       'title': title,
-      'featureType': featureType.toString().split('.').last, // Convert enum to string
+      'featureType':
+          featureType.toString().split('.').last, // Convert enum to string
       'isCompleted': isCompleted ? 1 : 0,
       'submoduleId': submoduleId,
       'duration': duration,
@@ -424,7 +433,8 @@ class Feature {
 
     // Check if dataField is a String and contains JSON-encoded data
     if (dataField is String) {
-      decodedData = jsonDecode(dataField); // Decode if it's a JSON-encoded string
+      decodedData =
+          jsonDecode(dataField); // Decode if it's a JSON-encoded string
     }
 
     return Feature(
@@ -467,9 +477,9 @@ class Feature {
           return Icons.slideshow; // Example icon for presentation
         case FeatureType.quiz:
           return Icons.question_answer; // Example icon for quiz
-        case FeatureType.comicStrips:
+        case FeatureType.comicStrip:
           return Icons.image; // Example icon for comic strips
-        case FeatureType.flashCards:
+        case FeatureType.flashCard:
           return Icons.flash_on; // Example icon for flash cards
         case FeatureType.infographics:
           return Icons.insert_chart; // Example icon for infographics

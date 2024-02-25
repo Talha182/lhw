@@ -3,7 +3,10 @@
     {
       "courseId": 1,
       "title": "متعدی بیماریاں",
-      "gradient": ["#18A3C8", "#89E4FE"],
+      "gradient": [
+        "#18A3C8",
+        "#89E4FE"
+      ],
       "quizCount": 5,
       "moduleCount": 8,
       "imagePath": "assets/images/immunization-ico.png",
@@ -43,20 +46,228 @@
                     "questions": [
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Correct! Paris is the capital of France.",
                         "incorrectExplanation": "Incorrect. Paris is the capital of France."
                       },
                       {
                         "question": "Which planet is known as the Red Planet?",
-                        "options": ["Mars", "Earth", "Jupiter", "Saturn"],
+                        "options": [
+                          "Mars",
+                          "Earth",
+                          "Jupiter"
+                        ],
                         "correctAnswer": "Mars",
                         "correctExplanation": "Right! Mars is called the Red Planet.",
                         "incorrectExplanation": "Incorrect. Mars is the Red Planet."
                       }
                     ],
-                    "showQuestionDialog": [false, false]
+                    "showQuestionDialog": [
+                      true,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 2,
+                  "featureType": "comicStrip",
+                  "duration": "10 mins",
+                  "submoduleId": 2,
+                  "title": "Comic Strip Example",
+                  "data": {
+                    "title": "Example Comic Strip",
+                    "imagePairs": [
+                      {
+                        "topImage": "assets/images/comic1_top.png",
+                        "bottomImage": "assets/images/comic1_bottom.png"
+                      },
+                      {
+                        "topImage": "assets/images/comic2_top.png",
+                        "bottomImage": "assets/images/comic2_bottom.png"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 3,
+                  "featureType": "flashCard",
+                  "duration": "15 mins",
+                  "submoduleId": 2,
+                  "title": "Flash Cards Example",
+                  "data": {
+                    "title": "Flash Cards Title",
+                    "flashCards": [
+                      {
+                        "frontImage": "assets/images/flash1_front.png",
+                        "backImage": "assets/images/flash1_back.png"
+                      },
+                      {
+                        "frontImage": "assets/images/flash2_front.png",
+                        "backImage": "assets/images/flash2_back.png"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 4,
+                  "featureType": "infographics",
+                  "duration": "10 mins",
+                  "submoduleId": 2,
+                  "title": "Infographics Example",
+                  "data": {
+                    "infographics": [
+                      {
+                        "imagePath": "assets/images/infographic1.png",
+                        "text": "Infographic 1 Text"
+                      },
+                      {
+                        "imagePath": "assets/images/infographic2.png",
+                        "text": "Infographic 2 Text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 5,
+                  "featureType": "interactiveAnimationVideo",
+                  "duration": "20 mins",
+                  "submoduleId": 2,
+                  "title": "Interactive Animation Video Example",
+                  "data": {
+                    "videoPath": "assets/videos/interactive_video.mp4",
+                    "questionDurations": [
+                      "00:00:30",
+                      "00:01:15"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is the capital of France?",
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin"
+                        ],
+                        "correctAnswer": "Paris",
+                        "correctExplanation": "Correct! Paris is the capital of France.",
+                        "incorrectExplanation": "Incorrect. Paris is the capital of France."
+                      },
+                      {
+                        "question": "Which planet is known as the Red Planet?",
+                        "options": [
+                          "Mars",
+                          "Earth",
+                          "Jupiter"
+                        ],
+                        "correctAnswer": "Mars",
+                        "correctExplanation": "Right! Mars is called the Red Planet.",
+                        "incorrectExplanation": "Incorrect. Mars is the Red Planet."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 6,
+                  "featureType": "imageHotspot",
+                  "duration": "5 mins",
+                  "submoduleId": 2,
+                  "title": "Image Hotspot Example",
+                  "data": {
+                    "imagePath": "assets/images/hotspot_image.png",
+                    "hotspots": [
+                      {
+                        "dialogText": "This is hotspot 1",
+                        "offset": {
+                          "dx": 100,
+                          "dy": 150
+                        }
+                      },
+                      {
+                        "dialogText": "This is hotspot 2",
+                        "offset": {
+                          "dx": 200,
+                          "dy": 300
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 7,
+                  "featureType": "imageBranchingScenario",
+                  "duration": "15 mins",
+                  "submoduleId": 2,
+                  "title": "Image Branching Scenario Example",
+                  "data": {
+                    "questions": [
+                      {
+                        "question": "What action should you take?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Option 1 is the correct action because...",
+                        "incorrectExplanation": "This is not the correct action because...",
+                        "imagePaths": [
+                          "assets/images/scene1.png",
+                          "assets/images/scene2.png"
+                        ]
+                      },
+                      {
+                        "question": "What is the next step?",
+                        "options": [
+                          "Step 1",
+                          "Step 2",
+                          "Step 3"
+                        ],
+                        "correctAnswer": "Step 2",
+                        "correctExplanation": "Step 2 is the correct action because...",
+                        "incorrectExplanation": "This is not the correct action because...",
+                        "imagePaths": [
+                          "assets/images/step1.png",
+                          "assets/images/step2.png"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 8,
+                  "featureType": "textBranchingScenario",
+                  "duration": "15 mins",
+                  "submoduleId": 2,
+                  "title": "Text Branching Scenario Example",
+                  "data": {
+                    "questions": [
+                      {
+                        "question": "You encounter a situation. What do you do?",
+                        "options": [
+                          "Option A: Take action A",
+                          "Option B: Take action B",
+                          "Option C: Take action C"
+                        ],
+                        "correctAnswer": "Option A: Take action A",
+                        "correctExplanation": "Choosing Option A is correct because...",
+                        "incorrectExplanation": "This option is not the best choice because..."
+                      },
+                      {
+                        "question": "Another scenario is presented. How do you proceed?",
+                        "options": [
+                          "Option 1: Decide on 1",
+                          "Option 2: Decide on 2",
+                          "Option 3: Decide on 3"
+                        ],
+                        "correctAnswer": "Option 2: Decide on 2",
+                        "correctExplanation": "Option 2 is the best choice because...",
+                        "incorrectExplanation": "This was not the optimal choice because..."
+                      }
+                    ]
                   }
                 }
 
