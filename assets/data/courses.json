@@ -3,10 +3,7 @@
     {
       "courseId": 1,
       "title": "متعدی بیماریاں",
-      "gradient": {
-        "start": "#18A3C8",
-        "end": "#89E4FE"
-      },
+      "gradient": ["#18A3C8", "#89E4FE"],
       "quizCount": 5,
       "moduleCount": 8,
       "imagePath": "assets/images/immunization-ico.png",
@@ -24,68 +21,6 @@
           "progressValue": 0.25,
           "submodules": [
             {
-              "submoduleId": 1,
-              "moduleId": 1,
-              "title": "متعدی بیماریوں کا تعارف",
-              "description": "اس سبق میں، آپ متعدی بیماریوں کے بارے میں سیکھیں گی، جو بیکٹیریا، وائرس، پھپھوندی، یا پیراسائٹ جیسے جانداروں کی وجہ سے ہونے والی بیماریاں ہیں. آپ جانیں گی  کہ یہ بیماریاں کس طرح ایک شخص سے دوسرے شخص میں، کیڑے مکوڑوں یا جانوروں کے ذریعے، اور بعض اوقات آلودہ غذا یا پانی پینے سے پھیل سکتی ہیں۔",
-
-              "iconPath": "assets/icons/variables_icon.png",
-              "numberOfQuizzes": 2,
-              "features": [
-                {
-                  "featureId": 1,
-                  "featureType": "interactiveAnimationVideo",
-                  "submoduleId": 1,
-                  "title": "متعدی بیماریاں",
-                  "duration": "4 mins",
-                  "videoPath": "assets/scripts/videos/demo.mp4",
-                  "questionDurations": [
-                    "00:10",
-                    "00:20",
-                    "00:30"
-                  ],
-                  "questions": [
-                    {
-                      "question": "What is the capital of France?",
-                      "options": [
-                        "Paris",
-                        "London",
-                        "Berlin",
-                        "Madrid"
-                      ],
-                      "correctAnswer": "Paris",
-                      "correctExplanation": "Paris is the capital of France.",
-                      "incorrectExplanation": "This is not the correct capital of France."
-                    },
-                    {
-                      "question": "What is the capital of France?",
-                      "options": [
-                        "Paris",
-                        "London",
-                        "Berlin",
-                        "Madrid"
-                      ],
-                      "correctAnswer": "Paris",
-                      "correctExplanation": "Paris is the capital of France.",
-                      "incorrectExplanation": "This is not the correct capital of France."
-                    },
-                    {
-                      "question": "What is the capital of France?",
-                      "options": [
-                        "Paris",
-                        "London",
-                        "Berlin",
-                        "Madrid"
-                      ],
-                      "correctAnswer": "Paris",
-                      "correctExplanation": "Paris is the capital of France.",
-                      "incorrectExplanation": "This is not the correct capital of France."
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "submoduleId": 2,
               "title": "متعدی بیماریوں کی مثالیں",
               "description": "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔",
@@ -99,54 +34,36 @@
                   "duration": "5 mins",
                   "submoduleId": 2,
                   "title": "متعدی بیماریوں کی تعریف ",
-                  "presentationModel": {
+                  "data": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/images/1.png",
+                      "assets/images/slide2.png",
+                      "assets/images/slide3.png"
                     ],
                     "questions": [
                       {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
+                        "question": "What is the capital of France?",
+                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "correctAnswer": "Paris",
+                        "correctExplanation": "Correct! Paris is the capital of France.",
+                        "incorrectExplanation": "Incorrect. Paris is the capital of France."
                       },
                       {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
+                        "question": "Which planet is known as the Red Planet?",
+                        "options": ["Mars", "Earth", "Jupiter", "Saturn"],
+                        "correctAnswer": "Mars",
+                        "correctExplanation": "Right! Mars is called the Red Planet.",
+                        "incorrectExplanation": "Incorrect. Mars is the Red Planet."
                       }
                     ],
-                    "showQuestionDialog": [
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
-                    ]
+                    "showQuestionDialog": [false, false]
                   }
                 }
+
               ]
             }
           ]
         }
-
       ]
     }
   ]

@@ -93,51 +93,45 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-  Future<void> navigateToLastVisitedCourse(BuildContext context) async {
-    // Directly use the lastVisitedCourse from the provider
-    final provider = Provider.of<CoursesProvider>(context, listen: false); // Added listen: false for accessing outside build method.
-    Course? course = provider.lastVisitedCourse;
-
-    if (course != null) {
-      final prefs = await SharedPreferences.getInstance();
-      final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
-      final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
-
-      if (isFirstVisit) {
-        await prefs.setBool(isFirstVisitKey, false);
-        // Navigate with fade transition
-        await Get.to(() => LessonPageTabBar(course: course), transition: Transition.fade, duration: Duration(milliseconds: 300));
-      } else {
-        // Navigate without checking for first visit
-        Get.to(() => ModuleScreen(course: course));
-      }
-    } else {
-      // Handle the case where there is no last visited course
-      print("No last visited course found!");
-      // Optionally, navigate to a default course or show an error message
-    }
-  }
+  // Future<void> navigateToLastVisitedCourse(BuildContext context) async {
+  //   // Directly use the lastVisitedCourse from the provider
+  //   final provider = Provider.of<CoursesProvider>(context, listen: false); // Added listen: false for accessing outside build method.
+  //   Course? course = provider.lastVisitedCourse;
+  //
+  //   if (course != null) {
+  //     final prefs = await SharedPreferences.getInstance();
+  //     final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
+  //     final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
+  //
+  //     if (isFirstVisit) {
+  //       await prefs.setBool(isFirstVisitKey, false);
+  //       // Navigate with fade transition
+  //       await Get.to(() => LessonPageTabBar(course: course), transition: Transition.fade, duration: Duration(milliseconds: 300));
+  //     } else {
+  //       // Navigate without checking for first visit
+  //       Get.to(() => ModuleScreen(course: course));
+  //     }
+  //   } else {
+  //     // Handle the case where there is no last visited course
+  //     print("No last visited course found!");
+  //     // Optionally, navigate to a default course or show an error message
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     // Accessing the CoursesProvider
-    final provider = Provider.of<CoursesProvider>(context);
-    final totalCourses = provider.courses;
-    final lastVisitedCourse = provider.lastVisitedCourse;
-    final completedCourses = provider.completedCourses;
-    final completedCourseCount = completedCourses.length;
-    final remainingCoursesCount = totalCourses.length - completedCourses.length;
+    // final provider = Provider.of<CoursesProvider>(context);
+    // final totalCourses = provider.courses;
+    // final lastVisitedCourse = provider.lastVisitedCourse;
+    // final completedCourses = provider.completedCourses;
+    // final completedCourseCount = completedCourses.length;
+    // final remainingCoursesCount = totalCourses.length - completedCourses.length;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
 
-    if (provider.isLoading) {
-      return const Scaffold(
-        body: Center(
-          child: LoadingScreen(), // Show a loading indicator
-        ),
-      );
-    }
+
     return Scaffold(
         backgroundColor: const Color(0xFFF1F1F1),
         floatingActionButton: Container(
@@ -302,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                                                     right: screenWidth / 6,
                                                     top: 16),
                                                 child: Text(
-                                                  '$completedCourseCount',
+                                                  '1',
                                                   style: const TextStyle(
                                                       fontSize: 18,
                                                       fontFamily: ""),
@@ -372,7 +366,7 @@ class _HomePageState extends State<HomePage> {
                                                     right: screenWidth / 6,
                                                     top: 16),
                                                 child: Text(
-                                                  "${remainingCoursesCount}",
+                                                  "2",
                                                   style: const TextStyle(
                                                       fontSize: 18,
                                                       fontFamily: ""),
@@ -440,9 +434,8 @@ class _HomePageState extends State<HomePage> {
                                                           5, // space between Text and Icon
                                                     ),
                                                     GestureDetector(
-                                                      onTap: () =>
-                                                          navigateToLastVisitedCourse(
-                                                              context),
+                                                      onTap: () {},
+
                                                       child: const Text(
                                                         "کورس پر جائیں",
                                                         style: TextStyle(
@@ -491,7 +484,7 @@ class _HomePageState extends State<HomePage> {
                                                       bottom: 16,
                                                     ),
                                                     child: Text(
-                                                      lastVisitedCourse!.title,
+                                                      "Title",
                                                       style: const TextStyle(
                                                           fontFamily:
                                                               "UrduType",
@@ -512,7 +505,7 @@ class _HomePageState extends State<HomePage> {
                                                           width: 8,
                                                         ),
                                                         Text(
-                                                          '${lastVisitedCourse.moduleCount}  ماڈیول',
+                                                          '12  ماڈیول',
                                                           style: const TextStyle(
                                                               fontFamily:
                                                                   "UrduType",
@@ -573,7 +566,7 @@ class _HomePageState extends State<HomePage> {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          "${(lastVisitedCourse.progress * 100).toStringAsFixed(1)}%",
+                                                          "${(1 * 100).toStringAsFixed(1)}%",
                                                           style:
                                                               const TextStyle(
                                                             fontFamily:
@@ -602,7 +595,7 @@ class _HomePageState extends State<HomePage> {
                                                           const Radius.circular(
                                                               10),
                                                       lineHeight: 6.0,
-                                                      percent: lastVisitedCourse.progress,
+                                                      percent: 1,
                                                       backgroundColor:
                                                           const Color(
                                                               0xffEBEBF0),
@@ -630,7 +623,7 @@ class _HomePageState extends State<HomePage> {
                                                         BorderRadius.circular(
                                                             10)),
                                                 child: Image.asset(
-                                                  lastVisitedCourse!.imagePath,
+                                                  'assets/images/1.png',
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),

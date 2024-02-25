@@ -13,21 +13,21 @@ import 'package:flutter/services.dart';
 
 import '../controllers/BookmarkController.dart';
 
-class Presentation extends StatefulWidget {
+class PresentationScreen extends StatefulWidget {
   final PresentationModel presentationModel;
   final VoidCallback? onCompleted; // Optional callback
 
-  const Presentation({
+  const PresentationScreen({
     Key? key,
     required this.presentationModel,
     this.onCompleted, // Accept the callback
   }) : super(key: key);
 
   @override
-  State<Presentation> createState() => _PresentationState();
+  State<PresentationScreen> createState() => _PresentationScreenState();
 }
 
-class _PresentationState extends State<Presentation>
+class _PresentationScreenState extends State<PresentationScreen>
     with TickerProviderStateMixin {
   bool isPlaying = false;
   final BookmarkController bookmarkController = Get.put(BookmarkController());
@@ -502,7 +502,7 @@ class _PresentationState extends State<Presentation>
 
 class FullScreenImagePage extends StatefulWidget {
   final List<String> assetImages;
-  final List<Question> questions; // Changed from List<String> to List<Question>
+  final List<PresentationQuestion> questions; // Changed from List<String> to List<Question>
   final List<bool> showQuestionDialog;
 
   final int initialPage;

@@ -54,6 +54,7 @@ class Course {
       'modules': jsonEncode(modules.map((module) => module.toMap()).toList()),
     };
   }
+
   static Course fromMap(Map<String, dynamic> map) {
     return Course(
       courseId: map['courseId'],
@@ -74,7 +75,6 @@ class Course {
     );
   }
 
-
   factory Course.fromJson(Map<String, dynamic> json) {
     // Correctly handling gradient as a List<String>
     List<String> gradient = [];
@@ -85,7 +85,9 @@ class Course {
     // Ensuring modules are safely parsed, handling potential null values within each module
     var modulesJson = json['modules'] as List<dynamic>? ?? [];
     List<Module> modules = modulesJson.isNotEmpty
-        ? modulesJson.map((e) => Module.fromJson(e as Map<String, dynamic>)).toList()
+        ? modulesJson
+            .map((e) => Module.fromJson(e as Map<String, dynamic>))
+            .toList()
         : [];
 
     return Course(
@@ -102,7 +104,6 @@ class Course {
       modules: modules,
     );
   }
-
 
 // Method to update course progress
   void updateCourseCompletionProgress() {
@@ -173,7 +174,7 @@ class Module {
       'isCompleted': isCompleted ? 1 : 0,
       'progressValue': progressValue,
       'submodules':
-      jsonEncode(submodules.map((submodule) => submodule.toMap()).toList()),
+          jsonEncode(submodules.map((submodule) => submodule.toMap()).toList()),
     };
   }
 
@@ -229,7 +230,6 @@ class Module {
       submodules: submodulesList,
     );
   }
-
 
   // Method to calculate progress based on completed submodules and features
   void updateProgressValue() {
@@ -296,7 +296,7 @@ class Submodule {
       'numberOfQuizzes': numberOfQuizzes,
       'isCompleted': isCompleted ? 1 : 0,
       'features':
-      jsonEncode(featuresMap), // Encoding the features list to a string
+          jsonEncode(featuresMap), // Encoding the features list to a string
     };
   }
 
@@ -379,7 +379,7 @@ class Feature {
   bool isCompleted;
   final int submoduleId;
   final String duration;
-  final dynamic relatedData; // Optional field to hold related data
+  final dynamic data;
 
   Feature({
     required this.featureId,
@@ -388,31 +388,45 @@ class Feature {
     this.isCompleted = false,
     required this.submoduleId,
     required this.duration,
-    this.relatedData,
+    required this.data,
   });
 
-  // Convert string to FeatureType enum
   static FeatureType _featureTypeFromString(String typeString) {
-    return FeatureType.values.firstWhere(
-            (type) => type.toString().split('.').last == typeString,
-        orElse: () => FeatureType.video); // Default to video if not found
+    print("Parsing feature type: $typeString"); // Debugging print statement
+
+    switch (typeString) {
+      case "presentation":
+        return FeatureType.presentation;
+      case "comicStrip": // Make sure this matches the JSON exactly
+        return FeatureType.comicStrips;
+    // Add other cases as necessary
+      default:
+        return FeatureType.unknown;
+    }
   }
+
 
   Map<String, dynamic> toMap() {
     return {
       'featureId': featureId,
       'title': title,
-      'featureType':
-      featureType.toString().split('.').last, // Convert enum to string
+      'featureType': featureType.toString().split('.').last, // Convert enum to string
       'isCompleted': isCompleted ? 1 : 0,
       'submoduleId': submoduleId,
       'duration': duration,
-      'relatedData':
-      relatedData != null ? jsonEncode(relatedData) : jsonEncode({}),
+      'data': jsonEncode(data), // Ensure data is encoded as a JSON string
     };
   }
 
   static Feature fromMap(Map<String, dynamic> map) {
+    var dataField = map['data'];
+    dynamic decodedData = dataField;
+
+    // Check if dataField is a String and contains JSON-encoded data
+    if (dataField is String) {
+      decodedData = jsonDecode(dataField); // Decode if it's a JSON-encoded string
+    }
+
     return Feature(
       featureId: map['featureId'],
       title: map['title'],
@@ -420,84 +434,28 @@ class Feature {
       isCompleted: map['isCompleted'] == 1,
       submoduleId: map['submoduleId'],
       duration: map['duration'],
-      relatedData:
-      map['relatedData'] != null ? jsonDecode(map['relatedData']) : null,
+      data: decodedData, // Use the potentially decoded data
     );
   }
 
   factory Feature.fromJson(Map<String, dynamic> json) {
     final int featureId = json['featureId'] as int? ?? 0;
     final String title = json['title'] as String? ?? 'Unknown Feature';
-    final String duration =
-        json['duration'] as String? ?? '0min'; // Default value if null
-    final featureType = _parseFeatureType(json['featureType'] as String? ?? '');
-    var relatedData = json['relatedData'] != null
-        ? jsonDecode(json['relatedData'] as String)
-        : <String, dynamic>{}; // Safe parsing with default
-
-    if (featureType == FeatureType.presentation &&
-        json.containsKey('presentationModel')) {
-      relatedData = PresentationModel.fromJson(json['presentationModel']);
-    }
-    // Correction in Feature.fromJson for handling comic strips
-    if (json.containsKey('comicStrips')) {
-      List<dynamic> comicStripsJson = json['comicStrips'] as List;
-      relatedData = comicStripsJson
-          .map((csJson) =>
-          ComicStripModel.fromJson(csJson as Map<String, dynamic>))
-          .toList();
-    }
-
-    if (json.containsKey('flashCards')) {
-      List<dynamic> flashCardsJson = json['flashCards'] as List;
-      relatedData = flashCardsJson
-          .map((fcJson) => FlashCard.fromJson(fcJson as Map<String, dynamic>))
-          .toList();
-    }
-
-    if (featureType == FeatureType.infographics &&
-        json.containsKey('infographics')) {
-      var infographicsJson = json['infographics'] as List;
-      relatedData =
-          InfographicsModel.fromJson({'infographics': infographicsJson});
-    }
-
-    if (featureType == FeatureType.interactiveAnimationVideo &&
-        json.containsKey('videoPath')) {
-      relatedData = InteractiveAnimationVideoModel.fromJson(json);
-    }
-
-    if (featureType == FeatureType.interactiveImage &&
-        json.containsKey('interactiveImageModel')) {
-      List<dynamic> imagesInfoJson = json['interactiveImageModel'] as List;
-      relatedData = imagesInfoJson
-          .map((imageJson) => InteractiveImageModel.fromJson(imageJson))
-          .toList();
-    }
-    // Hotspot Image
-    if (featureType == FeatureType.imageHotspot &&
-        json.containsKey('imageHotspot')) {
-      relatedData = ImageHotspotModel.fromJson(json['imageHotspot']);
-    }
-    if (featureType == FeatureType.textBranchingScenario) {
-      relatedData = TextBranchingScenarioModel.fromJson(
-          json['textBranchingScenarioModel']);
-    }
-    if (featureType == FeatureType.imageBranchingScenario) {
-      relatedData = ImageBranchingScenarioModel.fromJson(
-          json['imageBranchingScenarioModel']);
-    }
+    final String duration = json['duration'] as String? ?? '0min';
+    final FeatureType featureType =
+        _parseFeatureType(json['featureType'] as String? ?? '');
+    final dynamic data = json['data'];
 
     return Feature(
+      featureId: featureId,
       title: title,
-      featureType: featureType, // Assuming this is parsed elsewhere
-      isCompleted: json['isCompleted'] == 1,
-      duration: duration,
+      featureType: featureType,
+      isCompleted: json['isCompleted'] as bool? ?? false,
       submoduleId: json['submoduleId'] as int? ?? 0,
-      relatedData: relatedData, featureId: featureId,
+      duration: duration,
+      data: data,
     );
   }
-
   IconData get icon {
     if (isCompleted) {
       return Icons.check_circle; // Green tick icon for completed features
@@ -539,15 +497,8 @@ class Feature {
 
   static FeatureType _parseFeatureType(String featureTypeStr) {
     return FeatureType.values.firstWhere(
-          (e) => e.toString().split('.').last == featureTypeStr,
+      (e) => e.toString().split('.').last == featureTypeStr,
       orElse: () => FeatureType.unknown,
     );
   }
-}
-
-Future<List<Course>> fetchCourses() async {
-  String jsonString = await rootBundle.loadString('assets/data/courses.json');
-  final jsonData = json.decode(jsonString) as Map<String, dynamic>;
-  return List<Course>.from(
-      jsonData['courses'].map((x) => Course.fromJson(x)));
 }

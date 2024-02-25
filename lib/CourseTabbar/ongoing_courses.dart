@@ -11,14 +11,18 @@ class OnGoingCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Course> ongoingCourses = Provider.of<CoursesProvider>(context).ongoingCourses;
+    final provider = Provider.of<CoursesProvider>(context);
+    final courses = provider.ongoingCourses; // Using the ongoingCourses getter
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: ongoingCourses.length,
+
+      body: courses.isEmpty
+          ? Center(child: Text("No ongoing courses"))
+          : ListView.builder(
+        itemCount: courses.length,
         itemBuilder: (context, index) {
-          final course = ongoingCourses[index];
-          return CourseCard(course: course); // Assuming CourseCard is designed to work with TestCourseModel
+          final course = courses[index];
+          return CourseCard(course: course);
         },
       ),
     );

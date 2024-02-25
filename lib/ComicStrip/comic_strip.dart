@@ -11,12 +11,8 @@ class ComicStrip extends StatefulWidget {
   final List<ComicStripModel> comicStripsModel;
   final VoidCallback? onCompleted; // Optional callback
 
-
-  const ComicStrip({
-    Key? key,
-    required this.comicStripsModel,
-    this.onCompleted
-  }) : super(key: key);
+  const ComicStrip({Key? key, required this.comicStripsModel, this.onCompleted})
+      : super(key: key);
 
   @override
   _ComicStripState createState() => _ComicStripState();
@@ -270,12 +266,12 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                   ),
                   onPressed: _current == _carouselItems.length - 1
                       ? () {
-                    // This callback will only be executed if the user is on the last slide
-                    if (widget.onCompleted != null) {
-                      widget.onCompleted!();
-                    }
-                    Get.back();
-                  }
+                          // This callback will only be executed if the user is on the last slide
+                          if (widget.onCompleted != null) {
+                            widget.onCompleted!();
+                          }
+                          Get.back();
+                        }
                       : null, // Disable the button until the last slide is reached
                   child: const Text(
                     'جاری رہے',
@@ -286,7 +282,6 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                     ),
                   ),
                 )
-
               ],
             ),
           ),

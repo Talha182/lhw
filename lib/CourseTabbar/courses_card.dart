@@ -55,6 +55,7 @@ class _CourseCardState extends State<CourseCard> {
     Color startColor = Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
     Color endColor = Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
     double progressValue = widget.course.progress;
+
     return Container(
       width: double.infinity,
       height: 200,
@@ -68,7 +69,8 @@ class _CourseCardState extends State<CourseCard> {
             startColor,
             endColor,
           ],
-        ),      ),
+        ),
+      ),
       child: Stack(
         children: [
           Positioned(
@@ -89,33 +91,33 @@ class _CourseCardState extends State<CourseCard> {
                   widget.course.isCompleted
                       ? ArrowContainer(text: widget.course.arrowText)
                       : widget.course.isStart
-                          ? Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: CircleProgressBar(
-                                  strokeWidth: 4.0,
-                                  backgroundColor: const Color(0xffE6D0B0),
-                                  foregroundColor: Colors.white,
-                                  value: progressValue,
-                                  child: Center(
-                                    child: Text(
-                                      '${(progressValue * 100).toStringAsFixed(0)}%',
-                                      style: const TextStyle(
-                                        fontFamily: 'UrduType',
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : const SizedBox(
-                              height: 50,
-                              width: 50,
+                      ? Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircleProgressBar(
+                        strokeWidth: 4.0,
+                        backgroundColor: const Color(0xffE6D0B0),
+                        foregroundColor: Colors.white,
+                        value: progressValue,
+                        child: Center(
+                          child: Text(
+                            '${(progressValue * 100).toStringAsFixed(0)}%',
+                            style: const TextStyle(
+                              fontFamily: 'UrduType',
+                              fontSize: 15,
+                              color: Colors.white,
                             ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                      : const SizedBox(
+                    height: 50,
+                    width: 50,
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -184,37 +186,37 @@ class _CourseCardState extends State<CourseCard> {
                   ),
                   widget.course.isStart
                       ? Padding(
-                          padding: const EdgeInsets.only(right: 15.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white.withOpacity(0.5),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              minimumSize: const Size(120, 30),
-                            ),
-                            onPressed: () async {
-                              await navigateBasedOnVisitStatus(context);
-                              // Update the last visited course using Provider after navigation completes
-                              Provider.of<CoursesProvider>(context,
-                                      listen: false)
-                                  .setLastVisitedCourse(widget.course);
-                            },
-                            child: const Text(
-                              'جاری رہے',
-                              style: TextStyle(
-                                fontFamily: 'UrduType',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white.withOpacity(0.5),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
+                        minimumSize: const Size(120, 30),
+                      ),
+                      onPressed: () async {
+                        await navigateBasedOnVisitStatus(context);
+                        // Update the last visited course using Provider after navigation completes
+                        Provider.of<CoursesProvider>(context,
+                            listen: false)
+                            .setLastVisitedCourse(widget.course);
+                      },
+                      child: const Text(
+                        'جاری رہے',
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  )
+                      : const SizedBox(
+                    height: 0,
+                  ),
                 ],
               ),
             ),

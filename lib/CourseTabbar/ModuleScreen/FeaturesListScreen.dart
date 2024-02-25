@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
@@ -53,8 +55,8 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
         widget.submodule.features.every((feature) => feature.isCompleted);
     if (allFeaturesCompleted) {
       // Get the provider instance and call the method to update course completion status
-      Provider.of<CoursesProvider>(context, listen: false)
-          .updateCourseCompletionStatus();
+      // Provider.of<CoursesProvider>(context, listen: false)
+      //     .updateCourseCompletionStatus();
     }
   }
 
@@ -248,174 +250,18 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                       ),
                       onTap: () async {
                         if (feature.featureType == FeatureType.presentation) {
-                          PresentationModel presentationModel =
-                              feature.relatedData as PresentationModel;
-                          // Pass a callback function to mark the feature as completed
-                          await Get.to(() => Presentation(
+                          // Handle presentation feature
+                          final presentationModel = PresentationModel.fromJson(feature.data as Map<String, dynamic>);
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PresentationScreen(
                                 presentationModel: presentationModel,
-                                onCompleted: () {
-                                  setState(() {
-                                    feature.isCompleted =
-                                        true; // Mark the feature as completed
-                                    _checkAndUpdateCourseCompletion();
-                                  });
-                                  Provider.of<CoursesProvider>(context,
-                                          listen: false)
-                                      .updateProgress();
-                                },
-                              ));
-                        }
-                        if (feature.featureType == FeatureType.comicStrips) {
-                          List<ComicStripModel> comicStripModels =
-                              feature.relatedData as List<ComicStripModel>;
-                          // Adjust navigation based on your actual ComicStrip widget's constructor
-                          await Get.to(() => ComicStrip(
-                                comicStripsModel: comicStripModels,
-                                onCompleted: () {
-                                  setState(() {
-                                    feature.isCompleted =
-                                        true; // Mark the feature as completed
-                                    _checkAndUpdateCourseCompletion();
-                                  });
-                                  Provider.of<CoursesProvider>(context,
-                                          listen: false)
-                                      .updateProgress();
-                                },
-                              ));
-                        }
-
-                        if (feature.featureType == FeatureType.flashCards) {
-                          if (feature.relatedData is List<FlashCard>) {
-                            // Ensure this matches your model structure
-                            List<FlashCard> flashCards = feature.relatedData;
-                            FlashCardScreenModel flashCardScreenModel =
-                                FlashCardScreenModel(
-                                    title: feature.title,
-                                    cards:
-                                        flashCards); // Assuming constructor matches this
-                            await Get.to(() => FlashCardsScreen(
-                                  flashCardModel: flashCardScreenModel,
-                                  onCompleted: () {
-                                    setState(() {
-                                      feature.isCompleted =
-                                          true; // Mark the feature as completed
-                                      _checkAndUpdateCourseCompletion();
-                                    });
-                                    Provider.of<CoursesProvider>(context,
-                                            listen: false)
-                                        .updateProgress();
-                                  },
-                                ));
-                          }
-                        }
-                        if (feature.featureType == FeatureType.infographics) {
-                          InfographicsModel infographicsModel =
-                              feature.relatedData as InfographicsModel;
-                          // Assuming you have a route or method to display the infographics
-                          await Get.to(() => InfographicScreen(
-                                infographicsModel: infographicsModel,
-                                onCompleted: () {
-                                  setState(() {
-                                    feature.isCompleted =
-                                        true; // Mark the feature as completed
-                                    _checkAndUpdateCourseCompletion();
-                                  });
-                                  Provider.of<CoursesProvider>(context,
-                                          listen: false)
-                                      .updateProgress();
-                                },
-                              ));
-                        }
-                        if (feature.featureType ==
-                            FeatureType.interactiveAnimationVideo) {
-                          InteractiveAnimationVideoModel
-                              interactiveAnimationVideoModel =
-                              feature.relatedData
-                                  as InteractiveAnimationVideoModel;
-                          await Get.to(
-                            () => InteractiveAnimationVideo(
-                              interactiveAnimationVideoModel:
-                                  interactiveAnimationVideoModel,
-                              onCompleted: () {
-                                setState(() {
-                                  feature.isCompleted =
-                                      true; // Mark the feature as completed
-                                  _checkAndUpdateCourseCompletion();
-                                });
-                                Provider.of<CoursesProvider>(context,
-                                        listen: false)
-                                    .updateProgress();
-                              },
+                              ),
                             ),
                           );
                         }
-                        if (feature.featureType ==
-                            FeatureType.interactiveImage) {
-                          List<InteractiveImageModel> interactiveImageModels =
-                              feature.relatedData
-                                  as List<InteractiveImageModel>;
-                          // Assuming you have an InteractiveImages widget that takes a list of InteractiveImageModel
-                          await Get.to(() => InteractiveImages(
-                              feature:
-                                  feature)); // Update this line to match how you initialize your InteractiveImages widget
-                        }
-                        if (feature.featureType == FeatureType.imageHotspot) {
-                          ImageHotspotModel imageHotspotModel =
-                              feature.relatedData as ImageHotspotModel;
-                          await Get.to(() => ImageHotspot(
-                                imageHotspotModel: imageHotspotModel,
-                                onCompleted: () {
-                                  setState(() {
-                                    feature.isCompleted =
-                                        true; // Mark the feature as completed
-                                    _checkAndUpdateCourseCompletion();
-                                  });
-                                  Provider.of<CoursesProvider>(context,
-                                          listen: false)
-                                      .updateProgress();
-                                },
-                              ));
-                        }
-                        if (feature.featureType ==
-                            FeatureType.imageBranchingScenario) {
-                          ImageBranchingScenarioModel
-                              imageBranchingScenarioModel = feature.relatedData
-                                  as ImageBranchingScenarioModel;
-                          await Get.to(() => ImageBranchingScenario(
-                                imageBranchingScenarioModel:
-                                    imageBranchingScenarioModel,
-                                onCompleted: () {
-                                  setState(() {
-                                    feature.isCompleted =
-                                        true; // Mark the feature as completed
-                                    _checkAndUpdateCourseCompletion();
-                                  });
-                                  Provider.of<CoursesProvider>(context,
-                                          listen: false)
-                                      .updateProgress();
-                                },
-                              ));
-                        }
-                        if (feature.featureType ==
-                            FeatureType.textBranchingScenario) {
-                          TextBranchingScenarioModel
-                              textBranchingScenarioModel =
-                              feature.relatedData as TextBranchingScenarioModel;
-                          await Get.to(() => TextBranchingScenario(
-                                textBranchingScenarioModel:
-                                    textBranchingScenarioModel,
-                                onCompleted: () {
-                                  setState(() {
-                                    feature.isCompleted =
-                                        true; // Mark the feature as completed
-                                    _checkAndUpdateCourseCompletion();
-                                  });
-                                  Provider.of<CoursesProvider>(context,
-                                          listen: false)
-                                      .updateProgress();
-                                },
-                              ));
-                        }
+
                       },
                     );
                   },
@@ -428,3 +274,177 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
     );
   }
 }
+
+
+//
+// if (feature.featureType == FeatureType.presentation) {
+// // Directly use `feature.relatedData` if it's already a Map<String, dynamic>
+// Map<String, dynamic> jsonMap = feature.relatedData; // Direct map, no need to decode
+// PresentationModel presentationModel = PresentationModel.fromJson(jsonMap);
+//
+//
+// await Get.to(() => Presentation(
+// presentationModel: presentationModel,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ));
+// }
+// if (feature.featureType == FeatureType.comicStrips) {
+// List<ComicStripModel> comicStripModels =
+// feature.relatedData as List<ComicStripModel>;
+// // Adjust navigation based on your actual ComicStrip widget's constructor
+// await Get.to(() => ComicStrip(
+// comicStripsModel: comicStripModels,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ));
+// }
+//
+// if (feature.featureType == FeatureType.flashCards) {
+// if (feature.relatedData is List<FlashCard>) {
+// // Ensure this matches your model structure
+// List<FlashCard> flashCards = feature.relatedData;
+// FlashCardScreenModel flashCardScreenModel =
+// FlashCardScreenModel(
+// title: feature.title,
+// cards:
+// flashCards); // Assuming constructor matches this
+// await Get.to(() => FlashCardsScreen(
+// flashCardModel: flashCardScreenModel,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ));
+// }
+// }
+// if (feature.featureType == FeatureType.infographics) {
+// InfographicsModel infographicsModel =
+// feature.relatedData as InfographicsModel;
+// // Assuming you have a route or method to display the infographics
+// await Get.to(() => InfographicScreen(
+// infographicsModel: infographicsModel,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ));
+// }
+// if (feature.featureType ==
+// FeatureType.interactiveAnimationVideo) {
+// InteractiveAnimationVideoModel
+// interactiveAnimationVideoModel =
+// feature.relatedData
+// as InteractiveAnimationVideoModel;
+// await Get.to(
+// () => InteractiveAnimationVideo(
+// interactiveAnimationVideoModel:
+// interactiveAnimationVideoModel,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ),
+// );
+// }
+// if (feature.featureType ==
+// FeatureType.interactiveImage) {
+// List<InteractiveImageModel> interactiveImageModels =
+// feature.relatedData
+// as List<InteractiveImageModel>;
+// // Assuming you have an InteractiveImages widget that takes a list of InteractiveImageModel
+// await Get.to(() => InteractiveImages(
+// feature:
+// feature)); // Update this line to match how you initialize your InteractiveImages widget
+// }
+// if (feature.featureType == FeatureType.imageHotspot) {
+// ImageHotspotModel imageHotspotModel =
+// feature.relatedData as ImageHotspotModel;
+// await Get.to(() => ImageHotspot(
+// imageHotspotModel: imageHotspotModel,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ));
+// }
+// if (feature.featureType ==
+// FeatureType.imageBranchingScenario) {
+// ImageBranchingScenarioModel
+// imageBranchingScenarioModel = feature.relatedData
+// as ImageBranchingScenarioModel;
+// await Get.to(() => ImageBranchingScenario(
+// imageBranchingScenarioModel:
+// imageBranchingScenarioModel,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ));
+// }
+// if (feature.featureType ==
+// FeatureType.textBranchingScenario) {
+// TextBranchingScenarioModel
+// textBranchingScenarioModel =
+// feature.relatedData as TextBranchingScenarioModel;
+// await Get.to(() => TextBranchingScenario(
+// textBranchingScenarioModel:
+// textBranchingScenarioModel,
+// onCompleted: () {
+// setState(() {
+// feature.isCompleted =
+// true; // Mark the feature as completed
+// _checkAndUpdateCourseCompletion();
+// });
+// // Provider.of<CoursesProvider>(context,
+// //         listen: false)
+// //     .updateProgress();
+// },
+// ));
+// }
