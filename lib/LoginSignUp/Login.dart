@@ -28,15 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  // Future<void> _loadUsers() async {
-  //   final String response = await DefaultAssetBundle.of(context)
-  //       .loadString('assets/data/usersData.json');
-  //   final data = await json.decode(response);
-  //   setState(() {
-  //     _users.addAll(
-  //         List<User>.from(data["usersData"].map((x) => User.fromJson(x))));
-  //   });
-  // }
 
 
 
