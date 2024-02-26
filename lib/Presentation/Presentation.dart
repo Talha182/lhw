@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
+import '../Database/database_helper.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import 'package:flutter/services.dart';
 
@@ -40,8 +41,6 @@ class _PresentationScreenState extends State<PresentationScreen>
   String selectedAnswer = '';
   int? selectedOptionIndex;
   bool isDialogShown = false;
-  late AnimationController _cloudPumpAnimationController;
-  late Animation<double> _cloudPumpAnimation;
 
   List<Color> optionColors = [
     const Color(0xffF2F2F2),
@@ -72,21 +71,7 @@ class _PresentationScreenState extends State<PresentationScreen>
         });
       }
     });
-    _cloudPumpAnimationController = AnimationController(
-      duration: const Duration(milliseconds: 1500),
-      vsync: this,
-    );
 
-    _cloudPumpAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
-      CurvedAnimation(
-        parent: _cloudPumpAnimationController,
-        curve: Curves.easeInOut,
-      ),
-    )..addListener(() {
-        setState(() {});
-      });
-
-    _cloudPumpAnimationController.repeat(reverse: true);
   }
 
 // Update the 'updateQuestion' method
@@ -225,7 +210,7 @@ class _PresentationScreenState extends State<PresentationScreen>
                             .options.length,
                         (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: QuizCard(
+                          child: HorizontalQuizCard(
                             text: widget.presentationModel
                                 .questions[questionIndex].options[index],
                             ontap: () {
@@ -325,8 +310,6 @@ class _PresentationScreenState extends State<PresentationScreen>
   void dispose() {
     _slideshowTimer?.cancel();
     _pageController.dispose();
-    _cloudPumpAnimationController.dispose();
-    // Set landscape orientation
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -476,11 +459,11 @@ class _PresentationScreenState extends State<PresentationScreen>
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: hasVisitedLastImage
-                      ? () {
-                          widget.onCompleted
-                              ?.call(); // Call the callback to mark completion
-                          Get.back(); // Optionally navigate back or perform other navigation
-                        }
+                      ? () async {
+                    await DatabaseHelper.instance.markFeatureAsCompleted(widget.presentationModel.featureId);
+                    widget.onCompleted?.call(); // Call the callback to mark completion
+                    Get.back(result: true);
+                  }
                       : null,
                   child: const Text(
                     'جاری رہے',

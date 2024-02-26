@@ -168,6 +168,18 @@ CREATE TABLE $featuresTable (
       whereArgs: [courseId],
     );
   }
+  Future<void> markFeatureAsCompleted(int featureId) async {
+    final db = await database;
+    print('Attempting to mark feature as completed: $featureId'); // Debugging statement
+    await db.update(
+      featuresTable,
+      {'isCompleted': 1}, // Mark as completed
+      where: 'featureId = ?',
+      whereArgs: [featureId],
+    );
+    print('Feature marked as completed successfully: $featureId'); // Debugging statement
+  }
+
 }
 
 class DataManager {

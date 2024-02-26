@@ -1,11 +1,14 @@
 class PresentationModel {
   final List<String> assetImages;
   final List<PresentationQuestion> questions;
+  final int featureId; // Add this line
   final List<bool> showQuestionDialog;
 
   PresentationModel({
     required this.assetImages,
     required this.questions,
+    required this.featureId, // Initialize in constructor
+
     required this.showQuestionDialog,
   });
 
@@ -21,6 +24,8 @@ class PresentationModel {
       assetImages: assetImages,
       questions: questions,
       showQuestionDialog: showQuestionDialog,
+
+      featureId: json['featureId'],
     );
   }
 
@@ -42,6 +47,8 @@ class PresentationModel {
           .toList(),
       showQuestionDialog:
           List<bool>.from(map['presentationData']['showQuestionDialog']),
+
+      featureId: map['featureId'],
     );
   }
 

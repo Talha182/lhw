@@ -1,3 +1,4 @@
+import 'package:analyzer/dart/analysis/features.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,11 +8,14 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
+import '../Database/database_helper.dart';
+
 class ComicStrip extends StatefulWidget {
   final List<ComicStripModel> comicStripsModel;
   final VoidCallback? onCompleted; // Optional callback
+  final int featureId;
 
-  const ComicStrip({Key? key, required this.comicStripsModel, this.onCompleted})
+  const ComicStrip({Key? key, required this.comicStripsModel, this.onCompleted,required this.featureId})
       : super(key: key);
 
   @override
@@ -265,12 +269,14 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: _current == _carouselItems.length - 1
-                      ? () {
+                      ? () async{
                           // This callback will only be executed if the user is on the last slide
                           if (widget.onCompleted != null) {
-                            widget.onCompleted!();
+                            await DatabaseHelper.instance.markFeatureAsCompleted(widget.featureId);
+
+                            widget.onCompleted?.call(); // Call the callback to mark completion
                           }
-                          Get.back();
+                          Get.back(result: true);
                         }
                       : null, // Disable the button until the last slide is reached
                   child: const Text(
