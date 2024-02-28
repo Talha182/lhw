@@ -1,16 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:lhw/models/interactive_images_model.dart';
-
-import '../BranchingScenarios/ImageBranchingScenario.dart';
-import '../BranchingScenarios/TextBranchingScenario.dart';
-import '../Infographics/infographics.dart';
-import '../InteractiveAnimationVideo/interactive_animation_video.dart';
-import '../Presentation/presentation_model.dart';
-import '../ComicStrip/comic_strip.dart';
-import '../models/flash_cards_screen_model.dart';
-import '../models/image_hotspot_model.dart';
 
 class Course {
   final int courseId;
@@ -355,7 +344,6 @@ class Submodule {
   }
 }
 
-// Assuming the enum FeatureType is defined as shown previously
 enum FeatureType {
   video,
   presentation,
