@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import '../course_models/courses_models.dart';
+import '../models/user_model.dart';
 import 'database_helper.dart';
 
 class DataManager {
@@ -31,6 +32,18 @@ class DataManager {
       );
       await DatabaseHelper.instance.insertCourse(course);
       print('Inserted course: ${course.title}');
+    }
+  }
+
+  static Future<void> insertUsersFromJson() async {
+    final String response = await rootBundle.loadString('assets/data/usersData.json');
+    final data = json.decode(response);
+    final usersList = data["usersData"] as List;
+
+    for (var userJson in usersList) {
+      User user = User.fromJson(userJson);
+      await DatabaseHelper.instance.insertUser(user);
+      print('Inserted user: ${user.name}');
     }
   }
 

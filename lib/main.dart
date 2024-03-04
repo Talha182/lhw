@@ -20,7 +20,9 @@ Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   bool isLoggedIn = await UserService.isLoggedIn();
   await DataManager.insertCoursesFromJson();
-  // final dbHelper = DatabaseHelper.instance;
+  await DataManager.insertUsersFromJson();
+  final dbHelper = DatabaseHelper.instance;
+  dbHelper.printAllUserData();
   // dbHelper.printAllCourseData();
   runApp(MyApp(isLoggedIn: isLoggedIn));
 }

@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:convert';
 import '../course_models/courses_models.dart';
+import '../models/user_model.dart';
 
 class DatabaseHelper extends ChangeNotifier {
   static const _databaseName = "lhw_db.db";
@@ -12,6 +13,7 @@ class DatabaseHelper extends ChangeNotifier {
   static const modulesTable = 'modules_table';
   static const submodulesTable = 'submodules_table';
   static const featuresTable = 'features_table';
+  static const usersTable = 'users_table';
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -28,6 +30,48 @@ class DatabaseHelper extends ChangeNotifier {
   }
 
   Future _onCreate(Database db, int version) async {
+    await db.execute('''
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    nic TEXT NOT NULL,
+    id_no TEXT NOT NULL,
+    dob TEXT NOT NULL,
+    village TEXT NOT NULL,
+    uc_name TEXT NOT NULL,
+    years_experience INTEGER NOT NULL,
+    email_verified_at TEXT,
+    password TEXT NOT NULL,
+    image TEXT NOT NULL,
+    role_id INTEGER,
+    status TEXT NOT NULL,
+    remember_token TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+  )
+''');
+
+    await db.execute('''
+      CREATE TABLE $usersTable (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT,
+        nic TEXT,
+        idNo TEXT,
+        dob TEXT,
+        village TEXT,
+        ucName TEXT,
+        yearsExperience INTEGER,
+        password TEXT NOT NULL,
+        image TEXT,
+        status TEXT,
+        createdAt TEXT,
+        updatedAt TEXT
+      )
+    ''');
     await db.execute('''
         CREATE TABLE $coursesTable (
           courseId INTEGER PRIMARY KEY,
@@ -84,6 +128,68 @@ class DatabaseHelper extends ChangeNotifier {
     FOREIGN KEY (submoduleId) REFERENCES $submodulesTable(submoduleId)
   )
   ''');
+  }
+
+  Future<void> insertUser(User user) async {
+    final db = await database;
+    await db.insert(
+      'users',
+      user.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    print("User inserted with ID: ${user.id}, Name: ${user.name}");
+  }
+
+  // Method to fetch a user by email
+  Future<User?> loginUser(String email, String password) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'users',
+      where: 'email = ? AND password = ?',
+      whereArgs: [email, password],
+    );
+
+    if (maps.isNotEmpty) {
+      // Assuming email and password combination is unique and returns only one user
+      return User.fromJson(maps.first);
+    } else {
+      // No user found
+      return null;
+    }
+  }
+
+  Future<void> printAllUserData() async {
+    final db = await database; // Get a reference to the database
+    final List<Map<String, dynamic>> users =
+        await db.query(usersTable); // Query all rows in the users table
+
+    print('Printing all user data:');
+    for (var userMap in users) {
+      User user = User.fromJson(
+          userMap); // Assuming you have a fromJson method to convert a Map to a User object
+      print(
+          'User ID: ${user.id}, Name: ${user.name}, Email: ${user.email}, Password: ${user.password}');
+      // Print other fields as needed
+    }
+  }
+
+  // Method to fetch a user by email
+  Future<User?> getUserByEmail(String email) async {
+    final db =
+        await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'users',
+      where: 'email = ?',
+      whereArgs: [email],
+      limit: 1,
+    );
+
+    if (maps.isNotEmpty) {
+      return User.fromJson(maps
+          .first); 
+    } else {
+      return null; // No user found with the given email
+    }
   }
 
   Future<void> insertCourse(Course course) async {
@@ -167,12 +273,11 @@ class DatabaseHelper extends ChangeNotifier {
     );
     Map<int, double> progressMap = {};
     for (var result in results) {
-      progressMap[result['moduleId'] as int] = result['progressValue'] as double;
+      progressMap[result['moduleId'] as int] =
+          result['progressValue'] as double;
     }
     return progressMap;
   }
-
-
 
   Future<void> insertFeature(Feature feature) async {
     final db = await database;
@@ -243,7 +348,8 @@ class DatabaseHelper extends ChangeNotifier {
     );
 
     if (feature.isNotEmpty) {
-      final isCompleted = feature.first['isCompleted'] == 1 ? 0 : 1; // Toggle status
+      final isCompleted =
+          feature.first['isCompleted'] == 1 ? 0 : 1; // Toggle status
       await db.update(
         featuresTable, // Use the actual name of your features table
         {'isCompleted': isCompleted},
@@ -269,7 +375,6 @@ class DatabaseHelper extends ChangeNotifier {
       return null;
     }
   }
-
 
   Future<Module?> getModuleById(int moduleId) async {
     final db = await database;
@@ -419,7 +524,8 @@ class DatabaseHelper extends ChangeNotifier {
       );
 
       totalFeatures += featureMaps.length;
-      completedFeatures += featureMaps.where((map) => map['isCompleted'] == 1).length;
+      completedFeatures +=
+          featureMaps.where((map) => map['isCompleted'] == 1).length;
     }
 
     // Compute the module progress
@@ -442,4 +548,3 @@ class DatabaseHelper extends ChangeNotifier {
     notifyListeners();
   }
 }
-

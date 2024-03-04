@@ -41,6 +41,7 @@ class User {
     this.updatedAt = '',
   });
 
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'] as int? ?? 0,
@@ -84,6 +85,28 @@ class User {
       'remember_token': rememberToken,
       'created_at': createdAt,
       'updated_at': updatedAt,
+    };
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'nic': nic,
+      'id_no': idNo,
+      'dob': dob,
+      'village': village,
+      'uc_name': ucName,
+      'years_experience': yearsExperience,
+      'email_verified_at': emailVerifiedAt,
+      'password': password,
+      'image': image,
+      'role_id': roleId,
+      'status': status,
+      'remember_token': rememberToken,
+      'created_at': createdAt,
     };
   }
 }

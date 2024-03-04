@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lhw/navy.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Database/database_helper.dart';
 import '../models/user_model.dart';
 import '../services/user_service.dart';
 import 'Forgot_Password.dart';
@@ -28,37 +29,23 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-
-
-
-
-
-  void _login() async {
+  Future<void> login() async {
     final String email = emailController.text.trim();
     final String password = passwordController.text.trim();
 
-    // Load the JSON file from the assets directory
-    final String response = await DefaultAssetBundle.of(context).loadString('assets/data/usersData.json');
-    final data = await json.decode(response);
+    final User? user = await DatabaseHelper.instance.loginUser(email, password);
 
-    // Parse the JSON data to get the list of users
-    final List<dynamic> users = data['usersData'];
+    if (user != null) {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
 
-    // Look for a user with matching email and password
-    bool loginSuccess = false;
-    for (var userData in users) {
-      final User user = User.fromJson(userData); // Parse JSON data into User object
-      if (user.email == email && user.password == password) {
-        loginSuccess = true;
-        await UserService.saveUser(user);
-        break;
-      }
-    }
+      await prefs.setString('userEmail', email);
 
-    if (loginSuccess) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
     } else {
-      Fluttertoast.showToast(msg: "Login failed. Please check your credentials.");
+      Fluttertoast.showToast(
+          msg: "Login failed. Please check your credentials.");
     }
   }
 
@@ -70,12 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
     return emailController.text.trim().isEmpty ||
         passwordController.text.trim().isEmpty;
   }
+
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -194,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             TextField(
-              controller: passwordController,
+                controller: passwordController,
                 obscureText: _obscureText,
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
@@ -234,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24),
               child: ElevatedButton(
                 onPressed: () {
-                  _login();
+                  login();
                 },
                 style: ElevatedButton.styleFrom(
                   // shadowColor: Colors.red,

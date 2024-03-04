@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Database/database_helper.dart';
 import '../LoginSignUp/Login.dart';
 import '../models/user_model.dart';
 import 'edit_profile.dart';
@@ -17,10 +18,8 @@ class ProfileScreen extends StatefulWidget {
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
-
 class _ProfileScreenState extends State<ProfileScreen> {
   User? user;
-
   File? _image; // To store the selected image
 
   Future getImage(ImageSource source) async {
@@ -41,20 +40,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     _loadUserData();
   }
+
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', false);
-    // Navigate back to the login screen...
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => const LoginScreen()),
-    );}
+    );
+  }
 
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
-    String? userJson = prefs.getString('userData');
-    if (userJson != null) {
+    final String? userEmail = prefs.getString('userEmail');
+    if (userEmail != null) {
+      final User? userFromDb = await DatabaseHelper.instance.getUserByEmail(userEmail);
       setState(() {
-        user = User.fromJson(json.decode(userJson));
+        user = userFromDb;
       });
     }
   }
