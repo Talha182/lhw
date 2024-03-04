@@ -7,7 +7,7 @@
 // import 'package:get/get.dart';
 // import 'package:get/get_core/src/get_main.dart';
 //
-// import '../../courses_test/test_model.dart';
+// import '../../courses_test/courses_models.dart';
 // import '../../models/interactive_images_model.dart';
 // import '../../controllers/feature_navigation.dart';
 //

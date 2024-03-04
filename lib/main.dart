@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:lhw/services/user_service.dart'; // Adjust the import path as needed
 import 'CourseTabbar/course_provider.dart';
+import 'Database/data_manager.dart';
 import 'LoginSignUp/Login.dart';
 import 'package:lhw/Database/database_helper.dart';
 
@@ -17,10 +18,10 @@ final navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-
-  // Use UserService to check if the user is logged in
   bool isLoggedIn = await UserService.isLoggedIn();
   await DataManager.insertCoursesFromJson();
+  // final dbHelper = DatabaseHelper.instance;
+  // dbHelper.printAllCourseData();
   runApp(MyApp(isLoggedIn: isLoggedIn));
 }
 
@@ -42,15 +43,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      // Changed to MultiProvider for future extensibility
       providers: [
         ChangeNotifierProvider(create: (context) => CoursesProvider()),
       ],
       child: GetMaterialApp(
         navigatorKey: navigatorKey,
-        routes: {
-          '/notification_screen': (context) => const NotificationScreen()
-        },
         debugShowCheckedModeBanner: false,
         builder: (context, child) => ResponsiveBreakpoints.builder(
           child: child!,
@@ -67,186 +64,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class CoursesScreenTest extends StatefulWidget {
-//   @override
-//   _CoursesScreenTestState createState() => _CoursesScreenTestState();
-// }
-
-// class _CoursesScreenTestState extends State<CoursesScreenTest> {
-//   late List<Course> _courses;
-//   bool _isLoading = true;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _loadData();
-//   }
-//
-//   Future _loadData() async {
-//     await DataManager.insertCoursesFromJson();
-//     _refreshCourses();
-//   }
-//
-//   Future _refreshCourses() async {
-//     _courses = await DatabaseHelper.instance.courses();
-//     setState(() => _isLoading = false);
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Courses'),
-//       ),
-//       body: _isLoading
-//           ? const Center(child: CircularProgressIndicator())
-//           : ListView.builder(
-//               itemCount: _courses.length,
-//               itemBuilder: (context, index) {
-//                 final course = _courses[index];
-//                 return Card(
-//                     child: Container(
-//                   decoration: const BoxDecoration(),
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(16.0),
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Text("Course ID: ${course.courseId}",
-//                             style: const TextStyle(
-//                                 fontSize: 16, fontWeight: FontWeight.bold)),
-//                         Text("Title: ${course.title}",
-//                             style: const TextStyle(fontSize: 16)),
-//                         Text("Quiz Count: ${course.quizCount}",
-//                             style: const TextStyle(fontSize: 14)),
-//                         Text("Module Count: ${course.moduleCount}",
-//                             style: const TextStyle(fontSize: 14)),
-//                         Text("Image Path: ${course.imagePath}",
-//                             style: const TextStyle(fontSize: 14)),
-//                         Text("Is Started: ${course.isStart ? 'Yes' : 'No'}",
-//                             style: const TextStyle(fontSize: 14)),
-//                         Text(
-//                             "Is Completed: ${course.isCompleted ? 'Yes' : 'No'}",
-//                             style: const TextStyle(fontSize: 14)),
-//                         Text("Progress: ${course.progress * 100}%",
-//                             style: const TextStyle(fontSize: 14)),
-//                         Text("Arrow Text: ${course.arrowText}",
-//                             style: const TextStyle(fontSize: 14)),
-//                         const SizedBox(height: 10),
-//                         const Text("Modules:",
-//                             style: TextStyle(
-//                                 fontSize: 16, fontWeight: FontWeight.bold)),
-//                         ...course.modules.map(
-//                           (module) => Padding(
-//                             padding: const EdgeInsets.only(top: 8.0),
-//                             child: Column(
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: [
-//                                 Text("- Module ID: ${module.moduleId}",
-//                                     style: const TextStyle(fontSize: 14)),
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 16.0),
-//                                   child: Text("Title: ${module.title}",
-//                                       style: const TextStyle(fontSize: 14)),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 16.0),
-//                                   child: Text("Image Path: ${module.imagePath}",
-//                                       style: const TextStyle(fontSize: 14)),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 16.0),
-//                                   child: Text(
-//                                       "Submodule Count: ${module.submoduleCount}",
-//                                       style: const TextStyle(fontSize: 14)),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 16.0),
-//                                   child: Text(
-//                                       "Is Started: ${module.isStart ? 'Yes' : 'No'}",
-//                                       style: const TextStyle(fontSize: 14)),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 16.0),
-//                                   child: Text(
-//                                       "Is Completed: ${module.isCompleted ? 'Yes' : 'No'}",
-//                                       style: const TextStyle(fontSize: 14)),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 16.0),
-//                                   child: Text(
-//                                       "Progress Value: ${module.progressValue * 100}%",
-//                                       style: const TextStyle(fontSize: 14)),
-//                                 ),
-//                                 const SizedBox(height: 10),
-//                                 const Text("Submodules:",
-//                                     style: TextStyle(
-//                                         fontSize: 16,
-//                                         fontWeight: FontWeight.bold)),
-//                                 ...module.submodules
-//                                     .map(
-//                                       (submodule) => Padding(
-//                                         padding: const EdgeInsets.only(
-//                                             left: 32.0, top: 8.0),
-//                                         child: Column(
-//                                           crossAxisAlignment:
-//                                               CrossAxisAlignment.start,
-//                                           children: [
-//                                             Text(
-//                                                 "- Submodule ID: ${submodule.submoduleId}",
-//                                                 style: const TextStyle(
-//                                                     fontSize: 14)),
-//                                             Padding(
-//                                               padding: const EdgeInsets.only(
-//                                                   left: 16.0),
-//                                               child: Text(
-//                                                   "Title: ${submodule.title}",
-//                                                   style: const TextStyle(
-//                                                       fontSize: 14)),
-//                                             ),
-//                                             Padding(
-//                                               padding: const EdgeInsets.only(
-//                                                   left: 16.0),
-//                                               child: Text(
-//                                                   "Description: ${submodule.description}",
-//                                                   style: const TextStyle(
-//                                                       fontSize: 14)),
-//                                             ),
-//                                             // Display Features here
-//                                             const Text("Features:",
-//                                                 style: TextStyle(
-//                                                     fontSize: 16,
-//                                                     fontWeight:
-//                                                         FontWeight.bold)),
-//                                             ...submodule.features
-//                                                 .map(
-//                                                   (feature) => Padding(
-//                                                     padding:
-//                                                         const EdgeInsets.only(
-//                                                             left: 32.0,
-//                                                             top: 8.0),
-//                                                     child: Text(
-//                                                         "- Feature Name: ${feature.featureType}",
-//                                                         style: const TextStyle(
-//                                                             fontSize: 14)),
-//                                                   ),
-//                                                 )
-//                                                 .toList(),
-//                                           ],
-//                                         ),
-//                                       ),
-//                                     )
-//                                     .toList(),
-//                               ],
-//                             ),
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ));
-//               },
-//             ),
-//     );
-//   }
-// }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:lhw/courses_test/test_model.dart';
 
 import '../../CustomWidgets/Row_Column_Padding.dart';
 import '../../Mobile_Lesson & Flashcards/inforgraphics_carousel.dart';
+import '../../course_models/courses_models.dart';
 import '../../models/course_model.dart';
 import '../../ModuleScreen/ModuleScreen.dart';
 

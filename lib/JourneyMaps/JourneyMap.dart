@@ -3,15 +3,16 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import '../CourseTabbar/ModuleScreen/FeaturesListScreen.dart';
+import '../CourseTabbar/FeaturesListScreen.dart';
 import '../controllers/feature_navigation.dart';
-import '../courses_test/test_model.dart';
+import '../course_models/courses_models.dart';
 
 class JourneyMapScreen extends StatefulWidget {
   final Module module;
   final String courseTitle; // Add this line
   final Gradient gradient;
   final int courseQuizCount;
+  final int moduleId;
   final int courseModuleCount;
   final String imagePath;
   final int courseId;
@@ -24,6 +25,7 @@ class JourneyMapScreen extends StatefulWidget {
       required this.courseQuizCount,
       required this.courseModuleCount,
         required this.courseId,
+        required this.moduleId,
       required this.imagePath})
       : super(key: key);
 
@@ -425,6 +427,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
   void navigateToSubmoduleFeatures(Submodule submodule) {
     Get.to(() => FeaturesListScreen(
           submodule: submodule,
+          moduleId: widget.moduleId,
           courseTitle: widget.courseTitle,
           courseQuizCount: widget.courseQuizCount,
           courseModuleCount: widget.courseModuleCount,

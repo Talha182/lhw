@@ -460,7 +460,7 @@ class _PresentationScreenState extends State<PresentationScreen>
                   ),
                   onPressed: hasVisitedLastImage
                       ? () async {
-                    await DatabaseHelper.instance.markFeatureAsCompleted(widget.presentationModel.featureId);
+                    // await DatabaseHelper.instance.markFeatureAsCompleted(widget.presentationModel.featureId);
                     widget.onCompleted?.call(); // Call the callback to mark completion
                     Get.back(result: true);
                   }

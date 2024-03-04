@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
+import '../Database/database_helper.dart';
+
 class Course {
   final int courseId;
   final String title;
@@ -37,7 +39,7 @@ class Course {
       'imagePath': imagePath,
       'isStart': isStart ? 1 : 0,
       'isCompleted': isCompleted ? 1 : 0,
-      'progress': progress,
+      'progress': progress ?? 0.0,
       'arrowText': arrowText,
       'gradient': jsonEncode(gradient),
       'modules': jsonEncode(modules.map((module) => module.toMap()).toList()),
@@ -53,7 +55,7 @@ class Course {
       imagePath: map['imagePath'],
       isStart: map['isStart'] == 1,
       isCompleted: map['isCompleted'] == 1,
-      progress: map['progress'],
+      progress: map['progress'] ?? 0.0,
       arrowText: map['arrowText'],
       gradient: (jsonDecode(map['gradient']) as List<dynamic>)
           .map((color) => color.toString())
@@ -71,7 +73,6 @@ class Course {
       gradient = List<String>.from(json['gradient']);
     }
 
-    // Ensuring modules are safely parsed, handling potential null values within each module
     var modulesJson = json['modules'] as List<dynamic>? ?? [];
     List<Module> modules = modulesJson.isNotEmpty
         ? modulesJson
@@ -93,43 +94,16 @@ class Course {
       modules: modules,
     );
   }
-
-// Method to update course progress
-  void updateCourseCompletionProgress() {
-    int completedFeaturesCount = 0;
-    int totalFeaturesCount = 0;
-
-    // Iterate through modules
-    for (Module module in modules) {
-      // Update module completion status and progress value
-      module.updateCompletionStatus();
-      module.updateProgressValue();
-
-      // Iterate through submodules
-      for (Submodule submodule in module.submodules) {
-        // Update submodule completion status
-        submodule.updateCompletionStatus();
-
-        // Update feature completion status and count completed features
-        for (Feature feature in submodule.features) {
-          totalFeaturesCount++;
-          if (feature.isCompleted) {
-            completedFeaturesCount++;
-          }
-        }
-      }
-    }
-
-    // Calculate overall course progress
-    if (totalFeaturesCount > 0) {
-      progress = completedFeaturesCount / totalFeaturesCount;
-    } else {
-      progress = 0.0;
+  void updateModules(Module updatedModule) {
+    int index = modules
+        .indexWhere((module) => module.moduleId == updatedModule.moduleId);
+    if (index != -1) {
+      modules[index] = updatedModule;
     }
   }
 }
 
-class Module {
+class Module with ChangeNotifier {
   final int moduleId;
   final int courseId;
   final String title;
@@ -148,10 +122,9 @@ class Module {
     required this.submoduleCount,
     required this.isStart,
     this.isCompleted = false,
-    required this.progressValue,
+    required this.progressValue, // Initialize with a value
     required this.submodules,
   });
-
   Map<String, dynamic> toMap() {
     return {
       'moduleId': moduleId,
@@ -168,22 +141,15 @@ class Module {
   }
 
   static Module fromMap(Map<String, dynamic> map) {
-    // This variable will hold the decoded submodules list
     List<Submodule> decodedSubmodules = [];
-
-    // Check if 'submodules' is a string (encoded as JSON)
     if (map['submodules'] is String) {
-      // If it's a string, decode it
       List<dynamic> jsonList = jsonDecode(map['submodules']);
       decodedSubmodules =
           jsonList.map((json) => Submodule.fromMap(json)).toList();
     } else if (map['submodules'] is List) {
-      // If it's already a List, use it directly
       decodedSubmodules = (map['submodules'] as List)
           .map((submoduleMap) => Submodule.fromMap(submoduleMap))
           .toList();
-    } else {
-      print("Unexpected type for 'submodules', neither String nor List");
     }
 
     return Module(
@@ -194,9 +160,15 @@ class Module {
       submoduleCount: map['submoduleCount'],
       isStart: map['isStart'] == 1,
       isCompleted: map['isCompleted'] == 1,
-      progressValue: map['progressValue'],
+      progressValue: map['progressValue'].toDouble(),
       submodules: decodedSubmodules,
     );
+  }
+
+  Map<String, dynamic> toMapWithCourseId(int courseId) {
+    var map = toMap();
+    map['courseId'] = courseId;
+    return map;
   }
 
   factory Module.fromJson(Map<String, dynamic> json) {
@@ -218,37 +190,6 @@ class Module {
       progressValue: (json['progressValue'] as num?)?.toDouble() ?? 0.0,
       submodules: submodulesList,
     );
-  }
-
-  // Method to calculate progress based on completed submodules and features
-  void updateProgressValue() {
-    int totalFeaturesCount = submodules
-        .map((submodule) => submodule.features.length)
-        .reduce((value, element) => value + element);
-    int completedFeaturesCount = submodules
-        .expand((submodule) => submodule.features)
-        .where((feature) => feature.isCompleted)
-        .length;
-
-    // Calculate equal portion of progress for each feature
-    double portionOfProgress =
-        totalFeaturesCount > 0 ? 1 / totalFeaturesCount : 0.0;
-
-    // Calculate total progress based on completed features
-    double totalProgress = completedFeaturesCount * portionOfProgress;
-
-    // Update module progress value
-    progressValue = totalProgress;
-  }
-
-  // Method to update module's completion status
-  void updateCompletionStatus() {
-    // Check if all submodules and their features are completed
-    this.isCompleted = submodules.every((submodule) {
-      submodule
-          .updateCompletionStatus(); // Ensure submodule completion status is up to date
-      return submodule.isCompleted;
-    });
   }
 }
 
@@ -273,9 +214,32 @@ class Submodule {
     required this.features,
   });
 
+  Submodule copyWith({
+    int? moduleId,
+  }) {
+    return Submodule(
+      submoduleId: this.submoduleId,
+      moduleId: moduleId ?? this.moduleId,
+      title: this.title,
+      description: this.description,
+      iconPath: this.iconPath,
+      numberOfQuizzes: this.numberOfQuizzes,
+      isCompleted: this.isCompleted,
+      features: this.features,
+    );
+  }
+
+  Map<String, dynamic> toMapWithModuleId(int moduleId) {
+    var map = toMap();
+    map['moduleId'] = moduleId;
+    return map;
+  }
+
   Map<String, dynamic> toMap() {
-    // Convert features list to a JSON string before saving to the database
-    var featuresMap = features.map((feature) => feature.toMap()).toList();
+    // Convert the list of features to a JSON string
+    String featuresJson =
+        jsonEncode(features.map((feature) => feature.toMap()).toList());
+
     return {
       'submoduleId': submoduleId,
       'moduleId': moduleId,
@@ -284,8 +248,7 @@ class Submodule {
       'iconPath': iconPath,
       'numberOfQuizzes': numberOfQuizzes,
       'isCompleted': isCompleted ? 1 : 0,
-      'features':
-          jsonEncode(featuresMap), // Encoding the features list to a string
+      'features': featuresJson, // Store the JSON string
     };
   }
 
@@ -334,37 +297,13 @@ class Submodule {
       isCompleted: json['isCompleted'] as bool? ?? false,
     );
   }
-
-  // Method to check and update completion status
-  void updateCompletionStatus() {
-    // Check if all features are completed
-    this.isCompleted = features.every((feature) => feature.isCompleted);
-
-    // You can include additional logic here if needed, for example, to perform actions when a submodule is completed
-  }
 }
 
-enum FeatureType {
-  video,
-  presentation,
-  quiz,
-  comicStrip,
-  flashCard,
-  infographics,
-  interactiveAnimationVideo,
-  interactiveImage,
-  imageHotspot,
-  textBranchingScenario,
-  imageBranchingScenario,
-  animationVideo,
-  unknown
-}
-
-class Feature {
+class Feature extends ChangeNotifier{
   final int featureId;
   final String title;
   final FeatureType featureType;
-  bool isCompleted;
+  ValueNotifier<bool> isCompleted;
   final int submoduleId;
   final String duration;
   final dynamic data;
@@ -373,11 +312,27 @@ class Feature {
     required this.featureId,
     required this.title,
     required this.featureType,
-    this.isCompleted = false,
+    required bool isCompleted,
     required this.submoduleId,
     required this.duration,
     required this.data,
-  });
+  })  : this.isCompleted = ValueNotifier(isCompleted);
+
+  void toggleCompletion() async {
+    isCompleted.value = !isCompleted.value;
+    // Make sure to update the database or any persistent storage here
+    await DatabaseHelper.instance.markFeatureAsCompleted(featureId);
+  }
+  void toggleFeatureCompletion(Feature feature) async {
+    // Assuming you have a method to update the database
+    bool updateSuccessful = await DatabaseHelper.instance.toggleFeatureCompletion(feature.featureId);
+
+    if (updateSuccessful) {
+      feature.toggleCompletion();
+      notifyListeners(); // If using a provider/model that extends ChangeNotifier
+    }
+  }
+
 
   static FeatureType _featureTypeFromString(String typeString) {
     switch (typeString) {
@@ -405,13 +360,12 @@ class Feature {
   Map<String, dynamic> toMap() {
     return {
       'featureId': featureId,
-      'title': title,
-      'featureType':
-          featureType.toString().split('.').last, // Convert enum to string
-      'isCompleted': isCompleted ? 1 : 0,
       'submoduleId': submoduleId,
+      'title': title,
+      'featureType': featureType.toString().split('.').last,
+      'isCompleted': isCompleted.value ? 1 : 0,
       'duration': duration,
-      'data': jsonEncode(data), // Ensure data is encoded as a JSON string
+      'data': jsonEncode(data),
     };
   }
 
@@ -424,7 +378,6 @@ class Feature {
       decodedData =
           jsonDecode(dataField); // Decode if it's a JSON-encoded string
     }
-
     return Feature(
       featureId: map['featureId'],
       title: map['title'],
@@ -454,8 +407,22 @@ class Feature {
       data: data,
     );
   }
+  Feature copyWith({
+    int? submoduleId,
+  }) {
+    return Feature(
+      featureId: this.featureId,
+      title: this.title,
+      featureType: this.featureType,
+      isCompleted: this.isCompleted.value,
+      submoduleId: submoduleId ?? this.submoduleId,
+      duration: this.duration,
+      data: this.data,
+    );
+  }
+
   IconData get icon {
-    if (isCompleted) {
+    if (isCompleted.value) {
       return Icons.check_circle; // Green tick icon for completed features
     } else {
       switch (featureType) {
@@ -488,7 +455,7 @@ class Feature {
   }
 
   Color get iconColor {
-    return isCompleted
+    return isCompleted.value
         ? const Color(0xff9AC9C2)
         : const Color(0xff685F78); // Green for completed, purple for others
   }
@@ -499,4 +466,20 @@ class Feature {
       orElse: () => FeatureType.unknown,
     );
   }
+}
+
+enum FeatureType {
+  video,
+  presentation,
+  quiz,
+  comicStrip,
+  flashCard,
+  infographics,
+  interactiveAnimationVideo,
+  interactiveImage,
+  imageHotspot,
+  textBranchingScenario,
+  imageBranchingScenario,
+  animationVideo,
+  unknown
 }

@@ -23,8 +23,8 @@ class Module_Card extends StatelessWidget {
     return GestureDetector(
       onTap: onClick,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.withOpacity(0.3)),
             color: const Color(0xffeaeaea).withOpacity(0.4),
@@ -58,7 +58,7 @@ class Module_Card extends StatelessWidget {
                     ),
                   ],
                 ),
-                if (showProgressBar)
+                // if (showProgressBar)
                   SizedBox(
                     width: 40,
                     height: 40,

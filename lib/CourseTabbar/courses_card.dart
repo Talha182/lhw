@@ -2,11 +2,11 @@ import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:lhw/courses_test/test_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../CustomWidgets/ArrowContainer.dart';
+import '../course_models/courses_models.dart';
 import 'LessonPageTabBar/LessonPageTabbar.dart';
 import '../ModuleScreen/ModuleScreen.dart';
 import 'course_provider.dart';
@@ -34,21 +34,6 @@ class _CourseCardState extends State<CourseCard> {
       await Get.to(() => ModuleScreen(course: widget.course),transition: Transition.fade,duration: Duration(milliseconds: 300));
     }
   }
-  @override
-  void initState() {
-    super.initState();
-    updateCourseAndModulesProgress();
-  }
-
-  void updateCourseAndModulesProgress() {
-    widget.course.modules.forEach((module) {
-      module.updateProgressValue(); // Update each module's progress
-    });
-    widget.course.updateCourseCompletionProgress(); // Update the course progress based on modules
-
-    setState(() {}); // Trigger a rebuild to reflect updates
-  }
-
 
   @override
   Widget build(BuildContext context) {

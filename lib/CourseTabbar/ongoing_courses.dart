@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lhw/courses_test/test_model.dart';
 import 'courses_card.dart';
 import 'total_courses.dart';
 import '../models/course_model.dart';

@@ -17,7 +17,6 @@ import '../CustomWidgets/gradient_circle.dart';
 import '../LoginSignUp/Login.dart';
 import '../notification/notifications_screen.dart';
 import '../utils/is_first_time_check.dart';
-import '../courses_test/test_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

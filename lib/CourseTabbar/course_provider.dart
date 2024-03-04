@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:get/get.dart';
-import 'package:lhw/courses_test/test_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Database/database_helper.dart';
+import '../course_models/courses_models.dart';
 
 class CoursesProvider with ChangeNotifier {
   List<Course> _courses = [];
@@ -36,7 +36,8 @@ class CoursesProvider with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final lastVisitedCourseId = prefs.getInt('lastVisitedCourseId');
     if (lastVisitedCourseId != null) {
-      _lastVisitedCourse = await DatabaseHelper.instance.getCourseById(lastVisitedCourseId);
+      _lastVisitedCourse =
+          await DatabaseHelper.instance.getCourseById(lastVisitedCourseId);
     }
     notifyListeners();
   }
@@ -48,28 +49,109 @@ class CoursesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateCourseCompletionStatus(int courseId, bool isCompleted) async {
-    await DatabaseHelper.instance.markCourseAsCompleted(courseId, isCompleted ? 1 : 0);
-    await loadCoursesFromDatabase(); // Refresh courses from the database
+  List<Course> get ongoingCourses => _courses
+      .where((course) => !course.isCompleted && course.isStart)
+      .toList();
+  List<Course> get completedCourses =>
+      _courses.where((course) => course.isCompleted).toList();
+
+  Course? findCourseById(int courseId) {
+    try {
+      return _courses.firstWhere((course) => course.courseId == courseId);
+    } catch (e) {
+      return null; // If no course matches the ID, return null
+    }
   }
 
-  List<Course> get ongoingCourses => _courses.where((course) => !course.isCompleted && course.isStart).toList();
-  List<Course> get completedCourses => _courses.where((course) => course.isCompleted).toList();
-
-  Future<void> checkAndUpdateCourseCompletion() async {
-    // This method needs to be adapted based on your database schema and how you track module/submodule completion.
-    // The following is a pseudo-implementation assuming each course's completion can be directly determined.
-
+  Module? findModuleById(int moduleId) {
     for (var course in _courses) {
-      // Let's assume a direct query to the database can update the completion status
-      // This would ideally be replaced with actual logic to check module/submodule completion
-      if (!course.isCompleted && course.isStart) {
-        // Dummy condition, replace with actual check
-        bool isCompleted = course.progress >= 1.0; // Assuming 100% progress means completion
-        if (isCompleted) {
-          await updateCourseCompletionStatus(course.courseId, true);
+      for (var module in course.modules) {
+        if (module.moduleId == moduleId) {
+          return module;
         }
       }
     }
+    return null; // Return null if the module isn't found
+  }
+
+  Future<void> updateCourseData(int courseId) async {
+    Course? updatedCourse =
+        await DatabaseHelper.instance.getCourseById(courseId);
+    if (updatedCourse != null) {
+      int index = _courses.indexWhere((course) => course.courseId == courseId);
+      if (index != -1) {
+        _courses[index] = updatedCourse;
+        notifyListeners(); // This will trigger UI components to rebuild with the updated data
+      }
+    }
+  }
+
+  Future<void> updateCourseProgress(int courseId) async {
+    await DatabaseHelper.instance.calculateAndUpdateCourseProgress(courseId);
+    await loadCoursesFromDatabase(); // Re-fetch all courses to get the updated progress
+    notifyListeners(); // Notify all listeners to rebuild their UI with updated data
+  }
+
+  void updateYourModuleListWith(Module updatedModule) {
+    int index = _courses.indexWhere((course) => course.modules
+        .any((module) => module.moduleId == updatedModule.moduleId));
+    if (index != -1) {
+      int moduleIndex = _courses[index]
+          .modules
+          .indexWhere((mod) => mod.moduleId == updatedModule.moduleId);
+      if (moduleIndex != -1) {
+        _courses[index].modules[moduleIndex] = updatedModule;
+      }
+    }
+  }
+
+  Future<void> updateModuleProgress(int moduleId) async {
+    // Step 1: Update progress in the database
+    await DatabaseHelper.instance.calculateAndUpdateModuleProgress(moduleId);
+
+    // Step 2: Fetch the updated module data
+    Module? updatedModule =
+        await DatabaseHelper.instance.getModuleById(moduleId);
+
+    // Step 3: Update the provider's state with the updated module
+    if (updatedModule != null) {
+      int index = _courses.indexWhere((course) => course.modules
+          .any((module) => module.moduleId == updatedModule.moduleId));
+      if (index != -1) {
+        int moduleIndex = _courses[index]
+            .modules
+            .indexWhere((mod) => mod.moduleId == updatedModule.moduleId);
+        if (moduleIndex != -1) {
+          _courses[index].modules[moduleIndex] = updatedModule;
+        }
+      }
+      notifyListeners();
+    }
+  }
+
+
+  Future<void> markFeatureAsCompletedAndUpdateProgress(
+      int courseId, int moduleId, int featureId) async {
+    await DatabaseHelper.instance.markFeatureAsCompleted(featureId);
+    await updateModuleProgress(moduleId);
+    await updateCourseProgress(courseId);
+    await updateCourseData(courseId);
+    notifyListeners();
+  }
+
+  Future<void> fetchFeatures(int submoduleId) async {
+    await DatabaseHelper.instance.fetchFeatures(submoduleId);
+    notifyListeners();
+  }
+
+  Map<int, double> _moduleProgress = {};
+
+  Future<void> fetchAllModulesProgress(int courseId) async {
+    _moduleProgress = await DatabaseHelper.instance.fetchAllModuleProgress(courseId);
+    notifyListeners();
+  }
+
+  double getModuleProgress(int moduleId) {
+    return _moduleProgress[moduleId] ?? 0.0;
   }
 }

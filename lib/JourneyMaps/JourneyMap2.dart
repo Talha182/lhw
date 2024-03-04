@@ -5,7 +5,7 @@
 // import 'package:get/get.dart';
 //
 // import '../CourseTabbar/ModuleScreen/FeaturesListScreen.dart';
-// import '../courses_test/test_model.dart';
+// import '../courses_test/courses_models.dart';
 // import 'JourneyMap.dart';
 // import '../controllers/feature_navigation.dart';
 //
