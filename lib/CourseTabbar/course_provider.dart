@@ -144,6 +144,7 @@ class CoursesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
   Map<int, double> _moduleProgress = {};
 
   Future<void> fetchAllModulesProgress(int courseId) async {

@@ -3,38 +3,29 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/CourseTabbar/courses_tabbar.dart';
-import 'package:lhw/navy.dart';
-import 'package:lhw/notification/notifications_screen.dart';
+import 'package:lhw/services/global_user.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:lhw/services/user_service.dart'; // Adjust the import path as needed
+import 'package:lhw/services/user_service.dart';
 import 'CourseTabbar/course_provider.dart';
 import 'Database/data_manager.dart';
 import 'LoginSignUp/Login.dart';
-import 'package:lhw/Database/database_helper.dart';
+import 'models/user_model.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HttpOverrides.global = MyHttpOverrides();
   bool isLoggedIn = await UserService.isLoggedIn();
   await DataManager.insertCoursesFromJson();
   await DataManager.insertUsersFromJson();
-  final dbHelper = DatabaseHelper.instance;
-  dbHelper.printAllUserData();
-  // dbHelper.printAllCourseData();
+  final User? user = await UserService.loadUser();
+  if (user != null) {
+    GlobalUser.updateUser(user);
+  }
   runApp(MyApp(isLoggedIn: isLoggedIn));
 }
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-}
 
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;

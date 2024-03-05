@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lhw/Reports/Reports_Learning.dart';
+import 'package:lhw/services/global_user.dart';
 import 'package:lhw/services/user_service.dart';
 
 import 'CourseTabbar/courses_tabbar.dart';
@@ -222,6 +223,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ElevatedButton(
               onPressed: () async {
                 await UserService.logout();
+                GlobalUser.clearUser(); // Clears the global user instance
+
                 Navigator.of(context).pop(); // Assuming you go back to the login or home page
               },
               child: Text('Logout'),

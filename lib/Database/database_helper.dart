@@ -22,14 +22,27 @@ class DatabaseHelper extends ChangeNotifier {
   Future<Database> get database async => _database ??= await _initDatabase();
 
   Future<Database> _initDatabase() async {
-    print("Initializing database...");
     String path = join(await getDatabasesPath(), _databaseName);
-    print("Database path: $path");
     return await openDatabase(path,
         version: _databaseVersion, onCreate: _onCreate);
   }
 
   Future _onCreate(Database db, int version) async {
+    await db.execute('''
+  CREATE TABLE user_progress (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    courseId INTEGER,
+    moduleId INTEGER,
+    featureId INTEGER,
+    startTime TEXT,
+    FOREIGN KEY (userId) REFERENCES $usersTable(id),
+    FOREIGN KEY (courseId) REFERENCES $coursesTable(courseId),
+    FOREIGN KEY (moduleId) REFERENCES $modulesTable(moduleId),
+    FOREIGN KEY (featureId) REFERENCES $featuresTable(featureId)
+  )
+''');
+
     await db.execute('''
   CREATE TABLE users (
     id INTEGER PRIMARY KEY,
@@ -137,7 +150,6 @@ class DatabaseHelper extends ChangeNotifier {
       user.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print("User inserted with ID: ${user.id}, Name: ${user.name}");
   }
 
   // Method to fetch a user by email
@@ -158,22 +170,6 @@ class DatabaseHelper extends ChangeNotifier {
     }
   }
 
-  Future<void> printAllUserData() async {
-    final db = await database; // Get a reference to the database
-    final List<Map<String, dynamic>> users =
-        await db.query(usersTable); // Query all rows in the users table
-
-    print('Printing all user data:');
-    for (var userMap in users) {
-      User user = User.fromJson(
-          userMap); // Assuming you have a fromJson method to convert a Map to a User object
-      print(
-          'User ID: ${user.id}, Name: ${user.name}, Email: ${user.email}, Password: ${user.password}');
-      // Print other fields as needed
-    }
-  }
-
-  // Method to fetch a user by email
   Future<User?> getUserByEmail(String email) async {
     final db =
         await database;
@@ -186,11 +182,60 @@ class DatabaseHelper extends ChangeNotifier {
 
     if (maps.isNotEmpty) {
       return User.fromJson(maps
-          .first); 
+          .first);
     } else {
       return null; // No user found with the given email
     }
   }
+  Future<void> updateUserProgress(int userId, int courseId, int moduleId, int featureId, String startTime) async {
+    final db = await database;
+    print('Updating user progress for userId: $userId, courseId: $courseId, moduleId: $moduleId, featureId: $featureId, startTime: $startTime');
+    final existingProgress = await db.query(
+      'user_progress',
+      where: 'userId = ?',
+      whereArgs: [userId],
+    );
+
+    Map<String, dynamic> progressData = {
+      'userId': userId,
+      'courseId': courseId,
+      'moduleId': moduleId,
+      'featureId': featureId,
+      'startTime': startTime,
+    };
+
+    if (existingProgress.isNotEmpty) {
+      // Update existing progress
+      await db.update(
+        'user_progress',
+        progressData,
+        where: 'userId = ?',
+        whereArgs: [userId],
+      );
+      print('User progress updated successfully for userId: $userId');
+      print("Updated user progress: $progressData");
+    } else {
+      // Insert new progress
+      await db.insert('user_progress', progressData);
+      print("Inserted new user progress: $progressData");
+    }
+  }
+
+  Future<Map<String, dynamic>?> fetchUserLastProgress(int userId) async {
+    final db = await database;
+    final result = await db.query(
+      'user_progress',
+      where: 'userId = ?',
+      whereArgs: [userId],
+      limit: 1,
+    );
+
+    if (result.isNotEmpty) {
+      return result.first;
+    }
+    return null;
+  }
+
 
   Future<void> insertCourse(Course course) async {
     final db = await database;
@@ -199,7 +244,6 @@ class DatabaseHelper extends ChangeNotifier {
       course.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print("Course inserted with ID: $courseId, Title: ${course.title}");
 
     for (Module module in course.modules) {
       await insertModule(module, courseId);
@@ -213,7 +257,6 @@ class DatabaseHelper extends ChangeNotifier {
       module.toMapWithCourseId(courseId),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print("Module inserted with ID: $moduleId, Title: ${module.title}");
 
     // Insert associated submodules
     for (Submodule submodule in module.submodules) {
@@ -241,8 +284,6 @@ class DatabaseHelper extends ChangeNotifier {
       submodule.toMapWithModuleId(moduleId), // Adjusted to use the new method
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print(
-        "Submodule inserted with ID: $submoduleId, Title: ${submodule.title}");
 
     // Insert associated features
     for (Feature feature in submodule.features) {
@@ -294,64 +335,22 @@ class DatabaseHelper extends ChangeNotifier {
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print("Feature inserted: ${feature.title}");
   }
 
-  Future<void> printAllCourseData() async {
-    final db = await database;
-
-    // Fetch all courses
-    List<Map<String, dynamic>> courseMaps = await db.query(coursesTable);
-    for (var courseMap in courseMaps) {
-      Course course = Course.fromMap(courseMap);
-      print('Course: ${course.title}');
-
-      // Fetch modules for this course
-      List<Map<String, dynamic>> moduleMaps = await db.query(
-        modulesTable,
-        where: 'courseId = ?',
-        whereArgs: [course.courseId],
-      );
-      for (var moduleMap in moduleMaps) {
-        Module module = Module.fromMap(moduleMap);
-        print('\tModule: ${module.title}');
-
-        // Fetch submodules for this module
-        List<Map<String, dynamic>> submoduleMaps = await db.query(
-          submodulesTable,
-          where: 'moduleId = ?',
-          whereArgs: [module.moduleId],
-        );
-        for (var submoduleMap in submoduleMaps) {
-          Submodule submodule = Submodule.fromMap(submoduleMap);
-          print('\t\tSubmodule: ${submodule.title}');
-
-          // Directly parse features from submodule's features column (JSON string)
-          List<Feature> features =
-              (jsonDecode(submoduleMap['features']) as List)
-                  .map((f) => Feature.fromMap(f))
-                  .toList();
-          for (var feature in features) {
-            print('\t\t\tFeature: ${feature.title}');
-          }
-        }
-      }
-    }
-  }
 
   Future<bool> toggleFeatureCompletion(int featureId) async {
-    final db = await database; // Assuming this gets your Database instance
+    final db = await database;
     final feature = await db.query(
-      featuresTable, // Use the actual name of your features table
+      featuresTable,
       where: 'featureId = ?',
       whereArgs: [featureId],
     );
 
     if (feature.isNotEmpty) {
       final isCompleted =
-          feature.first['isCompleted'] == 1 ? 0 : 1; // Toggle status
+          feature.first['isCompleted'] == 1 ? 0 : 1;
       await db.update(
-        featuresTable, // Use the actual name of your features table
+        featuresTable,
         {'isCompleted': isCompleted},
         where: 'featureId = ?',
         whereArgs: [featureId],
@@ -385,7 +384,6 @@ class DatabaseHelper extends ChangeNotifier {
     );
 
     if (maps.isNotEmpty) {
-      // Assuming you have a fromMap method in Module class that creates an instance from a Map
       return Module.fromMap(maps.first);
     } else {
       return null;
@@ -400,7 +398,7 @@ class DatabaseHelper extends ChangeNotifier {
       whereArgs: [courseId],
     );
     if (maps.isNotEmpty) {
-      return Course.fromMap(maps.first); // Assuming a fromMap constructor
+      return Course.fromMap(maps.first);
     }
     return null;
   }
@@ -417,7 +415,6 @@ class DatabaseHelper extends ChangeNotifier {
   Future<List<Course>> fetchCourses() async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(coursesTable);
-    print('Total courses found in the database: ${maps.length}');
     return List.generate(maps.length, (i) => Course.fromMap(maps[i]));
   }
 
@@ -466,7 +463,6 @@ class DatabaseHelper extends ChangeNotifier {
         whereArgs: [moduleId],
       );
 
-      // Iterate over all submodules to count features
       for (var submoduleMap in submoduleMaps) {
         int submoduleId = submoduleMap['submoduleId'];
         final List<Map<String, dynamic>> featureMaps = await db.query(
@@ -481,13 +477,11 @@ class DatabaseHelper extends ChangeNotifier {
       }
     }
 
-    // Compute the course progress
     double progress = 0;
     if (totalFeatures > 0) {
       progress = completedFeatures / totalFeatures;
     }
 
-    // Update the course progress in the database
     await db.update(
       coursesTable,
       {'progress': progress},
@@ -495,9 +489,6 @@ class DatabaseHelper extends ChangeNotifier {
       whereArgs: [courseId],
     );
 
-    print("Course progress updated: $progress");
-    print("Total features: $totalFeatures");
-    print("Completed features: $completedFeatures");
     notifyListeners();
   }
 
@@ -514,7 +505,6 @@ class DatabaseHelper extends ChangeNotifier {
     int totalFeatures = 0;
     int completedFeatures = 0;
 
-    // Iterate over all submodules to count features
     for (var submoduleMap in submoduleMaps) {
       int submoduleId = submoduleMap['submoduleId'];
       final List<Map<String, dynamic>> featureMaps = await db.query(
@@ -534,7 +524,6 @@ class DatabaseHelper extends ChangeNotifier {
       progress = completedFeatures / totalFeatures;
     }
 
-    // Update the module progress in the database
     await db.update(
       modulesTable,
       {'progressValue': progress},
@@ -542,9 +531,6 @@ class DatabaseHelper extends ChangeNotifier {
       whereArgs: [moduleId],
     );
 
-    print("Module progress updated: $progress for moduleId: $moduleId");
-    print("Total features in module: $totalFeatures");
-    print("Completed features in module: $completedFeatures");
     notifyListeners();
   }
 }

@@ -43,4 +43,5 @@ class UserService {
     await prefs.remove(_userKey);
     await prefs.setBool('isLoggedIn', false);
   }
+
 }

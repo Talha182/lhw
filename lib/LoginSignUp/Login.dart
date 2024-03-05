@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Database/database_helper.dart';
 import '../models/user_model.dart';
+import '../services/global_user.dart';
 import '../services/user_service.dart';
 import 'Forgot_Password.dart';
 import 'SignUp.dart';
@@ -36,6 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
     final User? user = await DatabaseHelper.instance.loginUser(email, password);
 
     if (user != null) {
+      await UserService.saveUser(user); // Saves user to SharedPreferences and marks as logged in
+      GlobalUser.updateUser(user); // Updates the global user instance
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLoggedIn', true);
 

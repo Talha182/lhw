@@ -12,6 +12,8 @@ import '../JourneyMaps/JourneyMap.dart';
 import '../JourneyMaps/JourneyMap2.dart';
 import '../Mobile_Module & Submodule/module_dashboard_card.dart';
 import '../course_models/courses_models.dart';
+import '../models/user_model.dart';
+import '../services/global_user.dart';
 
 class ModuleScreen extends StatefulWidget {
   final Course course;
@@ -35,11 +37,17 @@ class _ModuleScreenState extends State<ModuleScreen> {
         Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
     return Consumer<CoursesProvider>(builder: (context, provider, child) {
       final course = provider.findCourseById(widget.course.courseId);
+
       if (course == null) {
         return const Scaffold(body: Center(child: Text('Course not found')));
       }
       provider.fetchAllModulesProgress(course.courseId);
 
+
+      // User? currentUser = GlobalUser.getCurrentUser;
+      // if (currentUser != null) {
+      //   print(currentUser.name);
+      // }
 
       // Debugging: Print course progress
       return Scaffold(

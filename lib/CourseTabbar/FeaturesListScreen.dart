@@ -6,6 +6,7 @@ import 'package:lhw/BranchingScenarios/ImageBranchingScenario.dart';
 import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
 import 'package:lhw/ComicStrip/comic_strip.dart';
 import 'package:lhw/Infographics/infographics.dart';
+import 'package:lhw/services/global_user.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ import '../Presentation/presentation_model.dart';
 import '../course_models/courses_models.dart';
 import '../models/flash_cards_screen_model.dart';
 import '../models/image_hotspot_model.dart';
+import '../models/user_model.dart';
 import 'course_provider.dart';
 
 class FeaturesListScreen extends StatefulWidget {
@@ -45,16 +47,15 @@ class FeaturesListScreen extends StatefulWidget {
   @override
   State<FeaturesListScreen> createState() => _FeaturesListScreenState();
 }
+
 class _FeaturesListScreenState extends State<FeaturesListScreen> {
-
-
   @override
   void initState() {
     super.initState();
     _loadFeatures();
   }
-  List<Feature> _features = []; // Ensure this declaration is at the class level
-  // If your features could change while on a different screen and you need to refresh them when coming back
+
+  List<Feature> _features = [];
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -62,22 +63,39 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
   }
 
   Future<void> _loadFeatures() async {
-    // Assuming `widget.submodule.id` is your submodule ID you want to fetch features for
-    List<Feature> featuresLoaded = await DatabaseHelper.instance.fetchFeatures(widget.submodule.submoduleId);
+    List<Feature> featuresLoaded = await DatabaseHelper.instance
+        .fetchFeatures(widget.submodule.submoduleId);
     setState(() {
       _features = featuresLoaded;
     });
   }
+
   void toggleFeatureCompletion(Feature feature) async {
-    bool success = await DatabaseHelper.instance.toggleFeatureCompletion(feature.featureId);
+    bool success = await DatabaseHelper.instance
+        .toggleFeatureCompletion(feature.featureId);
     if (success) {
+      User? currentUser = GlobalUser.getCurrentUser;
+      int courseId = widget.courseId;
+      int moduleId = widget.moduleId;
+      String startTime = DateTime.now().toIso8601String();
+
+      await DatabaseHelper.instance.updateUserProgress(
+          currentUser!.id, courseId, moduleId, feature.featureId, startTime);
+      print(
+          'Feature completion toggled successfully for featureId: ${feature.featureId}');
+
       setState(() {
         feature.isCompleted.value = !feature.isCompleted.value;
       });
+    } else {
+      print(
+          'Failed to toggle feature completion for featureId: ${feature.featureId}');
     }
   }
+
   @override
   Widget build(BuildContext context) {
+    User? currentUser = GlobalUser.getCurrentUser;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -239,15 +257,18 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: _features.length, // Use _features list to determine item count
+                  itemCount: _features
+                      .length, // Use _features list to determine item count
                   itemBuilder: (context, index) {
-                    final feature = _features[index]; // Access feature by index from _features list
+                    final feature = _features[
+                        index]; // Access feature by index from _features list
                     return ValueListenableBuilder<bool>(
                         valueListenable: feature.isCompleted,
                         builder: (context, isCompleted, _) {
                           return ListTile(
                             leading: Icon(
-                              feature.icon, // Conditional icon based on isCompleted
+                              feature
+                                  .icon, // Conditional icon based on isCompleted
                               color: isCompleted ? Colors.green : Colors.grey,
                             ),
                             title: Text(
@@ -267,118 +288,135 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                 color: Colors.grey,
                               ),
                             ),
-                        onTap: () async {
-                          switch (feature.featureType) {
-                            case FeatureType.presentation:
-                              final presentationModel =
-                                  PresentationModel.fromJson({
-                                ...feature.data as Map<String, dynamic>,
-                                'featureId': feature.featureId,
-                              });
-                              final result = await Get.to(() =>
-                                  PresentationScreen(
-                                      presentationModel: presentationModel));
+                            onTap: () async {
+                              User? currentUser = GlobalUser.getCurrentUser;
+                              String startTime =
+                                  DateTime.now().toIso8601String();
+                              await DatabaseHelper.instance.updateUserProgress(
+                                currentUser!.id,
+                                widget.courseId,
+                                widget.moduleId,
+                                feature.featureId,
+                                startTime,
+                              );
 
-                              if (result == true) {
-                                toggleFeatureCompletion(feature);
+                              switch (feature.featureType) {
+                                case FeatureType.presentation:
+                                  final presentationModel =
+                                      PresentationModel.fromJson({
+                                    ...feature.data as Map<String, dynamic>,
+                                    'featureId': feature.featureId,
+                                  });
+                                  final result = await Get.to(() =>
+                                      PresentationScreen(
+                                          presentationModel:
+                                              presentationModel));
 
-                                Provider.of<CoursesProvider>(context,
-                                    listen: false)
-                                    .markFeatureAsCompletedAndUpdateProgress(widget.courseId,widget.moduleId,feature.featureId);
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
 
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
+                                  }
+                                  break;
+                                case FeatureType.comicStrip:
+                                  List<dynamic> comicStripData = feature
+                                      .data['imagePairs'] as List<dynamic>;
+                                  List<ComicStripModel> comicStripsModel =
+                                      comicStripData
+                                          .map((item) => ComicStripModel(
+                                                  title: feature.data['title'],
+                                                  imagePairs: [
+                                                    ImagePair.fromJson(item)
+                                                  ]))
+                                          .toList();
+
+                                  final result = await Get.to(() => ComicStrip(
+                                        comicStripsModel: comicStripsModel,
+                                        featureId: feature.featureId,
+                                      ));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+                                    await DatabaseHelper.instance
+                                        .markFeatureAsCompleted(
+                                            feature.featureId);
+                                    // await DatabaseHelper.instance.calculateAndUpdateModuleProgress(widget.moduleId);
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
+                                  }
+                                  break;
+                                case FeatureType.flashCard:
+                                  final flashCardModel =
+                                      FlashCardScreenModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+
+                                  await Get.to(() => FlashCardsScreen(
+                                      flashCardModel: flashCardModel));
+                                  break;
+                                case FeatureType.infographics:
+                                  final infographicsModel =
+                                      InfographicsModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+                                  await Get.to(() => InfographicScreen(
+                                      infographicsModel: infographicsModel));
+                                  break;
+                                case FeatureType.interactiveAnimationVideo:
+                                  final interactiveAnimationVideoModel =
+                                      InteractiveAnimationVideoModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+                                  await Get.to(() => InteractiveAnimationVideo(
+                                        interactiveAnimationVideoModel:
+                                            interactiveAnimationVideoModel,
+                                      ));
+                                  break;
+                                case FeatureType.imageHotspot:
+                                  final imageHotspotModel =
+                                      ImageHotspotModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+                                  await Get.to(() => ImageHotspot(
+                                        imageHotspotModel: imageHotspotModel,
+                                      ));
+                                  break;
+                                case FeatureType.imageBranchingScenario:
+                                  final imageBranchingScenarioModel =
+                                      ImageBranchingScenarioModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+                                  await Get.to(() => ImageBranchingScenario(
+                                        imageBranchingScenarioModel:
+                                            imageBranchingScenarioModel,
+                                      ));
+                                  break;
+                                case FeatureType.textBranchingScenario:
+                                  final imageBranchingScenarioModel =
+                                      TextBranchingScenarioModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+                                  await Get.to(() => TextBranchingScenario(
+                                        textBranchingScenarioModel:
+                                            imageBranchingScenarioModel,
+                                      ));
+                                  break;
+                                case FeatureType.video:
+                                // TODO: Handle this case.
+                                case FeatureType.quiz:
+                                // TODO: Handle this case.
+                                case FeatureType.interactiveImage:
+                                // TODO: Handle this case.
+                                case FeatureType.animationVideo:
+                                // TODO: Handle this case.
+                                case FeatureType.unknown:
+                                // TODO: Handle this case.
                               }
-                              break;
-                            case FeatureType.comicStrip:
-                              List<dynamic> comicStripData =
-                                  feature.data['imagePairs'] as List<dynamic>;
-                              List<ComicStripModel> comicStripsModel =
-                                  comicStripData
-                                      .map((item) => ComicStripModel(
-                                              title: feature.data['title'],
-                                              imagePairs: [
-                                                ImagePair.fromJson(item)
-                                              ]))
-                                      .toList();
-
-                              final result = await Get.to(() => ComicStrip(
-                                    comicStripsModel: comicStripsModel,
-                                    featureId: feature.featureId,
-                                  ));
-                              if (result == true) {
-                                toggleFeatureCompletion(feature);
-                                await DatabaseHelper.instance
-                                    .markFeatureAsCompleted(feature.featureId);
-                                // await DatabaseHelper.instance.calculateAndUpdateModuleProgress(widget.moduleId);
-                                Provider.of<CoursesProvider>(context,
-                                    listen: false)
-                                    .markFeatureAsCompletedAndUpdateProgress(widget.courseId,widget.moduleId,feature.featureId);
-
-                              }
-                              break;
-                            case FeatureType.flashCard:
-                              final flashCardModel =
-                                  FlashCardScreenModel.fromJson(
-                                      feature.data as Map<String, dynamic>);
-
-                              await Get.to(() => FlashCardsScreen(
-                                  flashCardModel: flashCardModel));
-                              break;
-                            case FeatureType.infographics:
-                              final infographicsModel =
-                                  InfographicsModel.fromJson(
-                                      feature.data as Map<String, dynamic>);
-                              await Get.to(() => InfographicScreen(
-                                  infographicsModel: infographicsModel));
-                              break;
-                            case FeatureType.interactiveAnimationVideo:
-                              final interactiveAnimationVideoModel =
-                                  InteractiveAnimationVideoModel.fromJson(
-                                      feature.data as Map<String, dynamic>);
-                              await Get.to(() => InteractiveAnimationVideo(
-                                    interactiveAnimationVideoModel:
-                                        interactiveAnimationVideoModel,
-                                  ));
-                              break;
-                            case FeatureType.imageHotspot:
-                              final imageHotspotModel =
-                                  ImageHotspotModel.fromJson(
-                                      feature.data as Map<String, dynamic>);
-                              await Get.to(() => ImageHotspot(
-                                    imageHotspotModel: imageHotspotModel,
-                                  ));
-                              break;
-                            case FeatureType.imageBranchingScenario:
-                              final imageBranchingScenarioModel =
-                                  ImageBranchingScenarioModel.fromJson(
-                                      feature.data as Map<String, dynamic>);
-                              await Get.to(() => ImageBranchingScenario(
-                                    imageBranchingScenarioModel:
-                                        imageBranchingScenarioModel,
-                                  ));
-                              break;
-                            case FeatureType.textBranchingScenario:
-                              final imageBranchingScenarioModel =
-                                  TextBranchingScenarioModel.fromJson(
-                                      feature.data as Map<String, dynamic>);
-                              await Get.to(() => TextBranchingScenario(
-                                    textBranchingScenarioModel:
-                                        imageBranchingScenarioModel,
-                                  ));
-                              break;
-                            case FeatureType.video:
-                            // TODO: Handle this case.
-                            case FeatureType.quiz:
-                            // TODO: Handle this case.
-                            case FeatureType.interactiveImage:
-                            // TODO: Handle this case.
-                            case FeatureType.animationVideo:
-                            // TODO: Handle this case.
-                            case FeatureType.unknown:
-                            // TODO: Handle this case.
-                          }
-                        },
-                      );
-                    });
+                            },
+                          );
+                        });
                   },
                 ).animate().fade(duration: 400.ms),
               ),

@@ -9,7 +9,7 @@ import 'database_helper.dart';
 class DataManager {
   static Future<void> insertCoursesFromJson() async {
     final String response =
-    await rootBundle.loadString('assets/data/courses.json');
+        await rootBundle.loadString('assets/data/courses.json');
     final data = json.decode(response);
     final coursesList = data["courses"] as List;
 
@@ -31,20 +31,18 @@ class DataManager {
         modules: modules,
       );
       await DatabaseHelper.instance.insertCourse(course);
-      print('Inserted course: ${course.title}');
     }
   }
 
   static Future<void> insertUsersFromJson() async {
-    final String response = await rootBundle.loadString('assets/data/usersData.json');
+    final String response =
+        await rootBundle.loadString('assets/data/usersData.json');
     final data = json.decode(response);
     final usersList = data["usersData"] as List;
 
     for (var userJson in usersList) {
       User user = User.fromJson(userJson);
       await DatabaseHelper.instance.insertUser(user);
-      print('Inserted user: ${user.name}');
     }
   }
-
 }

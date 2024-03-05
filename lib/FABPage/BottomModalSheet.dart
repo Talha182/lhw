@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lhw/Profile/Profile.dart';
+import 'package:lhw/Profile/profile_screen.dart';
 import 'package:lhw/Reports/Help.dart';
 
 class CustomBottomModalSheet extends StatelessWidget {
