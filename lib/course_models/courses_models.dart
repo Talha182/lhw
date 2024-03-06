@@ -299,7 +299,7 @@ class Submodule {
   }
 }
 
-class Feature extends ChangeNotifier{
+class Feature extends ChangeNotifier {
   final int featureId;
   final String title;
   final FeatureType featureType;
@@ -316,23 +316,24 @@ class Feature extends ChangeNotifier{
     required this.submoduleId,
     required this.duration,
     required this.data,
-  })  : this.isCompleted = ValueNotifier(isCompleted);
+  }) : this.isCompleted = ValueNotifier(isCompleted);
 
   void toggleCompletion() async {
     isCompleted.value = !isCompleted.value;
     // Make sure to update the database or any persistent storage here
     await DatabaseHelper.instance.markFeatureAsCompleted(featureId);
   }
+
   void toggleFeatureCompletion(Feature feature) async {
     // Assuming you have a method to update the database
-    bool updateSuccessful = await DatabaseHelper.instance.toggleFeatureCompletion(feature.featureId);
+    bool updateSuccessful = await DatabaseHelper.instance
+        .toggleFeatureCompletion(feature.featureId);
 
     if (updateSuccessful) {
       feature.toggleCompletion();
       notifyListeners(); // If using a provider/model that extends ChangeNotifier
     }
   }
-
 
   static FeatureType _featureTypeFromString(String typeString) {
     switch (typeString) {
@@ -346,6 +347,8 @@ class Feature extends ChangeNotifier{
         return FeatureType.infographics;
       case "interactiveAnimationVideo": // Add this case
         return FeatureType.interactiveAnimationVideo;
+      case "interactiveImage":
+        return FeatureType.interactiveImage;
       case "imageHotspot": // Add this case
         return FeatureType.imageHotspot;
       case "imageBranchingScenario": // Add this case
@@ -371,21 +374,17 @@ class Feature extends ChangeNotifier{
 
   static Feature fromMap(Map<String, dynamic> map) {
     var dataField = map['data'];
-    dynamic decodedData = dataField;
-
-    // Check if dataField is a String and contains JSON-encoded data
-    if (dataField is String) {
-      decodedData =
-          jsonDecode(dataField); // Decode if it's a JSON-encoded string
-    }
+    dynamic decodedData =
+        dataField is String ? jsonDecode(dataField) : dataField;
     return Feature(
-      featureId: map['featureId'],
-      title: map['title'],
-      featureType: _featureTypeFromString(map['featureType']),
+      featureId: map['featureId'] ?? 0,
+      title: map['title'] ?? 'Unknown Feature',
+      featureType:
+          _featureTypeFromString(map['featureType']) ?? FeatureType.unknown,
       isCompleted: map['isCompleted'] == 1,
-      submoduleId: map['submoduleId'],
-      duration: map['duration'],
-      data: decodedData, // Use the potentially decoded data
+      submoduleId: map['submoduleId'] ?? 0,
+      duration: map['duration'] ?? '0min',
+      data: decodedData,
     );
   }
 
@@ -423,33 +422,33 @@ class Feature extends ChangeNotifier{
 
   IconData get icon {
     if (isCompleted.value) {
-      return Icons.check_circle; // Green tick icon for completed features
+      return Icons.check_circle;
     } else {
       switch (featureType) {
         case FeatureType.video:
-          return Icons.play_arrow; // Example icon for video
+          return Icons.play_arrow;
         case FeatureType.presentation:
-          return Icons.slideshow; // Example icon for presentation
+          return Icons.slideshow;
         case FeatureType.quiz:
-          return Icons.question_answer; // Example icon for quiz
+          return Icons.question_answer;
         case FeatureType.comicStrip:
-          return Icons.image; // Example icon for comic strips
+          return Icons.image;
         case FeatureType.flashCard:
-          return Icons.flash_on; // Example icon for flash cards
+          return Icons.flash_on;
         case FeatureType.infographics:
-          return Icons.insert_chart; // Example icon for infographics
+          return Icons.insert_chart;
         case FeatureType.interactiveAnimationVideo:
-          return Icons.videocam; // Example icon for interactive animation video
+          return Icons.videocam;
         case FeatureType.interactiveImage:
-          return Icons.image_aspect_ratio; // Example icon for interactive image
+          return Icons.image_aspect_ratio;
         case FeatureType.imageHotspot:
-          return Icons.image; // Example icon for hotspot image
+          return Icons.image;
         case FeatureType.textBranchingScenario:
-          return Icons.text_fields; // Example icon for text branching scenario
+          return Icons.text_fields;
         case FeatureType.imageBranchingScenario:
-          return Icons.image; // Example icon for image branching scenario
+          return Icons.image;
         default:
-          return Icons.help; // Default icon
+          return Icons.help;
       }
     }
   }

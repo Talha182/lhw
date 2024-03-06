@@ -6,6 +6,8 @@ import 'package:lhw/BranchingScenarios/ImageBranchingScenario.dart';
 import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
 import 'package:lhw/ComicStrip/comic_strip.dart';
 import 'package:lhw/Infographics/infographics.dart';
+import 'package:lhw/Test/Features/InteractiveImage.dart';
+import 'package:lhw/models/interactive_images_model.dart';
 import 'package:lhw/services/global_user.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -358,24 +360,91 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                       FlashCardScreenModel.fromJson(
                                           feature.data as Map<String, dynamic>);
 
-                                  await Get.to(() => FlashCardsScreen(
-                                      flashCardModel: flashCardModel));
+                                  final result = await Get.to(() =>
+                                      FlashCardsScreen(
+                                          flashCardModel: flashCardModel));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+                                    await DatabaseHelper.instance
+                                        .markFeatureAsCompleted(
+                                            feature.featureId);
+                                    // await DatabaseHelper.instance.calculateAndUpdateModuleProgress(widget.moduleId);
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
+                                  }
                                   break;
+                                case FeatureType.interactiveImage:
+                                  final interactiveImageModel =
+                                      (feature.data['interactiveImageModel']
+                                              as List)
+                                          .map((e) =>
+                                              InteractiveImageModel.fromJson(e))
+                                          .toList();
+
+                                  final result =
+                                      await Get.to(() => InteractiveImages(
+                                            imagesInfo: interactiveImageModel,
+                                          ));
+
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+                                    await DatabaseHelper.instance
+                                        .markFeatureAsCompleted(
+                                            feature.featureId);
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
+                                  }
+                                  break;
+
                                 case FeatureType.infographics:
                                   final infographicsModel =
                                       InfographicsModel.fromJson(
                                           feature.data as Map<String, dynamic>);
-                                  await Get.to(() => InfographicScreen(
-                                      infographicsModel: infographicsModel));
+                                  final result = await Get.to(() =>
+                                      InfographicScreen(
+                                          infographicsModel:
+                                              infographicsModel));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+                                    await DatabaseHelper.instance
+                                        .markFeatureAsCompleted(
+                                            feature.featureId);
+                                    // await DatabaseHelper.instance.calculateAndUpdateModuleProgress(widget.moduleId);
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
+                                  }
                                   break;
                                 case FeatureType.interactiveAnimationVideo:
                                   final interactiveAnimationVideoModel =
                                       InteractiveAnimationVideoModel.fromJson(
                                           feature.data as Map<String, dynamic>);
-                                  await Get.to(() => InteractiveAnimationVideo(
-                                        interactiveAnimationVideoModel:
-                                            interactiveAnimationVideoModel,
-                                      ));
+                                  final result = await Get.to(
+                                      () => InteractiveAnimationVideo(
+                                            interactiveAnimationVideoModel:
+                                                interactiveAnimationVideoModel,
+                                          ));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
+                                  }
                                   break;
                                 case FeatureType.imageHotspot:
                                   final imageHotspotModel =

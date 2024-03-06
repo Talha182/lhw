@@ -299,21 +299,21 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 side: const BorderSide(color: Colors.white, width: 2),
-                backgroundColor:
-                    const Color(0xffFE8BD1) ,
+                backgroundColor: const Color(0xffFE8BD1),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
                 minimumSize: const Size(150, 37),
               ),
-              onPressed: _isLastCardFlipped ? (){
-                if (widget.onCompleted != null) {
-                  widget.onCompleted!();
-                }
-                Get.back();
-              } : null,
-
+              onPressed: _isLastCardFlipped
+                  ? () {
+                      if (widget.onCompleted != null) {
+                        widget.onCompleted!();
+                      }
+                      Get.back(result: true);
+                    }
+                  : null,
               child: const Text(
                 'جاری رہے',
                 style: TextStyle(

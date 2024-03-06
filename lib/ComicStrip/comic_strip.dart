@@ -15,7 +15,11 @@ class ComicStrip extends StatefulWidget {
   final VoidCallback? onCompleted; // Optional callback
   final int featureId;
 
-  const ComicStrip({Key? key, required this.comicStripsModel, this.onCompleted,required this.featureId})
+  const ComicStrip(
+      {Key? key,
+      required this.comicStripsModel,
+      this.onCompleted,
+      required this.featureId})
       : super(key: key);
 
   @override
@@ -209,6 +213,9 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                       options: CarouselOptions(
                         viewportFraction: 1,
                         height: double.infinity,
+                        enableInfiniteScroll:
+                            false, // Disable infinite scrolling
+
                         onPageChanged: (index, reason) {
                           setState(() {
                             _current = index;
@@ -269,16 +276,17 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                     minimumSize: const Size(150, 37),
                   ),
                   onPressed: _current == _carouselItems.length - 1
-                      ? () async{
-                          // This callback will only be executed if the user is on the last slide
+                      ? () async {
+                          // Logic for handling completion when on the last slide.
                           if (widget.onCompleted != null) {
-                            await DatabaseHelper.instance.markFeatureAsCompleted(widget.featureId);
-
-                            widget.onCompleted?.call(); // Call the callback to mark completion
+                            await DatabaseHelper.instance
+                                .markFeatureAsCompleted(widget.featureId);
+                            widget.onCompleted
+                                ?.call(); // Optionally call the completion callback if provided
                           }
                           Get.back(result: true);
                         }
-                      : null, // Disable the button until the last slide is reached
+                      : null, // This button is disabled unless you're on the last slide
                   child: const Text(
                     'جاری رہے',
                     style: TextStyle(
@@ -440,7 +448,8 @@ class ComicStripModel {
 
   factory ComicStripModel.fromJson(Map<String, dynamic> json) {
     var imagePairsList = json['imagePairs'] as List;
-    List<ImagePair> imagePairs = imagePairsList.map((i) => ImagePair.fromJson(i)).toList();
+    List<ImagePair> imagePairs =
+        imagePairsList.map((i) => ImagePair.fromJson(i)).toList();
     return ComicStripModel(
       title: json['title'],
       imagePairs: imagePairs,
@@ -462,8 +471,7 @@ class ImagePair {
   }
 }
 
-
-  class FullScreenImageView extends StatelessWidget {
+class FullScreenImageView extends StatelessWidget {
   final String imagePath;
 
   const FullScreenImageView({Key? key, required this.imagePath})

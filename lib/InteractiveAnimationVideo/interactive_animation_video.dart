@@ -1,5 +1,3 @@
-// ignore_for_file: unused_field
-
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -7,14 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:video_player/video_player.dart';
-import '../Quiz/MCQ 4.dart';
 import '../controllers/BookmarkController.dart';
 import '../FlashCard/flash_cards_screen.dart';
-import '../controllers/feature_navigation.dart';
 
 class InteractiveAnimationVideo extends StatefulWidget {
   final InteractiveAnimationVideoModel interactiveAnimationVideoModel;
-  final VoidCallback? onCompleted; // Optional callback
+  final VoidCallback? onCompleted;
 
   const InteractiveAnimationVideo(
       {super.key,
@@ -71,16 +67,6 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
     _cloudPumpAnimationController.repeat(reverse: true);
   }
 
-  @override
-  void dispose() {
-    _videoController.removeListener(_videoListener);
-    _videoController.dispose();
-    flickManager.dispose();
-    _cloudPumpAnimationController.dispose();
-
-    super.dispose();
-  }
-
   void _videoListener() {
     Duration position = _videoController.value.position;
     for (int i = 0;
@@ -103,14 +89,13 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
     const Color(0xffF2F2F2)
   ];
 
-// Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
     if (isAnswered) return;
     setState(() {
       this.selectedAnswer = selectedAnswer;
       isAnswered = true;
       isSelected = true;
-      selectedOptionIndex = index; // Add this line
+      selectedOptionIndex = index;
       if (selectedAnswer ==
           widget.interactiveAnimationVideoModel.questions[questionIndex]
               .correctAnswer) {
@@ -141,10 +126,9 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   bool isDialogCurrentlyShown = false;
 
   void showDialogWithQuestionOptions(int questionIndex) {
-    if (isDialogCurrentlyShown) {
-      return; // Return early if dialog is currently shown
+    if (isDialogCurrentlyShown || isAnswered) {
+      return;
     }
-
     isDialogCurrentlyShown = true;
     showAnimatedDialog(
       curve: Curves.fastOutSlowIn,
@@ -197,6 +181,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                                     .questions[questionIndex].correctAnswer,
                             isSelected: isSelected,
                             isOptionSelected: index == selectedOptionIndex,
+                            isAnswered: isAnswered,
                           ),
                         ),
                       ),
@@ -248,10 +233,17 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   }
 
   void _handleAnswer(String selectedAnswer, int questionIndex) {
-    // Handle the selected answer here
-    // You can use setState to update UI based on user's selection
-    // Once answered, resume video playback
     _videoController.play();
+  }
+
+  @override
+  void dispose() {
+    _videoController.removeListener(_videoListener);
+    _videoController.dispose();
+    flickManager.dispose();
+    _cloudPumpAnimationController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -385,14 +377,14 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                   ),
                   minimumSize: const Size(150, 37),
                 ),
-                onPressed: (_videoController.value.position.inSeconds >= _videoController.value.duration.inSeconds - 1)
-                    ? () {
-                  // Call the callback to mark completion or navigate back
-                  widget.onCompleted?.call();
-                  Get.back();
-                }
+                onPressed: (_videoController.value.position.inSeconds >=
+                        _videoController.value.duration.inSeconds - 1)
+                    ? () async {
+                        // Call the callback to mark completion or navigate back
+                        widget.onCompleted?.call();
+                        Get.back(result: true);
+                      }
                     : null, // Button is disabled until the video finishes
-
 
                 child: const Text(
                   'جاری رہے',
@@ -464,6 +456,76 @@ class Question {
       correctExplanation: json['correctExplanation'],
       incorrectExplanation: json['incorrectExplanation'],
       // imagePaths: List<String>.from(json['imagePaths']),
+    );
+  }
+}
+
+class QuizCard extends StatelessWidget {
+  final String text;
+  final Function ontap;
+  final Color color;
+  final bool isCorrect;
+  final bool isSelected;
+  final bool isAnswered;
+  final bool isOptionSelected; // Define this parameter
+
+  const QuizCard({
+    Key? key,
+    required this.text,
+    required this.ontap,
+    this.color = const Color(0xffF2F2F2),
+    this.isCorrect = false,
+    this.isSelected = false,
+    this.isAnswered = false,
+    this.isOptionSelected = false, // Initialize this parameter
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: isAnswered ? null : () => ontap(),
+      child: Container(
+        width: 380,
+        height: 80,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black87.withOpacity(0.1)),
+          borderRadius: BorderRadius.circular(10),
+          color: color,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              children: [
+                Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black87.withOpacity(0.2)),
+                    shape: BoxShape.circle,
+                    color: isOptionSelected // Use the parameter here
+                        ? (isCorrect ? Colors.green : Colors.red)
+                        : Colors.transparent,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: Color(0xff7A7D84),
+                      fontFamily: 'UrduType',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

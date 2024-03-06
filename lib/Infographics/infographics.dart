@@ -6,8 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:pinch_zoom/pinch_zoom.dart';
-import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
 class InfographicScreen extends StatefulWidget {
   final InfographicsModel infographicsModel;
@@ -30,6 +28,7 @@ class _InfographicScreenState extends State<InfographicScreen>
   Random random = Random();
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
+
   @override
   void initState() {
     super.initState();
@@ -42,12 +41,19 @@ class _InfographicScreenState extends State<InfographicScreen>
     });
 
     _progressController = AnimationController(
-        duration: const Duration(milliseconds: 400), vsync: this)
-      ..addListener(() {
-        setState(() {
-          _progress = _progressAnimation.value;
-        });
-      });
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    );
+
+    // Initialize _progressAnimation here
+    _progressAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_progressController)
+          ..addListener(() {
+            setState(() {
+              _progress = _progressAnimation.value;
+            });
+          });
+
     _cloudPumpAnimationController = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -213,38 +219,35 @@ class _InfographicScreenState extends State<InfographicScreen>
                       onPageChanged: (index, reason) {
                         setState(() {
                           _current = index;
+                          _progress = (index + 1) / _carouselItems.length;
+                          _progressController.animateTo(
+                              _progress); // This line assumes you're updating progress based on page change
                         });
                       },
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: 30, // Adjust as needed
-                  left: 0,
-                  right: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        widget.infographicsModel.infographics.length, (index) {
-                      return GestureDetector(
-                        onTap: () => _carouselController.animateToPage(index),
-                        child: Container(
-                          width: 8.0,
-                          height: 8.0,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 5.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _current == index
-                                ? const Color(
-                                    0xff9AC9C2) // Highlighted dot color
-                                : const Color.fromRGBO(
-                                    0, 0, 0, 0.4), // Non-highlighted dot color
-                          ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                      widget.infographicsModel.infographics.length, (index) {
+                    return GestureDetector(
+                      onTap: () => _carouselController.animateToPage(index),
+                      child: Container(
+                        width: 8.0,
+                        height: 8.0,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _current == index
+                              ? const Color(0xff9AC9C2) // Highlighted dot color
+                              : const Color.fromRGBO(
+                                  0, 0, 0, 0.4), // Non-highlighted dot color
                         ),
-                      );
-                    }),
-                  ),
+                      ),
+                    );
+                  }),
                 ),
                 const SizedBox(
                   height: 20,
@@ -269,12 +272,13 @@ class _InfographicScreenState extends State<InfographicScreen>
                   ),
                   onPressed: _current == _carouselItems.length - 1
                       ? () {
-                    // This will only execute on the last slide
-                    if(widget.onCompleted != null) {
-                      widget.onCompleted!(); // Optionally call the completion callback if provided
-                    }
-                    Get.back();
-                  }
+                          // This will only execute on the last slide
+                          if (widget.onCompleted != null) {
+                            widget
+                                .onCompleted!(); // Optionally call the completion callback if provided
+                          }
+                          Get.back(result: true);
+                        }
                       : null,
                   child: const Text(
                     'جاری رہے',

@@ -23,9 +23,9 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
 
   final List<Map<String, String>> imagesData = [
     {'path': 'assets/images/home.svg', 'label': 'ٰھوم'},
-    {'path': 'assets/images/courses.svg', 'label': 'کورسز'},
-    {'path': 'assets/images/groups.svg', 'label': 'گروپس'},
-    {'path': 'assets/images/report.svg', 'label': 'رپورٹ'},
+    {'path': 'assets/images/courses.svg', 'label': 'میرےمضامین'},
+    {'path': 'assets/images/groups.svg', 'label': 'بات چیت'},
+    {'path': 'assets/images/report.svg', 'label': 'نتائج'},
   ];
 
   final List<Widget> pages = [

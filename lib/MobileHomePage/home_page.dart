@@ -129,8 +129,6 @@ class _HomePageState extends State<HomePage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-
-
     return Scaffold(
         backgroundColor: const Color(0xFFF1F1F1),
         floatingActionButton: Container(
@@ -233,10 +231,10 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.only(
                                       top: 24, bottom: 16, right: 8),
                                   child: Text(
-                                    'میرے کورسز',
+                                    'میرے مضامین',
                                     style: TextStyle(
                                         fontFamily: 'UrduType',
-                                        fontSize: 14,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.w700),
                                   ),
                                 ),
@@ -271,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                                                     MainAxisAlignment.end,
                                                 children: <Widget>[
                                                   Text(
-                                                    'مکمل کورس',
+                                                    "مکمل یونٹ",
                                                     style: TextStyle(
                                                         fontFamily: 'UrduType',
                                                         color:
@@ -294,9 +292,9 @@ class _HomePageState extends State<HomePage> {
                                                 padding: EdgeInsets.only(
                                                     right: screenWidth / 6,
                                                     top: 16),
-                                                child: Text(
+                                                child: const Text(
                                                   '1',
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       fontSize: 18,
                                                       fontFamily: ""),
                                                 ),
@@ -336,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                                                     MainAxisAlignment.end,
                                                 children: <Widget>[
                                                   const Text(
-                                                    'باقی کورس',
+                                                    'نا مکمل یونٹ',
                                                     style: TextStyle(
                                                         fontFamily: 'UrduType',
                                                         color:
@@ -364,9 +362,9 @@ class _HomePageState extends State<HomePage> {
                                                 padding: EdgeInsets.only(
                                                     right: screenWidth / 6,
                                                     top: 16),
-                                                child: Text(
+                                                child: const Text(
                                                   "2",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       fontSize: 18,
                                                       fontFamily: ""),
                                                 ),
@@ -434,9 +432,8 @@ class _HomePageState extends State<HomePage> {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {},
-
                                                       child: const Text(
-                                                        "کورس پر جائیں",
+                                                        " یونٹ دیکھیں۔",
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 'UrduType',
@@ -452,7 +449,7 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                               const Text(
-                                                "جاری کورس",
+                                                "جاری یونٹ",
                                                 style: TextStyle(
                                                     fontFamily: 'UrduType',
                                                     fontSize: 14,
@@ -476,15 +473,14 @@ class _HomePageState extends State<HomePage> {
                                                     CrossAxisAlignment.end,
                                                 // Aligns children to the start of the Column.
                                                 children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(
                                                       right: 10,
                                                       bottom: 16,
                                                     ),
                                                     child: Text(
                                                       "Title",
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                           fontFamily:
                                                               "UrduType",
                                                           fontSize: 14),
@@ -503,9 +499,9 @@ class _HomePageState extends State<HomePage> {
                                                         const SizedBox(
                                                           width: 8,
                                                         ),
-                                                        Text(
+                                                        const Text(
                                                           '12  ماڈیول',
-                                                          style: const TextStyle(
+                                                          style: TextStyle(
                                                               fontFamily:
                                                                   "UrduType",
                                                               fontSize: 12),
@@ -644,105 +640,74 @@ class _HomePageState extends State<HomePage> {
                                                   width: 2.0,
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    const GradientCircle(
-                                                      width: 45,
-                                                      height: 45,
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color(0xffF4D6A9),
-                                                          Color(0xffEAAF58)
-                                                        ],
-                                                        begin:
-                                                            Alignment.topLeft,
-                                                        end: Alignment
-                                                            .bottomRight,
+                                              child: const Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 15),
+                                                child: Directionality(
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      GradientCircle(
+                                                        width: 45,
+                                                        height: 45,
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: [
+                                                            Color(0xffF4D6A9),
+                                                            Color(0xffEAAF58)
+                                                          ],
+                                                          begin:
+                                                              Alignment.topLeft,
+                                                          end: Alignment
+                                                              .bottomRight,
+                                                        ),
+                                                        imagePath:
+                                                            'assets/images/person_card.svg',
+                                                        imageWidth: 18,
+                                                        imageHeight:
+                                                            18, // Replace with your image path
                                                       ),
-                                                      imagePath:
-                                                          'assets/images/person_card.svg',
-                                                      imageWidth: 18,
-                                                      imageHeight:
-                                                          18, // Replace with your image path
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 20,
-                                                    ),
-                                                    Expanded(
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          const Text(
-                                                              "کوئز 1 زیر التوا ہے۔ ",
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  fontFamily:
-                                                                      'UrduType',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500)),
-                                                          RichText(
-                                                            text:
-                                                                const TextSpan(
-                                                              children: <TextSpan>[
-                                                                TextSpan(
-                                                                  text:
-                                                                      "آخری تاریخ: ",
-                                                                  style:
-                                                                      TextStyle(
+                                                      SizedBox(
+                                                        width: 20,
+                                                      ),
+                                                      Expanded(
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text("جاری ٹیسٹ ",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        16,
                                                                     fontFamily:
                                                                         'UrduType',
-
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500)),
+                                                            SizedBox(height: 3,),
+                                                            Text(
+                                                                "آخری تاریخ: 25 جون 2023",
+                                                                style: TextStyle(
+                                                                  color: Color(0xff878787),
                                                                     fontSize:
                                                                         12,
-                                                                    color: Colors
-                                                                        .grey, // Set the color to gray
-                                                                  ),
-                                                                ),
-                                                                TextSpan(
-                                                                  text:
-                                                                      "25  جون  2023",
-                                                                  style:
-                                                                      TextStyle(
                                                                     fontFamily:
                                                                         'UrduType',
-
-                                                                    fontSize:
-                                                                        12,
-                                                                    color: Colors
-                                                                        .black, // Set the color to black
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500)),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                    GestureDetector(
-                                                      child: const Icon(
-                                                        Icons.arrow_forward_ios,
-                                                        size: 14,
-                                                      ),
-                                                      onTap: () {
-                                                        Get.to(() => UserProfileScreen());
-                                                      },
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    )
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             )),
@@ -761,77 +726,72 @@ class _HomePageState extends State<HomePage> {
                                                   width: 2.0,
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    const GradientCircle(
-                                                      width: 45,
-                                                      height: 45,
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color(0xffF4B9E1),
-                                                          Color(0xffED8DCE)
-                                                        ],
-                                                        begin:
-                                                            Alignment.topLeft,
-                                                        end: Alignment
-                                                            .bottomRight,
+                                              child: const Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 15),
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      GradientCircle(
+                                                        width: 45,
+                                                        height: 45,
+                                                        gradient: LinearGradient(
+                                                          colors: [
+                                                            Color(0xffF4B9E1),
+                                                            Color(0xffED8DCE)
+                                                          ],
+                                                          begin:
+                                                              Alignment.topLeft,
+                                                          end: Alignment
+                                                              .bottomRight,
+                                                        ),
+                                                        imagePath:
+                                                            'assets/images/person_card.svg',
+                                                        imageWidth: 18,
+                                                        imageHeight:
+                                                            18, // Replace with your image path
                                                       ),
-                                                      imagePath:
-                                                          'assets/images/person_card.svg',
-                                                      imageWidth: 18,
-                                                      imageHeight:
-                                                          18, // Replace with your image path
-                                                    ),
 
-                                                    const SizedBox(
-                                                      width: 20,
-                                                    ),
+                                                      SizedBox(
+                                                        width: 20,
+                                                      ),
 
-                                                    const Expanded(
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                              "ماڈیولز مکمل ہو گئے۔ ",
+                                                      Expanded(
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                "مکمل اسباق",
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'UrduType',
+                                                                    fontSize: 14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500)),
+                                                            SizedBox(height: 3,),
+                                                            Text(
+                                                              "12",
                                                               style: TextStyle(
                                                                   fontFamily:
-                                                                      'UrduType',
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500)),
-                                                          Text(
-                                                            "12",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    "UrduType"),
-                                                          ),
-                                                        ],
+                                                                      "UrduType"),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                    // Icon button on the right
-                                                    GestureDetector(
-                                                      child: const Icon(
-                                                        Icons.arrow_forward_ios,
-                                                        size: 14,
-                                                      ),
-                                                      onTap: () {},
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    )
-                                                  ],
+                                                      // Icon button on the right
+
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             )),
@@ -852,7 +812,7 @@ class _HomePageState extends State<HomePage> {
                                     decoration: const BoxDecoration(),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 20, left: 10, right: 10),
+                                          top: 20, left: 12, right: 12),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -865,10 +825,10 @@ class _HomePageState extends State<HomePage> {
                                                         .spaceBetween,
                                                 children: <Widget>[
                                                   const Text(
-                                                    "مہارت کا درجہ",
+                                                    "مہارت پوزیشن",
                                                     style: TextStyle(
                                                         fontFamily: 'UrduType',
-                                                        fontSize: 14,
+                                                        fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w600),
                                                   ),
@@ -1076,7 +1036,7 @@ class _HomePageState extends State<HomePage> {
                                                 width: 35,
                                               ),
                                               Text(
-                                                'سکل پوائنٹس',
+                                                'کل نمبر',
                                                 style: TextStyle(
                                                     fontFamily: 'UrduType',
                                                     fontSize: 14,
@@ -1085,10 +1045,10 @@ class _HomePageState extends State<HomePage> {
                                                         FontWeight.w600),
                                               ),
                                               SizedBox(
-                                                width: 150,
+                                                width: 175,
                                               ),
                                               Text(
-                                                'سکل بیج کا انعام',
+                                                'کل تمغے',
                                                 style: TextStyle(
                                                     fontFamily: 'UrduType',
                                                     fontSize: 14,
@@ -1129,7 +1089,7 @@ class _HomePageState extends State<HomePage> {
                                                         .spaceBetween,
                                                 children: <Widget>[
                                                   const Text(
-                                                    "سرگرمی",
+                                                    "استعمال",
                                                     style: TextStyle(
                                                         fontFamily: 'UrduType',
                                                         fontSize: 18,
