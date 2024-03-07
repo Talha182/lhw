@@ -207,7 +207,7 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
@@ -217,13 +217,13 @@ class _MessageScreenState extends State<MessageScreen> {
           flexibleSpace: Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: (){
-                      Get.to(() => MessageSettings());
+                      Get.to(() => const MessageSettings());
                     },
                       child: SvgPicture.asset("assets/images/Icon.svg")),
                   const Text(
@@ -509,159 +509,117 @@ class _MessageScreenState extends State<MessageScreen> {
                 ],
               ),
             ),
-          AnimatedPadding(
-            duration: const Duration(milliseconds: 200),
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: BottomAppBar(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Visibility(
-                        visible: showSuggestions,
-                        child: _buildSuggestionsBox(),
-                      ),
-                      Stack(
-                        alignment: Alignment.centerLeft,
-                        children: [
-                          Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: TextField(
-                              onChanged: (text) {
-                                // Check for @ symbol
-                                if (text.contains('@')) {
-                                  String query = text
-                                      .split('@')
-                                      .last
-                                      .toLowerCase(); // Convert the query to lowercase
+          Container(
+            color: const Color(0xffF5F5F5) ,
+            margin: const EdgeInsets.only(bottom: 10),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      onChanged: (text) {
+                        // Check for @ symbol
+                        if (text.contains('@')) {
+                          String query = text
+                              .split('@')
+                              .last
+                              .toLowerCase(); // Convert the query to lowercase
 
-                                  if (query.isEmpty) {
-                                    filteredUsers =
-                                        allUsers; // If nothing after '@', show all users.
-                                  } else {
-                                    // Filter the users based on the query (case-insensitive)
-                                    filteredUsers = allUsers
-                                        .where((user) => user
-                                            .toLowerCase()
-                                            .startsWith(query))
-                                        .toList();
-                                  }
-                                  setState(() {
-                                    showSuggestions = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    showSuggestions = false;
-                                  });
-                                }
-                              },
-                              focusNode: _messageFocusNode,
-                              controller: _textEditingController,
-                              maxLines: null,
-                              cursorColor: Colors.black.withOpacity(0.7),
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                hintText: hintText,
-                                hintStyle: const TextStyle(
-                                    fontFamily: "UrduType",
-                                    color: Color(0xffA0A0A0)),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey[200],
-                                suffixIcon: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: Directionality(
-                                    textDirection: TextDirection.ltr,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                _sendMessage();
-                                                _replyingMessage = null;
-                                              });
-                                            },
-                                            child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: _isTextEmpty
-                                                    ? Colors.grey
-                                                    : const Color(0xffFE8BD1),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 2, right: 2),
-                                                child: SvgPicture.asset(
-                                                  "assets/images/send.svg",
-                                                  fit: BoxFit.scaleDown,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 24,
-                                            child: VerticalDivider(
-                                              color: Colors.grey.shade300,
-                                              thickness: 1,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 5),
-                                          GestureDetector(
-                                            onTap: () {
-                                              _showAttachmentOptions();
-                                            },
-                                            child: SvgPicture.asset(
-                                                "assets/images/attachment.svg"),
-                                          ),
-                                          const SizedBox(width: 20),
-                                          SvgPicture.asset(
-                                              "assets/images/microphone.svg"),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                          if (query.isEmpty) {
+                            filteredUsers =
+                                allUsers; // If nothing after '@', show all users.
+                          } else {
+                            // Filter the users based on the query (case-insensitive)
+                            filteredUsers = allUsers
+                                .where((user) => user
+                                .toLowerCase()
+                                .startsWith(query))
+                                .toList();
+                          }
+                          setState(() {
+                            showSuggestions = true;
+                          });
+                        } else {
+                          setState(() {
+                            showSuggestions = false;
+                          });
+                        }
+                      },
+                      focusNode: _messageFocusNode,
+                      controller: _textEditingController,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline, // Facilitates easy multiline input
+
+                      cursorColor: Colors.black.withOpacity(0.7),
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                        hintText: hintText,
+                        hintStyle: const TextStyle(fontFamily: "UrduType", color: Color(0xffA0A0A0)),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // Adjust padding as needed
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _sendMessage();
+                              _replyingMessage = null;
+                            });
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: _isTextEmpty ? Colors.grey : const Color(0xffFE8BD1),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 2, right: 2),
+                              child: SvgPicture.asset("assets/images/send.svg", fit: BoxFit.scaleDown),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {
+                            _showAttachmentOptions();
+                          },
+                          child: SvgPicture.asset("assets/images/attachment.svg"),
+                        ),
+                        const SizedBox(width: 20),
+                        SvgPicture.asset("assets/images/microphone.svg"),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 
   Widget _buildSuggestionsBox() {
-    return SizedBox(
-      height: 200, // Specify your desired height here
+    return Expanded(
       child: SingleChildScrollView(
         child: ListView.builder(
-          physics:
-              const NeverScrollableScrollPhysics(), // Prevents the ListView from scrolling
           shrinkWrap: true, // constrain the height
           itemCount: filteredUsers.length,
           itemBuilder: (context, index) {

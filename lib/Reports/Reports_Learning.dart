@@ -11,13 +11,14 @@ class ReportsScreen extends StatefulWidget {
   State<ReportsScreen> createState() => _ReportsScreenState();
 }
 
-class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProviderStateMixin {
+class _ReportsScreenState extends State<ReportsScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 3, vsync: this, initialIndex: 2); // Set initial index to 2
   }
 
   @override
@@ -30,7 +31,9 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reports", style: TextStyle(color: Colors.black)),
+        title: const Text("نتائج",
+            style: TextStyle(color: Colors.black, fontFamily: "UrduType")),
+        centerTitle: true,
         backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
@@ -54,33 +57,43 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
                       children: [
                         Expanded(
                           child: Container(
-                            height: 75,
+                            height: 80,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: const LinearGradient(colors: [
-                                  Color(0xffDCEFDE),
-                                  Color(0xff81C588),
-                                ])),
-                            child: const Padding(
-                              padding: EdgeInsets.only(right: 10, top: 3),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "سندھ میں لیڈر بورڈ رینک",
-                                    style: TextStyle(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(colors: [
+                                Color(0xffDCEFDE),
+                                Color(0xff81C588),
+                              ]),
+                            ),
+                            child: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 8.0, right: 2, left: 10),
+                                    child: Text(
+                                      "مہارت پوزیشن:سندھ / بلوچستان / خیبر پختون خوا /پنجابز",
+                                      style: TextStyle(
                                         fontFamily: "UrduType",
-                                        color: Color(0xff685F78)),
+                                        color: Color(0xff685F78),
+                                      ),
+                                    ),
                                   ),
-                                  Text(
+                                ),
+                                Padding(
+                                  padding:
+                                  EdgeInsets.only(bottom: 8.0, right: 20),
+                                  child: Text(
                                     "5",
                                     style: TextStyle(
-                                        fontFamily: "UrduType",
-                                        fontSize: 25,
-                                        color: Color(0xff002058)),
+                                      fontFamily: "UrduType",
+                                      fontSize: 25,
+                                      color: Color(0xff002058),
+                                    ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -89,33 +102,42 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
                         ),
                         Expanded(
                           child: Container(
-                            height: 75,
+                            height: 80,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 gradient: const LinearGradient(colors: [
                                   Color(0xffFCF4D9),
                                   Color(0xffFDCD4F),
                                 ])),
-                            child: const Padding(
-                              padding: EdgeInsets.only(right: 10, top: 3),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "سندھ میں لیڈر بورڈ رینک",
-                                    style: TextStyle(
+                            child: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding:
+                                    EdgeInsets.only(top: 8.0, right: 10),
+                                    child: Text(
+                                      "یونٹ کا حساب",
+                                      style: TextStyle(
                                         fontFamily: "UrduType",
-                                        color: Color(0xff685F78)),
+                                        color: Color(0xff685F78),
+                                      ),
+                                    ),
                                   ),
-                                  Text(
+                                ),
+                                Padding(
+                                  padding:
+                                  EdgeInsets.only(bottom: 8.0, right: 20),
+                                  child: Text(
                                     "5",
                                     style: TextStyle(
-                                        fontFamily: "UrduType",
-                                        fontSize: 25,
-                                        color: Color(0xff002058)),
+                                      fontFamily: "UrduType",
+                                      fontSize: 25,
+                                      color: Color(0xff002058),
+                                    ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -132,37 +154,42 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
                       children: [
                         Expanded(
                           child: Container(
-                            height: 75,
+                            height: 80,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 gradient: const LinearGradient(colors: [
                                   Color(0xffE6ECF9),
                                   Color(0xff839EE2),
                                 ])),
-                            child: const Padding(
-                              padding: EdgeInsets.only(right: 10, top: 3),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "60 گھنٹے گزارے۔",
-                                    style: TextStyle(
-                                        fontFamily: "UrduType",
-                                        color: Color(0xff685F78)),
-                                  ),
-                                  Directionality(
-                                    textDirection: TextDirection.rtl,
+                            child: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding:
+                                    EdgeInsets.only(top: 8.0, right: 10),
                                     child: Text(
-                                      "60 گھنٹے گزارے۔",
+                                      " پڑھائی کا عرصہ",
                                       style: TextStyle(
                                         fontFamily: "UrduType",
-                                        fontSize: 25,
-                                        color: Color(0xff002058),
+                                        color: Color(0xff685F78),
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding:
+                                  EdgeInsets.only(bottom: 8.0, right: 20),
+                                  child: Text(
+                                    "60",
+                                    style: TextStyle(
+                                      fontFamily: "UrduType",
+                                      fontSize: 25,
+                                      color: Color(0xff002058),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -178,26 +205,35 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
                                   Color(0xffF4B9E1),
                                   Color(0xffED8DCE),
                                 ])),
-                            child: const Padding(
-                              padding: EdgeInsets.only(right: 10, top: 3),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "کوئز کی تازہ ترین کارکردگی",
-                                    style: TextStyle(
+                            child: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding:
+                                    EdgeInsets.only(top: 8.0, right: 10),
+                                    child: Text(
+                                      "آخری ٹیسٹ کے نتائج",
+                                      style: TextStyle(
                                         fontFamily: "UrduType",
-                                        color: Color(0xff685F78)),
+                                        color: Color(0xff685F78),
+                                      ),
+                                    ),
                                   ),
-                                  Text(
+                                ),
+                                Padding(
+                                  padding:
+                                  EdgeInsets.only(bottom: 8.0, right: 20),
+                                  child: Text(
                                     "90%",
                                     style: TextStyle(
-                                        fontFamily: "UrduType",
-                                        fontSize: 25,
-                                        color: Color(0xff002058)),
+                                      fontFamily: "UrduType",
+                                      fontSize: 25,
+                                      color: Color(0xff002058),
+                                    ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -211,14 +247,16 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
         },
         body: Column(
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             ButtonsTabBar(
               controller: _tabController,
               splashColor: Colors.transparent,
               height: 50,
               radius: 20,
               elevation: 1,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 40),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 25),
               backgroundColor: Colors.white,
               unselectedBackgroundColor: const Color(0xffF0F0F0),
               unselectedLabelStyle: const TextStyle(
@@ -231,9 +269,9 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
               tabs: const [
-                Tab(text: "کامیابیاں"),
-                Tab(text: "سرگرمی"),
-                Tab(text: "سیکھنا"),
+                Tab(text: "کامیابیاں اور انعامات"),
+                Tab(text: "سرگرمی کی تفصیلات"),
+                Tab(text: "سیکھنے کا تجزیہ"),
               ],
             ),
             Expanded(
@@ -252,5 +290,3 @@ class _ReportsScreenState extends State<ReportsScreen> with SingleTickerProvider
     );
   }
 }
-
-

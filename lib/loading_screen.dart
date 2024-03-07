@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final prefs = await SharedPreferences.getInstance();
     final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => isLoggedIn ? Custom_NavBar() : LoginScreen(),
+      builder: (context) => isLoggedIn ? const Custom_NavBar() : const LoginScreen(),
     ));
   }
 
@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: LoadingScreen(),
       ),

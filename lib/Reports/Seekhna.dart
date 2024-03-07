@@ -18,7 +18,7 @@ class _SeekhnaState extends State<Seekhna> {
 
 // List of items in our dropdown menu
   var items = [
-    'باب 1',
+    'یونٹ 1',
     'باب 2',
   ];
   String? selectedValue;
@@ -38,19 +38,11 @@ class _SeekhnaState extends State<Seekhna> {
 
     final TooltipBehavior _tooltip;
     final List<_ChartData> data = [
-      _ChartData('False', 12),
-      _ChartData('True', 15),
+      _ChartData('غلط', 12),
+      _ChartData('صحیح', 15),
     ];
     _tooltip = TooltipBehavior(enable: true);
-    final List<Color> greenGradient = [
-      const Color(0xffDCEFDE),
-      const Color(0xff81C588),
-    ];
 
-    final List<Color> redGradient = [
-      const Color(0xffFE6C6C),
-      const Color(0xffFE464B),
-    ];
 
     return Scaffold(
       body: Padding(
@@ -89,12 +81,12 @@ class _SeekhnaState extends State<Seekhna> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "کورس کی یاددہانی",
+                                  "ہر یونٹ کے ٹیسٹ کی کارکردگی",
                                   style: TextStyle(
-                                      fontFamily: "UrduType", fontSize: 17),
+                                      fontFamily: "UrduType", fontSize: 16),
                                 ),
                                 Text(
-                                  "کسی بھی شروع شدہ کورسز میں میری پیشرفت کے بارے میں مجھے مطلع کریں۔",
+                                  "اپنے ہر یونٹ کے ٹیسٹ کی کارکردگی کو دیکھیں۔",
                                   style: TextStyle(
                                       fontFamily: "UrduType",
                                       fontSize: 13,
@@ -227,10 +219,10 @@ class _SeekhnaState extends State<Seekhna> {
                                           color: Color(0xff454459)),
                                     ),
                                     Text(
-                                      "Average Score",
+                                      "اوسط نمبر",
                                       style: TextStyle(
                                           fontFamily: "UrduType",
-                                          fontSize: 10,
+                                          fontSize: 12,
                                           color: Color(0xff454459)),
                                     ),
                                   ],
@@ -299,7 +291,7 @@ class _SeekhnaState extends State<Seekhna> {
                             ),
                             const Positioned(
                                 top: 40,
-                                left: 10,
+                                left: 15,
                                 child: Column(
                                   children: [
                                     Text(
@@ -308,7 +300,7 @@ class _SeekhnaState extends State<Seekhna> {
                                           fontFamily: "UrduType", fontSize: 15),
                                     ),
                                     Text(
-                                      "Quiz 5",
+                                      "ٹیسٹ 5",
                                       style: TextStyle(
                                           fontFamily: "UrduType", fontSize: 12),
                                     ),
@@ -325,7 +317,7 @@ class _SeekhnaState extends State<Seekhna> {
                                           fontFamily: "UrduType", fontSize: 15),
                                     ),
                                     Text(
-                                      "Quiz 1",
+                                      "ٹیسٹ 1",
                                       style: TextStyle(
                                           fontFamily: "UrduType", fontSize: 12),
                                     ),
@@ -342,7 +334,7 @@ class _SeekhnaState extends State<Seekhna> {
                                           fontFamily: "UrduType", fontSize: 15),
                                     ),
                                     Text(
-                                      "Quiz 2",
+                                      "ٹیسٹ 2",
                                       style: TextStyle(
                                           fontFamily: "UrduType", fontSize: 12),
                                     ),
@@ -359,7 +351,7 @@ class _SeekhnaState extends State<Seekhna> {
                                           fontFamily: "UrduType", fontSize: 15),
                                     ),
                                     Text(
-                                      "Quiz 3",
+                                      "ٹیسٹ 3",
                                       style: TextStyle(
                                           fontFamily: "UrduType", fontSize: 12),
                                     ),
@@ -376,7 +368,7 @@ class _SeekhnaState extends State<Seekhna> {
                                           fontFamily: "UrduType", fontSize: 15),
                                     ),
                                     Text(
-                                      "Quiz 4",
+                                      "ٹیسٹ 4",
                                       style: TextStyle(
                                           fontFamily: "UrduType", fontSize: 12),
                                     ),
@@ -393,7 +385,7 @@ class _SeekhnaState extends State<Seekhna> {
                             textDirection: TextDirection
                                 .rtl, // Set the text direction to right-to-left
                             child: Text(
-                              "بہترین اور بدترین اسکور",
+                              "بہترین اور بدترین نمبر",
                               style: TextStyle(
                                   fontFamily: "UrduType", fontSize: 17),
                             ),
@@ -424,7 +416,7 @@ class _SeekhnaState extends State<Seekhna> {
                                   width: 10,
                                 ),
                                 const Text(
-                                  "بہترین اور صحت اسکور",
+                                  " ٹیسٹ 4 (بہترین نمبر):",
                                   style: TextStyle(
                                       fontFamily: "UrduType",
                                       fontSize: 15,
@@ -467,7 +459,7 @@ class _SeekhnaState extends State<Seekhna> {
                                   width: 10,
                                 ),
                                 const Text(
-                                  "بہترین اور صحت اسکور",
+                                  " ٹیسٹ 2 (بدترین نمبر):",
                                   style: TextStyle(
                                       fontFamily: "UrduType",
                                       fontSize: 15,
@@ -512,12 +504,12 @@ class _SeekhnaState extends State<Seekhna> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "سکور کی تقسیم",
+                                  " نمبروں کی تقسیم",
                                   style: TextStyle(
                                       fontFamily: "UrduType", fontSize: 17),
                                 ),
                                 Text(
-                                  "تمام ابواب کے لیے اپنے سکور کی حدیں دیکھیں",
+                                  "تمام یونٹ کے لئے اپنے نمبر دیکھیں۔",
                                   style: TextStyle(
                                       fontFamily: "UrduType",
                                       fontSize: 13,
@@ -832,8 +824,7 @@ class _SeekhnaState extends State<Seekhna> {
                                   dashArray: [5, 5],
                                 ),
                                 axisLine: const AxisLine(
-
-                                    width: 0.2 ), // Clean x-axis line
+                                    width: 0.2), // Clean x-axis line
                                 majorTickLines: const MajorTickLines(
                                     width: 0), // Hide x-axis tick lines
                                 labelStyle: const TextStyle(
@@ -863,10 +854,10 @@ class _SeekhnaState extends State<Seekhna> {
                                   xValueMapper: (_ChartData data, _) => data.x,
                                   yValueMapper: (_ChartData data, _) => data.y,
                                   pointColorMapper: (_ChartData data, _) {
-                                    if (data.x == 'False') {
+                                    if (data.x == 'غلط') {
                                       // Use the gradient colors directly - might not be gradient but a solid color.
                                       return Colors.red[400];
-                                    } else if (data.x == 'True') {
+                                    } else if (data.x == 'صحیح') {
                                       return Colors.green[400];
                                     }
                                     return Colors
@@ -876,7 +867,7 @@ class _SeekhnaState extends State<Seekhna> {
                           )),
                       const Center(
                         child: Text(
-                          "اسکور کی حد",
+                          "سوالات کی تعداد",
                           style: TextStyle(
                               fontFamily: "UrduType", color: Color(0xff8B9DA0)),
                         ),
@@ -1021,9 +1012,8 @@ class _SeekhnaState extends State<Seekhna> {
               Container(
                 height: 40,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white
-                ),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white),
               )
             ],
           ),
@@ -1202,7 +1192,7 @@ class Quiz3Line extends CustomPainter {
     double y = length * cos(pi / 3); // Fixed the cosine value.
 
     // Start point remains at the right-most side for this case.
-    final Offset startPoint = const Offset(70, 15);
+    const Offset startPoint = Offset(70, 15);
     final Offset middlePoint =
         Offset(size.width - x, -y); // Invert x and Negative y to go upwards.
     canvas.drawLine(startPoint, middlePoint, paint);
@@ -1235,7 +1225,7 @@ class Quiz2Line extends CustomPainter {
     double y = length * cos(pi / 3); // Fixed the cosine value.
 
     // Start point remains at the right-most side for this case.
-    final Offset startPoint = const Offset(50, -5);
+    const Offset startPoint = Offset(50, -5);
     final Offset middlePoint =
         Offset(size.width - x, y); // Invert x and Negative y to go upwards.
     canvas.drawLine(startPoint, middlePoint, paint);
@@ -1268,7 +1258,7 @@ class Quiz1Line extends CustomPainter {
     double y = length * cos(pi / 3); // Fixed the cosine value.
 
     // Start point remains at the right-most side for this case.
-    final Offset startPoint = const Offset(50, -5);
+    const Offset startPoint = Offset(50, -5);
     final Offset middlePoint =
         Offset(size.width - x, y); // Invert x and Negative y to go upwards.
     canvas.drawLine(startPoint, middlePoint, paint);

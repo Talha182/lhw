@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/CourseTabbar/courses_tabbar.dart';
+import 'package:lhw/LoginSignUp/Onboarding.dart';
+import 'package:lhw/loading_screen.dart';
 import 'package:lhw/navy.dart';
 import 'package:lhw/services/global_user.dart';
 import 'package:provider/provider.dart';

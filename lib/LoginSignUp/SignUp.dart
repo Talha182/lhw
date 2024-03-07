@@ -115,16 +115,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 const Center(
                     child: Text(
-                  "ارے وہاں",
+                  "خوش آمدید",
                   style: TextStyle(fontFamily: "UrduType", fontSize: 30),
                 )),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: Row(
+                Center(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: 10,),
                       const Text(
-                        "پہلے سے جانتے ہیں؟",
+                        " آپ کا پہلے سے اکاؤنٹ بنا ہوا ہے؟",
                         style: TextStyle(
                             fontFamily: "UrduType",
                             fontSize: 20,
@@ -141,13 +141,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fontSize: 20,
                               color: Color(0xffFE8BD1)),
                         ),
-                      ),
-                      const Text(
-                        "LHW",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 20,
-                            color: Color(0xff878787)),
                       ),
                     ],
                   ),
@@ -557,11 +550,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     )),
-                    const SizedBox(
-                      height: 20,
-                    ),
+
                     const SizedBox(
                       height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      child: RoundedButton(
+                          title: 'سائن اپ',
+                          onTap: () {
+                            _signup();
+                          }),
                     ),
                     Directionality(
                       textDirection: TextDirection.rtl,
@@ -579,7 +578,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             width: 10,
                           ),
                           const Text(
-                            "مجھے پہچانتے ہو",
+                            "یہ معلومات یاد رکھیں",
                             style: TextStyle(
                                 fontFamily: "UrduType",
                                 fontSize: 16,
@@ -588,14 +587,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      child: RoundedButton(
-                          title: 'Signup',
-                          onTap: () {
-                            _signup();
-                          }),
-                    )
+                    const SizedBox(
+                      height: 30,
+                    ),
+
                   ],
                 ))
               ],

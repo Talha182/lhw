@@ -246,6 +246,7 @@ class _Page2State extends State<Page2> {
                 )
               ],
             ),
+            SizedBox(height: 10,),
             Row(
               children: [
                 const Text(

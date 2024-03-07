@@ -36,682 +36,687 @@ class _AchievementsState extends State<Achievements>
         padding: const EdgeInsets.only(top: 10),
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: ListView(
-            children: [
-              const Text(
-                "کامیابیاں اور پہچان",
-                style: TextStyle(fontFamily: "UrduType", fontSize: 18),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                height: 860,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+          child: Padding(
+            padding: EdgeInsets.only(left: 15,right: 15),
+            child: ListView(
+              children: [
+                const Text(
+                  "کامیابیاں اور پہچان",
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 18),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "اچیومنٹ بیجز",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-                      ),
-                      const Text(
-                        "اپنے حاصل کردہ بیجز کا مجموعہ اور ان سے متعلقہ کامیابیاں دیکھیں",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 14,
-                            color: Color(0xff8B9DA0)),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        height: 760,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: const Color(0xffE3E3E3)),
+                const SizedBox(height: 10),
+                Container(
+                  height: 860,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "تمغے",
+                          style: TextStyle(fontFamily: "UrduType", fontSize: 17),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Column(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        "assets/images/badge1.png",
-                                        scale: 0.8),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "روشن خیال",
-                                              style: TextStyle(
-                                                fontFamily: "UrduType",
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            Text(
-                                              "10/14", // Replace this with your desired text
-                                              style: TextStyle(
-                                                  fontFamily: "UrduType",
-                                                  fontSize:
-                                                      14, // Adjust this as needed
-                                                  color: Color(0xff8B9DA0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        RightStartingProgressBar(
-                                          width: 320,
-                                          height: 10,
-                                          targetProgress: 0.2,
-                                          backgroundColor:
-                                              const Color(0xffEBEBF0),
-                                          strokeWidth: 10.0,
-                                        ),
-                                        const Text(
-                                          "14 دن کے سلسلے تک پہنچیں۔",
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              color: Color(0xff8B9DA0)),
-                                        ),
-                                      ],
+                        const Text(
+                          "اپنے کمائے ہوئے بیجز کا مجموعہ اور ان کی متعلقہ کامیابیاں دیکھیں",
+                          style: TextStyle(
+                              fontFamily: "UrduType",
+                              fontSize: 14,
+                              color: Color(0xff8B9DA0)),
+                        ),
+                        const SizedBox(height: 10),
+                        Container(
+                          height: 760,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: const Color(0xffE3E3E3)),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Column(
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Image.asset(
+                                          "assets/images/badge1.png",
+                                          scale: 0.8),
                                     ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Divider(
-                                thickness: 1,
-                                color: Colors.grey.withOpacity(0.5),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        "assets/images/badge2.png",
-                                        scale: 0.8),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "بہترین طلبہ",
-                                              style: TextStyle(
-                                                fontFamily: "UrduType",
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            Text(
-                                              "10/14", // Replace this with your desired text
-                                              style: TextStyle(
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "سنہرے ساتھی",
+                                                style: TextStyle(
                                                   fontFamily: "UrduType",
-                                                  fontSize:
-                                                      14, // Adjust this as needed
-                                                  color: Color(0xff8B9DA0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        RightStartingProgressBar(
-                                          width: 320,
-                                          height: 10,
-                                          targetProgress: 0.2,
-                                          backgroundColor:
-                                              const Color(0xffEBEBF0),
-                                          strokeWidth: 10.0,
-                                        ),
-                                        const Text(
-                                          "14 دن کے سلسلے تک پہنچیں۔",
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              color: Color(0xff8B9DA0)),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Divider(
-                                thickness: 1,
-                                color: Colors.grey.withOpacity(0.5),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        "assets/images/badge3.png",
-                                        scale: 0.8),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "سوال سلطان",
-                                              style: TextStyle(
-                                                fontFamily: "UrduType",
-                                                fontSize: 18,
+                                                  fontSize: 18,
+                                                ),
                                               ),
-                                            ),
-                                            Text(
-                                              "10/14", // Replace this with your desired text
-                                              style: TextStyle(
-                                                  fontFamily: "UrduType",
-                                                  fontSize:
-                                                      14, // Adjust this as needed
-                                                  color: Color(0xff8B9DA0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        RightStartingProgressBar(
-                                          width: 320,
-                                          height: 10,
-                                          targetProgress: 0.2,
-                                          backgroundColor:
-                                              const Color(0xffEBEBF0),
-                                          strokeWidth: 10.0,
-                                        ),
-                                        const Text(
-                                          "14 دن کے سلسلے تک پہنچیں۔",
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              color: Color(0xff8B9DA0)),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Divider(
-                                thickness: 1,
-                                color: Colors.grey.withOpacity(0.5),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        "assets/images/badge4.png",
-                                        scale: 0.8),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "راہگیر تعلیم",
-                                              style: TextStyle(
-                                                fontFamily: "UrduType",
-                                                fontSize: 18,
+                                              Text(
+                                                "10/14", // Replace this with your desired text
+                                                style: TextStyle(
+                                                    fontFamily: "UrduType",
+                                                    fontSize:
+                                                        14, // Adjust this as needed
+                                                    color: Color(0xff8B9DA0)),
                                               ),
-                                            ),
-                                            Text(
-                                              "10/14", // Replace this with your desired text
-                                              style: TextStyle(
-                                                  fontFamily: "UrduType",
-                                                  fontSize:
-                                                      14, // Adjust this as needed
-                                                  color: Color(0xff8B9DA0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        RightStartingProgressBar(
-                                          width: 320,
-                                          height: 10,
-                                          targetProgress: 0.2,
-                                          backgroundColor:
-                                              const Color(0xffEBEBF0),
-                                          strokeWidth: 10.0,
-                                        ),
-                                        const Text(
-                                          "14 دن کے سلسلے تک پہنچیں۔",
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              color: Color(0xff8B9DA0)),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Divider(
-                                thickness: 1,
-                                color: Colors.grey.withOpacity(0.5),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        "assets/images/badge5.png",
-                                        scale: 0.8),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "فا تح فہم",
-                                              style: TextStyle(
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          RightStartingProgressBar(
+                                            width: 320,
+                                            height: 10,
+                                            targetProgress: 0.2,
+                                            backgroundColor:
+                                                const Color(0xffEBEBF0),
+                                            strokeWidth: 10.0,
+                                          ),
+                                          const Text(
+                                            "کامیابیاں اور خوشیاں ہمیشہ بانٹنی چاہئیں۔ سوشل میڈیا پر شیئر کریں اور جیتیں۔",
+                                            style: TextStyle(
                                                 fontFamily: "UrduType",
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            Text(
-                                              "10/14", // Replace this with your desired text
-                                              style: TextStyle(
-                                                  fontFamily: "UrduType",
-                                                  fontSize:
-                                                      14, // Adjust this as needed
-                                                  color: Color(0xff8B9DA0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        RightStartingProgressBar(
-                                          width: 320,
-                                          height: 10,
-                                          targetProgress: 0.2,
-                                          backgroundColor:
-                                              const Color(0xffEBEBF0),
-                                          strokeWidth: 10.0,
-                                        ),
-                                        const Text(
-                                          "14 دن کے سلسلے تک پہنچیں۔",
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              color: Color(0xff8B9DA0)),
-                                        ),
-                                      ],
+                                                color: Color(0xff8B9DA0)),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(
+                                  thickness: 1,
+                                  color: Colors.grey.withOpacity(0.5),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Image.asset(
+                                          "assets/images/badge2.png",
+                                          scale: 0.8),
                                     ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Divider(
-                                thickness: 1,
-                                color: Colors.grey.withOpacity(0.5),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        "assets/images/badge1.png",
-                                        scale: 0.8),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "سنگِ سفر",
-                                              style: TextStyle(
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "دانش کے موتی",
+                                                style: TextStyle(
+                                                  fontFamily: "UrduType",
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              Text(
+                                                "10/14", // Replace this with your desired text
+                                                style: TextStyle(
+                                                    fontFamily: "UrduType",
+                                                    fontSize:
+                                                        14, // Adjust this as needed
+                                                    color: Color(0xff8B9DA0)),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          RightStartingProgressBar(
+                                            width: 320,
+                                            height: 10,
+                                            targetProgress: 0.2,
+                                            backgroundColor:
+                                                const Color(0xffEBEBF0),
+                                            strokeWidth: 10.0,
+                                          ),
+                                          const Text(
+                                            "14کامیابیاں اور خوشیاں ہمیشہ بانٹنی چاہئیں۔ سوشل میڈیا پر شیئر کریں اور جیتیں۔",
+                                            style: TextStyle(
                                                 fontFamily: "UrduType",
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            Text(
-                                              "10/14", // Replace this with your desired text
-                                              style: TextStyle(
-                                                  fontFamily: "UrduType",
-                                                  fontSize:
-                                                      14, // Adjust this as needed
-                                                  color: Color(0xff8B9DA0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        RightStartingProgressBar(
-                                          width: 320,
-                                          height: 10,
-                                          targetProgress: 0.2,
-                                          backgroundColor:
-                                              const Color(0xffEBEBF0),
-                                          strokeWidth: 10.0,
-                                        ),
-                                        const Text(
-                                          "جب کوئی صارف کورس مکمل کرتا ہے تو انعام دیا جاتا ہے۔",
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              color: Color(0xff8B9DA0)),
-                                        ),
-                                      ],
+                                                color: Color(0xff8B9DA0)),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(
+                                  thickness: 1,
+                                  color: Colors.grey.withOpacity(0.5),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Image.asset(
+                                          "assets/images/badge3.png",
+                                          scale: 0.8),
                                     ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Divider(
-                                thickness: 1,
-                                color: Colors.grey.withOpacity(0.5),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        "assets/images/badge1.png",
-                                        scale: 0.8),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "حاضر ستارے",
-                                              style: TextStyle(
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "حاضر ستارے",
+                                                style: TextStyle(
+                                                  fontFamily: "UrduType",
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              Text(
+                                                "10/14", // Replace this with your desired text
+                                                style: TextStyle(
+                                                    fontFamily: "UrduType",
+                                                    fontSize:
+                                                        14, // Adjust this as needed
+                                                    color: Color(0xff8B9DA0)),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          RightStartingProgressBar(
+                                            width: 320,
+                                            height: 10,
+                                            targetProgress: 0.2,
+                                            backgroundColor:
+                                                const Color(0xffEBEBF0),
+                                            strokeWidth: 10.0,
+                                          ),
+                                          const Text(
+                                            "ہر روز ایپ استعمال کریں اور یہ تمغہ جیتیں! یہ تمغہ دن میں کم از کم ایک دفعہ ایپ استعمال کرنے پر ملتا ہے۔",
+                                            style: TextStyle(
                                                 fontFamily: "UrduType",
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            Text(
-                                              "10/14", // Replace this with your desired text
-                                              style: TextStyle(
-                                                  fontFamily: "UrduType",
-                                                  fontSize:
-                                                      14, // Adjust this as needed
-                                                  color: Color(0xff8B9DA0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        RightStartingProgressBar(
-                                          width: 320,
-                                          height: 10,
-                                          targetProgress: 0.2,
-                                          backgroundColor:
-                                              const Color(0xffEBEBF0),
-                                          strokeWidth: 10.0,
-                                        ),
-                                        const Text(
-                                          "14 دن کے سلسلے تک پہنچیں۔",
-                                          style: TextStyle(
-                                              fontFamily: "UrduType",
-                                              color: Color(0xff8B9DA0)),
-                                        ),
-                                      ],
+                                                color: Color(0xff8B9DA0)),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(
+                                  thickness: 1,
+                                  color: Colors.grey.withOpacity(0.5),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Image.asset(
+                                          "assets/images/badge4.png",
+                                          scale: 0.8),
                                     ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                            ],
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "باغبان فہم",
+                                                style: TextStyle(
+                                                  fontFamily: "UrduType",
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              Text(
+                                                "10/14", // Replace this with your desired text
+                                                style: TextStyle(
+                                                    fontFamily: "UrduType",
+                                                    fontSize:
+                                                        14, // Adjust this as needed
+                                                    color: Color(0xff8B9DA0)),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          RightStartingProgressBar(
+                                            width: 320,
+                                            height: 10,
+                                            targetProgress: 0.2,
+                                            backgroundColor:
+                                                const Color(0xffEBEBF0),
+                                            strokeWidth: 10.0,
+                                          ),
+                                          const Text(
+                                            "کسی بھی ذہین شخص کی پہچان اس کے سیکھنے کے عمل میں دلچسپی ہوتی ہے۔ سوالات پوچھیں اور یہ تمغہ حاصل کریں۔",
+                                            style: TextStyle(
+                                                fontFamily: "UrduType",
+                                                color: Color(0xff8B9DA0)),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(
+                                  thickness: 1,
+                                  color: Colors.grey.withOpacity(0.5),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Image.asset(
+                                          "assets/images/badge5.png",
+                                          scale: 0.8),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "ضامن",
+                                                style: TextStyle(
+                                                  fontFamily: "UrduType",
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              Text(
+                                                "10/14", // Replace this with your desired text
+                                                style: TextStyle(
+                                                    fontFamily: "UrduType",
+                                                    fontSize:
+                                                        14, // Adjust this as needed
+                                                    color: Color(0xff8B9DA0)),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          RightStartingProgressBar(
+                                            width: 320,
+                                            height: 10,
+                                            targetProgress: 0.3,
+                                            backgroundColor:
+                                                const Color(0xffEBEBF0),
+                                            strokeWidth: 10.0,
+                                          ),
+                                          const Text(
+                                            "وسائل ڈاؤنلوڈ کریں اور جیتیں!",
+                                            style: TextStyle(
+                                                fontFamily: "UrduType",
+                                                color: Color(0xff8B9DA0)),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(
+                                  thickness: 1,
+                                  color: Colors.grey.withOpacity(0.5),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Image.asset(
+                                          "assets/images/badge1.png",
+                                          scale: 0.8),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "ماہر محنت",
+                                                style: TextStyle(
+                                                  fontFamily: "UrduType",
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              Text(
+                                                "10/14", // Replace this with your desired text
+                                                style: TextStyle(
+                                                    fontFamily: "UrduType",
+                                                    fontSize:
+                                                        14, // Adjust this as needed
+                                                    color: Color(0xff8B9DA0)),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          RightStartingProgressBar(
+                                            width: 320,
+                                            height: 10,
+                                            targetProgress: 0.2,
+                                            backgroundColor:
+                                                const Color(0xffEBEBF0),
+                                            strokeWidth: 10.0,
+                                          ),
+                                          const Text(
+                                            "کسی بھی سبق میں اپنے نمبر دہرائی کے بعد بہتر کرنے پر آپ کو یہ تمغہ انعام کیا جائے گا۔ یہ تمغہ آپ کے حوصلے کو سراہتا ہے۔",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontFamily: "UrduType",
+                                                color: Color(0xff8B9DA0)),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(
+                                  thickness: 1,
+                                  color: Colors.grey.withOpacity(0.5),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Image.asset(
+                                          "assets/images/badge1.png",
+                                          scale: 0.8),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "نورِ چمن",
+                                                style: TextStyle(
+                                                  fontFamily: "UrduType",
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              Text(
+                                                "10/14", // Replace this with your desired text
+                                                style: TextStyle(
+                                                    fontFamily: "UrduType",
+                                                    fontSize:
+                                                        14, // Adjust this as needed
+                                                    color: Color(0xff8B9DA0)),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          RightStartingProgressBar(
+                                            width: 320,
+                                            height: 10,
+                                            targetProgress: 0.2,
+                                            backgroundColor:
+                                                const Color(0xffEBEBF0),
+                                            strokeWidth: 10.0,
+                                          ),
+                                          const Text(
+                                            "یونٹ مکمل کیجئے اور جیتتے! یہ تمغہ آپ کے علم کے سفر میں اہم سنگِ میل ہے۔",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontFamily: "UrduType",
+                                                color: Color(0xff8B9DA0)),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 280,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xffF0F0F0)),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset(
+                          "assets/images/splash.png",
+                          scale: 1.2,
+                          color: const Color(0xffE0E0E0),
+                        ),
                       ),
+                      Positioned(
+                          top: 105,
+                          left: 35,
+                          child: Image.asset(
+                            "assets/images/star 2.png",
+                            color: const Color(0xffE0E0E0),
+                            scale: 0.9,
+                          )),
+                      Positioned(
+                          top: 100,
+                          left: 95,
+                          child: Image.asset(
+                            "assets/images/star 1.png",
+                            color: const Color(0xffE0E0E0),
+                            scale: 1.2,
+                          )),
+                      Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Image.asset(
+                            "assets/images/Star 7.png",
+                            color: const Color(0xffE0E0E0),
+                            scale: 1,
+                          )),
+                      Positioned(
+                          top: 45,
+                          right: 50,
+                          child: Image.asset(
+                            color: const Color(0xffE0E0E0),
+                            "assets/images/star 1.png",
+                            scale: 1.5,
+                          )),
+                      Positioned(
+                          top: 30,
+                          right: 78,
+                          child: Image.asset(
+                            color: const Color(0xffE0E0E0),
+                            "assets/images/star 2.png",
+                            scale: 1.8,
+                          )),
+                      Positioned(
+                          top: 65,
+                          right: 55,
+                          child: Image.asset(
+                            color: const Color(0xffE0E0E0),
+                            "assets/images/star 2.png",
+                            scale: 1,
+                          )),
+                      const Positioned(
+                          top: 10,
+                          right: 10,
+                          child: Text(
+                            "نیشنل لیڈر بورڈ",
+                            style:
+                                TextStyle(fontFamily: "UrduType", fontSize: 18),
+                          )),
+                      const Positioned(
+                          top: 35,
+                          right: 10,
+                          child: Text(
+                            "یونٹ اور اسباق، تکمیل کی حیثیت اور آگے کیا ہے اس پر روشنی ڈالتے ہیں۔",
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                fontSize: 16,
+                                color: Color(0xff8B9DA0)),
+                          )),
+                      Positioned(
+                          top: 140,
+                          right: 20,
+                          child: Column(
+                            children: [
+                              Image.asset("assets/images/crown.png"),
+                              Container(
+                                width: 90,
+                                height: 90,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                child: Image.asset(
+                                  "assets/images/person2.png",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Positioned(
+                          top: 245,
+                          right: 55,
+                          child: Container(
+                            width: 25,
+                            height: 25,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                                border: Border.all(
+                                    color: const Color(0xff8A8C93), width: 2)),
+                            child: const Center(
+                                child: Text(
+                              "10",
+                              style: TextStyle(
+                                  fontSize: 13, fontWeight: FontWeight.w600),
+                            )),
+                          )),
+                      Positioned(
+                          top: 150,
+                          right: 130,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "عیدین سمتھ",
+                                style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const Row(
+                                children: [
+                                  Text(
+                                    "نمبر:",
+                                    style: TextStyle(
+                                        fontFamily: "UrduType",
+                                        color: Color(0xff8B9DA0)),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "100",
+                                    style: TextStyle(
+                                        fontFamily: "UrduType", fontSize: 19),
+                                  )
+                                ],
+                              ),
+                              Container(
+                                width: 145,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xffFDCD4F),
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: const Padding(
+                                  padding: EdgeInsets.only(right: 5, top: 5),
+                                  child: Text(
+                                    "9ویں تک جانے کے لیے 150 پوائنٹس",
+                                    style: TextStyle(
+                                        fontFamily: "UrduType", fontSize: 13),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
                     ],
                   ),
                 ),
-              ),
-              Container(
-                height: 280,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xffF0F0F0)),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: Image.asset(
-                        "assets/images/splash.png",
-                        scale: 1.2,
-                        color: const Color(0xffE0E0E0),
-                      ),
-                    ),
-                    Positioned(
-                        top: 105,
-                        left: 35,
-                        child: Image.asset(
-                          "assets/images/star 2.png",
-                          color: const Color(0xffE0E0E0),
-                          scale: 0.9,
-                        )),
-                    Positioned(
-                        top: 100,
-                        left: 95,
-                        child: Image.asset(
-                          "assets/images/star 1.png",
-                          color: const Color(0xffE0E0E0),
-                          scale: 1.2,
-                        )),
-                    Positioned(
-                        top: 0,
-                        right: 0,
-                        child: Image.asset(
-                          "assets/images/Star 7.png",
-                          color: const Color(0xffE0E0E0),
-                          scale: 1,
-                        )),
-                    Positioned(
-                        top: 45,
-                        right: 50,
-                        child: Image.asset(
-                          color: const Color(0xffE0E0E0),
-                          "assets/images/star 1.png",
-                          scale: 1.5,
-                        )),
-                    Positioned(
-                        top: 30,
-                        right: 78,
-                        child: Image.asset(
-                          color: const Color(0xffE0E0E0),
-                          "assets/images/star 2.png",
-                          scale: 1.8,
-                        )),
-                    Positioned(
-                        top: 65,
-                        right: 55,
-                        child: Image.asset(
-                          color: const Color(0xffE0E0E0),
-                          "assets/images/star 2.png",
-                          scale: 1,
-                        )),
-                    const Positioned(
-                        top: 10,
-                        right: 10,
-                        child: Text(
-                          "لیڈر بورڈ",
-                          style:
-                              TextStyle(fontFamily: "UrduType", fontSize: 18),
-                        )),
-                    const Positioned(
-                        top: 35,
-                        right: 10,
-                        child: Text(
-                          "کورسز اور ماڈیولز، تکمیل کی حیثیت کو اجاگر کرتے ہوئے اور آگے کیا ہے۔",
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              fontSize: 16,
-                              color: Color(0xff8B9DA0)),
-                        )),
-                    Positioned(
-                        top: 140,
-                        right: 20,
-                        child: Column(
-                          children: [
-                            Image.asset("assets/images/crown.png"),
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                              ),
-                              child: Image.asset(
-                                "assets/images/person2.png",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Positioned(
-                        top: 245,
-                        right: 55,
-                        child: Container(
-                          width: 25,
-                          height: 25,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: const Color(0xff8A8C93), width: 2)),
-                          child: const Center(
-                              child: Text(
-                            "10",
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.w600),
-                          )),
-                        )),
-                    Positioned(
-                        top: 150,
-                        right: 130,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Eiden Smith",
-                              style: TextStyle(
-                                fontFamily: "UrduType",
-                                fontSize: 20,
-                              ),
-                            ),
-                            const Row(
-                              children: [
-                                Text(
-                                  "پوائنٹس:",
-                                  style: TextStyle(
-                                      fontFamily: "UrduType",
-                                      color: Color(0xff8B9DA0)),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  "100",
-                                  style: TextStyle(
-                                      fontFamily: "UrduType", fontSize: 19),
-                                )
-                              ],
-                            ),
-                            Container(
-                              width: 135,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffFDCD4F),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: const Padding(
-                                padding: EdgeInsets.only(right: 5, top: 5),
-                                child: Text(
-                                  "9ویں تک جانے کے لیے 150 پوائنٹس",
-                                  style: TextStyle(
-                                      fontFamily: "UrduType", fontSize: 13),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                  ],
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              _TabBarWithPages(), // Insert the tab bar with pages here
-            ],
+                _TabBarWithPages(), // Insert the tab bar with pages here
+              ],
+            ),
           ),
         ),
       ),
@@ -784,8 +789,8 @@ class _TabBarWithPagesState extends State<_TabBarWithPages>
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
                 tabs: [
-                  const Tab(text: "منقسم"),
-                  const Tab(text: "ٹاپ پرفارمرز"),
+                  const Tab(text: "درجہ مہارت"),
+                  const Tab(text: "ہونہار طلبہ"),
                 ],
               ),
               

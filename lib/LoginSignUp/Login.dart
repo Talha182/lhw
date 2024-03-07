@@ -37,15 +37,16 @@ class _LoginScreenState extends State<LoginScreen> {
     final User? user = await DatabaseHelper.instance.loginUser(email, password);
 
     if (user != null) {
-      await UserService.saveUser(user); // Saves user to SharedPreferences and marks as logged in
+      await UserService.saveUser(
+          user); // Saves user to SharedPreferences and marks as logged in
       GlobalUser.updateUser(user); // Updates the global user instance
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLoggedIn', true);
 
       await prefs.setString('userEmail', email);
 
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => Custom_NavBar()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const Custom_NavBar()));
     } else {
       Fluttertoast.showToast(
           msg: "Login failed. Please check your credentials.");
@@ -73,57 +74,53 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 36),
-        child: ListView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             const Padding(
-              padding: EdgeInsets.all(24.0),
-              child: Text(
-                "خوش آمدید",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: "UrduType", fontSize: 24),
-                textDirection: TextDirection.ltr,
+              padding: EdgeInsets.only(bottom: 5, top: 24.0),
+              child: Center(
+                child: Text(
+                  "خوش آمدید",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 24),
+                  textDirection: TextDirection.ltr,
+                ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Get.to(() => const SignUpScreen(),
-                    transition: Transition.fade,
-                    duration: const Duration(milliseconds: 300));
-              },
-              child: const Text.rich(
-                TextSpan(children: [
-                  TextSpan(
-                    text: "LHW",
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        fontSize: 14,
-                        color: Color(0xff878787)),
+             Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const SignUpScreen());
+                  },
+                  child: const Text(
+                    "سائن اپ کریں۔",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontFamily: "UrduType", fontSize: 18,color: Color(0xffFE8BD1)),
+                    textDirection: TextDirection.ltr,
                   ),
-                  TextSpan(
-                    text: " میں نئے ہیں؟",
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        fontSize: 14,
-                        color: Color(0xff878787)),
-                  ),
-                  TextSpan(
-                    text: "سائن اپ کریں",
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        fontSize: 14,
-                        color: Color(0xffFE8BD1)),
-                  ),
-                ]),
-                textDirection: TextDirection.rtl,
-                textAlign: TextAlign.center,
-              ),
+                ),
+                const Text(
+                  "پہلا اکاؤنٹ؟",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: "UrduType", fontSize: 18,color: Color(0xff878787)),
+                  textDirection: TextDirection.ltr,
+                ),
+              ],
+            )
+                ),
+            const SizedBox(
+              height: 10,
             ),
             const Padding(
-              padding: EdgeInsets.only(right: 8, top: 36, bottom: 16),
+              padding: EdgeInsets.only(right: 8, top: 36, bottom: 10),
               child: Text.rich(
                 TextSpan(children: [
                   TextSpan(
-                    text: "لیڈی ہیلتھ ورکر کا شناختی نمبر",
+                    text: "لیڈی ہیلتھ ورکر کا آی ڈی نمبر",
                   ),
                   TextSpan(text: "*", style: TextStyle(color: Colors.red))
                 ]),
@@ -162,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 30.0, bottom: 16, right: 8),
+              padding: EdgeInsets.only(top: 30.0, bottom: 10, right: 8),
               child: Text.rich(
                 TextSpan(
                   children: [
@@ -232,18 +229,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   // shadowColor: Colors.red,
                   padding: const EdgeInsets.all(15.0),
                   backgroundColor:
-                      const Color(0xCDF36ABC), // Button color when not pressed
+                      const Color(0xffFE8BD1), // Button color when not pressed
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                         24.0), // Set your desired border radius
                   ),
                 ),
-                child: const Text(
-                  'لاگ ان کریں',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontFamily: "UrduType",
-                    color: Colors.white,
+                child: const Center(
+                  child: Text(
+                    'لاگ ان',
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontFamily: "UrduType",
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -260,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           duration: const Duration(milliseconds: 200));
                     },
                     child: const Text(
-                      "پاسورڈ بھول گئے ہیں؟",
+                      "پاسورڈ بھول گئے؟",
                       style: TextStyle(
                           fontFamily: "UrduType",
                           fontSize: 14,
@@ -270,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: [
                       const Text(
-                        " مجھے یاد رکھیں",
+                        "یہ معلومات یاد رکھیں",
                         style: TextStyle(
                             fontFamily: "UrduType",
                             fontSize: 14,

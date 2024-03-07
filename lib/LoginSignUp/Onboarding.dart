@@ -13,7 +13,7 @@ class OnboardingScreen extends StatefulWidget {
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingScreenState extends State<OnboardingScreen>  {
   // Navigate to Home and set the flag to false
   Future<void> _navigateToHome() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -37,7 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: _current == 0
                   ? SvgPicture.asset("assets/images/onBoarding1.svg")
                   : _current == 1
-                  ? SvgPicture.asset("assets/images/onBoarding2.svg")
+                    ? SvgPicture.asset("assets/images/onBoarding2.svg")
                   : SvgPicture.asset("assets/images/onBoarding3.svg"),
             ),
           ),
@@ -204,7 +204,7 @@ class OnBoarding1 extends StatelessWidget {
           height: 30,
         ),
         Text(
-          "خوش آمدید، لیڈی ہیلتھ ورکرز!",
+          "لیڈی ہیلتھ ورکرز کو خوش آمدید!",
           style: TextStyle(fontFamily: "UrduType", fontSize: 25),
         ),
         SizedBox(
@@ -213,8 +213,7 @@ class OnBoarding1 extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            "قدم بہ قدم، یہ کورسز آپ کی رہنمائی کریں گے، آپ کے منفرد سیکھنے کے سفر پر توجہ مرکوز کریں گے.",
-            textAlign: TextAlign.right, // Align the text to the right
+    'یہ مضامین قدم قدم پر آپ کی رہنمائی کریں گے تا کہ آپ اپنے وقت پرعلم کی نئی منزلوں تک پہنچیں۔ ', textAlign: TextAlign.right, // Align the text to the right
             style: TextStyle(
               fontFamily: "UrduType",
               fontSize: 16,
@@ -240,7 +239,7 @@ class OnBoarding2 extends StatelessWidget {
           height: 30,
         ),
         Text(
-          "ٹیکنالوجی میں نیا؟",
+          "موبائل زیادہ استعمال نہیں کرتیں؟ ",
           style: TextStyle(fontFamily: "UrduType", fontSize: 25),
         ),
         SizedBox(
@@ -249,7 +248,7 @@ class OnBoarding2 extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            "فکر نہ کرو; ہم نے اس ایپ کو آپ کو ذہن میں رکھتے ہوئے ڈیزائن کیا ہے.",
+            "فکر نہ کریں، ہم نے یہ ایپ آپ کے مطابق بنائی ہے۔",
             textAlign: TextAlign.right, // Align the text to the right
             style: TextStyle(
               fontFamily: "UrduType",
@@ -276,7 +275,7 @@ class OnBoarding3 extends StatelessWidget {
           height: 30,
         ),
         Text(
-          "اپنے مجازی ایل ایچ ڈبلیو گائیڈ سے ملیں!",
+          "اپنی آن لائن سہیلی سمینہ سے ملیں!",
           style: TextStyle(fontFamily: "UrduType", fontSize: 25),
         ),
         SizedBox(
@@ -285,7 +284,7 @@ class OnBoarding3 extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            "کھو یا غیر یقینی؟ ہمارے ایل ایچ ڈبلیو سے مددگار ہدایات دیکھیں ، آپ کے لئے ہر قدم کو آسان بنائیں۔",
+            "سمجھنے میں مشکل ہو رہی ہے ؟ ہماری لیڈی ہیلتھ ورکر سمینہ آپ کی قدم قدم پر رہنمائی کرے گی۔",
             textAlign: TextAlign.right, // Align the text to the right
             style: TextStyle(
               fontFamily: "UrduType",

@@ -21,46 +21,43 @@ class GroupsDiscussion extends StatelessWidget {
             backgroundColor: Colors.white,
             flexibleSpace: Align(
               alignment: Alignment.bottomCenter,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          child: SvgPicture.asset(
-                            'assets/images/bell.svg',
-                            color: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                        children: [
+                          GestureDetector(
+                            child: SvgPicture.asset(
+                              'assets/images/bell.svg',
+                              color: Colors.black,
+                            ),
+                            onTap: () {},
                           ),
-                          onTap: () {},
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        GestureDetector(
-                          child: SvgPicture.asset(
-                            'assets/images/magnifier.svg',
-                            color: Colors.black,
+                          const SizedBox(
+                            width: 20,
                           ),
-                          onTap: () {},
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 16.0),
-                    child: Text(
-                      "ڈسکشن گروپس",
-                      style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
+                          GestureDetector(
+                            child: SvgPicture.asset(
+                              'assets/images/magnifier.svg',
+                              color: Colors.black,
+                            ),
+                            onTap: () {},
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                ],
+                    Text(
+                        "بات چیت",
+                        style: TextStyle(
+                          fontFamily: 'UrduType',
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           )):null,
@@ -71,24 +68,13 @@ class GroupsDiscussion extends StatelessWidget {
           child: ListView(
             children: [
               const Text(
-                "تبادلہ خیال: بڑھیں اور ایک ساتھ سیکھیں۔",
+                "بات چیت: ایک ساتھ بڑھیں اور سیکھیں۔",
                 style: TextStyle(
                   fontFamily: 'UrduType',
                   fontSize: 20,
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),
-              ),
-              const Text(
-                "LHW کمیونٹی آپس میں جڑنے، بات چیت شروع کرنے، سوالات پوچھنے، ایک دوسرے کی مدد کرنے اور ایک ساتھ سیکھنے کی جگہ ہے۔ یہ جگہ آپ کے لیے ہے، اور ہمیں بہت خوشی ہے کہ آپ یہاں ہیں۔ شروع کرنے کے لیے تیار ہیں؟ ڈومین گفتگو چلا کر اپنے ساتھیوں کے ساتھ مشغول رہیں۔ ہر کورس کے لیے ایک گروپ وقف ہوتا ہے۔ کورس میں داخلہ لینے پر آپ خود بخود چیٹ میں شامل ہو جائیں گے۔",
-                style: TextStyle(
-                  fontFamily: 'UrduType',
-                  fontSize: 14,
-                  color: Color(0xff7A7D84),
-                  fontWeight: FontWeight.w600,
-                ),
-                textDirection: TextDirection.ltr,
-                textAlign: TextAlign.right,
               ),
               const SizedBox(
                 height: 20,
@@ -166,7 +152,7 @@ class GroupsDiscussion extends StatelessWidget {
                 height: 20,
               ),
               const Text(
-                "کورس گروپس",
+                "یونٹ کی باتیں",
                 style: TextStyle(
                   fontFamily: "UrduType",
                   fontSize: 25,
