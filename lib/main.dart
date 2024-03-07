@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-        home: isLoggedIn ? const Custom_NavBar() : const LoginScreen(),
+        home: isLoggedIn ? const Courses_Tabbar() : const LoginScreen(),
       ),
     );
   }

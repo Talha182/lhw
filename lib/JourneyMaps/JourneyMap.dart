@@ -443,7 +443,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                           navigateToSubmoduleFeatures(submodule);
                         },
                         child: const Text(
-                          'سابق جاری رکھیں',
+                          'سبق جاری رکھیں',
                           style: TextStyle(
                             fontFamily: "UrduType",
                             fontSize: 16,
