@@ -1424,8 +1424,7 @@
                             "offset": {
                               "dx": 40.0,
                               "dy": 170.0
-                            },
-
+                            }
                           },
                           {
                             "dialogText": "Hotspot 1 Description",
@@ -1451,33 +1450,36 @@
                           {
                             "dialogText": "Hotspot 1 Description",
                             "offset": {
-                              "dx": 310.0,
-                              "dy": 200.0
+                              "dx": 295.0,
+                              "dy": 190.0
                             }
                           },
                           {
                             "dialogText": "Hotspot 1 Description",
                             "offset": {
-                              "dx": 360.0,
-                              "dy": 105.0
+                              "dx": 450.0,
+                              "dy": 115.0
                             }
                           },
                           {
                             "dialogText": "Hotspot 1 Description",
                             "offset": {
-                              "dx": 380.0,
-                              "dy": 105.0
+                              "dx": 500.0,
+                              "dy": 115.0
                             }
                           },
                           {
                             "dialogText": "Hotspot 1 Description",
                             "offset": {
-                              "dx": 430.0,
-                              "dy": 270.0
+                              "dx": 570.0,
+                              "dy": 235.0
                             }
                           }
-
                         ]
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 36/Script 36-02.png",
+                        "hotspots": []
                       },
                       {
                         "imagePath": "assets/scripts/Script 36/Script 36-02.png",
@@ -1485,15 +1487,57 @@
                           {
                             "dialogText": "Hotspot 3 Description",
                             "offset": {
-                              "dx": 120.0,
+                              "dx": 75.0,
+                              "dy": 180.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 3 Description",
+                            "offset": {
+                              "dx": 100.0,
                               "dy": 220.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 4 Description",
+                            "dialogText": "Hotspot 3 Description",
                             "offset": {
-                              "dx": 170.0,
-                              "dy": 270.0
+                              "dx": 190.0,
+                              "dy": 180.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 3 Description",
+                            "offset": {
+                              "dx": 295.0,
+                              "dy": 245.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 3 Description",
+                            "offset": {
+                              "dx": 385.0,
+                              "dy": 240.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 3 Description",
+                            "offset": {
+                              "dx": 400.0,
+                              "dy": 180.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 3 Description",
+                            "offset": {
+                              "dx": 540.0,
+                              "dy": 200.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 3 Description",
+                            "offset": {
+                              "dx": 665.0,
+                              "dy": 190.0
                             }
                           }
                         ]

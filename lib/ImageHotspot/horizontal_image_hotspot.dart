@@ -44,24 +44,83 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
     super.dispose();
   }
 
-  void _showDialog(String dialogText) {
+
+  void showCustomDialog(BuildContext context, String dialogText,
+      ) {
     showAnimatedDialog(
+      barrierDismissible: true,
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Dialog'),
-          content: Text(dialogText),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Close'),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
+      builder: (BuildContext dialogContext) {
+        return Dialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.only(
+                    top: 20, right: 60, bottom: 60, left: 60),
+                child: ConstrainedBox(
+                  constraints:
+                  const BoxConstraints(maxHeight: 120, maxWidth: 150),
+                  child: Text(dialogText,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontFamily: "UrduType", fontSize: 20)),
+                ),
+              ),
+              Positioned(
+                bottom: -15,
+                left: -55,
+                child: Image.asset('assets/scripts/script11/2.png',
+                    width: 180, height: 180),
+              ),
+              Positioned(
+                top: -40,
+                right: -50,
+                child: Image.asset('assets/scripts/script11/1.png',
+                    width: 180, height: 180),
+              ),
+              Positioned.fill(
+                child: Container(
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.green, width: 2),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                left: 110,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(dialogContext).pop(); // Close the dialog
+                  },
+                  child: Container(
+                    width: 90,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Color(0xffFE8BD1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "اگلے",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
   }
-
   bool _areAllHotspotsTapped() {
     return widget.horizontalImageHotspotModel.images[_currentIndex].hotspots.every((hotspot) => hotspot.isTapped);
   }
@@ -120,7 +179,7 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
             top: hotspot.offset.dy,
             child: GestureDetector(
               onTap: () {
-                _showDialog(hotspot.dialogText);
+                showCustomDialog(context, hotspot.dialogText);
                 setState(() {
                   hotspot.isTapped = true;
                 });
