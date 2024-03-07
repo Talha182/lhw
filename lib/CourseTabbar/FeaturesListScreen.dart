@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lhw/BranchingScenarios/ImageBranchingScenario.dart';
 import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
 import 'package:lhw/ComicStrip/comic_strip.dart';
+import 'package:lhw/ImageHotspot/horizontal_image_hotspot.dart';
 import 'package:lhw/Infographics/infographics.dart';
 import 'package:lhw/Test/Features/InteractiveImage.dart';
 import 'package:lhw/models/interactive_images_model.dart';
@@ -153,7 +154,7 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                           Row(
                             children: [
                               Text(
-                               "یونٹ:", // Example text, replace with dynamic data if necessary
+                                "یونٹ:", // Example text, replace with dynamic data if necessary
                                 style: const TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 25,
@@ -188,12 +189,10 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                 ),
                               ),
                               const SizedBox(width: 6),
-
                               SvgPicture.asset(
                                 'assets/images/person_card.svg',
                                 color: Colors.white,
                               ),
-
                               const SizedBox(width: 8),
                               Container(
                                 width: 5,
@@ -490,6 +489,25 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                   await Get.to(() => ImageHotspot(
                                         imageHotspotModel: imageHotspotModel,
                                       ));
+                                  break;
+                                case FeatureType.horizontalImageHotspot:
+                                  final horizontalImageHotspotModel =
+                                      HorizontalImageHotspotModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+                                  final result = await Get.to(() => HorizontalImageHotspot(
+                                        horizontalImageHotspotModel:
+                                            horizontalImageHotspotModel,
+                                      ));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+
+                                    Provider.of<CoursesProvider>(context,
+                                        listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                        widget.courseId,
+                                        widget.moduleId,
+                                        feature.featureId);
+                                  }
                                   break;
                                 case FeatureType.imageBranchingScenario:
                                   final imageBranchingScenarioModel =

@@ -3,7 +3,10 @@
     {
       "courseId": 1,
       "title": "متعدی بیماریاں",
-      "gradient": ["#18A3C8", "#89E4FE"],
+      "gradient": [
+        "#18A3C8",
+        "#89E4FE"
+      ],
       "quizCount": 5,
       "moduleCount": 8,
       "imagePath": "assets/images/immunization-ico.png",
@@ -36,18 +39,29 @@
                   "submoduleId": 2,
                   "data": {
                     "videoPath": "assets/videos/demo.mp4",
-                    "questionDurations": ["00:00:10", "00:00:20"],
+                    "questionDurations": [
+                      "00:00:10",
+                      "00:00:20"
+                    ],
                     "questions": [
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Correct! Paris is the capital of France.",
                         "incorrectExplanation": "Incorrect. Paris is the capital of France."
                       },
                       {
                         "question": "Which planet is known as the Red Planet?",
-                        "options": ["Mars", "Earth", "Jupiter"],
+                        "options": [
+                          "Mars",
+                          "Earth",
+                          "Jupiter"
+                        ],
                         "correctAnswer": "Mars",
                         "correctExplanation": "Right! Mars is called the Red Planet.",
                         "incorrectExplanation": "Incorrect. Mars is the Red Planet."
@@ -209,9 +223,9 @@
                         "guide": "Click on the mirror to ensure the patient's mouth is empty.",
                         "touchArea": {
                           "left": 460,
-                          "top": 80,
-                          "width": 130,
-                          "height": 160
+                          "top": 70,
+                          "width": 140,
+                          "height": 180
                         },
                         "showDialog": false,
                         "dialogText": "",
@@ -268,7 +282,6 @@
                     ]
                   }
                 },
-
                 {
                   "featureId": 10,
                   "featureType": "flashCard",
@@ -349,25 +362,44 @@
                   "duration": "4 mins",
                   "videoPath": "assets/videos/demo.mp4",
                   "data": {
-                    "questionDurations": ["00:10", "00:20", "00:30"],
+                    "questionDurations": [
+                      "00:10",
+                      "00:20",
+                      "00:30"
+                    ],
                     "questions": [
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
@@ -511,7 +543,11 @@
                     "questions": [
                       {
                         "question": "What do you see?",
-                        "options": ["Option 1", "Option 2", "Option 3"],
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
                         "correctAnswer": "Option 1",
                         "correctExplanation": "Correct because...",
                         "incorrectExplanation": "Incorrect because...",
@@ -531,12 +567,12 @@
                   "title": "ٹی بی کے علاج کے لئے DOTS کا طریقہ کار",
                   "data": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/scripts/Script 15/Artboard 1.png",
+                      "assets/scripts/Script 15/Artboard 2.png",
+                      "assets/scripts/Script 15/Artboard 3.png",
+                      "assets/scripts/Script 15/Artboard 3 copy.png",
+                      "assets/scripts/Script 15/Artboard 3 copy 2.png",
+                      "assets/scripts/Script 15/Artboard 4.png"
                     ],
                     "questions": [
                       {
@@ -618,7 +654,11 @@
                     "questions": [
                       {
                         "question": "Here's your first question?",
-                        "options": ["Option A", "Option B", "Option C"],
+                        "options": [
+                          "Option A",
+                          "Option B",
+                          "Option C"
+                        ],
                         "correctAnswer": "Option A",
                         "correctExplanation": "Here's why A is correct...",
                         "incorrectExplanation": "Here's why this option is incorrect...",
@@ -666,7 +706,11 @@
                     "questions": [
                       {
                         "question": "What do you see?",
-                        "options": ["Option 1", "Option 2", "Option 3"],
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
                         "correctAnswer": "Option 1",
                         "correctExplanation": "Correct because...",
                         "incorrectExplanation": "Incorrect because...",
@@ -731,7 +775,7 @@
                   "submoduleId": 2,
                   "duration": "10 mins",
                   "data": {
-                    "imagePath": "assets/scripts/images/lessonOption26.png",
+                    "imagePath": "assets/scripts/Script 23/lessonOption26.png",
                     "hotspots": [
                       {
                         "dialogText": "Hotspot 1 Description",
@@ -759,8 +803,12 @@
                   "data": {
                     "questions": [
                       {
-                        "question": "Here's your first question?",
-                        "options": ["Option A", "Option B", "Option C"],
+                        "question": "Here's your Script 24 question?",
+                        "options": [
+                          "Option A",
+                          "Option B",
+                          "Option C"
+                        ],
                         "correctAnswer": "Option A",
                         "correctExplanation": "Here's why A is correct...",
                         "incorrectExplanation": "Here's why this option is incorrect...",
@@ -940,7 +988,7 @@
                   "duration": "2 mins",
                   "infographics": [
                     {
-                      "imagePath": "assets/scripts/images/infographic1.png",
+                      "imagePath": "assets/scripts/Script 28/infographic1.png",
                       "text": "Infographic 1 Description"
                     },
                     {
@@ -977,26 +1025,45 @@
                   "submoduleId": 2,
                   "duration": "4 mins",
                   "data": {
-                    "videoPath": "assets/scripts/videos/interactive_animation.mp4",
-                    "questionDurations": ["00:10", "00:20", "00:30"],
+                    "videoPath": "assets/scripts/Script 29/interactive_animation.mp4",
+                    "questionDurations": [
+                      "00:10",
+                      "00:20",
+                      "00:30"
+                    ],
                     "questions": [
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
@@ -1012,7 +1079,7 @@
                   "title": "Introduction to Variables",
                   "data": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
+                      "assets/scripts/Script 30/presentation1.png",
                       "assets/scripts/presentations/presentation2.png",
                       "assets/scripts/presentations/presentation3.png",
                       "assets/scripts/presentations/presentation4.png",
@@ -1070,26 +1137,45 @@
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
                   "data": {
-                    "videoPath": "assets/scripts/videos/interactive_animation.mp4",
-                    "questionDurations": ["00:10", "00:20", "00:30"],
+                    "videoPath": "assets/scripts/Script 31/interactive_animation.mp4",
+                    "questionDurations": [
+                      "00:10",
+                      "00:20",
+                      "00:30"
+                    ],
                     "questions": [
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
@@ -1229,52 +1315,32 @@
                     "title": "Comic Strip 1",
                     "imagePairs": [
                       {
-                        "topImage": "assets/scripts/Script 3/Script 3-01.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-02.png"
+                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 2.png",
+                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 3.png"
                       },
                       {
-                        "topImage": "assets/scripts/Script 3/Script 3-03.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-04.png"
+                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 4.png",
+                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 5.png"
                       },
                       {
-                        "topImage": "assets/scripts/Script 3/Script 3-05.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-06.png"
+                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 6.png",
+                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 7.png"
                       },
                       {
-                        "topImage": "assets/scripts/Script 3/Script 3-07.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
+                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 8.png",
+                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 9.png"
                       },
                       {
-                        "topImage": "assets/scripts/Script 3/Script 3-09.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
+                        "topImage": "assets/scripts/Script 34/Artboard 11.png",
+                        "bottomImage": "assets/scripts/Script 34/Artboard 12.png"
                       },
                       {
-                        "topImage": "assets/scripts/Script 3/Script 3-11.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
+                        "topImage": "assets/scripts/Script 34/Artboard 17.png",
+                        "bottomImage": "assets/scripts/Script 34/Artboard 18.png"
                       },
                       {
-                        "topImage": "assets/scripts/Script 3/Script 3-13.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-15.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-17.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-19.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-21.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-23.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
+                        "topImage": "assets/scripts/Script 34/Artboard 19.png",
+                        "bottomImage": "assets/scripts/Script 34/Artboard 23.png"
                       }
                     ]
                   }
@@ -1344,26 +1410,92 @@
                 },
                 {
                   "featureId": 49,
-                  "featureType": "imageHotspot",
+                  "featureType": "horizontalImageHotspot",
                   "submoduleId": 2,
                   "title": "Image Hotspot Example",
                   "duration": "10 mins",
                   "data": {
-                    "imagePath": "assets/scripts/images/lessonOption26.png",
-                    "hotspots": [
+                    "images": [
                       {
-                        "dialogText": "Hotspot 1 Description",
-                        "offset": {
-                          "dx": 100.0,
-                          "dy": 200.0
-                        }
+                        "imagePath": "assets/scripts/Script 36/Script 36-01.png",
+                        "hotspots": [
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 40.0,
+                              "dy": 170.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 70.0,
+                              "dy": 100.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 170.0,
+                              "dy": 200.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 2 Description",
+                            "offset": {
+                              "dx": 260.0,
+                              "dy": 110.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 310.0,
+                              "dy": 200.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 360.0,
+                              "dy": 105.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 380.0,
+                              "dy": 105.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 430.0,
+                              "dy": 270.0
+                            }
+                          }
+
+                        ]
                       },
                       {
-                        "dialogText": "Hotspot 2 Description",
-                        "offset": {
-                          "dx": 150.0,
-                          "dy": 250.0
-                        }
+                        "imagePath": "assets/scripts/Script 36/Script 36-02.png",
+                        "hotspots": [
+                          {
+                            "dialogText": "Hotspot 3 Description",
+                            "offset": {
+                              "dx": 120.0,
+                              "dy": 220.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 4 Description",
+                            "offset": {
+                              "dx": 170.0,
+                              "dy": 270.0
+                            }
+                          }
+                        ]
                       }
                     ]
                   }
@@ -1562,25 +1694,44 @@
                   "duration": "4 mins",
                   "data": {
                     "videoPath": "assets/scripts/videos/interactive_animation.mp4",
-                    "questionDurations": ["00:10", "00:20", "00:30"],
+                    "questionDurations": [
+                      "00:10",
+                      "00:20",
+                      "00:30"
+                    ],
                     "questions": [
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
@@ -1651,25 +1802,44 @@
                   "duration": "4 mins",
                   "data": {
                     "videoPath": "assets/videos/demo.mp4",
-                    "questionDurations": ["00:10", "00:20", "00:30"],
+                    "questionDurations": [
+                      "00:10",
+                      "00:20",
+                      "00:30"
+                    ],
                     "questions": [
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
                       },
                       {
                         "question": "What is the capital of France?",
-                        "options": ["Paris", "London", "Berlin", "Madrid"],
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin",
+                          "Madrid"
+                        ],
                         "correctAnswer": "Paris",
                         "correctExplanation": "Paris is the capital of France.",
                         "incorrectExplanation": "This is not the correct capital of France."
@@ -1805,25 +1975,44 @@
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
                   "videoPath": "assets/scripts/videos/interactive_animation.mp4",
-                  "questionDurations": ["00:10", "00:20", "00:30"],
+                  "questionDurations": [
+                    "00:10",
+                    "00:20",
+                    "00:30"
+                  ],
                   "questions": [
                     {
                       "question": "What is the capital of France?",
-                      "options": ["Paris", "London", "Berlin", "Madrid"],
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
                       "correctAnswer": "Paris",
                       "correctExplanation": "Paris is the capital of France.",
                       "incorrectExplanation": "This is not the correct capital of France."
                     },
                     {
                       "question": "What is the capital of France?",
-                      "options": ["Paris", "London", "Berlin", "Madrid"],
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
                       "correctAnswer": "Paris",
                       "correctExplanation": "Paris is the capital of France.",
                       "incorrectExplanation": "This is not the correct capital of France."
                     },
                     {
                       "question": "What is the capital of France?",
-                      "options": ["Paris", "London", "Berlin", "Madrid"],
+                      "options": [
+                        "Paris",
+                        "London",
+                        "Berlin",
+                        "Madrid"
+                      ],
                       "correctAnswer": "Paris",
                       "correctExplanation": "Paris is the capital of France.",
                       "incorrectExplanation": "This is not the correct capital of France."

@@ -341,19 +341,21 @@ class Feature extends ChangeNotifier {
         return FeatureType.presentation;
       case "comicStrip":
         return FeatureType.comicStrip;
-      case "flashCard": // Add this case
+      case "flashCard":
         return FeatureType.flashCard;
-      case "infographics": // Add this case
+      case "infographics":
         return FeatureType.infographics;
-      case "interactiveAnimationVideo": // Add this case
+      case "interactiveAnimationVideo":
         return FeatureType.interactiveAnimationVideo;
       case "interactiveImage":
         return FeatureType.interactiveImage;
-      case "imageHotspot": // Add this case
+      case "imageHotspot":
         return FeatureType.imageHotspot;
-      case "imageBranchingScenario": // Add this case
+      case "horizontalImageHotspot":
+        return FeatureType.horizontalImageHotspot;
+      case "imageBranchingScenario":
         return FeatureType.imageBranchingScenario;
-      case "textBranchingScenario": // Add this case
+      case "textBranchingScenario":
         return FeatureType.textBranchingScenario;
       default:
         return FeatureType.unknown;
@@ -443,6 +445,8 @@ class Feature extends ChangeNotifier {
           return Icons.image_aspect_ratio;
         case FeatureType.imageHotspot:
           return Icons.image;
+        case FeatureType.horizontalImageHotspot:
+          return Icons.horizontal_distribute;
         case FeatureType.textBranchingScenario:
           return Icons.text_fields;
         case FeatureType.imageBranchingScenario:
@@ -477,6 +481,7 @@ enum FeatureType {
   interactiveAnimationVideo,
   interactiveImage,
   imageHotspot,
+  horizontalImageHotspot,
   textBranchingScenario,
   imageBranchingScenario,
   animationVideo,
