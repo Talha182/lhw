@@ -288,7 +288,7 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                         }
                       : null, // This button is disabled unless you're on the last slide
                   child: const Text(
-                    'جاری رہے',
+                    'جاری',
                     style: TextStyle(
                       fontFamily: 'UrduType',
                       fontSize: 15,

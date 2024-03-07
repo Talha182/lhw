@@ -57,8 +57,10 @@ class _LessonState extends State<Lesson> {
 
   @override
   Widget build(BuildContext context) {
-    Color startColor = Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
-    Color endColor = Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
+    Color startColor =
+        Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
+    Color endColor =
+        Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
     return Scaffold(
         body: Stack(
       children: [
@@ -78,7 +80,8 @@ class _LessonState extends State<Lesson> {
                         startColor,
                         endColor,
                       ],
-                    ),                    borderRadius: BorderRadius.circular(10),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20, top: 20),
@@ -104,8 +107,8 @@ class _LessonState extends State<Lesson> {
                             const SizedBox(
                               width: 6,
                             ),
-                             Text(
-                              '${widget.course.moduleCount} ماڈیولز',
+                            Text(
+                              '${widget.course.moduleCount} سبق',
                               style: TextStyle(
                                 fontFamily: 'UrduType',
                                 fontSize: 15,
@@ -128,14 +131,14 @@ class _LessonState extends State<Lesson> {
                               width: 6,
                             ),
                             SvgPicture.asset(
-                              'assets/images/module.svg',
+                              'assets/images/person_card.svg',
                               color: Colors.white,
                             ),
                             const SizedBox(
                               width: 6,
                             ),
-                             Text(
-                              '${widget.course.quizCount} کوئز',
+                            Text(
+                              '${widget.course.quizCount} ٹیسٹ',
                               style: TextStyle(
                                 fontFamily: 'UrduType',
                                 fontSize: 15,
@@ -160,13 +163,12 @@ class _LessonState extends State<Lesson> {
                             minimumSize: const Size(150, 37),
                           ),
                           onPressed: () {
-                            Get.off(
-                                () => ModuleScreen(course: widget.course),
+                            Get.off(() => ModuleScreen(course: widget.course),
                                 transition: Transition.fade,
                                 duration: const Duration(milliseconds: 400));
                           },
                           child: const Text(
-                            'سیکھنا شروع کریں۔',
+                            'سیکھنا شروع ',
                             style: TextStyle(
                               fontFamily: 'UrduType',
                               fontSize: 15,
@@ -184,7 +186,7 @@ class _LessonState extends State<Lesson> {
                   child: Image.asset(
                     widget.course.imagePath, // replace with your image name
                     scale: 2.5,
-                 // Set your height
+                    // Set your height
                   ),
                 ),
               ],
@@ -210,7 +212,7 @@ class _LessonState extends State<Lesson> {
                         children: [
                           SizedBox(width: 15),
                           Text(
-                            "کورس کے ذیلی ماڈلز", // Updated this line
+                            "یونٹ کے ذیلی اسباق", // Updated this line
                             style:
                                 TextStyle(fontFamily: 'UrduType', fontSize: 18),
                           ),
@@ -222,7 +224,7 @@ class _LessonState extends State<Lesson> {
                           size: 20,
                         ),
                         onTap: () {
-                          Get.off(() =>  ModuleScreen(course: widget.course),
+                          Get.off(() => ModuleScreen(course: widget.course),
                               transition: Transition.fade,
                               duration: const Duration(milliseconds: 400));
                         },
@@ -240,61 +242,17 @@ class _LessonState extends State<Lesson> {
               height: 20,
             ),
             const Text(
-              'کورس کی تفصیل',
-              style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+              'سبق کی تفصیل',
+              style: TextStyle(fontFamily: "UrduType", fontSize: 16),
               textAlign: TextAlign.right,
             ),
             const SizedBox(
               height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ...rowPadded([
-                  const Text(
-                    '1h 34m',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                  const Text(
-                    '•',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                  const Text(
-                    '3/15/2023',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                  const Text(
-                    'جاری کیا گیا:',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                  const Text(
-                    '•',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                  const Text(
-                    'ابتدائی',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                ], 2)
-              ],
+            const Text(
+              ' کل وقت: 1گھنٹہ 30منٹ',
+              style: TextStyle(fontFamily: "UrduType", fontSize: 16),
+              textAlign: TextAlign.right,
             ),
             const SizedBox(
               height: 10,
@@ -338,7 +296,7 @@ class _LessonState extends State<Lesson> {
             InkWell(
               onTap: () {},
               child: const Text(
-                "میرے جائزے میں ترمیم کریں۔",
+                "اپنا جایزہ تبدیل کریں",
                 textAlign: TextAlign.right,
                 style: TextStyle(
                     fontFamily: "UrduType",
@@ -358,7 +316,7 @@ class _LessonState extends State<Lesson> {
               height: 10,
             ),
             const Text(
-              "اس کورس سے متعلق",
+              "اس سبق سے متعلق",
               style: TextStyle(fontFamily: "UrduType", fontSize: 18),
               textAlign: TextAlign.right,
             ),
@@ -368,36 +326,22 @@ class _LessonState extends State<Lesson> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ...rowPadded([
-                  SvgPicture.asset('assets/images/doc.svg'),
-                  const SizedBox(
-                    width: 10,
-                  ),
+
                   InkWell(
                     onTap: () {},
                     child: const Text(
-                      'ڈاؤن لوڈ کریں۔',
+                      'سبق کا مواد  ڈاؤن لوڈ کریں۔',
                       style: TextStyle(
                           fontFamily: "UrduType",
                           color: Color(0xffFE8BD1),
                           fontSize: 18),
                     ),
                   ),
-                  const Text(
-                    '•',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                  const Text(
-                    'ابتدائی',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                ], 2)
+                const SizedBox(
+                  width: 10,
+                ),
+                SvgPicture.asset('assets/images/doc.svg'),
+
               ],
             ),
             const SizedBox(
@@ -406,11 +350,7 @@ class _LessonState extends State<Lesson> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ...rowPadded([
-                  SvgPicture.asset('assets/images/discussion.svg'),
-                  const SizedBox(
-                    width: 10,
-                  ),
+
                   InkWell(
                     onTap: () {},
                     child: const Text(
@@ -421,21 +361,12 @@ class _LessonState extends State<Lesson> {
                           fontSize: 18),
                     ),
                   ),
-                  const Text(
-                    '•',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                  const Text(
-                    'ڈسکشن گروپ میں شامل ہوں',
-                    style: TextStyle(
-                        fontFamily: "UrduType",
-                        color: Color(0xff232323),
-                        fontSize: 18),
-                  ),
-                ], 2)
+                const SizedBox(
+                  width: 10,
+                ),
+                SvgPicture.asset('assets/images/discussion.svg'),
+
+
               ],
             ),
             const SizedBox(

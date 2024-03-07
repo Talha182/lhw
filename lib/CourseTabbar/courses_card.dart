@@ -29,16 +29,20 @@ class _CourseCardState extends State<CourseCard> {
 
     if (isFirstVisit) {
       await prefs.setBool(isFirstVisitKey, false);
-      await Get.to(() => LessonPageTabBar(course: widget.course),transition: Transition.fade,duration: Duration(milliseconds: 300));
+      await Get.to(() => LessonPageTabBar(course: widget.course),
+          transition: Transition.fade, duration: Duration(milliseconds: 300));
     } else {
-      await Get.to(() => ModuleScreen(course: widget.course),transition: Transition.fade,duration: Duration(milliseconds: 300));
+      await Get.to(() => ModuleScreen(course: widget.course),
+          transition: Transition.fade, duration: Duration(milliseconds: 300));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    Color startColor = Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
-    Color endColor = Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
+    Color startColor =
+        Color(int.parse(widget.course.gradient[0].replaceAll('#', '0xff')));
+    Color endColor =
+        Color(int.parse(widget.course.gradient[1].replaceAll('#', '0xff')));
     double progressValue = widget.course.progress;
 
     return Container(
@@ -76,33 +80,33 @@ class _CourseCardState extends State<CourseCard> {
                   widget.course.isCompleted
                       ? ArrowContainer(text: widget.course.arrowText)
                       : widget.course.isStart
-                      ? Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircleProgressBar(
-                        strokeWidth: 4.0,
-                        backgroundColor: const Color(0xffE6D0B0),
-                        foregroundColor: Colors.white,
-                        value: progressValue,
-                        child: Center(
-                          child: Text(
-                            '${(progressValue * 100).toStringAsFixed(0)}%',
-                            style: const TextStyle(
-                              fontFamily: 'UrduType',
-                              fontSize: 15,
-                              color: Colors.white,
+                          ? Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircleProgressBar(
+                                  strokeWidth: 4.0,
+                                  backgroundColor: const Color(0xffE6D0B0),
+                                  foregroundColor: Colors.white,
+                                  value: progressValue,
+                                  child: Center(
+                                    child: Text(
+                                      '${(progressValue * 100).toStringAsFixed(0)}%',
+                                      style: const TextStyle(
+                                        fontFamily: 'UrduType',
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(
+                              height: 50,
+                              width: 50,
                             ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                      : const SizedBox(
-                    height: 50,
-                    width: 50,
-                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -125,19 +129,19 @@ class _CourseCardState extends State<CourseCard> {
                     padding: const EdgeInsets.only(right: 15.0),
                     child: Row(
                       children: [
-                        SvgPicture.asset(
-                          'assets/images/module.svg',
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 6),
                         Text(
-                          '${widget.course.moduleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
+                          '${widget.course.moduleCount} ٹیسٹ ', // Example text, replace with dynamic data if necessary
                           style: const TextStyle(
                             fontFamily: 'UrduType',
                             fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
+                        ),
+                        const SizedBox(width: 4),
+                        SvgPicture.asset(
+                          'assets/images/module.svg',
+                          color: Colors.white,
                         ),
                         const SizedBox(width: 8),
                         Container(
@@ -149,19 +153,19 @@ class _CourseCardState extends State<CourseCard> {
                           ),
                         ),
                         const SizedBox(width: 6),
-                        Image.asset(
-                          'assets/images/quiz.png',
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 6),
                         Text(
-                          '${widget.course.quizCount} کوئز', // Example text, replace with dynamic data if necessary
+                          '${widget.course.quizCount} اسباق', // Example text, replace with dynamic data if necessary
                           style: const TextStyle(
                             fontFamily: 'UrduType',
                             fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
+                        ),
+                        const SizedBox(width: 4),
+                        Image.asset(
+                          'assets/images/quiz.png',
+                          color: Colors.white,
                         ),
                       ],
                     ),
@@ -171,37 +175,37 @@ class _CourseCardState extends State<CourseCard> {
                   ),
                   widget.course.isStart
                       ? Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white.withOpacity(0.5),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        minimumSize: const Size(120, 30),
-                      ),
-                      onPressed: () async {
-                        await navigateBasedOnVisitStatus(context);
-                        // Update the last visited course using Provider after navigation completes
-                        Provider.of<CoursesProvider>(context,
-                            listen: false)
-                            .setLastVisitedCourse(widget.course);
-                      },
-                      child: const Text(
-                        'جاری رہے',
-                        style: TextStyle(
-                          fontFamily: 'UrduType',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  )
+                          padding: const EdgeInsets.only(right: 15.0),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white.withOpacity(0.5),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              minimumSize: const Size(120, 30),
+                            ),
+                            onPressed: () async {
+                              await navigateBasedOnVisitStatus(context);
+                              // Update the last visited course using Provider after navigation completes
+                              Provider.of<CoursesProvider>(context,
+                                      listen: false)
+                                  .setLastVisitedCourse(widget.course);
+                            },
+                            child: const Text(
+                              'جاری رکھیں',
+                              style: TextStyle(
+                                fontFamily: 'UrduType',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        )
                       : const SizedBox(
-                    height: 0,
-                  ),
+                          height: 0,
+                        ),
                 ],
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Profile/profile_screen.dart';
-import 'package:lhw/Reports/Help.dart';
+import 'package:lhw/Reports/help_screen.dart';
 
 class CustomBottomModalSheet extends StatelessWidget {
   const CustomBottomModalSheet({super.key});
@@ -14,7 +14,7 @@ class CustomBottomModalSheet extends StatelessWidget {
         children: [
           const SizedBox(height: 12),
           const Text('مزید خدمات',
-              style: TextStyle(fontFamily: "UrduType",fontSize: 22)),
+              style: TextStyle(fontFamily: "UrduType", fontSize: 22)),
           const SizedBox(height: 12.0),
           // First Row
           Row(
@@ -22,20 +22,18 @@ class CustomBottomModalSheet extends StatelessWidget {
               _buildContainer(
                   flex: 3,
                   colors: [const Color(0xffF4D6A9), const Color(0xffEAAF58)],
-                  firstText: 'کیلنڈر',
-                  secondText: 'اپنا کیلنڈر اور میٹنگ چیک کریں۔',
+                  firstText: 'سیٹنگز',
+                  secondText: 'اپنی سیٹنگز اور دیگر اشیا دیکھیں',
                   imageName: 'assets/images/calender.png',
-                  textColor: Colors.black87,
                   onTap: () {}),
               _buildContainer(
                   flex: 2,
                   colors: [const Color(0xffDCEFDE), const Color(0xff81C588)],
-                  firstText: 'پروفائل',
-                  secondText: 'اپنا پروفائل چیک کریں۔',
+                  firstText: 'ذاتی معلومات',
+                  secondText: 'اپنی ذاتی معلومات دیکھیں',
                   imageName: 'assets/images/profile.png',
-                  textColor: Colors.black87,
                   onTap: () {
-                    Get.to(() => ProfileScreen());
+                    Get.to(() => const ProfileScreen());
                   }),
             ],
           ),
@@ -43,24 +41,22 @@ class CustomBottomModalSheet extends StatelessWidget {
           Row(
             children: [
               _buildContainer(
-                  flex: 1,
+                  flex: 2,
                   colors: [const Color(0xffF4B9E1), const Color(0xffED8DCE)],
                   firstText: 'مدد',
-                  secondText: 'امدادی مرکز دیکھیں',
+                  secondText: 'کسی بھی قسم کی مدد حاصل کریں',
                   imageName: 'assets/images/help.png',
-                  textColor: Colors.black87,
                   onTap: () {
-                    Get.to(() => HelpScreen(),
+                    Get.to(() => const HelpScreen(),
                         transition: Transition.fade,
-                        duration: Duration(milliseconds: 300));
+                        duration: const Duration(milliseconds: 300));
                   }),
               _buildContainer(
-                  flex: 2,
+                  flex: 3,
                   colors: [const Color(0xffC8C0FC), const Color(0xffAB9FF9)],
-                  firstText: 'حوالہ جات',
-                  secondText: 'اپنا کیلنڈر اور میٹنگ چیک کریں۔',
+                  firstText: 'وسائل',
+                  secondText: 'اسباق کا مواد دیکھیں',
                   imageName: 'assets/images/BookOpen.png',
-                  textColor: Colors.white,
                   onTap: () {}),
             ],
           ),
@@ -75,7 +71,6 @@ class CustomBottomModalSheet extends StatelessWidget {
     required String firstText,
     required String secondText,
     required String imageName,
-    required Color textColor, // Added textColor parameter
     required VoidCallback onTap, // <-- Added this line
   }) {
     return Expanded(
@@ -90,38 +85,42 @@ class CustomBottomModalSheet extends StatelessWidget {
               gradient: LinearGradient(colors: colors),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, top: 25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(firstText,
-                          style: TextStyle(
-                              fontFamily: 'UrduType',
-                              color: textColor,
-                              fontWeight: FontWeight.bold)), // Used textColor
-                      const SizedBox(height: 2),
-                      Text(secondText,
-                          style: TextStyle(
-                              fontFamily: 'UrduType',
-                              color: textColor,
-                              fontSize: 12)), // Used textColor
-                    ],
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10, top: 25),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(firstText,
+                            style: TextStyle(
+                                fontFamily: 'UrduType',
+                                fontSize: 16,
+                                color: Color(0xff232323),
+                                fontWeight: FontWeight.bold)), // Used textColor
+                        const SizedBox(height: 2),
+                        Text(secondText,
+                            style: TextStyle(
+                                fontFamily: 'UrduType',
+                                color: Color(0xff7A7D84),
+                                fontSize: 12)), // Used textColor
+                      ],
+                    ),
                   ),
-                ),
-                Positioned(
-                  bottom: 5,
-                  right: 5,
-                  child: Image.asset(
-                    imageName,
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.contain,
+                  Positioned(
+                    bottom: 5,
+                    left: 5,
+                    child: Image.asset(
+                      imageName,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -326,7 +326,7 @@ class _ImageHotspotState extends State<ImageHotspot>
           }
               : null,
           child: const Text(
-            'جاری رہے',
+            'جاری',
             style: TextStyle(
               fontFamily: 'UrduType',
               fontSize: 15,

@@ -27,7 +27,6 @@ class ModuleScreen extends StatefulWidget {
 class _ModuleScreenState extends State<ModuleScreen> {
   bool _feedbackButtonPressed = false;
 
-
   @override
   Widget build(BuildContext context) {
     Color startColor =
@@ -42,7 +41,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
         return const Scaffold(body: Center(child: Text('Course not found')));
       }
       provider.fetchAllModulesProgress(course.courseId);
-
 
       // User? currentUser = GlobalUser.getCurrentUser;
       // if (currentUser != null) {
@@ -63,17 +61,15 @@ class _ModuleScreenState extends State<ModuleScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: InkWell(
-                    child: const Icon(Icons.arrow_back),
-                    onTap: () {
-                      Get.back();
-                    },
+                    child: const Icon(Icons.more_vert),
+                    onTap: () {},
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  child: const Text(
-                    "عنوان",
-                    style: TextStyle(
+                  child: Text(
+                    course.title,
+                    style: const TextStyle(
                       fontFamily: 'UrduType',
                       fontSize: 20,
                       color: Colors.black,
@@ -84,8 +80,10 @@ class _ModuleScreenState extends State<ModuleScreen> {
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: InkWell(
-                    child: const Icon(Icons.more_vert),
-                    onTap: () {},
+                    child: const Icon(Icons.arrow_forward),
+                    onTap: () {
+                      Get.back();
+                    },
                   ),
                 ),
               ],
@@ -115,9 +113,10 @@ class _ModuleScreenState extends State<ModuleScreen> {
                     Positioned(
                       bottom: 0,
                       left: 0,
+                      right: 0,
+                      top: 0,
                       child: Image.asset(
                         course!.imagePath,
-                        scale: 0.9,
                       ),
                     ),
                     Padding(
@@ -127,15 +126,29 @@ class _ModuleScreenState extends State<ModuleScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            course.title,
-                            style: const TextStyle(
-                              fontFamily: 'UrduType',
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 1,
-                            ),
+                          Row(
+                            children: [
+                              const Text(
+                                "یونٹ:",
+                                style: TextStyle(
+                                  fontFamily: 'UrduType',
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1,
+                                ),
+                              ),
+                              Text(
+                                course.title,
+                                style: const TextStyle(
+                                  fontFamily: 'UrduType',
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1,
+                                ),
+                              ),
+                            ],
                           ),
                           Row(
                             children: [
@@ -147,12 +160,13 @@ class _ModuleScreenState extends State<ModuleScreen> {
                                   fontSize: 16,
                                 ),
                               ),
-                              const SizedBox(width: 5),
+                              const SizedBox(width: 2),
                               LinearPercentIndicator(
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 lineHeight: 5.0,
                                 percent: course.progress,
                                 backgroundColor: Colors.white,
+                                barRadius: const Radius.circular(10),
                                 progressColor: const Color(0xff9AC9C2),
                               ),
                             ],
@@ -165,7 +179,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                '${course.moduleCount} ماڈیولز',
+                                '${course.moduleCount} ٹیسٹ',
                                 style: const TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 14,
@@ -183,7 +197,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                '${course.quizCount} کوئز',
+                                '${course.quizCount} اسباق',
                                 style: const TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 14,
@@ -212,8 +226,11 @@ class _ModuleScreenState extends State<ModuleScreen> {
                                 )
                               : ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
-                                    onSurface: Colors.white,
+                                    backgroundColor: Colors.transparent,
+                                    disabledForegroundColor:
+                                        Colors.white.withOpacity(0.38),
+                                    disabledBackgroundColor:
+                                        Colors.white.withOpacity(0.12),
                                     side: const BorderSide(
                                         color: Colors.white, width: 2),
                                     shape: RoundedRectangleBorder(
@@ -226,7 +243,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                                     });
                                   },
                                   child: const Text(
-                                    'فیڈ بیک فراہم کریں',
+                                    "رائے فراہم کریں۔",
                                     style: TextStyle(
                                       fontFamily: 'UrduType',
                                       fontSize: 14,
@@ -243,50 +260,69 @@ class _ModuleScreenState extends State<ModuleScreen> {
               Padding(
                 padding:
                     const EdgeInsets.only(top: 12.0, right: 25.0, bottom: 12.0),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ...rowPadded([
-                      SvgPicture.asset('assets/images/module.svg'),
-                      Text(
-                        '${course.moduleCount} ماڈیولز',
-                        style: const TextStyle(
-                            fontFamily: "UrduType",
-                            color: Color(0xff7A7D84),
-                            letterSpacing: 1,
-                            fontSize: 14),
-                      ),
-                      const Text(
-                        '•',
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            color: Color(0xff232323),
-                            fontSize: 18),
-                      ),
-                      SvgPicture.asset('assets/images/person_card.svg'),
-                      Text(
-                        '${course.quizCount} کوئز',
-                        style: const TextStyle(
-                            fontFamily: "UrduType",
-                            color: Color(0xff7A7D84),
-                            letterSpacing: 1,
-                            fontSize: 14),
-                      ),
-                      const Text(
-                        '•',
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            color: Color(0xff232323),
-                            fontSize: 18),
-                      ),
-                      const Text(
-                        '5h 45m کل لمبائی',
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            color: Color(0xff7A7D84),
-                            letterSpacing: 1,
-                            fontSize: 14),
-                      )
-                    ], 4)
+                    const Text(
+                      'یونٹ کا مواد',
+                      style: TextStyle(
+                          fontFamily: "UrduType",
+                          color: Color(0xff1C1D1F),
+                          letterSpacing: 1,
+                          fontSize: 24),
+                    ),
+                    const SizedBox(height: 10,),
+                    Row(
+                      children: [
+                        ...rowPadded([
+                          const Text(
+                            'کل وقت: 5 گھنٹے 45 منٹ',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff7A7D84),
+                                letterSpacing: 1,
+                                fontSize: 12),
+                          ),
+                          SvgPicture.asset('assets/images/person_card.svg'),
+                          const Text(
+                            '•',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff232323),
+                                fontSize: 12),
+                          ),
+                          Text(
+                            '${course.moduleCount} ٹیسٹ',
+                            style: const TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff7A7D84),
+                                letterSpacing: 1,
+                                fontSize: 12),
+                          ),
+                          SvgPicture.asset('assets/images/person_card.svg'),
+
+                          const Text(
+                            '•',
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff232323),
+                                fontSize: 12),
+                          ),
+                            Text(
+                            '${course.quizCount} اسباق',
+                            style: const TextStyle(
+                                fontFamily: "UrduType",
+                                color: Color(0xff7A7D84),
+                                letterSpacing: 1,
+                                fontSize: 12),
+
+                          ),
+                          SvgPicture.asset('assets/images/module.svg'),
+
+
+                        ], 3)
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -307,7 +343,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                       // Add your action here
                     },
                     child: const Text(
-                      'کورس جاری رکھیں',
+                      'یونٹ جاری رکھیں',
                       style: TextStyle(
                         fontFamily: "UrduType",
                         fontSize: 14,
@@ -334,18 +370,20 @@ class _ModuleScreenState extends State<ModuleScreen> {
                     onPressed: () {},
                     child: Row(
                       children: [
-                        SvgPicture.asset('assets/images/download.svg'),
-                        const SizedBox(
-                          width: 10,
-                        ),
+
                         const Text(
-                          'مواد ڈاؤن لوڈ کریں۔',
+                          'اس یونٹ کو ڈونلوڈ کریں',
                           style: TextStyle(
                               fontFamily: "UrduType",
                               color: Colors.black,
                               letterSpacing: 1,
                               fontSize: 14),
-                        )
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SvgPicture.asset('assets/images/download.svg'),
+
                       ],
                     ),
                   ),
@@ -359,20 +397,21 @@ class _ModuleScreenState extends State<ModuleScreen> {
                   itemCount: course.modules.length,
                   itemBuilder: (context, index) {
                     final module = course.modules[index];
-                    double progressValue = provider.getModuleProgress(module.moduleId);
+                    double progressValue =
+                        provider.getModuleProgress(module.moduleId);
 
                     // Now use progressValue directly without FutureBuilder
                     return Module_Card(
                       progressValue: progressValue,
                       showProgressBar: module.isStart,
                       imagePath: module.imagePath,
-                      cardText: module.title,
+                      moduleTitle: module.title,
                       onClick: () {
                         setState(() {
                           course.modules[index].isStart = true;
                         });
                         Get.to(
-                              () => JourneyMapScreen(
+                          () => JourneyMapScreen(
                             module: module,
                             courseTitle: course.title,
                             gradient: LinearGradient(
@@ -389,7 +428,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                           transition: Transition.fade,
                           duration: const Duration(milliseconds: 300),
                         );
-                      },
+                      }, moduleCount: module.submoduleCount,
                     );
                   },
                 ),

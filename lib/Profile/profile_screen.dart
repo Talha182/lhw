@@ -10,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Database/database_helper.dart';
 import '../LoginSignUp/Login.dart';
 import '../models/user_model.dart';
+import '../services/global_user.dart';
+import '../services/user_service.dart';
 import 'edit_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -80,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 50, // Added this to make the space equally spread
                   ),
                   const Text(
-                    "پروفائل",
+                    "ذاتی معلومات ",
                     style: TextStyle(
                       fontFamily: 'UrduType',
                       fontSize: 20,
@@ -116,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           const Text(
-                            "پروفائل تصویر تبدیل کریں۔",
+                            "تصویر تبدیل کریں",
                             style: TextStyle(
                               fontSize: 18,
                               fontFamily: "UrduType",
@@ -185,25 +187,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ],
                                   ),
                                 ),
-                                const Text("عمومی تفصیلات",
+                                const Text("عام تفصیلات",
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontFamily: "UrduType",
                                     )),
                               ],
                             ),
-                            createDetailGroup("پیدائش کی تاریخ", "نام",
+                            createDetailGroup("یوم پیدائش", "نام",
                                 "${user!.dob}", "${user!.name}"),
-                            createDetailGroup("یو سی کا نام", "فون نمبر",
+                            createDetailGroup("ضلع کا نام", "فون نمبر",
                                 "دہلی یونیورسٹی", "${user!.phone}"),
-                            createDetailGroup("LHW شناختی نمبر", "سروس کے سال",
+                            createDetailGroup("لیڈی ہیلتھووڑکر شناختی نمبر", "سروس کے سال",
                                 "${user!.nic}", "${user!.yearsExperience}"),
                             createDetailGroup(
-                                "ای میل", "گاؤں", "${user!.email}", "دہلی"),
+                                "ای میل (لازم نہیں)", "گاؤں", "${user!.email}", "دہلی"),
+                            const SizedBox(height: 15,),
+                            GestureDetector(
+                              onTap: () async{
+                                await UserService.logout();
+                                GlobalUser.clearUser(); // Clears the global user instance
+                                Get.offAll(() => const LoginScreen());
+                              },
+                              child: Container(
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  border: Border.all(
+                                    color: const Color(0xffFB6262),
+                                  )
+                                ),
+                                child:  const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.logout,color: Color(0xffFB6161) ,),
+                                    SizedBox(width: 5,),
+                                    Text("لاگ آوٹ",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: "UrduType",
+                                          color: Color(0xffFB6161),
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            )
                           ],
                         ),
+
                       ),
                     ),
+
                   ],
                 ),
               ),

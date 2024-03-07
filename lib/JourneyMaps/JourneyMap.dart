@@ -24,8 +24,8 @@ class JourneyMapScreen extends StatefulWidget {
       required this.gradient,
       required this.courseQuizCount,
       required this.courseModuleCount,
-        required this.courseId,
-        required this.moduleId,
+      required this.courseId,
+      required this.moduleId,
       required this.imagePath})
       : super(key: key);
 
@@ -138,10 +138,39 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.more_vert, color: Colors.black),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        actions: [
+          Row(
+            children: [
+              Text(
+                widget.module.title,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontFamily: "UrduType"),
+              ),
+              IconButton(
+                icon: const Icon(Icons.arrow_forward, color: Colors.black),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ],
+          )
+        ],
+      ),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -306,116 +335,125 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
             ),
             child: Padding(
               padding: const EdgeInsets.all(20),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      submodule.title,
-                      style: const TextStyle(
-                          fontFamily: "UrduType",
-                          color: Color(0xff685F78),
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        const Text(
-                          "01 گھنٹہ 30 منٹ",
-                          textDirection: TextDirection.rtl,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    submodule.title,
+                    style: const TextStyle(
+                        fontFamily: "UrduType",
+                        color: Color(0xff000000),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      SvgPicture.asset("assets/images/person_card.svg",color: Color(0xff685F78),),
+                      SizedBox(width: 3,),
+                      Text(
+                        "$quizzesCount ٹیسٹ",
+                        style: const TextStyle(
+                            fontSize: 14,
+                            fontFamily: "UrduType",
+                            color: Color(0xff685F78)),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        width: 5,
+                        height: 5,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Color(0xff685F78)),
+                      ),
+                      const SizedBox(width: 8),
+                      const Icon(
+                        Icons.watch_later_outlined,
+                        size: 16,
+                      ),
+                      const Text(
+                        "01 گھنٹہ 30 منٹ",
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: "UrduType",
+                            color: Color(0xff685F78)),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5,),
+                  Text(
+                    "تفصیل",
+                    style: const TextStyle(
+                        fontFamily: "UrduType",
+                        color: Color(0xff000000),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+
+                  const SizedBox(height: 8),
+                  Text(
+                    submodule.description,
+                    style: const TextStyle(
+                        fontFamily: "UrduType",
+                        fontSize: 14,
+                        color: Color(0xff7A7D84)),
+                    textAlign: TextAlign.justify,
+                  ),
+                  const Spacer(),
+                  const Divider(thickness: 1),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          side: const BorderSide(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: const Size(140, 40),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                        child: const Text(
+                          'کینسل',
                           style: TextStyle(
-                              fontSize: 15,
                               fontFamily: "UrduType",
-                              color: Color(0xff685F78)),
-                        ),
-                        const Icon(
-                          Icons.watch_later_outlined,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 8),
-                        Container(
-                          width: 5,
-                          height: 5,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Color(0xff685F78)),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          "$quizzesCount کوئز",
-                          style: const TextStyle(
-                              fontSize: 14,
-                              fontFamily: "UrduType",
-                              color: Color(0xff685F78)),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      submodule.description,
-                      style: const TextStyle(
-                          fontFamily: "UrduType",
-                          fontSize: 14,
-                          color: Color(0xff7A7D84)),
-                      textAlign: TextAlign.justify,
-                    ),
-                    const Spacer(),
-                    const Divider(thickness: 1),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.transparent,
-                            side: const BorderSide(
                               color: Colors.black,
-                              width: 1,
-                            ),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            minimumSize: const Size(140, 40),
+                              fontSize: 15),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffFE8BD1),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
                           ),
-                          onPressed: () {
-                            Navigator.of(context).pop(); // Close the dialog
-                          },
-                          child: const Text(
-                            'منسوخ کریں۔',
-                            style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors.black,
-                                fontSize: 15),
+                          minimumSize: const Size(140, 40),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          navigateToSubmoduleFeatures(submodule);
+                        },
+                        child: const Text(
+                          'سابق جاری رکھیں',
+                          style: TextStyle(
+                            fontFamily: "UrduType",
+                            fontSize: 16,
+                            color: Colors.white,
                           ),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xffFE8BD1),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            minimumSize: const Size(140, 40),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                            navigateToSubmoduleFeatures(submodule);
-                          },
-                          child: const Text(
-                            'کورس جاری رکھیں',
-                            style: TextStyle(
-                              fontFamily: "UrduType",
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
@@ -432,7 +470,8 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
           courseQuizCount: widget.courseQuizCount,
           courseModuleCount: widget.courseModuleCount,
           imagePath: widget.imagePath,
-          gradient: widget.gradient, courseId: widget.courseId, // Pass the course title here
+          gradient: widget.gradient,
+          courseId: widget.courseId, // Pass the course title here
         ));
   }
 }

@@ -386,7 +386,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                         : null, // Disable button if not the last question or not answered
 
                     child: const Text(
-                      'جاری رہے',
+                      'جاری',
                       style: TextStyle(
                         fontFamily: 'UrduType',
                         fontSize: 15,

@@ -387,7 +387,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                     : null, // Button is disabled until the video finishes
 
                 child: const Text(
-                  'جاری رہے',
+                  'جاری',
                   style: TextStyle(
                     fontFamily: 'UrduType',
                     fontSize: 15,

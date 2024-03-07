@@ -100,12 +100,34 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
     User? currentUser = GlobalUser.getCurrentUser;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.submodule.title,
-          style: TextStyle(
-            fontFamily: "UrduType",
-          ),
-        ), // Use the course title here
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.more_vert, color: Colors.black),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        actions: [
+          Row(
+            children: [
+              Text(
+                widget.submodule.title,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontFamily: "UrduType"),
+              ),
+              IconButton(
+                icon: const Icon(Icons.arrow_forward, color: Colors.black),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ],
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(14),
@@ -128,28 +150,36 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            widget
-                                .courseTitle, // Example text, replace with dynamic data if necessary
-                            style: const TextStyle(
-                              fontFamily: 'UrduType',
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                               "یونٹ:", // Example text, replace with dynamic data if necessary
+                                style: const TextStyle(
+                                  fontFamily: 'UrduType',
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                widget
+                                    .courseTitle, // Example text, replace with dynamic data if necessary
+                                style: const TextStyle(
+                                  fontFamily: 'UrduType',
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(
                             height: 10,
                           ),
                           Row(
                             children: [
-                              SvgPicture.asset(
-                                'assets/images/module.svg',
-                                color: Colors.white,
-                              ),
-                              const SizedBox(width: 6),
                               Text(
-                                '${widget.courseModuleCount} ماڈیولز', // Example text, replace with dynamic data if necessary
+                                '${widget.courseQuizCount} ٹیسٹ', // Example text, replace with dynamic data if necessary
                                 style: const TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 15,
@@ -157,6 +187,13 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
+                              const SizedBox(width: 6),
+
+                              SvgPicture.asset(
+                                'assets/images/person_card.svg',
+                                color: Colors.white,
+                              ),
+
                               const SizedBox(width: 8),
                               Container(
                                 width: 5,
@@ -168,7 +205,7 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                '${widget.courseQuizCount} کوئز', // Example text, replace with dynamic data if necessary
+                                '${widget.courseModuleCount} سبق', // Example text, replace with dynamic data if necessary
                                 style: const TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 15,

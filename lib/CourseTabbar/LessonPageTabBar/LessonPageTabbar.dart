@@ -1,5 +1,6 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../Bookmarks.dart';
 import '../../DiscussionGroup/DiscussionGroups.dart';
@@ -57,7 +58,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
             children: [
               GestureDetector(
                 child: const Text(
-                  "ماڈیول 1",
+                  "سبق 1",
                   style: TextStyle(fontFamily: "UrduType", fontSize: 17),
                 ),
                 onTap: () {},
@@ -65,7 +66,9 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
               const SizedBox(width: 10),
               GestureDetector(
                 child: const Icon(Icons.arrow_forward),
-                onTap: () {},
+                onTap: () {
+                  Get.back();
+                },
               ),
             ],
           ),
@@ -101,8 +104,8 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
                 tabs: const [
-                  Tab(text: "بک مارکس"),
-                  Tab(text: "گروپس"),
+                  Tab(text: "نشانیاں"),
+                  Tab(text: "بات چیت"),
                   Tab(text: "جائزہ"),
                 ],
               ),

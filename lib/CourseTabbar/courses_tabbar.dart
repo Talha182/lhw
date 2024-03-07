@@ -9,7 +9,6 @@ import 'total_courses.dart';
 class Courses_Tabbar extends StatefulWidget {
   const Courses_Tabbar({super.key});
 
-
   @override
   State<Courses_Tabbar> createState() => _Courses_TabbarState();
 }
@@ -45,11 +44,11 @@ class _Courses_TabbarState extends State<Courses_Tabbar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Padding(
-            padding: EdgeInsets.only(right: 16.0),
+            padding: EdgeInsets.only(right: 16.0, bottom: 10),
             child: Text(
-              "کورسز",
+              "ڈیش بورڈ",
               style: TextStyle(
-                fontFamily: 'UrduFont',
+                fontFamily: 'UrduType',
                 fontSize: 18,
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
@@ -83,7 +82,6 @@ class _Courses_TabbarState extends State<Courses_Tabbar> {
     );
   }
 
-
   Widget _tabBar() {
     return Padding(
       padding: const EdgeInsets.all(15),
@@ -111,27 +109,19 @@ class _Courses_TabbarState extends State<Courses_Tabbar> {
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
                 tabs: const [
-
-
-                  Tab(text: "تمام کورسز"),
-                  Tab(text: "مکمل"),
-
-                  Tab(text: "جاری ہے۔"),
-
+                  Tab(text: " تمام یونٹ"),
+                  Tab(text: "مکمل یونٹ"),
+                  Tab(text: "جاری یونٹ"),
                 ],
               ),
-
             ],
           ),
-           Expanded(
+          Expanded(
             child: TabBarView(
               children: <Widget>[
-
                 TotalCourses(),
                 CompletedCourses(),
-
                 OnGoingCourses(),
-
               ],
             ),
           ),
@@ -139,6 +129,4 @@ class _Courses_TabbarState extends State<Courses_Tabbar> {
       ),
     );
   }
-
-
 }
