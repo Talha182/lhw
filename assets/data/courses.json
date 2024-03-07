@@ -1424,7 +1424,8 @@
                             "offset": {
                               "dx": 40.0,
                               "dy": 170.0
-                            }
+                            },
+
                           },
                           {
                             "dialogText": "Hotspot 1 Description",
