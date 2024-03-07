@@ -92,7 +92,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
                     ),
                   ),
                   child:
-                      const CustomBottomModalSheet(), // Replace 'Your Content Here' with your StatefulWidget
+                      const CustomBottomModalSheet(),
                 ),
               ),
             ),

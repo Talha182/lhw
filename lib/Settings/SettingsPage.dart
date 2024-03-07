@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:lhw/Settings/Samaji.dart';
 import 'package:lhw/Settings/data.dart';
 
@@ -27,6 +28,7 @@ class _SettingsPageState extends State<SettingsPage> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70.0),
           child: AppBar(
+            automaticallyImplyLeading: false,
             elevation: 0.5,
             backgroundColor: Colors.white,
             flexibleSpace: Align(
@@ -41,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       width: 50, // Added this to make the space equally spread
                     ),
                     const Text(
-                      "ترتیبات",
+                      "سیٹنگز",
                       style: TextStyle(
                         fontFamily: 'UrduType',
                         fontSize: 20,
@@ -54,7 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: const Icon(
                           Icons.arrow_forward, color: Colors.black),
                       onTap: () {
-                        // Add your navigation logic here
+                        Get.back();
                       },
                     ),
                   ],
@@ -69,8 +71,6 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget _tabBar() {
-    List<GlobalKey> _tabKeys = [GlobalKey(), GlobalKey(), GlobalKey()];
-
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -84,7 +84,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 height: 50,
                 radius: 20,
                 elevation: 1,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 44),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 30),
                 backgroundColor: Colors.white,
                 unselectedBackgroundColor: const Color(0xffF0F0F0),
                 unselectedLabelStyle: const TextStyle(
@@ -97,8 +97,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
                 tabs: [
-                  Tab(text: "سماجی"),
-                  Tab(text: "ڈیٹا"),
+                  Tab(text: "سوشل میڈیا"),
+                  Tab(text: "انٹرنیٹ اور وای فای"),
                   Tab(text: "اطلاعات "),
                 ],
               ),
@@ -109,7 +109,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: TabBarView(
               children: <Widget>[
 
-                SamajiScreen(),
+                SocialMediaScreen(),
                 DataScreen(),
                 ItlaatScreen(),
               ],

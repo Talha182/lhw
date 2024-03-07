@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/Profile/profile_screen.dart';
 import 'package:lhw/Reports/help_screen.dart';
+import 'package:lhw/Settings/SettingsPage.dart';
 
 class CustomBottomModalSheet extends StatelessWidget {
   const CustomBottomModalSheet({super.key});
@@ -25,7 +26,9 @@ class CustomBottomModalSheet extends StatelessWidget {
                   firstText: 'سیٹنگز',
                   secondText: 'اپنی سیٹنگز اور دیگر اشیا دیکھیں',
                   imageName: 'assets/images/calender.png',
-                  onTap: () {}),
+                  onTap: () {
+                    Get.to(() => SettingsPage());
+                  }),
               _buildContainer(
                   flex: 2,
                   colors: [const Color(0xffDCEFDE), const Color(0xff81C588)],

@@ -9,351 +9,247 @@ class ItlaatScreen extends StatefulWidget {
 }
 
 class _ItlaatScreenState extends State<ItlaatScreen> {
-
   bool firstState = false;
   bool secondState = false;
   bool thirdState = false;
   bool fourthState = false;
   bool fifthState = false;
+  final List<DropdownMenuItem<String>> dropdownItems = [
+    const DropdownMenuItem(value: 'فوری طور پر', child: Text('فوری طور پر')),
+    const DropdownMenuItem(value: 'یومیہ', child: Text('یومیہ')),
+    const DropdownMenuItem(value: 'ہفتہ وار', child: Text('ہفتہ وار')),
+    const DropdownMenuItem(value: 'ماہانہ', child: Text('ماہانہ')),
+  ];
+
+  String selectedItem = 'فوری طور پر';
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 30),
-        child: ListView(
-          children: [
-            const Text(
-              "منتخب کریں کہ کب اور کیسے مطلع کیا جائے۔",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const Text(
-              "پش اور ای میل اطلاعات کو منتخب کریں جو آپ وصول کرنا چاہتے ہیں۔",
-              style: TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 13,
-                  color: Color(0xff8B9DA0)),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              "مخصوص نوٹیفکیشن کنٹرول",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const Text(
-              "اپنے موبائل اور ڈیسک ٹاپ اطلاعات کا نظم کریں۔  ",
-              style: TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 13,
-                  color: Color(0xff8B9DA0)),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Directionality(
-              textDirection:
-                  TextDirection.rtl, // Set the text direction to right-to-left
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "کورس کی یاددہانی",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-                      ),
-                      Text(
-                        "کسی بھی شروع شدہ کورسز میں میری پیشرفت کے بارے میں مجھے مطلع کریں۔",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 13,
-                            color: Color(0xff8B9DA0)),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ],
-                  ),
-                  CupertinoSwitch(
-                    activeColor: const Color(0xff72C391),
-                    value: firstState,
-                    onChanged: (value) {
-                      setState(() {
-                        firstState = value;
-                      });
-                    },
-                  ),
-                ],
+      child: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Directionality(
-              textDirection:
-                  TextDirection.rtl, // Set the text direction to right-to-left
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "اچیومنٹ اپڈیٹس",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-                      ),
-                      Text(
-                        "جب میں اپنے سیکھنے کے سفر میں اہم سنگ میل یا بیجز حاصل کروں تو مجھے مطلع کریں۔",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 13,
-                            color: Color(0xff8B9DA0)),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ],
-                  ),
-                  CupertinoSwitch(
-                    activeColor: const Color(0xff72C391),
-                    value: secondState,
-                    onChanged: (value) {
-                      setState(() {
-                        secondState = value;
-                      });
-                    },
-                  ),
-                ],
+              const Text(
+                "اپنے مطابق اطلاعات حاصل کریں۔",
+                style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+                textAlign: TextAlign.right,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Directionality(
-              textDirection:
-                  TextDirection.rtl, // Set the text direction to right-to-left
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "لیڈر بورڈ تبدیلیاں",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-                      ),
-                      Text(
-                        "مجھے میری لیڈر بورڈ پوزیشن اور متعلقہ واقعات میں تبدیلیوں کے بارے میں مطلع کریں۔",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 13,
-                            color: Color(0xff8B9DA0)),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ],
-                  ),
-                  CupertinoSwitch(
-                    activeColor: const Color(0xff72C391),
-                    value: thirdState,
-                    onChanged: (value) {
-                      setState(() {
-                        thirdState = value;
-                      });
-                    },
-                  ),
-                ],
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  "فوری اور ای میل کی اطلاعات حاصل کرنے کا طریقہ چنیں۔",
+                  style: TextStyle(
+                      fontFamily: "UrduType",
+                      fontSize: 13,
+                      color: Color(0xff8B9DA0)),
+                  textAlign: TextAlign.right,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Directionality(
-              textDirection:
-                  TextDirection.rtl, // Set the text direction to right-to-left
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "تاثرات کی یاد دہانیاں",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-                      ),
-                      Text(
-                        "جب کورس کے مواد یا پلیٹ فارم کی خصوصیات کے لیے تاثرات درکار ہوں تو مجھے مطلع کریں۔",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 13,
-                            color: Color(0xff8B9DA0)),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ],
-                  ),
-                  CupertinoSwitch(
-                    activeColor: const Color(0xff72C391),
-                    value: fourthState,
-                    onChanged: (value) {
-                      setState(() {
-                        fourthState = value;
-                      });
-                    },
-                  ),
-                ],
+              const Divider(),
+              const Text(
+                "اپنے مطابق اطلاعات حاصل کریں۔",
+                style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+                textAlign: TextAlign.right,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Directionality(
-              textDirection:
-                  TextDirection.rtl, // Set the text direction to right-to-left
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "ڈسکشن گروپس",
-                        style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-                      ),
-                      Text(
-                        "ڈسکشن گروپس میں کسی بھی سرگرمی یا شناخت کے بارے میں مجھے مطلع کریں۔",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 13,
-                            color: Color(0xff8B9DA0)),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ],
-                  ),
-                  CupertinoSwitch(
-                    activeColor: const Color(0xff72C391),
-                    value: fifthState,
-                    onChanged: (value) {
-                      setState(() {
-                        fifthState = value;
-                      });
-                    },
-                  ),
-                ],
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  "فوری اور ای میل کی اطلاعات حاصل کرنے کا طریقہ چنیں۔",
+                  style: TextStyle(
+                      fontFamily: "UrduType",
+                      fontSize: 13,
+                      color: Color(0xff8B9DA0)),
+                  textAlign: TextAlign.right,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              "اطلاع کی آواز",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const Text(
-              "وہ زبان منتخب کریں جس میں آپ دیکھنا چاہتے ہیں۔ ",
-              style: TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 13,
-                  color: Color(0xff8B9DA0)),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              height: 55,
-              decoration: BoxDecoration(
+              const SizedBox(
+                height: 8,
+              ),
+              buildSwitchListTile(
+                  "سبق کی یاد دہانیاں",
+                  "مجھے کسی بھی شروع کردہ یونٹ میں میری پیشرفت کے بارے میں مطلع کریں۔",
+                  firstState, (newValue) {
+                setState(() => firstState = newValue);
+              }),
+              buildSwitchListTile(
+                  "کامیابی اور انعامات کی تازہ ترین معلومات",
+                  "جب میں اپنے علم کے سفر میں اہم سنگ میل یا تمغہ حاصل کرتی ہوں تو مجھے اطلاع دی جاۓ۔",
+                  secondState, (newValue) {
+                setState(() => secondState = newValue);
+              }),
+              buildSwitchListTile(
+                  "مہارت پوزیشن میں تبدیلی",
+                  "مجھے میری مہارت پوزیشن اور متعلقہ چیزوں میں تبدیلیوں کے بارے میں اطلاع دی جاۓ۔",
+                  thirdState, (newValue) {
+                setState(() => thirdState = newValue);
+              }),
+              buildSwitchListTile(
+                  "تاثرات کی یاد دہانیاں",
+                  "جب کورس کے مواد یا پلیٹ فارم کی خصوصیات کے لیے تاثرات درکار ہوں تو مجھے مطلع کریں۔",
+                  fourthState, (newValue) {
+                setState(() => fourthState = newValue);
+              }),
+              buildSwitchListTile(
+                  " بات چیت گروپ",
+                  "مجھے بات چیت گروپوں میں کسی بھی سرگرمی یا میسج کے بارے میں مطلع کریں۔",
+                  fifthState, (newValue) {
+                setState(() => fifthState = newValue);
+              }),
+              const Divider(),
+              const Text(
+                "اپنی مرضی کی گھنٹی چنیں۔",
+                style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+                textAlign: TextAlign.right,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  "وہ زبان منتخب کریں جس میں آپ دیکھنا چاہتے ہیں۔",
+                  style: TextStyle(
+                      fontFamily: "UrduType",
+                      fontSize: 13,
+                      color: Color(0xff8B9DA0)),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+              const SizedBox(height: 10,),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                height: 55,
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.white,
-                  border: Border.all(color: const Color(0xffCDD1E0))),
-              child: const Directionality(
+                  border: Border.all(color: const Color(0xffCDD1E0)),
+                ),
+                child: Directionality(
                   textDirection: TextDirection.rtl,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 20,right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "کمپن کے ساتھ خاموش",
-                          style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                          textAlign: TextAlign.right, // Align text to the right
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down_outlined,
-                          color: Colors.black,
-                        ),
-                      ],
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: selectedItem,
+                      icon: const Icon(Icons.keyboard_arrow_down_outlined, color: Colors.black),
+                      items: dropdownItems,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedItem = value!;
+                        });
+                      },
+                      style: const TextStyle(fontFamily: "UrduType", fontSize: 20, color: Colors.black),
+                      dropdownColor: Colors.white,
+                      isExpanded: true,
+                      itemHeight: 50,
+                      alignment: Alignment.centerRight,
                     ),
-                  )),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10,),
 
-            const Text(
-              "اطلاع کی تعدد",
-              style: TextStyle(fontFamily: "UrduType", fontSize: 17),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const Text(
-              "وہ زبان منتخب کریں جس میں آپ دیکھنا چاہتے ہیں۔ ",
-              style: TextStyle(
-                  fontFamily: "UrduType",
-                  fontSize: 13,
-                  color: Color(0xff8B9DA0)),
-              textAlign: TextAlign.right, // Align text to the right
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              height: 55,
-              decoration: BoxDecoration(
+              const Divider(),
+              const SizedBox(height: 10,),
+
+              const Text(
+                "اطلاعات فریکوئنسی",
+                style: TextStyle(fontFamily: "UrduType", fontSize: 17),
+                textAlign: TextAlign.right,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  "اطلاعات کی تعداد مخصوص کریں۔",
+                  style: TextStyle(
+                      fontFamily: "UrduType",
+                      fontSize: 13,
+                      color: Color(0xff8B9DA0)),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+              const SizedBox(height: 10,),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                height: 55,
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.white,
-                  border: Border.all(color: const Color(0xffCDD1E0))),
-              child: const Directionality(
+                  border: Border.all(color: const Color(0xffCDD1E0)),
+                ),
+                child: Directionality(
                   textDirection: TextDirection.rtl,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 20,right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "فوری طور پر",
-                          style: TextStyle(fontFamily: "UrduType", fontSize: 20),
-                          textAlign: TextAlign.right, // Align text to the right
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down_outlined,
-                          color: Colors.black,
-                        ),
-                      ],
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: selectedItem,
+                      icon: const Icon(Icons.keyboard_arrow_down_outlined, color: Colors.black),
+                      items: dropdownItems,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedItem = value!;
+                        });
+                      },
+                      style: const TextStyle(fontFamily: "UrduType", fontSize: 20, color: Colors.black),
+                      dropdownColor: Colors.white,
+                      isExpanded: true,
+                      itemHeight: 50,
+                      alignment: Alignment.centerRight,
                     ),
-                  )),
-            ),
-            SizedBox(height: 50,),
-          ],
+                  ),
+                ),
+              ),
+
+              // Other UI elements here
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget buildSwitchListTile(
+      String title, String subtitle, bool value, Function(bool) onChanged) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style:
+                          const TextStyle(fontFamily: "UrduType", fontSize: 17),
+                      textDirection: TextDirection.rtl,
+                    ),
+                    Text(
+                      subtitle,
+                      style: const TextStyle(
+                          fontFamily: "UrduType",
+                          fontSize: 13,
+                          color: Color(0xff8B9DA0)),
+                      textAlign: TextAlign.right,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ],
+                ),
+              ),
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: CupertinoSwitch(
+                  activeColor: const Color(0xff72C391),
+                  value: value,
+                  onChanged: (newValue) => onChanged(newValue),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+        ],
       ),
     );
   }
