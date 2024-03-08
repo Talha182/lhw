@@ -486,9 +486,19 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                   final imageHotspotModel =
                                       ImageHotspotModel.fromJson(
                                           feature.data as Map<String, dynamic>);
-                                  await Get.to(() => ImageHotspot(
+                                  final result = await Get.to(() => ImageHotspot(
                                         imageHotspotModel: imageHotspotModel,
                                       ));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+
+                                    Provider.of<CoursesProvider>(context,
+                                        listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                        widget.courseId,
+                                        widget.moduleId,
+                                        feature.featureId);
+                                  }
                                   break;
                                 case FeatureType.horizontalImageHotspot:
                                   final horizontalImageHotspotModel =
@@ -513,19 +523,39 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                   final imageBranchingScenarioModel =
                                       ImageBranchingScenarioModel.fromJson(
                                           feature.data as Map<String, dynamic>);
-                                  await Get.to(() => ImageBranchingScenario(
+                                  final result = await Get.to(() => ImageBranchingScenario(
                                         imageBranchingScenarioModel:
                                             imageBranchingScenarioModel,
                                       ));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+
+                                    Provider.of<CoursesProvider>(context,
+                                        listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                        widget.courseId,
+                                        widget.moduleId,
+                                        feature.featureId);
+                                  }
                                   break;
                                 case FeatureType.textBranchingScenario:
                                   final imageBranchingScenarioModel =
                                       TextBranchingScenarioModel.fromJson(
                                           feature.data as Map<String, dynamic>);
-                                  await Get.to(() => TextBranchingScenario(
+                                  final result = await Get.to(() => TextBranchingScenario(
                                         textBranchingScenarioModel:
                                             imageBranchingScenarioModel,
                                       ));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+
+                                    Provider.of<CoursesProvider>(context,
+                                        listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                        widget.courseId,
+                                        widget.moduleId,
+                                        feature.featureId);
+                                  }
                                   break;
                                 case FeatureType.video:
                                 // TODO: Handle this case.

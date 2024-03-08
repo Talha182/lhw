@@ -38,35 +38,9 @@
                   "duration": "4 mins",
                   "submoduleId": 2,
                   "data": {
-                    "videoPath": "assets/videos/demo.mp4",
-                    "questionDurations": [
-                      "00:00:10",
-                      "00:00:20"
-                    ],
-                    "questions": [
-                      {
-                        "question": "What is the capital of France?",
-                        "options": [
-                          "Paris",
-                          "London",
-                          "Berlin"
-                        ],
-                        "correctAnswer": "Paris",
-                        "correctExplanation": "Correct! Paris is the capital of France.",
-                        "incorrectExplanation": "Incorrect. Paris is the capital of France."
-                      },
-                      {
-                        "question": "Which planet is known as the Red Planet?",
-                        "options": [
-                          "Mars",
-                          "Earth",
-                          "Jupiter"
-                        ],
-                        "correctAnswer": "Mars",
-                        "correctExplanation": "Right! Mars is called the Red Planet.",
-                        "incorrectExplanation": "Incorrect. Mars is the Red Planet."
-                      }
-                    ]
+                    "videoPath": "https://lhw.dhqharipur.com/public/storage/videos/script%201%20without%20text.mp4",
+                    "questionDurations": [],
+                    "questions": []
                   }
                 }
               ]
@@ -315,11 +289,11 @@
                   "data": {
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/images/infographic1.png",
+                        "imagePath": "assets/scripts/Script 6/infographic1.png",
                         "text": "Infographic 1 Description"
                       },
                       {
-                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "imagePath": "assets/scripts/Script 6/infographic2.png",
                         "text": "Infographic 2 Description"
                       }
                     ]
@@ -344,11 +318,11 @@
                   "data": {
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/images/infographic1.png",
+                        "imagePath": "assets/scripts/Script 7/infographic1.png",
                         "text": "Infographic 1 Description"
                       },
                       {
-                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "imagePath": "assets/scripts/Script 7/infographic2.png",
                         "text": "Infographic 2 Description"
                       }
                     ]
@@ -357,56 +331,16 @@
                 {
                   "featureId": 14,
                   "featureType": "interactiveAnimationVideo",
-                  "title": " ٹی بی کی  غلط فہمیوں کا خاتمہ ",
-                  "submoduleId": 2,
+                  "title": "متعدی بیماریاں",
                   "duration": "4 mins",
-                  "videoPath": "assets/videos/demo.mp4",
+                  "submoduleId": 2,
                   "data": {
-                    "questionDurations": [
-                      "00:10",
-                      "00:20",
-                      "00:30"
-                    ],
-                    "questions": [
-                      {
-                        "question": "What is the capital of France?",
-                        "options": [
-                          "Paris",
-                          "London",
-                          "Berlin",
-                          "Madrid"
-                        ],
-                        "correctAnswer": "Paris",
-                        "correctExplanation": "Paris is the capital of France.",
-                        "incorrectExplanation": "This is not the correct capital of France."
-                      },
-                      {
-                        "question": "What is the capital of France?",
-                        "options": [
-                          "Paris",
-                          "London",
-                          "Berlin",
-                          "Madrid"
-                        ],
-                        "correctAnswer": "Paris",
-                        "correctExplanation": "Paris is the capital of France.",
-                        "incorrectExplanation": "This is not the correct capital of France."
-                      },
-                      {
-                        "question": "What is the capital of France?",
-                        "options": [
-                          "Paris",
-                          "London",
-                          "Berlin",
-                          "Madrid"
-                        ],
-                        "correctAnswer": "Paris",
-                        "correctExplanation": "Paris is the capital of France.",
-                        "incorrectExplanation": "This is not the correct capital of France."
-                      }
-                    ]
+                    "videoPath": "https://lhw.dhqharipur.com/public/storage/videos/Script%208_1.mp4",
+                    "questionDurations": [],
+                    "questions": []
                   }
                 }
+
               ]
             },
             {
@@ -508,30 +442,128 @@
                   }
                 },
                 {
+                  "featureId": 112,
+                  "title": "ٹی بی کی روک تھام میں لیڈی ہیلتھ ورکر کے  فرائض",
+                  "featureType": "interactiveImage",
+                  "isCompleted": false,
+                  "submoduleId": 101,
+                  "duration": "5min",
+                  "data": {
+                    "interactiveImageModel": [
+                      {
+                        "image": "assets/scripts/script11/Script11-01.jpg",
+                        "guide": "Click on the mirror to ensure the patient's mouth is empty.",
+                        "touchArea": {
+                          "left": 460,
+                          "top": 70,
+                          "width": 140,
+                          "height": 180
+                        },
+                        "showDialog": false,
+                        "dialogText": "",
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/script11/Script11-02.jpg",
+                        "guide": "",
+                        "touchArea": {
+                          "left": 370,
+                          "top": 310,
+                          "width": 310,
+                          "height": 80
+                        },
+                        "showDialog": true,
+                        "dialogText": "Before collecting sputum sample, make sure the patient has not eaten.",
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": "nextImage"
+                      },
+                      {
+                        "image": "assets/scripts/script11/Script11-03.jpg",
+                        "guide": "Drag the shower and hot drink icons to the patient.",
+                        "touchArea": {
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "showDialog": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": true,
+                        "longPressAction": "showMessage",
+                        "dragDropEnabled": true,
+                        "swipeAction": "",
+                        "draggableImage": "assets/scripts/script11/shower_and_drink_icons.png",
+                        "draggableImageInitialPosition": {
+                          "dx": 80,
+                          "dy": 180
+                        },
+                        "dragTargetPosition": {
+                          "dx": 200,
+                          "dy": 180
+                        },
+                        "newDraggableImage": "assets/scripts/images/updated_icon.png",
+                        "moveToNextOnDrop": true
+                      }
+                    ]
+                  }
+                },
+
+                {
                   "featureId": 18,
                   "featureType": "imageHotspot",
                   "title": "TB05 فارم بھرنے کی ہدایات ",
                   "submoduleId": 2,
                   "duration": "10 mins",
-                  "data": {
-                    "imagePath": "assets/scripts/images/lessonOption26.png",
-                    "hotspots": [
+                  "data":{
+                    "images": [
                       {
-                        "dialogText": "Hotspot 1 Description",
-                        "offset": {
-                          "dx": 100.0,
-                          "dy": 200.0
-                        }
+                        "imagePath": "assets/scripts/Script 12/Script 12-01.png",
+                        "hotspots": [
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 100.0,
+                              "dy": 200.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 2 Description",
+                            "offset": {
+                              "dx": 150.0,
+                              "dy": 250.0
+                            }
+                          }
+                        ]
                       },
                       {
-                        "dialogText": "Hotspot 2 Description",
-                        "offset": {
-                          "dx": 150.0,
-                          "dy": 250.0
-                        }
+                        "imagePath": "assets/scripts/images/anotherImage.png",
+                        "hotspots": [
+                          {
+                            "dialogText": "Another Image Hotspot 1 Description",
+                            "offset": {
+                              "dx": 120.0,
+                              "dy": 220.0
+                            }
+                          },
+                          {
+                            "dialogText": "Another Image Hotspot 2 Description",
+                            "offset": {
+                              "dx": 180.0,
+                              "dy": 270.0
+                            }
+                          }
+                        ]
                       }
                     ]
                   }
+
                 },
                 {
                   "featureId": 19,
@@ -542,7 +574,7 @@
                   "data": {
                     "questions": [
                       {
-                        "question": "What do you see?",
+                        "question": "What do you see question 1?",
                         "options": [
                           "Option 1",
                           "Option 2",
@@ -552,8 +584,27 @@
                         "correctExplanation": "Correct because...",
                         "incorrectExplanation": "Incorrect because...",
                         "imagePaths": [
-                          "path/to/image1.jpg",
-                          "path/to/image2.jpg"
+                          "assets/scripts/Script 13/Script 13-01.png",
+                          "assets/scripts/Script 13/Script 13-02.png",
+                          "assets/scripts/Script 13/Script 13-03.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 13/Script 13-04.png",
+                          "assets/scripts/Script 13/Script 13-05.png",
+                          "assets/scripts/Script 13/Script 13-06.png",
+                          "assets/scripts/Script 13/Script 13-07.png"
+
                         ]
                       }
                     ]
@@ -653,7 +704,7 @@
                   "data": {
                     "questions": [
                       {
-                        "question": "Here's your first question?",
+                        "question": "Here's your first question? script 18",
                         "options": [
                           "Option A",
                           "Option B",
@@ -686,7 +737,7 @@
                   "data": {
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/images/infographic1.png",
+                        "imagePath": "assets/scripts/script 19/infographic1.png",
                         "text": "Infographic 1 Description"
                       },
                       {
@@ -705,7 +756,7 @@
                   "data": {
                     "questions": [
                       {
-                        "question": "What do you see?",
+                        "question": "What do you see script 21?",
                         "options": [
                           "Option 1",
                           "Option 2",
@@ -715,8 +766,44 @@
                         "correctExplanation": "Correct because...",
                         "incorrectExplanation": "Incorrect because...",
                         "imagePaths": [
-                          "path/to/image1.jpg",
-                          "path/to/image2.jpg"
+                          "assets/scripts/Script 21/Script 21-02.png",
+                          "assets/scripts/Script 21/Script 21-03.png",
+                          "assets/scripts/Script 21/Script 21-04.png",
+                          "assets/scripts/Script 21/Script 21-05.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see script 21?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 21/Script 21-06.png",
+                          "assets/scripts/Script 21/Script 21-07.png",
+                          "assets/scripts/Script 21/Script 21-08.png",
+                          "assets/scripts/Script 21/Script 21-09.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see script 21?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 21/Script 21-10.png",
+                          "assets/scripts/Script 21/Script 21-11.png",
+                          "assets/scripts/Script 21/Script 21-12.png",
+                          "assets/scripts/Script 21/Script 21-13.png"
                         ]
                       }
                     ]
@@ -774,45 +861,191 @@
                   "title": "Image Hotspot Example",
                   "submoduleId": 2,
                   "duration": "10 mins",
-                  "data": {
-                    "imagePath": "assets/scripts/Script 23/lessonOption26.png",
-                    "hotspots": [
+                  "data":{
+                    "images": [
                       {
-                        "dialogText": "Hotspot 1 Description",
-                        "offset": {
-                          "dx": 100.0,
-                          "dy": 200.0
-                        }
+                        "imagePath": "assets/scripts/Script 23/Artboard 21.png",
+                        "hotspots": [
+                          {
+                            "dialogText": "Hotspot 1 Description",
+                            "offset": {
+                              "dx": 100.0,
+                              "dy": 200.0
+                            }
+                          },
+                          {
+                            "dialogText": "Hotspot 2 Description",
+                            "offset": {
+                              "dx": 150.0,
+                              "dy": 250.0
+                            }
+                          }
+                        ]
                       },
                       {
-                        "dialogText": "Hotspot 2 Description",
-                        "offset": {
-                          "dx": 150.0,
-                          "dy": 250.0
-                        }
+                        "imagePath": "assets/scripts/Script 23/Artboard 13.png",
+                        "hotspots": [
+                          {
+                            "dialogText": "Another Image Hotspot 1 Description",
+                            "offset": {
+                              "dx": 120.0,
+                              "dy": 220.0
+                            }
+                          },
+                          {
+                            "dialogText": "Another Image Hotspot 2 Description",
+                            "offset": {
+                              "dx": 180.0,
+                              "dy": 270.0
+                            }
+                          }
+                        ]
                       }
                     ]
                   }
+
                 },
                 {
                   "featureId": 28,
-                  "featureType": "textBranchingScenario",
-                  "title": "Text Branching Scenario Example",
+                  "featureType": "imageBranchingScenario",
+                  "title": "ٹی بی کے علاج میں معاونت ",
+                  "duration": "10 mins",
                   "submoduleId": 2,
-                  "duration": "15 mins",
                   "data": {
                     "questions": [
                       {
-                        "question": "Here's your Script 24 question?",
+                        "question": "What do you see question Script 24?",
                         "options": [
-                          "Option A",
-                          "Option B",
-                          "Option C"
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
                         ],
-                        "correctAnswer": "Option A",
-                        "correctExplanation": "Here's why A is correct...",
-                        "incorrectExplanation": "Here's why this option is incorrect...",
-                        "userAnswer": ""
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 46.png",
+                          "assets/scripts/Script 24/Artboard 52.png",
+                          "assets/scripts/Script 24/Artboard 53.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 54.png",
+                          "assets/scripts/Script 24/Artboard 55.png",
+                          "assets/scripts/Script 24/Artboard 56.png"
+
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 57.png",
+                          "assets/scripts/Script 24/Artboard 58.png",
+                          "assets/scripts/Script 24/Artboard 59.png"
+
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 60.png",
+                          "assets/scripts/Script 24/Artboard 61.png",
+                          "assets/scripts/Script 24/Artboard 62.png"
+
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 63.png",
+                          "assets/scripts/Script 24/Artboard 64.png",
+                          "assets/scripts/Script 24/Artboard 65.png"
+
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 66.png",
+                          "assets/scripts/Script 24/Artboard 67.png",
+                          "assets/scripts/Script 24/Artboard 68.png"
+
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 69.png",
+                          "assets/scripts/Script 24/Artboard 70.png",
+                          "assets/scripts/Script 24/Artboard 71.png"
+
+                        ]
+                      }, {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "Option 1",
+                          "Option 2",
+                          "Option 3"
+                        ],
+                        "correctAnswer": "Option 1",
+                        "correctExplanation": "Correct because...",
+                        "incorrectExplanation": "Incorrect because...",
+                        "imagePaths": [
+                          "assets/scripts/Script 24/Artboard 72.png",
+                          "assets/scripts/Script 24/Artboard 73.png",
+                          "assets/scripts/Script 24/Artboard 74.png"
+
+                        ]
                       }
                     ]
                   }
@@ -1738,7 +1971,7 @@
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
                   "data": {
-                    "videoPath": "assets/scripts/videos/interactive_animation.mp4",
+                    "videoPath": "assets/scripts/Script 42/interactive_animation.mp4",
                     "questionDurations": [
                       "00:10",
                       "00:20",
@@ -1804,17 +2037,43 @@
                     "title": "flashCard Example",
                     "flashCards": [
                       {
-                        "frontImage": "assets/scripts/Script 5/Script 5-02.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-01.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 5/Script 5-04.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-03.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 5/Script 5-06.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-05.png"
+                        "frontImage": "assets/scripts/Script 44/Artboard 6.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 5.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 8.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 7.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 11.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 9.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 13.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 12.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 15.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 14.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 17.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 16.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 19.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 18.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 21.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 20.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 23.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 22.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 24.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 25.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 27.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 26.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Artboard 29.png",
+                        "backImage": "assets/scripts/Script 44/Artboard 28.png"
                       }
+
                     ]
                   }
                 }
@@ -1846,7 +2105,7 @@
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
                   "data": {
-                    "videoPath": "assets/videos/demo.mp4",
+                    "videoPath": "assets/Scripts/Script 46/demo.mp4",
                     "questionDurations": [
                       "00:10",
                       "00:20",
@@ -1903,52 +2162,20 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-02.png"
+                          "topImage": "assets/scripts/Script 48/Script 48-01.png",
+                          "bottomImage": "assets/scripts/Script 48/Script 48-02.png"
                         },
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-04.png"
+                          "topImage": "aassets/scripts/Script 48/Script 48-03.png",
+                          "bottomImage": "assets/scripts/Script 48/Script 48-04.png"
                         },
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-06.png"
+                          "topImage": "assets/scripts/Script 48/Script 48-05.png",
+                          "bottomImage": "assets/scripts/Script 48/Script 48-06.png"
                         },
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
+                          "topImage": "assets/scripts/Script 48/Script 48-07.png",
+                          "bottomImage": "assets/scripts/Script 48/Script 48-08.png"
                         }
                       ]
                     }
@@ -1972,12 +2199,12 @@
                   "title": "Introduction to Variables",
                   "data": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/scripts/Script 49/Script 49-01.png",
+                      "assets/scripts/Script 49/Script 49-02.png",
+                      "assets/scripts/Script 49/Script 49-03.png",
+                      "assets/scripts/Script 49/Script 49-04.png",
+                      "assets/scripts/Script 49/Script 49_Artboard 5.png",
+                      "assets/scripts/Script 49/Script 49_Artboard 6.png"
                     ],
                     "questions": [
                       {
@@ -2019,7 +2246,7 @@
                   "submoduleId": 2,
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
-                  "videoPath": "assets/scripts/videos/interactive_animation.mp4",
+                  "videoPath": "assets/scripts/Script 50/interactive_animation.mp4",
                   "questionDurations": [
                     "00:10",
                     "00:20",
@@ -2074,17 +2301,19 @@
                     "title": "flashCard Example",
                     "flashCards": [
                       {
-                        "frontImage": "assets/scripts/Script 5/Script 5-02.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-01.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 5/Script 5-04.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-03.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 5/Script 5-06.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-05.png"
+                        "frontImage": "assets/scripts/Script 51/Script 51-02.png",
+                        "backImage": "assets/scripts/Script 51/Script 51-01.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 51/Script 51-04.png",
+                        "backImage": "assets/scripts/Script 51/Script 51-03.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 51/Script 51-06.png",
+                        "backImage": "assets/scripts/Script 51/Script 51-05.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 51/Script 51-08.png",
+                        "backImage": "assets/scripts/Script 51/Script 51-07.png"
                       }
+
                     ]
                   }
                 },
@@ -2097,11 +2326,11 @@
                   "data": {
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/images/infographic1.png",
+                        "imagePath": "assets/scripts/Script 52/infographic1.png",
                         "text": "Infographic 1 Description"
                       },
                       {
-                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "imagePath": "assets/scripts/Script 52/infographic2.png",
                         "text": "Infographic 2 Description"
                       }
                     ]
@@ -2125,12 +2354,15 @@
                   "title": "Introduction to Variables",
                   "data": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/scripts/Script 54/Script 54-01.png",
+                      "assets/scripts/Script 54/Script 54-02.png",
+                      "assets/scripts/Script 54/Script 54_Artboard 3.png",
+                      "assets/scripts/Script 54/Script 54_Artboard 4.png",
+                      "aassets/scripts/Script 54/Script 54_Artboard 5.png",
+                      "assets/scripts/Script 54/Script 54_Artboard 6-06.png",
+                      "assets/scripts/Script 54/Script 54_Artboard 6-08.png",
+                      "assets/scripts/Script 54/Script 54_Artboard 7.png",
+                      "assets/scripts/Script 54/Script 54_Artboard 8.png"
                     ],
                     "questions": [
                       {
@@ -2184,12 +2416,11 @@
                   "title": "Introduction to Variables",
                   "data": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/scripts/Script 56/Script 56-01.png",
+                      "assets/scripts/Script 56/Script 56-01.png",
+                      "assets/scripts/Script 56/Script 56_Artboard 3.png",
+                      "assets/scripts/Script 56/Script 56_Artboard 5.png",
+                      "assets/scripts/Script 56/Script 56_Artboard 6.png"
                     ],
                     "questions": [
                       {
@@ -2236,53 +2467,22 @@
                       "title": "Comic Strip 1",
                       "imagePairs": [
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-01.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-02.png"
+                          "topImage": "assets/scripts/Script 58/Script 58-01.png",
+                          "bottomImage": "assets/scripts/Script 58/Script 58-02.png"
                         },
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-03.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-04.png"
+                          "topImage": "assets/scripts/Script 58/Script 58-03.png",
+                          "bottomImage": "assets/scripts/Script 58/Script 58-04.png"
                         },
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-05.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-06.png"
+                          "topImage": "assets/scripts/Script 58/Script 58-05.png",
+                          "bottomImage": "assets/scripts/Script 58/Script 58-06.png"
                         },
                         {
-                          "topImage": "assets/scripts/Script 3/Script 3-07.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-09.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-11.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-13.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-15.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-17.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-19.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-21.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 3/Script 3-23.png",
-                          "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
+                          "topImage": "assets/scripts/Script 58/Script 58-07.png",
+                          "bottomImage": "assets/scripts/Script 58/Script 58-08.png"
                         }
+
                       ]
                     }
                   ]

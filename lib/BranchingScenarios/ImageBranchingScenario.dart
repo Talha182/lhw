@@ -13,7 +13,7 @@ class ImageBranchingScenario extends StatefulWidget {
   final VoidCallback? onCompleted; // Optional callback
 
   const ImageBranchingScenario(
-      {super.key, required this.imageBranchingScenarioModel,this.onCompleted});
+      {super.key, required this.imageBranchingScenarioModel, this.onCompleted});
 
   @override
   State<ImageBranchingScenario> createState() => _ImageBranchingScenarioState();
@@ -55,12 +55,13 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
     Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex <
           widget.imageBranchingScenarioModel.questions.length - 1) {
+        _carouselController.jumpToPage(0);
         setState(() {
           questionIndex++;
           optionColors = [Colors.white, Colors.white, Colors.white];
-          isAnswered = false; // Reset for the next question
-          isSelected = false; // Reset isSelected
-          selectedOptionIndex = null; // Reset selectedOptionIndex
+          isAnswered = false;
+          isSelected = false;
+          selectedOptionIndex = null;
         });
       }
     });
@@ -91,6 +92,13 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
   void dispose() {
     _cloudPumpAnimationController.dispose();
     super.dispose();
+  }
+
+  double get _currentProgress {
+    int totalQuestions = widget.imageBranchingScenarioModel.questions.length;
+    // Ensure the division is not by zero
+    if (totalQuestions == 0) return 0.0;
+    return (questionIndex + 1) / totalQuestions;
   }
 
   @override
@@ -129,13 +137,13 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                       ),
                       Expanded(
                         child: TweenAnimationBuilder(
-                          tween: Tween<double>(begin: 0, end: 2.2),
+                          tween: Tween<double>(begin: 0, end: _currentProgress),
                           duration: const Duration(milliseconds: 400),
                           builder: (BuildContext context, double value,
                               Widget? child) {
                             return LinearPercentIndicator(
                               lineHeight: 8.0,
-                              percent: 1,
+                              percent: value,
                               backgroundColor: Colors.white,
                               progressColor: const Color(0xffFE8BD1),
                               barRadius: const Radius.circular(10),
@@ -181,76 +189,53 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                     child: ListView(
                       children: [
                         Material(
-                          elevation:
-                              2.0, // Adjust the elevation level as desired
-                          borderRadius: BorderRadius.circular(
-                              10), // To match the Container's border radius
+                          elevation: 2.0, // Adjust the elevation level as desired
+                          borderRadius: BorderRadius.circular(10), // To match the Container's border radius
                           child: Container(
                             width: double.infinity,
                             height: 340,
                             decoration: BoxDecoration(
-                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: Colors.black87.withOpacity(0.1))),
+                                border: Border.all(color: Colors.black87.withOpacity(0.1))),
                             child: Column(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 160,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: CarouselSlider(
-                                        options: CarouselOptions(
-                                          aspectRatio: 16 / 9,
-                                          enlargeCenterPage: true,
-                                          scrollDirection: Axis.horizontal,
-                                          autoPlay: false,
-                                          viewportFraction:
-                                              1.0, // Ensure each page takes up the full carousel width
-                                        ),
-                                        carouselController:
-                                            _carouselController, // Ensure you've connected the CarouselController
-                                        items: widget
-                                            .imageBranchingScenarioModel
-                                            .questions[questionIndex]
-                                            .imagePaths
-                                            .map((imagePath) {
-                                          return Builder(
-                                            builder: (BuildContext context) {
-                                              return Container(
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 5.0),
-                                                decoration: const BoxDecoration(
-                                                  color: Colors.amber,
-                                                ),
-                                                child: Image.asset(imagePath,
-                                                    fit: BoxFit.cover),
-                                              );
-                                            },
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
+                                Container(
+                                  width: double.infinity,
+                                  margin: const EdgeInsets.only(left: 15, right: 15,top: 15),
+                                  height: 260,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    widget.imageBranchingScenarioModel
-                                        .questions[questionIndex].question,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                        fontFamily: "UrduType", fontSize: 22),
+                                  child: CarouselSlider(
+                                    options: CarouselOptions(
+                                      aspectRatio: 12 / 10,
+                                      enlargeCenterPage: true,
+                                      scrollDirection: Axis.horizontal,
+                                      autoPlay: false,
+                                      viewportFraction: 1,
+                                    ),
+                                    carouselController: _carouselController, // Ensure you've connected the CarouselController
+                                    items: widget.imageBranchingScenarioModel
+                                        .questions[questionIndex].imagePaths
+                                        .map((imagePath) {
+                                      return Builder(
+                                        builder: (BuildContext context) {
+                                          return ClipRRect(
+                                            borderRadius: BorderRadius.circular(10), // Apply rounded corners to the ClipRRect
+                                            child: Container(
+                                              width: MediaQuery.of(context).size.width,
+                                              decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                image: DecorationImage(
+                                                  image: AssetImage(imagePath),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }).toList(),
                                   ),
                                 ),
                                 Padding(
@@ -266,8 +251,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                     ),
                                     onPressed: () {
                                       _carouselController.nextPage(
-                                          duration:
-                                              const Duration(milliseconds: 300),
+                                          duration: const Duration(milliseconds: 300),
                                           curve: Curves.linear);
                                     },
                                     child: const Text(
@@ -338,17 +322,28 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                 width: 150,
                                 height: 35,
                                 decoration: BoxDecoration(
-                                    color: isAnswered && questionIndex == widget.imageBranchingScenarioModel.questions.length - 1
-                                        ? const Color(0xffFE8BD1) // Button enabled color
+                                    color: isAnswered &&
+                                            questionIndex ==
+                                                widget.imageBranchingScenarioModel
+                                                        .questions.length -
+                                                    1
+                                        ? const Color(
+                                            0xffFE8BD1) // Button enabled color
                                         : Colors.grey, // Button disabled color
                                     borderRadius: BorderRadius.circular(30)),
                                 child: TextButton(
-                                  onPressed: isAnswered && questionIndex == widget.imageBranchingScenarioModel.questions.length - 1
+                                  onPressed: isAnswered &&
+                                          questionIndex ==
+                                              widget.imageBranchingScenarioModel
+                                                      .questions.length -
+                                                  1
                                       ? () {
-                                    if(widget.onCompleted != null) {
-                                      widget.onCompleted!(); // Optionally call the completion callback if provided
-                                    }
-                                    Get.back();                                  }
+                                          if (widget.onCompleted != null) {
+                                            widget
+                                                .onCompleted!(); // Optionally call the completion callback if provided
+                                          }
+                                          Get.back(result: true);
+                                        }
                                       : null, // Disable button if not the last question or not answered
                                   child: const Center(
                                     child: Text(
@@ -434,7 +429,9 @@ class QuizCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black87.withOpacity(0.2)),
                     shape: BoxShape.circle,
-                    color: isOptionSelected ? (isCorrect ? Colors.green : Colors.red) : Colors.transparent,
+                    color: isOptionSelected
+                        ? (isCorrect ? Colors.green : Colors.red)
+                        : Colors.transparent,
                   ),
                 ),
                 const SizedBox(width: 10),

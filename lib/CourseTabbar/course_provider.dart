@@ -35,9 +35,18 @@ class CoursesProvider with ChangeNotifier {
   Future<void> _loadLastVisitedCourse() async {
     final prefs = await SharedPreferences.getInstance();
     final lastVisitedCourseId = prefs.getInt('lastVisitedCourseId');
+
+    // Attempt to load the last visited course from the stored ID
     if (lastVisitedCourseId != null) {
       _lastVisitedCourse =
-          await DatabaseHelper.instance.getCourseById(lastVisitedCourseId);
+      await DatabaseHelper.instance.getCourseById(lastVisitedCourseId);
+    }
+
+    // If no last visited course is found and there are courses available, set the first course as the last visited one.
+    if (_lastVisitedCourse == null && _courses.isNotEmpty) {
+      _lastVisitedCourse = _courses.first;
+      // Optionally, save this as the new last visited course
+      await prefs.setInt('lastVisitedCourseId', _lastVisitedCourse!.courseId);
     }
     notifyListeners();
   }

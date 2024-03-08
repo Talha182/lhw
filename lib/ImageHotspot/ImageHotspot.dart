@@ -11,11 +11,9 @@ class ImageHotspot extends StatefulWidget {
   final ImageHotspotModel imageHotspotModel;
   final VoidCallback? onCompleted; // Optional callback
 
-  const ImageHotspot({
-    Key? key,
-    required this.imageHotspotModel,
-    this.onCompleted
-  }) : super(key: key);
+  const ImageHotspot(
+      {Key? key, required this.imageHotspotModel, this.onCompleted})
+      : super(key: key);
 
   @override
   State<ImageHotspot> createState() => _ImageHotspotState();
@@ -76,27 +74,98 @@ class _ImageHotspotState extends State<ImageHotspot>
     });
   }
 
-  void _showDialog(BuildContext context, String dialogText) {
+  void showCustomDialog(BuildContext context, String dialogText,
+      ) {
     showAnimatedDialog(
+      barrierDismissible: true,
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Dialog'),
-          content: Text(dialogText),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Close'),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
+      builder: (BuildContext dialogContext) {
+        return Dialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.only(
+                    top: 20, right: 60, bottom: 60, left: 60),
+                child: ConstrainedBox(
+                  constraints:
+                  const BoxConstraints(maxHeight: 120, maxWidth: 150),
+                  child: Text(dialogText,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontFamily: "UrduType", fontSize: 20)),
+                ),
+              ),
+              Positioned(
+                bottom: -15,
+                left: -55,
+                child: Image.asset('assets/scripts/script11/2.png',
+                    width: 180, height: 180),
+              ),
+              Positioned(
+                top: -40,
+                right: -50,
+                child: Image.asset('assets/scripts/script11/1.png',
+                    width: 180, height: 180),
+              ),
+              Positioned.fill(
+                child: Container(
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.green, width: 2),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                left: 110,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(dialogContext).pop(); // Close the dialog
+                  },
+                  child: Container(
+                    width: 90,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Color(0xffFE8BD1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "اگلے",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
   }
+  void _nextImage() {
+    if (widget.imageHotspotModel.currentIndex <
+        widget.imageHotspotModel.images.length - 1) {
+      setState(() {
+        widget.imageHotspotModel.currentIndex++;
+      });
+    } else {
+      widget.onCompleted?.call();
+      Get.back(result: true);
+    }
+  }
 
   bool _areAllHotspotsTapped() {
-    return widget.imageHotspotModel.hotspots
-        .every((hotspot) => hotspot.isTapped);
+    final currentImage =
+        widget.imageHotspotModel.images[widget.imageHotspotModel.currentIndex];
+    return currentImage.hotspots.every((hotspot) => hotspot.isTapped);
   }
 
   @override
@@ -175,7 +244,6 @@ class _ImageHotspotState extends State<ImageHotspot>
                 fit: BoxFit.contain,
               ),
             ),
-
           ),
         ),
         const Padding(
@@ -191,12 +259,17 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   Widget _buildImageContainer(BuildContext context) {
+    // Access the current image data using the model's current index
+    final currentImage =
+        widget.imageHotspotModel.images[widget.imageHotspotModel.currentIndex];
+
     return Expanded(
       child: Container(
         key: _imageKey, // Use the key here
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(widget.imageHotspotModel.imagePath),
+            image: AssetImage(
+                currentImage.imagePath), // Updated to use current image's path
             fit: BoxFit.fill,
           ),
         ),
@@ -253,7 +326,9 @@ class _ImageHotspotState extends State<ImageHotspot>
                 ),
               ),
             ),
-            ..._buildHotspots(context), // Use the spread operator here
+            ..._buildHotspots(
+              context,
+            ),
           ],
         ),
       ),
@@ -261,36 +336,44 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   List<Widget> _buildHotspots(BuildContext context) {
-    final containerRenderBox =
-        _imageKey.currentContext?.findRenderObject() as RenderBox?;
+    final currentImage = widget.imageHotspotModel.images[widget.imageHotspotModel.currentIndex];
+
+    // Get the size of the screen for full-screen mode calculations
+    final screenSize = MediaQuery.of(context).size;
+
+    // Obtain the size of the container for normal mode calculations
+    final containerRenderBox = _imageKey.currentContext?.findRenderObject() as RenderBox?;
     final containerSize = containerRenderBox?.size ?? Size.zero;
 
-    return widget.imageHotspotModel.hotspots.map((hotspot) {
-      final double relativeX = hotspot.offset.dx / containerSize.width;
-      final double relativeY = hotspot.offset.dy / containerSize.height;
+    return currentImage.hotspots.map((hotspot) {
+      // Determine the dimensions to use based on the current screen mode
+      final baseWidth = _isFullScreen ? screenSize.width : containerSize.width;
+      final baseHeight = _isFullScreen ? screenSize.height : containerSize.height;
+
+      // Calculate positions based on the dimensions used
+      final double relativeX = hotspot.offset.dx / (baseWidth != 0 ? baseWidth : 1);
+      final double relativeY = hotspot.offset.dy / (baseHeight != 0 ? baseHeight : 1);
+
+      // Calculate the absolute positions for the hotspots
+      final double absoluteX = relativeX * baseWidth;
+      final double absoluteY = relativeY * baseHeight;
 
       return Positioned(
-        left: _isFullScreen
-            ? relativeX * MediaQuery.of(context).size.width
-            : hotspot.offset.dx,
-        top: _isFullScreen
-            ? relativeY * MediaQuery.of(context).size.height
-            : hotspot.offset.dy,
+        left: absoluteX,
+        top: absoluteY,
         child: GestureDetector(
           onTap: () {
-            _showDialog(context, hotspot.dialogText);
+            showCustomDialog(context, hotspot.dialogText);
             setState(() {
-              hotspot.isTapped = true; // Update isTapped to true when tapped
+              hotspot.isTapped = true;
             });
           },
           child: Container(
-            width: 50,
-            height: 50,
+            width: 30,
+            height: 30,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(hotspot.isTapped
-                    ? 'assets/images/Hotspot---Green.png'
-                    : 'assets/images/Hotspot---Pink.png'),
+                image: AssetImage(hotspot.isTapped ? 'assets/images/Hotspot---Green.png' : 'assets/images/Hotspot---Pink.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -301,8 +384,7 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   Widget _buildContinueButton() {
-    bool allHotspotsTapped =
-        _areAllHotspotsTapped(); // Check if all hotspots are tapped
+    bool allHotspotsTapped = _areAllHotspotsTapped();
 
     return Column(
       children: [
@@ -316,15 +398,7 @@ class _ImageHotspotState extends State<ImageHotspot>
             ),
             minimumSize: const Size(150, 37),
           ),
-          onPressed: allHotspotsTapped
-              ? () {
-            // This will only execute on the last slide
-            if(widget.onCompleted != null) {
-              widget.onCompleted!(); // Optionally call the completion callback if provided
-            }
-            Get.back();
-          }
-              : null,
+          onPressed: allHotspotsTapped ? _nextImage : null,
           child: const Text(
             'جاری',
             style: TextStyle(
@@ -339,6 +413,8 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   Widget _buildFullScreenImage(BuildContext context) {
+    final currentImage = widget.imageHotspotModel.images[widget.imageHotspotModel.currentIndex];
+
     return ScaleTransition(
       scale: _scaleAnimation,
       child: Container(
@@ -346,8 +422,8 @@ class _ImageHotspotState extends State<ImageHotspot>
         height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(widget.imageHotspotModel.imagePath),
-            fit: BoxFit.cover,
+            image: AssetImage(currentImage.imagePath),
+            fit: BoxFit.fill,
           ),
         ),
         child: Stack(
@@ -358,7 +434,6 @@ class _ImageHotspotState extends State<ImageHotspot>
                 padding: const EdgeInsets.all(10.0),
                 child: GestureDetector(
                   onTap: () {
-                    // Define your onTap functionality here for the top left button
                     print("Top left button tapped");
                   },
                   child: Container(
@@ -395,7 +470,7 @@ class _ImageHotspotState extends State<ImageHotspot>
                     ),
                     child: Center(
                       child: SvgPicture.asset(
-                        'assets/images/full_screen.svg',
+                        'assets/images/full_screen.svg', // Consider changing to exit full screen icon
                         width: 30,
                       ),
                     ),
@@ -403,69 +478,11 @@ class _ImageHotspotState extends State<ImageHotspot>
                 ),
               ),
             ),
-            ..._buildHotspots(context), // Use the spread operator here
+            ..._buildHotspots(context), // Include hotspots over the full-screen image
           ],
         ),
       ),
     );
   }
-}
 
-class ArrowContainer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 110,
-      height: 35,
-      child: CustomPaint(
-        painter: ArrowPainter(),
-        child: const Center(
-          child: Text(
-            'انٹرایکٹو عنصر دکھائیں۔',
-            style: TextStyle(
-                color: Colors.white, fontFamily: "UrduType", fontSize: 13),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ArrowPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.fill;
-
-    const double arrowWidth = 15.0; // width of the arrow (beak)
-    const double arrowHeight = 15.0; // height of the arrow (beak)
-    const double cornerRadius = 10.0; // radius for rounded corners
-
-    final path = Path()
-      ..moveTo(arrowWidth + cornerRadius, 0)
-      ..lineTo(size.width - cornerRadius, 0)
-      ..arcToPoint(Offset(size.width, cornerRadius),
-          radius: const Radius.circular(cornerRadius), clockwise: true)
-      ..lineTo(size.width, size.height - cornerRadius)
-      ..arcToPoint(Offset(size.width - cornerRadius, size.height),
-          radius: const Radius.circular(cornerRadius), clockwise: true)
-      ..lineTo(arrowWidth + cornerRadius, size.height)
-      ..arcToPoint(Offset(arrowWidth, size.height - cornerRadius),
-          radius: const Radius.circular(cornerRadius), clockwise: true)
-      ..lineTo(arrowWidth, size.height / 2 + arrowHeight / 2)
-      ..lineTo(0, size.height / 2)
-      ..lineTo(arrowWidth, size.height / 2 - arrowHeight / 2)
-      ..lineTo(arrowWidth, cornerRadius)
-      ..arcToPoint(const Offset(arrowWidth + cornerRadius, 0),
-          radius: const Radius.circular(cornerRadius), clockwise: true)
-      ..close();
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
 }

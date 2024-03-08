@@ -28,15 +28,18 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
     {'path': 'assets/images/report.svg', 'label': 'نتائج'},
   ];
 
-  final List<Widget> pages = [
-    const HomePage(),
-    const Courses_Tabbar(),
-    const GroupsDiscussion(
-      showAppBar: true,
-    ),
-    const ReportsScreen(),
+   List<Widget> _pages() {
+  return [
+  Builder(
+  builder: (context) {
+  return HomePage(onSwitchTab: onTabTapped);
+  },
+  ),
+  const Courses_Tabbar(),
+  const GroupsDiscussion(showAppBar: true),
+  const ReportsScreen(),
   ];
-
+  }
   void onTabTapped(int index) {
     _pageController.jumpToPage(index);
     if (_currentIndex != index) {
@@ -55,7 +58,7 @@ class _Custom_NavBarState extends State<Custom_NavBar> {
         children: [
           PageView(
             controller: _pageController,
-            children: pages,
+            children: _pages(), // Use the method here
             onPageChanged: (index) {
               // Only update the state if the index actually changed.
               if (_currentIndex != index) {

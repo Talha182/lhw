@@ -187,7 +187,6 @@ class _CourseCardState extends State<CourseCard> {
                             ),
                             onPressed: () async {
                               await navigateBasedOnVisitStatus(context);
-                              // Update the last visited course using Provider after navigation completes
                               Provider.of<CoursesProvider>(context,
                                       listen: false)
                                   .setLastVisitedCourse(widget.course);

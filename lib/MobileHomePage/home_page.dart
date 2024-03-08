@@ -9,17 +9,21 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../CourseTabbar/LessonPageTabBar/LessonPageTabbar.dart';
-import '../ModuleScreen/ModuleScreen.dart';
 import '../CourseTabbar/course_provider.dart';
+import '../CourseTabbar/courses_tabbar.dart';
 import '../CustomWidgets/Line_chart.dart';
 import '../CustomWidgets/circular_progress_bar_with circle.dart';
 import '../CustomWidgets/gradient_circle.dart';
 import '../LoginSignUp/Login.dart';
+import '../ModuleScreen/ModuleScreen.dart';
+import '../course_models/courses_models.dart';
 import '../notification/notifications_screen.dart';
 import '../utils/is_first_time_check.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Function(int) onSwitchTab;
+
+  const HomePage({super.key, required this.onSwitchTab});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -92,42 +96,59 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-  // Future<void> navigateToLastVisitedCourse(BuildContext context) async {
-  //   // Directly use the lastVisitedCourse from the provider
-  //   final provider = Provider.of<CoursesProvider>(context, listen: false); // Added listen: false for accessing outside build method.
-  //   Course? course = provider.lastVisitedCourse;
-  //
-  //   if (course != null) {
-  //     final prefs = await SharedPreferences.getInstance();
-  //     final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
-  //     final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
-  //
-  //     if (isFirstVisit) {
-  //       await prefs.setBool(isFirstVisitKey, false);
-  //       // Navigate with fade transition
-  //       await Get.to(() => LessonPageTabBar(course: course), transition: Transition.fade, duration: Duration(milliseconds: 300));
-  //     } else {
-  //       // Navigate without checking for first visit
-  //       Get.to(() => ModuleScreen(course: course));
-  //     }
-  //   } else {
-  //     // Handle the case where there is no last visited course
-  //     print("No last visited course found!");
-  //     // Optionally, navigate to a default course or show an error message
-  //   }
-  // }
+
+  Future<void> navigateToLastVisitedCourse(BuildContext context) async {
+    // Directly use the lastVisitedCourse from the provider
+    final provider = Provider.of<CoursesProvider>(context,
+        listen:
+            false); // Added listen: false for accessing outside build method.
+    Course? course = provider.lastVisitedCourse;
+
+    if (course != null) {
+      final prefs = await SharedPreferences.getInstance();
+      final isFirstVisitKey = 'isFirstVisit_${course.courseId}';
+      final isFirstVisit = prefs.getBool(isFirstVisitKey) ?? true;
+
+      if (isFirstVisit) {
+        await prefs.setBool(isFirstVisitKey, false);
+        // Navigate with fade transition
+        await Get.to(() => LessonPageTabBar(course: course),
+            transition: Transition.fade, duration: Duration(milliseconds: 300));
+      } else {
+        // Navigate without checking for first visit
+        Get.to(() => ModuleScreen(course: course));
+      }
+    } else {
+      // Handle the case where there is no last visited course
+      print("No last visited course found!");
+      // Optionally, navigate to a default course or show an error message
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Accessing the CoursesProvider
-    // final provider = Provider.of<CoursesProvider>(context);
-    // final totalCourses = provider.courses;
-    // final lastVisitedCourse = provider.lastVisitedCourse;
-    // final completedCourses = provider.completedCourses;
-    // final completedCourseCount = completedCourses.length;
-    // final remainingCoursesCount = totalCourses.length - completedCourses.length;
+    final provider = Provider.of<CoursesProvider>(context);
+    final totalCourses = provider.courses ??
+        []; // Ensure courses is not null by providing a default empty list.
+    final lastVisitedCourse = provider.lastVisitedCourse;
+    final completedCourses = provider.completedCourses?.length ??
+        0; // Use null-aware operators to avoid null exceptions.
+    final remainingCoursesCount = totalCourses.length - completedCourses;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+    // Check if isLoading is true to show a loading indicator before attempting to access any course data.
+    if (provider.isLoading) {
+      return const Scaffold(
+        body: Center(
+          child:
+              CircularProgressIndicator(), // Assuming you have a LoadingScreen widget. Replace with CircularProgressIndicator if not.
+        ),
+      );
+    }
+
+    // Check if lastVisitedCourse is not null before accessing its progress.
+    double? lastVisitedCourseProgress = lastVisitedCourse?.progress;
 
     return Scaffold(
         backgroundColor: const Color(0xFFF1F1F1),
@@ -243,63 +264,73 @@ class _HomePageState extends State<HomePage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
-                                      child: Container(
-                                        height: screenHeight * 0.12,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xffDCEFDE),
-                                              Color(0xff81C588)
-                                            ],
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Provider.of<TabIndexProvider>(context, listen: false).initialTabIndex = 1;
+
+                                          widget.onSwitchTab(
+                                              1);
+                                        },
+                                        child: Container(
+                                          height: screenHeight * 0.12,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            gradient: const LinearGradient(
+                                              colors: [
+                                                Color(0xffDCEFDE),
+                                                Color(0xff81C588)
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
                                           ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 15, top: 16),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: <Widget>[
-                                              const Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: <Widget>[
-                                                  Text(
-                                                    "مکمل یونٹ",
-                                                    style: TextStyle(
-                                                        fontFamily: 'UrduType',
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 15, top: 16),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: <Widget>[
+                                                const Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      "مکمل یونٹ",
+                                                      style: TextStyle(
+                                                          fontFamily:
+                                                              'UrduType',
+                                                          color:
+                                                              Color(0xff464646),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    Icon(
+                                                        Icons
+                                                            .check_circle_outline,
+                                                        size: 24,
                                                         color:
-                                                            Color(0xff464646),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 8,
-                                                  ),
-                                                  Icon(
-                                                      Icons
-                                                          .check_circle_outline,
-                                                      size: 24,
-                                                      color: Color(0xff7A7D84)),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: screenWidth / 6,
-                                                    top: 16),
-                                                child: const Text(
-                                                  '1',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontFamily: ""),
+                                                            Color(0xff7A7D84)),
+                                                  ],
                                                 ),
-                                              ),
-                                            ],
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: screenWidth / 6,
+                                                      top: 16),
+                                                  child: Text(
+                                                    '${completedCourses}',
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontFamily: ""),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -308,68 +339,76 @@ class _HomePageState extends State<HomePage> {
                                       width: 16,
                                     ),
                                     Expanded(
-                                      child: Container(
-                                        height: screenHeight * 0.12,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xffeaa3d8),
-                                              Color(0xffED8DCE)
-                                            ],
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Provider.of<TabIndexProvider>(context, listen: false).initialTabIndex = 2;
+
+                                          widget.onSwitchTab(1);
+                                        },
+                                        child: Container(
+                                          height: screenHeight * 0.12,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            gradient: const LinearGradient(
+                                              colors: [
+                                                Color(0xffeaa3d8),
+                                                Color(0xffED8DCE)
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
                                           ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 15, top: 8),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: <Widget>[
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: <Widget>[
-                                                  const Text(
-                                                    'نا مکمل یونٹ',
-                                                    style: TextStyle(
-                                                        fontFamily: 'UrduType',
-                                                        color:
-                                                            Color(0xff464646),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 8,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 8.0),
-                                                    child: SvgPicture.asset(
-                                                      'assets/images/course.svg',
-                                                      height: 20,
-                                                      width: 20,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 15, top: 8),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: <Widget>[
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: <Widget>[
+                                                    const Text(
+                                                      'نا مکمل یونٹ',
+                                                      style: TextStyle(
+                                                          fontFamily:
+                                                              'UrduType',
+                                                          color:
+                                                              Color(0xff464646),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: screenWidth / 6,
-                                                    top: 16),
-                                                child: const Text(
-                                                  "2",
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontFamily: ""),
+                                                    const SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 8.0),
+                                                      child: SvgPicture.asset(
+                                                        'assets/images/course.svg',
+                                                        height: 20,
+                                                        width: 20,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ),
-                                            ],
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: screenWidth / 6,
+                                                      top: 16),
+                                                  child: Text(
+                                                    "${remainingCoursesCount}",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontFamily: ""),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -431,7 +470,10 @@ class _HomePageState extends State<HomePage> {
                                                           5, // space between Text and Icon
                                                     ),
                                                     GestureDetector(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        navigateToLastVisitedCourse(
+                                                            context);
+                                                      },
                                                       child: const Text(
                                                         " یونٹ دیکھیں۔",
                                                         style: TextStyle(
@@ -473,13 +515,13 @@ class _HomePageState extends State<HomePage> {
                                                     CrossAxisAlignment.end,
                                                 // Aligns children to the start of the Column.
                                                 children: [
-                                                  const Padding(
+                                                  Padding(
                                                     padding: EdgeInsets.only(
                                                       right: 10,
                                                       bottom: 16,
                                                     ),
                                                     child: Text(
-                                                      "Title",
+                                                      "${lastVisitedCourse!.title}",
                                                       style: TextStyle(
                                                           fontFamily:
                                                               "UrduType",
@@ -499,8 +541,8 @@ class _HomePageState extends State<HomePage> {
                                                         const SizedBox(
                                                           width: 8,
                                                         ),
-                                                        const Text(
-                                                          '12  ماڈیول',
+                                                        Text(
+                                                          '${lastVisitedCourse!.moduleCount}  اسباق',
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   "UrduType",
@@ -535,8 +577,8 @@ class _HomePageState extends State<HomePage> {
                                                           width: 5,
                                                         ),
 
-                                                        const Text(
-                                                          '12 کوئز',
+                                                        Text(
+                                                          '${lastVisitedCourse!.quizCount} ٹیسٹ',
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   "UrduType",
@@ -561,7 +603,7 @@ class _HomePageState extends State<HomePage> {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          "${(1 * 100).toStringAsFixed(1)}%",
+                                                          "${(lastVisitedCourseProgress! * 100).toStringAsFixed(1)}%",
                                                           style:
                                                               const TextStyle(
                                                             fontFamily:
@@ -590,7 +632,8 @@ class _HomePageState extends State<HomePage> {
                                                           const Radius.circular(
                                                               10),
                                                       lineHeight: 6.0,
-                                                      percent: 1,
+                                                      percent:
+                                                          lastVisitedCourseProgress,
                                                       backgroundColor:
                                                           const Color(
                                                               0xffEBEBF0),
@@ -610,6 +653,10 @@ class _HomePageState extends State<HomePage> {
                                               child: Container(
                                                 height: 100,
                                                 decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                      "${lastVisitedCourse.imagePath}",
+                                                    )),
                                                     color: Colors.white,
                                                     border: Border.all(
                                                         color: Colors
@@ -617,10 +664,6 @@ class _HomePageState extends State<HomePage> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10)),
-                                                child: Image.asset(
-                                                  'assets/images/1.png',
-                                                  fit: BoxFit.contain,
-                                                ),
                                               ),
                                             ),
                                           ],
@@ -691,11 +734,14 @@ class _HomePageState extends State<HomePage> {
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500)),
-                                                            SizedBox(height: 3,),
+                                                            SizedBox(
+                                                              height: 3,
+                                                            ),
                                                             Text(
                                                                 "آخری تاریخ: 25 جون 2023",
                                                                 style: TextStyle(
-                                                                  color: Color(0xff878787),
+                                                                    color: Color(
+                                                                        0xff878787),
                                                                     fontSize:
                                                                         12,
                                                                     fontFamily:
@@ -727,10 +773,11 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                               child: const Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: 15),
+                                                padding:
+                                                    EdgeInsets.only(right: 15),
                                                 child: Directionality(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -739,7 +786,8 @@ class _HomePageState extends State<HomePage> {
                                                       GradientCircle(
                                                         width: 45,
                                                         height: 45,
-                                                        gradient: LinearGradient(
+                                                        gradient:
+                                                            LinearGradient(
                                                           colors: [
                                                             Color(0xffF4B9E1),
                                                             Color(0xffED8DCE)
@@ -769,16 +817,18 @@ class _HomePageState extends State<HomePage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Text(
-                                                                "مکمل اسباق",
+                                                            Text("مکمل اسباق",
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'UrduType',
-                                                                    fontSize: 14,
+                                                                    fontSize:
+                                                                        14,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500)),
-                                                            SizedBox(height: 3,),
+                                                            SizedBox(
+                                                              height: 3,
+                                                            ),
                                                             Text(
                                                               "12",
                                                               style: TextStyle(
@@ -789,7 +839,6 @@ class _HomePageState extends State<HomePage> {
                                                         ),
                                                       ),
                                                       // Icon button on the right
-
                                                     ],
                                                   ),
                                                 ),

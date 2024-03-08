@@ -382,7 +382,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                       if(widget.onCompleted != null) {
                         widget.onCompleted!(); // Optionally call the completion callback if provided
                       }
-                      Get.back();                                  }
+                      Get.back(result: true);                                  }
                         : null, // Disable button if not the last question or not answered
 
                     child: const Text(

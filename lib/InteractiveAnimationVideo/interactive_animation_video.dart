@@ -42,7 +42,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset(
+    _videoController = VideoPlayerController.network(
         widget.interactiveAnimationVideoModel.videoPath)
       ..initialize().then((_) {
         setState(() {});
@@ -424,9 +424,9 @@ class InteractiveAnimationVideoModel {
         .toList();
 
     return InteractiveAnimationVideoModel(
-      videoPath: json['videoPath'],
-      questions: questions,
-      questionDurations: questionDurations,
+      videoPath: json['videoPath'] ?? '',
+      questions: questions ?? [],
+      questionDurations: questionDurations ?? [],
     );
   }
 }
@@ -450,11 +450,11 @@ class Question {
 
   factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
-      question: json['question'],
-      options: List<String>.from(json['options']),
-      correctAnswer: json['correctAnswer'],
-      correctExplanation: json['correctExplanation'],
-      incorrectExplanation: json['incorrectExplanation'],
+      question: json['question'] ?? '',
+      options: List<String>.from(json['options']) ?? [],
+      correctAnswer: json['correctAnswer'] ?? '',
+      correctExplanation: json['correctExplanation'] ?? '',
+      incorrectExplanation: json['incorrectExplanation']  ?? '',
       // imagePaths: List<String>.from(json['imagePaths']),
     );
   }

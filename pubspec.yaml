@@ -105,10 +105,15 @@ flutter:
     - assets/scripts/Script 5/
     - assets/scripts/Script 9/
     - assets/scripts/Script 10/
+    - assets/scripts/Script 12/
+    - assets/scripts/Script 13/
     - assets/scripts/Script 15/
     - assets/scripts/script11/
     - assets/scripts/Script 17/
+    - assets/scripts/Script 21/
     - assets/scripts/Script 22/
+    - assets/scripts/Script 23/
+    - assets/scripts/Script 24/
     - assets/scripts/Script 25/
     - assets/scripts/Script 26/
     - assets/scripts/Script 27/
@@ -121,6 +126,12 @@ flutter:
     - assets/scripts/Script 37/
     - assets/scripts/Script 39/
     - assets/scripts/Script 40/
+    - assets/scripts/Script 44/
+    - assets/scripts/Script 48/
+    - assets/scripts/Script 49/
+    - assets/scripts/Script 51/
+    - assets/scripts/Script 56/
+    - assets/scripts/Script 58/
 
   fonts:
     - family: UrduType

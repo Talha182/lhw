@@ -2,12 +2,14 @@ import 'dart:ui';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'completed_courses.dart';
 import 'ongoing_courses.dart';
 import 'total_courses.dart';
 
 class Courses_Tabbar extends StatefulWidget {
-  const Courses_Tabbar({super.key});
+
+  const Courses_Tabbar({super.key,});
 
   @override
   State<Courses_Tabbar> createState() => _Courses_TabbarState();
@@ -18,13 +20,16 @@ class _Courses_TabbarState extends State<Courses_Tabbar> {
 
   @override
   Widget build(BuildContext context) {
+    final initialTabIndex = Provider.of<TabIndexProvider>(context).initialTabIndex;
+
     return DefaultTabController(
-      initialIndex: 2,
+      initialIndex: initialTabIndex,
       length: 3,
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(70.0),
             child: AppBar(
+              automaticallyImplyLeading: false,
               elevation: 1.0,
               backgroundColor: Colors.white,
               flexibleSpace: Align(
@@ -128,5 +133,17 @@ class _Courses_TabbarState extends State<Courses_Tabbar> {
         ],
       ),
     );
+  }
+}
+
+
+class TabIndexProvider with ChangeNotifier {
+  int _initialTabIndex = 2; // Default to the 2nd tab
+
+  int get initialTabIndex => _initialTabIndex;
+
+  set initialTabIndex(int index) {
+    _initialTabIndex = index;
+    notifyListeners();
   }
 }

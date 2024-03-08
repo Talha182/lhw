@@ -121,6 +121,7 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
       },
     );
   }
+
   bool _areAllHotspotsTapped() {
     return widget.horizontalImageHotspotModel.images[_currentIndex].hotspots.every((hotspot) => hotspot.isTapped);
   }

@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CoursesProvider()),
+        ChangeNotifierProvider(create: (context) => TabIndexProvider()),
       ],
       child: GetMaterialApp(
         navigatorKey: navigatorKey,
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-        home: isLoggedIn ? const Courses_Tabbar() : const LoginScreen(),
+        home: isLoggedIn ? const Custom_NavBar() : const LoginScreen(),
       ),
     );
   }
