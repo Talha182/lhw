@@ -271,7 +271,9 @@ class _ModuleScreenState extends State<ModuleScreen> {
                           letterSpacing: 1,
                           fontSize: 24),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         ...rowPadded([
@@ -300,7 +302,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
                                 fontSize: 12),
                           ),
                           SvgPicture.asset('assets/images/person_card.svg'),
-
                           const Text(
                             '•',
                             style: TextStyle(
@@ -308,18 +309,15 @@ class _ModuleScreenState extends State<ModuleScreen> {
                                 color: Color(0xff232323),
                                 fontSize: 12),
                           ),
-                            Text(
+                          Text(
                             '${course.quizCount} اسباق',
                             style: const TextStyle(
                                 fontFamily: "UrduType",
                                 color: Color(0xff7A7D84),
                                 letterSpacing: 1,
                                 fontSize: 12),
-
                           ),
                           SvgPicture.asset('assets/images/module.svg'),
-
-
                         ], 3)
                       ],
                     ),
@@ -370,7 +368,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
                     onPressed: () {},
                     child: Row(
                       children: [
-
                         const Text(
                           'اس یونٹ کو ڈونلوڈ کریں',
                           style: TextStyle(
@@ -383,7 +380,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
                           width: 10,
                         ),
                         SvgPicture.asset('assets/images/download.svg'),
-
                       ],
                     ),
                   ),
@@ -400,7 +396,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
                     double progressValue =
                         provider.getModuleProgress(module.moduleId);
 
-                    // Now use progressValue directly without FutureBuilder
                     return Module_Card(
                       progressValue: progressValue,
                       showProgressBar: module.isStart,
@@ -428,7 +423,8 @@ class _ModuleScreenState extends State<ModuleScreen> {
                           transition: Transition.fade,
                           duration: const Duration(milliseconds: 300),
                         );
-                      }, moduleCount: module.submoduleCount,
+                      },
+                      moduleCount: module.submoduleCount,
                     );
                   },
                 ),

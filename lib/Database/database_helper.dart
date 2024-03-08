@@ -171,8 +171,7 @@ class DatabaseHelper extends ChangeNotifier {
   }
 
   Future<User?> getUserByEmail(String email) async {
-    final db =
-        await database;
+    final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(
       'users',
       where: 'email = ?',
@@ -181,15 +180,17 @@ class DatabaseHelper extends ChangeNotifier {
     );
 
     if (maps.isNotEmpty) {
-      return User.fromJson(maps
-          .first);
+      return User.fromJson(maps.first);
     } else {
       return null; // No user found with the given email
     }
   }
-  Future<void> updateUserProgress(int userId, int courseId, int moduleId, int featureId, String startTime) async {
+
+  Future<void> updateUserProgress(int userId, int courseId, int moduleId,
+      int featureId, String startTime) async {
     final db = await database;
-    print('Updating user progress for userId: $userId, courseId: $courseId, moduleId: $moduleId, featureId: $featureId, startTime: $startTime');
+    print(
+        'Updating user progress for userId: $userId, courseId: $courseId, moduleId: $moduleId, featureId: $featureId, startTime: $startTime');
     final existingProgress = await db.query(
       'user_progress',
       where: 'userId = ?',
@@ -235,7 +236,6 @@ class DatabaseHelper extends ChangeNotifier {
     }
     return null;
   }
-
 
   Future<void> insertCourse(Course course) async {
     final db = await database;
@@ -337,7 +337,6 @@ class DatabaseHelper extends ChangeNotifier {
     );
   }
 
-
   Future<bool> toggleFeatureCompletion(int featureId) async {
     final db = await database;
     final feature = await db.query(
@@ -347,8 +346,7 @@ class DatabaseHelper extends ChangeNotifier {
     );
 
     if (feature.isNotEmpty) {
-      final isCompleted =
-          feature.first['isCompleted'] == 1 ? 0 : 1;
+      final isCompleted = feature.first['isCompleted'] == 1 ? 0 : 1;
       await db.update(
         featuresTable,
         {'isCompleted': isCompleted},
@@ -428,6 +426,7 @@ class DatabaseHelper extends ChangeNotifier {
     );
   }
 
+
   Future<void> markFeatureAsCompleted(int featureId) async {
     final db = await database;
     await db.update(
@@ -436,7 +435,38 @@ class DatabaseHelper extends ChangeNotifier {
       where: 'featureId = ?',
       whereArgs: [featureId],
     );
-    notifyListeners();
+    print('Feature with ID $featureId marked as completed.');
+
+    // Fetch the submodule ID of the completed feature
+    var feature = await db.query(
+      featuresTable,
+      columns: ['submoduleId'],
+      where: 'featureId = ?',
+      whereArgs: [featureId],
+    );
+
+    if (feature.isNotEmpty) {
+      int submoduleId = feature.first['submoduleId'] as int;
+      // Check if all features of the submodule are completed
+      var features = await db.query(
+        featuresTable,
+        where: 'submoduleId = ? AND isCompleted = 0',
+        whereArgs: [submoduleId],
+      );
+
+      if (features.isEmpty) {
+        // All features are completed, mark submodule as completed
+        await db.update(
+          submodulesTable,
+          {'isCompleted': 1},
+          where: 'submoduleId = ?',
+          whereArgs: [submoduleId],
+        );
+        print('Submodule with ID $submoduleId marked as completed.');
+      } else {
+        print('Submodule with ID $submoduleId still has incomplete features.');
+      }
+    }
   }
 
   Future<void> calculateAndUpdateCourseProgress(int courseId) async {

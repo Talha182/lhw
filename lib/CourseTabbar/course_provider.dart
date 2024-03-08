@@ -39,7 +39,7 @@ class CoursesProvider with ChangeNotifier {
     // Attempt to load the last visited course from the stored ID
     if (lastVisitedCourseId != null) {
       _lastVisitedCourse =
-      await DatabaseHelper.instance.getCourseById(lastVisitedCourseId);
+          await DatabaseHelper.instance.getCourseById(lastVisitedCourseId);
     }
 
     // If no last visited course is found and there are courses available, set the first course as the last visited one.
@@ -139,6 +139,7 @@ class CoursesProvider with ChangeNotifier {
   }
 
 
+
   Future<void> markFeatureAsCompletedAndUpdateProgress(
       int courseId, int moduleId, int featureId) async {
     await DatabaseHelper.instance.markFeatureAsCompleted(featureId);
@@ -153,11 +154,11 @@ class CoursesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   Map<int, double> _moduleProgress = {};
 
   Future<void> fetchAllModulesProgress(int courseId) async {
-    _moduleProgress = await DatabaseHelper.instance.fetchAllModuleProgress(courseId);
+    _moduleProgress =
+        await DatabaseHelper.instance.fetchAllModuleProgress(courseId);
     notifyListeners();
   }
 

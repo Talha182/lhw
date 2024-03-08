@@ -3,6 +3,8 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:lhw/CourseTabbar/course_provider.dart';
+import 'package:provider/provider.dart';
 import '../CourseTabbar/FeaturesListScreen.dart';
 import '../controllers/feature_navigation.dart';
 import '../course_models/courses_models.dart';
@@ -155,7 +157,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
             children: [
               Text(
                 widget.module.title,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -336,7 +338,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
@@ -349,9 +351,15 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                   ),
                   const SizedBox(height: 16),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SvgPicture.asset("assets/images/person_card.svg",color: Color(0xff685F78),),
-                      SizedBox(width: 3,),
+                      SvgPicture.asset(
+                        "assets/images/person_card.svg",
+                        color: const Color(0xff685F78),
+                      ),
+                      const SizedBox(
+                        width: 3,
+                      ),
                       Text(
                         "$quizzesCount ٹیسٹ",
                         style: const TextStyle(
@@ -373,7 +381,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                       ),
                       const Text(
                         "01 گھنٹہ 30 منٹ",
-                        textDirection: TextDirection.rtl,
+                        textDirection: TextDirection.ltr,
                         style: TextStyle(
                             fontSize: 15,
                             fontFamily: "UrduType",
@@ -381,16 +389,17 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                       ),
                     ],
                   ),
-                  SizedBox(height: 5,),
-                  Text(
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Text(
                     "تفصیل",
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: "UrduType",
                         color: Color(0xff000000),
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ),
-
                   const SizedBox(height: 8),
                   Text(
                     submodule.description,
@@ -398,7 +407,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                         fontFamily: "UrduType",
                         fontSize: 14,
                         color: Color(0xff7A7D84)),
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.end,
                   ),
                   const Spacer(),
                   const Divider(thickness: 1),
@@ -492,8 +501,6 @@ class StepperTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define the icon size for consistent layout
-
     return InkWell(
       onTap: onTap,
       child: Column(
@@ -538,7 +545,7 @@ class StepperTile extends StatelessWidget {
                   8.0), // Adjust space between the title and the dotted line
               child: CustomPaint(
                 painter: DottedLinePainter(),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 50, // Adjust the space for the dotted line as needed
                 ),

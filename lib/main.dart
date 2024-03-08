@@ -29,7 +29,6 @@ Future<void> main() async {
   runApp(MyApp(isLoggedIn: isLoggedIn));
 }
 
-
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;
 
@@ -60,4 +59,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

@@ -340,7 +340,6 @@
                     "questions": []
                   }
                 }
-
               ]
             },
             {
@@ -514,14 +513,13 @@
                     ]
                   }
                 },
-
                 {
                   "featureId": 18,
                   "featureType": "imageHotspot",
                   "title": "TB05 فارم بھرنے کی ہدایات ",
                   "submoduleId": 2,
                   "duration": "10 mins",
-                  "data":{
+                  "data": {
                     "images": [
                       {
                         "imagePath": "assets/scripts/Script 12/Script 12-01.png",
@@ -563,7 +561,6 @@
                       }
                     ]
                   }
-
                 },
                 {
                   "featureId": 19,
@@ -604,7 +601,6 @@
                           "assets/scripts/Script 13/Script 13-05.png",
                           "assets/scripts/Script 13/Script 13-06.png",
                           "assets/scripts/Script 13/Script 13-07.png"
-
                         ]
                       }
                     ]
@@ -812,48 +808,50 @@
                 {
                   "featureId": 26,
                   "featureType": "comicStrip",
-                  "title": " ٹی بی کے مریض کو زیر نگرانی دوا کھلانا ",
+                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
                   "submoduleId": 2,
                   "duration": "3 mins",
-                  "data": [
-                    {
-                      "title": "Comic Strip 1",
-                      "imagePairs": [
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 11.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 12.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 13.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 14.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 15.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 16.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 17.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 18.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 19.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 20.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 21.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 22.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 23.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 24.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 22/Artboard 1 copy 25.png",
-                          "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 26.png"
-                        }
-                      ]
-                    }
-                  ]
+                  "data": {
+                    "title": "Comic Strip 1",
+                    "imagePairs": [
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 11.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 12.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 13.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 14.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 15.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 16.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 17.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 18.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 19.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 19_1.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 20.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 21.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 22.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 23.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 24.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 25.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 26.png",
+                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 27.png"
+                      }
+                    ]
+                  }
                 },
                 {
                   "featureId": 27,
@@ -861,7 +859,7 @@
                   "title": "Image Hotspot Example",
                   "submoduleId": 2,
                   "duration": "10 mins",
-                  "data":{
+                  "data": {
                     "images": [
                       {
                         "imagePath": "assets/scripts/Script 23/Artboard 21.png",
@@ -903,7 +901,6 @@
                       }
                     ]
                   }
-
                 },
                 {
                   "featureId": 28,
@@ -943,7 +940,6 @@
                           "assets/scripts/Script 24/Artboard 54.png",
                           "assets/scripts/Script 24/Artboard 55.png",
                           "assets/scripts/Script 24/Artboard 56.png"
-
                         ]
                       },
                       {
@@ -960,7 +956,6 @@
                           "assets/scripts/Script 24/Artboard 57.png",
                           "assets/scripts/Script 24/Artboard 58.png",
                           "assets/scripts/Script 24/Artboard 59.png"
-
                         ]
                       },
                       {
@@ -977,7 +972,6 @@
                           "assets/scripts/Script 24/Artboard 60.png",
                           "assets/scripts/Script 24/Artboard 61.png",
                           "assets/scripts/Script 24/Artboard 62.png"
-
                         ]
                       },
                       {
@@ -994,7 +988,6 @@
                           "assets/scripts/Script 24/Artboard 63.png",
                           "assets/scripts/Script 24/Artboard 64.png",
                           "assets/scripts/Script 24/Artboard 65.png"
-
                         ]
                       },
                       {
@@ -1011,7 +1004,6 @@
                           "assets/scripts/Script 24/Artboard 66.png",
                           "assets/scripts/Script 24/Artboard 67.png",
                           "assets/scripts/Script 24/Artboard 68.png"
-
                         ]
                       },
                       {
@@ -1028,9 +1020,9 @@
                           "assets/scripts/Script 24/Artboard 69.png",
                           "assets/scripts/Script 24/Artboard 70.png",
                           "assets/scripts/Script 24/Artboard 71.png"
-
                         ]
-                      }, {
+                      },
+                      {
                         "question": "What do you see question 2?",
                         "options": [
                           "Option 1",
@@ -1044,7 +1036,6 @@
                           "assets/scripts/Script 24/Artboard 72.png",
                           "assets/scripts/Script 24/Artboard 73.png",
                           "assets/scripts/Script 24/Artboard 74.png"
-
                         ]
                       }
                     ]
@@ -1128,8 +1119,8 @@
                   "title": "flashCard Example",
                   "duration": "5 mins",
                   "data": {
-                    "Title": "flashCard",
-                    "flashCard": [
+                    "title": "flashCard",
+                    "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 26/Artboard 12@2x.png",
                         "backImage": "assets/scripts/Script 26/Artboard 10@2x.png"
@@ -1178,40 +1169,38 @@
                 {
                   "featureId": 34,
                   "featureType": "comicStrip",
+                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
                   "submoduleId": 2,
-                  "title": "Comic Strip Example",
                   "duration": "3 mins",
-                  "comicStrip": [
-                    {
-                      "title": "Comic Strip 1",
-                      "imagePairs": [
-                        {
-                          "topImage": "assets/scripts/Script 27/Artboard 14.png",
-                          "bottomImage": "assets/scripts/Script 27/Artboard 15.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 27/Artboard 16.png",
-                          "bottomImage": "assets/scripts/Script 27/Artboard 17.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 27/Artboard 18.png",
-                          "bottomImage": "assets/scripts/Script 27/Artboard 19.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 27/Artboard 20.png",
-                          "bottomImage": "assets/scripts/Script 27/Artboard 21.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 27/Artboard 22.png",
-                          "bottomImage": "assets/scripts/Script 27/Artboard 23.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 27/Artboard 24.png",
-                          "bottomImage": "assets/scripts/Script 27/Artboard 25.png"
-                        }
-                      ]
-                    }
-                  ]
+                  "data": {
+                    "title": "Comic Strip 1",
+                    "imagePairs": [
+                      {
+                        "topImage": "assets/scripts/Script 27/Artboard 14.png",
+                        "bottomImage": "assets/scripts/Script 27/Artboard 15.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 27/Artboard 16.png",
+                        "bottomImage": "assets/scripts/Script 27/Artboard 17.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 27/Artboard 18.png",
+                        "bottomImage": "assets/scripts/Script 27/Artboard 19.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 27/Artboard 20.pngg",
+                        "bottomImage": "assets/scripts/Script 27/Artboard 21.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 27/Artboard 22.png",
+                        "bottomImage": "assets/scripts/Script 27/Artboard 23.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 27/Artboard 24.png",
+                        "bottomImage": "assets/scripts/Script 27/Artboard 25.png"
+                      }
+                    ]
+                  }
                 },
                 {
                   "featureId": 35,
@@ -1219,16 +1208,18 @@
                   "submoduleId": 2,
                   "title": "Infographics Example",
                   "duration": "2 mins",
-                  "infographics": [
-                    {
-                      "imagePath": "assets/scripts/Script 28/infographic1.png",
-                      "text": "Infographic 1 Description"
-                    },
-                    {
-                      "imagePath": "assets/scripts/images/infographic2.png",
-                      "text": "Infographic 2 Description"
-                    }
-                  ]
+                  "data": {
+                    "infographics": [
+                      {
+                        "imagePath": "assets/scripts/script 28/infographic1.png",
+                        "text": "Infographic 1 Description"
+                      },
+                      {
+                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "text": "Infographic 2 Description"
+                      }
+                    ]
+                  }
                 }
               ]
             }
@@ -1306,50 +1297,65 @@
                 },
                 {
                   "featureId": 39,
-                  "featureType": "presentation",
-                  "duration": "5 mins",
+                  "featureType": "flashCard",
+                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
                   "submoduleId": 2,
-                  "title": "Introduction to Variables",
+                  "duration": "3 mins",
                   "data": {
-                    "assetImages": [
-                      "assets/scripts/Script 30/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
-                    ],
-                    "questions": [
+                    "title": "flashCard",
+                    "flashCards": [
                       {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
+                        "frontImage": "assets/scripts/Script 30/Artboard 3@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 2@2x.png"
                       },
                       {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
+                        "frontImage": "assets/scripts/Script 30/Artboard 5@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 4@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 7@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 6@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 9@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 8@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 11@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 10@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 13@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 12@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 15@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 14@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 17@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 16@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 19@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 18@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 21@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 20@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 23@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 22@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 25@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 24@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 30/Artboard 27@2x.png",
+                        "backImage": "assets/scripts/Script 30/Artboard 26@2x.png"
                       }
-                    ],
-                    "showQuestionDialog": [
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
                     ]
                   }
                 }
@@ -1594,52 +1600,55 @@
                   "title": "flashCard Example",
                   "submoduleId": 2,
                   "duration": "5 mins",
-                  "flashCards": [
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 23@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 24@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 25@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 26@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 27@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 28@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 29@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 30@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 31@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 32@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 33@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 34@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 35@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 36@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 37@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 38@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 39@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 40@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 41@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 42@2x.png"
-                    },
-                    {
-                      "frontImage": "assets/scripts/script 35/Artboard 43@2x.png",
-                      "backImage": "assets/scripts/script 35/Artboard 44@2x.png"
-                    }
-                  ]
+                  "data": {
+                    "title": "Script 35",
+                    "flashCards": [
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 23@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 24@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 25@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 26@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 27@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 28@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 29@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 30@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 31@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 32@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 33@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 34@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 35@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 36@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 37@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 38@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 39@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 40@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 41@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 42@2x.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/script 35/Artboard 43@2x.png",
+                        "backImage": "assets/scripts/script 35/Artboard 44@2x.png"
+                      }
+                    ]
+                  }
                 },
                 {
                   "featureId": 49,
@@ -1901,7 +1910,7 @@
                   "duration": "5 mins",
                   "submoduleId": 2,
                   "title": "Introduction to Variables",
-                  "presentationModel": {
+                  "data": {
                     "assetImages": [
                       "assets/scripts/Script 40/Artboard 1.png",
                       "assets/scripts/Script 40/Artboard 2.png",
@@ -2039,41 +2048,51 @@
                       {
                         "frontImage": "assets/scripts/Script 44/Artboard 6.png",
                         "backImage": "assets/scripts/Script 44/Artboard 5.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 8.png",
                         "backImage": "assets/scripts/Script 44/Artboard 7.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 11.png",
                         "backImage": "assets/scripts/Script 44/Artboard 9.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 13.png",
                         "backImage": "assets/scripts/Script 44/Artboard 12.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 15.png",
                         "backImage": "assets/scripts/Script 44/Artboard 14.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 17.png",
                         "backImage": "assets/scripts/Script 44/Artboard 16.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 19.png",
                         "backImage": "assets/scripts/Script 44/Artboard 18.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 21.png",
                         "backImage": "assets/scripts/Script 44/Artboard 20.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 23.png",
                         "backImage": "assets/scripts/Script 44/Artboard 22.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 24.png",
                         "backImage": "assets/scripts/Script 44/Artboard 25.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 27.png",
                         "backImage": "assets/scripts/Script 44/Artboard 26.png"
-                      },{
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 44/Artboard 29.png",
                         "backImage": "assets/scripts/Script 44/Artboard 28.png"
                       }
-
                     ]
                   }
                 }
@@ -2157,29 +2176,27 @@
                   "submoduleId": 2,
                   "title": "Comic Strip Example",
                   "duration": "3 mins",
-                  "data": [
-                    {
-                      "title": "Comic Strip 1",
-                      "imagePairs": [
-                        {
-                          "topImage": "assets/scripts/Script 48/Script 48-01.png",
-                          "bottomImage": "assets/scripts/Script 48/Script 48-02.png"
-                        },
-                        {
-                          "topImage": "aassets/scripts/Script 48/Script 48-03.png",
-                          "bottomImage": "assets/scripts/Script 48/Script 48-04.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 48/Script 48-05.png",
-                          "bottomImage": "assets/scripts/Script 48/Script 48-06.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 48/Script 48-07.png",
-                          "bottomImage": "assets/scripts/Script 48/Script 48-08.png"
-                        }
-                      ]
-                    }
-                  ]
+                  "data": {
+                    "title": "Comic Strip 1",
+                    "imagePairs": [
+                      {
+                        "topImage": "assets/scripts/Script 48/Script 48-01.png",
+                        "bottomImage": "assets/scripts/Script 48/Script 48-02.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 48/Script 48-03.png",
+                        "bottomImage": "assets/scripts/Script 48/Script 48-04.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 48/Script 48-05.png",
+                        "bottomImage": "assets/scripts/Script 48/Script 48-06.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 48/Script 48-07.png",
+                        "bottomImage": "assets/scripts/Script 48/Script 48-08.png"
+                      }
+                    ]
+                  }
                 }
               ]
             },
@@ -2246,50 +2263,11 @@
                   "submoduleId": 2,
                   "title": "Interactive Animation Video Example",
                   "duration": "4 mins",
-                  "videoPath": "assets/scripts/Script 50/interactive_animation.mp4",
-                  "questionDurations": [
-                    "00:10",
-                    "00:20",
-                    "00:30"
-                  ],
-                  "questions": [
-                    {
-                      "question": "What is the capital of France?",
-                      "options": [
-                        "Paris",
-                        "London",
-                        "Berlin",
-                        "Madrid"
-                      ],
-                      "correctAnswer": "Paris",
-                      "correctExplanation": "Paris is the capital of France.",
-                      "incorrectExplanation": "This is not the correct capital of France."
-                    },
-                    {
-                      "question": "What is the capital of France?",
-                      "options": [
-                        "Paris",
-                        "London",
-                        "Berlin",
-                        "Madrid"
-                      ],
-                      "correctAnswer": "Paris",
-                      "correctExplanation": "Paris is the capital of France.",
-                      "incorrectExplanation": "This is not the correct capital of France."
-                    },
-                    {
-                      "question": "What is the capital of France?",
-                      "options": [
-                        "Paris",
-                        "London",
-                        "Berlin",
-                        "Madrid"
-                      ],
-                      "correctAnswer": "Paris",
-                      "correctExplanation": "Paris is the capital of France.",
-                      "incorrectExplanation": "This is not the correct capital of France."
-                    }
-                  ]
+                  "data": {
+                    "videoPath": "https://lhw.dhqharipur.com/public/storage/videos/script%201%20without%20text.mp4",
+                    "questionDurations": [],
+                    "questions": []
+                  }
                 },
                 {
                   "featureId": 68,
@@ -2303,17 +2281,19 @@
                       {
                         "frontImage": "assets/scripts/Script 51/Script 51-02.png",
                         "backImage": "assets/scripts/Script 51/Script 51-01.png"
-                      }, {
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 51/Script 51-04.png",
                         "backImage": "assets/scripts/Script 51/Script 51-03.png"
-                      }, {
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 51/Script 51-06.png",
                         "backImage": "assets/scripts/Script 51/Script 51-05.png"
-                      }, {
+                      },
+                      {
                         "frontImage": "assets/scripts/Script 51/Script 51-08.png",
                         "backImage": "assets/scripts/Script 51/Script 51-07.png"
                       }
-
                     ]
                   }
                 },
@@ -2462,30 +2442,27 @@
                   "submoduleId": 2,
                   "title": "Comic Strip Example",
                   "duration": "3 mins",
-                  "data": [
-                    {
-                      "title": "Comic Strip 1",
-                      "imagePairs": [
-                        {
-                          "topImage": "assets/scripts/Script 58/Script 58-01.png",
-                          "bottomImage": "assets/scripts/Script 58/Script 58-02.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 58/Script 58-03.png",
-                          "bottomImage": "assets/scripts/Script 58/Script 58-04.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 58/Script 58-05.png",
-                          "bottomImage": "assets/scripts/Script 58/Script 58-06.png"
-                        },
-                        {
-                          "topImage": "assets/scripts/Script 58/Script 58-07.png",
-                          "bottomImage": "assets/scripts/Script 58/Script 58-08.png"
-                        }
-
-                      ]
-                    }
-                  ]
+                  "data": {
+                    "title": "Comic Strip 1",
+                    "imagePairs": [
+                      {
+                        "topImage": "assets/scripts/Script 58/Script 58-01.png",
+                        "bottomImage": "assets/scripts/Script 58/Script 58-02.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 58/Script 58-03.png",
+                        "bottomImage": "assets/scripts/Script 58/Script 58-04.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 58/Script 58-05.png",
+                        "bottomImage": "assets/scripts/Script 58/Script 58-06.png"
+                      },
+                      {
+                        "topImage": "assets/scripts/Script 58/Script 58-07.png",
+                        "bottomImage": "assets/scripts/Script 58/Script 58-08.png"
+                      }
+                    ]
+                  }
                 }
               ]
             }
