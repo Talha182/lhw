@@ -35,14 +35,14 @@ class _ReportsScreenState extends State<ReportsScreen>
             style: TextStyle(color: Colors.black, fontFamily: "UrduType")),
         centerTitle: true,
         backgroundColor: Colors.white,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.arrow_forward, color: Colors.black),
-            onPressed: () {
-              // Your navigation logic here
-            },
-          ),
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: const Icon(Icons.arrow_forward, color: Colors.black),
+        //     onPressed: () {
+        //       // Your navigation logic here
+        //     },
+        //   ),
+        // ],
       ),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
