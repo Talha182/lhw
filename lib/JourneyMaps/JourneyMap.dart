@@ -4,12 +4,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:lhw/CourseTabbar/course_provider.dart';
+import 'package:lhw/ModuleScreen/ModuleScreen.dart';
 import 'package:provider/provider.dart';
 import '../CourseTabbar/FeaturesListScreen.dart';
 import '../controllers/feature_navigation.dart';
 import '../course_models/courses_models.dart';
 
 class JourneyMapScreen extends StatefulWidget {
+  final Course course;
   final Module module;
   final String courseTitle; // Add this line
   final Gradient gradient;
@@ -22,6 +24,7 @@ class JourneyMapScreen extends StatefulWidget {
   const JourneyMapScreen(
       {Key? key,
       required this.module,
+      required this.course,
       required this.courseTitle,
       required this.gradient,
       required this.courseQuizCount,
@@ -149,7 +152,8 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
         leading: IconButton(
           icon: const Icon(Icons.more_vert, color: Colors.black),
           onPressed: () {
-            Get.back();
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
           },
         ),
         actions: [
@@ -480,7 +484,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
           courseModuleCount: widget.courseModuleCount,
           imagePath: widget.imagePath,
           gradient: widget.gradient,
-          courseId: widget.courseId, // Pass the course title here
+          courseId: widget.courseId, module: widget.module, course: widget.course, // Pass the course title here
         ));
   }
 }

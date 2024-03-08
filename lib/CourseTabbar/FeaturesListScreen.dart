@@ -17,6 +17,7 @@ import '../Database/database_helper.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import '../ImageHotspot/ImageHotspot.dart';
 import '../InteractiveAnimationVideo/interactive_animation_video.dart';
+import '../JourneyMaps/JourneyMap.dart';
 import '../Presentation/Presentation.dart';
 import '../Presentation/presentation_model.dart';
 import '../course_models/courses_models.dart';
@@ -26,6 +27,8 @@ import '../models/user_model.dart';
 import 'course_provider.dart';
 
 class FeaturesListScreen extends StatefulWidget {
+  final Course course;
+  final Module module;
   final Submodule submodule;
   final String courseTitle; // Add this line
   final int moduleId;
@@ -38,6 +41,7 @@ class FeaturesListScreen extends StatefulWidget {
   const FeaturesListScreen({
     Key? key,
     required this.submodule,
+    required this.module,
     required this.courseTitle,
     required this.courseQuizCount,
     required this.courseModuleCount,
@@ -45,6 +49,7 @@ class FeaturesListScreen extends StatefulWidget {
     required this.moduleId,
     required this.gradient, // Add this line
     required this.courseId,
+    required this.course,
   }) : super(key: key);
 
   @override
@@ -90,6 +95,20 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
       setState(() {
         feature.isCompleted.value = !feature.isCompleted.value;
       });
+      // Check if the completed feature is the last feature
+      if (_features.indexOf(feature) == _features.length - 1) {
+        // Use Get.off() to navigate to the JourneyMapScreen and remove the FeatureListScreen from the stack
+        Get.off(() => JourneyMapScreen(
+          module: widget.module,
+          courseTitle: widget.courseTitle,
+          gradient: widget.gradient,
+          courseQuizCount: widget.courseQuizCount,
+          courseModuleCount: widget.courseModuleCount,
+          courseId: widget.courseId,
+          moduleId: widget.moduleId,
+          imagePath: widget.imagePath, course: widget.course,
+        ));
+      }
     } else {
       print(
           'Failed to toggle feature completion for featureId: ${feature.featureId}');
@@ -338,6 +357,10 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                 startTime,
                               );
 
+                              // Check if it's the last feature and completion logic
+                              bool isLastFeature =
+                                  (index == _features.length - 1);
+
                               switch (feature.featureType) {
                                 case FeatureType.presentation:
                                   final presentationModel =
@@ -350,10 +373,11 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                           presentationModel:
                                               presentationModel));
 
+                                  // After returning from the PresentationScreen, check the result and if it's the last feature
                                   if (result == true) {
                                     toggleFeatureCompletion(feature);
 
-                                    Provider.of<CoursesProvider>(context,
+                                    await Provider.of<CoursesProvider>(context,
                                             listen: false)
                                         .markFeatureAsCompletedAndUpdateProgress(
                                             widget.courseId,

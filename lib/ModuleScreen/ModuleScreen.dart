@@ -418,7 +418,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                             courseModuleCount: course.moduleCount,
                             imagePath: course.imagePath,
                             courseId: course.courseId,
-                            moduleId: module.moduleId,
+                            moduleId: module.moduleId, course: widget.course,
                           ),
                           transition: Transition.fade,
                           duration: const Duration(milliseconds: 300),
