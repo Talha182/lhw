@@ -138,6 +138,11 @@ class CoursesProvider with ChangeNotifier {
     }
   }
 
+  Future<bool> isSubmoduleCompleted(int submoduleId) async {
+    final completedFeatures = await DatabaseHelper.instance.fetchCompletedFeaturesCountBySubmoduleId(submoduleId);
+    final totalFeatures = await DatabaseHelper.instance.fetchTotalFeaturesCountBySubmoduleId(submoduleId);
+    return completedFeatures == totalFeatures;
+  }
 
 
   Future<void> markFeatureAsCompletedAndUpdateProgress(

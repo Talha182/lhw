@@ -264,6 +264,27 @@ class DatabaseHelper extends ChangeNotifier {
     }
   }
 
+  // Inside DatabaseHelper
+  Future<int> fetchCompletedFeaturesCountBySubmoduleId(int submoduleId) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      featuresTable,
+      where: 'submoduleId = ? AND isCompleted = 1',
+      whereArgs: [submoduleId],
+    );
+    return maps.length;
+  }
+
+  Future<int> fetchTotalFeaturesCountBySubmoduleId(int submoduleId) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      featuresTable,
+      where: 'submoduleId = ?',
+      whereArgs: [submoduleId],
+    );
+    return maps.length;
+  }
+
   Future<List<Module>> fetchModulesByCourseId(int courseId) async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(
@@ -429,6 +450,8 @@ class DatabaseHelper extends ChangeNotifier {
 
   Future<void> markFeatureAsCompleted(int featureId) async {
     final db = await database;
+
+    // Step 1: Mark the specified feature as completed.
     await db.update(
       featuresTable,
       {'isCompleted': 1},
@@ -437,25 +460,22 @@ class DatabaseHelper extends ChangeNotifier {
     );
     print('Feature with ID $featureId marked as completed.');
 
-    // Fetch the submodule ID of the completed feature
-    var feature = await db.query(
+    // Step 2: Fetch the submodule ID of the completed feature for further checks.
+    var featureMaps = await db.query(
       featuresTable,
       columns: ['submoduleId'],
       where: 'featureId = ?',
       whereArgs: [featureId],
     );
+    if (featureMaps.isNotEmpty) {
+      int submoduleId = featureMaps.first['submoduleId'] as int;
 
-    if (feature.isNotEmpty) {
-      int submoduleId = feature.first['submoduleId'] as int;
-      // Check if all features of the submodule are completed
-      var features = await db.query(
-        featuresTable,
-        where: 'submoduleId = ? AND isCompleted = 0',
-        whereArgs: [submoduleId],
-      );
+      // Step 3: Check if all features of the submodule are completed.
+      var totalFeatures = await fetchTotalFeaturesCountBySubmoduleId(submoduleId);
+      var completedFeatures = await fetchCompletedFeaturesCountBySubmoduleId(submoduleId);
 
-      if (features.isEmpty) {
-        // All features are completed, mark submodule as completed
+      if (totalFeatures == completedFeatures) {
+        // All features are completed, mark submodule as completed.
         await db.update(
           submodulesTable,
           {'isCompleted': 1},

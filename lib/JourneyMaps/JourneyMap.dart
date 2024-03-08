@@ -485,7 +485,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
   }
 }
 
-class StepperTile extends StatelessWidget {
+class StepperTile extends StatefulWidget {
   final Submodule submodule;
   final VoidCallback onTap;
   final bool isFirst;
@@ -500,9 +500,31 @@ class StepperTile extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _StepperTileState createState() => _StepperTileState();
+}
+class _StepperTileState extends State<StepperTile> {
+  bool isSubmoduleCompleted = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    checkSubmoduleCompletion();
+  }
+
+  void checkSubmoduleCompletion() async {
+    bool completed = await Provider.of<CoursesProvider>(context)
+        .isSubmoduleCompleted(widget.submodule.submoduleId);
+    if (mounted) {
+      setState(() {
+        isSubmoduleCompleted = completed;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -519,17 +541,16 @@ class StepperTile extends StatelessWidget {
                   color: Color(0xffFE8BD1), shape: BoxShape.circle),
               child: Center(
                 child: Icon(
-                  submodule.isCompleted ? Icons.check : Icons.start,
-                  color: submodule.isCompleted ? Colors.green : Colors.white,
+                  isSubmoduleCompleted ? Icons.check : Icons.start,
+                  color: isSubmoduleCompleted ? Colors.green : Colors.white,
                 ),
               ),
             ),
           ),
-          // Title positioned below the icon
           Padding(
             padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
             child: Text(
-              submodule.title,
+              widget.submodule.title,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
@@ -538,16 +559,14 @@ class StepperTile extends StatelessWidget {
               ),
             ),
           ),
-          // Dotted line painter conditionally rendered
-          if (!isLast)
+          if (!widget.isLast)
             Padding(
-              padding: const EdgeInsets.all(
-                  8.0), // Adjust space between the title and the dotted line
+              padding: const EdgeInsets.all(8.0),
               child: CustomPaint(
                 painter: DottedLinePainter(),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 50, // Adjust the space for the dotted line as needed
+                  height: 50,
                 ),
               ),
             ),
