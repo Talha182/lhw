@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:analyzer/dart/analysis/features.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +12,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
 import '../Database/database_helper.dart';
+import '../Presentation/Presentation.dart';
 
 class ComicStrip extends StatefulWidget {
   final List<ComicStripModel> comicStripsModel;
@@ -36,10 +40,13 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
   bool _isDisliked = false;
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
+  bool showMessage = true;
 
   @override
   void initState() {
     super.initState();
+    _startMessageTimer();
+
     // Flatten all image pairs from all comic strip models into a single list
     List<ImagePair> allImagePairs =
         widget.comicStripsModel.expand((model) => model.imagePairs).toList();
@@ -79,6 +86,21 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
     _cloudPumpAnimationController.dispose();
 
     super.dispose();
+  }
+
+  void _startMessageTimer() {
+    Timer(const Duration(seconds: 8), () {
+      setState(() {
+        showMessage = false;
+      });
+    });
+  }
+
+  void _showMessageAgain() {
+    setState(() {
+      showMessage = true;
+    });
+    _startMessageTimer();
   }
 
   Widget _buildSlide(String imagePathTop, String imagePathBottom) {
@@ -127,6 +149,62 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 72.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            if (showMessage)
+              GestureDetector(
+                onTap: _showMessageAgain,
+                child: CustomPaint(
+                  painter: MenuBoxBackground(),
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10, left: 10),
+                    // width: screenWidth * 0.7,
+
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 12.0),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'کہانیوں سے بہتر استاد کوئی نہیں۔ یہ وه کہانیاں ہیں \nجن میں ہماری صحت اور خوش ہالی راز ہیں۔\n چلیں ہم انہیں  پڑھیں۔',
+                          textAlign: TextAlign.center,
+                          textStyle: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontFamily: "UrduType"),
+                          speed: const Duration(milliseconds: 20),
+                        ),
+                      ],
+                      totalRepeatCount: 1,
+                      pause: const Duration(milliseconds: 5000),
+                      displayFullTextOnTap: true,
+                      stopPauseOnTap: true,
+                    ),
+                  ),
+                ),
+              ),
+            const SizedBox(
+              width: 5,
+            ),
+            GestureDetector(
+              onTap: _showMessageAgain,
+              child: CircleAvatar(
+                backgroundColor: const Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: SvgPicture.asset(
+                    "assets/images/samina_instructor.svg",
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           Container(
@@ -205,56 +283,62 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: CarouselSlider.builder(
-                      itemCount: _carouselItems.length,
-                      itemBuilder: (context, index, realIdx) {
-                        return _carouselItems[index];
-                      },
-                      options: CarouselOptions(
-                        viewportFraction: 1,
-                        height: double.infinity,
-                        enableInfiniteScroll:
-                            false, // Disable infinite scrolling
-
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current = index;
-                          });
-
-                          if (_carouselItems.length > 1) {
-                            double endValue =
-                                index / (_carouselItems.length - 1).toDouble();
-                            _progressAnimation =
-                                Tween<double>(begin: _progress, end: endValue)
-                                    .animate(_progressController);
-
-                            _progressController.forward(from: 0);
-                          } else {
-                            // If there's only one item, set progress to full because there's nowhere to slide.
-                            _progress = 1.0;
-                          }
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: CarouselSlider.builder(
+                        itemCount: _carouselItems.length,
+                        itemBuilder: (context, index, realIdx) {
+                          return _carouselItems[index];
                         },
+                        options: CarouselOptions(
+                          viewportFraction: 1,
+                          height: double.infinity,
+                          enableInfiniteScroll:
+                              false, // Disable infinite scrolling
+
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              _current = index;
+                            });
+
+                            if (_carouselItems.length > 1) {
+                              double endValue = index /
+                                  (_carouselItems.length - 1).toDouble();
+                              _progressAnimation =
+                                  Tween<double>(begin: _progress, end: endValue)
+                                      .animate(_progressController);
+
+                              _progressController.forward(from: 0);
+                            } else {
+                              // If there's only one item, set progress to full because there's nowhere to slide.
+                              _progress = 1.0;
+                            }
+                          },
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _carouselItems.map((url) {
-                    int index = _carouselItems.indexOf(url);
-                    return Container(
-                      width: 8.0,
-                      height: 8.0,
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _current == index
-                            ? const Color(0xffFE8BD1)
-                            : const Color(0xffD1D7DC).withOpacity(0.3),
-                      ),
-                    );
-                  }).toList(),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: _carouselItems.map((url) {
+                      int index = _carouselItems.indexOf(url);
+                      return Container(
+                        width: 8.0,
+                        height: 8.0,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _current == index
+                              ? const Color(0xffFE8BD1)
+                              : const Color(0xffD1D7DC).withOpacity(0.3),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
                 // const Spacer(),
                 Divider(

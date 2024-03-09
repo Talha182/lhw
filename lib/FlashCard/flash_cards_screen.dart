@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:math';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:lhw/controllers/BookmarkController.dart';
 
+import '../Presentation/Presentation.dart';
 import '../models/flash_cards_screen_model.dart'; // Adjust the import path based on your project structure
 
 class FlashCardsScreen extends StatefulWidget {
@@ -32,10 +35,14 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
   bool isCurrentFlipped = false; // Add this line
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
+  bool showMessage = true;
+
 
   @override
   void initState() {
     super.initState();
+    _startMessageTimer();
+
     _flippedStates =
         List<bool>.filled(widget.flashCardModel.cards.length, false);
     _cloudPumpAnimationController = AnimationController(
@@ -61,9 +68,76 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
     super.dispose();
   }
 
+  void _startMessageTimer() {
+    Timer(const Duration(seconds: 5), () {
+      setState(() {
+        showMessage = false;
+      });
+    });
+  }
+
+  void _showMessageAgain() {
+    setState(() {
+      showMessage = true;
+    });
+    _startMessageTimer();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 72.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            if (showMessage)
+              GestureDetector(
+                onTap: _showMessageAgain,
+                child: CustomPaint(
+                  painter: MenuBoxBackground(),
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10, left: 10),
+                    // width: screenWidth * 0.7,
+
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'یہ فلیش کارڈ ہیں۔ ہر ایک کارڈ پر\n ضروری معلومات سے متعلق تصاویر ہیں۔\n ان پر ٹیپ کریں اور مزید سیکھیے۔',
+                          textAlign: TextAlign.center,
+                          textStyle: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: "UrduType"),
+                          speed: const Duration(milliseconds: 50),
+                        ),
+                      ],
+                      totalRepeatCount: 1,
+                      pause: const Duration(milliseconds: 5000),
+                      displayFullTextOnTap: true,
+                      stopPauseOnTap: true,
+                    ),
+                  ),
+                ),
+              ),
+            const SizedBox(width: 5,),
+            GestureDetector(
+              onTap: _showMessageAgain,
+              child: CircleAvatar(
+                backgroundColor: const Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: SvgPicture.asset(
+                    "assets/images/samina_instructor.svg",
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -157,134 +231,141 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
             const SizedBox(
               height: 10,
             ),
-            Transform.translate(
-              offset: const Offset(-40, 0),
-              child: CarouselSlider.builder(
-                carouselController: _carouselController,
-                itemCount: widget.flashCardModel.cards.length,
-                itemBuilder: (BuildContext context, int index, int realIndex) {
-                  final card = widget
-                      .flashCardModel.cards[index]; // Use card from the model
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Transform.translate(
 
-                  return FlipCard(
-                    onFlip: () {
-                      setState(() {
-                        _flippedStates[index] =
-                            true; // Mark the card as flipped
-                        _isLastCardFlipped =
-                            index == widget.flashCardModel.cards.length - 1 &&
-                                _flippedStates.every((state) => state);
-                        isCurrentFlipped =
-                            true; // Update isCurrentFlipped to true here
-                      });
-                    },
-                    direction: FlipDirection.HORIZONTAL,
-                    front: Container(
-                      width: 280,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              image: AssetImage(card.frontImage),
-                              fit: BoxFit.fill)
-                          // border: Border.all(
-                          //     color: const Color(0xffF07DB2), width: 2),
-                          ),
-                    ),
-                    back: Container(
-                      width: 280,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              image: AssetImage(card.backImage),
-                              fit: BoxFit.fill)
-                          // border: Border.all(
-                          //     color: const Color(0xffF07DB2), width: 2),
-                          ),
-                    ),
-                    // back: Container(
-                    //   width: 280,
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(15),
-                    //     border: Border.all(
-                    //         color: const Color(0xffF07DB2), width: 2),
-                    //   ),
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.symmetric(horizontal: 30),
-                    //     child: Center(
-                    //       child: Column(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           Text(
-                    //             card.heading,
-                    //             textAlign: TextAlign.center,
-                    //             style: TextStyle(
-                    //                 fontSize: 25,
-                    //                 fontFamily: "UrduType",
-                    //                 color: card.titleColor),
-                    //           ),
-                    //           const SizedBox(height: 10),
-                    //           Text(
-                    //             card.description,
-                    //             textAlign: TextAlign.center,
-                    //             style: const TextStyle(
-                    //               fontSize: 18,
-                    //               fontFamily: "UrduType",
-                    //               color: Colors.black,
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                  );
-                },
-                options: CarouselOptions(
-                    height: 450.0,
-                    enlargeCenterPage: false,
-                    onPageChanged: (index, reason) {
-                      if (isCurrentFlipped || _flippedStates[index]) {
-                        // This check ensures the next card is accessible only if the current is flipped
+                offset: const Offset(0, 0),
+                child: CarouselSlider.builder(
+                  carouselController: _carouselController,
+                  itemCount: widget.flashCardModel.cards.length,
+                  itemBuilder: (BuildContext context, int index, int realIndex) {
+                    final card = widget
+                        .flashCardModel.cards[index]; // Use card from the model
+
+                    return FlipCard(
+                      onFlip: () {
                         setState(() {
-                          _current = index;
-                          isCurrentFlipped = _flippedStates[
-                              index]; // Update based on the new current card's flipped state
+                          _flippedStates[index] =
+                              true; // Mark the card as flipped
+                          _isLastCardFlipped =
+                              index == widget.flashCardModel.cards.length - 1 &&
+                                  _flippedStates.every((state) => state);
+                          isCurrentFlipped =
+                              true; // Update isCurrentFlipped to true here
                         });
-                      }
-                    },
-                    aspectRatio: 16 / 9,
-                    autoPlay: false,
-                    enableInfiniteScroll: false,
-                    viewportFraction: 0.78,
-                    scrollPhysics: isCurrentFlipped
-                        ? const PageScrollPhysics()
-                        : const NeverScrollableScrollPhysics()),
+                      },
+                      direction: FlipDirection.HORIZONTAL,
+                      front: Container(
+                        width: 280,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                image: AssetImage(card.frontImage),
+                                fit: BoxFit.fill)
+                            // border: Border.all(
+                            //     color: const Color(0xffF07DB2), width: 2),
+                            ),
+                      ),
+                      back: Container(
+                        width: 280,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                image: AssetImage(card.backImage),
+                                fit: BoxFit.fill)
+                            // border: Border.all(
+                            //     color: const Color(0xffF07DB2), width: 2),
+                            ),
+                      ),
+                      // back: Container(
+                      //   width: 280,
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(15),
+                      //     border: Border.all(
+                      //         color: const Color(0xffF07DB2), width: 2),
+                      //   ),
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.symmetric(horizontal: 30),
+                      //     child: Center(
+                      //       child: Column(
+                      //         mainAxisAlignment: MainAxisAlignment.center,
+                      //         children: [
+                      //           Text(
+                      //             card.heading,
+                      //             textAlign: TextAlign.center,
+                      //             style: TextStyle(
+                      //                 fontSize: 25,
+                      //                 fontFamily: "UrduType",
+                      //                 color: card.titleColor),
+                      //           ),
+                      //           const SizedBox(height: 10),
+                      //           Text(
+                      //             card.description,
+                      //             textAlign: TextAlign.center,
+                      //             style: const TextStyle(
+                      //               fontSize: 18,
+                      //               fontFamily: "UrduType",
+                      //               color: Colors.black,
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                    );
+                  },
+                  options: CarouselOptions(
+                      height: 450.0,
+                      enlargeCenterPage: false,
+                      onPageChanged: (index, reason) {
+                        if (isCurrentFlipped || _flippedStates[index]) {
+                          // This check ensures the next card is accessible only if the current is flipped
+                          setState(() {
+                            _current = index;
+                            isCurrentFlipped = _flippedStates[
+                                index]; // Update based on the new current card's flipped state
+                          });
+                        }
+                      },
+                      aspectRatio: 16 / 9,
+                      autoPlay: false,
+                      enableInfiniteScroll: false,
+                      viewportFraction: 0.78,
+                      scrollPhysics: isCurrentFlipped
+                          ? const PageScrollPhysics()
+                          : const NeverScrollableScrollPhysics()),
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                widget.flashCardModel.cards.length,
-                // Use the length of cardData for dynamic indicator count
-                (index) {
-                  return Container(
-                    width: 8.0,
-                    height: 8.0,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 10.0,
-                      horizontal: 2.0,
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _current == index
-                          ? const Color(0xff9AC9C2)
-                          : const Color(0xffeaedee),
-                    ),
-                  );
-                },
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  widget.flashCardModel.cards.length,
+                  // Use the length of cardData for dynamic indicator count
+                  (index) {
+                    return Container(
+                      width: 8.0,
+                      height: 8.0,
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10.0,
+                        horizontal: 2.0,
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _current == index
+                            ? const Color(0xff9AC9C2)
+                            : const Color(0xffeaedee),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             const Spacer(),

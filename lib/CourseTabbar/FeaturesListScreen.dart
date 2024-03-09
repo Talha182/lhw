@@ -12,7 +12,6 @@ import 'package:lhw/models/interactive_images_model.dart';
 import 'package:lhw/services/global_user.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
-
 import '../Database/database_helper.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import '../ImageHotspot/ImageHotspot.dart';

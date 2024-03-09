@@ -1,11 +1,15 @@
+import 'dart:async';
 import 'dart:math';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
+import '../Presentation/Presentation.dart';
 
 class InfographicScreen extends StatefulWidget {
   final InfographicsModel infographicsModel;
@@ -28,10 +32,13 @@ class _InfographicScreenState extends State<InfographicScreen>
   Random random = Random();
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
+  bool showMessage = true;
 
   @override
   void initState() {
     super.initState();
+    _startMessageTimer();
+
     _carouselItems =
         List.generate(widget.infographicsModel.infographics.length, (index) {
       Color borderColor =
@@ -77,6 +84,21 @@ class _InfographicScreenState extends State<InfographicScreen>
     _cloudPumpAnimationController.dispose();
     super.dispose();
   }
+  void _startMessageTimer() {
+    Timer(const Duration(seconds: 5), () {
+      setState(() {
+        showMessage = false;
+      });
+    });
+  }
+
+  void _showMessageAgain() {
+    setState(() {
+      showMessage = true;
+    });
+    _startMessageTimer();
+  }
+
 
   Widget _buildSlide(String imagePath, Color borderColor, String text) {
     // Add 'text' parameter
@@ -144,6 +166,57 @@ class _InfographicScreenState extends State<InfographicScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 72.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            if (showMessage)
+              GestureDetector(
+                onTap: _showMessageAgain,
+                child: CustomPaint(
+                  painter: MenuBoxBackground(),
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10, left: 10),
+                    // width: screenWidth * 0.7,
+
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'اس چارٹ کو سمجھیئے۔ اس میں معلومات\n کا ایک بڑا ذخیرہ ہے۔',
+                          textAlign: TextAlign.center,
+                          textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                          speed: const Duration(milliseconds: 50),
+                        ),
+                      ],
+                      totalRepeatCount: 1,
+                      pause: const Duration(milliseconds: 5000),
+                      displayFullTextOnTap: true,
+                      stopPauseOnTap: true,
+                    ),
+                  ),
+                ),
+              ),
+            const SizedBox(width: 5,),
+            GestureDetector(
+              onTap: _showMessageAgain,
+              child: CircleAvatar(
+                backgroundColor: const Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: SvgPicture.asset(
+                    "assets/images/samina_instructor.svg",
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+
       body: Stack(
         children: [
           Container(

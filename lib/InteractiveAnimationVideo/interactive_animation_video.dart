@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -5,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:video_player/video_player.dart';
+import '../Presentation/Presentation.dart';
 import '../controllers/BookmarkController.dart';
 import '../FlashCard/flash_cards_screen.dart';
 
@@ -39,9 +43,13 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
+  bool showMessage = true;
+
   @override
   void initState() {
     super.initState();
+    _startMessageTimer();
+
     _videoController = VideoPlayerController.network(
         widget.interactiveAnimationVideoModel.videoPath)
       ..initialize().then((_) {
@@ -246,9 +254,75 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
     super.dispose();
   }
 
+  void _startMessageTimer() {
+    Timer(const Duration(seconds: 5), () {
+      setState(() {
+        showMessage = false;
+      });
+    });
+  }
+
+  void _showMessageAgain() {
+    setState(() {
+      showMessage = true;
+    });
+    _startMessageTimer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 72.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            if (showMessage)
+              GestureDetector(
+                onTap: _showMessageAgain,
+                child: CustomPaint(
+                  painter: MenuBoxBackground(),
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10, left: 10),
+                    // width: screenWidth * 0.7,
+
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'یہ سبق ہم ایک ویڈیو کے ذریعے سیکھیں گیں۔\n اسے بہتر سمجھنے کے لیے اپنے\n موبائل کی آواز اونچی کریں۔',
+                          textAlign: TextAlign.center,
+                          textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                          speed: const Duration(milliseconds: 50),
+                        ),
+                      ],
+                      totalRepeatCount: 1,
+                      pause: const Duration(milliseconds: 5000),
+                      displayFullTextOnTap: true,
+                      stopPauseOnTap: true,
+                    ),
+                  ),
+                ),
+              ),
+            const SizedBox(width: 5,),
+            GestureDetector(
+              onTap: _showMessageAgain,
+              child: CircleAvatar(
+                backgroundColor: const Color(0xffF6B3D0),
+                radius: 30,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: SvgPicture.asset(
+                    "assets/images/samina_instructor.svg",
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
