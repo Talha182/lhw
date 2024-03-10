@@ -32,6 +32,8 @@
     Timer? iconTimer;
     bool showTimerGif = false;
     bool showMessage = true;
+    double _fabYPosition = 300.0; // Default position
+
 
     @override
     void initState() {
@@ -59,20 +61,14 @@
       super.dispose();
     }
 
-    void showMessageTemporarily() {
-      setState(() => isMessageVisible = true);
-      Future.delayed(const Duration(seconds: 6), () {
+    void _startMessageTimer({int durationInSeconds = 10}) {
+      iconTimer?.cancel(); // Ensure any existing timer is cancelled before starting a new one
+      iconTimer = Timer(Duration(seconds: durationInSeconds), () {
         if (mounted) {
-          setState(() => isMessageVisible = false);
+          setState(() {
+            showMessage = false;
+          });
         }
-      });
-    }
-
-    void _startMessageTimer() {
-      Timer(const Duration(seconds: 5), () {
-        setState(() {
-          showMessage = false;
-        });
       });
     }
 
@@ -81,34 +77,35 @@
         setState(() {
           showMessage = true;
         });
-        _startMessageTimer();
+        _startMessageTimer(durationInSeconds: 10); // Reset the timer with new duration
       }
     }
 
+    void showMessageTemporarily() {
+      setState(() => isMessageVisible = true);
+      _startMessageTimer(durationInSeconds: 10); // Use _startMessageTimer for consistency and to ensure any existing timer is cancelled
+    }
 
 
-    double imageOpacity = 1.0; // Add this to your _InteractiveImagesState class
 
 
     void nextImage() {
       if (currentIndex < widget.imagesInfo.length - 1) {
         setState(() {
           currentIndex += 1; // Move to the next image
-          isMessageVisible = false; // Reset visibility state
-          // Remove showMessage = false; from here if you decide to show the message for every image change automatically
+          showMessage = widget.imagesInfo[currentIndex].showGuideText;
+          isMessageVisible = false; // Ensure message visibility is reset
+
+          // Cancel any existing timer before setting a new one
+          iconTimer?.cancel(); // Cancel existing message timer if any
+
+          if (widget.imagesInfo[currentIndex].showGuideText) {
+            _startMessageTimer(); // Start a new timer for showing the message
+          }
         });
 
-        if (widget.imagesInfo[currentIndex].showGuideText) {
-          showMessageTemporarily();
-          _showMessageAgain();
-
-        }
-
-        // After moving to the next image, check if we need to automatically show a dialog for this image
         if (widget.imagesInfo[currentIndex].autoShowDialog) {
-          // Delay showing the dialog by two seconds
           Future.delayed(const Duration(seconds: 2), () {
-            // Ensure the dialog is shown only if the widget is still mounted
             if (mounted) {
               showCustomDialog(
                   context,
@@ -121,7 +118,6 @@
         widget.onCompleted!(); // Callback when all images have been shown
       }
     }
-
 
 
     final AudioPlayer audioPlayer = AudioPlayer();
@@ -145,6 +141,11 @@
     @override
     Widget build(BuildContext context) {
       final InteractiveImageModel currentImage = widget.imagesInfo[currentIndex];
+      final screenHeight = MediaQuery.of(context).size.height;
+      final fabHeight = 56.0; // Standard height of a FAB
+      final topSafeArea = MediaQuery.of(context).padding.top;
+      final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+
 
       Rect touchArea = currentImage.touchArea;
       String currentImagePath = currentImage.image;
@@ -236,62 +237,6 @@
       }
 
       return Scaffold(
-        floatingActionButton: Container(
-          margin: const EdgeInsets.only(bottom: 72.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              if (showMessage)
-                GestureDetector(
-                  onTap: _showMessageAgain,
-                  child: CustomPaint(
-                    painter: MenuBoxBackground(),
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 10, left: 10),
-                      // width: screenWidth * 0.7,
-
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 12.0),
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                            currentImage.guide,
-                            textAlign: TextAlign.center,
-                            textStyle: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontFamily: "UrduType"),
-                            speed: const Duration(milliseconds: 50),
-                          ),
-                        ],
-                        totalRepeatCount: 1,
-                        pause: const Duration(milliseconds: 5000),
-                        displayFullTextOnTap: true,
-                        stopPauseOnTap: true,
-                      ),
-                    ),
-                  ),
-                ),
-              const SizedBox(
-                width: 5,
-              ),
-              GestureDetector(
-                onTap: _showMessageAgain,
-                child: CircleAvatar(
-                  backgroundColor: const Color(0xffF6B3D0),
-                  radius: 30,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: SvgPicture.asset(
-                      "assets/images/samina_instructor.svg",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
         body: GestureDetector(
           onTapUp: (TapUpDetails details) {
             // Direct access to properties instead of using containsKey and []
@@ -417,6 +362,79 @@
                     height: 150, // Adjust size as needed
                   ),
                 ),
+              Positioned(
+                right: 20, // Distance from right
+                top: _fabYPosition,
+                child: GestureDetector(
+                  onVerticalDragUpdate: (dragUpdateDetails) {
+                    setState(() {
+                      _fabYPosition += dragUpdateDetails.delta.dy;
+
+                      // Clamp the position to prevent the FAB from moving off the screen
+                      // Consider top and bottom safe areas (like notches and navigation bars)
+                      _fabYPosition = _fabYPosition.clamp(
+                          topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                    });
+                  },
+                  child:Container(
+                    margin: const EdgeInsets.only(bottom: 72.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        if (showMessage)
+                          GestureDetector(
+                            onTap: _showMessageAgain,
+                            child: CustomPaint(
+                              painter: MenuBoxBackground(),
+                              child: Container(
+                                margin: const EdgeInsets.only(right: 10, left: 10),
+                                // width: screenWidth * 0.7,
+
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 12.0),
+                                child: AnimatedTextKit(
+                                  animatedTexts: [
+                                    TypewriterAnimatedText(
+                                      currentImage.guide,
+                                      textAlign: TextAlign.center,
+                                      textStyle: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontFamily: "UrduType"),
+                                      speed: const Duration(milliseconds: 50),
+                                    ),
+                                  ],
+                                  totalRepeatCount: 1,
+                                  pause: const Duration(milliseconds: 5000),
+                                  displayFullTextOnTap: true,
+                                  stopPauseOnTap: true,
+                                ),
+                              ),
+                            ),
+                          ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        GestureDetector(
+                          onTap: _showMessageAgain,
+                          child: CircleAvatar(
+                            backgroundColor: const Color(0xffF6B3D0),
+                            radius: 30,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 2),
+                              child: SvgPicture.asset(
+                                "assets/images/samina_instructor.svg",
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
             ],
           ),
         ),

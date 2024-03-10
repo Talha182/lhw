@@ -9,7 +9,7 @@
       ],
       "quizCount": 5,
       "moduleCount": 8,
-      "imagePath": "assets/images/immunization-ico.png",
+      "imagePath": "assets/images/immunization-icon.png",
       "isStart": true,
       "progress": 0.0,
       "arrowText": "START",
@@ -61,12 +61,12 @@
                   "submoduleId": 2,
                   "data": {
                     "assetImages": [
-                      "assets/scripts/presentations/presentation1.png",
-                      "assets/scripts/presentations/presentation2.png",
-                      "assets/scripts/presentations/presentation3.png",
-                      "assets/scripts/presentations/presentation4.png",
-                      "assets/scripts/presentations/presentation5.png",
-                      "assets/scripts/presentations/presentation6.png"
+                      "assets/scripts/Script 2/Script 2-01.png",
+                      "assets/scripts/Script 2/Script 2-02.png",
+                      "assets/scripts/Script 2/Script 2-03.png",
+                      "assets/scripts/Script 2/Script 2-04.png",
+                      "assets/scripts/Script 2/Script 2-05.png",
+                      "assets/scripts/Script 2/Script 2-06.png"
                     ],
                     "questions": [
                       {
@@ -216,15 +216,24 @@
                   "data": {
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/Script 6/infographic1.png",
+                        "imagePath": "assets/scripts/Script 7/Script 7-02.png",
                         "text": "ٹی بی کیا ہے؟ "
                       },
                       {
-                        "imagePath": "assets/scripts/Script 6/infographic2.png",
+                        "imagePath": "assets/scripts/Script 7/Script 7-03.png",
                         "text": "کھانسی کا مطلب ہمیشہ ٹی بی نہیں ہوتا۔ عام طور پر تین ہفتوں سے زیادہ وقت تک رہتی  ہے۔ "
                       },
                       {
-                        "imagePath": "assets/scripts/Script 6/infographic2.png",
+                        "imagePath": "assets/scripts/Script 7/Script 7-04.png",
+                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
+                      }, {
+                        "imagePath": "assets/scripts/Script 7/Script 7-05.png",
+                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
+                      }, {
+                        "imagePath": "assets/scripts/Script 7/Script 7-06.png",
+                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
+                      } ,{
+                        "imagePath": "assets/scripts/Script 7/Script 7-07.png",
                         "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
                       }
                     ]
@@ -424,6 +433,7 @@
                           "height": 0
                         },
                         "showDialog": true,
+                        "showGuideText": false,
                         "autoShowDialog": true,
                         "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو ۔",
                         "swipeEnabled": false,
@@ -701,8 +711,8 @@
                           "مجھے گاؤں والوں کو جمیل کی ممکنہ بیماری کے بارے میں بتانا چاہیے تاکہ انہیں خبردار کیا جا سکے۔"
                         ],
                         "correctAnswer": "جمیل سے ملنے سے پہلے، مجھے ٹی بی کی علامات کا جائزہ لینا چاہیے، معا ئنہ  کی تیاری کرنی چاہیے اور بلغم جمع کرنے کے لیے ضروری سامان کا انتظام کرنا چاہیے۔",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctExplanation": "یہ ضروری ہے کہ جمیل اپنے سینے کی گہرائی سے بلغم  تھوکیں۔ 5 سیکنڈ تک سانس روک کر گہری کھانسی کرنے سے بلغم باہر آئے گا۔",
+                        "incorrectExplanation": "وضاحت: اگرچہ یہ ہدایت صحیح لگتی ہے، لیکن اس میں ایک اہم تفصیل نہیں ہے: کھانسی سے صرف تھوک یا ہلکا ریشہ نہیں نکلنا چاہیے بلکہ گہرائی سے بلغم باہر آئے۔",
                         "imagePaths": [
                           "assets/scripts/Script 13/Script 13-02.png"
                         ]

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:pinch_zoom_release_unzoom/pinch_zoom_release_unzoom.dart';
 
@@ -41,6 +42,8 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
+  double _fabYPosition = 600.0; // Default position
+
 
   @override
   void initState() {
@@ -118,28 +121,49 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
 
   Widget _buildContainer(String imagePath) {
     return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          Navigator.of(context).push(PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                FadeTransition(
-              opacity: animation,
-              child: FullScreenImageView(imagePath: imagePath),
+      // child: GestureDetector(
+      //   onTap: () {
+      //     Navigator.of(context).push(PageRouteBuilder(
+      //       pageBuilder: (context, animation, secondaryAnimation) =>
+      //           FadeTransition(
+      //         opacity: animation,
+      //         child: FullScreenImageView(imagePath: imagePath),
+      //       ),
+      //     ));
+      //   },
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //       color: Colors.transparent,
+      //       borderRadius: BorderRadius.circular(20),
+      //     ),
+      //     child: PinchZoom(
+      //       resetDuration: const Duration(milliseconds: 100),
+      //       maxScale: 2.5,
+      //       child: ClipRRect(
+      //         borderRadius: BorderRadius.circular(20),
+      //         child: Image.asset(imagePath, fit: BoxFit.fill),
+      //       ),
+      //     ),
+      //   ),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: PhotoView(
+            imageProvider: AssetImage(imagePath),
+            backgroundDecoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
-          ));
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: PinchZoom(
-            resetDuration: const Duration(milliseconds: 100),
-            maxScale: 2.5,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(imagePath, fit: BoxFit.fill),
-            ),
+            maxScale: PhotoViewComputedScale.covered * 2.5,
+            minScale: PhotoViewComputedScale.contained,
+            initialScale: PhotoViewComputedScale.covered,
+            basePosition: Alignment.center,
+            tightMode: true,
           ),
         ),
       ),
@@ -148,63 +172,12 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 72.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            if (showMessage)
-              GestureDetector(
-                onTap: _showMessageAgain,
-                child: CustomPaint(
-                  painter: MenuBoxBackground(),
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10, left: 10),
-                    // width: screenWidth * 0.7,
-
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'کہانیوں سے بہتر استاد کوئی نہیں۔ یہ وه کہانیاں ہیں \nجن میں ہماری صحت اور خوش ہالی راز ہیں۔\n چلیں ہم انہیں  پڑھیں۔',
-                          textAlign: TextAlign.center,
-                          textStyle: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontFamily: "UrduType"),
-                          speed: const Duration(milliseconds: 20),
-                        ),
-                      ],
-                      totalRepeatCount: 1,
-                      pause: const Duration(milliseconds: 5000),
-                      displayFullTextOnTap: true,
-                      stopPauseOnTap: true,
-                    ),
-                  ),
-                ),
-              ),
-            const SizedBox(
-              width: 5,
-            ),
-            GestureDetector(
-              onTap: _showMessageAgain,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset(
-                    "assets/images/samina_instructor.svg",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
       body: Stack(
         children: [
           Container(
@@ -238,17 +211,27 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                         width: 5,
                       ),
                       Expanded(
-                        child: LinearPercentIndicator(
-                          animation: false,
-                          animationDuration: 400,
-                          lineHeight: 10.0,
-                          percent: _progress,
-                          progressColor: const Color(0xffFE8BD1),
-                          backgroundColor: Colors.white,
-                          clipLinearGradient: true,
-                          barRadius: const Radius.circular(20),
+                        child: Transform(
+                          alignment: Alignment.center, // Center the transformation
+                          transform: Matrix4.identity()..scale(-1.0, 1.0), // Flip horizontally
+                          child: LinearPercentIndicator(
+                            animation: false,
+                            animationDuration: 400,
+                            lineHeight: 10.0,
+                            percent: _progress,
+                            backgroundColor: Colors.white,
+                            clipLinearGradient: true,
+                            barRadius: const Radius.circular(20),
+                            // Flip the linear gradient to match the flipped indicator direction
+                            linearGradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [const Color(0xffFE8BD1), const Color(0xffFE8BD1)],
+                            ),
+                          ),
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -447,6 +430,73 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
               ],
             ),
           ),
+          Positioned(
+            right: 20, // Distance from right
+            top: _fabYPosition,
+            child: GestureDetector(
+              onVerticalDragUpdate: (dragUpdateDetails) {
+                setState(() {
+                  _fabYPosition += dragUpdateDetails.delta.dy;
+
+                  // Clamp the position to prevent the FAB from moving off the screen
+                  // Consider top and bottom safe areas (like notches and navigation bars)
+                  _fabYPosition = _fabYPosition.clamp(
+                      topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                });
+              },
+              child:Container(
+                margin: const EdgeInsets.only(bottom: 72.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (showMessage)
+                      GestureDetector(
+                        onTap: _showMessageAgain,
+                        child: CustomPaint(
+                          painter: MenuBoxBackground(),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10, left: 10),
+                            // width: screenWidth * 0.7,
+
+                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'یہ چند صفحہ ہیں جن کو آپ نے مکمل پڑنا ہی۔\n اس میں اور کوئی کام نہیں۔ صرف پڑھا\n ہی کافی ہے۔',
+                                  textAlign: TextAlign.center,
+                                  textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                                  speed: const Duration(milliseconds: 50),
+                                ),
+                              ],
+                              totalRepeatCount: 1,
+                              pause: const Duration(milliseconds: 5000),
+                              displayFullTextOnTap: true,
+                              stopPauseOnTap: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(width: 5,),
+                    GestureDetector(
+                      onTap: _showMessageAgain,
+                      child: CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
         ],
       ),
     );

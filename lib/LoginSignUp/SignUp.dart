@@ -317,7 +317,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'لیڈی ہیلتھ ورکر کا شناختی نمبر',
+                              text: 'لیڈی ہیلتھ ورکر کا آی ڈی نمبر',
                               style: TextStyle(
                                 fontFamily: "UrduType",
                                 color: Colors
@@ -498,7 +498,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'تاریخ پیدائش',
+                              text: 'یوم پیدائش',
                               style: TextStyle(
                                 fontFamily: "UrduType",
                                 color: Colors

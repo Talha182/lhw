@@ -63,11 +63,11 @@ class _CourseCardState extends State<CourseCard> {
       child: Stack(
         children: [
           Positioned(
-            bottom: 0,
+            bottom: -20,
             left: 0,
             child: Image.asset(
               widget.course.imagePath,
-              scale: 0.9,
+              scale: 1,
             ),
           ),
           Padding(
@@ -192,7 +192,7 @@ class _CourseCardState extends State<CourseCard> {
                                   .setLastVisitedCourse(widget.course);
                             },
                             child: const Text(
-                              'جاری رکھیں',
+                              'جاری',
                               style: TextStyle(
                                 fontFamily: 'UrduType',
                                 fontSize: 16,

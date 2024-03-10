@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,7 @@ import '../CustomWidgets/circular_progress_bar_with circle.dart';
 import '../CustomWidgets/gradient_circle.dart';
 import '../LoginSignUp/Login.dart';
 import '../ModuleScreen/ModuleScreen.dart';
+import '../Presentation/Presentation.dart';
 import '../course_models/courses_models.dart';
 import '../notification/notifications_screen.dart';
 import '../utils/is_first_time_check.dart';
@@ -59,6 +62,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
     // Show first message after 3 seconds
     Future.delayed(const Duration(seconds: 3), () {
@@ -125,6 +132,8 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  double _fabYPosition = 600.0; // Default position
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CoursesProvider>(context);
@@ -136,8 +145,16 @@ class _HomePageState extends State<HomePage> {
     final remainingCoursesCount = totalCourses.length - completedCourses;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
-    // Check if isLoading is true to show a loading indicator before attempting to access any course data.
+    // Use conditional for colors to avoid null check errors
+    Color? startColor;
+    Color? endColor;
+    if (provider.lastVisitedCourse?.gradient != null &&
+        provider.lastVisitedCourse!.gradient.length >= 2) {
+      startColor = Color(int.parse(
+          provider.lastVisitedCourse!.gradient[0].replaceAll('#', '0xff')));
+      endColor = Color(int.parse(
+          provider.lastVisitedCourse!.gradient[1].replaceAll('#', '0xff')));
+    }
     if (provider.isLoading) {
       return const Scaffold(
         body: Center(
@@ -147,773 +164,747 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    // Check if lastVisitedCourse is not null before accessing its progress.
-    double? lastVisitedCourseProgress = lastVisitedCourse?.progress;
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
 
+    double? lastVisitedCourseProgress = lastVisitedCourse?.progress;
     return Scaffold(
         backgroundColor: const Color(0xFFF1F1F1),
-        floatingActionButton: Container(
-          margin: const EdgeInsets.only(bottom: 72.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                  width: screenWidth * 0.7,
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: Text(
-                    showFirstMessage
-                        ? 'Hello! Need any help?'
-                        : showSecondMessage
-                            ? "Still here? Let me know if you need assistance!"
-                            : "",
-                    textAlign: TextAlign.end,
-                    style: const TextStyle(fontSize: 16),
-                  )),
-              CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: SvgPicture.asset(
-                      "assets/images/samina_instructor.svg",
-                      fit: BoxFit.fill,
-                    )),
-              ),
-            ],
-          ),
-        ),
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(screenHeight * 0.09),
-          child: AppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.white,
-            flexibleSpace:
-                _isSearching ? _buildSearchAppBar() : _buildDefaultAppBar(),
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(1.0),
-              // Adjust the height of the bottom border
-              child: Container(
-                width: double.infinity,
-                height: 1.0,
-                color: const Color(
-                    0xFFDCDBDB), // Set the color of the bottom border
-              ),
-            ),
-          ),
-        ),
-        body: ListView(
+        body: Stack(
           children: [
-            if (_isSearching && _filteredData.isNotEmpty)
-              Container(
-                margin: const EdgeInsets.only(top: 0.0, left: 15, right: 15),
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(color: Colors.grey[300]!, blurRadius: 5)
-                  ],
-                ),
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height *
-                      0.4, // Adjust this value as per requirement
-                ),
-                child: ListView.builder(
-                  itemCount: _filteredData.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(_filteredData[index]),
-                    );
-                  },
-                ),
-              ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: AnimationLimiter(
-                child: Column(
-                  children: List.generate(
-                    1,
-                    (int index) {
-                      return AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 800),
-                        child: SlideAnimation(
-                          verticalOffset: 50.0,
-                          child: FadeInAnimation(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: <Widget>[
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      top: 24, bottom: 16, right: 8),
-                                  child: Text(
-                                    'میرے مضامین',
-                                    style: TextStyle(
-                                        fontFamily: 'UrduType',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Provider.of<TabIndexProvider>(context, listen: false).initialTabIndex = 1;
-
-                                          widget.onSwitchTab(
-                                              1);
-                                        },
-                                        child: Container(
-                                          height: screenHeight * 0.12,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xffDCEFDE),
-                                                Color(0xff81C588)
-                                              ],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 15, top: 16),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: <Widget>[
-                                                const Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "مکمل یونٹ",
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              'UrduType',
-                                                          color:
-                                                              Color(0xff464646),
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 8,
-                                                    ),
-                                                    Icon(
-                                                        Icons
-                                                            .check_circle_outline,
-                                                        size: 24,
-                                                        color:
-                                                            Color(0xff7A7D84)),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: screenWidth / 6,
-                                                      top: 16),
-                                                  child: Text(
-                                                    '${completedCourses}',
-                                                    style: TextStyle(
-                                                        fontSize: 18,
-                                                        fontFamily: ""),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
+            ListView(
+              children: [
+                if (_isSearching && _filteredData.isNotEmpty)
+                  Container(
+                    margin:
+                        const EdgeInsets.only(top: 0.0, left: 15, right: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey[300]!, blurRadius: 5)
+                      ],
+                    ),
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height *
+                          0.4, // Adjust this value as per requirement
+                    ),
+                    child: ListView.builder(
+                      itemCount: _filteredData.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(_filteredData[index]),
+                        );
+                      },
+                    ),
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: AnimationLimiter(
+                    child: Column(
+                      children: List.generate(
+                        1,
+                        (int index) {
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 800),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: <Widget>[
+                                    const Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 24, bottom: 16, right: 8),
+                                      child: Text(
+                                        'میرے مضامین',
+                                        style: TextStyle(
+                                            fontFamily: 'UrduType',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 16,
-                                    ),
-                                    Expanded(
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Provider.of<TabIndexProvider>(context, listen: false).initialTabIndex = 2;
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Provider.of<TabIndexProvider>(
+                                                      context,
+                                                      listen: false)
+                                                  .initialTabIndex = 1;
 
-                                          widget.onSwitchTab(1);
-                                        },
-                                        child: Container(
-                                          height: screenHeight * 0.12,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xffeaa3d8),
-                                                Color(0xffED8DCE)
-                                              ],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 15, top: 8),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: <Widget>[
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
+                                              widget.onSwitchTab(1);
+                                            },
+                                            child: Container(
+                                              height: screenHeight * 0.12,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xffDCEFDE),
+                                                    Color(0xff81C588)
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15, top: 16),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
                                                   children: <Widget>[
-                                                    const Text(
-                                                      'نا مکمل یونٹ',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              'UrduType',
-                                                          color:
-                                                              Color(0xff464646),
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 8,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 8.0),
-                                                      child: SvgPicture.asset(
-                                                        'assets/images/course.svg',
-                                                        height: 20,
-                                                        width: 20,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: screenWidth / 6,
-                                                      top: 16),
-                                                  child: Text(
-                                                    "${remainingCoursesCount}",
-                                                    style: TextStyle(
-                                                        fontSize: 18,
-                                                        fontFamily: ""),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(16)),
-                                    color: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20, horizontal: 8),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 8,
-                                              right: 8,
-                                              top: 8,
-                                              bottom: 36),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              GestureDetector(
-                                                onTap: () {
-                                                  // Get.to(
-                                                  //     () =>
-                                                  //         const LessonPageTabBar(),
-                                                  //     transition:
-                                                  //         Transition.fade,
-                                                  //     duration: const Duration(
-                                                  //         milliseconds: 300));
-                                                },
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    const Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 8.0),
-                                                      child: Icon(
-                                                        Icons.arrow_back_ios,
-                                                        color: Color(
-                                                          0xffFE8BD1,
-                                                        ),
-                                                        size: 14,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      width:
-                                                          5, // space between Text and Icon
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        navigateToLastVisitedCourse(
-                                                            context);
-                                                      },
-                                                      child: const Text(
-                                                        " یونٹ دیکھیں۔",
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                'UrduType',
-                                                            fontSize: 14,
-                                                            color: Color(
-                                                                0xffFE8BD1),
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const Text(
-                                                "جاری یونٹ",
-                                                style: TextStyle(
-                                                    fontFamily: 'UrduType',
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          // Aligns children to the start of the Row.
-                                          children: [
-                                            Flexible(
-                                              flex: 2,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                // Aligns children to the start of the Column.
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      right: 10,
-                                                      bottom: 16,
-                                                    ),
-                                                    child: Text(
-                                                      "${lastVisitedCourse!.title}",
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              "UrduType",
-                                                          fontSize: 14),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 10),
-                                                    child: Row(
+                                                    const Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
-                                                      children: [
-                                                        SvgPicture.asset(
-                                                            "assets/images/person_card.svg"),
-                                                        const SizedBox(
-                                                          width: 8,
-                                                        ),
+                                                      children: <Widget>[
                                                         Text(
-                                                          '${lastVisitedCourse!.moduleCount}  اسباق',
+                                                          "مکمل یونٹ",
                                                           style: TextStyle(
                                                               fontFamily:
-                                                                  "UrduType",
-                                                              fontSize: 12),
-                                                          textDirection:
-                                                              TextDirection.rtl,
-                                                        ),
-
-                                                        // dot container
-                                                        const SizedBox(
-                                                          width: 8,
-                                                        ),
-                                                        Container(
-                                                          width: 4,
-                                                          height: 4,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-
-                                                        const SizedBox(
-                                                          width: 8,
-                                                        ),
-
-                                                        SvgPicture.asset(
-                                                            "assets/images/bookOpen.svg"),
-
-                                                        const SizedBox(
-                                                          width: 5,
-                                                        ),
-
-                                                        Text(
-                                                          '${lastVisitedCourse!.quizCount} ٹیسٹ',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  "UrduType",
-                                                              fontSize: 12),
-                                                          textDirection:
-                                                              TextDirection.rtl,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 12,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 16,
-                                                            left: 16),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          "${(lastVisitedCourseProgress! * 100).toStringAsFixed(1)}%",
-                                                          style:
-                                                              const TextStyle(
-                                                            fontFamily:
-                                                                "UrduType",
-                                                          ),
-                                                        ),
-                                                        const Text(
-                                                          "پیش رفت",
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  "UrduType",
+                                                                  'UrduType',
                                                               color: Color(
-                                                                  0xff7A7D84)),
+                                                                  0xff464646),
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 8,
+                                                        ),
+                                                        Icon(
+                                                            Icons
+                                                                .check_circle_outline,
+                                                            size: 24,
+                                                            color: Color(
+                                                                0xff7A7D84)),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right:
+                                                              screenWidth / 6,
+                                                          top: 16),
+                                                      child: Text(
+                                                        '${completedCourses}',
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontFamily: ""),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 16,
+                                        ),
+                                        Expanded(
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Provider.of<TabIndexProvider>(
+                                                      context,
+                                                      listen: false)
+                                                  .initialTabIndex = 2;
+
+                                              widget.onSwitchTab(1);
+                                            },
+                                            child: Container(
+                                              height: screenHeight * 0.12,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xffeaa3d8),
+                                                    Color(0xffED8DCE)
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15, top: 8),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: <Widget>[
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        const Text(
+                                                          'نا مکمل یونٹ',
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'UrduType',
+                                                              color: Color(
+                                                                  0xff464646),
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 8,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  top: 8.0),
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            'assets/images/course.svg',
+                                                            height: 20,
+                                                            width: 20,
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        vertical: 8.0),
-                                                    child:
-                                                        LinearPercentIndicator(
-                                                      isRTL: true,
-                                                      barRadius:
-                                                          const Radius.circular(
-                                                              10),
-                                                      lineHeight: 6.0,
-                                                      percent:
-                                                          lastVisitedCourseProgress,
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xffEBEBF0),
-                                                      progressColor:
-                                                          const Color(
-                                                              0xff9AC9C2),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right:
+                                                              screenWidth / 6,
+                                                          top: 16),
+                                                      child: Text(
+                                                        "${remainingCoursesCount}",
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontFamily: ""),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                            const SizedBox(
-                                              width: 8,
-                                            ),
-                                            Flexible(
-                                              flex: 1,
-                                              child: Container(
-                                                height: 100,
-                                                decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                        image: AssetImage(
-                                                      "${lastVisitedCourse.imagePath}",
-                                                    )),
-                                                    color: Colors.white,
-                                                    border: Border.all(
-                                                        color: Colors
-                                                            .grey.shade200),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                              ),
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                        Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5, right: 5, top: 20),
-                                            child: Container(
-                                              width: double.infinity,
-                                              height: 80,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                  color:
-                                                      const Color(0xffE5E5E5),
-                                                  width: 2.0,
-                                                ),
-                                              ),
-                                              child: const Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 15),
-                                                child: Directionality(
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      GradientCircle(
-                                                        width: 45,
-                                                        height: 45,
-                                                        gradient:
-                                                            LinearGradient(
-                                                          colors: [
-                                                            Color(0xffF4D6A9),
-                                                            Color(0xffEAAF58)
-                                                          ],
-                                                          begin:
-                                                              Alignment.topLeft,
-                                                          end: Alignment
-                                                              .bottomRight,
-                                                        ),
-                                                        imagePath:
-                                                            'assets/images/person_card.svg',
-                                                        imageWidth: 18,
-                                                        imageHeight:
-                                                            18, // Replace with your image path
-                                                      ),
-                                                      SizedBox(
-                                                        width: 20,
-                                                      ),
-                                                      Expanded(
-                                                        child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text("جاری ٹیسٹ ",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontFamily:
-                                                                        'UrduType',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500)),
-                                                            SizedBox(
-                                                              height: 3,
-                                                            ),
-                                                            Text(
-                                                                "آخری تاریخ: 25 جون 2023",
-                                                                style: TextStyle(
-                                                                    color: Color(
-                                                                        0xff878787),
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontFamily:
-                                                                        'UrduType',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500)),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            )),
-                                        Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5, right: 5, top: 15),
-                                            child: Container(
-                                              width: double.infinity,
-                                              height: 80,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                  color:
-                                                      const Color(0xffE5E5E5),
-                                                  width: 2.0,
-                                                ),
-                                              ),
-                                              child: const Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 15),
-                                                child: Directionality(
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      GradientCircle(
-                                                        width: 45,
-                                                        height: 45,
-                                                        gradient:
-                                                            LinearGradient(
-                                                          colors: [
-                                                            Color(0xffF4B9E1),
-                                                            Color(0xffED8DCE)
-                                                          ],
-                                                          begin:
-                                                              Alignment.topLeft,
-                                                          end: Alignment
-                                                              .bottomRight,
-                                                        ),
-                                                        imagePath:
-                                                            'assets/images/person_card.svg',
-                                                        imageWidth: 18,
-                                                        imageHeight:
-                                                            18, // Replace with your image path
-                                                      ),
-
-                                                      SizedBox(
-                                                        width: 20,
-                                                      ),
-
-                                                      Expanded(
-                                                        child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text("مکمل اسباق",
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                        'UrduType',
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500)),
-                                                            SizedBox(
-                                                              height: 3,
-                                                            ),
-                                                            Text(
-                                                              "12",
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      "UrduType"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      // Icon button on the right
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            )),
                                       ],
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Material(
-                                  elevation: 1,
-                                  // Set your desired elevation value here
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Container(
-                                    width: screenWidth - 10,
-                                    height: 450,
-                                    decoration: const BoxDecoration(),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 12, right: 12),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Row(
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(16)),
+                                        color: Colors.white,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 20, horizontal: 8),
+                                        child: Column(
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8,
+                                                  right: 8,
+                                                  top: 8,
+                                                  bottom: 36),
+                                              child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  const Text(
-                                                    "مہارت پوزیشن",
-                                                    style: TextStyle(
-                                                        fontFamily: 'UrduType',
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  DropdownButtonHideUnderline(
-                                                    child:
-                                                        DropdownButton2<String>(
-                                                      isExpanded: true,
-                                                      hint: const Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child: Text(
-                                                              'اس ہفتے',
-                                                              style: TextStyle(
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      // Get.to(
+                                                      //     () =>
+                                                      //         const LessonPageTabBar(),
+                                                      //     transition:
+                                                      //         Transition.fade,
+                                                      //     duration: const Duration(
+                                                      //         milliseconds: 300));
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        const Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 8.0),
+                                                          child: Icon(
+                                                            Icons
+                                                                .arrow_back_ios,
+                                                            color: Color(
+                                                              0xffFE8BD1,
+                                                            ),
+                                                            size: 14,
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width:
+                                                              5, // space between Text and Icon
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            navigateToLastVisitedCourse(
+                                                                context);
+                                                          },
+                                                          child: const Text(
+                                                            " یونٹ دیکھیں۔",
+                                                            style: TextStyle(
                                                                 fontFamily:
                                                                     'UrduType',
                                                                 fontSize: 14,
+                                                                color: Color(
+                                                                    0xffFE8BD1),
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .normal,
+                                                                        .w500),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  const Text(
+                                                    "جاری یونٹ",
+                                                    style: TextStyle(
+                                                        fontFamily: 'UrduType',
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              // Aligns children to the start of the Row.
+                                              children: [
+                                                Flexible(
+                                                  flex: 2,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    // Aligns children to the start of the Column.
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                          right: 10,
+                                                          bottom: 16,
+                                                        ),
+                                                        child: Text(
+                                                          "${lastVisitedCourse!.title}",
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  "UrduType",
+                                                              fontSize: 14),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                right: 10),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            SvgPicture.asset(
+                                                                "assets/images/person_card.svg"),
+                                                            const SizedBox(
+                                                              width: 8,
+                                                            ),
+                                                            Text(
+                                                              '${lastVisitedCourse!.moduleCount}  اسباق',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      "UrduType",
+                                                                  fontSize: 12),
+                                                              textDirection:
+                                                                  TextDirection
+                                                                      .rtl,
+                                                            ),
+
+                                                            // dot container
+                                                            const SizedBox(
+                                                              width: 8,
+                                                            ),
+                                                            Container(
+                                                              width: 4,
+                                                              height: 4,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color: Colors
+                                                                    .black,
                                                               ),
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
+                                                            ),
+
+                                                            const SizedBox(
+                                                              width: 8,
+                                                            ),
+
+                                                            SvgPicture.asset(
+                                                                "assets/images/bookOpen.svg"),
+
+                                                            const SizedBox(
+                                                              width: 5,
+                                                            ),
+
+                                                            Text(
+                                                              '${lastVisitedCourse!.quizCount} ٹیسٹ',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      "UrduType",
+                                                                  fontSize: 12),
+                                                              textDirection:
+                                                                  TextDirection
+                                                                      .rtl,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 12,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                right: 16,
+                                                                left: 16),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              "${(lastVisitedCourseProgress! * 100).toStringAsFixed(1)}%",
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontFamily:
+                                                                    "UrduType",
+                                                              ),
+                                                            ),
+                                                            const Text(
+                                                              "پیش رفت",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      "UrduType",
+                                                                  color: Color(
+                                                                      0xff7A7D84)),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                vertical: 8.0),
+                                                        child:
+                                                            LinearPercentIndicator(
+                                                          isRTL: true,
+                                                          barRadius:
+                                                              const Radius
+                                                                  .circular(10),
+                                                          lineHeight: 6.0,
+                                                          percent:
+                                                              lastVisitedCourseProgress,
+                                                          backgroundColor:
+                                                              const Color(
+                                                                  0xffEBEBF0),
+                                                          progressColor:
+                                                              const Color(
+                                                                  0xff9AC9C2),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 8,
+                                                ),
+                                                Flexible(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    height: 100,
+                                                    decoration: BoxDecoration(
+                                                        gradient:
+                                                            LinearGradient(
+                                                          begin:
+                                                              Alignment.topLeft,
+                                                          end: Alignment
+                                                              .bottomRight,
+                                                          colors: [
+                                                            startColor!,
+                                                            endColor!,
+                                                          ],
+                                                        ),
+                                                        image: DecorationImage(
+                                                            fit:
+                                                                BoxFit.fitWidth,
+                                                            image: AssetImage(
+                                                              "${lastVisitedCourse.imagePath}",
+                                                            )),
+                                                        color: Colors.white,
+                                                        border: Border.all(
+                                                            color: Colors
+                                                                .grey.shade200),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5, right: 5, top: 20),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 80,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    border: Border.all(
+                                                      color: const Color(
+                                                          0xffE5E5E5),
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  child: const Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 15),
+                                                    child: Directionality(
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          GradientCircle(
+                                                            width: 45,
+                                                            height: 45,
+                                                            gradient:
+                                                                LinearGradient(
+                                                              colors: [
+                                                                Color(
+                                                                    0xffF4D6A9),
+                                                                Color(
+                                                                    0xffEAAF58)
+                                                              ],
+                                                              begin: Alignment
+                                                                  .topLeft,
+                                                              end: Alignment
+                                                                  .bottomRight,
+                                                            ),
+                                                            imagePath:
+                                                                'assets/images/person_card.svg',
+                                                            imageWidth: 18,
+                                                            imageHeight:
+                                                                18, // Replace with your image path
+                                                          ),
+                                                          SizedBox(
+                                                            width: 20,
+                                                          ),
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                    "جاری ٹیسٹ ",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            16,
+                                                                        fontFamily:
+                                                                            'UrduType',
+                                                                        fontWeight:
+                                                                            FontWeight.w500)),
+                                                                SizedBox(
+                                                                  height: 3,
+                                                                ),
+                                                                Text(
+                                                                    "آخری تاریخ: 25 جون 2023",
+                                                                    style: TextStyle(
+                                                                        color: Color(
+                                                                            0xff878787),
+                                                                        fontSize:
+                                                                            12,
+                                                                        fontFamily:
+                                                                            'UrduType',
+                                                                        fontWeight:
+                                                                            FontWeight.w500)),
+                                                              ],
                                                             ),
                                                           ),
                                                         ],
                                                       ),
-                                                      items: items
-                                                          .map((String item) =>
-                                                              DropdownMenuItem<
-                                                                  String>(
-                                                                value: item,
+                                                    ),
+                                                  ),
+                                                )),
+                                            Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5, right: 5, top: 15),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 80,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    border: Border.all(
+                                                      color: const Color(
+                                                          0xffE5E5E5),
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  child: const Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 15),
+                                                    child: Directionality(
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          GradientCircle(
+                                                            width: 45,
+                                                            height: 45,
+                                                            gradient:
+                                                                LinearGradient(
+                                                              colors: [
+                                                                Color(
+                                                                    0xffF4B9E1),
+                                                                Color(
+                                                                    0xffED8DCE)
+                                                              ],
+                                                              begin: Alignment
+                                                                  .topLeft,
+                                                              end: Alignment
+                                                                  .bottomRight,
+                                                            ),
+                                                            imagePath:
+                                                                'assets/images/person_card.svg',
+                                                            imageWidth: 18,
+                                                            imageHeight:
+                                                                18, // Replace with your image path
+                                                          ),
+
+                                                          SizedBox(
+                                                            width: 20,
+                                                          ),
+
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                    "مکمل اسباق",
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            'UrduType',
+                                                                        fontSize:
+                                                                            14,
+                                                                        fontWeight:
+                                                                            FontWeight.w500)),
+                                                                SizedBox(
+                                                                  height: 3,
+                                                                ),
+                                                                Text(
+                                                                  "12",
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          "UrduType"),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          // Icon button on the right
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Material(
+                                      elevation: 1,
+                                      // Set your desired elevation value here
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Container(
+                                        width: screenWidth - 10,
+                                        height: 450,
+                                        decoration: const BoxDecoration(),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, left: 12, right: 12),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Directionality(
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: <Widget>[
+                                                      const Text(
+                                                        "مہارت پوزیشن",
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                'UrduType',
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      DropdownButtonHideUnderline(
+                                                        child: DropdownButton2<
+                                                            String>(
+                                                          isExpanded: true,
+                                                          hint: const Row(
+                                                            children: [
+                                                              Expanded(
                                                                 child: Text(
-                                                                  item,
+                                                                  'اس ہفتے',
                                                                   style:
-                                                                      const TextStyle(
+                                                                      TextStyle(
                                                                     fontFamily:
                                                                         'UrduType',
                                                                     fontSize:
@@ -926,258 +917,278 @@ class _HomePageState extends State<HomePage> {
                                                                       TextOverflow
                                                                           .ellipsis,
                                                                 ),
-                                                              ))
-                                                          .toList(),
-                                                      value: selectedValue,
-                                                      onChanged:
-                                                          (String? value) {
-                                                        setState(() {
-                                                          selectedValue = value;
-                                                        });
-                                                      },
-                                                      buttonStyleData:
-                                                          ButtonStyleData(
-                                                        height: 40,
-                                                        width: 100,
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 14,
-                                                                right: 14),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          border: Border.all(
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          items: items
+                                                              .map((String
+                                                                      item) =>
+                                                                  DropdownMenuItem<
+                                                                      String>(
+                                                                    value: item,
+                                                                    child: Text(
+                                                                      item,
+                                                                      style:
+                                                                          const TextStyle(
+                                                                        fontFamily:
+                                                                            'UrduType',
+                                                                        fontSize:
+                                                                            14,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                    ),
+                                                                  ))
+                                                              .toList(),
+                                                          value: selectedValue,
+                                                          onChanged:
+                                                              (String? value) {
+                                                            setState(() {
+                                                              selectedValue =
+                                                                  value;
+                                                            });
+                                                          },
+                                                          buttonStyleData:
+                                                              ButtonStyleData(
+                                                            height: 40,
+                                                            width: 100,
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 14,
+                                                                    right: 14),
+                                                            decoration:
+                                                                BoxDecoration(
                                                               color:
-                                                                  Colors.black),
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          ),
+                                                          iconStyleData:
+                                                              const IconStyleData(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_sharp,
+                                                            ),
+                                                            iconSize: 14,
+                                                          ),
+                                                          dropdownStyleData:
+                                                              DropdownStyleData(
+                                                            maxHeight: 100,
+                                                            width: 150,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          14),
+                                                            ),
+                                                            offset:
+                                                                const Offset(
+                                                                    -20, 0),
+                                                            scrollbarTheme:
+                                                                ScrollbarThemeData(
+                                                              radius:
+                                                                  const Radius
+                                                                      .circular(
+                                                                      20),
+                                                              thickness:
+                                                                  MaterialStateProperty
+                                                                      .all<double>(
+                                                                          6),
+                                                              thumbVisibility:
+                                                                  MaterialStateProperty
+                                                                      .all<bool>(
+                                                                          true),
+                                                            ),
+                                                          ),
+                                                          menuItemStyleData:
+                                                              const MenuItemStyleData(
+                                                            height: 40,
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 14,
+                                                                    right: 14),
+                                                          ),
                                                         ),
                                                       ),
-                                                      iconStyleData:
-                                                          const IconStyleData(
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_sharp,
-                                                        ),
-                                                        iconSize: 14,
+                                                    ]),
+                                              ),
+                                              const SizedBox(
+                                                height: 50,
+                                              ),
+                                              const Center(
+                                                  child:
+                                                      CircularProgressWithInnerCircle(
+                                                percentage: 0.7,
+                                              )),
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: 34,
+                                                  top: 30,
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    GradientCircle(
+                                                      width: 45,
+                                                      height: 45,
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color(0xffD6C2FF),
+                                                          Color(0xff9B6BFF)
+                                                        ],
+                                                        begin:
+                                                            Alignment.topLeft,
+                                                        end: Alignment
+                                                            .bottomRight,
                                                       ),
-                                                      dropdownStyleData:
-                                                          DropdownStyleData(
-                                                        maxHeight: 100,
-                                                        width: 150,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(14),
-                                                        ),
-                                                        offset: const Offset(
-                                                            -20, 0),
-                                                        scrollbarTheme:
-                                                            ScrollbarThemeData(
-                                                          radius: const Radius
-                                                              .circular(20),
-                                                          thickness:
-                                                              MaterialStateProperty
-                                                                  .all<double>(
-                                                                      6),
-                                                          thumbVisibility:
-                                                              MaterialStateProperty
-                                                                  .all<bool>(
-                                                                      true),
-                                                        ),
-                                                      ),
-                                                      menuItemStyleData:
-                                                          const MenuItemStyleData(
-                                                        height: 40,
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 14,
-                                                                right: 14),
-                                                      ),
+                                                      imagePath:
+                                                          'assets/images/dots.svg',
+                                                      imageWidth: 22,
+                                                      imageHeight:
+                                                          22, // Replace with your image path
                                                     ),
-                                                  ),
-                                                ]),
-                                          ),
-                                          const SizedBox(
-                                            height: 50,
-                                          ),
-                                          const Center(
-                                              child:
-                                                  CircularProgressWithInnerCircle(
-                                            percentage: 0.7,
-                                          )),
-                                          const Padding(
-                                            padding: EdgeInsets.only(
-                                              left: 34,
-                                              top: 30,
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                GradientCircle(
-                                                  width: 45,
-                                                  height: 45,
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xffD6C2FF),
-                                                      Color(0xff9B6BFF)
-                                                    ],
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                  ),
-                                                  imagePath:
-                                                      'assets/images/dots.svg',
-                                                  imageWidth: 22,
-                                                  imageHeight:
-                                                      22, // Replace with your image path
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      '4380',
+                                                      style: TextStyle(
+                                                          fontFamily:
+                                                              "UrduType",
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 18),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 100,
+                                                    ),
+                                                    GradientCircle(
+                                                      width: 45,
+                                                      height: 45,
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color(0xffF4D6A9),
+                                                          Color(0xffEAAF58)
+                                                        ],
+                                                        begin:
+                                                            Alignment.topLeft,
+                                                        end: Alignment
+                                                            .bottomRight,
+                                                      ),
+                                                      imagePath:
+                                                          'assets/images/badge.svg',
+                                                      imageWidth: 24,
+                                                      imageHeight:
+                                                          24, // Replace with your image path
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text('20/30',
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                "UrduType",
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 18))
+                                                  ],
                                                 ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  '4380',
-                                                  style: TextStyle(
-                                                      fontFamily: "UrduType",
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 18),
-                                                ),
-                                                SizedBox(
-                                                  width: 100,
-                                                ),
-                                                GradientCircle(
-                                                  width: 45,
-                                                  height: 45,
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xffF4D6A9),
-                                                      Color(0xffEAAF58)
-                                                    ],
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                  ),
-                                                  imagePath:
-                                                      'assets/images/badge.svg',
-                                                  imageWidth: 24,
-                                                  imageHeight:
-                                                      24, // Replace with your image path
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text('20/30',
-                                                    style: TextStyle(
-                                                        fontFamily: "UrduType",
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 18))
-                                              ],
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          const Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 35,
                                               ),
-                                              Text(
-                                                'کل نمبر',
-                                                style: TextStyle(
-                                                    fontFamily: 'UrduType',
-                                                    fontSize: 14,
-                                                    color: Color(0xff747474),
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                              const SizedBox(
+                                                height: 8,
                                               ),
-                                              SizedBox(
-                                                width: 175,
-                                              ),
-                                              Text(
-                                                'کل تمغے',
-                                                style: TextStyle(
-                                                    fontFamily: 'UrduType',
-                                                    fontSize: 14,
-                                                    color: Color(0xff747474),
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                Material(
-                                  elevation: 1,
-                                  // Set your desired elevation value here
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Container(
-                                    width: screenWidth - 40,
-                                    height: 380,
-                                    decoration: const BoxDecoration(),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 10, right: 10),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "استعمال",
+                                              const Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 35,
+                                                  ),
+                                                  Text(
+                                                    'کل نمبر',
                                                     style: TextStyle(
                                                         fontFamily: 'UrduType',
-                                                        fontSize: 18,
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0xff747474),
                                                         fontWeight:
                                                             FontWeight.w600),
                                                   ),
-                                                  DropdownButtonHideUnderline(
-                                                    child:
-                                                        DropdownButton2<String>(
-                                                      isExpanded: true,
-                                                      hint: const Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child: Text(
-                                                              'اس ہفتے',
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    'UrduType',
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                            ),
-                                                          ),
-                                                        ],
+                                                  SizedBox(
+                                                    width: 175,
+                                                  ),
+                                                  Text(
+                                                    'کل تمغے',
+                                                    style: TextStyle(
+                                                        fontFamily: 'UrduType',
+                                                        fontSize: 14,
+                                                        color:
+                                                            Color(0xff747474),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                    Material(
+                                      elevation: 1,
+                                      // Set your desired elevation value here
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Container(
+                                        width: screenWidth - 40,
+                                        height: 380,
+                                        decoration: const BoxDecoration(),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, left: 10, right: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Directionality(
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: <Widget>[
+                                                      const Text(
+                                                        "استعمال",
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                'UrduType',
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
                                                       ),
-                                                      items: items
-                                                          .map((String item) =>
-                                                              DropdownMenuItem<
-                                                                  String>(
-                                                                value: item,
+                                                      DropdownButtonHideUnderline(
+                                                        child: DropdownButton2<
+                                                            String>(
+                                                          isExpanded: true,
+                                                          hint: const Row(
+                                                            children: [
+                                                              Expanded(
                                                                 child: Text(
-                                                                  item,
+                                                                  'اس ہفتے',
                                                                   style:
-                                                                      const TextStyle(
+                                                                      TextStyle(
                                                                     fontFamily:
                                                                         'UrduType',
                                                                     fontSize:
@@ -1190,103 +1201,209 @@ class _HomePageState extends State<HomePage> {
                                                                       TextOverflow
                                                                           .ellipsis,
                                                                 ),
-                                                              ))
-                                                          .toList(),
-                                                      value: selectedValue,
-                                                      onChanged:
-                                                          (String? value) {
-                                                        setState(() {
-                                                          selectedValue = value;
-                                                        });
-                                                      },
-                                                      buttonStyleData:
-                                                          ButtonStyleData(
-                                                        height: 40,
-                                                        width: 90,
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 14,
-                                                                right: 14),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          border: Border.all(
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          items: items
+                                                              .map((String
+                                                                      item) =>
+                                                                  DropdownMenuItem<
+                                                                      String>(
+                                                                    value: item,
+                                                                    child: Text(
+                                                                      item,
+                                                                      style:
+                                                                          const TextStyle(
+                                                                        fontFamily:
+                                                                            'UrduType',
+                                                                        fontSize:
+                                                                            14,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                      ),
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                    ),
+                                                                  ))
+                                                              .toList(),
+                                                          value: selectedValue,
+                                                          onChanged:
+                                                              (String? value) {
+                                                            setState(() {
+                                                              selectedValue =
+                                                                  value;
+                                                            });
+                                                          },
+                                                          buttonStyleData:
+                                                              ButtonStyleData(
+                                                            height: 40,
+                                                            width: 90,
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 14,
+                                                                    right: 14),
+                                                            decoration:
+                                                                BoxDecoration(
                                                               color:
-                                                                  Colors.black),
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          ),
+                                                          iconStyleData:
+                                                              const IconStyleData(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_sharp,
+                                                            ),
+                                                            iconSize: 14,
+                                                          ),
+                                                          dropdownStyleData:
+                                                              DropdownStyleData(
+                                                            maxHeight: 100,
+                                                            width: 150,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          14),
+                                                            ),
+                                                            offset:
+                                                                const Offset(
+                                                                    -20, 0),
+                                                            scrollbarTheme:
+                                                                ScrollbarThemeData(
+                                                              radius:
+                                                                  const Radius
+                                                                      .circular(
+                                                                      20),
+                                                              thickness:
+                                                                  MaterialStateProperty
+                                                                      .all<double>(
+                                                                          6),
+                                                              thumbVisibility:
+                                                                  MaterialStateProperty
+                                                                      .all<bool>(
+                                                                          true),
+                                                            ),
+                                                          ),
+                                                          menuItemStyleData:
+                                                              const MenuItemStyleData(
+                                                            height: 40,
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 14,
+                                                                    right: 14),
+                                                          ),
                                                         ),
                                                       ),
-                                                      iconStyleData:
-                                                          const IconStyleData(
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_sharp,
-                                                        ),
-                                                        iconSize: 14,
-                                                      ),
-                                                      dropdownStyleData:
-                                                          DropdownStyleData(
-                                                        maxHeight: 100,
-                                                        width: 150,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(14),
-                                                        ),
-                                                        offset: const Offset(
-                                                            -20, 0),
-                                                        scrollbarTheme:
-                                                            ScrollbarThemeData(
-                                                          radius: const Radius
-                                                              .circular(20),
-                                                          thickness:
-                                                              MaterialStateProperty
-                                                                  .all<double>(
-                                                                      6),
-                                                          thumbVisibility:
-                                                              MaterialStateProperty
-                                                                  .all<bool>(
-                                                                      true),
-                                                        ),
-                                                      ),
-                                                      menuItemStyleData:
-                                                          const MenuItemStyleData(
-                                                        height: 40,
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 14,
-                                                                right: 14),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ]),
+                                                    ]),
+                                              ),
+                                              const SizedBox(
+                                                height: 30,
+                                              ),
+                                              const LineChartSample2()
+                                            ],
                                           ),
-                                          const SizedBox(
-                                            height: 30,
-                                          ),
-                                          const LineChartSample2()
-                                        ],
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    const SizedBox(
+                                      height: 50,
+                                    )
+                                  ],
                                 ),
-                                const SizedBox(
-                                  height: 50,
-                                )
-                              ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Positioned(
+              right: 20, // Distance from right
+              top: _fabYPosition,
+              child: GestureDetector(
+                onVerticalDragUpdate: (dragUpdateDetails) {
+                  setState(() {
+                    _fabYPosition += dragUpdateDetails.delta.dy;
+
+                    // Clamp the position to prevent the FAB from moving off the screen
+                    // Consider top and bottom safe areas (like notches and navigation bars)
+                    _fabYPosition = _fabYPosition.clamp(
+                        topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 72.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (showFirstMessage)
+                        GestureDetector(
+                          // onTap: _showMessageAgain,
+                          child: CustomPaint(
+                            painter: MenuBoxBackground(),
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.only(right: 10, left: 10),
+                              // width: screenWidth * 0.7,
+
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 12.0),
+                              child: AnimatedTextKit(
+                                animatedTexts: [
+                                  TypewriterAnimatedText(
+                                    'ڈیش بورڈ پر خوش آمدید ',
+                                    textAlign: TextAlign.center,
+                                    textStyle: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontFamily: "UrduType"),
+                                    speed: const Duration(milliseconds: 50),
+                                  ),
+                                ],
+                                totalRepeatCount: 1,
+                                pause: const Duration(milliseconds: 5000),
+                                displayFullTextOnTap: true,
+                                stopPauseOnTap: true,
+                              ),
                             ),
                           ),
                         ),
-                      );
-                    },
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                        // onTap: _showMessageAgain,
+                        child: CircleAvatar(
+                          backgroundColor: const Color(0xffF6B3D0),
+                          radius: 30,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 2),
+                            child: SvgPicture.asset(
+                              "assets/images/samina_instructor.svg",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ));
   }

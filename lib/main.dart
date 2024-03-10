@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lhw/CourseTabbar/courses_tabbar.dart';
 import 'package:lhw/LoginSignUp/Onboarding.dart';
+import 'package:lhw/Splash/splash.dart';
 import 'package:lhw/Test/Features/ObjectivesTreeHorizontal.dart';
 import 'package:lhw/loading_screen.dart';
 import 'package:lhw/navy.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
             const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
           ],
         ),
-        home: isLoggedIn ?  Courses_Tabbar() : const LoginScreen(),
+        home: isLoggedIn ?  const Custom_NavBar() : const SplashScreenLHW(),
       ),
     );
   }

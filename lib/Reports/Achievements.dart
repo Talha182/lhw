@@ -46,7 +46,6 @@ class _AchievementsState extends State<Achievements>
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  height: 860,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -540,6 +539,7 @@ class _AchievementsState extends State<Achievements>
                     ),
                   ),
                 ),
+                SizedBox(height: 20,),
                 Container(
                   height: 280,
                   decoration: BoxDecoration(

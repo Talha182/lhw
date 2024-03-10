@@ -33,6 +33,7 @@ class _InfographicScreenState extends State<InfographicScreen>
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
+  double _fabYPosition = 600.0;
 
   @override
   void initState() {
@@ -46,20 +47,6 @@ class _InfographicScreenState extends State<InfographicScreen>
       return _buildSlide(widget.infographicsModel.infographics[index].imagePath,
           borderColor, widget.infographicsModel.infographics[index].text);
     });
-
-    _progressController = AnimationController(
-      duration: const Duration(milliseconds: 400),
-      vsync: this,
-    );
-
-    // Initialize _progressAnimation here
-    _progressAnimation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_progressController)
-          ..addListener(() {
-            setState(() {
-              _progress = _progressAnimation.value;
-            });
-          });
 
     _cloudPumpAnimationController = AnimationController(
       duration: const Duration(milliseconds: 1500),
@@ -84,6 +71,7 @@ class _InfographicScreenState extends State<InfographicScreen>
     _cloudPumpAnimationController.dispose();
     super.dispose();
   }
+
   void _startMessageTimer() {
     Timer(const Duration(seconds: 5), () {
       setState(() {
@@ -98,7 +86,6 @@ class _InfographicScreenState extends State<InfographicScreen>
     });
     _startMessageTimer();
   }
-
 
   Widget _buildSlide(String imagePath, Color borderColor, String text) {
     // Add 'text' parameter
@@ -166,58 +153,12 @@ class _InfographicScreenState extends State<InfographicScreen>
 
   @override
   Widget build(BuildContext context) {
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 72.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            if (showMessage)
-              GestureDetector(
-                onTap: _showMessageAgain,
-                child: CustomPaint(
-                  painter: MenuBoxBackground(),
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10, left: 10),
-                    // width: screenWidth * 0.7,
-
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'اس چارٹ کو سمجھیئے۔ اس میں معلومات\n کا ایک بڑا ذخیرہ ہے۔',
-                          textAlign: TextAlign.center,
-                          textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
-                          speed: const Duration(milliseconds: 50),
-                        ),
-                      ],
-                      totalRepeatCount: 1,
-                      pause: const Duration(milliseconds: 5000),
-                      displayFullTextOnTap: true,
-                      stopPauseOnTap: true,
-                    ),
-                  ),
-                ),
-              ),
-            const SizedBox(width: 5,),
-            GestureDetector(
-              onTap: _showMessageAgain,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset(
-                    "assets/images/samina_instructor.svg",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-
       body: Stack(
         children: [
           Container(
@@ -251,17 +192,22 @@ class _InfographicScreenState extends State<InfographicScreen>
                         width: 5,
                       ),
                       Expanded(
+                          child: Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.identity()
+                          ..scale(-1.0, 1.0), // Flipping horizontally
                         child: LinearPercentIndicator(
-                          animation: false,
-                          animationDuration: 400,
-                          lineHeight: 10.0,
+                          lineHeight: 8.0,
                           percent: _progress,
-                          progressColor: const Color(0xffFE8BD1),
                           backgroundColor: Colors.white,
-                          clipLinearGradient: true,
-                          barRadius: const Radius.circular(20),
+                          barRadius: const Radius.circular(10),
+                          linearGradient: const LinearGradient(
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft,
+                            colors: [Color(0xffFE8BD1), Color(0xffFE8BD1)],
+                          ),
                         ),
-                      ),
+                      )),
                     ],
                   ),
                 ),
@@ -280,48 +226,66 @@ class _InfographicScreenState extends State<InfographicScreen>
                     ),
                   ),
                 ),
-                Expanded(
-                  child: CarouselSlider.builder(
-                    carouselController: _carouselController,
-                    itemCount: _carouselItems.length,
-                    itemBuilder: (context, index, realIdx) {
-                      return _carouselItems[index];
-                    },
-                    options: CarouselOptions(
-                      viewportFraction: 1,
-                      height: MediaQuery.of(context).size.height,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _current = index;
-                          _progress = (index + 1) / _carouselItems.length;
-                          _progressController.animateTo(
-                              _progress); // This line assumes you're updating progress based on page change
-                        });
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Expanded(
+                    child: CarouselSlider.builder(
+                      carouselController: _carouselController,
+                      itemCount: widget.infographicsModel.infographics.length,
+                      itemBuilder: (context, index, realIdx) {
+                        return Center(
+                          child: Image.asset(
+                            widget.infographicsModel.infographics[index]
+                                .imagePath,
+                            fit: BoxFit.contain,
+                            scale: 0.6,
+                          ),
+                        );
                       },
+                      options: CarouselOptions(
+                        viewportFraction: 1, // Use full width of the viewport
+                        height: MediaQuery.of(context).size.height,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current = index;
+                            // Update the progress based on the current slide index
+                            _progress = (_current + 1) /
+                                widget.infographicsModel.infographics.length;
+                            // Trigger the progress animation to reflect the current progress
+                            _progressController.animateTo(_progress,
+                                duration: Duration(milliseconds: 400),
+                                curve: Curves.easeInOut);
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                      widget.infographicsModel.infographics.length, (index) {
-                    return GestureDetector(
-                      onTap: () => _carouselController.animateToPage(index),
-                      child: Container(
-                        width: 8.0,
-                        height: 8.0,
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 5.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _current == index
-                              ? const Color(0xff9AC9C2) // Highlighted dot color
-                              : const Color.fromRGBO(
-                                  0, 0, 0, 0.4), // Non-highlighted dot color
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                        widget.infographicsModel.infographics.length, (index) {
+                      return GestureDetector(
+                        onTap: () => _carouselController.animateToPage(index),
+                        child: Container(
+                          width: 8.0,
+                          height: 8.0,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 2.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _current == index
+                                ? const Color(
+                                    0xffFE8BD1) // Highlighted dot color
+                                : const Color.fromRGBO(
+                                    0, 0, 0, 0.2), // Non-highlighted dot color
+                          ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -364,6 +328,78 @@ class _InfographicScreenState extends State<InfographicScreen>
                   ),
                 )
               ],
+            ),
+          ),
+          Positioned(
+            right: 20, // Distance from right
+            top: _fabYPosition,
+            child: GestureDetector(
+              onVerticalDragUpdate: (dragUpdateDetails) {
+                setState(() {
+                  _fabYPosition += dragUpdateDetails.delta.dy;
+
+                  // Clamp the position to prevent the FAB from moving off the screen
+                  // Consider top and bottom safe areas (like notches and navigation bars)
+                  _fabYPosition = _fabYPosition.clamp(
+                      topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                });
+              },
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 72.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (showMessage)
+                      GestureDetector(
+                        onTap: _showMessageAgain,
+                        child: CustomPaint(
+                          painter: MenuBoxBackground(),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10, left: 10),
+                            // width: screenWidth * 0.7,
+
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'اس چارٹ کو سمجھیئے۔ اس میں معلومات\n کا ایک بڑا ذخیرہ ہے۔',
+                                  textAlign: TextAlign.center,
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
+                                  speed: const Duration(milliseconds: 50),
+                                ),
+                              ],
+                              totalRepeatCount: 1,
+                              pause: const Duration(milliseconds: 5000),
+                              displayFullTextOnTap: true,
+                              stopPauseOnTap: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: _showMessageAgain,
+                      child: CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],

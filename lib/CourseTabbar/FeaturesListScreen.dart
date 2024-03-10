@@ -103,6 +103,8 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double progressValue = widget.course.progress;
+
     User? currentUser = GlobalUser.getCurrentUser;
     return Scaffold(
       appBar: AppBar(
@@ -158,9 +160,9 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                         children: [
                           Row(
                             children: [
-                              Text(
+                              const Text(
                                 "یونٹ:", // Example text, replace with dynamic data if necessary
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: 'UrduType',
                                   fontSize: 25,
                                   color: Colors.white,
@@ -237,12 +239,12 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
               const SizedBox(
                 height: 12,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0),
+               Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'آپ کی پیشرفت', // Example text, replace with dynamic data if necessary
                       style: TextStyle(
                         fontFamily: 'UrduType',
@@ -252,8 +254,8 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                       ),
                     ),
                     Text(
-                      '40%', // Example text, replace with dynamic data if necessary
-                      style: TextStyle(
+                      "${(progressValue * 100).toStringAsFixed(1)}%",
+                      style: const TextStyle(
                         fontFamily: 'UrduType',
                         fontSize: 18,
                         color: Colors.black,
@@ -274,7 +276,7 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                   builder: (BuildContext context, double value, Widget? child) {
                     return LinearPercentIndicator(
                       lineHeight: 8.0,
-                      percent: 0.1,
+                      percent: progressValue,
                       backgroundColor: Colors.grey.shade300,
                       progressColor: const Color(0xff9AC9C2),
                       barRadius: const Radius.circular(10),

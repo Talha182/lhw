@@ -20,7 +20,7 @@ class TextBranchingScenario extends StatefulWidget {
   final VoidCallback? onCompleted; // Optional callback
 
   const TextBranchingScenario(
-      {super.key, required this.textBranchingScenarioModel,this.onCompleted});
+      {super.key, required this.textBranchingScenarioModel, this.onCompleted});
 
   @override
   _TextBranchingScenarioState createState() => _TextBranchingScenarioState();
@@ -39,6 +39,8 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
   int questionIndex = 0;
   String selectedAnswer = '';
   bool showMessage = true;
+  double _fabYPosition = 600.0;
+
   @override
   void initState() {
     super.initState();
@@ -106,23 +108,23 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
           explanation);
     });
 
-    Future.delayed(const Duration(seconds: 2), () {
-      if (questionIndex <
-          widget.textBranchingScenarioModel.questions.length - 1) {
-        setState(() {
-          questionIndex++;
-          _current = questionIndex + 1; // Update current question number
-          optionColors = [Colors.white, Colors.white, Colors.white];
-          isAnswered = false;
-          isSelectedList = [false, false, false]; // Reset for the next question
-        });
-      } else {
-        // Show result screen
-        // Get.to(() => ResultsScreen(),
-        //     transition: Transition.fade,
-        //     duration: const Duration(milliseconds: 300));
-      }
-    });
+    // Future.delayed(const Duration(seconds: 2), () {
+    //   if (questionIndex <
+    //       widget.textBranchingScenarioModel.questions.length - 1) {
+    //     setState(() {
+    //       questionIndex++;
+    //       _current = questionIndex + 1; // Update current question number
+    //       optionColors = [Colors.white, Colors.white, Colors.white];
+    //       isAnswered = false;
+    //       isSelectedList = [false, false, false]; // Reset for the next question
+    //     });
+    //   } else {
+    //     // Show result screen
+    //     // Get.to(() => ResultsScreen(),
+    //     //     transition: Transition.fade,
+    //     //     duration: const Duration(milliseconds: 300));
+    //   }
+    // });
     Question currentQuestion =
         widget.textBranchingScenarioModel.questions[questionIndex];
     currentQuestion.userAnswer =
@@ -133,96 +135,98 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
   void _showAnswerDialog(
       BuildContext context, bool isCorrect, String explanation) {
     showAnimatedDialog(
-      curve: Curves.fastOutSlowIn,
-      animationType: DialogTransitionType.sizeFade,
-      duration: const Duration(seconds: 1),
-      barrierDismissible: true,
       context: context,
-      builder: (context) {
+      barrierDismissible:
+          false, // Prevents dialog dismissal by tapping outside it
+      builder: (BuildContext context) {
         return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Stack(
-            alignment: Alignment.topRight,
-            children: [
-              Container(
-                width: double.infinity, // Ensure the container takes full width
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: isCorrect
-                      ? const Color(0xff9AC9C2)
-                      : const Color(0xffFB6262),
-                ),
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius
+                .zero, // Removed rounded corners to match the example
+          ),
+          child: Stack(clipBehavior: Clip.none, children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.only(
+                  top: 20, right: 60, bottom: 60, left: 60),
+              child: Wrap(
+                children: [
+                  Text(
+                    explanation, // Directly use the passed explanation variable
+                    textAlign: TextAlign.center,
+                    style:
+                        const TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
-                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: isCorrect
-                                ? const Color(0xff9AC9C2).withOpacity(0.3)
-                                : const Color(0xffFB6262).withOpacity(0.3),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            isCorrect ? Icons.check : Icons.close,
-                            size: 30,
-                            color: isCorrect
-                                ? const Color(0xff9AC9C2)
-                                : const Color(0xffFB6262),
-                          ),
-                        ),
-                        const SizedBox(
-                            height: 10), // Add spacing before the text
-                        Text(
-                          isCorrect ? "درست" : "غلط",
-                          style: TextStyle(
-                            fontFamily: "UrduType",
-                            color: isCorrect
-                                ? const Color(0xff47857C)
-                                : const Color(0xffFB6262),
-                            fontSize: 18,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(
-                            height: 10), // Add spacing before the explanation
-                        Text(
-                          explanation,
-                          style: const TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 16,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: -15,
+              left: -55,
+              child: Image.asset('assets/scripts/script11/2.png',
+                  width: 180, height: 180),
+            ),
+            Positioned(
+              top: -40,
+              right: -50,
+              child: Image.asset('assets/scripts/script11/1.png',
+                  width: 180, height: 180),
+            ),
+            Positioned.fill(
+              child: Container(
+                margin: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.green, width: 2),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 20,
+              left: 110,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+                child: Container(
+                  width: 90,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Color(0xffFE8BD1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "اگلے", // "Next" button, assuming your app is in Urdu
+                      style: TextStyle(
+                          color: Colors.white, fontFamily: "UrduType"),
                     ),
                   ),
                 ),
               ),
-              Positioned(
-                right: 0,
-                child: IconButton(
-                  icon: const Icon(Icons.close, color: Colors.black),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-            ],
-          ),
+            ),
+          ]),
         );
       },
-    );
+    ).then((_) {
+      // Now the dialog dismissal will trigger the next action
+      _prepareAndShowNextQuestion();
+    });
+  }
+
+  void _prepareAndShowNextQuestion() {
+    if (questionIndex <
+        widget.textBranchingScenarioModel.questions.length - 1) {
+      setState(() {
+        questionIndex++;
+        _current = questionIndex + 1; // Update current question number
+        optionColors = [Colors.white, Colors.white, Colors.white];
+        isAnswered = false;
+        isSelectedList = [false, false, false]; // Reset for the next question
+      });
+    } else {
+      // Logic to show the result screen or perform some final action
+    }
   }
 
   void _startMessageTimer() {
@@ -240,64 +244,17 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
     _startMessageTimer();
   }
 
-
   @override
   Widget build(BuildContext context) {
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     _totalSteps =
         widget.textBranchingScenarioModel.questions.length; // Add this line
 
     return Scaffold(
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 72.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            if (showMessage)
-              GestureDetector(
-                onTap: _showMessageAgain,
-                child: CustomPaint(
-                  painter: MenuBoxBackground(),
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10, left: 10),
-                    // width: screenWidth * 0.7,
-
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'اس مخصوص سمق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
-                          textAlign: TextAlign.center,
-                          textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
-                          speed: const Duration(milliseconds: 50),
-                        ),
-                      ],
-                      totalRepeatCount: 1,
-                      pause: const Duration(milliseconds: 5000),
-                      displayFullTextOnTap: true,
-                      stopPauseOnTap: true,
-                    ),
-                  ),
-                ),
-              ),
-            const SizedBox(width: 5,),
-            GestureDetector(
-              onTap: _showMessageAgain,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset(
-                    "assets/images/samina_instructor.svg",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-
       body: Stack(
         children: [
           Container(
@@ -343,13 +300,24 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                             duration: const Duration(milliseconds: 400),
                             builder: (BuildContext context, double value,
                                 Widget? child) {
-                              return LinearPercentIndicator(
-                                lineHeight: 8.0,
-                                percent:
-                                    value, // Use the animated value for the percent
-                                backgroundColor: Colors.white,
-                                progressColor: const Color(0xffFE8BD1),
-                                barRadius: const Radius.circular(10),
+                              return Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.identity()
+                                  ..scale(-1.0, 1.0), // Flipping horizontally
+                                child: LinearPercentIndicator(
+                                  lineHeight: 8.0,
+                                  percent: value,
+                                  backgroundColor: Colors.white,
+                                  barRadius: const Radius.circular(10),
+                                  linearGradient: const LinearGradient(
+                                    begin: Alignment.centerRight,
+                                    end: Alignment.centerLeft,
+                                    colors: [
+                                      Color(0xffFE8BD1),
+                                      Color(0xffFE8BD1)
+                                    ],
+                                  ),
+                                ),
                               );
                             },
                           ),
@@ -387,7 +355,6 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                           fit: BoxFit.contain,
                         ),
                       ),
-
                     ),
                   ),
                   Padding(
@@ -436,49 +403,119 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
             left: 0,
             right: 0,
             child: Center(
-              child: Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffFE8BD1),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      minimumSize: const Size(150, 37),
-                    ),
-                    onPressed: isAnswered && questionIndex == widget.textBranchingScenarioModel.questions.length - 1
-                        ? () {
-                      if(widget.onCompleted != null) {
-                        widget.onCompleted!(); // Optionally call the completion callback if provided
-                      }
-                      Get.back(result: true);                                  }
-                        : null, // Disable button if not the last question or not answered
+              child: Column(
+                children: [
+                  Divider(thickness: 2, color: Colors.grey.shade200),
+                  Padding(
+                      padding: const EdgeInsets.only(bottom: 15),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffFE8BD1),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: const Size(150, 37),
+                        ),
+                        onPressed: isAnswered &&
+                                questionIndex ==
+                                    widget.textBranchingScenarioModel.questions
+                                            .length -
+                                        1
+                            ? () {
+                                if (widget.onCompleted != null) {
+                                  widget
+                                      .onCompleted!(); // Optionally call the completion callback if provided
+                                }
+                                Get.back(result: true);
+                              }
+                            : null, // Disable button if not the last question or not answered
 
-                    child: const Text(
-                      'جاری',
-                      style: TextStyle(
-                        fontFamily: 'UrduType',
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )),
+                        child: const Text(
+                          'جاری',
+                          style: TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )),
+                ],
+              ),
             ),
           ),
           Positioned(
-              bottom: 70, // Adjust as needed
-              right: 15, // Adjust as needed
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: SvgPicture.asset(
-                      "assets/images/samina_instructor.svg",
-                      fit: BoxFit.fill,
-                    )),
-              )),
+            right: 20, // Distance from right
+            top: _fabYPosition,
+            child: GestureDetector(
+              onVerticalDragUpdate: (dragUpdateDetails) {
+                setState(() {
+                  _fabYPosition += dragUpdateDetails.delta.dy;
+
+                  // Clamp the position to prevent the FAB from moving off the screen
+                  // Consider top and bottom safe areas (like notches and navigation bars)
+                  _fabYPosition = _fabYPosition.clamp(
+                      topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                });
+              },
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 72.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (showMessage)
+                      GestureDetector(
+                        onTap: _showMessageAgain,
+                        child: CustomPaint(
+                          painter: MenuBoxBackground(),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10, left: 10),
+                            // width: screenWidth * 0.7,
+
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'اس مخصوص سمق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
+                                  textAlign: TextAlign.center,
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
+                                  speed: const Duration(milliseconds: 50),
+                                ),
+                              ],
+                              totalRepeatCount: 1,
+                              pause: const Duration(milliseconds: 5000),
+                              displayFullTextOnTap: true,
+                              stopPauseOnTap: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: _showMessageAgain,
+                      child: CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

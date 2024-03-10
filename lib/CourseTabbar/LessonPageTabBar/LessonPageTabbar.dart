@@ -1,6 +1,7 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lhw/DiscussionGroup/MessageScreen.dart';
 
 import '../../Bookmarks.dart';
 import '../../DiscussionGroup/DiscussionGroups.dart';
@@ -115,9 +116,7 @@ class _LessonPageTabBarState extends State<LessonPageTabBar> {
             child: TabBarView(
               children: <Widget>[
                 const BookmarkScreen(),
-                const GroupsDiscussion(
-                  showAppBar: false,
-                ),
+                const MessageScreen(showAppbar: false,),
                 Lesson(course: widget.course,),
               ],
             ),

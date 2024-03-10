@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -55,6 +56,10 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     _scrollController = ScrollController();
     _bottomPadding = 100.0; // Start with 100.0 padding from the bottom
     // Listener to detect scroll events
@@ -435,7 +440,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                           Navigator.of(context).pop(); // Close the dialog
                         },
                         child: const Text(
-                          'کینسل',
+                          'واپس',
                           style: TextStyle(
                               fontFamily: "UrduType",
                               color: Colors.black,
@@ -456,7 +461,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                           navigateToSubmoduleFeatures(submodule);
                         },
                         child: const Text(
-                          'سبق جاری رکھیں',
+                          'سبق جاری',
                           style: TextStyle(
                             fontFamily: "UrduType",
                             fontSize: 16,

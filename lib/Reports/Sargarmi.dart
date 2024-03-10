@@ -47,13 +47,7 @@ class _SargarmiState extends State<Sargarmi> {
             padding: const EdgeInsets.only(left: 15,right: 15),
             child: ListView(
               children: [
-                const Text(
-                  "سرگرمی کی تفصیلات",
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 18),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
+
                 const Text(
                   "سرگرمی کی تفصیلات",
                   style: TextStyle(fontFamily: "UrduType", fontSize: 18),
@@ -288,7 +282,7 @@ class _SargarmiState extends State<Sargarmi> {
                                       height: 5,
                                     ),
                                     const Text(
-                                      "خطوط",
+                                      "پوسٹس ",
                                       style: TextStyle(
                                           fontFamily: "UrduType", fontSize: 18),
                                     ),

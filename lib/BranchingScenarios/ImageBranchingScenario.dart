@@ -37,6 +37,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
+  double _fabYPosition = 600.0;
 
   void updateQuestion(String selectedAnswer, int index) {
     if (isAnswered)
@@ -58,84 +59,77 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
 
     showAnimatedDialog(
       context: context,
-      barrierDismissible:
-          false, // Prevents dialog dismissal by tapping outside it
+      barrierDismissible: false, // Prevents dialog dismissal by tapping outside it
       builder: (BuildContext context) {
         return Dialog(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero,
-            ),
-            child: Stack(clipBehavior: Clip.none, children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.only(
-                    top: 20, right: 60, bottom: 60, left: 60),
-                child: ConstrainedBox(
-                  constraints:
-                      const BoxConstraints(maxHeight: 120, maxWidth: 150),
-                  child: Text(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          child: Stack(clipBehavior: Clip.none, children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.only(top: 20, right: 60, bottom: 60, left: 60),
+              child: Wrap(
+                children: [
+                  Text(
                     isCorrect
-                        ? widget.imageBranchingScenarioModel
-                            .questions[questionIndex].correctExplanation
-                        : widget.imageBranchingScenarioModel
-                            .questions[questionIndex].incorrectExplanation,
+                        ? widget.imageBranchingScenarioModel.questions[questionIndex].correctExplanation
+                        : widget.imageBranchingScenarioModel.questions[questionIndex].incorrectExplanation,
                     textAlign: TextAlign.center,
-                    style:
-                        const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: -15,
+              left: -55,
+              child: Image.asset('assets/scripts/script11/2.png', width: 180, height: 180),
+            ),
+            Positioned(
+              top: -40,
+              right: -50,
+              child: Image.asset('assets/scripts/script11/1.png', width: 180, height: 180),
+            ),
+            Positioned.fill(
+              child: Container(
+                margin: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.green, width: 2),
                 ),
               ),
-              Positioned(
-                bottom: -15,
-                left: -55,
-                child: Image.asset('assets/scripts/script11/2.png',
-                    width: 180, height: 180),
-              ),
-              Positioned(
-                top: -40,
-                right: -50,
-                child: Image.asset('assets/scripts/script11/1.png',
-                    width: 180, height: 180),
-              ),
-              Positioned.fill(
+            ),
+            Positioned(
+              bottom: 20,
+              left: 110,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
                 child: Container(
-                  margin: const EdgeInsets.all(5),
+                  width: 90,
+                  height: 40,
                   decoration: BoxDecoration(
+                    color: Color(0xffFE8BD1),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.green, width: 2),
                   ),
-                ),
-              ),
-              Positioned(
-                bottom: 20,
-                left: 110,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop(); // Close the dialog
-                  },
-                  child: Container(
-                    width: 90,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Color(0xffFE8BD1),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "اگلے",
-                        style: TextStyle(color: Colors.white,fontFamily: "UrduType"),
-                      ),
+                  child: const Center(
+                    child: Text(
+                      "اگلے",
+                      style: TextStyle(color: Colors.white, fontFamily: "UrduType"),
                     ),
                   ),
                 ),
               ),
-            ]));
+            ),
+          ]),
+        );
       },
     ).then((_) {
       // Executes after the dialog is dismissed
       proceedToNextQuestionOrState(); // Proceed regardless of answer correctness
-    });
-  }
+    });}
 
   void proceedToNextQuestionOrState() {
     if (questionIndex <
@@ -209,349 +203,370 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
 
   @override
   Widget build(BuildContext context) {
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 72.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            if (showMessage)
-              GestureDetector(
-                onTap: _showMessageAgain,
-                child: CustomPaint(
-                  painter: MenuBoxBackground(),
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10, left: 10),
-                    // width: screenWidth * 0.7,
-
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'اس مخصوص سمق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
-                          textAlign: TextAlign.center,
-                          textStyle: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontFamily: "UrduType"),
-                          speed: const Duration(milliseconds: 50),
-                        ),
-                      ],
-                      totalRepeatCount: 1,
-                      pause: const Duration(milliseconds: 5000),
-                      displayFullTextOnTap: true,
-                      stopPauseOnTap: true,
-                    ),
-                  ),
-                ),
-              ),
-            const SizedBox(
-              width: 5,
-            ),
-            GestureDetector(
-              onTap: _showMessageAgain,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset(
-                    "assets/images/samina_instructor.svg",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: const Alignment(0, -0.2),
-            colors: [
-              const Color(0xff80B8FB).withOpacity(0.3),
-              Colors.transparent,
-            ],
-          ),
-        ),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: const Icon(
-                          Icons.close,
-                          size: 30,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Expanded(
-                        child: TweenAnimationBuilder(
-                          tween: Tween<double>(begin: 0, end: _currentProgress),
-                          duration: const Duration(milliseconds: 400),
-                          builder: (BuildContext context, double value,
-                              Widget? child) {
-                            return LinearPercentIndicator(
-                              lineHeight: 8.0,
-                              percent: value,
-                              backgroundColor: Colors.white,
-                              progressColor: const Color(0xffFE8BD1),
-                              barRadius: const Radius.circular(10),
-                            );
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                          onTap: () {
-                            final bookmarkController =
-                                Get.find<BookmarkController>();
-                            bookmarkController.addBookmark(
-                              Bookmark(
-                                  title: 'LessonOption20',
-                                  routeName: '/lessonOption20'),
-                            );
-                            // Optionally, show a snackbar or some feedback to the user
-                            Get.snackbar('Bookmark Added',
-                                'This page has been added to your bookmarks');
-                          },
-                          child: const Icon(Icons.bookmark_outline)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: ScaleTransition(
-                        scale: _cloudPumpAnimation,
-                        child: SvgPicture.asset(
-                          'assets/images/cloud.svg',
-                          width: 20,
-                          height: 20,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        Material(
-                          elevation:
-                              2.0, // Adjust the elevation level as desired
-                          borderRadius: BorderRadius.circular(
-                              10), // To match the Container's border radius
-                          child: Container(
-                            width: double.infinity,
-                            height: 340,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: Colors.black87.withOpacity(0.1))),
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  margin: const EdgeInsets.only(
-                                      left: 15, right: 15, top: 15),
-                                  height: 260,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: CarouselSlider(
-                                    options: CarouselOptions(
-                                      aspectRatio: 12 / 10,
-                                      enlargeCenterPage: true,
-                                      scrollDirection: Axis.horizontal,
-                                      autoPlay: false,
-                                      viewportFraction: 1,
-                                    ),
-                                    carouselController:
-                                        _carouselController, // Ensure you've connected the CarouselController
-                                    items: widget.imageBranchingScenarioModel
-                                        .questions[questionIndex].imagePaths
-                                        .map((imagePath) {
-                                      return Builder(
-                                        builder: (BuildContext context) {
-                                          return ClipRRect(
-                                            borderRadius: BorderRadius.circular(
-                                                10), // Apply rounded corners to the ClipRRect
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              decoration: BoxDecoration(
-                                                color: Colors.transparent,
-                                                image: DecorationImage(
-                                                  image: AssetImage(imagePath),
-                                                  fit: BoxFit.fill,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    }).toList(),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xffFE8BD1),
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      minimumSize: const Size(150, 37),
-                                    ),
-                                    onPressed: () {
-                                      _carouselController.nextPage(
-                                          duration:
-                                              const Duration(milliseconds: 300),
-                                          curve: Curves.linear);
-                                    },
-                                    child: const Text(
-                                      'اگلے',
-                                      style: TextStyle(
-                                        fontFamily: 'UrduType',
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        const Center(
-                          child: Text(
-                            "بہترین آپشن کا انتخاب کریں۔",
-                            style:
-                                TextStyle(fontFamily: "UrduType", fontSize: 23),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Column(
-                          children: List.generate(
-                            widget.imageBranchingScenarioModel
-                                .questions[questionIndex].options.length,
-                            (index) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: QuizCard(
-                                text: widget.imageBranchingScenarioModel
-                                    .questions[questionIndex].options[index],
-                                ontap: () => updateQuestion(
-                                    widget
-                                        .imageBranchingScenarioModel
-                                        .questions[questionIndex]
-                                        .options[index],
-                                    index),
-                                color: optionColors[index],
-                                isCorrect: selectedAnswer ==
-                                    widget.imageBranchingScenarioModel
-                                        .questions[questionIndex].correctAnswer,
-                                isSelected: isSelected,
-                                isOptionSelected: index == selectedOptionIndex,
-                              ),
-                            ),
-                          ).animate(interval: 200.ms).fade(duration: 200.ms),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 15, top: 5),
-                          child: Column(
-                            children: [
-                              Divider(
-                                height: 1,
-                                thickness: 1,
-                                color: Colors.black87.withOpacity(0.1),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Container(
-                                width: 150,
-                                height: 35,
-                                decoration: BoxDecoration(
-                                    color: isAnswered &&
-                                            questionIndex ==
-                                                widget.imageBranchingScenarioModel
-                                                        .questions.length -
-                                                    1
-                                        ? const Color(
-                                            0xffFE8BD1) // Button enabled color
-                                        : Colors.grey, // Button disabled color
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: TextButton(
-                                  onPressed: isAnswered &&
-                                          questionIndex ==
-                                              widget.imageBranchingScenarioModel
-                                                      .questions.length -
-                                                  1
-                                      ? () {
-                                          if (widget.onCompleted != null) {
-                                            widget
-                                                .onCompleted!(); // Optionally call the completion callback if provided
-                                          }
-                                          Get.back(result: true);
-                                        }
-                                      : null, // Disable button if not the last question or not answered
-                                  child: const Center(
-                                    child: Text(
-                                      'جاری',
-                                      style: TextStyle(
-                                        fontFamily: 'UrduType',
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: const Alignment(0, -0.2),
+                colors: [
+                  const Color(0xff80B8FB).withOpacity(0.3),
+                  Colors.transparent,
                 ],
               ),
             ),
-            Positioned(
-                bottom: 90, // Adjust as needed
-                right: 15, // Adjust as needed
-                child: CircleAvatar(
-                  backgroundColor: const Color(0xffF6B3D0),
-                  radius: 30,
-                  child: Padding(
-                      padding: const EdgeInsets.only(bottom: 2),
-                      child: SvgPicture.asset(
-                        "assets/images/samina_instructor.svg",
-                        fit: BoxFit.fill,
-                      )),
-                )),
-          ],
-        ),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: const Icon(
+                              Icons.close,
+                              size: 30,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            child: TweenAnimationBuilder(
+                              tween: Tween<double>(begin: 0, end: _currentProgress),
+                              duration: const Duration(milliseconds: 400),
+                              builder: (BuildContext context, double value,
+                                  Widget? child) {
+                                return Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.identity()..scale(-1.0, 1.0), // Flipping horizontally
+                                  child: LinearPercentIndicator(
+                                    lineHeight: 8.0,
+                                    percent: value,
+                                    backgroundColor: Colors.white,
+                                    barRadius: const Radius.circular(10),
+                                    linearGradient: const LinearGradient(
+                                      begin: Alignment.centerRight,
+                                      end: Alignment.centerLeft,
+                                      colors: [Color(0xffFE8BD1), Color(0xffFE8BD1)],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                final bookmarkController =
+                                    Get.find<BookmarkController>();
+                                bookmarkController.addBookmark(
+                                  Bookmark(
+                                      title: 'LessonOption20',
+                                      routeName: '/lessonOption20'),
+                                );
+                                // Optionally, show a snackbar or some feedback to the user
+                                Get.snackbar('Bookmark Added',
+                                    'This page has been added to your bookmarks');
+                              },
+                              child: const Icon(Icons.bookmark_outline)),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: ScaleTransition(
+                            scale: _cloudPumpAnimation,
+                            child: SvgPicture.asset(
+                              'assets/images/cloud.svg',
+                              width: 20,
+                              height: 20,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            Material(
+                              elevation:
+                                  2.0, // Adjust the elevation level as desired
+                              borderRadius: BorderRadius.circular(
+                                  10), // To match the Container's border radius
+                              child: Container(
+                                width: double.infinity,
+                                height: 340,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        color: Colors.black87.withOpacity(0.1))),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.only(
+                                          left: 15, right: 15, top: 15),
+                                      height: 260,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: CarouselSlider(
+                                        options: CarouselOptions(
+                                          aspectRatio: 12 / 10,
+                                          enlargeCenterPage: true,
+                                          scrollDirection: Axis.horizontal,
+                                          autoPlay: false,
+                                          viewportFraction: 1,
+                                        ),
+                                        carouselController:
+                                            _carouselController, // Ensure you've connected the CarouselController
+                                        items: widget.imageBranchingScenarioModel
+                                            .questions[questionIndex].imagePaths
+                                            .map((imagePath) {
+                                          return Builder(
+                                            builder: (BuildContext context) {
+                                              return ClipRRect(
+                                                borderRadius: BorderRadius.circular(
+                                                    10), // Apply rounded corners to the ClipRRect
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    image: DecorationImage(
+                                                      image: AssetImage(imagePath),
+                                                      fit: BoxFit.fill,
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(bottom: 8.0),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(0xffFE8BD1),
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(30),
+                                          ),
+                                          minimumSize: const Size(150, 37),
+                                        ),
+                                        onPressed: () {
+                                          _carouselController.nextPage(
+                                              duration:
+                                                  const Duration(milliseconds: 300),
+                                              curve: Curves.linear);
+                                        },
+                                        child: const Text(
+                                          'اگلے',
+                                          style: TextStyle(
+                                            fontFamily: 'UrduType',
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            const Center(
+                              child: Text(
+                                "بہترین آپشن کا انتخاب کریں۔",
+                                style:
+                                    TextStyle(fontFamily: "UrduType", fontSize: 23),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Column(
+                              children: List.generate(
+                                widget.imageBranchingScenarioModel
+                                    .questions[questionIndex].options.length,
+                                (index) => Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: QuizCard(
+                                    text: widget.imageBranchingScenarioModel
+                                        .questions[questionIndex].options[index],
+                                    ontap: () => updateQuestion(
+                                        widget
+                                            .imageBranchingScenarioModel
+                                            .questions[questionIndex]
+                                            .options[index],
+                                        index),
+                                    color: optionColors[index],
+                                    isCorrect: selectedAnswer ==
+                                        widget.imageBranchingScenarioModel
+                                            .questions[questionIndex].correctAnswer,
+                                    isSelected: isSelected,
+                                    isOptionSelected: index == selectedOptionIndex,
+                                  ),
+                                ),
+                              ).animate(interval: 200.ms).fade(duration: 200.ms),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 15, top: 5),
+                              child: Column(
+                                children: [
+                                  Divider(
+                                    height: 1,
+                                    thickness: 1,
+                                    color: Colors.black87.withOpacity(0.1),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    width: 150,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                        color: isAnswered &&
+                                                questionIndex ==
+                                                    widget.imageBranchingScenarioModel
+                                                            .questions.length -
+                                                        1
+                                            ? const Color(
+                                                0xffFE8BD1) // Button enabled color
+                                            : Colors.grey, // Button disabled color
+                                        borderRadius: BorderRadius.circular(30)),
+                                    child: TextButton(
+                                      onPressed: isAnswered &&
+                                              questionIndex ==
+                                                  widget.imageBranchingScenarioModel
+                                                          .questions.length -
+                                                      1
+                                          ? () {
+                                              if (widget.onCompleted != null) {
+                                                widget
+                                                    .onCompleted!(); // Optionally call the completion callback if provided
+                                              }
+                                              Get.back(result: true);
+                                            }
+                                          : null, // Disable button if not the last question or not answered
+                                      child: const Center(
+                                        child: Text(
+                                          'جاری',
+                                          style: TextStyle(
+                                            fontFamily: 'UrduType',
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            right: 20, // Distance from right
+            top: _fabYPosition,
+            child: GestureDetector(
+              onVerticalDragUpdate: (dragUpdateDetails) {
+                setState(() {
+                  _fabYPosition += dragUpdateDetails.delta.dy;
+
+                  // Clamp the position to prevent the FAB from moving off the screen
+                  // Consider top and bottom safe areas (like notches and navigation bars)
+                  _fabYPosition = _fabYPosition.clamp(
+                      topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                });
+              },
+              child:Container(
+                margin: const EdgeInsets.only(bottom: 72.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (showMessage)
+                      GestureDetector(
+                        onTap: _showMessageAgain,
+                        child: CustomPaint(
+                          painter: MenuBoxBackground(),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10, left: 10),
+                            // width: screenWidth * 0.7,
+
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'اس مخصوص سمق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
+                                  textAlign: TextAlign.center,
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
+                                  speed: const Duration(milliseconds: 50),
+                                ),
+                              ],
+                              totalRepeatCount: 1,
+                              pause: const Duration(milliseconds: 5000),
+                              displayFullTextOnTap: true,
+                              stopPauseOnTap: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: _showMessageAgain,
+                      child: CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+        ],
       ),
     );
   }

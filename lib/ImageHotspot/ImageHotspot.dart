@@ -33,6 +33,7 @@ class _ImageHotspotState extends State<ImageHotspot>
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
+  double _fabYPosition = 600.0; // Default position
 
   @override
   void initState() {
@@ -224,66 +225,88 @@ class _ImageHotspotState extends State<ImageHotspot>
 
   @override
   Widget build(BuildContext context) {
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 72.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            if (showMessage)
-              GestureDetector(
-                onTap: _showMessageAgain,
-                child: CustomPaint(
-                  painter: MenuBoxBackground(),
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10, left: 10),
-                    // width: screenWidth * 0.7,
+      body: Stack(
+        children: [
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            child: _isFullScreen
+                ? _buildFullScreenImage(context)
+                : _buildNormalView(context),
+          ),
+          Positioned(
+            right: 20, // Distance from right
+            top: _fabYPosition,
+            child: GestureDetector(
+              onVerticalDragUpdate: (dragUpdateDetails) {
+                setState(() {
+                  _fabYPosition += dragUpdateDetails.delta.dy;
 
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'Hello! Need any help?',
-                          textAlign: TextAlign.center,
-                          textStyle: const TextStyle(
-                              fontSize: 16, color: Colors.black),
-                          speed: const Duration(milliseconds: 50),
+                  // Clamp the position to prevent the FAB from moving off the screen
+                  // Consider top and bottom safe areas (like notches and navigation bars)
+                  _fabYPosition = _fabYPosition.clamp(
+                      topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                });
+              },
+              child:Container(
+                margin: const EdgeInsets.only(bottom: 72.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (showMessage)
+                      GestureDetector(
+                        onTap: _showMessageAgain,
+                        child: CustomPaint(
+                          painter: MenuBoxBackground(),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10, left: 10),
+                            // width: screenWidth * 0.7,
+
+                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'اس چارٹ کو سمجھیئے۔ اس میں معلومات\n کا ایک بڑا ذخیرہ ہے۔',
+                                  textAlign: TextAlign.center,
+                                  textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                                  speed: const Duration(milliseconds: 50),
+                                ),
+                              ],
+                              totalRepeatCount: 1,
+                              pause: const Duration(milliseconds: 5000),
+                              displayFullTextOnTap: true,
+                              stopPauseOnTap: true,
+                            ),
+                          ),
                         ),
-                      ],
-                      totalRepeatCount: 1,
-                      pause: const Duration(milliseconds: 5000),
-                      displayFullTextOnTap: true,
-                      stopPauseOnTap: true,
+                      ),
+                    const SizedBox(width: 5,),
+                    GestureDetector(
+                      onTap: _showMessageAgain,
+                      child: CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            const SizedBox(
-              width: 5,
-            ),
-            GestureDetector(
-              onTap: _showMessageAgain,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset(
-                    "assets/images/samina_instructor.svg",
-                    fit: BoxFit.fill,
-                  ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 500),
-        child: _isFullScreen
-            ? _buildFullScreenImage(context)
-            : _buildNormalView(context),
+          ),
+
+        ],
       ),
     );
   }

@@ -4,30 +4,30 @@ import 'package:get/get.dart';
 
 import '../LoginSignUp/Onboarding.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashScreenLHW extends StatefulWidget {
+  const SplashScreenLHW({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashScreenLHWState createState() => _SplashScreenLHWState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenLHWState extends State<SplashScreenLHW> {
 
-  @override
-  void initState() {
-    super.initState();
-
-    // Add a delay to auto-navigate after a set time
-    Future.delayed(Duration(seconds: 3), () {
-      if(Get.currentRoute != "/OnboardingScreen") { // Prevent navigation if user already swiped
-        Get.off(
-                () => const OnboardingScreen(),
-            transition: Transition.fade,
-            duration: const Duration(milliseconds: 400)
-        );
-      }
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //
+  //   // Add a delay to auto-navigate after a set time
+  //   Future.delayed(Duration(seconds: 3), () {
+  //     if(Get.currentRoute != "/OnboardingScreen") { // Prevent navigation if user already swiped
+  //       Get.off(
+  //               () => const OnboardingScreen(),
+  //           transition: Transition.fade,
+  //           duration: const Duration(milliseconds: 400)
+  //       );
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

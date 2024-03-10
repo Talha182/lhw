@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 import 'Messaging_Settings.dart';
 
 class MessageScreen extends StatefulWidget {
-  const MessageScreen({super.key});
+  final bool showAppbar;
+  const MessageScreen({super.key,required this.showAppbar});
 
   @override
   State<MessageScreen> createState() => _MessageScreenState();
@@ -208,7 +209,7 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: PreferredSize(
+      appBar: widget.showAppbar ? PreferredSize( // Conditionally render the AppBar
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
           automaticallyImplyLeading: false,
@@ -222,9 +223,9 @@ class _MessageScreenState extends State<MessageScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: (){
-                      Get.to(() => const MessageSettings());
-                    },
+                      onTap: (){
+                        Get.to(() => const MessageSettings());
+                      },
                       child: SvgPicture.asset("assets/images/Icon.svg")),
                   const Text(
                     "ترتیبات",
@@ -247,8 +248,8 @@ class _MessageScreenState extends State<MessageScreen> {
             ),
           ),
         ),
-      ),
-      body: Column(
+      ) : null, // If _showAppBar is false, don't show the AppBar
+        body: Column(
         children: [
           Expanded(
             child: ListView.builder(

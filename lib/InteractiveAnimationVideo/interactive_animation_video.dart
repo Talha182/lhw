@@ -44,6 +44,8 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
+  double _fabYPosition = 600.0; // Default position
+
 
   @override
   void initState() {
@@ -255,7 +257,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   }
 
   void _startMessageTimer() {
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 8), () {
       setState(() {
         showMessage = false;
       });
@@ -271,207 +273,234 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
 
   @override
   Widget build(BuildContext context) {
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 72.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            if (showMessage)
-              GestureDetector(
-                onTap: _showMessageAgain,
-                child: CustomPaint(
-                  painter: MenuBoxBackground(),
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10, left: 10),
-                    // width: screenWidth * 0.7,
-
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'یہ سبق ہم ایک ویڈیو کے ذریعے سیکھیں گیں۔\n اسے بہتر سمجھنے کے لیے اپنے\n موبائل کی آواز اونچی کریں۔',
-                          textAlign: TextAlign.center,
-                          textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
-                          speed: const Duration(milliseconds: 50),
-                        ),
-                      ],
-                      totalRepeatCount: 1,
-                      pause: const Duration(milliseconds: 5000),
-                      displayFullTextOnTap: true,
-                      stopPauseOnTap: true,
-                    ),
-                  ),
-                ),
-              ),
-            const SizedBox(width: 5,),
-            GestureDetector(
-              onTap: _showMessageAgain,
-              child: CircleAvatar(
-                backgroundColor: const Color(0xffF6B3D0),
-                radius: 30,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: SvgPicture.asset(
-                    "assets/images/samina_instructor.svg",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: const Alignment(0, -0.2),
-            colors: [
-              const Color(0xff80B8FB).withOpacity(0.3),
-              Colors.transparent,
-            ],
-          ),
-        ),
-        child: Padding(
-          padding:
-          const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(
-                      Icons.close,
-                      size: 30,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    child: TweenAnimationBuilder(
-                      tween: Tween<double>(begin: 0, end: 2.2),
-                      duration: const Duration(milliseconds: 400),
-                      builder:
-                          (BuildContext context, double value, Widget? child) {
-                        return LinearPercentIndicator(
-                          lineHeight: 8.0,
-                          percent: 1,
-                          backgroundColor: Colors.white,
-                          progressColor: const Color(0xffFE8BD1),
-                          barRadius: const Radius.circular(10),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                      onTap: () {
-                        final bookmarkController =
-                        Get.find<BookmarkController>();
-                        bookmarkController.addBookmark(
-                          Bookmark(
-                              title: 'LessonOption20',
-                              routeName: '/lessonOption20'),
-                        );
-                        // Optionally, show a snackbar or some feedback to the user
-                        Get.snackbar('Bookmark Added',
-                            'This page has been added to your bookmarks');
-                      },
-                      child: const Icon(Icons.bookmark_outline)),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: const Alignment(0, -0.2),
+                colors: [
+                  const Color(0xff80B8FB).withOpacity(0.3),
+                  Colors.transparent,
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20, bottom: 5, top: 10),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: ScaleTransition(
-                    scale: _cloudPumpAnimation,
-                    child: SvgPicture.asset(
-                      'assets/images/cloud.svg',
-                      width: 20,
-                      height: 20,
-                      fit: BoxFit.contain,
+            ),
+            child: Padding(
+              padding:
+              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          size: 30,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: TweenAnimationBuilder(
+                          tween: Tween<double>(begin: 0, end: 2.2),
+                          duration: const Duration(milliseconds: 400),
+                          builder:
+                              (BuildContext context, double value, Widget? child) {
+                            return LinearPercentIndicator(
+                              lineHeight: 8.0,
+                              percent: 1,
+                              backgroundColor: Colors.white,
+                              progressColor: const Color(0xffFE8BD1),
+                              barRadius: const Radius.circular(10),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            final bookmarkController =
+                            Get.find<BookmarkController>();
+                            bookmarkController.addBookmark(
+                              Bookmark(
+                                  title: 'LessonOption20',
+                                  routeName: '/lessonOption20'),
+                            );
+                            // Optionally, show a snackbar or some feedback to the user
+                            Get.snackbar('Bookmark Added',
+                                'This page has been added to your bookmarks');
+                          },
+                          child: const Icon(Icons.bookmark_outline)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20, bottom: 5, top: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: ScaleTransition(
+                        scale: _cloudPumpAnimation,
+                        child: SvgPicture.asset(
+                          'assets/images/cloud.svg',
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Expanded(
-                // Use 'Expanded' here to occupy the remaining space
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 0, right: 0),
-                  child: Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: FlickVideoPlayer(
-                        flickManager: flickManager,
-                        flickVideoWithControls: FlickVideoWithControls(
-                          controls: FlickPortraitControls(
-                            progressBarSettings: FlickProgressBarSettings(
-                              handleColor: const Color(0xffFE8BD1),
-                              playedColor: const Color(0xffFE8BD1),
-                              bufferedColor: Colors.white.withOpacity(0.5),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    // Use 'Expanded' here to occupy the remaining space
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0),
+                      child: Container(
+                        height: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: FlickVideoPlayer(
+                            flickManager: flickManager,
+                            flickVideoWithControls: FlickVideoWithControls(
+                              videoFit: BoxFit.fill, // Ensure the video covers the container
+
+                              controls: FlickPortraitControls(
+                                progressBarSettings: FlickProgressBarSettings(
+                                  handleColor: const Color(0xffFE8BD1),
+                                  playedColor: const Color(0xffFE8BD1),
+                                  bufferedColor: Colors.white.withOpacity(0.5),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              const Spacer(),
-              Divider(
-                height: 1,
-                thickness: 1,
-                color: Colors.black87.withOpacity(0.1),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xffFE8BD1),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                  const Spacer(),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                    color: Colors.black87.withOpacity(0.1),
                   ),
-                  minimumSize: const Size(150, 37),
-                ),
-                onPressed: (_videoController.value.position.inSeconds >=
-                    _videoController.value.duration.inSeconds - 1)
-                    ? () async {
-                  // Call the callback to mark completion or navigate back
-                  widget.onCompleted?.call();
-                  Get.back(result: true);
-                }
-                    : null, // Button is disabled until the video finishes
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xffFE8BD1),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      minimumSize: const Size(150, 37),
+                    ),
+                    onPressed: (_videoController.value.position.inSeconds >=
+                        _videoController.value.duration.inSeconds - 1)
+                        ? () async {
+                      // Call the callback to mark completion or navigate back
+                      widget.onCompleted?.call();
+                      Get.back(result: true);
+                    }
+                        : null, // Button is disabled until the video finishes
 
-                child: const Text(
-                  'جاری',
-                  style: TextStyle(
-                    fontFamily: 'UrduType',
-                    fontSize: 15,
-                    color: Colors.white,
+                    child: const Text(
+                      'جاری',
+                      style: TextStyle(
+                        fontFamily: 'UrduType',
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            right: 20, // Distance from right
+            top: _fabYPosition,
+            child: GestureDetector(
+              onVerticalDragUpdate: (dragUpdateDetails) {
+                setState(() {
+                  _fabYPosition += dragUpdateDetails.delta.dy;
+
+                  // Clamp the position to prevent the FAB from moving off the screen
+                  // Consider top and bottom safe areas (like notches and navigation bars)
+                  _fabYPosition = _fabYPosition.clamp(
+                      topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                });
+              },
+              child:Container(
+                margin: const EdgeInsets.only(bottom: 72.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (showMessage)
+                      GestureDetector(
+                        onTap: _showMessageAgain,
+                        child: CustomPaint(
+                          painter: MenuBoxBackground(),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10, left: 10),
+                            // width: screenWidth * 0.7,
+
+                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'یہ سبق ہم ایک ویڈیو کے ذریعے سیکھیں گیں۔\n اسے بہتر سمجھنے کے لیے اپنے\n موبائل کی آواز اونچی کریں۔',
+                                  textAlign: TextAlign.center,
+                                  textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                                  speed: const Duration(milliseconds: 50),
+                                ),
+                              ],
+                              totalRepeatCount: 1,
+                              pause: const Duration(milliseconds: 5000),
+                              displayFullTextOnTap: true,
+                              stopPauseOnTap: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(width: 5,),
+                    GestureDetector(
+                      onTap: _showMessageAgain,
+                      child: CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+
+        ],
       ),
     );
   }

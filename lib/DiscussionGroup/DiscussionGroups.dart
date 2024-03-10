@@ -125,7 +125,7 @@ class GroupsDiscussion extends StatelessWidget {
                       Row(
                         children: [
                           const Text(
-                            "بحث شروع کریں۔",
+                            "",
                             style: TextStyle(
                                 fontFamily: "UrduType",
                                 fontSize: 18,
@@ -163,7 +163,7 @@ class GroupsDiscussion extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const MessageScreen(),
+                  Get.to(() => const MessageScreen(showAppbar: true,),
                       transition: Transition.fadeIn,
                       duration: const Duration(milliseconds: 300));
                 },

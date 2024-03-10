@@ -103,7 +103,9 @@ flutter:
     - assets/scripts/
     - assets/scripts/presentations/
     - assets/scripts/Script 3/
+    - assets/scripts/Script 2/
     - assets/scripts/Script 5/
+    - assets/scripts/Script 7/
     - assets/scripts/Script 9/
     - assets/scripts/Script 10/
     - assets/scripts/Script 12/
