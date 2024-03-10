@@ -4,6 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -37,37 +38,124 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
 
-
-// Update the 'updateQuestion' method
   void updateQuestion(String selectedAnswer, int index) {
-    if (isAnswered) return;
+    if (isAnswered)
+      return; // Early return if an answer has already been selected
+
+    // Determine if the selected answer is correct
+    bool isCorrect = selectedAnswer ==
+        widget
+            .imageBranchingScenarioModel.questions[questionIndex].correctAnswer;
+
+    // Update UI state to reflect selection and prevent further selections
     setState(() {
       this.selectedAnswer = selectedAnswer;
-      isAnswered = true;
-      isSelected = true;
-      selectedOptionIndex = index; // Add this line
-      if (selectedAnswer ==
-          widget.imageBranchingScenarioModel.questions[questionIndex]
-              .correctAnswer) {
-        optionColors[index] = Colors.green[100]!;
-      } else {
-        optionColors[index] = Colors.red[100]!;
-      }
+      isSelected = true; // Indicates an option has been selected
+      selectedOptionIndex = index; // Tracks the selected option
+      optionColors[index] = isCorrect ? Colors.green[100]! : Colors.red[100]!;
+      isAnswered = true; // Prevents selecting another option
     });
 
-    Future.delayed(const Duration(seconds: 2), () {
-      if (questionIndex <
-          widget.imageBranchingScenarioModel.questions.length - 1) {
-        _carouselController.jumpToPage(0);
-        setState(() {
-          questionIndex++;
-          optionColors = [Colors.white, Colors.white, Colors.white];
-          isAnswered = false;
-          isSelected = false;
-          selectedOptionIndex = null;
-        });
-      }
+    showAnimatedDialog(
+      context: context,
+      barrierDismissible:
+          false, // Prevents dialog dismissal by tapping outside it
+      builder: (BuildContext context) {
+        return Dialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            ),
+            child: Stack(clipBehavior: Clip.none, children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.only(
+                    top: 20, right: 60, bottom: 60, left: 60),
+                child: ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(maxHeight: 120, maxWidth: 150),
+                  child: Text(
+                    isCorrect
+                        ? widget.imageBranchingScenarioModel
+                            .questions[questionIndex].correctExplanation
+                        : widget.imageBranchingScenarioModel
+                            .questions[questionIndex].incorrectExplanation,
+                    textAlign: TextAlign.center,
+                    style:
+                        const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: -15,
+                left: -55,
+                child: Image.asset('assets/scripts/script11/2.png',
+                    width: 180, height: 180),
+              ),
+              Positioned(
+                top: -40,
+                right: -50,
+                child: Image.asset('assets/scripts/script11/1.png',
+                    width: 180, height: 180),
+              ),
+              Positioned.fill(
+                child: Container(
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.green, width: 2),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                left: 110,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  child: Container(
+                    width: 90,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Color(0xffFE8BD1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "اگلے",
+                        style: TextStyle(color: Colors.white,fontFamily: "UrduType"),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]));
+      },
+    ).then((_) {
+      // Executes after the dialog is dismissed
+      proceedToNextQuestionOrState(); // Proceed regardless of answer correctness
     });
+  }
+
+  void proceedToNextQuestionOrState() {
+    if (questionIndex <
+        widget.imageBranchingScenarioModel.questions.length - 1) {
+      setState(() {
+        questionIndex++;
+        optionColors = [Colors.white, Colors.white, Colors.white];
+        isAnswered = false;
+        isSelected = false;
+        selectedOptionIndex = null;
+      });
+      _carouselController.jumpToPage(0);
+    } else {
+      // This is where you handle what happens when all questions have been answered
+      // For example, navigate to a results page or show a completion message
+      // if (widget.onCompleted != null) {
+      //   widget.onCompleted!();
+      // }
+      // Optionally, navigate back or to another screen
+    }
   }
 
   @override
@@ -119,7 +207,6 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
     _startMessageTimer();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,13 +224,17 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                     margin: const EdgeInsets.only(right: 10, left: 10),
                     // width: screenWidth * 0.7,
 
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 12.0),
                     child: AnimatedTextKit(
                       animatedTexts: [
                         TypewriterAnimatedText(
                           'اس مخصوص سمق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
                           textAlign: TextAlign.center,
-                          textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                          textStyle: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontFamily: "UrduType"),
                           speed: const Duration(milliseconds: 50),
                         ),
                       ],
@@ -155,7 +246,9 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                   ),
                 ),
               ),
-            const SizedBox(width: 5,),
+            const SizedBox(
+              width: 5,
+            ),
             GestureDetector(
               onTap: _showMessageAgain,
               child: CircleAvatar(
@@ -173,7 +266,6 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
           ],
         ),
       ),
-
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -259,19 +351,23 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                     child: ListView(
                       children: [
                         Material(
-                          elevation: 2.0, // Adjust the elevation level as desired
-                          borderRadius: BorderRadius.circular(10), // To match the Container's border radius
+                          elevation:
+                              2.0, // Adjust the elevation level as desired
+                          borderRadius: BorderRadius.circular(
+                              10), // To match the Container's border radius
                           child: Container(
                             width: double.infinity,
                             height: 340,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.black87.withOpacity(0.1))),
+                                border: Border.all(
+                                    color: Colors.black87.withOpacity(0.1))),
                             child: Column(
                               children: [
                                 Container(
                                   width: double.infinity,
-                                  margin: const EdgeInsets.only(left: 15, right: 15,top: 15),
+                                  margin: const EdgeInsets.only(
+                                      left: 15, right: 15, top: 15),
                                   height: 260,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
@@ -284,21 +380,25 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                       autoPlay: false,
                                       viewportFraction: 1,
                                     ),
-                                    carouselController: _carouselController, // Ensure you've connected the CarouselController
+                                    carouselController:
+                                        _carouselController, // Ensure you've connected the CarouselController
                                     items: widget.imageBranchingScenarioModel
                                         .questions[questionIndex].imagePaths
                                         .map((imagePath) {
                                       return Builder(
                                         builder: (BuildContext context) {
                                           return ClipRRect(
-                                            borderRadius: BorderRadius.circular(10), // Apply rounded corners to the ClipRRect
+                                            borderRadius: BorderRadius.circular(
+                                                10), // Apply rounded corners to the ClipRRect
                                             child: Container(
-                                              width: MediaQuery.of(context).size.width,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               decoration: BoxDecoration(
                                                 color: Colors.transparent,
                                                 image: DecorationImage(
                                                   image: AssetImage(imagePath),
-                                                  fit: BoxFit.cover,
+                                                  fit: BoxFit.fill,
                                                 ),
                                               ),
                                             ),
@@ -321,7 +421,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                     ),
                                     onPressed: () {
                                       _carouselController.nextPage(
-                                          duration: const Duration(milliseconds: 300),
+                                          duration:
+                                              const Duration(milliseconds: 300),
                                           curve: Curves.linear);
                                     },
                                     child: const Text(

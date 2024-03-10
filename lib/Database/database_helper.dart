@@ -460,33 +460,6 @@ class DatabaseHelper extends ChangeNotifier {
     );
     print('Feature with ID $featureId marked as completed.');
 
-    // Step 2: Fetch the submodule ID of the completed feature for further checks.
-    var featureMaps = await db.query(
-      featuresTable,
-      columns: ['submoduleId'],
-      where: 'featureId = ?',
-      whereArgs: [featureId],
-    );
-    if (featureMaps.isNotEmpty) {
-      int submoduleId = featureMaps.first['submoduleId'] as int;
-
-      // Step 3: Check if all features of the submodule are completed.
-      var totalFeatures = await fetchTotalFeaturesCountBySubmoduleId(submoduleId);
-      var completedFeatures = await fetchCompletedFeaturesCountBySubmoduleId(submoduleId);
-
-      if (totalFeatures == completedFeatures) {
-        // All features are completed, mark submodule as completed.
-        await db.update(
-          submodulesTable,
-          {'isCompleted': 1},
-          where: 'submoduleId = ?',
-          whereArgs: [submoduleId],
-        );
-        print('Submodule with ID $submoduleId marked as completed.');
-      } else {
-        print('Submodule with ID $submoduleId still has incomplete features.');
-      }
-    }
   }
 
   Future<void> calculateAndUpdateCourseProgress(int courseId) async {

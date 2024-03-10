@@ -95,19 +95,6 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
         feature.isCompleted.value = !feature.isCompleted.value;
       });
       // Check if the completed feature is the last feature
-      if (_features.indexOf(feature) == _features.length - 1) {
-        // Use Get.off() to navigate to the JourneyMapScreen and remove the FeatureListScreen from the stack
-        Get.off(() => JourneyMapScreen(
-          module: widget.module,
-          courseTitle: widget.courseTitle,
-          gradient: widget.gradient,
-          courseQuizCount: widget.courseQuizCount,
-          courseModuleCount: widget.courseModuleCount,
-          courseId: widget.courseId,
-          moduleId: widget.moduleId,
-          imagePath: widget.imagePath, course: widget.course,
-        ));
-      }
     } else {
       print(
           'Failed to toggle feature completion for featureId: ${feature.featureId}');

@@ -138,7 +138,7 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
             maxScale: 2.5,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(imagePath, fit: BoxFit.cover),
+              child: Image.asset(imagePath, fit: BoxFit.fill),
             ),
           ),
         ),
@@ -362,12 +362,12 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                   onPressed: _current == _carouselItems.length - 1
                       ? () async {
                           // Logic for handling completion when on the last slide.
-                          if (widget.onCompleted != null) {
-                            await DatabaseHelper.instance
-                                .markFeatureAsCompleted(widget.featureId);
-                            widget.onCompleted
-                                ?.call(); // Optionally call the completion callback if provided
-                          }
+                          // if (widget.onCompleted != null) {
+                          //   await DatabaseHelper.instance
+                          //       .markFeatureAsCompleted(widget.featureId);
+                          //   widget.onCompleted
+                          //       ?.call(); // Optionally call the completion callback if provided
+                          // }
                           Get.back(result: true);
                         }
                       : null, // This button is disabled unless you're on the last slide

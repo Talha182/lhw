@@ -18,8 +18,8 @@ class InteractiveAnimationVideo extends StatefulWidget {
 
   const InteractiveAnimationVideo(
       {super.key,
-      required this.interactiveAnimationVideoModel,
-      this.onCompleted});
+        required this.interactiveAnimationVideoModel,
+        this.onCompleted});
 
   @override
   State<InteractiveAnimationVideo> createState() =>
@@ -69,8 +69,8 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
         curve: Curves.easeInOut,
       ),
     )..addListener(() {
-        setState(() {});
-      });
+      setState(() {});
+    });
 
     _cloudPumpAnimationController.repeat(reverse: true);
   }
@@ -78,10 +78,10 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
   void _videoListener() {
     Duration position = _videoController.value.position;
     for (int i = 0;
-        i < widget.interactiveAnimationVideoModel.questionDurations.length;
-        i++) {
+    i < widget.interactiveAnimationVideoModel.questionDurations.length;
+    i++) {
       if (position >=
-              widget.interactiveAnimationVideoModel.questionDurations[i] &&
+          widget.interactiveAnimationVideoModel.questionDurations[i] &&
           !_shownQuestions.contains(i)) {
         _videoController.pause();
         _shownQuestions.add(i);
@@ -119,8 +119,8 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
         setState(() {
           questionIndex++;
           _current = ((questionIndex /
-                      widget.interactiveAnimationVideoModel.questions.length) *
-                  1)
+              widget.interactiveAnimationVideoModel.questions.length) *
+              1)
               .toInt();
           optionColors = [Colors.white, Colors.white, Colors.white];
           isAnswered = false; // Reset for the next question
@@ -168,7 +168,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                       ...List.generate(
                         widget.interactiveAnimationVideoModel
                             .questions[questionIndex].options.length,
-                        (index) => Padding(
+                            (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: QuizCard(
                             text: widget.interactiveAnimationVideoModel
@@ -203,7 +203,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                             backgroundColor: isSelected
                                 ? const Color(0xffFE8BD1) // Original color
                                 : Colors
-                                    .grey, // Grey color when option not selected
+                                .grey, // Grey color when option not selected
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -212,9 +212,9 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                           ),
                           onPressed: isSelected
                               ? () {
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog when button is pressed
-                                }
+                            Navigator.of(context)
+                                .pop(); // Close the dialog when button is pressed
+                          }
                               : null, // Set to null when option is not selected, making it non-clickable
                           child: const Text(
                             'جاری رہے',
@@ -336,7 +336,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
         ),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
+          const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 5),
           child: Column(
             children: [
               Row(
@@ -375,7 +375,7 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                   GestureDetector(
                       onTap: () {
                         final bookmarkController =
-                            Get.find<BookmarkController>();
+                        Get.find<BookmarkController>();
                         bookmarkController.addBookmark(
                           Bookmark(
                               title: 'LessonOption20',
@@ -452,12 +452,12 @@ class _InteractiveAnimationVideoState extends State<InteractiveAnimationVideo>
                   minimumSize: const Size(150, 37),
                 ),
                 onPressed: (_videoController.value.position.inSeconds >=
-                        _videoController.value.duration.inSeconds - 1)
+                    _videoController.value.duration.inSeconds - 1)
                     ? () async {
-                        // Call the callback to mark completion or navigate back
-                        widget.onCompleted?.call();
-                        Get.back(result: true);
-                      }
+                  // Call the callback to mark completion or navigate back
+                  widget.onCompleted?.call();
+                  Get.back(result: true);
+                }
                     : null, // Button is disabled until the video finishes
 
                 child: const Text(
@@ -494,7 +494,7 @@ class InteractiveAnimationVideoModel {
         .toList();
     List<Duration> questionDurations = (json['questionDurations'] as List)
         .map((durationString) =>
-            Duration(seconds: int.parse(durationString.split(":").last)))
+        Duration(seconds: int.parse(durationString.split(":").last)))
         .toList();
 
     return InteractiveAnimationVideoModel(

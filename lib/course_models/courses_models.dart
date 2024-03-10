@@ -434,7 +434,7 @@ class Feature extends ChangeNotifier {
         case FeatureType.quiz:
           return Icons.question_answer;
         case FeatureType.comicStrip:
-          return Icons.image;
+          return Icons.library_books_outlined;
         case FeatureType.flashCard:
           return Icons.flash_on;
         case FeatureType.infographics:
@@ -444,7 +444,7 @@ class Feature extends ChangeNotifier {
         case FeatureType.interactiveImage:
           return Icons.image_aspect_ratio;
         case FeatureType.imageHotspot:
-          return Icons.image;
+          return Icons.horizontal_split_sharp;
         case FeatureType.horizontalImageHotspot:
           return Icons.horizontal_distribute;
         case FeatureType.textBranchingScenario:

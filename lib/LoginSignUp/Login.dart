@@ -88,9 +88,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-             Center(
+            Center(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -99,19 +99,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text(
                     "سائن اپ کریں۔",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: "UrduType", fontSize: 18,color: Color(0xffFE8BD1)),
+                    style: TextStyle(
+                        fontFamily: "UrduType",
+                        fontSize: 18,
+                        color: Color(0xffFE8BD1)),
                     textDirection: TextDirection.ltr,
                   ),
                 ),
                 const Text(
                   "پہلا اکاؤنٹ؟",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 18,color: Color(0xff878787)),
+                  style: TextStyle(
+                      fontFamily: "UrduType",
+                      fontSize: 18,
+                      color: Color(0xff878787)),
                   textDirection: TextDirection.ltr,
                 ),
               ],
-            )
-                ),
+            )),
             const SizedBox(
               height: 10,
             ),

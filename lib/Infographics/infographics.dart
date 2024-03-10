@@ -154,6 +154,7 @@ class _InfographicScreenState extends State<InfographicScreen>
       child: Center(
         child: Text(
           text, // Replace with your desired text
+          textAlign: TextAlign.center,
           style: const TextStyle(
               color: Colors.black, fontSize: 16, fontFamily: "UrduType"),
         ),

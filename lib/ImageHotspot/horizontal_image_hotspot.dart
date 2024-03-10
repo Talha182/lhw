@@ -237,38 +237,44 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
 
   Widget _buildImageContainer() {
     final image = widget.horizontalImageHotspotModel.images[_currentIndex];
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(image.imagePath),
-          fit: BoxFit.cover,
+    return GestureDetector(
+      onTapUp: (TapUpDetails details) {
+        final Offset localPosition = details.localPosition;
+        print("Tap Position: dx=${localPosition.dx}, dy=${localPosition.dy}");
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(image.imagePath),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Stack(
-        children: image.hotspots.map((hotspot) {
-          return Positioned(
-            left: hotspot.offset.dx,
-            top: hotspot.offset.dy,
-            child: GestureDetector(
-              onTap: () {
-                showCustomDialog(context, hotspot.dialogText);
-                setState(() {
-                  hotspot.isTapped = true;
-                });
-              },
-              child: Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(hotspot.isTapped ? 'assets/images/Hotspot---Green.png' : 'assets/images/Hotspot---Pink.png'),
-                    fit: BoxFit.cover,
+        child: Stack(
+          children: image.hotspots.map((hotspot) {
+            return Positioned(
+              left: hotspot.offset.dx,
+              top: hotspot.offset.dy,
+              child: GestureDetector(
+                onTap: () {
+                  showCustomDialog(context, hotspot.dialogText);
+                  setState(() {
+                    hotspot.isTapped = true;
+                  });
+                },
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(hotspot.isTapped ? 'assets/images/Hotspot---Green.png' : 'assets/images/Hotspot---Pink.png'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        }).toList(),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

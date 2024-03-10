@@ -130,7 +130,7 @@
                   "duration": "3 mins",
                   "submoduleId": 1,
                   "data": {
-                    "title": "Comic Strip 1",
+                    "title": "ٹی بی کیا ہے؟",
                     "imagePairs": [
                       {
                         "topImage": "assets/scripts/Script 3/Script 3-01.png",
@@ -184,86 +184,13 @@
                   }
                 },
                 {
-                  "featureId": 111,
-                  "title": "ٹی بی کی روک تھام میں لیڈی ہیلتھ ورکر کے  فرائض",
-                  "featureType": "interactiveImage",
-                  "isCompleted": false,
-                  "submoduleId": 101,
-                  "duration": "5min",
-                  "data": {
-                    "interactiveImageModel": [
-                      {
-                        "image": "assets/scripts/script11/Script11-01.jpg",
-                        "guide": "Click on the mirror to ensure the patient's mouth is empty.",
-                        "touchArea": {
-                          "left": 460,
-                          "top": 70,
-                          "width": 140,
-                          "height": 180
-                        },
-                        "showDialog": false,
-                        "dialogText": "",
-                        "swipeEnabled": false,
-                        "longPressEnabled": false,
-                        "longPressAction": "",
-                        "dragDropEnabled": false,
-                        "swipeAction": ""
-                      },
-                      {
-                        "image": "assets/scripts/script11/Script11-02.jpg",
-                        "guide": "",
-                        "touchArea": {
-                          "left": 370,
-                          "top": 310,
-                          "width": 310,
-                          "height": 80
-                        },
-                        "showDialog": true,
-                        "dialogText": "Before collecting sputum sample, make sure the patient has not eaten.",
-                        "swipeEnabled": false,
-                        "longPressEnabled": false,
-                        "longPressAction": "",
-                        "dragDropEnabled": false,
-                        "swipeAction": "nextImage"
-                      },
-                      {
-                        "image": "assets/scripts/script11/Script11-03.jpg",
-                        "guide": "Drag the shower and hot drink icons to the patient.",
-                        "touchArea": {
-                          "left": 0,
-                          "top": 0,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "showDialog": false,
-                        "swipeEnabled": false,
-                        "longPressEnabled": true,
-                        "longPressAction": "showMessage",
-                        "dragDropEnabled": true,
-                        "swipeAction": "",
-                        "draggableImage": "assets/scripts/script11/shower_and_drink_icons.png",
-                        "draggableImageInitialPosition": {
-                          "dx": 80,
-                          "dy": 180
-                        },
-                        "dragTargetPosition": {
-                          "dx": 200,
-                          "dy": 180
-                        },
-                        "newDraggableImage": "assets/scripts/images/updated_icon.png",
-                        "moveToNextOnDrop": true
-                      }
-                    ]
-                  }
-                },
-                {
                   "featureId": 10,
                   "featureType": "flashCard",
                   "title": "ٹی بی کے اثرات",
                   "duration": "5 mins",
                   "submoduleId": 1,
                   "data": {
-                    "title": "Flash Cards Title",
+                    "title": "ٹی بی کے اثرات",
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 5/Script 5-02.png",
@@ -290,11 +217,15 @@
                     "infographics": [
                       {
                         "imagePath": "assets/scripts/Script 6/infographic1.png",
-                        "text": "Infographic 1 Description"
+                        "text": "ٹی بی کیا ہے؟ "
                       },
                       {
                         "imagePath": "assets/scripts/Script 6/infographic2.png",
-                        "text": "Infographic 2 Description"
+                        "text": "کھانسی کا مطلب ہمیشہ ٹی بی نہیں ہوتا۔ عام طور پر تین ہفتوں سے زیادہ وقت تک رہتی  ہے۔ "
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 6/infographic2.png",
+                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
                       }
                     ]
                   }
@@ -319,11 +250,27 @@
                     "infographics": [
                       {
                         "imagePath": "assets/scripts/Script 7/infographic1.png",
-                        "text": "Infographic 1 Description"
+                        "text": "کھانستے یا چھینکتے وقت ہاتھوں کے بجاۓ،  ٹشو یا رومال کا استعمال کریں۔"
                       },
                       {
                         "imagePath": "assets/scripts/Script 7/infographic2.png",
-                        "text": "Infographic 2 Description"
+                        "text": "کھانسنے یا چھینکنے کے بعد ہمیشہ اپنے ہاتھوں کو صابن اور پانی سے دھوئیں۔"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/infographic2.png",
+                        "text": "استعمال شدہ ٹشوز کو ڈھکن والے کوڑے دان میں پھینکیں۔ "
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/infographic2.png",
+                        "text": "بھیڑ بھاڑ والی جگہوں پر ماسک پہنیں، خصوصاً کھانستے یا چھینکتے  وقت۔"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/infographic2.png",
+                        "text": "ڈھکن کے ساتھ کنٹینر میں تھوکیں یا اس جگہ کو ریت سے بھر دیں۔ "
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/infographic2.png",
+                        "text": "بات کرتے یا ہنستے وقت اپنے منہ کو ٹشو یا رومال سے ڈھانپ لیں۔ "
                       }
                     ]
                   }
@@ -331,7 +278,7 @@
                 {
                   "featureId": 14,
                   "featureType": "interactiveAnimationVideo",
-                  "title": "متعدی بیماریاں",
+                  "title": "ٹی بی کی  غلط فہمیوں کا خاتمہ",
                   "duration": "4 mins",
                   "submoduleId": 2,
                   "data": {
@@ -357,7 +304,7 @@
                   "submoduleId": 2,
                   "duration": "3 mins",
                   "data": {
-                    "title": "Comic Strip 1",
+                    "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم اقدامات",
                     "imagePairs": [
                       {
                         "topImage": "assets/scripts/Script 9/Script 9-01.png",
@@ -442,7 +389,7 @@
                 },
                 {
                   "featureId": 112,
-                  "title": "ٹی بی کی روک تھام میں لیڈی ہیلتھ ورکر کے  فرائض",
+                  "title": "بلغم  کے نمونے جمع کرنے  کا طریقہ کار  ",
                   "featureType": "interactiveImage",
                   "isCompleted": false,
                   "submoduleId": 101,
@@ -450,16 +397,17 @@
                   "data": {
                     "interactiveImageModel": [
                       {
-                        "image": "assets/scripts/script11/Script11-01.jpg",
-                        "guide": "Click on the mirror to ensure the patient's mouth is empty.",
+                        "image": "assets/scripts/Script 11/Artboard 2.png",
+                        "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
                         "touchArea": {
                           "left": 460,
-                          "top": 70,
-                          "width": 140,
-                          "height": 180
+                          "top": 60,
+                          "width": 160,
+                          "height": 200
                         },
                         "showDialog": false,
                         "dialogText": "",
+                        "showGuideText": false,
                         "swipeEnabled": false,
                         "longPressEnabled": false,
                         "longPressAction": "",
@@ -467,25 +415,26 @@
                         "swipeAction": ""
                       },
                       {
-                        "image": "assets/scripts/script11/Script11-02.jpg",
+                        "image": "assets/scripts/Script 11/Artboard 37.png",
                         "guide": "",
                         "touchArea": {
-                          "left": 370,
-                          "top": 310,
-                          "width": 310,
-                          "height": 80
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
                         },
                         "showDialog": true,
-                        "dialogText": "Before collecting sputum sample, make sure the patient has not eaten.",
+                        "autoShowDialog": true,
+                        "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو ۔",
                         "swipeEnabled": false,
                         "longPressEnabled": false,
                         "longPressAction": "",
                         "dragDropEnabled": false,
-                        "swipeAction": "nextImage"
+                        "swipeAction": ""
                       },
                       {
-                        "image": "assets/scripts/script11/Script11-03.jpg",
-                        "guide": "Drag the shower and hot drink icons to the patient.",
+                        "image": "assets/scripts/Script 11/Artboard 38.png",
+                        "guide": "پانی کی بالٹی کو مریض کے پاس لایں۔",
                         "touchArea": {
                           "left": 0,
                           "top": 0,
@@ -498,16 +447,128 @@
                         "longPressAction": "showMessage",
                         "dragDropEnabled": true,
                         "swipeAction": "",
-                        "draggableImage": "assets/scripts/script11/shower_and_drink_icons.png",
+                        "dragTargetWidth": 350,
+                        "dragTargetHeight": 400,
+                        "draggableImageScale": 1.5,
+                        "draggableImage": "assets/scripts/Script 11/Artboard 41.png",
                         "draggableImageInitialPosition": {
-                          "dx": 80,
+                          "dx": 20,
                           "dy": 180
                         },
                         "dragTargetPosition": {
-                          "dx": 200,
-                          "dy": 180
+                          "dx": 400,
+                          "dy": 140
                         },
-                        "newDraggableImage": "assets/scripts/images/updated_icon.png",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 43.png",
+                        "dialogText": "تھوک کے نمونے جمع کرنے سے پہلے مریض کو گرم پانی سے نہا  لینے یا گرم مشروب پینے کی رہنمائی کریں۔ اس سے بلغم کو نکلنے میں مدد ملے گی۔ ",
+                        "guide": "",
+                        "touchArea": {
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "showDialog": true,
+                        "showGuideText": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "showMessage",
+                        "dragDropEnabled": false,
+                        "autoShowDialog": true,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 46.png",
+                        "guide": "گہری سانس شروع کرنے کے لئے مریض پر تھوڑی دیر تک کلک کیے رکھیں۔",
+                        "touchArea": {
+                          "left": 100,
+                          "top": 50,
+                          "width": 200,
+                          "height": 150
+                        },
+                        "showDialog": false,
+                        "dialogText": "",
+                        "swipeEnabled": false,
+                        "longPressEnabled": true,
+                        "longPressAction": "showTimer",
+                        "dragDropEnabled": false,
+                        "swipeAction": "",
+                        "draggableImage": null,
+                        "draggableImageInitialPosition": null,
+                        "dragTargetPosition": null,
+                        "newDraggableImage": null,
+                        "newBackgroundImage": null,
+                        "moveToNextOnDrop": false,
+                        "autoShowDialog": false,
+                        "dragTargetWidth": 300.0,
+                        "dragTargetHeight": 300.0,
+                        "draggableImageWidth": 100.0,
+                        "draggableImageHeight": 100.0,
+                        "draggableImageScale": 1.0
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 50.png",
+                        "guide": "مریض کے کھانسنے کے لیے ڈبی پر سوائپ کریں۔ ",
+                        "touchArea": {
+                          "left": 150,
+                          "top": 165,
+                          "width": 100,
+                          "height": 100
+                        },
+                        "showDialog": false,
+                        "swipeEnabled": true,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "nextImage",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 55.png",
+                        "guide": "اس کی جانچ پڑتال کے لئے نمونے پر کلک کریں۔ ",
+                        "touchArea": {
+                          "left": 150,
+                          "top": 165,
+                          "width": 100,
+                          "height": 100
+                        },
+                        "showDialog": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 59.png",
+                        "guide": "",
+                        "dialogText": "نمونے کا جائزہ لیں اور اس بات کا یقین کریں کہ لیا گیا نمونہ بلغم ہی ہو، منہ یا ناک کی رطوبت نہ ہو۔ ",
+                        "touchArea": {
+                          "left": 150,
+                          "top": 165,
+                          "width": 100,
+                          "height": 100
+                        },
+                        "showDialog": true,
+                        "showGuideText": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": true,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
                         "moveToNextOnDrop": true
                       }
                     ]
@@ -522,38 +583,86 @@
                   "data": {
                     "images": [
                       {
+                        "title": "TB05 فارم بھرنے کی ہدایات ",
                         "imagePath": "assets/scripts/Script 12/Script 12-01.png",
                         "hotspots": [
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "درخواست کا سیکشن",
+                            "dialogText": " یہ حصہ مریض کو بلغم کے معائنے کی  لیبارٹری بھیجتے وقت بھرا جائے گا ۔",
                             "offset": {
-                              "dx": 100.0,
+                              "dx": 180.0,
+                              "dy": 80.0
+                            }
+                          },
+                          {
+                            "title": "تاریخ",
+                            "dialogText": "یہ وہ تاریخ ہے جب بلغم کا پہلا نمونہ حاصل کیا گیا ہو۔ ",
+                            "offset": {
+                              "dx": 160.0,
+                              "dy": 140.0
+                            }
+                          },
+                          {
+                            "title": "مریض کا نام",
+                            "dialogText": " مریض کا پورا نام لکھیں۔ ",
+                            "offset": {
+                              "dx": 290.0,
+                              "dy": 155.0
+                            }
+                          },
+                          {
+                            "title": "عمر",
+                            "dialogText": "مریض کی بتائی گئی یا اندازاً عمر سالوں میں لکھیں ۔",
+                            "offset": {
+                              "dx": 200.0,
+                              "dy": 155.0
+                            }
+                          },
+                          {
+                            "title": "جنس ",
+                            "dialogText": "مناسب ڈبے میںtick کا نشان لگائیں ۔ ",
+                            "offset": {
+                              "dx": 115.0,
+                              "dy": 155.0
+                            }
+                          },
+                          {
+                            "title": "پتہ ",
+                            "dialogText": "مریض کا مکمل پتہ درج کریں۔",
+                            "offset": {
+                              "dx": 230.0,
+                              "dy": 175.0
+                            }
+                          },
+                          {
+                            "title": "ضلع ",
+                            "dialogText": "مریض کے رہائشی ضلع کا نام لکھیں۔",
+                            "offset": {
+                              "dx": 150.0,
+                              "dy": 180.0
+                            }
+                          },
+                          {
+                            "title": "معائنے کی وجہ",
+                            "dialogText": "اگر بلغم کا معائنہ پہلی بار آئے مریض کی تشخیص کے لئے کیا جارہا ہے تو تشخیص کے خانے کو پُر کریں ورنہ مرحلہ وار معائنے کی صورت میں دوسرے خانے میںtick  کا نشان لگائیں۔  ",
+                            "offset": {
+                              "dx": 270.0,
                               "dy": 200.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 2 Description",
+                            "title": "دستخط",
+                            "dialogText": "یہاں لیڈی ہیلتھ ورکر اپنے دستخط کرے گی ۔",
                             "offset": {
-                              "dx": 150.0,
-                              "dy": 250.0
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "imagePath": "assets/scripts/images/anotherImage.png",
-                        "hotspots": [
-                          {
-                            "dialogText": "Another Image Hotspot 1 Description",
-                            "offset": {
-                              "dx": 120.0,
-                              "dy": 220.0
+                              "dx": 140.0,
+                              "dy": 490.0
                             }
                           },
                           {
-                            "dialogText": "Another Image Hotspot 2 Description",
+                            "title": "ہدایات ",
+                            "dialogText": "نتائج والاحصہ لیبارٹری میں بھرا جائے گا ۔",
                             "offset": {
-                              "dx": 180.0,
+                              "dx": 190.0,
                               "dy": 270.0
                             }
                           }
@@ -573,33 +682,98 @@
                       {
                         "question": "What do you see question 1?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "میں فوراً جمیل کے گھر جاتی ہوں ۔",
+                          "جانے سے پہلے، میں ٹی بی کی علامات کا جائزہ لوں گی  اور بلغم کے نمونے جمع کرنے کے لئے ضروری سامان تیار کروں گی ۔",
+                          "جمیل سے ملنے سے پہلے میں جلدی سے ایک کپ چائے پی لیتی ہوں ۔"
                         ],
-                        "correctAnswer": "Option 1",
+                        "correctAnswer": "جانے سے پہلے، میں ٹی بی کی علامات کا جائزہ لوں گی  اور بلغم کے نمونے جمع کرنے کے لئے ضروری سامان تیار کروں گی ۔",
+                        "correctExplanation": "جانے سے پہلے، میں ٹی بی کی علامات کا جائزہ لوں گی  اور بلغم کے نمونے جمع کرنے کے لئے ضروری سامان تیار کروں گی ۔",
+                        "incorrectExplanation": "اگرچہ فوری طور پر مدد کرنا ضروری ہے ، لیکن ٹی بی کی علامات کا جائزہ لئے بغیر بلغم کے ٹیسٹ کی تیاری کرنا غیر مؤثر  ہے۔ دورے سے پہلے کی تیاری تحمل سے کی جانی چاہیے۔ ",
+                        "imagePaths": [
+                          "assets/scripts/Script 13/Script 13-01.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "مجھے جمیل کو فوری معائنے کے لیے ہیلتھ سینٹر آنے کے لیے بلانا چاہیے۔",
+                          "جمیل سے ملنے سے پہلے، مجھے ٹی بی کی علامات کا جائزہ لینا چاہیے، معا ئنہ  کی تیاری کرنی چاہیے اور بلغم جمع کرنے کے لیے ضروری سامان کا انتظام کرنا چاہیے۔",
+                          "مجھے گاؤں والوں کو جمیل کی ممکنہ بیماری کے بارے میں بتانا چاہیے تاکہ انہیں خبردار کیا جا سکے۔"
+                        ],
+                        "correctAnswer": "جمیل سے ملنے سے پہلے، مجھے ٹی بی کی علامات کا جائزہ لینا چاہیے، معا ئنہ  کی تیاری کرنی چاہیے اور بلغم جمع کرنے کے لیے ضروری سامان کا انتظام کرنا چاہیے۔",
                         "correctExplanation": "Correct because...",
                         "incorrectExplanation": "Incorrect because...",
                         "imagePaths": [
-                          "assets/scripts/Script 13/Script 13-01.png",
-                          "assets/scripts/Script 13/Script 13-02.png",
+                          "assets/scripts/Script 13/Script 13-02.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "جمیل، ایک گہری سانس لیں، کھانسیں اور اس ڈبی میں تھوک دیں۔",
+                          "جمیل، ایک گہری سانس لیں، 5 سیکنڈ تک اسے روکیں، پھر زور سے  کھانسیں تاکہ اپنے سینے کے اندر سے بلغم  کو باہر نکال سکیں۔ براہ مہربانی اسے اس ڈبی میں تھوک دیں۔",
+                          "جمیل، زیادہ سے زیادہ کھانسی کرنے کی کوشش کریں اور پھر اس ڈبی میں تھوک دیں۔"
+                        ],
+                        "correctAnswer": "جمیل، ایک گہری سانس لیں، 5 سیکنڈ تک اسے روکیں، پھر زور سے  کھانسیں تاکہ اپنے سینے کے اندر سے بلغم  کو باہر نکال سکیں۔ براہ مہربانی اسے اس ڈبی میں تھوک دیں۔",
+                        "correctExplanation": "یہ ضروری ہے کہ جمیل اپنے سینے کی گہرائی سے بلغم  تھوکیں۔ 5 سیکنڈ تک سانس روک کر گہری کھانسی کرنے سے بلغم باہر آئے گا۔",
+                        "incorrectExplanation": "وضاحت: اگرچہ یہ ہدایت صحیح لگتی ہے، لیکن اس میں ایک اہم تفصیل نہیں ہے: کھانسی سے صرف تھوک یا ہلکا ریشہ نہیں نکلنا چاہیے بلکہ گہرائی سے بلغم باہر آئے۔",
+                        "imagePaths": [
                           "assets/scripts/Script 13/Script 13-03.png"
                         ]
                       },
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "جمیل، آج رات، آپ کو  زیادہ کھانا کھانا چاہئے اور بہت زیادہ پانی پینا چاہئے. صبح کے وقت، اس ڈبی میں صرف تھوکیں. پھر، نمونے کو اپنے باورچی خانے میں رکھیں جب تک کہ میں اسے لینے نہیں آجاتی ۔",
+                          "جمیل، تمہیں آج رات کچھ خاص کرنے کی ضرورت نہیں ہے۔ کل صبح، کچھ بھی کھانے یا پینے سے پہلے، آج کے عمل کو دہرائیں اور اس ڈبی میں نمونہ جمع کریں۔ براہ کرم اس بات کو یقینی بنائیں کہ کنٹینر اچھی طرح سے بند ہے اور اسے محفوظ جگہ پر رکھیں جب تک کہ میں اسے لینے نہیں آتی ۔",
+                          "جمیل، آج رات جتنی ہو سکے بلغم کھانسنے کی کوشش کریں، تاکہ  صبح کے وقت آپ کے پاس کم کام ہو ۔ جب آپ جاگیں تو بس اس ڈبی میں تھوک دیں۔"
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "جمیل، تمہیں آج رات کچھ خاص کرنے کی ضرورت نہیں ہے۔ کل صبح، کچھ بھی کھانے یا پینے سے پہلے، آج کے عمل کو دہرائیں اور اس ڈبی میں نمونہ جمع کریں۔ براہ کرم اس بات کو یقینی بنائیں کہ کنٹینر اچھی طرح سے بند ہے اور اسے محفوظ جگہ پر رکھیں جب تک کہ میں اسے لینے نہیں آتی ۔",
+                        "correctExplanation": "یہ ضروری ہے کہ جمیل اپنے سینے کی گہرائی سے بلغم  تھوکیں۔ 5 سیکنڈ تک سانس روک کر گہری کھانسی کرنے سے بلغم باہر آئے گا۔",
+                        "incorrectExplanation": "وضاحت: یہ ہدایت غلط ہے کیونکہ رات کو زیادہ کھانا کھانے اور بہت زیادہ پانی پینے سے تھوک کا نمونہ پتلا ہو سکتا ہے۔ اس کے علاوہ، ممکنہ آلودگی کی وجہ سے نمونے کو باورچی خانے میں رکھنا محفوظ نہیں ہے۔ ",
                         "imagePaths": [
-                          "assets/scripts/Script 13/Script 13-04.png",
-                          "assets/scripts/Script 13/Script 13-05.png",
-                          "assets/scripts/Script 13/Script 13-06.png",
+                          "assets/scripts/Script 13/Script 13-04.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "جمیل، جب آپ اپنے تیسرے نمونے کے لئے لیبارٹری کا دورہ کریں تو  آپ ناشتہ کرکے  جایں تاکہ آپ کے پاس کافی توانائی ہو۔",
+                          "جمیل تیسرے نمونے کے لیے صبح سویرے کچھ بھی کھانے یا پینے سے پہلے لیبارٹری جائیں ۔ وہ اس عمل میں آپ کی رہنمائی کریں گے۔",
+                          "جمیل، تیسرے نمونے کے لیے اپنی سہولت کے مطابق لیبارٹری جائیں۔ وہ آپ کو ہدایت دیں گے کہ بلغم کو کس طرح کھانسنا ہے۔"
+                        ],
+                        "correctAnswer": "جمیل تیسرے نمونے کے لیے صبح سویرے کچھ بھی کھانے یا پینے سے پہلے لیبارٹری جائیں ۔ وہ اس عمل میں آپ کی رہنمائی کریں گے۔",
+                        "correctExplanation": "یہ ضروری ہے کہ جمیل اپنے سینے کی گہرائی سے بلغم  تھوکیں۔ 5 سیکنڈ تک سانس روک کر گہری کھانسی کرنے سے بلغم باہر آئے گا۔",
+                        "incorrectExplanation": "وضاحت: یہ غلط ہے کیونکہ تھوک کا نمونہ صبح کچھ بھی کھانے یا پینے سے پہلے جمع کیا جانا چاہئے، ناشتے کے بعد نہیں۔ پہلے سے کھانے سے بلغم کا نمونہ پتلا ہوسکتا ہے۔ ",
+                        "imagePaths": [
+                          "assets/scripts/Script 13/Script 13-05.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "جمیل، اب آپ آرام کر سکتے ہیں۔ ہم نمونے معائنے  کے لئے بھیجیں گے، اور جب نتائج تیار ہوں گے تو  آپ سے رابطہ کیا جائے گا۔ ",
+                          "جمیل، نمونوں کی جانچ کی جائے گی۔ یہ ضروری ہے کہ آپ دوسروں کے ساتھ اپنے رابطے کو جتنا ممکن ہو محدود کریں جب تک کہ ہمارے پاس نتائج نہ ہوں۔ اگر ٹیسٹ کےمثبت آتے ہیں، تو آپ کو فوری طور پر علاج شروع کرنے کی ضرورت ہوگی۔",
+                          "جمیل، اب جب نمونے جمع کر لیے گئے ہیں، تو پریشان ہونے کی کوئی بات نہیں ہے۔ بس اپنے دن کو معمول کے مطابق گزاریں، اور جب ہمارے پاس مزید معلومات ہوں گی تو میں آپ کو بتاؤں گی۔ "
+                        ],
+                        "correctAnswer": "جمیل، نمونوں کی جانچ کی جائے گی۔ یہ ضروری ہے کہ آپ دوسروں کے ساتھ اپنے رابطے کو جتنا ممکن ہو محدود کریں جب تک کہ ہمارے پاس نتائج نہ ہوں۔ اگر ٹیسٹ کےمثبت آتے ہیں، تو آپ کو فوری طور پر علاج شروع کرنے کی ضرورت ہوگی۔",
+                        "correctExplanation": "یہ ضروری ہے کہ جمیل اپنے سینے کی گہرائی سے بلغم  تھوکیں۔ 5 سیکنڈ تک سانس روک کر گہری کھانسی کرنے سے بلغم باہر آئے گا۔",
+                        "incorrectExplanation": "وضاحت: یہ انتخاب جمیل کو نتائج آنے تک الگ تھلگ رہنے کی ضرورت اور ٹیسٹ مثبت آنے کی صورت میں ٹی بی کا  علاج کروانے کی اہمیت کو خارج کرتا ہے۔ ",
+                        "imagePaths": [
+                          "assets/scripts/Script 13/Script 13-06.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see question 2?",
+                        "options": [
+                          "مجھے جمیل کو فون پر ٹیسٹ کے نتائج سے آگاہ کرنا چاہیے۔ میں اسے فوری علاج کے لیے مرکز صحت بھیج دوں گی ۔",
+                          "میں جمیل کے لیے ٹی بی کی دوا کا نسخہ خود لکھوں گی ۔ ",
+                          "میں جمیل کا انتظار کرونگی کہ وہ دفتر  آ کر  اپنے نتائج کے مطلق بات کرے ۔ "
+                        ],
+                        "correctAnswer": "مجھے جمیل کو فون پر ٹیسٹ کے نتائج سے آگاہ کرنا چاہیے۔ میں اسے فوری علاج کے لیے مرکز صحت بھیج دوں گی ۔",
+                        "correctExplanation": "یہ ضروری ہے کہ جمیل اپنے سینے کی گہرائی سے بلغم  تھوکیں۔ 5 سیکنڈ تک سانس روک کر گہری کھانسی کرنے سے بلغم باہر آئے گا۔",
+                        "incorrectExplanation": "وضاحت: یہ انتخاب جمیل کو نتائج آنے تک الگ تھلگ رہنے کی ضرورت اور ٹیسٹ مثبت آنے کی صورت میں ٹی بی کا  علاج کروانے کی اہمیت کو خارج کرتا ہے۔ ",
+                        "imagePaths": [
                           "assets/scripts/Script 13/Script 13-07.png"
                         ]
                       }
@@ -662,7 +836,7 @@
                   "submoduleId": 2,
                   "duration": "5 mins",
                   "data": {
-                    "title": "Flash Cards Title",
+                    "title": "ٹی بی کی ادویات کا ردعمل",
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 17/Artboard 1.png",
@@ -700,15 +874,75 @@
                   "data": {
                     "questions": [
                       {
-                        "question": "Here's your first question? script 18",
+                        "question": "لیڈی ہیلتھ ورکر ثمینہ کی حیثیت سے آپ بی بی کو مشورہ دے رہی ہیں۔ بی بی ایک ایسی مریضہ ہے جس نے ابھی ٹی بی کی دوا شروع کی ہے۔ آپ کو متلی سے متعلق ضمنی اثرات کی وضاحت کرنا ہوگی۔ آپ انھیں کیا کہیں گی؟ ",
                         "options": [
-                          "Option A",
-                          "Option B",
-                          "Option C"
+                          "بہت کم لوگوں پر دوائی  کا مضر اثر ہوتا ہے۔ اس کے باوجود اگر متلی ہو، قے آئے یا پیٹ خراب ہو تو ذیادہ سے زیادہ پانی اور مشروب پئیں۔",
+                          "بی بی   اگر متلی ہو، قے آئے یا پیٹ خراب ہو تو بہتر ہے کہ دوائی کی اگلی خوراک اس وقت تک نہ لی جائے جب تک کہ یہ اثرات چلے نہ جائیں۔",
+                          "بی بی   اس دوائی سے آپ کا پیٹ خراب ہونا غیر معمولی بات ہے۔ دوائی کا پیٹ کی خرابی سے کوئی تعلق نہیں۔ کچھ ہلکا کھانے سے آرام آجاۓ گا."
                         ],
-                        "correctAnswer": "Option A",
-                        "correctExplanation": "Here's why A is correct...",
-                        "incorrectExplanation": "Here's why this option is incorrect...",
+                        "correctAnswer": "بہت کم لوگوں پر دوائی  کا مضر اثر ہوتا ہے۔ اس کے باوجود اگر متلی ہو، قے آئے یا پیٹ خراب ہو تو ذیادہ سے زیادہ پانی اور مشروب پئیں۔",
+                        "correctExplanation": "بہت خوب! آپ کی مدد سے   بی بی ادویات کے ایک عام ردِ عمل سے نپٹ پائیں۔ وہ اب بہتر محسوس کر رہی ہیں۔",
+                        "incorrectExplanation": "یہ صحیح تجویز نہیں۔   بی بی کو زیادہ پانی پینے کی ضرورت ہے۔",
+                        "userAnswer": ""
+                      },
+                      {
+                        "question": "اب آپ بی بی کو ایک تصویری پمفلٹ دکھاتی ہیں جس میں خارش کو ضمنی اثرات کے طور پر بیان کیا گیا ہے۔ آپ بی بی کو کیا مشورہ دیں گی؟",
+                        "options": [
+                          "اگر آپ کو شدید خارش ہو تو مرکزِ صحت سے رجوع  کریں اور تجویز کردہ ادویات کا استعمال کریں۔",
+                          "خارش معمولی بات ہے جس کے لیے مرکزِ صحت جانے کی ضرورت نہیں۔ اسے نظرانداز کریں۔ ",
+                          "خارش معمولی بات ہے جس کے لیے مرکزِ صحت جانے کی ضرورت نہیں۔ اسے نظرانداز کریں۔ "
+                        ],
+                        "correctAnswer": "اب آپ بی بی کو ایک تصویری پمفلٹ دکھاتی ہیں جس میں خارش کو ضمنی اثرات کے طور پر بیان کیا گیا ہے۔ آپ بی بی کو کیا مشورہ دیں گی؟",
+                        "correctExplanation": "ہت خوب! آپ کی تجویز کی بدولت  بی بی نے طبی مدد لینے کا فیصلہ کیا جس سے  انہیں  آرام پہنچا",
+                        "incorrectExplanation": "یہ صحیح تجویز نہیں۔ بی بی کو شدید خارش کی شکایت پر مرکزِ صحت جانے کی تجویز دینی چاہیے تھی",
+                        "userAnswer": ""
+                      },
+                      {
+                        "question": "کچھ دن بعد بی بی واپس آتی ہیں  اور آنکھوں کے دھندلے پن کی شکایت کرتی ہیں ۔ آپ انہیں کیا مشوره دیں گی ؟ ",
+                        "options": [
+                          "دوائی لینے پر نظر کا دھندلا ہونا عام نہیں۔ ایسے ردِ عمل کی صورت میں فوراً  ڈاکڑ کے پاس جائیں۔",
+                          "اکثر تھکاوٹ کی وجہ سے نظر دھندلا جاتی ہے۔ کچھ دیر آرام کرنے سے ٹھیک ہوجائیں گی۔ ",
+                          "اگر آپ کو دھندلا دکھائی دے، تو اس میں پریشانی کی کوئی بات نہیں۔ جسم کو دوائی کی عادت ہونے میں بس تھوڑا وقت لگ رہا ہے۔"
+                        ],
+                        "correctAnswer": "دوائی لینے پر نظر کا دھندلا ہونا عام نہیں۔ ایسے ردِ عمل کی صورت میں فوراً  ڈاکڑ کے پاس جائیں۔",
+                        "correctExplanation": " بہت خوب! آپ کے مشوہ کی بدولت، بی بی ادویات کے ایک عام ردِ عمل سے نپٹ پائیں۔ وہ اب بہتر محسوس کر رہی ہیں۔  ",
+                        "incorrectExplanation": "یہ  صحیح تجویز نہیں۔ اس تجویز کے باعث اہم طبی مدد میں دیر ہوسکتی ہے",
+                        "userAnswer": ""
+                      },
+                      {
+                        "question": "بی بی پریشان حال میں بتاتی ہیں کے انکی ایک رشتے دار کہتی ہیں کہ ٹی بی کی دوائیوں سے یرقان جیسا حال ہوتا ہے۔ آپ اس کا کیا جواب دیں گی؟",
+                        "options": [
+                          "یرقان ایک شدید ردعمل ہے۔ پیلی آنکھیں ،پیلے  ہاتھ اور گہرے پیلے پشاب سے اس کی نشاندہی ہوتی ہے اس صورت میں  فوری مرکز صحت جائیں",
+                          "آنکھوں اور پشاب کا پیلا ہونا پرشانی کی بات نہیں۔ کچھ دن بعد بھی اگر فرق نہ  پڑے تو ڈاکٹر کے پاس جائیں ",
+                          "یرقان ہونا پریشانی کی بات نہیں۔ زیادہ سے زیادہ پانی پئیں اور آرام کریں"
+                        ],
+                        "correctAnswer": "یرقان ایک شدید ردعمل ہے۔ پیلی آنکھیں ،پیلے  ہاتھ اور گہرے پیلے پشاب سے اس کی نشاندہی ہوتی ہے اس صورت میں  فوری مرکز صحت جائیں",
+                        "correctExplanation": "زبردست! آپ نے بی بی کو یرقان جیسے خطرناک ردعمل سے ہوشیار کیا اور ان کی جان بچائی۔ ",
+                        "incorrectExplanation": "    -یہ مشورہ بی بی کی جان کو خطرے میں ڈال سکتا تھا۔ یرقان کی صورت میں فوری طبی معائنہ  ضروری ہے ",
+                        "userAnswer": ""
+                      },
+                      {
+                        "question": "اسد نامی  ایک جوان مرد  ٹی بی کی دوائیاں لے رہا ہے - وہ سرخ پشاب کی شکایت کر رہا ہے۔ آپ انہیں کیا مشوره دیں گی ؟ ",
+                        "options": [
+                          "اسد پیشاب کا سرخ آنا پریشانی کی بات نہیں - دوائی کا ایک عام  اثر ہے۔  ",
+                          "اگر آپ کو سرخ پیشاب آرہا ہے تو دوائی لینا چھوڑ دیں اور فوری طور پر ہسپتال جائیں۔",
+                          "سرخ پشاب آنا کوئی بڑا مسلہ ہو سکتا ہے۔  بہتر ہے کہ اس کے خود بخود حل ہونے کا انتظار کیا جائے۔"
+                        ],
+                        "correctAnswer": "اسد پیشاب کا سرخ آنا پریشانی کی بات نہیں - دوائی کا ایک عام  اثر ہے۔  ",
+                        "correctExplanation": "بہت خوب آپ کے مشورے سے اسد اب تسلی سے اپنی دوائی لے رہے ہیں۔ ",
+                        "incorrectExplanation": "یہ تجویز صحیح نہیں. اسد کو تسلی دینی چاہے  تھی  کہ سرخ پیشاب دوائی کا ایک معمولی اثر ہے۔  .   ",
+                        "userAnswer": ""
+                      },
+                      {
+                        "question": "اسد کبھی کبھی ہونے والے بخار کے بارے میں بھی پریشان ہیں - آپ انہیں کیسے تسلی دیں گی؟  ",
+                        "options": [
+                          "اسد، اگر آپ کو نزلہ زکام کی علامات جیسے سر درد، چکر آنا، سردی لگنا یا بخار محسوس ہو تو  فوری طور پر مرکز صحت جائیں ۔",
+                          "اسد، زکام  جیسی علامات محض  عام نزلہ زکام ہو سکتا  ہے۔ جب تک آپ خود کو شدید بیمار محسوس نہ کریں تب تک صحت کے مرکز جانے کی کوئی ضرورت نہیں ہے۔",
+                          "بخار اور سردی صرف آپ کے جسم کو نئی ادویات کے ساتھ ایڈجسٹ کرنے کا طریقہ ہے - آپ کو کسی بھی طبی علاج کی ضرورت نہیں ہے۔"
+                        ],
+                        "correctAnswer": "اسد، اگر آپ کو نزلہ زکام کی علامات جیسے سر درد، چکر آنا، سردی لگنا یا بخار محسوس ہو تو  فوری طور پر مرکز صحت جائیں ۔",
+                        "correctExplanation": "بہت خوب! آپ نے اسد  کو صحیح مشوره دیا، جس سے اب وہ وقت پر طبی مدد حاصل کر سکیں گے -  ",
+                        "incorrectExplanation": "یہ مشوره  نقصان دہ ہو سکتا ہے کیونکہ اسد کو فوری مرکز صحت جانے کی ضرورت ہے ۔  ",
                         "userAnswer": ""
                       }
                     ]
@@ -744,6 +978,128 @@
                   }
                 },
                 {
+                  "featureId": 101,
+                  "featureType": "horizontalImageHotspot",
+                  "submoduleId": 2,
+                  "title": "Image Hotspot Example",
+                  "duration": "10 mins",
+                  "data": {
+                    "images": [
+                      {
+                        "imagePath": "assets/scripts/Script 20/Artboard 31.png",
+                        "hotspots": [
+                          {
+                            "title": "",
+                            "dialogText": "تشخیص کے فوری بعد لیڈی ہیلتھ ورکر مریض کے ساتھ متعلقہ مرکز صحت جائے گی اور اپنے اگلے ماہانہ دورہ تک کے عرصے کے لئے دوائی وصول کرے گی۔ مریض کا علاج گاہ میں اندراج کروائے گی۔ ادویات کے حصول کے لئے مریض کا TB02 کارڈ ساتھ لانا لازمی ہوگا۔ ",
+                            "offset": {
+                              "dx": 140.0,
+                              "dy": 250.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "ادویات کے اجراء اور وصول کرنے کی موجودہ اور آئندہ کی تاریخ کا اندراج مرکز صحت کا عملہ TB02 خود کرے گا۔ پھر اسی میں مریض کے آئندہ ملاقات  کی تاریخ بھی درج کی جائے گی۔",
+                            "offset": {
+                              "dx": 245.0,
+                              "dy": 255.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "لیڈی ہیلتھ ورکر کا فرض ہے کہ وہ مریض کو مرکز صحت جانے کی آئندہ تاریخ سے مطلع کرے۔",
+                            "offset": {
+                              "dx": 480.0,
+                              "dy": 230.0
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 20/Artboard 32.png",
+                        "hotspots": [
+                          {
+                            "title": "",
+                            "dialogText": "دوران علاج جب مریض لیڈی ہیلتھ ورکر کی زیر نگرانی دوا کھا رہا ہو تو اس دوران منتخب شدہ لیڈی ہیلتھ ورکر کو ہر ماہ علاج گاہ سے ادویات وصول کرنا ہوں گی۔",
+                            "offset": {
+                              "dx": 235.0,
+                              "dy": 280.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "ضروری نہیں کہ ماہانہ ادویات کے حصول کے دوران مریض لیڈی ہیلتھ ورکر کے ساتھ ہو۔ پروگرام کی ہدایات کے مطابق اس دورانیہ علاج میں ادویات مریض کے حوالے نہیں کی جائیں گی۔",
+                            "offset": {
+                              "dx": 320.0,
+                              "dy": 230.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "ادویات کو کسی محفوظ جگہ پر بچوں کی پہنچ سے دور رکھیں۔ ",
+                            "offset": {
+                              "dx": 470.0,
+                              "dy": 190.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "علاج گاہ/ مرکز صحت سے ادویات وصول کرنے کی آئندہ تاریخ کا حساب لگانے کے لئے موجودہ تاریخ ( جس دن دوا  وصول کی ہے ) میں 30 دن جمع کئے جائیں",
+                            "offset": {
+                              "dx": 660.0,
+                              "dy": 185.0
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 20/Artboard 34.png",
+                        "hotspots": [
+                          {
+                            "title": "",
+                            "dialogText": "جاری دورانیے علاج کے دوران مریض ہر ماہ علاج گاہ سے ایک ماہ کی ادویات خود وصول کرے گا۔ \n\nالبتہ دوبارہ علاج والے مریض پورے دورانیہ علاج لیڈی ہیلتھ ورکر کی زیرنگرانی دوا کھائیں گے اور اس صورت میں لیڈی ہیلتھ ورکر مریض کے لئے دوا کے حصول کا فریضہ سرانجام دے گی۔ ",
+                            "offset": {
+                              "dx": 120.0,
+                              "dy": 160.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "علاج کا دوسرا ماہ مکمل ہونے اور پانچویں اور چھٹے ماہ کے آخر میں مریض کو بلغم کے ٹیسٹ کروانے کے لئے تشخیص گاہ جانا ہوگا۔ ",
+                            "offset": {
+                              "dx": 135.0,
+                              "dy": 215.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "ان مہینوں میں علاج گاہ سے تجویز شدہ ادویات کا اجراء بلغم کے نمونے کے نتائج کے بعد فالواپ دورے میں کیا جائے گا۔",
+                            "offset": {
+                              "dx": 230.0,
+                              "dy": 215.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "ادویات کے ماہانہ اجراء کا اندراج  TB01 میں کیا جائے گا۔  کارڈ میں موجودہ تاریخ کے خانے میں  کانٹے (x) کا نشان لگا کر افقی لکیر کھینچی جائے گی جو اگلے 30 دن کے خانوں پر محیط ہوگی۔  TB01میں یہ اندراج  مرکز صحت کا عملہ کرے گا۔ ",
+                            "offset": {
+                              "dx": 420.0,
+                              "dy": 200.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "لیڈی ہیلتھ ورکر کے لئے یہ نہات اہم ہے کہ وہ مریض کی روزانہ کھانے والی ادویات کی پہچان رکھتی ہو۔ وہ مریض جو زیرنگرانی علاج کروا رہے ہوں ان سے توقع کی جا سکتی ہے کہ جس قدر ممکن ہو ادویات باقاعدگی سے زیر نگرانی کھائیں۔ البتہ کبھی کبھار ایسی صورتحال کا سامنا ہو سکتا ہے کہ مریض یا لیڈی ہیلتھ ورکر کو چند دن کے لئے کسی دوسری جگہ جانا پڑ جائے۔ ",
+                            "offset": {
+                              "dx": 580.0,
+                              "dy": 220.0
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
                   "featureId": 25,
                   "featureType": "imageBranchingScenario",
                   "title": "ادویات کی ابتدائی وصولی ",
@@ -754,49 +1110,62 @@
                       {
                         "question": "What do you see script 21?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "ثمینہ دس دنوں کی دوا وصول کرتی ہیں۔",
+                          "ثمینہ چھ دنوں کی دوا وصول کرتی ہیں۔ ",
+                          "ثمینہ چار دنوں کی دوا وصول کرتی ہیں۔"
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "ثمینہ چھ دنوں کی دوا وصول کرتی ہیں۔ ",
+                        "correctExplanation": "بہت  خوب! مؤثر علاج اور مریض کی حفاظت کے لئے دوا کی صحیح خوراک اور مدت کو یقینی بنانا بہت ضروری ہے۔ ",
+                        "incorrectExplanation": "مؤثر علاج اور مریض کی حفاظت کے لئے دوا کی صحیح خوراک اور مدت کو یقینی بنانا بہت ضروری ہے۔ صحیح انتخاب یہ ہے کہ ثمینہ 6 دن کے لئے دوا جمع کریں۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 21/Script 21-02.png",
                           "assets/scripts/Script 21/Script 21-03.png",
-                          "assets/scripts/Script 21/Script 21-04.png",
-                          "assets/scripts/Script 21/Script 21-05.png"
+                          "assets/scripts/Script 21/Script 21-04.png"
                         ]
                       },
                       {
                         "question": "What do you see script 21?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "ثمینہ نے تیس اکتوبر کو دوا لینے کا فیصلہ کیا۔ ",
+                          "ثمینہ نے یکم نومبر کو دوا لینے کا فیصلہ کیا ہے۔",
+                          "ثمینہ نے یکم نومبر کو دوا لینے کا فیصلہ کیا ہے۔"
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "ثمینہ نے یکم نومبر کو دوا لینے کا فیصلہ کیا ہے۔",
+                        "correctExplanation": "بہت خوب! باقاعدہ اور مؤثر علاج کو یقینی بنانے کے لئے علاج کے انتظام میں مناسب شیڈولنگ اور منصوبہ بندی اہم ہے۔ ",
+                        "incorrectExplanation": "باقاعدہ اور مؤثر علاج کو یقینی بنانے کے لئے علاج کی شیڈولنگ اور منصوبہ بندی اہم ہے۔ ثمینہ کے لیے دوا لینے کی صحیح تاریخ یکم نومبر ہے",
                         "imagePaths": [
+                          "assets/scripts/Script 21/Script 21-05.png",
                           "assets/scripts/Script 21/Script 21-06.png",
-                          "assets/scripts/Script 21/Script 21-07.png",
-                          "assets/scripts/Script 21/Script 21-08.png",
-                          "assets/scripts/Script 21/Script 21-09.png"
+                          "assets/scripts/Script 21/Script 21-07.png"
                         ]
                       },
                       {
                         "question": "What do you see script 21?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "ثمینہ نزہت بی بی سے کہتی ہے کہ جب بھی انہیں یاد آئے وہ اپنی دوائی لے لے۔",
+                          "ثمینہ ادویات کی تاریخ کی پابندی کی اہمیت اور انہیں لینے کے طریقہ کار کے بارے میں اچھی طرح سے بتاتی ہیں۔",
+                          "ثمینہ بغیر کسی ہدایت کے دوا دے دیتی ہیں۔"
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "ثمینہ ادویات کی تاریخ کی پابندی کی اہمیت اور انہیں لینے کے طریقہ کار کے بارے میں اچھی طرح سے بتاتی ہیں۔",
+                        "correctExplanation": "بہت خوب! مریضوں کے ساتھ ان کی ادویات کے شیڈول کے بارے میں واضح بات چیت اس کی تعمیل اور ان کے علاج کی کامیابی کو یقینی بنانے کے لئے ضروری ہے۔",
+                        "incorrectExplanation": "بہت خوب! مریضوں کے ساتھ ان کی ادویات کے شیڈول کے بارے میں واضح بات چیت اس کی تعمیل اور ان کے علاج کی کامیابی کو یقینی بنانے کے لئے ضروری ہے۔",
                         "imagePaths": [
-                          "assets/scripts/Script 21/Script 21-10.png",
+                          "assets/scripts/Script 21/Script 21-08.png",
+                          "assets/scripts/Script 21/Script 21-09.png",
+                          "assets/scripts/Script 21/Script 21-10.png"
+                        ]
+                      },
+                      {
+                        "question": "What do you see script 21?",
+                        "options": [
+                          "ثمینہ نے کلینک کے سفر کو کم سے کم کرنے کے لئے 15 دن کے لئے دوا جمع کرنے کا فیصلہ کیا۔",
+                          "ثمینہ مزید 6 دنوں کے لیے دوائیں جمع کرتی ہیں۔",
+                          "ثمینہ آج بے حد مصروف ہو گئیں، اس لیے وہ دوا جمع کرنے کا کام کل پر ڈال دیتی ہیں۔"
+                        ],
+                        "correctAnswer": "ثمینہ مزید 6 دنوں کے لیے دوائیں جمع کرتی ہیں۔",
+                        "correctExplanation": "بہت اچھا! ہمیشہ بروقت ادویات کو دوبارہ بھر کر علاج میں تسلسل کو یقینی بنائیں۔ بہت زیادہ یا بہت کم علاج کے عمل میں خلل ڈال سکتے ہیں۔",
+                        "incorrectExplanation": "ہمیشہ بروقت ادویات کو دوبارہ بھرنے کے ذریعہ علاج میں تسلسل کو یقینی بنائیں۔ بہت زیادہ یا بہت کم علاج کے عمل میں خلل ڈال سکتے ہیں۔ صحیح انتخاب یہ ہے کہ ثمینہ مزید 6 دنوں کے لئے دوا جمع کریں۔",
+                        "imagePaths": [
                           "assets/scripts/Script 21/Script 21-11.png",
                           "assets/scripts/Script 21/Script 21-12.png",
                           "assets/scripts/Script 21/Script 21-13.png"
@@ -808,11 +1177,11 @@
                 {
                   "featureId": 26,
                   "featureType": "comicStrip",
-                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
+                  "title": " ٹی بی کے مریض کو زیر نگرانی دوا کھلانا ",
                   "submoduleId": 2,
                   "duration": "3 mins",
                   "data": {
-                    "title": "Comic Strip 1",
+                    "title": " ٹی بی کے مریض کو زیر نگرانی دوا کھلانا ",
                     "imagePairs": [
                       {
                         "topImage": "assets/scripts/Script 22/Artboard 1 copy 11.png",
@@ -863,38 +1232,46 @@
                     "images": [
                       {
                         "imagePath": "assets/scripts/Script 23/Artboard 21.png",
+                        "title": "Image Hotspot Example",
                         "hotspots": [
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "پہلے خانے میں مریض کا نام، پتہ اور معاون علاج وغیرہ لکھے جائیں گے۔",
                             "offset": {
-                              "dx": 100.0,
-                              "dy": 200.0
+                              "dx": 220.0,
+                              "dy": 40.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 2 Description",
+                            "title": "",
+                            "dialogText": "ادویات  زیرنگرانی  کھانے, بغیر نگرانی دوا کھانے اور دوا  کھانے کے لئے تین طرح کے نشانات استعمال کئے گئے ہیں جو علاج معاونت کارڈ پر دیئے گئے ہیں۔  ",
                             "offset": {
-                              "dx": 150.0,
-                              "dy": 250.0
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 23/Artboard 13.png",
-                        "hotspots": [
-                          {
-                            "dialogText": "Another Image Hotspot 1 Description",
-                            "offset": {
-                              "dx": 120.0,
-                              "dy": 220.0
+                              "dx": 55.0,
+                              "dy": 70.0
                             }
                           },
                           {
-                            "dialogText": "Another Image Hotspot 2 Description",
+                            "title": "",
+                            "dialogText": " تاریخوں والے خانے میں متعلقہ تاریخ پر نشان لگایا جائے گا۔  ",
                             "offset": {
                               "dx": 180.0,
-                              "dy": 270.0
+                              "dy": 140.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "یہ فارم معاون علاج بھرے گا۔ ",
+                            "offset": {
+                              "dx": 40.0,
+                              "dy": 260.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "زیر نگرانی دوا کھانے، بغیر زیر نگرانی دوا کھانے یا دوا نہ کھانے کی صورت میں کارڈ کے اوپر بائیں طرف متعلقہ خانوں میں درج شدہ کسی ایک خانے میں نشان لگایا جائے گا۔ ",
+                            "offset": {
+                              "dx": 240.0,
+                              "dy": 315.0
                             }
                           }
                         ]
@@ -905,7 +1282,7 @@
                 {
                   "featureId": 28,
                   "featureType": "imageBranchingScenario",
-                  "title": "ٹی بی کے علاج میں معاونت ",
+                  "title": "ٹی بی کی ادویات کا باقاعدگی سے استعمال۔",
                   "duration": "10 mins",
                   "submoduleId": 2,
                   "data": {
@@ -913,13 +1290,13 @@
                       {
                         "question": "What do you see question Script 24?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "باقاعدگی سے دوا لینا ضروری ہے، لیکن زندگی میں ایسے مواقع آجاتے ہیں۔ آئیں مل کر باقاعدگی قائم رکھنے کے طریقے سوچیں ۔",
+                          "حمیدہ، ایک خوراک کی کوتاہی بھی بہت خطرناک ثابت ہو سکتی ہے! آپ کو زیادہ ذمہ دار ہونا چاہیے۔ ",
+                          "ایک خوراک کا نہ لینا کوئی بڑی بات نہیں۔ اس کے بارے میں فکر مت کریں۔ "
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "باقاعدگی سے دوا لینا ضروری ہے، لیکن زندگی میں ایسے مواقع آجاتے ہیں۔ آئیں مل کر باقاعدگی قائم رکھنے کے طریقے سوچیں ۔",
+                        "correctExplanation": "بہترین! ہمدردی اہم ہے، اور مریض کی زندگی کی حقیقتوں کو سمجھنے سے اعتماد پیدا ہوتا ہے۔ علاج کی پابندی ہمدردانہ طریقے سے ہونا ضروری ہے۔",
+                        "incorrectExplanation": "ہ ردعمل مسلسل ادویات کے استعمال کی اہمیت کو کم کرتا ہے۔ ادویات کی باقاعدگی کی اہمیت کو ڈرائے بغیر سمجھانا ضروری ہے۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 46.png",
                           "assets/scripts/Script 24/Artboard 52.png",
@@ -929,13 +1306,13 @@
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "یہاں اس بات کی نشاندہی کروں گی کہ آپ نے اپنی دو خوراکیں دیر سے لی ہیں۔ یہ ضروری ہے کہ ہم اسے درست پُر کریں۔ ",
+                          "چونکہ آپ نے ایک دن کی خوراک نہیں لی ، لٰہذا ہم اس دن کو خالی چھوڑ دیں گے۔ ",
+                          "ٹھیک ہے، میں نشان لگا دیتی ہوں کہ آپ نے وقت پر دوائی لی  تاکہ آپ کا ریکارڈ خراب نہ ہو۔ "
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "یہاں اس بات کی نشاندہی کروں گی کہ آپ نے اپنی دو خوراکیں دیر سے لی ہیں۔ یہ ضروری ہے کہ ہم اسے درست پُر کریں۔ ",
+                        "correctExplanation": "بہت خوب! ایک درست ریکارڈ برقرار رکھنا ضروری ہے۔ اس سے آپ اور حمیدہ بی بی دونوں کو علاج کی پیشرفت کے ریکارڈ میں آسانی ہوگی۔ ",
+                        "incorrectExplanation": "یاد رکھیں، ایک مکمل اور درست ریکارڈ ہونا ضروری ہے۔ ایک دن خالی چھوڑنا مریض کی ادویات کی تاریخ کی درست عکاسی نہیں کرتا",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 54.png",
                           "assets/scripts/Script 24/Artboard 55.png",
@@ -945,13 +1322,13 @@
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "یہ اچھی ترکیب ہے۔ یاددہانی کے لئے ایک مخصوص وقت مقرر کر لیں تاکہ معمول بن جائے",
+                          "نہیں، آپ کو اپنی دواؤں کی ذمہ داری خود لینی چاہیے۔ آپ دوسروں پر بھروسہ نہیں کر سکتیں۔  ",
+                          "کیوں نہ آپ اپنی دوائیاں ہر وقت اپنے ساتھ رکھیں ؟ "
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "یہ اچھی ترکیب ہے۔ یاددہانی کے لئے ایک مخصوص وقت مقرر کر لیں تاکہ معمول بن جائے",
+                        "correctExplanation": "بہت خوب ! خاندان کی مدد اور ساتھ انسان کو حوصلہ دیتی ہے۔ عادت بنانے سے حمیدہ بی بی کو دوا کی باقاعدگی میں مدد ہوگی۔ ",
+                        "incorrectExplanation": "بہت خوب ! خاندان کی مدد اور ساتھ انسان کو حوصلہ دیتی ہے۔ عادت بنانے سے حمیدہ بی بی کو دوا کی باقاعدگی میں مدد ہوگی۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 57.png",
                           "assets/scripts/Script 24/Artboard 58.png",
@@ -961,13 +1338,13 @@
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "میں نے نسخے کو دوبارہ پڑھا ہے اور آپ کی گولیوں کی گنتی کی ہے۔ یہ ہدایات کے ساتھ آپ کے اگلے ہفتے کی فراہمی ہے",
+                          "میں آج ذرا جلدی میں ہوں، لیکن یہ صحیح مقدار ہونی چاہئے۔ یہ آپ کے اگلے ہفتےکی گولیاں ہیں",
+                          "حمیدہ بی بی یہ آپ کی گولیاں ہیں۔ باقی کیا کرنا ہے آپ کو پتہ ہے۔ "
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "میں نے نسخے کو دوبارہ پڑھا ہے اور آپ کی گولیوں کی گنتی کی ہے۔ یہ ہدایات کے ساتھ آپ کے اگلے ہفتے کی فراہمی ہے",
+                        "correctExplanation": "بہترین! ادویات کی نسخے سے تصدیق کرنا غلطی کے خطرے کو کم کرتا ہے۔اس سے غلطی کی گنجائش کم ہو جاتی ہے اور معیاری دیکھ بھال ہوتی ہے۔ ",
+                        "incorrectExplanation": "ادویات اور علاج کے معاملات میں جلد بازی ہرگز نہیں کرنی چاہیے۔ ادویات میں بھول چوک مریض کو شدید نقصان پہنچا سکتی ہے",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 60.png",
                           "assets/scripts/Script 24/Artboard 61.png",
@@ -977,13 +1354,13 @@
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "ہر آنے والے دن کے ساتھ آپ کی طاقت  بڑھ رہی ہے۔ آئیے ٹی بی کے خلاف آپ کے بیٹے کے تحفظ کے لئے اقدامات پر بات کرتے ہیں۔",
+                          "بی بی تھکاوٹ عام بات ہے۔اس سے پریشان نہ ہوں ۔",
+                          "یہ پریشان کن بات ہے! ہمیں فوری طور پر آپ کی تمام ادویات کو تبدیل کرنے کی ضرورت ہوسکتی ہے۔ "
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "ہر آنے والے دن کے ساتھ آپ کی طاقت  بڑھ رہی ہے۔ آئیے ٹی بی کے خلاف آپ کے بیٹے کے تحفظ کے لئے اقدامات پر بات کرتے ہیں۔",
+                        "correctExplanation": "یہ پریشان کن بات ہے! ہمیں فوری طور پر آپ کی تمام ادویات کو تبدیل کرنے کی ضرورت ہوسکتی ہے۔ ",
+                        "incorrectExplanation": "مریضوں کے خدشات، خصوصاً صحت والے ، ہمیشہ سنجیدگی سے سننے چاہیے۔ انہیں مسترد کرنے سے اعتماد اور ہم آہنگی کو نقصان پہنچ سکتا ہے۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 63.png",
                           "assets/scripts/Script 24/Artboard 64.png",
@@ -993,13 +1370,13 @@
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "مریضوں کے خدشات، خصوصاً صحت والے ، ہمیشہ سنجیدگی سے سننے چاہیے۔ انہیں مسترد کرنے سے اعتماد اور ہم آہنگی کو نقصان پہنچ سکتا ہے۔ ",
+                          "کسی بھی مسئلے سے بچنے کے لئے، میں ان سب کو 'زیر ا نگرانی خوراک’ کے طور پر نشان زد کر دیتی ہوں ۔",
+                          "ایک دن دوا نہ لینا پریشانی کا باعث ہے۔ مجھے لگتا ہے کہ ان دنوں کو فی الحال خالی چھوڑ دینا بہتر ہے۔"
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "مریضوں کے خدشات، خصوصاً صحت والے ، ہمیشہ سنجیدگی سے سننے چاہیے۔ انہیں مسترد کرنے سے اعتماد اور ہم آہنگی کو نقصان پہنچ سکتا ہے۔ ",
+                        "correctExplanation": "بہترین! مریض کی ادویات کی مقدار کو درست طریقے سے ریکارڈ کرنا  چاہیے۔ چاہے نگرانی میں ہو یا نہ ہو،  یہ علاج کی مؤثر نگرانی کے لئے اہم ہے۔ ",
+                        "incorrectExplanation": "ٹریٹمنٹ سپورٹ کارڈ کو ادھورا چھوڑنے سے مریض کے علاج اور پیش رفت کے بارے میں غلط فہمیاں پیدا ہوسکتی ہیں۔ تمام ادویات کے استعمال کو دستاویزی شکل دینا ضروری ہے۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 66.png",
                           "assets/scripts/Script 24/Artboard 67.png",
@@ -1009,13 +1386,13 @@
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "حمیدہ بی بی، کیا آپ درستگی کے لیے اپنا پتہ اور اپنے معاون علاج کے نام کی تصدیق کر سکتی ہیں؟ ",
+                          "پچھلی بار کے بعد سے آپ کی تفصیلات تبدیل نہیں ہوئی ہیں، لٰہذا میں انہیں ویسے ہی رکھوں گی جیسا پہلے سے ہے۔",
+                          "آپ کا نام اور پتہ سب سے اہم ہیں۔ معاون علاج کی تفصیلات ضروری نہیں ہیں"
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "حمیدہ بی بی، کیا آپ درستگی کے لیے اپنا پتہ اور اپنے معاون علاج کے نام کی تصدیق کر سکتی ہیں؟ ",
+                        "correctExplanation": "بہت اچھا کام ہے! مریض کے ساتھ براہ راست معلومات کی تصدیق اس بات کو یقینی بناتی ہے کہ سب سے زیادہ درست اور تازہ ترین ریکارڈ برقرار رکھا جائے ، جو مؤثر علاج کے انتظام کے لئے اہم ہے۔ ",
+                        "incorrectExplanation": "علاج سپورٹ کارڈ کے تمام حصے ، بشمول معاون علاج کی تفصیلات ، مریض کی دیکھ بھال کی جامع تفہیم کے لئے ضروری ہیں۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 69.png",
                           "assets/scripts/Script 24/Artboard 70.png",
@@ -1025,13 +1402,13 @@
                       {
                         "question": "What do you see question 2?",
                         "options": [
-                          "Option 1",
-                          "Option 2",
-                          "Option 3"
+                          "آپ کے تھوک کا اگلا نمونہ اس مہینے کی 25 تاریخ کو آنے والا ہے، اور آپ کو 20 تاریخ کو اپنی دوا لینے کی ضرورت ہے۔ براہ مہربانی ان تاریخوں کو نشان زد کریں۔",
+                          "مجھے یقین ہے کہ یہ پچھلے مہینے کی طرح ہی ہے۔ بس مہینے کے آخر میں ہر چیز کے لئے آئیں۔",
+                          "تھوک کا نمونہ اتنا ضروری نہیں ہے۔ بس وقت پر اپنی دوا حاصل کرنے پر توجہ مرکوز رکھیں۔"
                         ],
-                        "correctAnswer": "Option 1",
-                        "correctExplanation": "Correct because...",
-                        "incorrectExplanation": "Incorrect because...",
+                        "correctAnswer": "آپ کے تھوک کا اگلا نمونہ اس مہینے کی 25 تاریخ کو آنے والا ہے، اور آپ کو 20 تاریخ کو اپنی دوا لینے کی ضرورت ہے۔ براہ مہربانی ان تاریخوں کو نشان زد کریں۔",
+                        "correctExplanation": "بہترین! تھوک کے نمونے کی تاریخ اور ادویات جمع کرنے کی تاریخ دونوں کے لئے ٹی بی 02 کارڈ کو احتیاط سے چیک کرنا، اس بات کو یقینی بناتا ہے کہ لیڈی ہیلتھ ورکر مکمل طور پر آگاہ ہے اور حمیدہ بی بی کو درست ہدایات فراہم کرسکتی ہے۔ یہ ٹی بی کے علاج کے مؤثر انتظام کے لئے ضروری ہے۔ ",
+                        "incorrectExplanation": "ماضی کے نمونوں کی بنیاد پر تاریخوں کو فرض کرنا خطرناک ہے اور غلطیوں کا سبب بن سکتا ہے۔ مریض کو درست اور محفوظ دیکھ بھال فراہم کرنے کے لئے ٹی بی 02 کارڈ کو ہمیشہ اچھی طرح چیک کرنا ضروری ہے۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 24/Artboard 72.png",
                           "assets/scripts/Script 24/Artboard 73.png",
@@ -1067,7 +1444,7 @@
                   "featureType": "presentation",
                   "duration": "5 mins",
                   "submoduleId": 2,
-                  "title": "Introduction to Variables",
+                  "title": "تعارف ",
                   "data": {
                     "assetImages": [
                       "assets/scripts/Script 25/Artboard 1.png",
@@ -1078,48 +1455,18 @@
                       "assets/scripts/Script 25/Artboard 6.png",
                       "assets/scripts/Script 25/Artboard 7.png"
                     ],
-                    "questions": [
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      },
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      }
-                    ],
-                    "showQuestionDialog": [
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
-                    ]
+                    "questions": [],
+                    "showQuestionDialog": []
                   }
                 },
                 {
                   "featureId": 32,
                   "featureType": "flashCard",
                   "submoduleId": 2,
-                  "title": "flashCard Example",
+                  "title": "جنسی امراض کی عام علامات",
                   "duration": "5 mins",
                   "data": {
-                    "title": "flashCard",
+                    "title": "جنسی امراض کی عام علامات",
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 26/Artboard 12@2x.png",
@@ -1169,11 +1516,11 @@
                 {
                   "featureId": 34,
                   "featureType": "comicStrip",
-                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
+                  "title": "ایس ٹی ڈی سے متاثرہ کمیونٹی ممبران کے ساتھ مواصلت کی موثر حکمت عملی",
                   "submoduleId": 2,
                   "duration": "3 mins",
                   "data": {
-                    "title": "Comic Strip 1",
+                    "title": "ایس ٹی ڈی سے متاثرہ کمیونٹی ممبران کے ساتھ مواصلت کی موثر حکمت عملی",
                     "imagePairs": [
                       {
                         "topImage": "assets/scripts/Script 27/Artboard 14.png",
@@ -1188,7 +1535,7 @@
                         "bottomImage": "assets/scripts/Script 27/Artboard 19.png"
                       },
                       {
-                        "topImage": "assets/scripts/Script 27/Artboard 20.pngg",
+                        "topImage": "assets/scripts/Script 27/Artboard 20.png",
                         "bottomImage": "assets/scripts/Script 27/Artboard 21.png"
                       },
                       {
@@ -1206,17 +1553,25 @@
                   "featureId": 35,
                   "featureType": "infographics",
                   "submoduleId": 2,
-                  "title": "Infographics Example",
+                  "title": "جنسی امراض سے بچاؤ کے طریقے",
                   "duration": "2 mins",
                   "data": {
                     "infographics": [
                       {
                         "imagePath": "assets/scripts/script 28/infographic1.png",
-                        "text": "Infographic 1 Description"
+                        "text": "لوگوں کو جنسی بیماریوں سے متعلق معلومات سے باشعور کریں۔"
                       },
                       {
                         "imagePath": "assets/scripts/images/infographic2.png",
-                        "text": "Infographic 2 Description"
+                        "text": "اس مرض میں مبتلا لوگوں کو علاج کے لئے مناسب مرکز صحت جانے کی ترغیب دیں۔"
+                      },
+                      {
+                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "text": "ذاتی صفائی اور ساتھی سے وفاداری کا خیال رکھیں ۔ "
+                      },
+                      {
+                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔"
                       }
                     ]
                   }
@@ -1298,11 +1653,11 @@
                 {
                   "featureId": 39,
                   "featureType": "flashCard",
-                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
+                  "title": "ایڈز کے مرض کی چند بڑی علامات اور اس کا ٹیسٹ   ",
                   "submoduleId": 2,
                   "duration": "3 mins",
                   "data": {
-                    "title": "flashCard",
+                    "title": "ایڈز کے مرض کی چند بڑی علامات اور اس کا ٹیسٹ",
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 30/Artboard 3@2x.png",
@@ -1373,7 +1728,7 @@
                   "featureId": 41,
                   "featureType": "interactiveAnimationVideo",
                   "submoduleId": 2,
-                  "title": "Interactive Animation Video Example",
+                  "title": "ایڈز کے مرض کی چند بڑی علامات اور اس کا ٹیسٹ  ",
                   "duration": "4 mins",
                   "data": {
                     "videoPath": "assets/scripts/Script 31/interactive_animation.mp4",
@@ -1427,7 +1782,7 @@
                   "featureType": "presentation",
                   "duration": "5 mins",
                   "submoduleId": 2,
-                  "title": "Introduction to Variables",
+                  "title": " ماں سے بچے میں ایڈز کے جراثیم کی منتقلی سے بچاو",
                   "data": {
                     "assetImages": [
                       "assets/scripts/Script 32/Artboard 1.png",
@@ -1500,7 +1855,7 @@
                   "featureType": "presentation",
                   "duration": "5 mins",
                   "submoduleId": 2,
-                  "title": "Introduction to Variables",
+                  "title": "تعرف",
                   "data": {
                     "assetImages": [
                       "assets/scripts/Script 33/Artboard 1.png",
@@ -1547,11 +1902,11 @@
                 {
                   "featureId": 46,
                   "featureType": "comicStrip",
-                  "title": "ٹی بی کیا ہے؟",
+                  "title": "ہیپاٹائیٹس کی علامات",
                   "duration": "3 mins",
                   "submoduleId": 1,
                   "data": {
-                    "title": "Comic Strip 1",
+                    "title": "ہیپاٹائیٹس کی علامات",
                     "imagePairs": [
                       {
                         "topImage": "assets/scripts/Script 34/Artboard 1 copy 2.png",
@@ -1597,11 +1952,11 @@
                 {
                   "featureId": 48,
                   "featureType": "flashCard",
-                  "title": "flashCard Example",
+                  "title": "ہیپاٹائیٹس کی علامات",
                   "submoduleId": 2,
                   "duration": "5 mins",
                   "data": {
-                    "title": "Script 35",
+                    "title": "ہیپاٹائیٹس کی علامات",
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/script 35/Artboard 23@2x.png",
@@ -1654,7 +2009,7 @@
                   "featureId": 49,
                   "featureType": "horizontalImageHotspot",
                   "submoduleId": 2,
-                  "title": "Image Hotspot Example",
+                  "title": "ہیپاٹائیٹس سے بچنے کی احتیاطی تدابیر",
                   "duration": "10 mins",
                   "data": {
                     "images": [
@@ -1662,56 +2017,64 @@
                         "imagePath": "assets/scripts/Script 36/Script 36-01.png",
                         "hotspots": [
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "اگر انجکشن لگوانے کی اشد ضرورت ہو تو ہمیشہ نئی سرنج استعمال کریں۔ استعمال شدہ سرنج کے استعمال سے پرہیز کرنا چاہیے ۔ ",
                             "offset": {
                               "dx": 40.0,
                               "dy": 170.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "اگر خون کی اشد ضرورت ہو تو اس بات کی تصدیق کرلیں کہ خون ایڈز، ہیپا ٹائٹس ، یرقان کے وائرس سے پاک ہو۔ ",
                             "offset": {
                               "dx": 70.0,
                               "dy": 100.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "دانتوں کا علاج کراتے وقت جراثیم سے پاک اوزار کے استعمال پر اصرار کریں",
                             "offset": {
                               "dx": 170.0,
                               "dy": 200.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 2 Description",
+                            "title": "",
+                            "dialogText": "کان یا ناک چھدواتے وقت جراثیم سے پاک اوازا ر کے استعمال کو یقینی بنائیں",
                             "offset": {
                               "dx": 260.0,
                               "dy": 110.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "حجام سے شیو کراتے وقت نئے بلیڈ کے استعمال پر اصرار کریں۔",
                             "offset": {
                               "dx": 295.0,
                               "dy": 190.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "لوگوں کو صحت کی تعلیم دیں اور انہیں ہپاٹائیٹس کے بارے میں درست معلومات فراہم کریں۔ ",
                             "offset": {
                               "dx": 450.0,
                               "dy": 115.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "دانتوں کا علاج کراتے وقت جراثیم سے پاک اوزار کے استعمال پر اصرار کریں۔ ",
                             "offset": {
                               "dx": 500.0,
                               "dy": 115.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 1 Description",
+                            "title": "",
+                            "dialogText": "پانی ہمیشہ ابالیں ۔",
                             "offset": {
                               "dx": 570.0,
                               "dy": 235.0
@@ -1727,56 +2090,64 @@
                         "imagePath": "assets/scripts/Script 36/Script 36-02.png",
                         "hotspots": [
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "ہیپاٹائٹس سی سے متاثرہ افراد کا اس کی روک تھام میں کردار: خون، اعضاء یا تولیدی اعضاء ہر گز عطیہ نہ کریں۔ ",
                             "offset": {
                               "dx": 75.0,
                               "dy": 180.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "ہیپا ٹائٹس  بی سے بچاؤ کے لئے حفاظتی ٹیکوں کا کورس مکمل کروائیں (مکمل تحفظ کے لئے چند ماہ کے وقفے سے تین حفاظتی ٹیکے لگائے جاتے ہیں)",
                             "offset": {
                               "dx": 100.0,
                               "dy": 220.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "حاملہ خواتین کو حمل کے دوران ہیپا ٹائٹس کے ٹیسٹ ضرور کروالینے چاہیے ۔ ایچ آئی وی اور ہیپا ٹائٹس سے متاثرہ حاملہ خواتین کو ہپاٹائٹس بی کے حفاظتی ٹیکے تجویز کئے جاتے ہیں۔ ",
                             "offset": {
                               "dx": 190.0,
                               "dy": 180.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "ہیپاٹائٹس سی سے متاثرہ افراد کا اس کی روک تھام میں کردار: خون، اعضاء یا تولیدی اعضاء ہر گز عطیہ نہ کریں۔ ",
                             "offset": {
                               "dx": 295.0,
                               "dy": 245.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "اپنا توتھ برش ، بلیڈ اور روزمرہ استعمال کی دوسری اشیاء دوسروں کو استعمال نہ کرنے دیں۔ ",
                             "offset": {
                               "dx": 385.0,
                               "dy": 240.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "ہیپاٹائٹس سی سے متاثرہ افراد کا اس کی روک تھام میں کردار: خون، اعضاء یا تولیدی اعضاء ہر گز عطیہ نہ کریں۔ ",
                             "offset": {
                               "dx": 400.0,
                               "dy": 180.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "جسم پر لگنے والے کٹ اور زخم کو ڈھانپ کر رکھیں۔ ذاتی صفائی کا خاص خیال رکھیں۔ ",
                             "offset": {
                               "dx": 540.0,
                               "dy": 200.0
                             }
                           },
                           {
-                            "dialogText": "Hotspot 3 Description",
+                            "title": "",
+                            "dialogText": "سرنجوں کے ذریعے ادویات اور منشیات کے استعمال سے گریز کریں۔ متاثرہ افراد خون نہ دیں۔ ",
                             "offset": {
                               "dx": 665.0,
                               "dy": 190.0
@@ -1813,7 +2184,7 @@
                   "featureType": "presentation",
                   "duration": "5 mins",
                   "submoduleId": 2,
-                  "title": "Introduction to Variables",
+                  "title": "تعارف ",
                   "data": {
                     "assetImages": [
                       "assets/scripts/script 37/Artboard 1.png",
@@ -1862,10 +2233,10 @@
                   "featureId": 53,
                   "featureType": "flashCard",
                   "submoduleId": 2,
-                  "title": "flashCard Example",
+                  "title": "ملیریا کی علامات",
                   "duration": "5 mins",
                   "data": {
-                    "title": "flashCard",
+                    "title": "ملیریا کی علامات",
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 39/Artboard 4@2x.png",
@@ -1909,7 +2280,7 @@
                   "featureType": "presentation",
                   "duration": "5 mins",
                   "submoduleId": 2,
-                  "title": "Introduction to Variables",
+                  "title": "ملیریا سے کون سے لوگ متاثر ہو سکتے ہیں۔",
                   "data": {
                     "assetImages": [
                       "assets/scripts/Script 40/Artboard 1.png",

@@ -118,9 +118,9 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
         });
       } else {
         // Show result screen
-        Get.to(() => ResultsScreen(),
-            transition: Transition.fade,
-            duration: const Duration(milliseconds: 300));
+        // Get.to(() => ResultsScreen(),
+        //     transition: Transition.fade,
+        //     duration: const Duration(milliseconds: 300));
       }
     });
     Question currentQuestion =
