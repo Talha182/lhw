@@ -123,6 +123,8 @@ class _ImageHotspotState extends State<ImageHotspot>
                               children: [
                                 Text(dialogText,
                                     textAlign: TextAlign.center,
+
+                                    textDirection: TextDirection.rtl,
                                     style: TextStyle(
                                         fontSize: 22,
                                         fontWeight: FontWeight.bold,
@@ -133,6 +135,8 @@ class _ImageHotspotState extends State<ImageHotspot>
                                         10), // Spacing between title and text
                                 Text(title,
                                     textAlign: TextAlign.center,
+                                    textDirection: TextDirection.rtl,
+
                                     style: const TextStyle(
                                         fontFamily: "UrduType", fontSize: 18)),
                                 const SizedBox(
@@ -271,7 +275,7 @@ class _ImageHotspotState extends State<ImageHotspot>
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'اس چارٹ کو سمجھیئے۔ اس میں معلومات\n کا ایک بڑا ذخیرہ ہے۔',
+                                  'گلابی رنگ کے دائروں پر کلک کریں۔ جن دائروں کوآپ پڑھ چکی ہیں ان کا رنگ سبز ہو جاۓ گا۔',
                                   textAlign: TextAlign.center,
                                   textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
                                   speed: const Duration(milliseconds: 50),
@@ -384,6 +388,7 @@ class _ImageHotspotState extends State<ImageHotspot>
           child: Text(
             currentTitle,
             textAlign: TextAlign.center,
+            textDirection: TextDirection.rtl,
             style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
           ),
         ),

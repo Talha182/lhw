@@ -533,7 +533,7 @@ class _PresentationScreenState extends State<PresentationScreen>
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'یہ چند صفحہ ہیں جن کو آپ نے مکمل پڑنا ہی۔ اس میں اور کوئی کام نہیں۔\n صرف پڑھا ہی کافی ہے۔',
+                                  'یہ چند صفحہ ہیں جن کو آپ نے مکمل پڑھنا ہے۔',
                                   textAlign: TextAlign.center,
                                   textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
                                   speed: const Duration(milliseconds: 50),

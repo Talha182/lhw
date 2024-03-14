@@ -77,6 +77,7 @@ dependencies:
   chewie: ^1.5.0
   video_player: ^2.8.3
   animated_text_kit: ^4.2.2
+  liquid_swipe: ^3.1.0
 
 
 
@@ -114,6 +115,7 @@ flutter:
     - assets/scripts/script11/
     - assets/scripts/Script 11/
     - assets/scripts/Script 17/
+    - assets/scripts/Script 18/
     - assets/scripts/Script 20/
     - assets/scripts/Script 21/
     - assets/scripts/Script 22/
@@ -122,6 +124,7 @@ flutter:
     - assets/scripts/Script 25/
     - assets/scripts/Script 26/
     - assets/scripts/Script 27/
+    - assets/scripts/Script 28/
     - assets/scripts/Script 30/
     - assets/scripts/Script 32/
     - assets/scripts/Script 33/

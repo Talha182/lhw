@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -201,6 +202,21 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
     _startMessageTimer();
   }
 
+  // Method to show full-screen image on tap
+  void _showFullScreenImage(String imagePath) {
+    // Temporarily switch to portrait mode
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => FullScreenImageViewer(imagePath: imagePath),
+    )).then((_) {
+      // Restore orientation preferences after the full-screen view is popped
+      SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final fabHeight = 65.0; // Standard height of a FAB
@@ -338,25 +354,28 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                         items: widget.imageBranchingScenarioModel
                                             .questions[questionIndex].imagePaths
                                             .map((imagePath) {
-                                          return Builder(
-                                            builder: (BuildContext context) {
-                                              return ClipRRect(
-                                                borderRadius: BorderRadius.circular(
-                                                    10), // Apply rounded corners to the ClipRRect
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.transparent,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(imagePath),
-                                                      fit: BoxFit.fill,
+                                          return GestureDetector(
+                                              onTap: () => _showFullScreenImage(imagePath),
+                                            child: Builder(
+                                              builder: (BuildContext context) {
+                                                return ClipRRect(
+                                                  borderRadius: BorderRadius.circular(
+                                                      10), // Apply rounded corners to the ClipRRect
+                                                  child: Container(
+                                                    width: MediaQuery.of(context)
+                                                        .size
+                                                        .width,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.transparent,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(imagePath),
+                                                        fit: BoxFit.fill,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              );
-                                            },
+                                                );
+                                              },
+                                            ),
                                           );
                                         }).toList(),
                                       ),
@@ -526,7 +545,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'اس مخصوص سمق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
+                                  'اس مخصوص سبق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
                                   textAlign: TextAlign.center,
                                   textStyle: const TextStyle(
                                       fontSize: 18,
@@ -683,3 +702,39 @@ class ImageBranchingScenarioModel {
     return ImageBranchingScenarioModel(questions: questionList);
   }
 }
+
+
+class FullScreenImageViewer extends StatelessWidget {
+  final String imagePath;
+
+  const FullScreenImageViewer({Key? key, required this.imagePath}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          color: Colors.white,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height - 40,
+          child: InteractiveViewer(
+            panEnabled: true, // Set it to false to prevent panning.
+            boundaryMargin: EdgeInsets.all(80),
+            minScale: 0.5,
+            maxScale: 4,
+            child: Image.asset(imagePath),
+          ),
+        ),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.close, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+    );
+  }
+}
+

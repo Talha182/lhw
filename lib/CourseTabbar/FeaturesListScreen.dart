@@ -374,35 +374,32 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                   }
                                   break;
                                 case FeatureType.comicStrip:
-                                  List<dynamic> comicStripData = feature
-                                      .data['imagePairs'] as List<dynamic>;
-                                  List<ComicStripModel> comicStripsModel =
-                                      comicStripData
-                                          .map((item) => ComicStripModel(
-                                                  title: feature.data['title'],
-                                                  imagePairs: [
-                                                    ImagePair.fromJson(item)
-                                                  ]))
-                                          .toList();
+                                  List<dynamic> comicStripData = feature.data['imagePaths'] as List<dynamic>; // Assuming your data structure now uses 'imagePaths' directly
 
-                                  final result = await Get.to(() => ComicStrip(
-                                        comicStripsModel: comicStripsModel,
-                                        featureId: feature.featureId,
-                                      ));
+                                  // Ensure there's a safe fallback in case 'imagePaths' is null
+                                  List<String> imagePaths = comicStripData != null ? List<String>.from(comicStripData) : [];
+
+                                  // Now that ComicStripModel directly uses a list of image paths, adjust the mapping
+                                  ComicStripModel comicStripModel = ComicStripModel(
+                                    title: feature.data['title'],
+                                    imagePaths: imagePaths,
+                                  );
+
+                                  // Assuming you only have one comic strip model per feature, but adjust if needed
+                                  final result = await Get.to(() => HorizontalComicStrip(
+                                    comicStripsModel: [comicStripModel], // Pass a list containing the single model
+                                    featureId: feature.featureId,
+                                  ));
+
                                   if (result == true) {
                                     toggleFeatureCompletion(feature);
-                                    await DatabaseHelper.instance
-                                        .markFeatureAsCompleted(
-                                            feature.featureId);
-                                    // await DatabaseHelper.instance.calculateAndUpdateModuleProgress(widget.moduleId);
-                                    Provider.of<CoursesProvider>(context,
-                                            listen: false)
+                                    await DatabaseHelper.instance.markFeatureAsCompleted(feature.featureId);
+                                    Provider.of<CoursesProvider>(context, listen: false)
                                         .markFeatureAsCompletedAndUpdateProgress(
-                                            widget.courseId,
-                                            widget.moduleId,
-                                            feature.featureId);
+                                        widget.courseId, widget.moduleId, feature.featureId);
                                   }
                                   break;
+
                                 case FeatureType.flashCard:
                                   final flashCardModel =
                                       FlashCardScreenModel.fromJson(

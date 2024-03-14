@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +60,18 @@ String? selectedValue;
 class _HomePageState extends State<HomePage> {
   bool showFirstMessage = false;
   bool showSecondMessage = false;
+  bool showguideMessage = true;
+  List<String> messages = [
+    "السلام علکیم اور خوش آمدید! میرا نام ثمینہ ہے۔ میں بھی آپ کی طرح ہی ایک لیڈی ہیلتھ ورکر ہوں۔",
+    "علم کے اس سفر پر آپ کی بھروسہ مند اور وفادار رہنما بننا میر ے لیے بہت خوشی  کی بات ہے۔ ",
+    "ہم مل کر جانیں گے، سیکھیں گے اور ترقی کریں گے۔",
+    "اگر آپ کے کوئی سوالات ہیں یا رہنمائی کی ضرورت ہے تو بلا جھجھک مجھ سے پوچھیں۔ آئیے اس دلچسپ مہم جوئی کا آغاز کریں!",
+    "ڈیش بورڈ پر خوش آمدید! آپ کے سیکھنے کے سفر کا کمانڈ سینٹر ہے۔",
+    "چلیں اب ہم کورسز پر چلتے ہیں جہاں پر آپ اپنا تعلیم کا سفر تہ کریں گی۔ کورسز کے آپشن پر ٹیپ کریں",
+  ];
+  int messageIndex = 0; // Current message index
+  Timer? messageTimer;
+  Key animatedTextKey = UniqueKey();
 
   @override
   void initState() {
@@ -66,6 +80,7 @@ class _HomePageState extends State<HomePage> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    restartMessageCycle();
 
     // Show first message after 3 seconds
     Future.delayed(const Duration(seconds: 3), () {
@@ -104,6 +119,37 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void restartMessageCycle() {
+    setState(() {
+      showguideMessage = true; // Ensure the message area is visible
+      messageIndex = 0; // Reset the index to start from the first message
+      animatedTextKey = UniqueKey(); // Reset the key to restart the animation
+    });
+    messageTimer?.cancel(); // Cancel any existing timer
+    messageTimer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        if (messageIndex < messages.length - 1) {
+          setState(() {
+            messageIndex++;
+            animatedTextKey = UniqueKey(); // Update the key to force a rebuild
+          });
+        } else {
+          timer.cancel();
+          // Optionally hide messages after one full cycle:
+          setState(() {
+            showguideMessage = false;
+          });
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    messageTimer?.cancel();
+    super.dispose();
+  }
+
   Future<void> navigateToLastVisitedCourse(BuildContext context) async {
     // Directly use the lastVisitedCourse from the provider
     final provider = Provider.of<CoursesProvider>(context,
@@ -120,7 +166,7 @@ class _HomePageState extends State<HomePage> {
         await prefs.setBool(isFirstVisitKey, false);
         // Navigate with fade transition
         await Get.to(() => LessonPageTabBar(course: course),
-            transition: Transition.fade, duration: Duration(milliseconds: 300));
+            transition: Transition.fade, duration: const Duration(milliseconds: 300));
       } else {
         // Navigate without checking for first visit
         Get.to(() => ModuleScreen(course: course));
@@ -132,7 +178,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  double _fabYPosition = 600.0; // Default position
 
   @override
   Widget build(BuildContext context) {
@@ -163,14 +208,35 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
+    double _fabYPosition = 460.0; // Default position
 
-    final fabHeight = 65.0; // Standard height of a FAB
+
+    const fabHeight = 65.0; // Standard height of a FAB
     final topSafeArea = MediaQuery.of(context).padding.top;
     final bottomSafeArea = MediaQuery.of(context).padding.bottom;
 
     double? lastVisitedCourseProgress = lastVisitedCourse?.progress;
     return Scaffold(
         backgroundColor: const Color(0xFFF1F1F1),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(screenHeight * 0.09),
+          child: AppBar(
+            elevation: 0.0,
+            backgroundColor: Colors.white,
+            flexibleSpace:
+            _isSearching ? _buildSearchAppBar() : _buildDefaultAppBar(),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(1.0),
+              // Adjust the height of the bottom border
+              child: Container(
+                width: double.infinity,
+                height: 1.0,
+                color: const Color(
+                    0xFFDCDBDB), // Set the color of the bottom border
+              ),
+            ),
+          ),
+        ),
         body: Stack(
           children: [
             ListView(
@@ -217,16 +283,22 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
-                                    const Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 24, bottom: 16, right: 8),
-                                      child: Text(
-                                        'میرے مضامین',
-                                        style: TextStyle(
-                                            fontFamily: 'UrduType',
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w700),
-                                      ),
+                                    const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 24, bottom: 16, right: 8),
+                                          child: Text(
+                                            'میرے مضامین',
+                                            style: TextStyle(
+                                                fontFamily: 'UrduType',
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     Row(
                                       mainAxisAlignment:
@@ -297,7 +369,7 @@ class _HomePageState extends State<HomePage> {
                                                           top: 16),
                                                       child: Text(
                                                         '${completedCourses}',
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             fontSize: 18,
                                                             fontFamily: ""),
                                                       ),
@@ -382,7 +454,7 @@ class _HomePageState extends State<HomePage> {
                                                           top: 16),
                                                       child: Text(
                                                         "${remainingCoursesCount}",
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             fontSize: 18,
                                                             fontFamily: ""),
                                                       ),
@@ -500,13 +572,13 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsets.only(
+                                                            const EdgeInsets.only(
                                                           right: 10,
                                                           bottom: 16,
                                                         ),
                                                         child: Text(
                                                           "${lastVisitedCourse!.title}",
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               fontFamily:
                                                                   "UrduType",
                                                               fontSize: 14),
@@ -529,7 +601,7 @@ class _HomePageState extends State<HomePage> {
                                                             ),
                                                             Text(
                                                               '${lastVisitedCourse!.moduleCount}  اسباق',
-                                                              style: TextStyle(
+                                                              style: const TextStyle(
                                                                   fontFamily:
                                                                       "UrduType",
                                                                   fontSize: 12),
@@ -567,7 +639,7 @@ class _HomePageState extends State<HomePage> {
 
                                                             Text(
                                                               '${lastVisitedCourse!.quizCount} ٹیسٹ',
-                                                              style: TextStyle(
+                                                              style: const TextStyle(
                                                                   fontFamily:
                                                                       "UrduType",
                                                                   fontSize: 12),
@@ -1332,45 +1404,43 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Positioned(
-              right: 20, // Distance from right
+              right: 20,
               top: _fabYPosition,
               child: GestureDetector(
                 onVerticalDragUpdate: (dragUpdateDetails) {
                   setState(() {
                     _fabYPosition += dragUpdateDetails.delta.dy;
-
-                    // Clamp the position to prevent the FAB from moving off the screen
-                    // Consider top and bottom safe areas (like notches and navigation bars)
                     _fabYPosition = _fabYPosition.clamp(
                         topSafeArea, screenHeight - fabHeight - bottomSafeArea);
                   });
                 },
+                onTap: restartMessageCycle,
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 72.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      if (showFirstMessage)
-                        GestureDetector(
-                          // onTap: _showMessageAgain,
-                          child: CustomPaint(
-                            painter: MenuBoxBackground(),
+                      if (showguideMessage)
+                        CustomPaint(
+                          painter: MenuBoxBackground(), // Implement this class as per your custom UI needs
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minWidth: 100, // Minimum width to start with
+                              maxWidth: 250, // Maximum width before wrapping
+                            ),
                             child: Container(
-                              margin:
-                                  const EdgeInsets.only(right: 10, left: 10),
-                              // width: screenWidth * 0.7,
-
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 12.0),
+                              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
                               child: AnimatedTextKit(
+                                key: animatedTextKey,
                                 animatedTexts: [
                                   TypewriterAnimatedText(
-                                    'ڈیش بورڈ پر خوش آمدید ',
+                                    messages[messageIndex],
                                     textAlign: TextAlign.center,
                                     textStyle: const TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontFamily: "UrduType"),
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType",
+                                    ),
                                     speed: const Duration(milliseconds: 50),
                                   ),
                                 ],
@@ -1382,20 +1452,15 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        // onTap: _showMessageAgain,
-                        child: CircleAvatar(
-                          backgroundColor: const Color(0xffF6B3D0),
-                          radius: 30,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 2),
-                            child: SvgPicture.asset(
-                              "assets/images/samina_instructor.svg",
-                              fit: BoxFit.fill,
-                            ),
+                      const SizedBox(width: 5),
+                      CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                            "assets/images/samina_instructor.svg",
+                            width: 60, // Fixed width for the SVG image
                           ),
                         ),
                       ),
@@ -1404,6 +1469,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+
           ],
         ));
   }

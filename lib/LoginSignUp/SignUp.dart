@@ -1,10 +1,14 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_number_field/flutter_phone_number_field.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
+import '../Presentation/Presentation.dart';
 import '../models/user_model.dart';
 import 'Login.dart';
 
@@ -25,6 +29,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController idNoController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   DateTime? selectedDate;
+  double _fabYPosition = 650.0;
+  List<String> messages = [
+    "ہماری سیکھنے کی برادری میں خوش آمدید! شروع کرنے کے لیے براہ کرم نیچے دی گئی معلومات کو پُر کریں۔ ",
+    "اگر آپ واپس آ رہی ہیں، تو اپنا سفر جاری رکھنے کے لیے صرف لاگ ان کریں۔ ",
+    "اگر آپ کے کوئی سوالات ہیں یا مددکی ضرورت ہے، میں مدد کے لیے حاضر ہوں!",
+  ];
+  int messageIndex = 0; // Current message index
+  Timer? messageTimer;
+  Key animatedTextKey = UniqueKey();
+  bool showGuideMessage = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    restartMessageCycle();
+
+  }
 
   void _signup() async {
     String dobFormatted = selectedDate != null
@@ -78,6 +100,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
 // The rest of your widget build method and other utility methods...
   }
 
+  void restartMessageCycle() {
+    setState(() {
+      showGuideMessage = true; // Ensure the message area is visible
+      messageIndex = 0; // Reset the index to start from the first message
+      animatedTextKey = UniqueKey(); // Reset the key to restart the animation
+    });
+    messageTimer?.cancel(); // Cancel any existing timer
+    messageTimer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        if (messageIndex < messages.length - 1) {
+          setState(() {
+            messageIndex++;
+            animatedTextKey = UniqueKey(); // Update the key to force a rebuild
+          });
+        } else {
+          timer.cancel();
+          // Optionally hide messages after one full cycle:
+          setState(() {
+            showGuideMessage = false;
+          });
+        }
+      }
+    });
+  }
+
+
   Future<void> _selectDate(BuildContext context) async {
     DateTime? selectedDate = await showDatePicker(
       context: context,
@@ -100,503 +148,587 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    messageTimer?.cancel();
+
+  }
+  @override
   Widget build(BuildContext context) {
     final _formkey = GlobalKey<FormState>();
-
+    final fabHeight = 65.0; // Standard height of a FAB
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: Form(
-            key: _formkey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const Center(
-                    child: Text(
-                  "خوش آمدید",
-                  style: TextStyle(fontFamily: "UrduType", fontSize: 30),
-                )),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 10,),
-                      const Text(
-                        " آپ کا پہلے سے اکاؤنٹ بنا ہوا ہے؟",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 20,
-                            color: Color(0xff878787)),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.back;
-                        },
-                        child: const Text(
-                          "لاگ ان کریں",
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              fontSize: 20,
-                              color: Color(0xffFE8BD1)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                    child: ListView(
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Form(
+                key: _formkey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Text(
-                        "نام",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 16,
-                            color: Color(0xff0F0D18)),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 10.0), // Adjust vertical padding
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xfff28bc9),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    const Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Text(
-                        "ای میل",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 16,
-                            color: Color(0xff0F0D18)),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 10.0), // Adjust vertical padding
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xfff28bc9),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: RichText(
-                        text: const TextSpan(
-                          text: '*',
-                          style: TextStyle(
-                            color: Color(
-                                0xffEC5A53), // This makes the asterisk red
-                            fontSize: 16,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'فون نمبر',
-                              style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors
-                                    .black, // Change the color as you want
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    FlutterPhoneNumberField(
-                      controller: phoneController,
-                      showCountryFlag: true,
-                      showDropdownIcon: false,
-                      initialCountryCode: "PK",
-                      pickerDialogStyle: PickerDialogStyle(
-                        countryFlagStyle: const TextStyle(fontSize: 17),
-                      ),
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10.0),
-                        hintText: 'اپنا موبائل نمبر درج کیجئے',
-                        hintStyle: TextStyle(
-                          fontFamily: "UrduType",
-                          color: Color(0xff7A7D84),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xfff28bc9),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      languageCode: "ar",
-                      onChanged: (phone) {},
-                      onCountryChanged: (country) {},
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: RichText(
-                        text: const TextSpan(
-                          text: '*',
-                          style: TextStyle(
-                            color: Color(
-                                0xffEC5A53), // This makes the asterisk red
-                            fontSize: 16,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'لیڈی ہیلتھ ورکر کا آی ڈی نمبر',
-                              style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors
-                                    .black, // Change the color as you want
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextField(
-                      controller: idNoController,
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 10.0), // Adjust vertical padding
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xfff28bc9),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: RichText(
-                        text: const TextSpan(
-                          text: '*',
-                          style: TextStyle(
-                            color: Color(
-                                0xffEC5A53), // This makes the asterisk red
-                            fontSize: 16,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'شناختی کارڈ نمبر',
-                              style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors
-                                    .black, // Change the color as you want
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextField(
-                      controller: nicController,
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 10.0), // Adjust vertical padding
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xfff28bc9),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: RichText(
-                        text: const TextSpan(
-                          text: '*',
-                          style: TextStyle(
-                            color: Color(
-                                0xffEC5A53), // This makes the asterisk red
-                            fontSize: 16,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'پاس ورڈ',
-                              style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors
-                                    .black, // Change the color as you want
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextField(
-                        controller: passwordController,
-                        obscureText: _obscureText,
-                        decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _obscureText
-                                  ? Icons.remove_red_eye_outlined
-                                  : Icons.remove_red_eye,
-                              color: Colors.black,
-                            ),
-                            onPressed: _toggleVisibility,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 10.0,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: const BorderSide(
-                              color: Color(0xffCDD1E0),
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: const BorderSide(
-                              color: Color(0xffCDD1E0),
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: const BorderSide(
-                              color: Color(0xfff28bc9),
-                              width: 2,
-                            ),
-                          ),
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: RichText(
-                        text: const TextSpan(
-                          text: '*',
-                          style: TextStyle(
-                            color: Color(
-                                0xffEC5A53), // This makes the asterisk red
-                            fontSize: 16,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'یوم پیدائش',
-                              style: TextStyle(
-                                fontFamily: "UrduType",
-                                color: Colors
-                                    .black, // Change the color as you want
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    GestureDetector(
-                        child: TextField(
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: "MM/DD/YYYY",
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.calendar_today_outlined,
-                              color: Colors.black),
-                          onPressed: () {
-                            _selectDate(context);
-                          },
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 10.0,
-                          horizontal: 10.0,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xffCDD1E0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
-                            color: Color(0xfff28bc9),
-                            width: 2,
-                          ),
-                        ),
-                      ),
+                    const Center(
+                        child: Text(
+                      "خوش آمدید",
+                      style: TextStyle(fontFamily: "UrduType", fontSize: 30),
                     )),
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      child: RoundedButton(
-                          title: 'سائن اپ',
-                          onTap: () {
-                            _signup();
-                          }),
-                    ),
-                    Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Row(
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CustomCheckbox(
-                            value: _isChecked,
-                            onChanged: (value) {
-                              setState(() {
-                                _isChecked = value!;
-                              });
-                            },
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          SizedBox(height: 10,),
                           const Text(
-                            "یہ معلومات یاد رکھیں",
+                            " آپ کا پہلے سے اکاؤنٹ بنا ہوا ہے؟",
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                fontSize: 20,
+                                color: Color(0xff878787)),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back;
+                            },
+                            child: const Text(
+                              "لاگ ان کریں",
+                              style: TextStyle(
+                                  fontFamily: "UrduType",
+                                  fontSize: 20,
+                                  color: Color(0xffFE8BD1)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                        child: ListView(
+                      children: [
+                        const Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            "نام",
                             style: TextStyle(
                                 fontFamily: "UrduType",
                                 fontSize: 16,
                                 color: Color(0xff0F0D18)),
                           ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        TextField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 10.0), // Adjust vertical padding
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xfff28bc9),
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        const Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            "ای میل",
+                            style: TextStyle(
+                                fontFamily: "UrduType",
+                                fontSize: 16,
+                                color: Color(0xff0F0D18)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        TextField(
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 10.0), // Adjust vertical padding
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xfff28bc9),
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: RichText(
+                            text: const TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                color: Color(
+                                    0xffEC5A53), // This makes the asterisk red
+                                fontSize: 16,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'فون نمبر',
+                                  style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    color: Colors
+                                        .black, // Change the color as you want
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        FlutterPhoneNumberField(
+                          controller: phoneController,
+                          showCountryFlag: true,
+                          showDropdownIcon: false,
+                          initialCountryCode: "PK",
+                          pickerDialogStyle: PickerDialogStyle(
+                            countryFlagStyle: const TextStyle(fontSize: 17),
+                          ),
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 10.0),
+                            hintText: 'اپنا موبائل نمبر درج کیجئے',
+                            hintStyle: TextStyle(
+                              fontFamily: "UrduType",
+                              color: Color(0xff7A7D84),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xfff28bc9),
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                          languageCode: "ar",
+                          onChanged: (phone) {},
+                          onCountryChanged: (country) {},
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: RichText(
+                            text: const TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                color: Color(
+                                    0xffEC5A53), // This makes the asterisk red
+                                fontSize: 16,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'لیڈی ہیلتھ ورکر کا آی ڈی نمبر',
+                                  style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    color: Colors
+                                        .black, // Change the color as you want
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        TextField(
+                          controller: idNoController,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 10.0), // Adjust vertical padding
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xfff28bc9),
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: RichText(
+                            text: const TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                color: Color(
+                                    0xffEC5A53), // This makes the asterisk red
+                                fontSize: 16,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'شناختی کارڈ نمبر',
+                                  style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    color: Colors
+                                        .black, // Change the color as you want
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        TextField(
+                          controller: nicController,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 10.0), // Adjust vertical padding
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xfff28bc9),
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: RichText(
+                            text: const TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                color: Color(
+                                    0xffEC5A53), // This makes the asterisk red
+                                fontSize: 16,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'پاس ورڈ',
+                                  style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    color: Colors
+                                        .black, // Change the color as you want
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        TextField(
+                            controller: passwordController,
+                            obscureText: _obscureText,
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _obscureText
+                                      ? Icons.remove_red_eye_outlined
+                                      : Icons.remove_red_eye,
+                                  color: Colors.black,
+                                ),
+                                onPressed: _toggleVisibility,
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 10.0,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide: const BorderSide(
+                                  color: Color(0xffCDD1E0),
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide: const BorderSide(
+                                  color: Color(0xffCDD1E0),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide: const BorderSide(
+                                  color: Color(0xfff28bc9),
+                                  width: 2,
+                                ),
+                              ),
+                            )),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: RichText(
+                            text: const TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                color: Color(
+                                    0xffEC5A53), // This makes the asterisk red
+                                fontSize: 16,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'یوم پیدائش',
+                                  style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    color: Colors
+                                        .black, // Change the color as you want
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        GestureDetector(
+                            child: TextField(
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: "MM/DD/YYYY",
+                            suffixIcon: IconButton(
+                              icon: const Icon(Icons.calendar_today_outlined,
+                                  color: Colors.black),
+                              onPressed: () {
+                                _selectDate(context);
+                              },
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 10.0,
+                              horizontal: 10.0,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffCDD1E0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xfff28bc9),
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                        )),
 
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                          child: RoundedButton(
+                              title: 'سائن اپ',
+                              onTap: () {
+                                _signup();
+                              }),
+                        ),
+                        Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Row(
+                            children: [
+                              CustomCheckbox(
+                                value: _isChecked,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _isChecked = value!;
+                                  });
+                                },
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text(
+                                "یہ معلومات یاد رکھیں",
+                                style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    fontSize: 16,
+                                    color: Color(0xff0F0D18)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+
+                      ],
+                    ))
                   ],
-                ))
-              ],
+                ),
+              ),
             ),
           ),
-        ),
+          Positioned(
+            right: 20,
+            top: _fabYPosition,
+            child: GestureDetector(
+              onVerticalDragUpdate: (dragUpdateDetails) {
+                setState(() {
+                  _fabYPosition += dragUpdateDetails.delta.dy;
+                  _fabYPosition = _fabYPosition.clamp(
+                      topSafeArea, screenHeight - fabHeight - bottomSafeArea);
+                });
+              },
+              child: GestureDetector(
+                onTap: restartMessageCycle,
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 72.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      showGuideMessage
+                          ? CustomPaint(
+                        painter:
+                        MenuBoxBackground(), // Implement this class as per your custom UI needs
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 10),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 12.0),
+                          child: AnimatedTextKit(
+                            key:
+                            animatedTextKey, // Use the updated key here
+
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                messages[messageIndex],
+                                textAlign: TextAlign.center,
+                                textStyle: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: "UrduType",
+                                ),
+                                speed: const Duration(milliseconds: 50),
+                              ),
+                            ],
+                            totalRepeatCount: 1,
+                            pause: const Duration(milliseconds: 5000),
+                            displayFullTextOnTap: true,
+                            stopPauseOnTap: true,
+                          ),
+                        ),
+                      )
+                          : Container(),
+                      const SizedBox(width: 5),
+                      CircleAvatar(
+                        backgroundColor: const Color(0xffF6B3D0),
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2),
+                          child: SvgPicture.asset(
+                              "assets/images/samina_instructor.svg"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+
+        ],
       ),
     );
   }

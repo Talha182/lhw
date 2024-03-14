@@ -44,20 +44,18 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
   bool showMessage = true;
   double _fabYPosition = 600.0; // Default position
 
-
   @override
   void initState() {
     super.initState();
     _startMessageTimer();
 
-    // Flatten all image pairs from all comic strip models into a single list
-    List<ImagePair> allImagePairs =
-        widget.comicStripsModel.expand((model) => model.imagePairs).toList();
-
-    // Generate carousel items for each image pair
-    _carouselItems = allImagePairs.map((imagePair) {
-      return _buildSlide(imagePair.topImage, imagePair.bottomImage);
-    }).toList();
+    // Generate carousel items for each image in each comic strip model
+    _carouselItems = widget.comicStripsModel
+        .expand((model) =>
+            model.imagePaths) // Flatten all image paths into a single list
+        .map((imagePath) =>
+            _buildSlide(imagePath)) // Create a slide for each image path
+        .toList();
 
     _progressController = AnimationController(
         duration: const Duration(milliseconds: 400), vsync: this)
@@ -106,14 +104,13 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
     _startMessageTimer();
   }
 
-  Widget _buildSlide(String imagePathTop, String imagePathBottom) {
+  Widget _buildSlide(String imagePath) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _buildContainer(imagePathTop),
-          const SizedBox(height: 20),
-          _buildContainer(imagePathBottom),
+          _buildContainer(imagePath),
         ],
       ),
     );
@@ -121,30 +118,6 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
 
   Widget _buildContainer(String imagePath) {
     return Expanded(
-      // child: GestureDetector(
-      //   onTap: () {
-      //     Navigator.of(context).push(PageRouteBuilder(
-      //       pageBuilder: (context, animation, secondaryAnimation) =>
-      //           FadeTransition(
-      //         opacity: animation,
-      //         child: FullScreenImageView(imagePath: imagePath),
-      //       ),
-      //     ));
-      //   },
-      //   child: Container(
-      //     decoration: BoxDecoration(
-      //       color: Colors.transparent,
-      //       borderRadius: BorderRadius.circular(20),
-      //     ),
-      //     child: PinchZoom(
-      //       resetDuration: const Duration(milliseconds: 100),
-      //       maxScale: 2.5,
-      //       child: ClipRRect(
-      //         borderRadius: BorderRadius.circular(20),
-      //         child: Image.asset(imagePath, fit: BoxFit.fill),
-      //       ),
-      //     ),
-      //   ),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -155,13 +128,15 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
           borderRadius: BorderRadius.circular(20),
           child: PhotoView(
             imageProvider: AssetImage(imagePath),
-            backgroundDecoration: BoxDecoration(
+            backgroundDecoration: const BoxDecoration(
               color: Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
-            maxScale: PhotoViewComputedScale.covered * 2.5,
-            minScale: PhotoViewComputedScale.contained,
-            initialScale: PhotoViewComputedScale.covered,
+            // Ensure the image is scaled to fit within the container
+            initialScale: PhotoViewComputedScale.contained * 1.0,
+            // Adjust maxScale to prevent scaling beyond the original size, you might need to adjust this value based on your needs
+            maxScale: PhotoViewComputedScale.contained * 2.0,
+            minScale: PhotoViewComputedScale.contained * 1.0,
             basePosition: Alignment.center,
             tightMode: true,
           ),
@@ -212,8 +187,10 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                       ),
                       Expanded(
                         child: Transform(
-                          alignment: Alignment.center, // Center the transformation
-                          transform: Matrix4.identity()..scale(-1.0, 1.0), // Flip horizontally
+                          alignment:
+                              Alignment.center, // Center the transformation
+                          transform: Matrix4.identity()
+                            ..scale(-1.0, 1.0), // Flip horizontally
                           child: LinearPercentIndicator(
                             animation: false,
                             animationDuration: 400,
@@ -223,15 +200,14 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                             clipLinearGradient: true,
                             barRadius: const Radius.circular(20),
                             // Flip the linear gradient to match the flipped indicator direction
-                            linearGradient: LinearGradient(
+                            linearGradient: const LinearGradient(
                               begin: Alignment.centerRight,
                               end: Alignment.centerLeft,
-                              colors: [const Color(0xffFE8BD1), const Color(0xffFE8BD1)],
+                              colors: [Color(0xffFE8BD1), Color(0xffFE8BD1)],
                             ),
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -416,7 +392,6 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                       shape: BoxShape.circle),
                   child: IconButton(
                     onPressed: () {
-                      // Handle full screen tap
                       Get.to(() => FullScreenComicStrip(
                             comicStripsModel: widget.comicStripsModel,
                           ));
@@ -444,7 +419,7 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                       topSafeArea, screenHeight - fabHeight - bottomSafeArea);
                 });
               },
-              child:Container(
+              child: Container(
                 margin: const EdgeInsets.only(bottom: 72.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -458,13 +433,17 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                             margin: const EdgeInsets.only(right: 10, left: 10),
                             // width: screenWidth * 0.7,
 
-                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'یہ چند صفحہ ہیں جن کو آپ نے مکمل پڑنا ہی۔\n اس میں اور کوئی کام نہیں۔ صرف پڑھا\n ہی کافی ہے۔',
+                                  'کہانیوں سے بہتر استاد کوئی نہیں۔ چلیں ہم انہیں  پڑھیں۔',
                                   textAlign: TextAlign.center,
-                                  textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
                                   speed: const Duration(milliseconds: 50),
                                 ),
                               ],
@@ -476,7 +455,9 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     GestureDetector(
                       onTap: _showMessageAgain,
                       child: CircleAvatar(
@@ -496,7 +477,6 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -523,7 +503,7 @@ class FullScreenComicStrip extends StatelessWidget {
           onPressed: () {
             SystemChrome.setPreferredOrientations(
                 [DeviceOrientation.portraitUp]);
-            Get.back();
+            Navigator.of(context).pop();
           },
         ),
       ),
@@ -531,9 +511,8 @@ class FullScreenComicStrip extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: comicStripsModel
-              .expand((comicStripModel) => comicStripModel.imagePairs.map(
-                    (imagePair) => _buildComicStrip(
-                        imagePair.topImage, imagePair.bottomImage),
+              .expand((comicStripModel) => comicStripModel.imagePaths.map(
+                    (imagePath) => _buildComicStrip(imagePath),
                   ))
               .toList(),
         ),
@@ -541,34 +520,25 @@ class FullScreenComicStrip extends StatelessWidget {
     );
   }
 
-  Widget _buildComicStrip(String imagePathTop, String imagePathBottom) {
+  Widget _buildComicStrip(String imagePath) {
+    // Since we are dealing with single images now, the method is simplified
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildContainer(imagePathTop),
-          const SizedBox(width: 20),
-          _buildContainer(imagePathBottom),
-        ],
-      ),
+      child: _buildContainer(imagePath),
     );
   }
 
   Widget _buildContainer(String imagePath) {
+    // The container remains largely the same but is now called for individual images
     return Container(
       width: 320,
       height: 250,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
       ),
-      child: PinchZoom(
-        resetDuration: const Duration(milliseconds: 100),
-        maxScale: 2.5,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.asset(imagePath, fit: BoxFit.cover),
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset(imagePath, fit: BoxFit.cover),
       ),
     );
   }
@@ -576,34 +546,31 @@ class FullScreenComicStrip extends StatelessWidget {
 
 class ComicStripModel {
   final String title;
-  final List<ImagePair> imagePairs;
+  final List<String> imagePaths;
 
-  ComicStripModel({required this.title, required this.imagePairs});
+  ComicStripModel({required this.title, required this.imagePaths});
 
   factory ComicStripModel.fromJson(Map<String, dynamic> json) {
-    var imagePairsList = json['imagePairs'] as List;
-    List<ImagePair> imagePairs =
-        imagePairsList.map((i) => ImagePair.fromJson(i)).toList();
     return ComicStripModel(
       title: json['title'],
-      imagePairs: imagePairs,
+      imagePaths: json['imagePaths'],
     );
   }
 }
 
-class ImagePair {
-  final String topImage;
-  final String bottomImage;
-
-  ImagePair({required this.topImage, required this.bottomImage});
-
-  factory ImagePair.fromJson(Map<String, dynamic> json) {
-    return ImagePair(
-      topImage: json['topImage'],
-      bottomImage: json['bottomImage'],
-    );
-  }
-}
+// class ImagePair {
+//   final String topImage;
+//   final String bottomImage;
+//
+//   ImagePair({required this.topImage, required this.bottomImage});
+//
+//   factory ImagePair.fromJson(Map<String, dynamic> json) {
+//     return ImagePair(
+//       topImage: json['topImage'],
+//       bottomImage: json['bottomImage'],
+//     );
+//   }
+// }
 
 class FullScreenImageView extends StatelessWidget {
   final String imagePath;
@@ -638,6 +605,150 @@ class FullScreenImageView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class HorizontalComicStrip extends StatefulWidget {
+  final List<ComicStripModel> comicStripsModel;
+  final VoidCallback? onCompleted; // Optional callback
+  final int featureId;
+
+  const HorizontalComicStrip({
+    Key? key,
+    required this.comicStripsModel,
+    this.onCompleted,
+    required this.featureId,
+  }) : super(key: key);
+
+  @override
+  _HorizontalComicStripState createState() => _HorizontalComicStripState();
+}
+
+class _HorizontalComicStripState extends State<HorizontalComicStrip> {
+  List<Widget> _buildImageList() {
+    List<Widget> imageWidgets = [];
+    for (var comicStrip in widget.comicStripsModel) {
+      for (var imagePath in comicStrip.imagePaths) {
+        var imageWidget = Center(
+          child: PinchZoom(
+            resetDuration: const Duration(milliseconds: 100),
+            maxScale: 3.0,
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+            ),
+          ),
+        );
+        imageWidgets.add(imageWidget);
+      }
+    }
+    return imageWidgets;
+  }
+
+  bool lastImageReached = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Lock orientation to landscape mode
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
+  }
+
+  @override
+  void dispose() {
+    // Revert orientation to default
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
+  }
+
+  void _updateLastImageReached(int index, int total) {
+    if (index == total - 1) {
+      setState(() {
+        lastImageReached = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final totalImages = widget.comicStripsModel
+        .map((e) => e.imagePaths.length)
+        .reduce((a, b) => a + b);
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: const Alignment(0, -0.2),
+            colors: [
+              const Color(0xff80B8FB).withOpacity(0.5),
+              Colors.transparent,
+            ],
+          ),
+        ),
+        child: Stack(
+          children: [
+            CarouselSlider(
+              items: _buildImageList(),
+              options: CarouselOptions(
+                aspectRatio: 16 / 9,
+                enlargeCenterPage: true,
+                viewportFraction: 0.5, // Adjust the viewport fraction
+                pageSnapping: true,
+                scrollDirection: Axis.horizontal,
+                autoPlay: false,
+                enableInfiniteScroll: false,
+                padEnds: true,
+                onPageChanged: (index, reason) {
+                  _updateLastImageReached(index, totalImages);
+
+                },
+              ),
+            ),
+            Positioned(
+              top: 20,
+              left: 30,
+              child: IconButton(
+                icon: const Icon(Icons.close, size: 30, color: Colors.black),
+                onPressed: () => Get.back(),
+              ),
+            ),
+            Positioned(
+              left: 280,
+              right: 280,
+              bottom: 15,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  side: const BorderSide(color: Colors.white, width: 2),
+                  backgroundColor: const Color(0xffFE8BD1),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  minimumSize: const Size(150, 37),
+                ),
+                onPressed:
+                    lastImageReached ? () => Get.back(result: true) : null,
+                child: const Text(
+                  'جاری',
+                  style: TextStyle(
+                    fontFamily: 'UrduType',
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

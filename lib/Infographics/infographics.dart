@@ -27,14 +27,14 @@ class _InfographicScreenState extends State<InfographicScreen>
   int _current = 0;
   double _progress = 0.0;
   late List<Widget> _carouselItems;
-  late AnimationController _progressController;
+  late AnimationController _progressAnimationController;
   late Animation<double> _progressAnimation;
   Random random = Random();
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
   double _fabYPosition = 600.0;
-
+  bool _lastSlideReached = false;
   @override
   void initState() {
     super.initState();
@@ -63,11 +63,37 @@ class _InfographicScreenState extends State<InfographicScreen>
       });
 
     _cloudPumpAnimationController.repeat(reverse: true);
+
+    _progressAnimationController = AnimationController(
+      duration: const Duration(
+          milliseconds: 500), // Adjust duration to control animation speed
+      vsync: this,
+    );
+
+    // Listen for changes to the animation and update the state to refresh the UI
+    _progressAnimationController.addListener(() {
+      setState(() {
+        _progress = _progressAnimation.value;
+      });
+    });
+  }
+
+  void _updateProgressAnimation(double targetProgress) {
+    // Create a tween from the current progress to the target progress
+    _progressAnimation = Tween<double>(
+      begin: _progress,
+      end: targetProgress,
+    ).animate(_progressAnimationController);
+
+    // Reset the controller and start the animation
+    _progressAnimationController
+      ..reset()
+      ..forward();
   }
 
   @override
   void dispose() {
-    _progressController.dispose();
+    _progressAnimationController.dispose();
     _cloudPumpAnimationController.dispose();
     super.dispose();
   }
@@ -226,6 +252,15 @@ class _InfographicScreenState extends State<InfographicScreen>
                     ),
                   ),
                 ),
+                const SizedBox(height: 10),
+                Text(
+                  widget.infographicsModel.title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontFamily: "UrduType"),
+                ),
                 Directionality(
                   textDirection: TextDirection.rtl,
                   child: Expanded(
@@ -245,16 +280,20 @@ class _InfographicScreenState extends State<InfographicScreen>
                       options: CarouselOptions(
                         viewportFraction: 1, // Use full width of the viewport
                         height: MediaQuery.of(context).size.height,
+                        enableInfiniteScroll: false,
                         onPageChanged: (index, reason) {
                           setState(() {
                             _current = index;
-                            // Update the progress based on the current slide index
-                            _progress = (_current + 1) /
+                            double targetProgress = (_current + 1) /
                                 widget.infographicsModel.infographics.length;
-                            // Trigger the progress animation to reflect the current progress
-                            _progressController.animateTo(_progress,
-                                duration: Duration(milliseconds: 400),
-                                curve: Curves.easeInOut);
+                            _updateProgressAnimation(
+                                targetProgress); // Update the progress animation
+                            // Update the lastSlideReached status
+                            if (index ==
+                                widget.infographicsModel.infographics.length -
+                                    1) {
+                              _lastSlideReached = true;
+                            }
                           });
                         },
                       ),
@@ -308,9 +347,9 @@ class _InfographicScreenState extends State<InfographicScreen>
                     ),
                     minimumSize: const Size(150, 37),
                   ),
-                  onPressed: _current == _carouselItems.length - 1
+                  onPressed: _lastSlideReached
                       ? () {
-                          // This will only execute on the last slide
+                          // This will execute if the last slide has been reached at least once
                           if (widget.onCompleted != null) {
                             widget
                                 .onCompleted!(); // Optionally call the completion callback if provided
@@ -409,15 +448,17 @@ class _InfographicScreenState extends State<InfographicScreen>
 }
 
 class InfographicsModel {
+  final String title;
   final List<Infographic> infographics;
 
-  InfographicsModel({required this.infographics});
+  InfographicsModel({required this.infographics, required this.title});
 
   factory InfographicsModel.fromJson(Map<String, dynamic> json) {
     var list = json['infographics'] as List;
     List<Infographic> infographicsList =
         list.map((i) => Infographic.fromJson(i)).toList();
-    return InfographicsModel(infographics: infographicsList);
+    return InfographicsModel(
+        infographics: infographicsList, title: json['title'] ?? '');
   }
 }
 

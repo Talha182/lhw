@@ -71,7 +71,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
   }
 
   void _startMessageTimer() {
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 10), () {
       setState(() {
         showMessage = false;
       });

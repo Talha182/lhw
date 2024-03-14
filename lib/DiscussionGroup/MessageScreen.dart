@@ -8,7 +8,7 @@ import 'Messaging_Settings.dart';
 
 class MessageScreen extends StatefulWidget {
   final bool showAppbar;
-  const MessageScreen({super.key,required this.showAppbar});
+  const MessageScreen({super.key, required this.showAppbar});
 
   @override
   State<MessageScreen> createState() => _MessageScreenState();
@@ -90,9 +90,8 @@ class _MessageScreenState extends State<MessageScreen> {
             isCurrentUser: true,
             timestamp: DateTime.now(),
             showTime: _showTime,
-            isQuestion: isThisMessageAQuestion,  // Add this line
-            repliedTo: _replyingMessage
-        ));
+            isQuestion: isThisMessageAQuestion, // Add this line
+            repliedTo: _replyingMessage));
         _showTime = false;
 
         // Resetting the hintText after sending the message.
@@ -105,7 +104,6 @@ class _MessageScreenState extends State<MessageScreen> {
       _scrollToBottom();
     }
   }
-
 
   OverlayEntry? overlayEntry;
 
@@ -130,7 +128,8 @@ class _MessageScreenState extends State<MessageScreen> {
                   overlayEntry = null;
                 },
                 child: const Material(
-                  color: Colors.transparent, // use transparent color to capture taps
+                  color: Colors
+                      .transparent, // use transparent color to capture taps
                 ),
               ),
             ),
@@ -147,8 +146,9 @@ class _MessageScreenState extends State<MessageScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10,left: 10,right: 10,bottom: 20),
-                    child:  Column(
+                    padding: const EdgeInsets.only(
+                        top: 10, left: 10, right: 10, bottom: 20),
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         GestureDetector(
@@ -167,19 +167,25 @@ class _MessageScreenState extends State<MessageScreen> {
                                   fontFamily: "UrduType",
                                 ),
                               ),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Icon(Icons.help_outline_rounded),
                             ],
                           ),
                         ),
-
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         const Row(
                           children: [
-                            Text("منسلکہ",style: TextStyle(
-                                fontFamily: "UrduType"
-                            ),),
-                            SizedBox(width: 10,),
+                            Text(
+                              "منسلکہ",
+                              style: TextStyle(fontFamily: "UrduType"),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
                             Icon(Icons.attachment_outlined),
                           ],
                         ),
@@ -209,47 +215,52 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: widget.showAppbar ? PreferredSize( // Conditionally render the AppBar
-        preferredSize: const Size.fromHeight(70.0),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          elevation: 0.5,
-          backgroundColor: Colors.white,
-          flexibleSpace: Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                      onTap: (){
-                        Get.to(() => const MessageSettings());
-                      },
-                      child: SvgPicture.asset("assets/images/Icon.svg")),
-                  const Text(
-                    "ترتیبات",
-                    style: TextStyle(
-                      fontFamily: 'UrduType',
-                      fontSize: 20,
-                      color: Color(0xff232323),
-                      fontWeight: FontWeight.w600,
+      appBar: widget.showAppbar
+          ? PreferredSize(
+              // Conditionally render the AppBar
+              preferredSize: const Size.fromHeight(70.0),
+              child: AppBar(
+                automaticallyImplyLeading: false,
+                elevation: 0.5,
+                backgroundColor: Colors.white,
+                flexibleSpace: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              Get.to(() => const MessageSettings());
+                            },
+                            child: SvgPicture.asset("assets/images/Icon.svg")),
+                        const Text(
+                          "ترتیبات",
+                          style: TextStyle(
+                            fontFamily: 'UrduType',
+                            fontSize: 20,
+                            color: Color(0xff232323),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textDirection: TextDirection.rtl,
+                        ),
+                        GestureDetector(
+                          child: const Icon(Icons.arrow_forward,
+                              color: Colors.black),
+                          onTap: () {
+                            Get.back();
+                          },
+                        ),
+                      ],
                     ),
-                    textDirection: TextDirection.rtl,
                   ),
-                  GestureDetector(
-                    child: const Icon(Icons.arrow_forward, color: Colors.black),
-                    onTap: () {
-                      // Add your navigation logic here
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
-      ) : null, // If _showAppBar is false, don't show the AppBar
-        body: Column(
+            )
+          : null, // If _showAppBar is false, don't show the AppBar
+      body: Column(
         children: [
           Expanded(
             child: ListView.builder(
@@ -273,6 +284,12 @@ class _MessageScreenState extends State<MessageScreen> {
                     // Add the following line to request focus:
                     _messageFocusNode.requestFocus();
                   },
+                  onDoubleTap: () {
+                    // Toggle the isLiked status of the message
+                    setState(() {
+                      message.isLiked = !message.isLiked;
+                    });
+                  },
                   child: Column(
                     children: [
                       if (message.showTime)
@@ -288,15 +305,11 @@ class _MessageScreenState extends State<MessageScreen> {
                             textDirection: TextDirection.rtl,
                           ),
                         ),
-
-
                       if (message.isCurrentUser)
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: Column(
-
                             children: [
-
                               if (message.repliedTo != null)
                                 Padding(
                                   padding:
@@ -345,21 +358,20 @@ class _MessageScreenState extends State<MessageScreen> {
                                         child: Column(
                                           children: [
                                             if (message.isQuestion)
-                                                 const Text(
-                                                  "سوال",
-                                                  style: TextStyle(
-                                                    color: Color(0xffA0A0A0),
-                                                    fontFamily: "UrduType",
-                                                  ),
-                                                   textAlign: TextAlign.left,
+                                              const Text(
+                                                "سوال",
+                                                style: TextStyle(
+                                                  color: Color(0xff99D09E),
+                                                  fontFamily: "UrduType",
                                                 ),
-                                             Text(message.text,
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: "UrduType")),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            Text(message.text,
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily: "UrduType")),
                                           ],
                                         ),
-
                                       ),
                                     ),
                                   ),
@@ -511,7 +523,7 @@ class _MessageScreenState extends State<MessageScreen> {
               ),
             ),
           Container(
-            color: const Color(0xffF5F5F5) ,
+            color: const Color(0xffF5F5F5),
             margin: const EdgeInsets.only(bottom: 10),
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
@@ -533,9 +545,8 @@ class _MessageScreenState extends State<MessageScreen> {
                           } else {
                             // Filter the users based on the query (case-insensitive)
                             filteredUsers = allUsers
-                                .where((user) => user
-                                .toLowerCase()
-                                .startsWith(query))
+                                .where((user) =>
+                                    user.toLowerCase().startsWith(query))
                                 .toList();
                           }
                           setState(() {
@@ -550,13 +561,16 @@ class _MessageScreenState extends State<MessageScreen> {
                       focusNode: _messageFocusNode,
                       controller: _textEditingController,
                       maxLines: null,
-                      keyboardType: TextInputType.multiline, // Facilitates easy multiline input
+                      keyboardType: TextInputType
+                          .multiline, // Facilitates easy multiline input
 
                       cursorColor: Colors.black.withOpacity(0.7),
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15.0, horizontal: 20.0),
                         hintText: hintText,
-                        hintStyle: const TextStyle(fontFamily: "UrduType", color: Color(0xffA0A0A0)),
+                        hintStyle: const TextStyle(
+                            fontFamily: "UrduType", color: Color(0xffA0A0A0)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: BorderSide.none,
@@ -588,11 +602,14 @@ class _MessageScreenState extends State<MessageScreen> {
                             height: 30,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: _isTextEmpty ? Colors.grey : const Color(0xffFE8BD1),
+                              color: _isTextEmpty
+                                  ? Colors.grey
+                                  : const Color(0xffFE8BD1),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(top: 2, right: 2),
-                              child: SvgPicture.asset("assets/images/send.svg", fit: BoxFit.scaleDown),
+                              child: SvgPicture.asset("assets/images/send.svg",
+                                  fit: BoxFit.scaleDown),
                             ),
                           ),
                         ),
@@ -601,7 +618,8 @@ class _MessageScreenState extends State<MessageScreen> {
                           onTap: () {
                             _showAttachmentOptions();
                           },
-                          child: SvgPicture.asset("assets/images/attachment.svg"),
+                          child:
+                              SvgPicture.asset("assets/images/attachment.svg"),
                         ),
                         const SizedBox(width: 20),
                         SvgPicture.asset("assets/images/microphone.svg"),
@@ -691,8 +709,8 @@ class Message {
   final DateTime timestamp;
   final bool showTime;
   final Message? repliedTo;
-  final bool isQuestion;  // add this
-
+  final bool isQuestion; // add this
+  bool isLiked; // New property to track if the message is liked
 
   Message({
     required this.text,
@@ -700,8 +718,8 @@ class Message {
     required this.timestamp,
     this.showTime = false,
     this.repliedTo,
-    this.isQuestion = false,  // default it to false
-
+    this.isQuestion = false, // default it to false
+    this.isLiked = false, // Initialize it to false
   });
 }
 

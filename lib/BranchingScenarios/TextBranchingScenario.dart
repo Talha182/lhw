@@ -379,7 +379,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                         child: QuizCard(
                           text: widget.textBranchingScenarioModel
                               .questions[questionIndex].options[index],
-                          imagePath: 'assets/images/quiz${index + 1}.png',
+                          optionImagePath: widget.textBranchingScenarioModel.questions[questionIndex].optionImages[index], // Use the new field
                           color: optionColors[index],
                           ontap: () => updateQuestion(
                               widget.textBranchingScenarioModel
@@ -477,7 +477,7 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'اس مخصوص سمق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
+                                  'اس مخصوص سبق میں ایک سوال کے\n آپ کو 3 جواب ملیں گے جن میں\n سے آپ کو سب سے درست جواب چننا ہوگا۔',
                                   textAlign: TextAlign.center,
                                   textStyle: const TextStyle(
                                       fontSize: 18,
@@ -524,18 +524,20 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
 
 class QuizCard extends StatelessWidget {
   final String text;
-  final String imagePath;
   final Function ontap;
   final Color color;
   final bool isCorrect;
   final bool isSelected;
+  final String optionImagePath; // New image path specific to the option
+
   final bool isAnswered;
 
   const QuizCard({
     Key? key,
     required this.text,
-    required this.imagePath,
     required this.ontap,
+    required this.optionImagePath, // Add this
+
     this.color = Colors.white,
     this.isCorrect = false,
     this.isSelected = false,
@@ -580,7 +582,7 @@ class QuizCard extends StatelessWidget {
                             height: 60,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(imagePath),
+                                image: AssetImage(optionImagePath),
                                 fit: BoxFit.contain,
                               ),
                             ),

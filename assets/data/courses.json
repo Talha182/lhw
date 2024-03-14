@@ -39,8 +39,46 @@
                   "submoduleId": 2,
                   "data": {
                     "videoPath": "https://lhw.dhqharipur.com/public/storage/videos/script%201%20without%20text.mp4",
-                    "questionDurations": [],
-                    "questions": []
+                    "questionDurations": [
+                      "00:10",
+                      "00:20",
+                      "00:30"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is the capital of France?",
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin"
+                        ],
+                        "correctAnswer": "Paris",
+                        "correctExplanation": "Paris is the capital of France.",
+                        "incorrectExplanation": "This is not the correct capital of France."
+                      },
+                      {
+                        "question": "What is the capital of France?",
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin"
+                        ],
+                        "correctAnswer": "Paris",
+                        "correctExplanation": "Paris is the capital of France.",
+                        "incorrectExplanation": "This is not the correct capital of France."
+                      },
+                      {
+                        "question": "What is the capital of France?",
+                        "options": [
+                          "Paris",
+                          "London",
+                          "Berlin"
+                        ],
+                        "correctAnswer": "Paris",
+                        "correctExplanation": "Paris is the capital of France.",
+                        "incorrectExplanation": "This is not the correct capital of France."
+                      }
+                    ]
                   }
                 }
               ]
@@ -131,55 +169,31 @@
                   "submoduleId": 1,
                   "data": {
                     "title": "ٹی بی کیا ہے؟",
-                    "imagePairs": [
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-01.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-02.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-03.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-04.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-05.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-06.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-07.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-08.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-09.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-10.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-11.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-12.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-13.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-14.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-15.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-16.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-17.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-19.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-19.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-20.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-21.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-22.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 3/Script 3-23.png",
-                        "bottomImage": "assets/scripts/Script 3/Script 3-24.png"
-                      }
+                    "imagePaths": [
+                      "assets/scripts/Script 3/Script 3-01.png",
+                      "assets/scripts/Script 3/Script 3-02.png",
+                      "assets/scripts/Script 3/Script 3-03.png",
+                      "assets/scripts/Script 3/Script 3-04.png",
+                      "assets/scripts/Script 3/Script 3-05.png",
+                      "assets/scripts/Script 3/Script 3-06.png",
+                      "assets/scripts/Script 3/Script 3-07.png",
+                      "assets/scripts/Script 3/Script 3-08.png",
+                      "assets/scripts/Script 3/Script 3-09.png",
+                      "assets/scripts/Script 3/Script 3-10.png",
+                      "assets/scripts/Script 3/Script 3-11.png",
+                      "assets/scripts/Script 3/Script 3-12.png",
+                      "assets/scripts/Script 3/Script 3-13.png",
+                      "assets/scripts/Script 3/Script 3-14.png",
+                      "assets/scripts/Script 3/Script 3-15.png",
+                      "assets/scripts/Script 3/Script 3-16.png",
+                      "assets/scripts/Script 3/Script 3-17.png",
+                      "assets/scripts/Script 3/Script 3-18.png",
+                      "assets/scripts/Script 3/Script 3-19.png",
+                      "assets/scripts/Script 3/Script 3-20.png",
+                      "assets/scripts/Script 3/Script 3-21.png",
+                      "assets/scripts/Script 3/Script 3-22.png",
+                      "assets/scripts/Script 3/Script 3-23.png",
+                      "assets/scripts/Script 3/Script 3-24.png"
                     ]
                   }
                 },
@@ -226,13 +240,16 @@
                       {
                         "imagePath": "assets/scripts/Script 7/Script 7-04.png",
                         "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
-                      }, {
+                      },
+                      {
                         "imagePath": "assets/scripts/Script 7/Script 7-05.png",
                         "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
-                      }, {
+                      },
+                      {
                         "imagePath": "assets/scripts/Script 7/Script 7-06.png",
                         "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
-                      } ,{
+                      },
+                      {
                         "imagePath": "assets/scripts/Script 7/Script 7-07.png",
                         "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
                       }
@@ -314,31 +331,17 @@
                   "duration": "3 mins",
                   "data": {
                     "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم اقدامات",
-                    "imagePairs": [
-                      {
-                        "topImage": "assets/scripts/Script 9/Script 9-01.png",
-                        "bottomImage": "assets/scripts/Script 9/Script 9-02.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 9/Script 9-03.png",
-                        "bottomImage": "assets/scripts/Script 9/Script 9-04.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 9/Script 9-05.png",
-                        "bottomImage": "assets/scripts/Script 9/Script 9-06.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 9/Script 9-07.png",
-                        "bottomImage": "assets/scripts/Script 9/Script 9-08.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 9/Script 9-09.png",
-                        "bottomImage": "assets/scripts/Script 9/Script 9-10.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 9/Script 9-11.png",
-                        "bottomImage": "assets/scripts/Script 9/Script 9-12.png"
-                      }
+                    "imagePaths": [
+                      "assets/scripts/Script 9/Script 9-03.png",
+                      "assets/scripts/Script 9/Script 9-04.png",
+                      "assets/scripts/Script 9/Script 9-05.png",
+                      "assets/scripts/Script 9/Script 9-06.png",
+                      "assets/scripts/Script 9/Script 9-07.png",
+                      "assets/scripts/Script 9/Script 9-08.png",
+                      "assets/scripts/Script 9/Script 9-09.png",
+                      "assets/scripts/Script 9/Script 9-10.png",
+                      "assets/scripts/Script 9/Script 9-11.png",
+                      "assets/scripts/Script 9/Script 9-12.png"
                     ]
                   }
                 },
@@ -630,7 +633,7 @@
                           },
                           {
                             "title": "جنس ",
-                            "dialogText": "مناسب ڈبے میںtick کا نشان لگائیں ۔ ",
+                            "dialogText": "مناسب ڈبے میں ✔\uFE0F کا نشان لگائیں ۔",
                             "offset": {
                               "dx": 115.0,
                               "dy": 155.0
@@ -850,27 +853,27 @@
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 17/Artboard 1.png",
-                        "backImage": "assets/scripts/Script 17/Artboard 30.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 17/Artboard 18.png",
                         "backImage": "assets/scripts/Script 17/Artboard 17.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 21.png",
+                        "frontImage": "assets/scripts/Script 17/Artboard 18.png",
                         "backImage": "assets/scripts/Script 17/Artboard 20.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 23.png",
+                        "frontImage": "assets/scripts/Script 17/Artboard 21.png",
                         "backImage": "assets/scripts/Script 17/Artboard 22.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 25.png",
+                        "frontImage": "assets/scripts/Script 17/Artboard 23.png",
                         "backImage": "assets/scripts/Script 17/Artboard 24.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 29.png",
+                        "frontImage": "assets/scripts/Script 17/Artboard 25.png",
                         "backImage": "assets/scripts/Script 17/Artboard 28.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 17/Artboard 29.png",
+                        "backImage": "assets/scripts/Script 17/Artboard 30.png"
                       }
                     ]
                   }
@@ -886,11 +889,16 @@
                       {
                         "question": "لیڈی ہیلتھ ورکر ثمینہ کی حیثیت سے آپ بی بی کو مشورہ دے رہی ہیں۔ بی بی ایک ایسی مریضہ ہے جس نے ابھی ٹی بی کی دوا شروع کی ہے۔ آپ کو متلی سے متعلق ضمنی اثرات کی وضاحت کرنا ہوگی۔ آپ انھیں کیا کہیں گی؟ ",
                         "options": [
-                          "بہت کم لوگوں پر دوائی  کا مضر اثر ہوتا ہے۔ اس کے باوجود اگر متلی ہو، قے آئے یا پیٹ خراب ہو تو ذیادہ سے زیادہ پانی اور مشروب پئیں۔",
+                          "بہت کم لوگوں پر دوائی  کا مضر اثر ہوتا ہے۔ اس کے باوجود اگر متلی ہو، قے آئے یا پیٹ خراب ہو تو زیادہ سے زیادہ پانی اور مشروب پئیں۔",
                           "بی بی   اگر متلی ہو، قے آئے یا پیٹ خراب ہو تو بہتر ہے کہ دوائی کی اگلی خوراک اس وقت تک نہ لی جائے جب تک کہ یہ اثرات چلے نہ جائیں۔",
                           "بی بی   اس دوائی سے آپ کا پیٹ خراب ہونا غیر معمولی بات ہے۔ دوائی کا پیٹ کی خرابی سے کوئی تعلق نہیں۔ کچھ ہلکا کھانے سے آرام آجاۓ گا."
                         ],
                         "correctAnswer": "بہت کم لوگوں پر دوائی  کا مضر اثر ہوتا ہے۔ اس کے باوجود اگر متلی ہو، قے آئے یا پیٹ خراب ہو تو ذیادہ سے زیادہ پانی اور مشروب پئیں۔",
+                        "optionImages": [
+                          "assets/scripts/Script 18/Script 18-01.png",
+                          "assets/scripts/Script 18/Script 18-02.png",
+                          "assets/scripts/Script 18/Script 18-03.png"
+                        ],
                         "correctExplanation": "بہت خوب! آپ کی مدد سے   بی بی ادویات کے ایک عام ردِ عمل سے نپٹ پائیں۔ وہ اب بہتر محسوس کر رہی ہیں۔",
                         "incorrectExplanation": "یہ صحیح تجویز نہیں۔   بی بی کو زیادہ پانی پینے کی ضرورت ہے۔",
                         "userAnswer": ""
@@ -899,11 +907,16 @@
                         "question": "اب آپ بی بی کو ایک تصویری پمفلٹ دکھاتی ہیں جس میں خارش کو ضمنی اثرات کے طور پر بیان کیا گیا ہے۔ آپ بی بی کو کیا مشورہ دیں گی؟",
                         "options": [
                           "اگر آپ کو شدید خارش ہو تو مرکزِ صحت سے رجوع  کریں اور تجویز کردہ ادویات کا استعمال کریں۔",
-                          "خارش معمولی بات ہے جس کے لیے مرکزِ صحت جانے کی ضرورت نہیں۔ اسے نظرانداز کریں۔ ",
+                          "اگر آپ کوزیادہ خارش ہو ، تو صحت کے مرکز میں رپورٹ کرنے کا فیصلہ کرنے سے پہلے کچھ مقامی گھریلو علاج استعمال کرنے کی کوشش کریں۔",
                           "خارش معمولی بات ہے جس کے لیے مرکزِ صحت جانے کی ضرورت نہیں۔ اسے نظرانداز کریں۔ "
                         ],
                         "correctAnswer": "اب آپ بی بی کو ایک تصویری پمفلٹ دکھاتی ہیں جس میں خارش کو ضمنی اثرات کے طور پر بیان کیا گیا ہے۔ آپ بی بی کو کیا مشورہ دیں گی؟",
                         "correctExplanation": "ہت خوب! آپ کی تجویز کی بدولت  بی بی نے طبی مدد لینے کا فیصلہ کیا جس سے  انہیں  آرام پہنچا",
+                        "optionImages": [
+                          "assets/scripts/Script 18/Script 18-04.png",
+                          "assets/scripts/Script 18/Script 18-05.png",
+                          "assets/scripts/Script 18/Script 18-06.png"
+                        ],
                         "incorrectExplanation": "یہ صحیح تجویز نہیں۔ بی بی کو شدید خارش کی شکایت پر مرکزِ صحت جانے کی تجویز دینی چاہیے تھی",
                         "userAnswer": ""
                       },
@@ -916,6 +929,11 @@
                         ],
                         "correctAnswer": "دوائی لینے پر نظر کا دھندلا ہونا عام نہیں۔ ایسے ردِ عمل کی صورت میں فوراً  ڈاکڑ کے پاس جائیں۔",
                         "correctExplanation": " بہت خوب! آپ کے مشوہ کی بدولت، بی بی ادویات کے ایک عام ردِ عمل سے نپٹ پائیں۔ وہ اب بہتر محسوس کر رہی ہیں۔  ",
+                        "optionImages": [
+                          "assets/scripts/Script 18/Script 18-07.png",
+                          "assets/scripts/Script 18/Script 18-08.png",
+                          "assets/scripts/Script 18/Script 18-09.png"
+                        ],
                         "incorrectExplanation": "یہ  صحیح تجویز نہیں۔ اس تجویز کے باعث اہم طبی مدد میں دیر ہوسکتی ہے",
                         "userAnswer": ""
                       },
@@ -928,6 +946,11 @@
                         ],
                         "correctAnswer": "یرقان ایک شدید ردعمل ہے۔ پیلی آنکھیں ،پیلے  ہاتھ اور گہرے پیلے پشاب سے اس کی نشاندہی ہوتی ہے اس صورت میں  فوری مرکز صحت جائیں",
                         "correctExplanation": "زبردست! آپ نے بی بی کو یرقان جیسے خطرناک ردعمل سے ہوشیار کیا اور ان کی جان بچائی۔ ",
+                        "optionImages": [
+                          "assets/scripts/Script 18/Script 18-10.png",
+                          "assets/scripts/Script 18/Script 18-11.png",
+                          "assets/scripts/Script 18/Script 18-12.png"
+                        ],
                         "incorrectExplanation": "    -یہ مشورہ بی بی کی جان کو خطرے میں ڈال سکتا تھا۔ یرقان کی صورت میں فوری طبی معائنہ  ضروری ہے ",
                         "userAnswer": ""
                       },
@@ -940,6 +963,11 @@
                         ],
                         "correctAnswer": "اسد پیشاب کا سرخ آنا پریشانی کی بات نہیں - دوائی کا ایک عام  اثر ہے۔  ",
                         "correctExplanation": "بہت خوب آپ کے مشورے سے اسد اب تسلی سے اپنی دوائی لے رہے ہیں۔ ",
+                        "optionImages": [
+                          "assets/images/quiz1.png",
+                          "assets/images/quiz2.png",
+                          "assets/images/quiz3.png"
+                        ],
                         "incorrectExplanation": "یہ تجویز صحیح نہیں. اسد کو تسلی دینی چاہے  تھی  کہ سرخ پیشاب دوائی کا ایک معمولی اثر ہے۔  .   ",
                         "userAnswer": ""
                       },
@@ -952,6 +980,11 @@
                         ],
                         "correctAnswer": "اسد، اگر آپ کو نزلہ زکام کی علامات جیسے سر درد، چکر آنا، سردی لگنا یا بخار محسوس ہو تو  فوری طور پر مرکز صحت جائیں ۔",
                         "correctExplanation": "بہت خوب! آپ نے اسد  کو صحیح مشوره دیا، جس سے اب وہ وقت پر طبی مدد حاصل کر سکیں گے -  ",
+                        "optionImages": [
+                          "assets/images/quiz1.png",
+                          "assets/images/quiz2.png",
+                          "assets/images/quiz3.png"
+                        ],
                         "incorrectExplanation": "یہ مشوره  نقصان دہ ہو سکتا ہے کیونکہ اسد کو فوری مرکز صحت جانے کی ضرورت ہے ۔  ",
                         "userAnswer": ""
                       }
@@ -1492,23 +1525,23 @@
                       },
                       {
                         "frontImage": "assets/scripts/Script 26/Artboard 18@2x.png",
-                        "backImage": "assets/scripts/Script 26/Artboard 19@2x.png"
+                        "backImage": "assets/scripts/Script 26/Artboard 17@2x.png"
                       },
                       {
                         "frontImage": "assets/scripts/Script 26/Artboard 20@2x.png",
-                        "backImage": "assets/scripts/Script 26/Artboard 22@2x.png"
+                        "backImage": "assets/scripts/Script 26/Artboard 19@2x.png"
                       },
                       {
                         "frontImage": "assets/scripts/Script 26/Artboard 23@2x.png",
-                        "backImage": "assets/scripts/Script 26/Artboard 24@2x.png"
+                        "backImage": "assets/scripts/Script 26/Artboard 22@2x.png"
                       },
                       {
                         "frontImage": "assets/scripts/Script 26/Artboard 25@2x.png",
-                        "backImage": "assets/scripts/Script 26/Artboard 26@2x.png"
+                        "backImage": "assets/scripts/Script 26/Artboard 24@2x.png"
                       },
                       {
                         "frontImage": "assets/scripts/Script 26/Artboard 27@2x.png",
-                        "backImage": "assets/scripts/Script 26/Artboard 10@2x.png"
+                        "backImage": "assets/scripts/Script 26/Artboard 26@2x.png"
                       }
                     ]
                   }
@@ -1531,31 +1564,19 @@
                   "duration": "3 mins",
                   "data": {
                     "title": "ایس ٹی ڈی سے متاثرہ کمیونٹی ممبران کے ساتھ مواصلت کی موثر حکمت عملی",
-                    "imagePairs": [
-                      {
-                        "topImage": "assets/scripts/Script 27/Artboard 14.png",
-                        "bottomImage": "assets/scripts/Script 27/Artboard 15.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 27/Artboard 16.png",
-                        "bottomImage": "assets/scripts/Script 27/Artboard 17.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 27/Artboard 18.png",
-                        "bottomImage": "assets/scripts/Script 27/Artboard 19.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 27/Artboard 20.png",
-                        "bottomImage": "assets/scripts/Script 27/Artboard 21.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 27/Artboard 22.png",
-                        "bottomImage": "assets/scripts/Script 27/Artboard 23.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 27/Artboard 24.png",
-                        "bottomImage": "assets/scripts/Script 27/Artboard 25.png"
-                      }
+                    "imagePaths": [
+                      "assets/scripts/Script 27/Script 27-01.png",
+                      "assets/scripts/Script 27/Script 27-02.png",
+                      "assets/scripts/Script 27/Script 27-03.png",
+                      "assets/scripts/Script 27/Script 27-04.png",
+                      "assets/scripts/Script 27/Script 27-05.png",
+                      "assets/scripts/Script 27/Script 27-06.png",
+                      "assets/scripts/Script 27/Script 27-07.png",
+                      "assets/scripts/Script 27/Script 27-08.png",
+                      "assets/scripts/Script 27/Script 27-09.png",
+                      "assets/scripts/Script 27/Script 27-10.png",
+                      "assets/scripts/Script 27/Script 27-11.png",
+                      "assets/scripts/Script 27/Script 27-12.png"
                     ]
                   }
                 },
@@ -1566,21 +1587,25 @@
                   "title": "جنسی امراض سے بچاؤ کے طریقے",
                   "duration": "2 mins",
                   "data": {
+                    "title": "جنسی امراض سے بچاؤ کے طریقے",
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/script 28/infographic1.png",
+                        "imagePath": "assets/scripts/Script 28/Script 28-32.png",
                         "text": "لوگوں کو جنسی بیماریوں سے متعلق معلومات سے باشعور کریں۔"
                       },
                       {
-                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "imagePath": "assets/scripts/Script 28/Script 28-33.png",
                         "text": "اس مرض میں مبتلا لوگوں کو علاج کے لئے مناسب مرکز صحت جانے کی ترغیب دیں۔"
                       },
                       {
-                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "imagePath": "assets/scripts/Script 28/Script 28-34.png",
                         "text": "ذاتی صفائی اور ساتھی سے وفاداری کا خیال رکھیں ۔ "
                       },
                       {
-                        "imagePath": "assets/scripts/images/infographic2.png",
+                        "imagePath": "assets/scripts/Script 28/Script 28-35.png",
+                        "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔"
+                      }, {
+                        "imagePath": "assets/scripts/Script 28/Script 28-36.png",
                         "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔"
                       }
                     ]
@@ -1610,7 +1635,7 @@
                 {
                   "featureId": 38,
                   "featureType": "interactiveAnimationVideo",
-                  "title": "Interactive Animation Video Example",
+                  "title": "تعارف",
                   "submoduleId": 2,
                   "duration": "4 mins",
                   "data": {
@@ -2642,7 +2667,7 @@
                   "featureId": 67,
                   "featureType": "interactiveAnimationVideo",
                   "submoduleId": 2,
-                  "title": "Interactive Animation Video Example",
+                  "title": "تعارف",
                   "duration": "4 mins",
                   "data": {
                     "videoPath": "https://lhw.dhqharipur.com/public/storage/videos/script%201%20without%20text.mp4",
