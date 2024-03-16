@@ -7,7 +7,6 @@ import '../../Bookmarks.dart';
 import '../../DiscussionGroup/DiscussionGroups.dart';
 import '../../Mobile_Lesson & Flashcards/Lesson.dart';
 import '../../course_models/courses_models.dart';
-import '../../models/course_model.dart';
 import '../course_provider.dart';
 import 'LessonPage.dart';
 

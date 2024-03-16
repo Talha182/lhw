@@ -36,9 +36,9 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
-  double _fabYPosition = 600.0; // Default position
+  double _fabYPosition = 600.0;
 
-
+  bool isBookmarked = false; // Default position
 
   @override
   void initState() {
@@ -85,7 +85,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
     _startMessageTimer();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final fabHeight = 65.0; // Standard height of a FAB
@@ -94,7 +93,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-
       body: Stack(
         children: [
           Container(
@@ -128,13 +126,17 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                         child: TweenAnimationBuilder(
                           tween: Tween<double>(
                             begin: 0,
-                            end: ((_current + 1) / widget.flashCardModel.cards.length) * _totalSteps,
+                            end: ((_current + 1) /
+                                    widget.flashCardModel.cards.length) *
+                                _totalSteps,
                           ),
                           duration: const Duration(milliseconds: 400),
-                          builder: (BuildContext context, double value, Widget? child) {
+                          builder: (BuildContext context, double value,
+                              Widget? child) {
                             return Transform(
                               alignment: Alignment.center,
-                              transform: Matrix4.identity()..scale(-1.0, 1.0), // Flipping horizontally
+                              transform: Matrix4.identity()
+                                ..scale(-1.0, 1.0), // Flipping horizontally
                               child: LinearPercentIndicator(
                                 lineHeight: 8.0,
                                 percent: min(value / _totalSteps, 1.0),
@@ -143,30 +145,33 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                                 linearGradient: const LinearGradient(
                                   begin: Alignment.centerRight,
                                   end: Alignment.centerLeft,
-                                  colors: [Color(0xffFE8BD1), Color(0xffFE8BD1)],
+                                  colors: [
+                                    Color(0xffFE8BD1),
+                                    Color(0xffFE8BD1)
+                                  ],
                                 ),
                               ),
                             );
                           },
                         ),
                       ),
-
                       const SizedBox(
                         width: 5,
                       ),
                       GestureDetector(
                         onTap: () {
-                          final bookmarkController = Get.find<BookmarkController>();
-                          bookmarkController.addBookmark(
-                            Bookmark(
-                              title: 'LessonOption20',
-                              routeName: '/lessonOption20',
-                            ),
-                          );
-                          Get.snackbar('Bookmark Added',
-                              'This page has been added to your bookmarks');
+                          // Toggle bookmark state on tap
+                          setState(() {
+                            isBookmarked = !isBookmarked;
+                          });
                         },
-                        child: const Icon(Icons.bookmark_outline),
+                        child: Icon(
+                          isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                          color: isBookmarked
+                              ? const Color(0xffFE8BD1)
+                              : Colors
+                                  .black, // Change icon based on bookmark state
+                        ),
                       ),
                     ],
                   ),
@@ -191,7 +196,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                   child: Text(
                     widget.flashCardModel.title,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontFamily: "UrduType", fontSize: 30),
+                    style:
+                        const TextStyle(fontFamily: "UrduType", fontSize: 30),
                   ),
                 ),
                 const SizedBox(
@@ -200,23 +206,23 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                 Directionality(
                   textDirection: TextDirection.rtl,
                   child: Transform.translate(
-
                     offset: const Offset(0, 0),
                     child: CarouselSlider.builder(
                       carouselController: _carouselController,
                       itemCount: widget.flashCardModel.cards.length,
-                      itemBuilder: (BuildContext context, int index, int realIndex) {
-                        final card = widget
-                            .flashCardModel.cards[index]; // Use card from the model
+                      itemBuilder:
+                          (BuildContext context, int index, int realIndex) {
+                        final card = widget.flashCardModel
+                            .cards[index]; // Use card from the model
 
                         return FlipCard(
                           onFlip: () {
                             setState(() {
                               _flippedStates[index] =
                                   true; // Mark the card as flipped
-                              _isLastCardFlipped =
-                                  index == widget.flashCardModel.cards.length - 1 &&
-                                      _flippedStates.every((state) => state);
+                              _isLastCardFlipped = index ==
+                                      widget.flashCardModel.cards.length - 1 &&
+                                  _flippedStates.every((state) => state);
                               isCurrentFlipped =
                                   true; // Update isCurrentFlipped to true here
                             });
@@ -338,7 +344,8 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                 Container(
                   width: double.infinity,
                   height: 1,
-                  decoration: BoxDecoration(color: Colors.black87.withOpacity(0.1)),
+                  decoration:
+                      BoxDecoration(color: Colors.black87.withOpacity(0.1)),
                 ),
                 const SizedBox(
                   height: 10,
@@ -387,7 +394,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                       topSafeArea, screenHeight - fabHeight - bottomSafeArea);
                 });
               },
-              child:Container(
+              child: Container(
                 margin: const EdgeInsets.only(bottom: 72.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -401,13 +408,17 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                             margin: const EdgeInsets.only(right: 10, left: 10),
                             // width: screenWidth * 0.7,
 
-                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
                                   'یہ فلیش کارڈ ہیں۔ ہر ایک کارڈ پر\n ضروری معلومات سے متعلق تصاویر ہیں۔\n ان پر ٹیپ کریں اور مزید سیکھیے۔',
                                   textAlign: TextAlign.center,
-                                  textStyle: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: "UrduType"),
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
                                   speed: const Duration(milliseconds: 50),
                                 ),
                               ],
@@ -419,7 +430,9 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                           ),
                         ),
                       ),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     GestureDetector(
                       onTap: _showMessageAgain,
                       child: CircleAvatar(
@@ -439,7 +452,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
               ),
             ),
           ),
-
         ],
       ),
     );

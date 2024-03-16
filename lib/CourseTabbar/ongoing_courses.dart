@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import '../Presentation/Presentation.dart';
 import 'courses_card.dart';
 import 'total_courses.dart';
-import '../models/course_model.dart';
 import 'package:provider/provider.dart';
 
 import 'course_provider.dart';

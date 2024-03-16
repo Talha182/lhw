@@ -11,7 +11,7 @@ class InteractiveInfographicsModel {
   factory InteractiveInfographicsModel.fromJson(Map<String, dynamic> json) {
     var iconsFromJson = json['icons'] as List;
     List<InfographicIcon> iconsList =
-    iconsFromJson.map((i) => InfographicIcon.fromJson(i)).toList();
+        iconsFromJson.map((i) => InfographicIcon.fromJson(i)).toList();
     return InteractiveInfographicsModel(
       image: json['image'],
       icons: iconsList,
@@ -31,10 +31,12 @@ class InfographicIcon {
   });
 
   factory InfographicIcon.fromJson(Map<String, dynamic> json) {
+    double dx = json['offset']['dx']?.toDouble() ?? 0.0;
+    double dy = json['offset']['dy']?.toDouble() ?? 0.0;
     return InfographicIcon(
       iconPath: json['icon'],
       message: json['message'],
-      offset: Offset(json['offset']['dx'], json['offset']['dy']),
+      offset: Offset(dx, dy),
     );
   }
 }
@@ -42,10 +44,13 @@ class InfographicIcon {
 class InteractiveInfographics extends StatefulWidget {
   final InteractiveInfographicsModel interactiveInfographicsModel;
 
-  InteractiveInfographics({Key? key, required this.interactiveInfographicsModel}) : super(key: key);
+  InteractiveInfographics(
+      {Key? key, required this.interactiveInfographicsModel})
+      : super(key: key);
 
   @override
-  State<InteractiveInfographics> createState() => _InteractiveInfographicsState();
+  State<InteractiveInfographics> createState() =>
+      _InteractiveInfographicsState();
 }
 
 class _InteractiveInfographicsState extends State<InteractiveInfographics> {
@@ -76,20 +81,20 @@ class _InteractiveInfographicsState extends State<InteractiveInfographics> {
             ),
           ),
           ...widget.interactiveInfographicsModel.icons.map((icon) => Positioned(
-            left: icon.offset.dx,
-            top: icon.offset.dy,
-            child: IconButton(
-              icon: SvgPicture.asset(
-                icon.iconPath,
-                width: 50,
-                height: 50,
-              ),
-              onPressed: () => showDialog(
-                context: context,
-                builder: (BuildContext context) => buildDialog(icon.message),
-              ),
-            ),
-          )),
+                left: icon.offset.dx,
+                top: icon.offset.dy,
+                child: IconButton(
+                  icon: Image.asset(
+                    icon.iconPath,
+                    scale: 2.5,
+                  ),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        buildDialog(icon.message),
+                  ),
+                ),
+              )),
           Positioned(
             top: 40,
             left: 10,
@@ -108,7 +113,6 @@ class _InteractiveInfographicsState extends State<InteractiveInfographics> {
       ),
     );
   }
-
 
   Widget buildDialog(String dialogText) {
     return Dialog(
@@ -134,7 +138,7 @@ class _InteractiveInfographicsState extends State<InteractiveInfographics> {
               child: Text(
                 dialogText,
                 textAlign:
-                TextAlign.center, // Ensures text is centered if short
+                    TextAlign.center, // Ensures text is centered if short
                 style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
               ),
             ),
@@ -142,9 +146,9 @@ class _InteractiveInfographicsState extends State<InteractiveInfographics> {
 
           Positioned(
             bottom:
-            -15, // Adjusted to fit within the dialog, below the green border
+                -15, // Adjusted to fit within the dialog, below the green border
             left:
-            -55, // Adjusted to fit within the dialog, below the green border
+                -55, // Adjusted to fit within the dialog, below the green border
             child: Image.asset(
               'assets/scripts/script11/2.png', // Replace with your image path
               width: 180, // Adjust the size as needed
@@ -154,9 +158,9 @@ class _InteractiveInfographicsState extends State<InteractiveInfographics> {
           // Top-right Image (Second Image)
           Positioned(
             top:
-            -40, // Adjusted to fit within the dialog, above the green border
+                -40, // Adjusted to fit within the dialog, above the green border
             right:
-            -50, // Adjusted to fit within the dialog, above the green border
+                -50, // Adjusted to fit within the dialog, above the green border
             child: Image.asset(
               'assets/scripts/script11/1.png', // Replace with your image path
               width: 180, // Adjust the size as needed
@@ -168,11 +172,11 @@ class _InteractiveInfographicsState extends State<InteractiveInfographics> {
             // This ensures the container fills the dialog but respects the margin
             child: Container(
               margin:
-              const EdgeInsets.all(5), // Margin from the edge of the dialog
+                  const EdgeInsets.all(5), // Margin from the edge of the dialog
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border:
-                Border.all(color: Colors.green, width: 2), // Green border
+                    Border.all(color: Colors.green, width: 2), // Green border
               ),
             ),
           ),

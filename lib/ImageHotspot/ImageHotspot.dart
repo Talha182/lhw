@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 
 import '../Presentation/Presentation.dart';
 import '../controllers/BookmarkController.dart';
@@ -33,7 +35,10 @@ class _ImageHotspotState extends State<ImageHotspot>
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
-  double _fabYPosition = 600.0; // Default position
+  double _fabYPosition = 600.0;
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+  bool isBookmarked = false; // Default position
 
   @override
   void initState() {
@@ -68,7 +73,7 @@ class _ImageHotspotState extends State<ImageHotspot>
   void dispose() {
     _animationController.dispose();
     _cloudPumpAnimationController.dispose();
-
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -81,6 +86,19 @@ class _ImageHotspotState extends State<ImageHotspot>
         _animationController.reverse();
       }
     });
+  }
+
+  double calculateImageScale(Size imageSize, Size containerSize) {
+    double imageAspectRatio = imageSize.width / imageSize.height;
+    double containerAspectRatio = containerSize.width / containerSize.height;
+
+    if (imageAspectRatio > containerAspectRatio) {
+      // Image is wider than container
+      return containerSize.width / imageSize.width;
+    } else {
+      // Image is taller than container
+      return containerSize.height / imageSize.height;
+    }
   }
 
   void showCustomDialog(BuildContext context, String title, String dialogText) {
@@ -123,7 +141,6 @@ class _ImageHotspotState extends State<ImageHotspot>
                               children: [
                                 Text(dialogText,
                                     textAlign: TextAlign.center,
-
                                     textDirection: TextDirection.rtl,
                                     style: TextStyle(
                                         fontSize: 22,
@@ -136,7 +153,6 @@ class _ImageHotspotState extends State<ImageHotspot>
                                 Text(title,
                                     textAlign: TextAlign.center,
                                     textDirection: TextDirection.rtl,
-
                                     style: const TextStyle(
                                         fontFamily: "UrduType", fontSize: 18)),
                                 const SizedBox(
@@ -257,7 +273,7 @@ class _ImageHotspotState extends State<ImageHotspot>
                       topSafeArea, screenHeight - fabHeight - bottomSafeArea);
                 });
               },
-              child:Container(
+              child: Container(
                 margin: const EdgeInsets.only(bottom: 72.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -271,13 +287,17 @@ class _ImageHotspotState extends State<ImageHotspot>
                             margin: const EdgeInsets.only(right: 10, left: 10),
                             // width: screenWidth * 0.7,
 
-                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'گلابی رنگ کے دائروں پر کلک کریں۔ جن دائروں کوآپ پڑھ چکی ہیں ان کا رنگ سبز ہو جاۓ گا۔',
+                                  'گلابی رنگ کے دائروں پر کلک کریں۔\n جن دائروں کوآپ پڑھ چکی ہیں ان کا\n رنگ سبز ہو جاۓ گا۔',
                                   textAlign: TextAlign.center,
-                                  textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
                                   speed: const Duration(milliseconds: 50),
                                 ),
                               ],
@@ -289,7 +309,9 @@ class _ImageHotspotState extends State<ImageHotspot>
                           ),
                         ),
                       ),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     GestureDetector(
                       onTap: _showMessageAgain,
                       child: CircleAvatar(
@@ -309,7 +331,6 @@ class _ImageHotspotState extends State<ImageHotspot>
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -341,7 +362,8 @@ class _ImageHotspotState extends State<ImageHotspot>
   }
 
   Widget _buildTopBar(BuildContext context) {
-    final String currentTitle = widget.imageHotspotModel.images[widget.imageHotspotModel.currentIndex].title;
+    final String currentTitle = widget
+        .imageHotspotModel.images[widget.imageHotspotModel.currentIndex].title;
 
     return Column(
       children: [
@@ -363,8 +385,18 @@ class _ImageHotspotState extends State<ImageHotspot>
             ),
             const SizedBox(width: 5),
             GestureDetector(
-              onTap: () {},
-              child: const Icon(Icons.bookmark_outline),
+              onTap: () {
+                // Toggle bookmark state on tap
+                setState(() {
+                  isBookmarked = !isBookmarked;
+                });
+              },
+              child: Icon(
+                isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                color: isBookmarked
+                    ? const Color(0xffFE8BD1)
+                    : Colors.black, // Change icon based on bookmark state
+              ),
             ),
           ],
         ),
@@ -404,72 +436,76 @@ class _ImageHotspotState extends State<ImageHotspot>
     return Expanded(
       child: GestureDetector(
         onTapUp: _printTapDetails,
-        child: Container(
-          key: _imageKey, // Use the key here
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(currentImage
-                  .imagePath), // Updated to use current image's path
-              fit: BoxFit.fill,
+        child: PinchZoom(
+          resetDuration: const Duration(milliseconds: 100),
+          maxScale: 3.0,
+          child: Container(
+            key: _imageKey, // Use the key here
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(currentImage
+                    .imagePath), // Updated to use current image's path
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      // Define your onTap functionality here for the top left button
-                      print("Top left button tapped");
-                    },
-                    child: Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black.withOpacity(0.4),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          'assets/images/touch.svg',
-                          width: 30,
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        // Define your onTap functionality here for the top left button
+                        print("Top left button tapped");
+                      },
+                      child: Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black.withOpacity(0.4),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'assets/images/touch.svg',
+                            width: 30,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      _toggleFullScreen();
-                    },
-                    child: Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black.withOpacity(0.4),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          'assets/images/full_screen.svg',
-                          width: 30,
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        _toggleFullScreen();
+                      },
+                      child: Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black.withOpacity(0.4),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'assets/images/full_screen.svg',
+                            width: 30,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              ..._buildHotspots(
-                context,
-              ),
-            ],
+                ..._buildHotspots(
+                  context,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -509,6 +545,7 @@ class _ImageHotspotState extends State<ImageHotspot>
         top: absoluteY,
         child: GestureDetector(
           onTap: () {
+            _audioPlayer.play(AssetSource("assets/sounds/hotspot_click.mp3"));
             showCustomDialog(context, hotspot.dialogText, hotspot.title);
             setState(() {
               hotspot.isTapped = true;
@@ -577,31 +614,31 @@ class _ImageHotspotState extends State<ImageHotspot>
         ),
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GestureDetector(
-                  onTap: () {
-                    print("Top left button tapped");
-                  },
-                  child: Container(
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.black.withOpacity(0.4),
-                    ),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        'assets/images/touch.svg',
-                        width: 30,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.topLeft,
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(10.0),
+            //     child: GestureDetector(
+            //       onTap: () {
+            //         print("Top left button tapped");
+            //       },
+            //       child: Container(
+            //         width: 45,
+            //         height: 45,
+            //         decoration: BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           color: Colors.black.withOpacity(0.4),
+            //         ),
+            //         child: Center(
+            //           child: SvgPicture.asset(
+            //             'assets/images/touch.svg',
+            //             width: 30,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Align(
               alignment: Alignment.bottomLeft,
               child: Padding(

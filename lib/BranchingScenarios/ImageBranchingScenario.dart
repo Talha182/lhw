@@ -39,6 +39,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
   double _fabYPosition = 600.0;
+  bool isBookmarked = false;
 
   void updateQuestion(String selectedAnswer, int index) {
     if (isAnswered)
@@ -60,7 +61,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
 
     showAnimatedDialog(
       context: context,
-      barrierDismissible: false, // Prevents dialog dismissal by tapping outside it
+      barrierDismissible:
+          false, // Prevents dialog dismissal by tapping outside it
       builder: (BuildContext context) {
         return Dialog(
           shape: const RoundedRectangleBorder(
@@ -69,15 +71,19 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
           child: Stack(clipBehavior: Clip.none, children: <Widget>[
             Container(
               padding: const EdgeInsets.all(20),
-              margin: const EdgeInsets.only(top: 20, right: 60, bottom: 60, left: 60),
+              margin: const EdgeInsets.only(
+                  top: 20, right: 60, bottom: 60, left: 60),
               child: Wrap(
                 children: [
                   Text(
                     isCorrect
-                        ? widget.imageBranchingScenarioModel.questions[questionIndex].correctExplanation
-                        : widget.imageBranchingScenarioModel.questions[questionIndex].incorrectExplanation,
+                        ? widget.imageBranchingScenarioModel
+                            .questions[questionIndex].correctExplanation
+                        : widget.imageBranchingScenarioModel
+                            .questions[questionIndex].incorrectExplanation,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontFamily: "UrduType", fontSize: 20),
+                    style:
+                        const TextStyle(fontFamily: "UrduType", fontSize: 20),
                   ),
                 ],
               ),
@@ -85,12 +91,14 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
             Positioned(
               bottom: -15,
               left: -55,
-              child: Image.asset('assets/scripts/script11/2.png', width: 180, height: 180),
+              child: Image.asset('assets/scripts/script11/2.png',
+                  width: 180, height: 180),
             ),
             Positioned(
               top: -40,
               right: -50,
-              child: Image.asset('assets/scripts/script11/1.png', width: 180, height: 180),
+              child: Image.asset('assets/scripts/script11/1.png',
+                  width: 180, height: 180),
             ),
             Positioned.fill(
               child: Container(
@@ -118,7 +126,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                   child: const Center(
                     child: Text(
                       "اگلے",
-                      style: TextStyle(color: Colors.white, fontFamily: "UrduType"),
+                      style: TextStyle(
+                          color: Colors.white, fontFamily: "UrduType"),
                     ),
                   ),
                 ),
@@ -130,7 +139,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
     ).then((_) {
       // Executes after the dialog is dismissed
       proceedToNextQuestionOrState(); // Proceed regardless of answer correctness
-    });}
+    });
+  }
 
   void proceedToNextQuestionOrState() {
     if (questionIndex <
@@ -210,13 +220,16 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
       DeviceOrientation.portraitDown,
     ]);
 
-    Navigator.of(context).push(MaterialPageRoute(
+    Navigator.of(context)
+        .push(MaterialPageRoute(
       builder: (context) => FullScreenImageViewer(imagePath: imagePath),
-    )).then((_) {
+    ))
+        .then((_) {
       // Restore orientation preferences after the full-screen view is popped
       SystemChrome.setPreferredOrientations(DeviceOrientation.values);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final fabHeight = 65.0; // Standard height of a FAB
@@ -260,13 +273,15 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                           ),
                           Expanded(
                             child: TweenAnimationBuilder(
-                              tween: Tween<double>(begin: 0, end: _currentProgress),
+                              tween: Tween<double>(
+                                  begin: 0, end: _currentProgress),
                               duration: const Duration(milliseconds: 400),
                               builder: (BuildContext context, double value,
                                   Widget? child) {
                                 return Transform(
                                   alignment: Alignment.center,
-                                  transform: Matrix4.identity()..scale(-1.0, 1.0), // Flipping horizontally
+                                  transform: Matrix4.identity()
+                                    ..scale(-1.0, 1.0), // Flipping horizontally
                                   child: LinearPercentIndicator(
                                     lineHeight: 8.0,
                                     percent: value,
@@ -275,7 +290,10 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                     linearGradient: const LinearGradient(
                                       begin: Alignment.centerRight,
                                       end: Alignment.centerLeft,
-                                      colors: [Color(0xffFE8BD1), Color(0xffFE8BD1)],
+                                      colors: [
+                                        Color(0xffFE8BD1),
+                                        Color(0xffFE8BD1)
+                                      ],
                                     ),
                                   ),
                                 );
@@ -286,19 +304,22 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                             width: 5,
                           ),
                           GestureDetector(
-                              onTap: () {
-                                final bookmarkController =
-                                    Get.find<BookmarkController>();
-                                bookmarkController.addBookmark(
-                                  Bookmark(
-                                      title: 'LessonOption20',
-                                      routeName: '/lessonOption20'),
-                                );
-                                // Optionally, show a snackbar or some feedback to the user
-                                Get.snackbar('Bookmark Added',
-                                    'This page has been added to your bookmarks');
-                              },
-                              child: const Icon(Icons.bookmark_outline)),
+                            onTap: () {
+                              // Toggle bookmark state on tap
+                              setState(() {
+                                isBookmarked = !isBookmarked;
+                              });
+                            },
+                            child: Icon(
+                              isBookmarked
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_border,
+                              color: isBookmarked
+                                  ? const Color(0xffFE8BD1)
+                                  : Colors
+                                      .black, // Change icon based on bookmark state
+                            ),
+                          ),
                         ],
                       ),
                       Padding(
@@ -330,7 +351,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                        color: Colors.black87.withOpacity(0.1))),
+                                        color:
+                                            Colors.black87.withOpacity(0.1))),
                                 child: Column(
                                   children: [
                                     Container(
@@ -351,24 +373,30 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                         ),
                                         carouselController:
                                             _carouselController, // Ensure you've connected the CarouselController
-                                        items: widget.imageBranchingScenarioModel
-                                            .questions[questionIndex].imagePaths
+                                        items: widget
+                                            .imageBranchingScenarioModel
+                                            .questions[questionIndex]
+                                            .imagePaths
                                             .map((imagePath) {
                                           return GestureDetector(
-                                              onTap: () => _showFullScreenImage(imagePath),
+                                            onTap: () =>
+                                                _showFullScreenImage(imagePath),
                                             child: Builder(
                                               builder: (BuildContext context) {
                                                 return ClipRRect(
-                                                  borderRadius: BorderRadius.circular(
-                                                      10), // Apply rounded corners to the ClipRRect
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10), // Apply rounded corners to the ClipRRect
                                                   child: Container(
-                                                    width: MediaQuery.of(context)
-                                                        .size
-                                                        .width,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
                                                     decoration: BoxDecoration(
                                                       color: Colors.transparent,
                                                       image: DecorationImage(
-                                                        image: AssetImage(imagePath),
+                                                        image: AssetImage(
+                                                            imagePath),
                                                         fit: BoxFit.fill,
                                                       ),
                                                     ),
@@ -381,20 +409,23 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(bottom: 8.0),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: const Color(0xffFE8BD1),
+                                          backgroundColor:
+                                              const Color(0xffFE8BD1),
                                           elevation: 0,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(30),
+                                            borderRadius:
+                                                BorderRadius.circular(30),
                                           ),
                                           minimumSize: const Size(150, 37),
                                         ),
                                         onPressed: () {
                                           _carouselController.nextPage(
-                                              duration:
-                                                  const Duration(milliseconds: 300),
+                                              duration: const Duration(
+                                                  milliseconds: 300),
                                               curve: Curves.linear);
                                         },
                                         child: const Text(
@@ -417,8 +448,8 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                             const Center(
                               child: Text(
                                 "بہترین آپشن کا انتخاب کریں۔",
-                                style:
-                                    TextStyle(fontFamily: "UrduType", fontSize: 23),
+                                style: TextStyle(
+                                    fontFamily: "UrduType", fontSize: 23),
                               ),
                             ),
                             const SizedBox(
@@ -429,10 +460,13 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                 widget.imageBranchingScenarioModel
                                     .questions[questionIndex].options.length,
                                 (index) => Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   child: QuizCard(
-                                    text: widget.imageBranchingScenarioModel
-                                        .questions[questionIndex].options[index],
+                                    text: widget
+                                        .imageBranchingScenarioModel
+                                        .questions[questionIndex]
+                                        .options[index],
                                     ontap: () => updateQuestion(
                                         widget
                                             .imageBranchingScenarioModel
@@ -441,16 +475,22 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                         index),
                                     color: optionColors[index],
                                     isCorrect: selectedAnswer ==
-                                        widget.imageBranchingScenarioModel
-                                            .questions[questionIndex].correctAnswer,
+                                        widget
+                                            .imageBranchingScenarioModel
+                                            .questions[questionIndex]
+                                            .correctAnswer,
                                     isSelected: isSelected,
-                                    isOptionSelected: index == selectedOptionIndex,
+                                    isOptionSelected:
+                                        index == selectedOptionIndex,
                                   ),
                                 ),
-                              ).animate(interval: 200.ms).fade(duration: 200.ms),
+                              )
+                                  .animate(interval: 200.ms)
+                                  .fade(duration: 200.ms),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 15, top: 5),
+                              padding:
+                                  const EdgeInsets.only(bottom: 15, top: 5),
                               child: Column(
                                 children: [
                                   Divider(
@@ -472,8 +512,10 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                                         1
                                             ? const Color(
                                                 0xffFE8BD1) // Button enabled color
-                                            : Colors.grey, // Button disabled color
-                                        borderRadius: BorderRadius.circular(30)),
+                                            : Colors
+                                                .grey, // Button disabled color
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
                                     child: TextButton(
                                       onPressed: isAnswered &&
                                               questionIndex ==
@@ -526,7 +568,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                       topSafeArea, screenHeight - fabHeight - bottomSafeArea);
                 });
               },
-              child:Container(
+              child: Container(
                 margin: const EdgeInsets.only(bottom: 72.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -584,7 +626,6 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -703,11 +744,11 @@ class ImageBranchingScenarioModel {
   }
 }
 
-
 class FullScreenImageViewer extends StatelessWidget {
   final String imagePath;
 
-  const FullScreenImageViewer({Key? key, required this.imagePath}) : super(key: key);
+  const FullScreenImageViewer({Key? key, required this.imagePath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -737,4 +778,3 @@ class FullScreenImageViewer extends StatelessWidget {
     );
   }
 }
-

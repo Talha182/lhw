@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -40,6 +41,9 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
   String selectedAnswer = '';
   bool showMessage = true;
   double _fabYPosition = 600.0;
+  bool isBookmarked = false;
+  final AudioPlayer audioPlayer = AudioPlayer();
+
 
   @override
   void initState() {
@@ -65,6 +69,8 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
   @override
   void dispose() {
     _cloudPumpAnimationController.dispose();
+    audioPlayer.dispose(); // Dispose the audio player
+
     // Dispose other controllers...
     super.dispose();
   }
@@ -81,6 +87,10 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
     if (isAnswered) {
       return;
     }
+
+    // Play selection sound
+    audioPlayer.play(AssetSource('assets/sounds/MouseClick.mp3'));
+
 
     setState(() {
       this.selectedAnswer = selectedAnswer;
@@ -326,20 +336,22 @@ class _TextBranchingScenarioState extends State<TextBranchingScenario>
                           width: 5,
                         ),
                         GestureDetector(
-                            onTap: () {
-                              final bookmarkController =
-                                  Get.find<BookmarkController>();
-                              bookmarkController.addBookmark(
-                                Bookmark(
-                                    title: 'LessonOption20',
-                                    routeName: '/lessonOption20'),
-                              );
-                              // Optionally, show a snackbar or some feedback to the user
-                              Get.snackbar('Bookmark Added',
-                                  'This page has been added to your bookmarks');
-                            },
-                            child: const Icon(Icons.bookmark_outline)),
-                      ],
+                          onTap: () {
+                            // Toggle bookmark state on tap
+                            setState(() {
+                              isBookmarked = !isBookmarked;
+                            });
+                          },
+                          child: Icon(
+                            isBookmarked
+                                ? Icons.bookmark
+                                : Icons.bookmark_border,
+                            color: isBookmarked
+                                ? const Color(0xffFE8BD1)
+                                : Colors
+                                .black, // Change icon based on bookmark state
+                          ),
+                        ),        ],
                     ),
                   ),
                   Padding(

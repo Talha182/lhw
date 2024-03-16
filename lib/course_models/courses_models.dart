@@ -347,6 +347,8 @@ class Feature extends ChangeNotifier {
         return FeatureType.infographics;
       case "interactiveAnimationVideo":
         return FeatureType.interactiveAnimationVideo;
+      case "interactiveInfographics":
+        return FeatureType.interactiveInfographics;
       case "interactiveImage":
         return FeatureType.interactiveImage;
       case "imageHotspot":
@@ -439,6 +441,8 @@ class Feature extends ChangeNotifier {
           return Icons.flash_on;
         case FeatureType.infographics:
           return Icons.insert_chart;
+        case FeatureType.interactiveInfographics:
+          return Icons.perm_device_info;
         case FeatureType.interactiveAnimationVideo:
           return Icons.videocam;
         case FeatureType.interactiveImage:
@@ -480,6 +484,7 @@ enum FeatureType {
   infographics,
   interactiveAnimationVideo,
   interactiveImage,
+  interactiveInfographics,
   imageHotspot,
   horizontalImageHotspot,
   textBranchingScenario,

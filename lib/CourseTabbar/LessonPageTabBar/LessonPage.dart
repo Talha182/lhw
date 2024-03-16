@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../CustomWidgets/Row_Column_Padding.dart';
 import '../../Mobile_Lesson & Flashcards/inforgraphics_carousel.dart';
 import '../../course_models/courses_models.dart';
-import '../../models/course_model.dart';
 import '../../ModuleScreen/ModuleScreen.dart';
 
 class Lesson extends StatefulWidget {

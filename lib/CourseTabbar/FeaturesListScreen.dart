@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import '../Database/database_helper.dart';
 import '../FlashCard/flash_cards_screen.dart';
 import '../ImageHotspot/ImageHotspot.dart';
+import '../Infographics/interactive_infographic.dart';
 import '../InteractiveAnimationVideo/interactive_animation_video.dart';
 import '../JourneyMaps/JourneyMap.dart';
 import '../Presentation/Presentation.dart';
@@ -239,7 +240,7 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
               const SizedBox(
                 height: 12,
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -374,29 +375,43 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                   }
                                   break;
                                 case FeatureType.comicStrip:
-                                  List<dynamic> comicStripData = feature.data['imagePaths'] as List<dynamic>; // Assuming your data structure now uses 'imagePaths' directly
+                                  List<dynamic> comicStripData =
+                                      feature.data['imagePaths'] as List<
+                                          dynamic>; // Assuming your data structure now uses 'imagePaths' directly
 
                                   // Ensure there's a safe fallback in case 'imagePaths' is null
-                                  List<String> imagePaths = comicStripData != null ? List<String>.from(comicStripData) : [];
+                                  List<String> imagePaths =
+                                      comicStripData != null
+                                          ? List<String>.from(comicStripData)
+                                          : [];
 
                                   // Now that ComicStripModel directly uses a list of image paths, adjust the mapping
-                                  ComicStripModel comicStripModel = ComicStripModel(
+                                  ComicStripModel comicStripModel =
+                                      ComicStripModel(
                                     title: feature.data['title'],
                                     imagePaths: imagePaths,
                                   );
 
                                   // Assuming you only have one comic strip model per feature, but adjust if needed
-                                  final result = await Get.to(() => HorizontalComicStrip(
-                                    comicStripsModel: [comicStripModel], // Pass a list containing the single model
-                                    featureId: feature.featureId,
-                                  ));
+                                  final result =
+                                      await Get.to(() => HorizontalComicStrip(
+                                            comicStripsModel: [
+                                              comicStripModel
+                                            ], // Pass a list containing the single model
+                                            featureId: feature.featureId,
+                                          ));
 
                                   if (result == true) {
                                     toggleFeatureCompletion(feature);
-                                    await DatabaseHelper.instance.markFeatureAsCompleted(feature.featureId);
-                                    Provider.of<CoursesProvider>(context, listen: false)
+                                    await DatabaseHelper.instance
+                                        .markFeatureAsCompleted(
+                                            feature.featureId);
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
                                         .markFeatureAsCompletedAndUpdateProgress(
-                                        widget.courseId, widget.moduleId, feature.featureId);
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
                                   }
                                   break;
 
@@ -581,6 +596,26 @@ class _FeaturesListScreenState extends State<FeaturesListScreen> {
                                 // TODO: Handle this case.
                                 case FeatureType.unknown:
                                 // TODO: Handle this case.
+                                case FeatureType.interactiveInfographics:
+                                  final interactiveInfographicsModel =
+                                      InteractiveInfographicsModel.fromJson(
+                                          feature.data as Map<String, dynamic>);
+                                  final result = await Get.to(
+                                      () => InteractiveInfographics(
+                                            interactiveInfographicsModel:
+                                                interactiveInfographicsModel,
+                                          ));
+                                  if (result == true) {
+                                    toggleFeatureCompletion(feature);
+
+                                    Provider.of<CoursesProvider>(context,
+                                            listen: false)
+                                        .markFeatureAsCompletedAndUpdateProgress(
+                                            widget.courseId,
+                                            widget.moduleId,
+                                            feature.featureId);
+                                  }
+                                  break;
                               }
                             },
                           );

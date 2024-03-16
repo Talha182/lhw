@@ -198,13 +198,7 @@ class _SargarmiState extends State<Sargarmi> {
                           " بات چیت گروپ میں شرکت",
                           style: TextStyle(fontFamily: "UrduType", fontSize: 17),
                         ),
-                        const Text(
-                          "دیکھیں کہ آپ نے ہر یونٹ کے ٹیسٹ میں کس طرح حصہ لیا ",
-                          style: TextStyle(
-                              fontFamily: "UrduType",
-                              fontSize: 15,
-                              color: Color(0xff8B9DA0)),
-                        ),
+
                         const SizedBox(
                           height: 20,
                         ),

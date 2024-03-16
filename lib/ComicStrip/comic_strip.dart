@@ -43,6 +43,7 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
   double _fabYPosition = 600.0; // Default position
+  bool isBookmarked = false;
 
   @override
   void initState() {
@@ -438,7 +439,7 @@ class _ComicStripState extends State<ComicStrip> with TickerProviderStateMixin {
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'کہانیوں سے بہتر استاد کوئی نہیں۔ چلیں ہم انہیں  پڑھیں۔',
+                                  'کہانیوں سے بہتر استاد کوئی\n نہیں۔ چلیں ہم انہیں  پڑھیں۔',
                                   textAlign: TextAlign.center,
                                   textStyle: const TextStyle(
                                       fontSize: 18,
@@ -709,7 +710,6 @@ class _HorizontalComicStripState extends State<HorizontalComicStrip> {
                 padEnds: true,
                 onPageChanged: (index, reason) {
                   _updateLastImageReached(index, totalImages);
-
                 },
               ),
             ),

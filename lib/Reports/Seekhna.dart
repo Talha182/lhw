@@ -86,15 +86,15 @@ class _SeekhnaState extends State<Seekhna> {
                                   style: TextStyle(
                                       fontFamily: "UrduType", fontSize: 16),
                                 ),
-                                Text(
-                                  "اپنے ہر یونٹ کے ٹیسٹ کی کارکردگی کو دیکھیں۔",
-                                  style: TextStyle(
-                                      fontFamily: "UrduType",
-                                      fontSize: 13,
-                                      color: Color(0xff8B9DA0)),
-                                  textAlign: TextAlign
-                                      .right, // Align text to the right
-                                ),
+                                // Text(
+                                //   "اپنے ہر یونٹ کے ٹیسٹ کی کارکردگی کو دیکھیں۔",
+                                //   style: TextStyle(
+                                //       fontFamily: "UrduType",
+                                //       fontSize: 13,
+                                //       color: Color(0xff8B9DA0)),
+                                //   textAlign: TextAlign
+                                //       .right, // Align text to the right
+                                // ),
                               ],
                             ),
                             Directionality(
@@ -119,18 +119,18 @@ class _SeekhnaState extends State<Seekhna> {
                                   ),
                                   items: items
                                       .map((String item) =>
-                                          DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontFamily: 'UrduType',
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
+                                      DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontFamily: 'UrduType',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
                                       .toList(),
                                   value: selectedValue,
                                   onChanged: (String? value) {
@@ -166,15 +166,15 @@ class _SeekhnaState extends State<Seekhna> {
                                     scrollbarTheme: ScrollbarThemeData(
                                       radius: const Radius.circular(20),
                                       thickness:
-                                          MaterialStateProperty.all<double>(6),
+                                      MaterialStateProperty.all<double>(6),
                                       thumbVisibility:
-                                          MaterialStateProperty.all<bool>(true),
+                                      MaterialStateProperty.all<bool>(true),
                                     ),
                                   ),
                                   menuItemStyleData: const MenuItemStyleData(
                                     height: 40,
                                     padding:
-                                        EdgeInsets.only(left: 14, right: 14),
+                                    EdgeInsets.only(left: 14, right: 14),
                                   ),
                                 ),
                               ),
@@ -205,7 +205,7 @@ class _SeekhnaState extends State<Seekhna> {
                                   color: Colors.white,
                                   shape: BoxShape.circle,
                                   border:
-                                      Border.all(color: Colors.grey.shade100)),
+                                  Border.all(color: Colors.grey.shade100)),
                               child: const Center(
                                 child: Column(
                                   children: [
@@ -233,7 +233,7 @@ class _SeekhnaState extends State<Seekhna> {
                             Positioned(
                               top: 70,
                               left:
-                                  50, // Adjust this to position the line correctly.
+                              50, // Adjust this to position the line correctly.
                               child: CustomPaint(
                                 size: const Size(
                                     40, 40), // Adjust this size as needed.
@@ -243,7 +243,7 @@ class _SeekhnaState extends State<Seekhna> {
                             Positioned(
                               top: 200,
                               left:
-                                  70, // Adjust this to position the line correctly.
+                              70, // Adjust this to position the line correctly.
                               child: CustomPaint(
                                 size: const Size(
                                     40, 40), // Adjust this size as needed.
@@ -253,7 +253,7 @@ class _SeekhnaState extends State<Seekhna> {
                             Positioned(
                               top: 210,
                               right:
-                                  90, // Adjust this to position the line correctly.
+                              90, // Adjust this to position the line correctly.
                               child: CustomPaint(
                                 size: const Size(
                                     40, 40), // Adjust this size as needed.
@@ -263,7 +263,7 @@ class _SeekhnaState extends State<Seekhna> {
                             Positioned(
                               top: 160,
                               right:
-                                  60, // Adjust this to position the line correctly.
+                              60, // Adjust this to position the line correctly.
                               child: CustomPaint(
                                 size: const Size(
                                     35, 35), // Adjust this size as needed.
@@ -273,7 +273,7 @@ class _SeekhnaState extends State<Seekhna> {
                             Positioned(
                               top: 160,
                               right:
-                                  60, // Adjust this to position the line correctly.
+                              60, // Adjust this to position the line correctly.
                               child: CustomPaint(
                                 size: const Size(
                                     35, 35), // Adjust this size as needed.
@@ -283,7 +283,7 @@ class _SeekhnaState extends State<Seekhna> {
                             Positioned(
                               top: 90,
                               right:
-                                  70, // Adjust this to position the line correctly.
+                              70, // Adjust this to position the line correctly.
                               child: CustomPaint(
                                 size: const Size(
                                     35, 35), // Adjust this size as needed.
@@ -509,15 +509,15 @@ class _SeekhnaState extends State<Seekhna> {
                                   style: TextStyle(
                                       fontFamily: "UrduType", fontSize: 17),
                                 ),
-                                Text(
-                                  "تمام یونٹ کے لئے اپنے نمبر دیکھیں۔",
-                                  style: TextStyle(
-                                      fontFamily: "UrduType",
-                                      fontSize: 13,
-                                      color: Color(0xff8B9DA0)),
-                                  textAlign: TextAlign
-                                      .right, // Align text to the right
-                                ),
+                                // Text(
+                                //   "تمام یونٹ کے لئے اپنے نمبر دیکھیں۔",
+                                //   style: TextStyle(
+                                //       fontFamily: "UrduType",
+                                //       fontSize: 13,
+                                //       color: Color(0xff8B9DA0)),
+                                //   textAlign: TextAlign
+                                //       .right, // Align text to the right
+                                // ),
                               ],
                             ),
                             Directionality(
@@ -542,18 +542,18 @@ class _SeekhnaState extends State<Seekhna> {
                                   ),
                                   items: items
                                       .map((String item) =>
-                                          DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontFamily: 'UrduType',
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
+                                      DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontFamily: 'UrduType',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
                                       .toList(),
                                   value: selectedValue,
                                   onChanged: (String? value) {
@@ -589,15 +589,15 @@ class _SeekhnaState extends State<Seekhna> {
                                     scrollbarTheme: ScrollbarThemeData(
                                       radius: const Radius.circular(20),
                                       thickness:
-                                          MaterialStateProperty.all<double>(6),
+                                      MaterialStateProperty.all<double>(6),
                                       thumbVisibility:
-                                          MaterialStateProperty.all<bool>(true),
+                                      MaterialStateProperty.all<bool>(true),
                                     ),
                                   ),
                                   menuItemStyleData: const MenuItemStyleData(
                                     height: 40,
                                     padding:
-                                        EdgeInsets.only(left: 14, right: 14),
+                                    EdgeInsets.only(left: 14, right: 14),
                                   ),
                                 ),
                               ),
@@ -647,11 +647,11 @@ class _SeekhnaState extends State<Seekhna> {
                               xValueMapper: (ChartData data, _) => data.x,
                               yValueMapper: (ChartData data, _) => data.y,
                               dataLabelMapper: (ChartData data, _) =>
-                                  '', // Empty label but we'll use it for custom painting
+                              '', // Empty label but we'll use it for custom painting
                               dataLabelSettings: DataLabelSettings(
                                   isVisible: true,
                                   labelAlignment:
-                                      ChartDataLabelAlignment.middle,
+                                  ChartDataLabelAlignment.middle,
                                   color: Colors.transparent,
                                   builder: (dynamic data,
                                       dynamic point,
@@ -716,7 +716,7 @@ class _SeekhnaState extends State<Seekhna> {
                                       fontFamily: "UrduType", fontSize: 17),
                                 ),
                                 Text(
-                                  "معلوم کریں کہ ہر کورس میں آپ کو کتنے سوالات صحیح/غلط ملے",
+                                  "معلوم کریں کہ ہر یونٹ میں آپ کے کتنے سوالات صحیح/غلط ہیں۔",
                                   style: TextStyle(
                                       fontFamily: "UrduType",
                                       fontSize: 13,
@@ -748,18 +748,18 @@ class _SeekhnaState extends State<Seekhna> {
                                   ),
                                   items: items
                                       .map((String item) =>
-                                          DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontFamily: 'UrduType',
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
+                                      DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontFamily: 'UrduType',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
                                       .toList(),
                                   value: selectedValue,
                                   onChanged: (String? value) {
@@ -795,15 +795,15 @@ class _SeekhnaState extends State<Seekhna> {
                                     scrollbarTheme: ScrollbarThemeData(
                                       radius: const Radius.circular(20),
                                       thickness:
-                                          MaterialStateProperty.all<double>(6),
+                                      MaterialStateProperty.all<double>(6),
                                       thumbVisibility:
-                                          MaterialStateProperty.all<bool>(true),
+                                      MaterialStateProperty.all<bool>(true),
                                     ),
                                   ),
                                   menuItemStyleData: const MenuItemStyleData(
                                     height: 40,
                                     padding:
-                                        EdgeInsets.only(left: 14, right: 14),
+                                    EdgeInsets.only(left: 14, right: 14),
                                   ),
                                 ),
                               ),
@@ -888,16 +888,16 @@ class _SeekhnaState extends State<Seekhna> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "طاقتیں",
+                        "صلاحیتیں",
                         style: TextStyle(fontFamily: "UrduType", fontSize: 18),
                       ),
-                      const Text(
-                        "معلوم کریں کہ آپ کی طاقت کہاں تھی۔",
-                        style: TextStyle(
-                            fontFamily: "UrduType",
-                            fontSize: 15,
-                            color: Color(0xff8B9DA0)),
-                      ),
+                      // const Text(
+                      //   "معلوم کریں کہ آپ کی طاقت کہاں تھی۔",
+                      //   style: TextStyle(
+                      //       fontFamily: "UrduType",
+                      //       fontSize: 15,
+                      //       color: Color(0xff8B9DA0)),
+                      // ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -1010,6 +1010,141 @@ class _SeekhnaState extends State<Seekhna> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
+              Container(
+                height: 340,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "محنت درکار",
+                        style: TextStyle(fontFamily: "UrduType", fontSize: 18),
+                      ),
+                      // const Text(
+                      //   "معلوم کریں کہ آپ کی طاقت کہاں تھی۔",
+                      //   style: TextStyle(
+                      //       fontFamily: "UrduType",
+                      //       fontSize: 15,
+                      //       color: Color(0xff8B9DA0)),
+                      // ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/vitamin.png",
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "غذائیت",
+                                style: TextStyle(
+                                    fontFamily: "UrduType", fontSize: 18),
+                              ),
+                              Text(
+                                "ماڈیول 4: وٹامن اے کی کمی",
+                                style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    fontSize: 15,
+                                    color: Color(0xff8B9DA0)),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Divider(
+                        thickness: 1,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/image26.png",
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "غذائیت",
+                                style: TextStyle(
+                                    fontFamily: "UrduType", fontSize: 18),
+                              ),
+                              Text(
+                                "ماڈیول 4: وٹامن اے کی کمی",
+                                style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    fontSize: 15,
+                                    color: Color(0xff8B9DA0)),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Divider(
+                        thickness: 1,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/breastfeeding.png",
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "غذائیت",
+                                style: TextStyle(
+                                    fontFamily: "UrduType", fontSize: 18),
+                              ),
+                              Text(
+                                "ماڈیول 4: وٹامن اے کی کمی",
+                                style: TextStyle(
+                                    fontFamily: "UrduType",
+                                    fontSize: 15,
+                                    color: Color(0xff8B9DA0)),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
               Container(
                 height: 40,
                 decoration: BoxDecoration(
@@ -1195,7 +1330,7 @@ class Quiz3Line extends CustomPainter {
     // Start point remains at the right-most side for this case.
     const Offset startPoint = Offset(70, 15);
     final Offset middlePoint =
-        Offset(size.width - x, -y); // Invert x and Negative y to go upwards.
+    Offset(size.width - x, -y); // Invert x and Negative y to go upwards.
     canvas.drawLine(startPoint, middlePoint, paint);
 
     // Draw horizontal line towards the label on the left.
@@ -1228,7 +1363,7 @@ class Quiz2Line extends CustomPainter {
     // Start point remains at the right-most side for this case.
     const Offset startPoint = Offset(50, -5);
     final Offset middlePoint =
-        Offset(size.width - x, y); // Invert x and Negative y to go upwards.
+    Offset(size.width - x, y); // Invert x and Negative y to go upwards.
     canvas.drawLine(startPoint, middlePoint, paint);
 
     // Draw horizontal line towards the label on the left.
@@ -1261,7 +1396,7 @@ class Quiz1Line extends CustomPainter {
     // Start point remains at the right-most side for this case.
     const Offset startPoint = Offset(50, -5);
     final Offset middlePoint =
-        Offset(size.width - x, y); // Invert x and Negative y to go upwards.
+    Offset(size.width - x, y); // Invert x and Negative y to go upwards.
     canvas.drawLine(startPoint, middlePoint, paint);
 
     // Draw horizontal line towards the label on the left.

@@ -25,6 +25,8 @@ class InteractiveImageModel {
   final double dragTargetHeight;
   final double draggableImageScale;
   final bool showGuideText;
+  final bool showRippleEffect;
+
 
   InteractiveImageModel({
     required this.image,
@@ -50,6 +52,8 @@ class InteractiveImageModel {
     this.draggableImageWidth = 100.0, // Default width
     this.draggableImageHeight = 100.0, // Default height
     this.draggableImageScale = 1.0, // Default scale is 1.0 (original size)
+    this.showRippleEffect = false, // Add this line
+
   });
 
   // JSON deserialization
@@ -103,6 +107,7 @@ class InteractiveImageModel {
       draggableImageHeight: json['draggableImageHeight']?.toDouble() ?? 100.0,
       draggableImageScale: json['draggableImageScale']?.toDouble() ?? 1.0,
       showGuideText: json['showGuideText'] ?? true,
+      showRippleEffect: json['showRippleEffect'] ?? false,
     );
   }
 
@@ -143,6 +148,7 @@ class InteractiveImageModel {
       'draggableImageWidth': draggableImageWidth,
       'draggableImageHeight': draggableImageHeight,
       'draggableImageScale': draggableImageScale,
+      'showRippleEffect': showRippleEffect,
     };
   }
 }

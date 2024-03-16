@@ -42,6 +42,7 @@ class _PresentationScreenState extends State<PresentationScreen>
   int? selectedOptionIndex;
   bool isDialogShown = false;
   double _fabYPosition = 300.0; // Default position
+  bool isBookmarked = false;
 
   List<Color> optionColors = [
     const Color(0xffF2F2F2),
@@ -420,16 +421,13 @@ class _PresentationScreenState extends State<PresentationScreen>
                 ),
                 GestureDetector(
                     onTap: () {
-                      final bookmarkController = Get.find<BookmarkController>();
-                      bookmarkController.addBookmark(
-                        Bookmark(
-                            title: 'LessonOption20',
-                            routeName: '/lessonOption20'),
-                      );
-                      Get.snackbar('Bookmark Added',
-                          'This page has been added to your bookmarks');
+                      setState(() {
+                        isBookmarked = !isBookmarked;
+                      });
                     },
-                    child: const Icon(Icons.bookmark_outline)),
+                    child: isBookmarked
+                        ? const Icon(Icons.bookmark, color: Color(0xffFE8BD1))
+                        : const Icon(Icons.bookmark_outline)),
               ],
             ),
           ),
@@ -472,7 +470,7 @@ class _PresentationScreenState extends State<PresentationScreen>
             bottom: 20,
             left: 0,
             right: 0,
-            child: Center(
+            child: hasVisitedLastImage ?Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xffFE8BD1),
@@ -499,7 +497,7 @@ class _PresentationScreenState extends State<PresentationScreen>
                   ),
                 ),
               ),
-            ),
+            ) : Container(),
           ),
           Positioned(
             right: 20, // Distance from right
@@ -515,7 +513,7 @@ class _PresentationScreenState extends State<PresentationScreen>
                       topSafeArea, screenHeight - fabHeight - bottomSafeArea);
                 });
               },
-              child:Container(
+              child: Container(
                 margin: const EdgeInsets.only(bottom: 72.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -529,13 +527,17 @@ class _PresentationScreenState extends State<PresentationScreen>
                             margin: const EdgeInsets.only(right: 10, left: 10),
                             // width: screenWidth * 0.7,
 
-                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
                                   'یہ چند صفحہ ہیں جن کو آپ نے مکمل پڑھنا ہے۔',
                                   textAlign: TextAlign.center,
-                                  textStyle: const TextStyle(fontSize: 18, color: Colors.white,fontFamily: "UrduType"),
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
                                   speed: const Duration(milliseconds: 50),
                                 ),
                               ],
@@ -547,7 +549,9 @@ class _PresentationScreenState extends State<PresentationScreen>
                           ),
                         ),
                       ),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     GestureDetector(
                       onTap: _showMessageAgain,
                       child: CircleAvatar(
@@ -567,7 +571,6 @@ class _PresentationScreenState extends State<PresentationScreen>
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -729,7 +732,8 @@ class MenuBoxBackground extends CustomPainter {
     final Path path = Path();
 
     // Start drawing from the top-left corner
-    path.moveTo(0, borderRadius); // Move to start point for top-left corner radius
+    path.moveTo(
+        0, borderRadius); // Move to start point for top-left corner radius
 
     // Top-left corner radius
     path.arcToPoint(
@@ -749,11 +753,13 @@ class MenuBoxBackground extends CustomPainter {
     );
 
     // Line to start of arrow base on the right
-    path.lineTo(size.width - arrowHeight, arrowBaseHeight - arrowWidth / 2); // Line to top of arrow
+    path.lineTo(size.width - arrowHeight,
+        arrowBaseHeight - arrowWidth / 2); // Line to top of arrow
 
     // Arrow part
     path.lineTo(size.width, arrowBaseHeight); // Arrow tip
-    path.lineTo(size.width - arrowHeight, arrowBaseHeight + arrowWidth / 2); // Line to bottom of arrow
+    path.lineTo(size.width - arrowHeight,
+        arrowBaseHeight + arrowWidth / 2); // Line to bottom of arrow
 
     // Line to bottom-right corner, before radius
     path.lineTo(size.width - arrowHeight, size.height - borderRadius);

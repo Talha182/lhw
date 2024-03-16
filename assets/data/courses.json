@@ -80,331 +80,13 @@
                       }
                     ]
                   }
-                }
-              ]
-            },
-            {
-              "submoduleId": 5,
-              "title": "متعدی بیماریوں کی مثالیں",
-              "description": "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔",
-              "iconPath": "assets/icons/control_icon.png",
-              "numberOfQuizzes": 3,
-              "moduleId": 1,
-              "features": [
-                {
-                  "featureId": 6,
-                  "featureType": "presentation",
-                  "duration": "5 mins",
-                  "title": "متعدی بیماریوں کی تعریف ",
-                  "submoduleId": 2,
-                  "data": {
-                    "assetImages": [
-                      "assets/scripts/Script 2/Script 2-01.png",
-                      "assets/scripts/Script 2/Script 2-02.png",
-                      "assets/scripts/Script 2/Script 2-03.png",
-                      "assets/scripts/Script 2/Script 2-04.png",
-                      "assets/scripts/Script 2/Script 2-05.png",
-                      "assets/scripts/Script 2/Script 2-06.png"
-                    ],
-                    "questions": [
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      },
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      }
-                    ],
-                    "showQuestionDialog": [
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "moduleId": 7,
-          "title": "ٹی بی",
-          "imagePath": "assets/moduleIcons/module2.png",
-          "submoduleCount": 4,
-          "isStart": false,
-          "progressValue": 0.0,
-          "courseId": 1,
-          "submodules": [
-            {
-              "submoduleId": 8,
-              "title": " ٹی بی کے متعلق اہم معلومات",
-              "description": "یہاں، آپ ٹی بی کے بارے میں سیکھیں گی، جو ایک سنگین متعدی بیماری ہے۔ یہ بنیادی طور پر پھیپھڑوں کو متاثر کرتی ہے۔ اس سبق میں اس بات کا احاطہ کیا گیا ہے کہ ٹی بی ہوا کے ذریعے ایک شخص سے دوسرے شخص میں کیسے پھیلتی ہے اور ابتدائی تشخیص اور علاج کی اہمیت کیا ہے۔",
-              "iconPath": "assets/icons/oop_icon.png",
-              "moduleId": 2,
-              "numberOfQuizzes": 2,
-              "features": [
-                {
-                  "featureId": 9,
-                  "featureType": "comicStrip",
-                  "title": "ٹی بی کیا ہے؟",
-                  "duration": "3 mins",
-                  "submoduleId": 1,
-                  "data": {
-                    "title": "ٹی بی کیا ہے؟",
-                    "imagePaths": [
-                      "assets/scripts/Script 3/Script 3-01.png",
-                      "assets/scripts/Script 3/Script 3-02.png",
-                      "assets/scripts/Script 3/Script 3-03.png",
-                      "assets/scripts/Script 3/Script 3-04.png",
-                      "assets/scripts/Script 3/Script 3-05.png",
-                      "assets/scripts/Script 3/Script 3-06.png",
-                      "assets/scripts/Script 3/Script 3-07.png",
-                      "assets/scripts/Script 3/Script 3-08.png",
-                      "assets/scripts/Script 3/Script 3-09.png",
-                      "assets/scripts/Script 3/Script 3-10.png",
-                      "assets/scripts/Script 3/Script 3-11.png",
-                      "assets/scripts/Script 3/Script 3-12.png",
-                      "assets/scripts/Script 3/Script 3-13.png",
-                      "assets/scripts/Script 3/Script 3-14.png",
-                      "assets/scripts/Script 3/Script 3-15.png",
-                      "assets/scripts/Script 3/Script 3-16.png",
-                      "assets/scripts/Script 3/Script 3-17.png",
-                      "assets/scripts/Script 3/Script 3-18.png",
-                      "assets/scripts/Script 3/Script 3-19.png",
-                      "assets/scripts/Script 3/Script 3-20.png",
-                      "assets/scripts/Script 3/Script 3-21.png",
-                      "assets/scripts/Script 3/Script 3-22.png",
-                      "assets/scripts/Script 3/Script 3-23.png",
-                      "assets/scripts/Script 3/Script 3-24.png"
-                    ]
-                  }
                 },
                 {
-                  "featureId": 10,
-                  "featureType": "flashCard",
-                  "title": "ٹی بی کے اثرات",
-                  "duration": "5 mins",
-                  "submoduleId": 1,
-                  "data": {
-                    "title": "ٹی بی کے اثرات",
-                    "flashCards": [
-                      {
-                        "frontImage": "assets/scripts/Script 5/Script 5-02.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-01.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 5/Script 5-04.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-03.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 5/Script 5-06.png",
-                        "backImage": "assets/scripts/Script 5/Script 5-05.png"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "featureId": 11,
-                  "featureType": "infographics",
-                  "title": " ٹی بی اور اس کی علامات",
-                  "submoduleId": 2,
-                  "duration": "2 mins",
-                  "data": {
-                    "infographics": [
-                      {
-                        "imagePath": "assets/scripts/Script 7/Script 7-02.png",
-                        "text": "ٹی بی کیا ہے؟ "
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/Script 7-03.png",
-                        "text": "کھانسی کا مطلب ہمیشہ ٹی بی نہیں ہوتا۔ عام طور پر تین ہفتوں سے زیادہ وقت تک رہتی  ہے۔ "
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/Script 7-04.png",
-                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/Script 7-05.png",
-                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/Script 7-06.png",
-                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/Script 7-07.png",
-                        "text": " دیگر علامات جن پر نظر رکھنی چاہے۔ "
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "submoduleId": 12,
-              "title": "احتیاطی تدابیر اور غلط فہمیاں",
-              "description": "اس سبق کا مقصد ٹی بی کے بارے میں عام غلط فہمیوں کو دور کرنا ہے اور آپ کو اس کے پھیلاؤ کو روکنے کے لئے احتیاطی تدابیر کے بارے میں تعلیم دینا ہے، جیسے ماسک پہننا اور رہنے کی جگہوں میں اچھی ہوا کی آمد و رفت کو یقینی بنانا۔",
-              "iconPath": "assets/icons/exceptions_icon.png",
-              "moduleId": 1,
-              "numberOfQuizzes": 1,
-              "features": [
-                {
-                  "featureId": 13,
-                  "featureType": "infographics",
-                  "title": "ٹی بی سے متاثرہ افراد کے لئے احتیاطی تدابیر",
-                  "submoduleId": 2,
-                  "duration": "2 mins",
-                  "data": {
-                    "infographics": [
-                      {
-                        "imagePath": "assets/scripts/Script 7/infographic1.png",
-                        "text": "کھانستے یا چھینکتے وقت ہاتھوں کے بجاۓ،  ٹشو یا رومال کا استعمال کریں۔"
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/infographic2.png",
-                        "text": "کھانسنے یا چھینکنے کے بعد ہمیشہ اپنے ہاتھوں کو صابن اور پانی سے دھوئیں۔"
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/infographic2.png",
-                        "text": "استعمال شدہ ٹشوز کو ڈھکن والے کوڑے دان میں پھینکیں۔ "
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/infographic2.png",
-                        "text": "بھیڑ بھاڑ والی جگہوں پر ماسک پہنیں، خصوصاً کھانستے یا چھینکتے  وقت۔"
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/infographic2.png",
-                        "text": "ڈھکن کے ساتھ کنٹینر میں تھوکیں یا اس جگہ کو ریت سے بھر دیں۔ "
-                      },
-                      {
-                        "imagePath": "assets/scripts/Script 7/infographic2.png",
-                        "text": "بات کرتے یا ہنستے وقت اپنے منہ کو ٹشو یا رومال سے ڈھانپ لیں۔ "
-                      }
-                    ]
-                  }
-                },
-                {
-                  "featureId": 14,
-                  "featureType": "interactiveAnimationVideo",
-                  "title": "ٹی بی کی  غلط فہمیوں کا خاتمہ",
-                  "duration": "4 mins",
-                  "submoduleId": 2,
-                  "data": {
-                    "videoPath": "https://lhw.dhqharipur.com/public/storage/videos/Script%208_1.mp4",
-                    "questionDurations": [],
-                    "questions": []
-                  }
-                }
-              ]
-            },
-            {
-              "submoduleId": 15,
-              "title": "ممکنہ مریض کی صورت میں اقدامات",
-              "description": "اگر آپ کسی ایسے شخص کا سامنا کرتی ہیں جسے ٹی بی ہوسکتی ہے تو آپ ان کا ٹیسٹ کروانے اور طبی دیکھ بھال حاصل کرنے کا درست طریقہ سیکھیں گی۔",
-              "iconPath": "assets/icons/files_icon.png",
-              "moduleId": 1,
-              "numberOfQuizzes": 2,
-              "features": [
-                {
-                  "featureId": 16,
-                  "featureType": "comicStrip",
-                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
-                  "submoduleId": 2,
-                  "duration": "3 mins",
-                  "data": {
-                    "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم اقدامات",
-                    "imagePaths": [
-                      "assets/scripts/Script 9/Script 9-03.png",
-                      "assets/scripts/Script 9/Script 9-04.png",
-                      "assets/scripts/Script 9/Script 9-05.png",
-                      "assets/scripts/Script 9/Script 9-06.png",
-                      "assets/scripts/Script 9/Script 9-07.png",
-                      "assets/scripts/Script 9/Script 9-08.png",
-                      "assets/scripts/Script 9/Script 9-09.png",
-                      "assets/scripts/Script 9/Script 9-10.png",
-                      "assets/scripts/Script 9/Script 9-11.png",
-                      "assets/scripts/Script 9/Script 9-12.png"
-                    ]
-                  }
-                },
-                {
-                  "featureId": 17,
-                  "featureType": "presentation",
-                  "submoduleId": 2,
-                  "duration": "5 mins",
-                  "title": " ممکنہ مریضوں کے بارے میں ہدایات",
-                  "data": {
-                    "assetImages": [
-                      "assets/scripts/Script 10/Script 10-01.png",
-                      "assets/scripts/Script 10/Script 10-02.png",
-                      "assets/scripts/Script 10/Script 10-03.png",
-                      "assets/scripts/Script 10/Script 10-04.png",
-                      "assets/scripts/Script 10/Script 10-5.png",
-                      "assets/scripts/Script 10/Script 10-6.png",
-                      "assets/scripts/Script 10/Script 10-7.png",
-                      "assets/scripts/Script 10/Script 10-8.png",
-                      "assets/scripts/Script 10/Script 10-9.png",
-                      "assets/scripts/Script 10/Script 10-10.png",
-                      "assets/scripts/Script 10/Script 10-11.png"
-                    ],
-                    "questions": [
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      },
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      }
-                    ],
-                    "showQuestionDialog": [
-                      true,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
-                    ]
-                  }
-                },
-                {
-                  "featureId": 112,
-                  "title": "بلغم  کے نمونے جمع کرنے  کا طریقہ کار  ",
+                  "featureId": 114,
+                  "title": "test ",
                   "featureType": "interactiveImage",
                   "isCompleted": false,
-                  "submoduleId": 101,
+                  "submoduleId": 114,
                   "duration": "5min",
                   "data": {
                     "interactiveImageModel": [
@@ -586,6 +268,645 @@
                       }
                     ]
                   }
+                }
+              ]
+            },
+            {
+              "submoduleId": 5,
+              "title": "متعدی بیماریوں کی مثالیں",
+              "description": "یہ حصہ آپ کو متعدی بیماریوں کی مثالوں سے متعارف کرائے گا ، جس سے آپ کو ان کی علامات اور صحت پر اثرات کو پہچاننے میں مدد ملے گی۔ آپ نزلہ زکام  ، ایچ آئی وی / ایڈز ، اور ملیریا جیسی بیماریوں کے بارے میں سیکھیں گی ، اور روک تھام کے اقدامات کی اہمیت کو سمجھیں گی۔",
+              "iconPath": "assets/icons/control_icon.png",
+              "numberOfQuizzes": 3,
+              "moduleId": 1,
+              "features": [
+                {
+                  "featureId": 6,
+                  "featureType": "presentation",
+                  "duration": "5 mins",
+                  "title": "متعدی بیماریوں کی تعریف ",
+                  "submoduleId": 2,
+                  "data": {
+                    "assetImages": [
+                      "assets/scripts/Script 2/Script 2-01.png",
+                      "assets/scripts/Script 2/Script 2-02.png",
+                      "assets/scripts/Script 2/Script 2-03.png",
+                      "assets/scripts/Script 2/Script 2-04.png",
+                      "assets/scripts/Script 2/Script 2-05.png",
+                      "assets/scripts/Script 2/Script 2-06.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "moduleId": 7,
+          "title": "ٹی بی",
+          "imagePath": "assets/moduleIcons/module2.png",
+          "submoduleCount": 4,
+          "isStart": false,
+          "progressValue": 0.0,
+          "courseId": 1,
+          "submodules": [
+            {
+              "submoduleId": 8,
+              "title": " ٹی بی کے متعلق اہم معلومات",
+              "description": "یہاں، آپ ٹی بی کے بارے میں سیکھیں گی، جو ایک سنگین متعدی بیماری ہے۔ یہ بنیادی طور پر پھیپھڑوں کو متاثر کرتی ہے۔ اس سبق میں اس بات کا احاطہ کیا گیا ہے کہ ٹی بی ہوا کے ذریعے ایک شخص سے دوسرے شخص میں کیسے پھیلتی ہے اور ابتدائی تشخیص اور علاج کی اہمیت کیا ہے۔",
+              "iconPath": "assets/icons/oop_icon.png",
+              "moduleId": 2,
+              "numberOfQuizzes": 2,
+              "features": [
+                {
+                  "featureId": 9,
+                  "featureType": "comicStrip",
+                  "title": "ٹی بی کیا ہے؟",
+                  "duration": "3 mins",
+                  "submoduleId": 1,
+                  "data": {
+                    "title": "ٹی بی کیا ہے؟",
+                    "imagePaths": [
+                      "assets/scripts/Script 3/Script 3-01.png",
+                      "assets/scripts/Script 3/Script 3-02.png",
+                      "assets/scripts/Script 3/Script 3-03.png",
+                      "assets/scripts/Script 3/Script 3-04.png",
+                      "assets/scripts/Script 3/Script 3-05.png",
+                      "assets/scripts/Script 3/Script 3-06.png",
+                      "assets/scripts/Script 3/Script 3-07.png",
+                      "assets/scripts/Script 3/Script 3-08.png",
+                      "assets/scripts/Script 3/Script 3-09.png",
+                      "assets/scripts/Script 3/Script 3-10.png",
+                      "assets/scripts/Script 3/Script 3-11.png",
+                      "assets/scripts/Script 3/Script 3-12.png",
+                      "assets/scripts/Script 3/Script 3-13.png",
+                      "assets/scripts/Script 3/Script 3-14.png",
+                      "assets/scripts/Script 3/Script 3-15.png",
+                      "assets/scripts/Script 3/Script 3-16.png",
+                      "assets/scripts/Script 3/Script 3-17.png",
+                      "assets/scripts/Script 3/Script 3-18.png",
+                      "assets/scripts/Script 3/Script 3-19.png",
+                      "assets/scripts/Script 3/Script 3-20.png",
+                      "assets/scripts/Script 3/Script 3-21.png",
+                      "assets/scripts/Script 3/Script 3-22.png",
+                      "assets/scripts/Script 3/Script 3-23.png",
+                      "assets/scripts/Script 3/Script 3-24.png"
+                    ]
+                  }
+                },
+                {
+                  "featureId": 10,
+                  "featureType": "flashCard",
+                  "title": "ٹی بی کے اثرات",
+                  "duration": "5 mins",
+                  "submoduleId": 1,
+                  "data": {
+                    "title": "ٹی بی کے اثرات",
+                    "flashCards": [
+                      {
+                        "frontImage": "assets/scripts/Script 5/Script 5-02.png",
+                        "backImage": "assets/scripts/Script 5/Script 5-01.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 5/Script 5-04.png",
+                        "backImage": "assets/scripts/Script 5/Script 5-03.png"
+                      },
+                      {
+                        "frontImage": "assets/scripts/Script 5/Script 5-06.png",
+                        "backImage": "assets/scripts/Script 5/Script 5-05.png"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 11,
+                  "featureType": "infographics",
+                  "title": " ٹی بی اور اس کی علامات",
+                  "submoduleId": 2,
+                  "duration": "2 mins",
+                  "data": {
+                    "title": " ٹی بی اور اس کی علامات",
+                    "infographics": [
+                      {
+                        "imagePath": "assets/scripts/Script 6/Script 6-05.png",
+                        "text": "ٹی بی کیا ہے؟ ",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 6/Script 6-06.png",
+                        "text": "کھانسی کا مطلب ہمیشہ ٹی بی نہیں ہوتا۔ عام طور پر تین ہفتوں سے زیادہ وقت تک رہتی ہے۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 6/Script 6-07.png",
+                        "text": "دیگر علامات جن پر نظر رکھنی چاہے۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 6/Script 6-08.png",
+                        "text": "دیگر علامات جن پر نظر رکھنی چاہے۔",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 6/Script 6-09.png",
+                        "text": "دیگر علامات جن پر نظر رکھنی چاہے۔",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 6/Script 6-10.png",
+                        "text": "دیگر علامات جن پر نظر رکھنی چاہے۔",
+                        "borderColor": "#EF6EA9"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "submoduleId": 12,
+              "title": "احتیاطی تدابیر اور غلط فہمیاں",
+              "description": "اس سبق کا مقصد ٹی بی کے بارے میں عام غلط فہمیوں کو دور کرنا ہے اور آپ کو اس کے پھیلاؤ کو روکنے کے لئے احتیاطی تدابیر کے بارے میں تعلیم دینا ہے، جیسے ماسک پہننا اور رہنے کی جگہوں میں اچھی ہوا کی آمد و رفت کو یقینی بنانا۔",
+              "iconPath": "assets/icons/exceptions_icon.png",
+              "moduleId": 1,
+              "numberOfQuizzes": 1,
+              "features": [
+                {
+                  "featureId": 13,
+                  "featureType": "infographics",
+                  "title": "ٹی بی سے متاثرہ افراد کے لئے احتیاطی تدابیر",
+                  "submoduleId": 2,
+                  "duration": "2 mins",
+                  "data": {
+                    "title": "ٹی بی سے متاثرہ افراد کے لئے احتیاطی تدابیر۔ ",
+                    "infographics": [
+                      {
+                        "imagePath": "assets/scripts/Script 7/Script 7-12-02.png",
+                        "text": "استعمال شدہ ٹشوز کو ڈھکن والے کوڑے دان میں پھینکیں۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/Script 7-12-03.png",
+                        "text": "کھانسنے یا چھینکنے کے بعد ہمیشہ اپنے ہاتھوں کو صابن اور پانی سے دھوئیں۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/Script 7-12-04.png",
+                        "text": "کھانستے یا چھینکتے وقت ہاتھوں کے بجاۓ،  ٹشو یا رومال کا استعمال کریں۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/Script 7-12-05.png",
+                        "text": "بات کرتے یا ہنستے وقت اپنے منہ کو ٹشو یا رومال سے ڈھانپ لیں۔ ",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/Script 7-12-06.png",
+                        "text": "ڈھکن کے ساتھ کنٹینر میں تھوکیں یا اس جگہ کو ریت سے بھر دیں۔",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 7/Script 7-12-07.png",
+                        "text": "بھیڑ بھاڑ والی جگہوں پر ماسک پہنیں، خصوصاً کھانستے یا چھینکتے  وقت۔",
+                        "borderColor": "#7DC899"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "featureId": 14,
+                  "featureType": "interactiveAnimationVideo",
+                  "title": "ٹی بی کی  غلط فہمیوں کا خاتمہ",
+                  "duration": "4 mins",
+                  "submoduleId": 2,
+                  "data": {
+                    "videoPath": "https://lhw.dhqharipur.com/public/storage/videos/Script%208_1.mp4",
+                    "questionDurations": [],
+                    "questions": []
+                  }
+                }
+              ]
+            },
+            {
+              "submoduleId": 15,
+              "title": "ممکنہ مریض کی صورت میں اقدامات",
+              "description": "اگر آپ کسی ایسے شخص کا سامنا کرتی ہیں جسے ٹی بی ہوسکتی ہے تو آپ ان کا ٹیسٹ کروانے اور طبی دیکھ بھال حاصل کرنے کا درست طریقہ سیکھیں گی۔",
+              "iconPath": "assets/icons/files_icon.png",
+              "moduleId": 1,
+              "numberOfQuizzes": 2,
+              "features": [
+                {
+                  "featureId": 16,
+                  "featureType": "comicStrip",
+                  "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم  اقدامات",
+                  "submoduleId": 2,
+                  "duration": "3 mins",
+                  "data": {
+                    "title": "تشخیص کا سفر: ٹی بی کی تشخیص کے تین اہم اقدامات",
+                    "imagePaths": [
+                      "assets/scripts/Script 9/Script 9-03.png",
+                      "assets/scripts/Script 9/Script 9-04.png",
+                      "assets/scripts/Script 9/Script 9-05.png",
+                      "assets/scripts/Script 9/Script 9-06.png",
+                      "assets/scripts/Script 9/Script 9-07.png",
+                      "assets/scripts/Script 9/Script 9-08.png",
+                      "assets/scripts/Script 9/Script 9-09.png",
+                      "assets/scripts/Script 9/Script 9-10.png",
+                      "assets/scripts/Script 9/Script 9-11.png",
+                      "assets/scripts/Script 9/Script 9-12.png"
+                    ]
+                  }
+                },
+                {
+                  "featureId": 17,
+                  "featureType": "presentation",
+                  "submoduleId": 2,
+                  "duration": "5 mins",
+                  "title": " ممکنہ مریضوں کے بارے میں ہدایات",
+                  "data": {
+                    "assetImages": [
+                      "assets/scripts/Script 10/Script 10-01.png",
+                      "assets/scripts/Script 10/Script 10-02.png",
+                      "assets/scripts/Script 10/Script 10-03.png",
+                      "assets/scripts/Script 10/Script 10-04.png",
+                      "assets/scripts/Script 10/Script 10-5.png",
+                      "assets/scripts/Script 10/Script 10-6.png",
+                      "assets/scripts/Script 10/Script 10-7.png",
+                      "assets/scripts/Script 10/Script 10-8.png",
+                      "assets/scripts/Script 10/Script 10-9.png",
+                      "assets/scripts/Script 10/Script 10-10.png",
+                      "assets/scripts/Script 10/Script 10-11.png"
+                    ],
+                    "questions": [
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      },
+                      {
+                        "question": "What is a variable in programming?",
+                        "options": [
+                          "A storage location",
+                          "A loop construct",
+                          "None of the above"
+                        ],
+                        "correctAnswer": "A storage location",
+                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
+                        "incorrectExplanation": "Please review the concept of variables again."
+                      }
+                    ],
+                    "showQuestionDialog": [
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false
+                    ]
+                  }
+                },
+                {
+                  "featureId": 112,
+                  "title": "بلغم  کے نمونے جمع کرنے  کا طریقہ کار  ",
+                  "featureType": "interactiveImage",
+                  "isCompleted": false,
+                  "submoduleId": 101,
+                  "duration": "5min",
+                  "data": {
+                    "interactiveImageModel": [
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 2.png",
+                        "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
+                        "touchArea": {
+                          "left": 460,
+                          "top": 60,
+                          "width": 160,
+                          "height": 200
+                        },
+                        "showDialog": false,
+                        "dialogText": "",
+                        "showGuideText": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 37.png",
+                        "guide": "",
+                        "touchArea": {
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "showDialog": true,
+                        "showGuideText": false,
+                        "autoShowDialog": true,
+                        "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو ۔",
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 38.png",
+                        "guide": "پانی کی بالٹی کو مریض کے پاس لایں۔",
+                        "touchArea": {
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "showDialog": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": true,
+                        "longPressAction": "showMessage",
+                        "dragDropEnabled": true,
+                        "swipeAction": "",
+                        "dragTargetWidth": 350,
+                        "dragTargetHeight": 400,
+                        "draggableImageScale": 1.5,
+                        "draggableImage": "assets/scripts/Script 11/Artboard 41.png",
+                        "draggableImageInitialPosition": {
+                          "dx": 20,
+                          "dy": 180
+                        },
+                        "dragTargetPosition": {
+                          "dx": 400,
+                          "dy": 140
+                        },
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 43.png",
+                        "dialogText": "تھوک کے نمونے جمع کرنے سے پہلے مریض کو گرم پانی سے نہا  لینے یا گرم مشروب پینے کی رہنمائی کریں۔ اس سے بلغم کو نکلنے میں مدد ملے گی۔ ",
+                        "guide": "",
+                        "touchArea": {
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "showDialog": true,
+                        "showGuideText": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "showMessage",
+                        "dragDropEnabled": false,
+                        "autoShowDialog": true,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 46.png",
+                        "guide": "گہری سانس شروع کرنے کے لئے مریض پر تھوڑی دیر تک کلک کیے رکھیں۔",
+                        "touchArea": {
+                          "left": 100,
+                          "top": 50,
+                          "width": 200,
+                          "height": 150
+                        },
+                        "showDialog": false,
+                        "dialogText": "",
+                        "swipeEnabled": false,
+                        "longPressEnabled": true,
+                        "longPressAction": "showTimer",
+                        "dragDropEnabled": false,
+                        "swipeAction": "",
+                        "draggableImage": null,
+                        "draggableImageInitialPosition": null,
+                        "dragTargetPosition": null,
+                        "newDraggableImage": null,
+                        "newBackgroundImage": null,
+                        "moveToNextOnDrop": false,
+                        "autoShowDialog": false,
+                        "dragTargetWidth": 300.0,
+                        "dragTargetHeight": 300.0,
+                        "draggableImageWidth": 100.0,
+                        "draggableImageHeight": 100.0,
+                        "draggableImageScale": 1.0
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 50.png",
+                        "guide": "مریض کے کھانسنے کے لیے ڈبی پر سوائپ کریں۔ ",
+                        "touchArea": {
+                          "left": 150,
+                          "top": 165,
+                          "width": 100,
+                          "height": 100
+                        },
+                        "showDialog": false,
+                        "swipeEnabled": true,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "nextImage",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 55.png",
+                        "guide": "اس کی جانچ پڑتال کے لئے نمونے پر کلک کریں۔ ",
+                        "touchArea": {
+                          "left": 150,
+                          "top": 165,
+                          "width": 100,
+                          "height": 100
+                        },
+                        "showDialog": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 59.png",
+                        "guide": "اس کی جانچ پڑتال کے لئے نمونے پر کلک کریں۔ ",
+                        "dialogText": "نمونے کا جائزہ لیں اور اس بات کا یقین کریں کہ لیا گیا نمونہ بلغم ہی ہو، منہ یا ناک کی رطوبت نہ ہو۔ ",
+                        "touchArea": {
+                          "left": 265,
+                          "top": 80,
+                          "width": 220,
+                          "height": 220
+                        },
+                        "showDialog": true,
+                        "showGuideText": true,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 60.png",
+                        "guide": "مریض کی کمر پر کلک کریں۔",
+                        "dialogText": "اگر اس عمل سے بلغم نہ نکلے تو مریض کی کمر پر ہلکی ہلکی تھپکی دیں اور انہیں کھانسنے کے لئے کہیں۔ ",
+                        "touchArea": {
+                          "left": 370,
+                          "top": 155,
+                          "width": 120,
+                          "height": 120
+                        },
+                        "showDialog": true,
+                        "showGuideText": true,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true,
+                        "showRippleEffect": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 61.png",
+                        "guide": "کوڑے کے دبے میں موجود استعمال شدہ ٹشو پر کلک کریں۔ ",
+                        "dialogText": "استعمال شدہ ٹشو اور ڈبی کو مناسب طریقے سے پھینک دیں۔ ",
+                        "touchArea": {
+                          "left": 465,
+                          "top": 160,
+                          "width": 120,
+                          "height": 120
+                        },
+                        "showDialog": true,
+                        "showGuideText": true,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 62.png",
+                        "guide": "نتائج چیک کرنے کے لئے رجسٹر  پر کلک کریں۔",
+                        "touchArea": {
+                          "left": 40,
+                          "top": 110,
+                          "width": 80,
+                          "height": 80
+                        },
+                        "showDialog": false,
+                        "dialogText": "",
+                        "showGuideText": false,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 63.png",
+                        "guide": "",
+                        "touchArea": {
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "showDialog": true,
+                        "showGuideText": false,
+                        "autoShowDialog": true,
+                        "dialogText": "نمونہ بھیجنے کے دو یا تین دن کے اندر ٹیسٹ کا نتیجہ آجاتا ہے۔ ",
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 64.png",
+                        "guide": "ہاتھ دھونے کے لئے نلکے پر سوائپ کریں۔  ",
+                        "touchArea": {
+                          "left": 540,
+                          "top": 120,
+                          "width": 140,
+                          "height": 250
+                        },
+                        "showDialog": false,
+                        "swipeEnabled": true,
+                        "longPressEnabled": false,
+                        "longPressAction": null,
+                        "dragDropEnabled": false,
+                        "autoShowDialog": false,
+                        "swipeAction": "nextImage",
+                        "newDraggableImage": "",
+                        "moveToNextOnDrop": true
+                      },
+                      {
+                        "image": "assets/scripts/Script 11/Artboard 65.png",
+                        "guide": "",
+                        "touchArea": {
+                          "left": 0,
+                          "top": 0,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "showDialog": true,
+                        "showGuideText": false,
+                        "autoShowDialog": true,
+                        "dialogText": "نمونہ جمع کرنے کے بعد، اپنے ہاتھوں کو صابن اور پانی سے اچھی طرح دھوئیں۔ ",
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      }
+
+                    ]
+                  }
                 },
                 {
                   "featureId": 18,
@@ -700,7 +1021,7 @@
                           "جمیل سے ملنے سے پہلے میں جلدی سے ایک کپ چائے پی لیتی ہوں ۔"
                         ],
                         "correctAnswer": "جانے سے پہلے، میں ٹی بی کی علامات کا جائزہ لوں گی  اور بلغم کے نمونے جمع کرنے کے لئے ضروری سامان تیار کروں گی ۔",
-                        "correctExplanation": "جانے سے پہلے، میں ٹی بی کی علامات کا جائزہ لوں گی  اور بلغم کے نمونے جمع کرنے کے لئے ضروری سامان تیار کروں گی ۔",
+                        "correctExplanation": "ٹی بی کی ممکنہ علامات سے نمٹنے کے لئے وقت بہت اہم ہے ، لٗہذا جمیل کی عیادت کرنے سے پہلے وقفہ لینا درست نہیں ہوگا۔ دورے سے پہلے کی تیاری تحمل سے کی جانی چاہیے۔",
                         "incorrectExplanation": "اگرچہ فوری طور پر مدد کرنا ضروری ہے ، لیکن ٹی بی کی علامات کا جائزہ لئے بغیر بلغم کے ٹیسٹ کی تیاری کرنا غیر مؤثر  ہے۔ دورے سے پہلے کی تیاری تحمل سے کی جانی چاہیے۔ ",
                         "imagePaths": [
                           "assets/scripts/Script 13/Script 13-01.png"
@@ -852,28 +1173,28 @@
                     "title": "ٹی بی کی ادویات کا ردعمل",
                     "flashCards": [
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 1.png",
-                        "backImage": "assets/scripts/Script 17/Artboard 17.png"
+                        "frontImage": "assets/scripts/Script 17/Script 17-01.png",
+                        "backImage": "assets/scripts/Script 17/Script 17-02.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 18.png",
-                        "backImage": "assets/scripts/Script 17/Artboard 20.png"
+                        "frontImage": "assets/scripts/Script 17/Script 17-03.png",
+                        "backImage": "assets/scripts/Script 17/Script 17-04.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 21.png",
-                        "backImage": "assets/scripts/Script 17/Artboard 22.png"
+                        "frontImage": "assets/scripts/Script 17/Script 17-05.png",
+                        "backImage": "assets/scripts/Script 17/Script 17-06.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 23.png",
-                        "backImage": "assets/scripts/Script 17/Artboard 24.png"
+                        "frontImage": "assets/scripts/Script 17/Script 17-07.png",
+                        "backImage": "assets/scripts/Script 17/Script 17-08.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 25.png",
-                        "backImage": "assets/scripts/Script 17/Artboard 28.png"
+                        "frontImage": "assets/scripts/Script 17/Script 17-09.png",
+                        "backImage": "assets/scripts/Script 17/Script 17-10.png"
                       },
                       {
-                        "frontImage": "assets/scripts/Script 17/Artboard 29.png",
-                        "backImage": "assets/scripts/Script 17/Artboard 30.png"
+                        "frontImage": "assets/scripts/Script 17/Script 17-11.png",
+                        "backImage": "assets/scripts/Script 17/Script 17-12.png"
                       }
                     ]
                   }
@@ -964,9 +1285,9 @@
                         "correctAnswer": "اسد پیشاب کا سرخ آنا پریشانی کی بات نہیں - دوائی کا ایک عام  اثر ہے۔  ",
                         "correctExplanation": "بہت خوب آپ کے مشورے سے اسد اب تسلی سے اپنی دوائی لے رہے ہیں۔ ",
                         "optionImages": [
-                          "assets/images/quiz1.png",
-                          "assets/images/quiz2.png",
-                          "assets/images/quiz3.png"
+                          "assets/scripts/Script 18/Script 18-13.png",
+                          "assets/scripts/Script 18/Script 18-14.png",
+                          "assets/scripts/Script 18/Script 18-15.png"
                         ],
                         "incorrectExplanation": "یہ تجویز صحیح نہیں. اسد کو تسلی دینی چاہے  تھی  کہ سرخ پیشاب دوائی کا ایک معمولی اثر ہے۔  .   ",
                         "userAnswer": ""
@@ -981,9 +1302,9 @@
                         "correctAnswer": "اسد، اگر آپ کو نزلہ زکام کی علامات جیسے سر درد، چکر آنا، سردی لگنا یا بخار محسوس ہو تو  فوری طور پر مرکز صحت جائیں ۔",
                         "correctExplanation": "بہت خوب! آپ نے اسد  کو صحیح مشوره دیا، جس سے اب وہ وقت پر طبی مدد حاصل کر سکیں گے -  ",
                         "optionImages": [
-                          "assets/images/quiz1.png",
-                          "assets/images/quiz2.png",
-                          "assets/images/quiz3.png"
+                          "assets/scripts/Script 18/Script 18-16.png",
+                          "assets/scripts/Script 18/Script 18-17.png",
+                          "assets/scripts/Script 18/Script 18-18.png"
                         ],
                         "incorrectExplanation": "یہ مشوره  نقصان دہ ہو سکتا ہے کیونکہ اسد کو فوری مرکز صحت جانے کی ضرورت ہے ۔  ",
                         "userAnswer": ""
@@ -1001,25 +1322,6 @@
               "moduleId": 1,
               "numberOfQuizzes": 2,
               "features": [
-                {
-                  "featureId": 24,
-                  "featureType": "infographics",
-                  "title": "سبق کے مقاصد",
-                  "submoduleId": 2,
-                  "duration": "2 mins",
-                  "data": {
-                    "infographics": [
-                      {
-                        "imagePath": "assets/scripts/script 19/infographic1.png",
-                        "text": "Infographic 1 Description"
-                      },
-                      {
-                        "imagePath": "assets/scripts/images/infographic2.png",
-                        "text": "Infographic 2 Description"
-                      }
-                    ]
-                  }
-                },
                 {
                   "featureId": 101,
                   "featureType": "horizontalImageHotspot",
@@ -1144,14 +1446,14 @@
                 },
                 {
                   "featureId": 25,
-                  "featureType": "imageBranchingScenario",
+                  "featureType": "textBranchingScenario",
                   "title": "ادویات کی ابتدائی وصولی ",
                   "submoduleId": 2,
                   "duration": "10 mins",
                   "data": {
                     "questions": [
                       {
-                        "question": "What do you see script 21?",
+                        "question": "نزہت بی بی میں ٹی بی کی تشخیص حال ہی میں ہوئی ہے۔ وہ اپنی مقامی ہیلتھ ورکر ثمینہ سے مشاورت کر رہی ہیں۔ وہ دونوں نزہت کے علاج کے لیے دوائیں وصول کرنے کے لیے ایک مقامی کلینک گئی ہیں۔",
                         "options": [
                           "ثمینہ دس دنوں کی دوا وصول کرتی ہیں۔",
                           "ثمینہ چھ دنوں کی دوا وصول کرتی ہیں۔ ",
@@ -1160,14 +1462,14 @@
                         "correctAnswer": "ثمینہ چھ دنوں کی دوا وصول کرتی ہیں۔ ",
                         "correctExplanation": "بہت  خوب! مؤثر علاج اور مریض کی حفاظت کے لئے دوا کی صحیح خوراک اور مدت کو یقینی بنانا بہت ضروری ہے۔ ",
                         "incorrectExplanation": "مؤثر علاج اور مریض کی حفاظت کے لئے دوا کی صحیح خوراک اور مدت کو یقینی بنانا بہت ضروری ہے۔ صحیح انتخاب یہ ہے کہ ثمینہ 6 دن کے لئے دوا جمع کریں۔ ",
-                        "imagePaths": [
+                        "optionImages": [
                           "assets/scripts/Script 21/Script 21-02.png",
                           "assets/scripts/Script 21/Script 21-03.png",
                           "assets/scripts/Script 21/Script 21-04.png"
                         ]
                       },
                       {
-                        "question": "What do you see script 21?",
+                        "question": "ثمینہ سوچ رہی ہیں کہ نزہت بی بی کے لیے دوا کی اگلی خوراک کب حاصل کی جائے گی۔ آج کی تاریخ 25 اکتوبر ہے۔",
                         "options": [
                           "ثمینہ نے تیس اکتوبر کو دوا لینے کا فیصلہ کیا۔ ",
                           "ثمینہ نے یکم نومبر کو دوا لینے کا فیصلہ کیا ہے۔",
@@ -1176,14 +1478,14 @@
                         "correctAnswer": "ثمینہ نے یکم نومبر کو دوا لینے کا فیصلہ کیا ہے۔",
                         "correctExplanation": "بہت خوب! باقاعدہ اور مؤثر علاج کو یقینی بنانے کے لئے علاج کے انتظام میں مناسب شیڈولنگ اور منصوبہ بندی اہم ہے۔ ",
                         "incorrectExplanation": "باقاعدہ اور مؤثر علاج کو یقینی بنانے کے لئے علاج کی شیڈولنگ اور منصوبہ بندی اہم ہے۔ ثمینہ کے لیے دوا لینے کی صحیح تاریخ یکم نومبر ہے",
-                        "imagePaths": [
+                        "optionImages": [
                           "assets/scripts/Script 21/Script 21-05.png",
                           "assets/scripts/Script 21/Script 21-06.png",
                           "assets/scripts/Script 21/Script 21-07.png"
                         ]
                       },
                       {
-                        "question": "What do you see script 21?",
+                        "question": "ثمینہ کو نزہت بی بی کو اپنی ادویات کی تاریخ کے بارے میں سمجھانے کی ضرورت ہے۔ اسے کیا مشورہ دینا چاہیے؟",
                         "options": [
                           "ثمینہ نزہت بی بی سے کہتی ہے کہ جب بھی انہیں یاد آئے وہ اپنی دوائی لے لے۔",
                           "ثمینہ ادویات کی تاریخ کی پابندی کی اہمیت اور انہیں لینے کے طریقہ کار کے بارے میں اچھی طرح سے بتاتی ہیں۔",
@@ -1192,14 +1494,14 @@
                         "correctAnswer": "ثمینہ ادویات کی تاریخ کی پابندی کی اہمیت اور انہیں لینے کے طریقہ کار کے بارے میں اچھی طرح سے بتاتی ہیں۔",
                         "correctExplanation": "بہت خوب! مریضوں کے ساتھ ان کی ادویات کے شیڈول کے بارے میں واضح بات چیت اس کی تعمیل اور ان کے علاج کی کامیابی کو یقینی بنانے کے لئے ضروری ہے۔",
                         "incorrectExplanation": "بہت خوب! مریضوں کے ساتھ ان کی ادویات کے شیڈول کے بارے میں واضح بات چیت اس کی تعمیل اور ان کے علاج کی کامیابی کو یقینی بنانے کے لئے ضروری ہے۔",
-                        "imagePaths": [
+                        "optionImages": [
                           "assets/scripts/Script 21/Script 21-08.png",
                           "assets/scripts/Script 21/Script 21-09.png",
                           "assets/scripts/Script 21/Script 21-10.png"
                         ]
                       },
                       {
-                        "question": "What do you see script 21?",
+                        "question": "اب یہ تاریخ یکم نومبر ہے، اور ثمینہ کو نزہت بی بی کے لیے دواؤں کی اگلی کھیپ جمع کرنے کی ضرورت ہے۔",
                         "options": [
                           "ثمینہ نے کلینک کے سفر کو کم سے کم کرنے کے لئے 15 دن کے لئے دوا جمع کرنے کا فیصلہ کیا۔",
                           "ثمینہ مزید 6 دنوں کے لیے دوائیں جمع کرتی ہیں۔",
@@ -1208,7 +1510,7 @@
                         "correctAnswer": "ثمینہ مزید 6 دنوں کے لیے دوائیں جمع کرتی ہیں۔",
                         "correctExplanation": "بہت اچھا! ہمیشہ بروقت ادویات کو دوبارہ بھر کر علاج میں تسلسل کو یقینی بنائیں۔ بہت زیادہ یا بہت کم علاج کے عمل میں خلل ڈال سکتے ہیں۔",
                         "incorrectExplanation": "ہمیشہ بروقت ادویات کو دوبارہ بھرنے کے ذریعہ علاج میں تسلسل کو یقینی بنائیں۔ بہت زیادہ یا بہت کم علاج کے عمل میں خلل ڈال سکتے ہیں۔ صحیح انتخاب یہ ہے کہ ثمینہ مزید 6 دنوں کے لئے دوا جمع کریں۔",
-                        "imagePaths": [
+                        "optionImages": [
                           "assets/scripts/Script 21/Script 21-11.png",
                           "assets/scripts/Script 21/Script 21-12.png",
                           "assets/scripts/Script 21/Script 21-13.png"
@@ -1268,14 +1570,14 @@
                 {
                   "featureId": 27,
                   "featureType": "imageHotspot",
-                  "title": "Image Hotspot Example",
+                  "title": "فارم بھرنے کا طریقہ کار",
                   "submoduleId": 2,
                   "duration": "10 mins",
                   "data": {
                     "images": [
                       {
                         "imagePath": "assets/scripts/Script 23/Artboard 21.png",
-                        "title": "Image Hotspot Example",
+                        "title": "ٹریٹمنٹ سپورٹ کارڈ",
                         "hotspots": [
                           {
                             "title": "",
@@ -1317,6 +1619,45 @@
                               "dy": 315.0
                             }
                           }
+                        ]
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 23/Artboard 22.png",
+                        "title": "TB-02 فارم",
+                        "hotspots": [
+                          {
+                            "title": "",
+                            "dialogText": "یہ ایک اہم کارڈ ہے جس میں مریض سے متعلق ضروری عام معلومات اور علاج کے متعلق خاص طبی معلومات درج کی جاتی ہیں۔",
+                            "offset": {
+                              "dx": 250.0,
+                              "dy": 40.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "مریض جب دوا وصول کرنے یا یا مشورہ لینے مرکز صحت علاج گاہ یا بلغم کا معائنہ کروانے آئے گا تو اس کارڈ کو ساتھ لے کر آئے گا۔ ",
+                            "offset": {
+                              "dx": 55.0,
+                              "dy": 50.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "یہ کارڈ مریض کے پاس رہے گا۔",
+                            "offset": {
+                              "dx": 260.0,
+                              "dy": 270.0
+                            }
+                          },
+                          {
+                            "title": "",
+                            "dialogText": "لیڈی ہیلتھ ورکر کے لیے نہایت ضروری ہےکہ مریض کو معلوم ہونا چاہیئے کہ بلغم کے نمونے کا اگلا معائنہ کروانے کی اگلی تاریخ کیا ہے اور دوا کی اگلی قسط مرکز صحت سے کب وصول کرنی ہے۔ ",
+                            "offset": {
+                              "dx": 50.0,
+                              "dy": 280.0
+                            }
+                          }
+
                         ]
                       }
                     ]
@@ -1604,7 +1945,8 @@
                       {
                         "imagePath": "assets/scripts/Script 28/Script 28-35.png",
                         "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔"
-                      }, {
+                      },
+                      {
                         "imagePath": "assets/scripts/Script 28/Script 28-36.png",
                         "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔"
                       }
