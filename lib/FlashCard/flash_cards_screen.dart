@@ -32,7 +32,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
   final BookmarkController bookmarkController = Get.put(BookmarkController());
   final CarouselController _carouselController = CarouselController();
   late List<bool> _flippedStates;
-  bool isCurrentFlipped = false; // Add this line
   late AnimationController _cloudPumpAnimationController;
   late Animation<double> _cloudPumpAnimation;
   bool showMessage = true;
@@ -223,8 +222,6 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                               _isLastCardFlipped = index ==
                                       widget.flashCardModel.cards.length - 1 &&
                                   _flippedStates.every((state) => state);
-                              isCurrentFlipped =
-                                  true; // Update isCurrentFlipped to true here
                             });
                           },
                           direction: FlipDirection.HORIZONTAL,
@@ -292,22 +289,15 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                           height: 450.0,
                           enlargeCenterPage: false,
                           onPageChanged: (index, reason) {
-                            if (isCurrentFlipped || _flippedStates[index]) {
-                              // This check ensures the next card is accessible only if the current is flipped
-                              setState(() {
-                                _current = index;
-                                isCurrentFlipped = _flippedStates[
-                                    index]; // Update based on the new current card's flipped state
-                              });
-                            }
+                            setState(() {
+                              _current = index;
+                            });
                           },
                           aspectRatio: 16 / 9,
                           autoPlay: false,
                           enableInfiniteScroll: false,
                           viewportFraction: 0.78,
-                          scrollPhysics: isCurrentFlipped
-                              ? const PageScrollPhysics()
-                              : const NeverScrollableScrollPhysics()),
+                          scrollPhysics: const PageScrollPhysics()),
                     ),
                   ),
                 ),
@@ -332,7 +322,7 @@ class _FlashCardsScreenState extends State<FlashCardsScreen>
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: _current == index
-                                ? const Color(0xff9AC9C2)
+                                ? const Color(0xffFE8BD1)
                                 : const Color(0xffeaedee),
                           ),
                         );

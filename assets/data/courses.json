@@ -80,194 +80,6 @@
                       }
                     ]
                   }
-                },
-                {
-                  "featureId": 114,
-                  "title": "test ",
-                  "featureType": "interactiveImage",
-                  "isCompleted": false,
-                  "submoduleId": 114,
-                  "duration": "5min",
-                  "data": {
-                    "interactiveImageModel": [
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 2.png",
-                        "guide": "مریض کا منہ خالی ہونے کو یقینی بنانے کے لئے آئینے پر کلک کریں۔",
-                        "touchArea": {
-                          "left": 460,
-                          "top": 60,
-                          "width": 160,
-                          "height": 200
-                        },
-                        "showDialog": false,
-                        "dialogText": "",
-                        "showGuideText": false,
-                        "swipeEnabled": false,
-                        "longPressEnabled": false,
-                        "longPressAction": "",
-                        "dragDropEnabled": false,
-                        "swipeAction": ""
-                      },
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 37.png",
-                        "guide": "",
-                        "touchArea": {
-                          "left": 0,
-                          "top": 0,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "showDialog": true,
-                        "showGuideText": false,
-                        "autoShowDialog": true,
-                        "dialogText": "بلغم کے نمونے جمع کرنے سے پہلے، اس بات کو یقینی بنائیں کہ مریض کے منہ میں کوئی کھانے کی چیز نہ ہو ۔",
-                        "swipeEnabled": false,
-                        "longPressEnabled": false,
-                        "longPressAction": "",
-                        "dragDropEnabled": false,
-                        "swipeAction": ""
-                      },
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 38.png",
-                        "guide": "پانی کی بالٹی کو مریض کے پاس لایں۔",
-                        "touchArea": {
-                          "left": 0,
-                          "top": 0,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "showDialog": false,
-                        "swipeEnabled": false,
-                        "longPressEnabled": true,
-                        "longPressAction": "showMessage",
-                        "dragDropEnabled": true,
-                        "swipeAction": "",
-                        "dragTargetWidth": 350,
-                        "dragTargetHeight": 400,
-                        "draggableImageScale": 1.5,
-                        "draggableImage": "assets/scripts/Script 11/Artboard 41.png",
-                        "draggableImageInitialPosition": {
-                          "dx": 20,
-                          "dy": 180
-                        },
-                        "dragTargetPosition": {
-                          "dx": 400,
-                          "dy": 140
-                        },
-                        "newDraggableImage": "",
-                        "moveToNextOnDrop": true
-                      },
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 43.png",
-                        "dialogText": "تھوک کے نمونے جمع کرنے سے پہلے مریض کو گرم پانی سے نہا  لینے یا گرم مشروب پینے کی رہنمائی کریں۔ اس سے بلغم کو نکلنے میں مدد ملے گی۔ ",
-                        "guide": "",
-                        "touchArea": {
-                          "left": 0,
-                          "top": 0,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "showDialog": true,
-                        "showGuideText": false,
-                        "swipeEnabled": false,
-                        "longPressEnabled": false,
-                        "longPressAction": "showMessage",
-                        "dragDropEnabled": false,
-                        "autoShowDialog": true,
-                        "swipeAction": "",
-                        "newDraggableImage": "",
-                        "moveToNextOnDrop": true
-                      },
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 46.png",
-                        "guide": "گہری سانس شروع کرنے کے لئے مریض پر تھوڑی دیر تک کلک کیے رکھیں۔",
-                        "touchArea": {
-                          "left": 100,
-                          "top": 50,
-                          "width": 200,
-                          "height": 150
-                        },
-                        "showDialog": false,
-                        "dialogText": "",
-                        "swipeEnabled": false,
-                        "longPressEnabled": true,
-                        "longPressAction": "showTimer",
-                        "dragDropEnabled": false,
-                        "swipeAction": "",
-                        "draggableImage": null,
-                        "draggableImageInitialPosition": null,
-                        "dragTargetPosition": null,
-                        "newDraggableImage": null,
-                        "newBackgroundImage": null,
-                        "moveToNextOnDrop": false,
-                        "autoShowDialog": false,
-                        "dragTargetWidth": 300.0,
-                        "dragTargetHeight": 300.0,
-                        "draggableImageWidth": 100.0,
-                        "draggableImageHeight": 100.0,
-                        "draggableImageScale": 1.0
-                      },
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 50.png",
-                        "guide": "مریض کے کھانسنے کے لیے ڈبی پر سوائپ کریں۔ ",
-                        "touchArea": {
-                          "left": 150,
-                          "top": 165,
-                          "width": 100,
-                          "height": 100
-                        },
-                        "showDialog": false,
-                        "swipeEnabled": true,
-                        "longPressEnabled": false,
-                        "longPressAction": null,
-                        "dragDropEnabled": false,
-                        "autoShowDialog": false,
-                        "swipeAction": "nextImage",
-                        "newDraggableImage": "",
-                        "moveToNextOnDrop": true
-                      },
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 55.png",
-                        "guide": "اس کی جانچ پڑتال کے لئے نمونے پر کلک کریں۔ ",
-                        "touchArea": {
-                          "left": 150,
-                          "top": 165,
-                          "width": 100,
-                          "height": 100
-                        },
-                        "showDialog": false,
-                        "swipeEnabled": false,
-                        "longPressEnabled": false,
-                        "longPressAction": null,
-                        "dragDropEnabled": false,
-                        "autoShowDialog": false,
-                        "swipeAction": "",
-                        "newDraggableImage": "",
-                        "moveToNextOnDrop": true
-                      },
-                      {
-                        "image": "assets/scripts/Script 11/Artboard 59.png",
-                        "guide": "",
-                        "dialogText": "نمونے کا جائزہ لیں اور اس بات کا یقین کریں کہ لیا گیا نمونہ بلغم ہی ہو، منہ یا ناک کی رطوبت نہ ہو۔ ",
-                        "touchArea": {
-                          "left": 150,
-                          "top": 165,
-                          "width": 100,
-                          "height": 100
-                        },
-                        "showDialog": true,
-                        "showGuideText": false,
-                        "swipeEnabled": false,
-                        "longPressEnabled": false,
-                        "longPressAction": null,
-                        "dragDropEnabled": false,
-                        "autoShowDialog": true,
-                        "swipeAction": "",
-                        "newDraggableImage": "",
-                        "moveToNextOnDrop": true
-                      }
-                    ]
-                  }
                 }
               ]
             },
@@ -904,7 +716,6 @@
                         "dragDropEnabled": false,
                         "swipeAction": ""
                       }
-
                     ]
                   }
                 },
@@ -1311,7 +1122,94 @@
                       }
                     ]
                   }
+                },
+                {
+                  "featureId": 119,
+                  "title": " ٹی بی کے تشخیص شدہ مریض کے علاج کے بارے میں خاص ہدایات  ",
+                  "featureType": "interactiveImage",
+                  "isCompleted": false,
+                  "submoduleId": 101,
+                  "duration": "5min",
+                  "data": {
+                    "interactiveImageModel": [
+                      {
+                        "image": "assets/scripts/Script 16/Script 16-01.png",
+                        "guide": "دوا کی ڈبی پر کلک کریں۔",
+                        "touchArea": {
+                          "left": 285,
+                          "top": 150,
+                          "width": 60,
+                          "height": 60
+                        },
+                        "showDialog": false,
+                        "dialogText": "",
+                        "showGuideText": true,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/Script 16/Script 16-04.png",
+                        "guide": "دوا کی ڈبی پر + آئیکن پر کلک کریں۔",
+                        "touchArea": {
+                          "left": 220,
+                          "top": 60,
+                          "width": 260,
+                          "height": 260
+                        },
+                        "showDialog": true,
+                        "showGuideText": true,
+                        "autoShowDialog": false,
+                        "dialogText": "مکمل صحت یابی کے لئے باقاعدگی سے ادویات کے استعمال کو یقینی بنائیں. یاد رکھیں، خوراک کی کمی پیچیدگیوں کا سبب بن سکتی ہے۔ مریض کی حالت کی نگرانی کرتے رہیں اور مریض کے کنبہ کے اندر ٹی بی کے کسی بھی رابطے کے بارے میں پوچھ گچھ کریں۔ ",
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/Script 16/Script 16-07.png",
+                        "guide": "پوسٹر پر کلک کریں۔",
+                        "touchArea": {
+                          "left": 285,
+                          "top": 150,
+                          "width": 60,
+                          "height": 60
+                        },
+                        "showDialog": false,
+                        "dialogText": "",
+                        "showGuideText": true,
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      },
+                      {
+                        "image": "assets/scripts/Script 16/Script 16-11.png",
+                        "guide": "پوسٹر پر i آئیکن پر کلک کریں  ",
+                        "touchArea": {
+                          "left": 180,
+                          "top": 50,
+                          "width": 260,
+                          "height": 260
+                        },
+                        "showDialog": true,
+                        "showGuideText": true,
+                        "autoShowDialog": false,
+                        "dialogText": "مریض کو ان کی ادویات کے بارے میں تعلیم دیں.تصدیق کرلیں کہ دوا روزانہ لی جارہی ہے تاکہ علاج کی پیشرفت میں رکاوٹ نہ ہو۔",
+                        "swipeEnabled": false,
+                        "longPressEnabled": false,
+                        "longPressAction": "",
+                        "dragDropEnabled": false,
+                        "swipeAction": ""
+                      }
+                    ]
+                  }
                 }
+
               ]
             },
             {
@@ -1326,7 +1224,7 @@
                   "featureId": 101,
                   "featureType": "horizontalImageHotspot",
                   "submoduleId": 2,
-                  "title": "Image Hotspot Example",
+                  "title": "ادویات کا حصول اور اندراج",
                   "duration": "10 mins",
                   "data": {
                     "images": [
@@ -1527,43 +1425,25 @@
                   "duration": "3 mins",
                   "data": {
                     "title": " ٹی بی کے مریض کو زیر نگرانی دوا کھلانا ",
-                    "imagePairs": [
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 11.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 12.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 13.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 14.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 15.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 16.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 17.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 18.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 19.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 19_1.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 20.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 21.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 22.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 23.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 24.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 25.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 22/Artboard 1 copy 26.png",
-                        "bottomImage": "assets/scripts/Script 22/Artboard 1 copy 27.png"
-                      }
+                    "imagePaths": [
+                      "assets/scripts/Script 22/Artboard 1 copy 11.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 12.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 13.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 14.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 15.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 16.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 17.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 18.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 19.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 19_1.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 20.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 21.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 22.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 23.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 24.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 25.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 26.png",
+                      "assets/scripts/Script 22/Artboard 1 copy 27.png"
                     ]
                   }
                 },
@@ -1657,7 +1537,6 @@
                               "dy": 280.0
                             }
                           }
-
                         ]
                       }
                     ]
@@ -1931,24 +1810,59 @@
                     "title": "جنسی امراض سے بچاؤ کے طریقے",
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/Script 28/Script 28-32.png",
-                        "text": "لوگوں کو جنسی بیماریوں سے متعلق معلومات سے باشعور کریں۔"
+                        "imagePath": "assets/scripts/Script 28/Script 28-04.png",
+                        "text": "لوگوں کو جنسی بیماریوں سے متعلق معلومات سے باشعور کریں ۔",
+                        "borderColor": "#7DC899"
                       },
                       {
-                        "imagePath": "assets/scripts/Script 28/Script 28-33.png",
-                        "text": "اس مرض میں مبتلا لوگوں کو علاج کے لئے مناسب مرکز صحت جانے کی ترغیب دیں۔"
+                        "imagePath": "assets/scripts/Script 28/Script 28-05.png",
+                        "text": "جنسی عمل کے دوران کنڈوم کا استعمال کریں۔",
+                        "borderColor": "#EF6EA9"
                       },
                       {
-                        "imagePath": "assets/scripts/Script 28/Script 28-34.png",
-                        "text": "ذاتی صفائی اور ساتھی سے وفاداری کا خیال رکھیں ۔ "
+                        "imagePath": "assets/scripts/Script 28/Script 28-06.png",
+                        "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔",
+                        "borderColor": "#7DC899"
                       },
                       {
-                        "imagePath": "assets/scripts/Script 28/Script 28-35.png",
-                        "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔"
+                        "imagePath": "assets/scripts/Script 28/Script 28-07.png",
+                        "text": "ذاتی صفائی اور ساتھی سے وفاداری کا خیال رکھیں ۔",
+                        "borderColor": "#EF6EA9"
                       },
                       {
-                        "imagePath": "assets/scripts/Script 28/Script 28-36.png",
-                        "text": "غیر از دواجی اور غیر فطری جنسی تعلقات سے پرہیز کریں۔"
+                        "imagePath": "assets/scripts/Script 28/Script 28-08.png",
+                        "text": "اس مرض میں مبتلا لوگوں کو علاج  کے لئے مناسب مرکز صحت جانے کی ترغیب دیں۔",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 28/Script 28-09.png",
+                        "text": "مریض کے ساتھ اکٹھے بیٹھنے سے، ہاتھ ملانے یا گلے ملنے سے۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 28/Script 28-10.png",
+                        "text": "مریض کی تیمارداری سے۔",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 28/Script 28-11.png",
+                        "text": "مریض کے ساتھ کھانے پینے سے اور اس کے برتن استعمال کرنے سے۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 28/Script 28-12.png",
+                        "text": "ایک ہی بیت الخلاء استعمال کرنے سے۔",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 28/Script 28-13.png",
+                        "text": "تالاب میں اکٹھے نہانے سے۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 28/Script 28-14.png",
+                        "text": "بلیوں اور مچھروں کے کاٹنے سے۔",
+                        "borderColor": "#7DC899"
                       }
                     ]
                   }
@@ -2095,7 +2009,7 @@
             },
             {
               "submoduleId": 40,
-              "title": "ایچ آئی وی / ایڈز کے ٹیسٹ، علاج اور\n افواہیں",
+              "title": "ایچ آئی وی / ایڈز کے ٹیسٹ، علاج اور افواہیں",
               "description": "یہ سبق آپ کو ہیپاٹائٹس کی تشخیص، بیماری کے انتظام کے لئے دستیاب علاج، اور احتیاط کے طریقوں اور ویکسینیشن سمیت مؤثر روک تھام کی حکمت عملی کے بارے میں رہنمائی کرے گا۔",
               "iconPath": "assets/icons/datastructures_icon.png",
               "moduleId": 1,
@@ -2105,52 +2019,13 @@
                   "featureId": 41,
                   "featureType": "interactiveAnimationVideo",
                   "submoduleId": 2,
-                  "title": "ایڈز کے مرض کی چند بڑی علامات اور اس کا ٹیسٹ  ",
+                  "title": "ایڈز کی  غلط فہمیوں کا خاتمہ",
                   "duration": "4 mins",
                   "data": {
                     "videoPath": "assets/scripts/Script 31/interactive_animation.mp4",
                     "questionDurations": [
-                      "00:10",
-                      "00:20",
-                      "00:30"
                     ],
                     "questions": [
-                      {
-                        "question": "What is the capital of France?",
-                        "options": [
-                          "Paris",
-                          "London",
-                          "Berlin",
-                          "Madrid"
-                        ],
-                        "correctAnswer": "Paris",
-                        "correctExplanation": "Paris is the capital of France.",
-                        "incorrectExplanation": "This is not the correct capital of France."
-                      },
-                      {
-                        "question": "What is the capital of France?",
-                        "options": [
-                          "Paris",
-                          "London",
-                          "Berlin",
-                          "Madrid"
-                        ],
-                        "correctAnswer": "Paris",
-                        "correctExplanation": "Paris is the capital of France.",
-                        "incorrectExplanation": "This is not the correct capital of France."
-                      },
-                      {
-                        "question": "What is the capital of France?",
-                        "options": [
-                          "Paris",
-                          "London",
-                          "Berlin",
-                          "Madrid"
-                        ],
-                        "correctAnswer": "Paris",
-                        "correctExplanation": "Paris is the capital of France.",
-                        "incorrectExplanation": "This is not the correct capital of France."
-                      }
                     ]
                   }
                 },
@@ -2162,46 +2037,19 @@
                   "title": " ماں سے بچے میں ایڈز کے جراثیم کی منتقلی سے بچاو",
                   "data": {
                     "assetImages": [
-                      "assets/scripts/Script 32/Artboard 1.png",
-                      "assets/scripts/Script 32/Artboard 2.png",
-                      "assets/scripts/Script 32/Artboard 3.png",
-                      "assets/scripts/Script 32/Artboard 4.png",
-                      "assets/scripts/Script 32/Artboard 5.png",
-                      "assets/scripts/Script 32/Artboard 6.png",
-                      "assets/scripts/Script 32/Artboard 7.png",
-                      "assets/scripts/Script 32/Artboard 10.png"
+                      "assets/scripts/Script 32/Script 32-01.png",
+                      "assets/scripts/Script 32/Script 32-02.png",
+                      "assets/scripts/Script 32/Script 32-03.png",
+                      "assets/scripts/Script 32/Script 32-04.png",
+                      "assets/scripts/Script 32/Script 32_Artboard 5.png",
+                      "assets/scripts/Script 32/Script 32_Artboard 6.png",
+                      "assets/scripts/Script 32/Script 32_Artboard 7.png",
+                      "assets/scripts/Script 32/Script 32-08.png"
                     ],
                     "questions": [
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      },
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      }
+
                     ],
                     "showQuestionDialog": [
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
                     ]
                   }
                 }
@@ -2232,47 +2080,21 @@
                   "featureType": "presentation",
                   "duration": "5 mins",
                   "submoduleId": 2,
-                  "title": "تعرف",
+                  "title": "تعارف",
                   "data": {
                     "assetImages": [
-                      "assets/scripts/Script 33/Artboard 1.png",
-                      "assets/scripts/Script 33/Artboard 2.png",
-                      "assets/scripts/Script 33/Artboard 3.png",
-                      "assets/scripts/Script 33/Artboard 4.png",
-                      "assets/scripts/Script 33/Artboard 5.png",
-                      "assets/scripts/Script 33/Artboard 6.png"
+                      "assets/scripts/Script 33/Script 33-01.png",
+                      "assets/scripts/Script 33/Script 33-02.png",
+                      "assets/scripts/Script 33/Script 33-03.png",
+                      "assets/scripts/Script 33/Script 33-04.png",
+                      "assets/scripts/Script 33/Script 33_Artboard 5.png",
+                      "assets/scripts/Script 33/Script 33_Artboard 6.png"
                     ],
                     "questions": [
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      },
-                      {
-                        "question": "What is a variable in programming?",
-                        "options": [
-                          "A storage location",
-                          "A loop construct",
-                          "None of the above"
-                        ],
-                        "correctAnswer": "A storage location",
-                        "correctExplanation": "A variable in programming refers to a storage location that can hold values.",
-                        "incorrectExplanation": "Please review the concept of variables again."
-                      }
+
                     ],
                     "showQuestionDialog": [
-                      false,
-                      false,
-                      false,
-                      false,
-                      false,
-                      false
+
                     ]
                   }
                 },
@@ -2284,35 +2106,17 @@
                   "submoduleId": 1,
                   "data": {
                     "title": "ہیپاٹائیٹس کی علامات",
-                    "imagePairs": [
-                      {
-                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 2.png",
-                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 3.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 4.png",
-                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 5.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 6.png",
-                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 7.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 34/Artboard 1 copy 8.png",
-                        "bottomImage": "assets/scripts/Script 34/Artboard 1 copy 9.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 34/Artboard 11.png",
-                        "bottomImage": "assets/scripts/Script 34/Artboard 12.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 34/Artboard 17.png",
-                        "bottomImage": "assets/scripts/Script 34/Artboard 18.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 34/Artboard 19.png",
-                        "bottomImage": "assets/scripts/Script 34/Artboard 23.png"
-                      }
+                    "imagePaths": [
+                      "assets/scripts/Script 34/Script 34-01.png",
+                      "assets/scripts/Script 34/Script 34-02.png",
+                      "assets/scripts/Script 34/Script 34-03.png",
+                      "assets/scripts/Script 34/Script 34-04.png",
+                      "assets/scripts/Script 34/Script 34-05.png",
+                      "assets/scripts/Script 34/Script 34-06.png",
+                      "assets/scripts/Script 34/Script 34-07.png",
+                      "assets/scripts/Script 34/Script 34-08.png",
+                      "assets/scripts/Script 34/Script 34-09.png",
+                      "assets/scripts/Script 34/Script 34-10.png"
                     ]
                   }
                 }
@@ -2320,7 +2124,7 @@
             },
             {
               "submoduleId": 47,
-              "title": "ہیپاٹائٹس کی تشخیص، علاج اور\n روک تھام",
+              "title": "ہیپاٹائٹس کی تشخیص، علاج اور روک تھام",
               "description": "یہ سبق آپ کو ہیپاٹائٹس کی تشخیص، بیماری کے انتظام کے لئے دستیاب علاج، اور احتیاط کے طریقوں اور ویکسینیشن سمیت مؤثر روک تھام کی حکمت عملی کے بارے میں رہنمائی کرے گا۔",
               "iconPath": "assets/icons/datastructures_icon.png",
               "moduleId": 1,
@@ -2329,56 +2133,53 @@
                 {
                   "featureId": 48,
                   "featureType": "flashCard",
-                  "title": "ہیپاٹائیٹس کی علامات",
+                  "title": "ہیپاٹائیٹس کی تشخیص اور علاج ",
                   "submoduleId": 2,
                   "duration": "5 mins",
                   "data": {
-                    "title": "ہیپاٹائیٹس کی علامات",
+                    "title": "ہیپاٹائیٹس کی تشخیص اور علاج ",
                     "flashCards": [
                       {
-                        "frontImage": "assets/scripts/script 35/Artboard 23@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 24@2x.png"
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-01.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-02.png"
                       },
                       {
-                        "frontImage": "assets/scripts/script 35/Artboard 25@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 26@2x.png"
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-03.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-04.png"
+                      }, {
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-05.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-06.png"
                       },
                       {
-                        "frontImage": "assets/scripts/script 35/Artboard 27@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 28@2x.png"
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-07.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-08.png"
+                      }, {
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-09.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-10.png"
                       },
                       {
-                        "frontImage": "assets/scripts/script 35/Artboard 29@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 30@2x.png"
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-11.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-12.png"
+                      }, {
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-13.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-14.png"
                       },
                       {
-                        "frontImage": "assets/scripts/script 35/Artboard 31@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 32@2x.png"
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-15.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-16.png"
+                      }, {
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-17.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-18.png"
                       },
                       {
-                        "frontImage": "assets/scripts/script 35/Artboard 33@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 34@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/script 35/Artboard 35@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 36@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/script 35/Artboard 37@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 38@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/script 35/Artboard 39@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 40@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/script 35/Artboard 41@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 42@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/script 35/Artboard 43@2x.png",
-                        "backImage": "assets/scripts/script 35/Artboard 44@2x.png"
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-19.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-20.png"
+                      }, {
+                        "frontImage": "assets/scripts/script 35/script 35 flash cards-21.png",
+                        "backImage": "assets/scripts/script 35/script 35 flash cards-22.png"
                       }
+
+
                     ]
                   }
                 },
@@ -2386,7 +2187,7 @@
                   "featureId": 49,
                   "featureType": "horizontalImageHotspot",
                   "submoduleId": 2,
-                  "title": "ہیپاٹائیٹس سے بچنے کی احتیاطی تدابیر",
+                  "title": "ہیپاٹائیٹس سے بچنے کی احتیاطی تدابیر  ",
                   "duration": "10 mins",
                   "data": {
                     "images": [
@@ -2403,7 +2204,7 @@
                           },
                           {
                             "title": "",
-                            "dialogText": "اگر خون کی اشد ضرورت ہو تو اس بات کی تصدیق کرلیں کہ خون ایڈز، ہیپا ٹائٹس ، یرقان کے وائرس سے پاک ہو۔ ",
+                            "dialogText": "ہمیشہ اپنے جیون ساتھی تک محدود رہیں۔اگر دونوں ساتھیوں میں سے کوئی ایک ہیپاٹائٹس سی سے متاثرہ ہو تو جنسی ملاپ کے وقت کنڈوم کا صحیح طریقے سے استعمال کریں ( ہمیشہ کنڈوم کا پیکٹ  اپنے پاس رکھیں اور ہر مرتبہ نیا کنڈوم استعمال کریں۔استعمال کے بعد محفوظ طریقے سے تلف کریں) ۔",
                             "offset": {
                               "dx": 70.0,
                               "dy": 100.0
@@ -2411,7 +2212,7 @@
                           },
                           {
                             "title": "",
-                            "dialogText": "دانتوں کا علاج کراتے وقت جراثیم سے پاک اوزار کے استعمال پر اصرار کریں",
+                            "dialogText": "لوگوں کو صحت کی تعلیم دیں اور انہیں ہپاٹائیٹس کے بارے میں درست معلومات فراہم کریں۔",
                             "offset": {
                               "dx": 170.0,
                               "dy": 200.0
@@ -2429,13 +2230,13 @@
                             "title": "",
                             "dialogText": "حجام سے شیو کراتے وقت نئے بلیڈ کے استعمال پر اصرار کریں۔",
                             "offset": {
-                              "dx": 295.0,
+                              "dx": 310.0,
                               "dy": 190.0
                             }
                           },
                           {
                             "title": "",
-                            "dialogText": "لوگوں کو صحت کی تعلیم دیں اور انہیں ہپاٹائیٹس کے بارے میں درست معلومات فراہم کریں۔ ",
+                            "dialogText": "اگر خون کی اشد ضرورت ہو تو اس بات کی تصدیق کرلیں کہ خون ایڈز، ہیپا ٹائٹس ، یرقان کے وائرس سے پاک ہو۔",
                             "offset": {
                               "dx": 450.0,
                               "dy": 115.0
@@ -2459,16 +2260,13 @@
                           }
                         ]
                       },
-                      {
-                        "imagePath": "assets/scripts/Script 36/Script 36-02.png",
-                        "hotspots": []
-                      },
+
                       {
                         "imagePath": "assets/scripts/Script 36/Script 36-02.png",
                         "hotspots": [
                           {
                             "title": "",
-                            "dialogText": "ہیپاٹائٹس سی سے متاثرہ افراد کا اس کی روک تھام میں کردار: خون، اعضاء یا تولیدی اعضاء ہر گز عطیہ نہ کریں۔ ",
+                            "dialogText": "کمیونٹی کو بتائیں کہ اس مرض کی تشخیص کا ٹیسٹ ، ادویات اور دیگر سہولیات محکمہ صحت کی جانب سے مفت فراہم کی جارہی ہیں۔",
                             "offset": {
                               "dx": 75.0,
                               "dy": 180.0
@@ -2508,7 +2306,7 @@
                           },
                           {
                             "title": "",
-                            "dialogText": "ہیپاٹائٹس سی سے متاثرہ افراد کا اس کی روک تھام میں کردار: خون، اعضاء یا تولیدی اعضاء ہر گز عطیہ نہ کریں۔ ",
+                            "dialogText": "متاثرہ  شخص کی اخلاقی، سماجی اور مالی طور پر مدد کرنے کے لئے پڑوسیوں، رشتے داروں اور دیگر افراد کو قائل کریں۔",
                             "offset": {
                               "dx": 400.0,
                               "dy": 180.0
@@ -2616,29 +2414,25 @@
                     "title": "ملیریا کی علامات",
                     "flashCards": [
                       {
-                        "frontImage": "assets/scripts/Script 39/Artboard 4@2x.png",
-                        "backImage": "assets/scripts/Script 39/Artboard 5@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 39/Artboard 6@2x.png",
-                        "backImage": "assets/scripts/Script 39/Artboard 7@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 39/Artboard 8@2x.png",
-                        "backImage": "assets/scripts/Script 39/Artboard 9@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 39/Artboard 11@2x.png",
-                        "backImage": "assets/scripts/Script 39/Artboard 12@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 39/Artboard 13@2x.png",
-                        "backImage": "assets/scripts/Script 39/Artboard 15@2x.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 39/Artboard 15@2x.png",
-                        "backImage": "assets/scripts/Script 39/Artboard 2@2x.png"
+                        "frontImage": "assets/scripts/Script 39/script 39-02.png",
+                        "backImage": "assets/scripts/Script 39/script 39-01.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 39/script 39-04.png",
+                        "backImage": "assets/scripts/Script 39/script 39-03.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 39/script 39-06.png",
+                        "backImage": "assets/scripts/Script 39/script 39-05.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 39/script 39-08.png",
+                        "backImage": "assets/scripts/Script 39/script 39-07.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 39/script 39-10.png",
+                        "backImage": "assets/scripts/Script 39/script 39-09.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 39/script 39-12.png",
+                        "backImage": "assets/scripts/Script 39/script 39-11.png"
                       }
+
                     ]
                   }
                 }
@@ -2725,7 +2519,7 @@
                   "featureId": 58,
                   "submoduleId": 2,
                   "featureType": "interactiveAnimationVideo",
-                  "title": "Interactive Animation Video Example",
+                  "title": "تعارف",
                   "duration": "4 mins",
                   "data": {
                     "videoPath": "assets/scripts/Script 42/interactive_animation.mp4",
@@ -2788,59 +2582,49 @@
                   "featureId": 60,
                   "submoduleId": 2,
                   "featureType": "flashCard",
-                  "title": "flashCard Example",
+                  "title": "ڈینگی بخار کی ابتدائی، شدید اور خطر ناک علامات ",
                   "duration": "5 mins",
                   "data": {
-                    "title": "flashCard Example",
+                    "title": "ڈینگی بخار کی ابتدائی، شدید اور خطر ناک علامات ",
                     "flashCards": [
                       {
-                        "frontImage": "assets/scripts/Script 44/Artboard 6.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 5.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 8.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 7.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 11.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 9.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 13.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 12.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 15.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 14.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 17.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 16.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 19.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 18.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 21.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 20.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 23.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 22.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 24.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 25.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 27.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 26.png"
-                      },
-                      {
-                        "frontImage": "assets/scripts/Script 44/Artboard 29.png",
-                        "backImage": "assets/scripts/Script 44/Artboard 28.png"
+                        "frontImage": "assets/scripts/Script 44/Script 44-02.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-01.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-04.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-03.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-06.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-05.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-08.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-07.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-10.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-09.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-12.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-11.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-14.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-13.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-16.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-15.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-18.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-17.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-20.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-19.png"
+                      }, {
+                        "frontImage": "assets/scripts/Script 44/Script 44-22.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-21.png"
+                      },{
+                        "frontImage": "assets/scripts/Script 44/Script 44-24.png",
+                        "backImage": "assets/scripts/Script 44/Script 44-23.png"
                       }
+
                     ]
                   }
                 }
@@ -2869,7 +2653,7 @@
                   "featureId": 63,
                   "featureType": "interactiveAnimationVideo",
                   "submoduleId": 2,
-                  "title": "Interactive Animation Video Example",
+                  "title": "تعارف",
                   "duration": "4 mins",
                   "data": {
                     "videoPath": "assets/Scripts/Script 46/demo.mp4",
@@ -2922,27 +2706,19 @@
                   "featureId": 64,
                   "featureType": "comicStrip",
                   "submoduleId": 2,
-                  "title": "Comic Strip Example",
+                  "title": "کورونا وائرس کی علامت اور اس کے پھیلنے کا طریقہ",
                   "duration": "3 mins",
                   "data": {
-                    "title": "Comic Strip 1",
-                    "imagePairs": [
-                      {
-                        "topImage": "assets/scripts/Script 48/Script 48-01.png",
-                        "bottomImage": "assets/scripts/Script 48/Script 48-02.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 48/Script 48-03.png",
-                        "bottomImage": "assets/scripts/Script 48/Script 48-04.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 48/Script 48-05.png",
-                        "bottomImage": "assets/scripts/Script 48/Script 48-06.png"
-                      },
-                      {
-                        "topImage": "assets/scripts/Script 48/Script 48-07.png",
-                        "bottomImage": "assets/scripts/Script 48/Script 48-08.png"
-                      }
+                    "title": "کورونا وائرس کی علامت اور اس کے پھیلنے کا طریقہ",
+                    "imagePaths": [
+                        "assets/scripts/Script 48/Script 48-01.png",
+                        "assets/scripts/Script 48/Script 48-02.png",
+                         "assets/scripts/Script 48/Script 48-03.png",
+                         "assets/scripts/Script 48/Script 48-04.png",
+                       "assets/scripts/Script 48/Script 48-05.png",
+                         "assets/scripts/Script 48/Script 48-06.png",
+                       "assets/scripts/Script 48/Script 48-07.png",
+                         "assets/scripts/Script 48/Script 48-08.png"
                     ]
                   }
                 }
@@ -2961,7 +2737,7 @@
                   "submoduleId": 2,
                   "featureType": "presentation",
                   "duration": "5 mins",
-                  "title": "Introduction to Variables",
+                  "title": "کن افراد میں کو رونا وائرس سے متاثر ہونے کا خطرہ زیادہ ہے",
                   "data": {
                     "assetImages": [
                       "assets/scripts/Script 49/Script 49-01.png",
@@ -3021,10 +2797,10 @@
                   "featureId": 68,
                   "featureType": "flashCard",
                   "submoduleId": 2,
-                  "title": "flashCard Example",
+                  "title": "اپنے اور  اپنے خاندان کی کورونا  سے حفاظت  ",
                   "duration": "5 mins",
                   "data": {
-                    "title": "flashCard Example",
+                    "title": "اپنے اور  اپنے خاندان کی کورونا  سے حفاظت ",
                     "flashCards": [
                       {
                         "frontImage": "assets/scripts/Script 51/Script 51-02.png",
@@ -3049,20 +2825,69 @@
                   "featureId": 69,
                   "featureType": "infographics",
                   "submoduleId": 2,
-                  "title": "Infographics Example",
+                  "title": "مختلف اشیاء پر وائرس کتنے عرصے تک رہ سکتا ہے؟",
                   "duration": "2 mins",
                   "data": {
+                    "title": "مختلف اشیاء پر وائرس کتنے عرصے تک رہ سکتا ہے؟",
                     "infographics": [
                       {
-                        "imagePath": "assets/scripts/Script 52/infographic1.png",
-                        "text": "Infographic 1 Description"
+                        "imagePath": "assets/scripts/Script 52/Script 52-02.png",
+                        "text": "ٹشو پیپر یا کاغذ پر\n 4منٹ",
+                        "borderColor": "#7DC899"
                       },
                       {
-                        "imagePath": "assets/scripts/Script 52/infographic2.png",
-                        "text": "Infographic 2 Description"
+                        "imagePath": "assets/scripts/Script 52/Script 52-03.png",
+                        "text": "کارڈ بورڈ پر\n 24 گھنٹے",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-04.png",
+                        "text": "لکڑی یا فرنیچر پر\n 24 گھنٹے",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-05.png",
+                        "text": "کپڑوں پر\n 24 گھنٹے",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-06.png",
+                        "text": "گلاس یا شیشے پر\n 2 دن",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-07.png",
+                        "text": "کرنسی نوٹ پر\n2 دن",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-08.png",
+                        "text": "کرنسی نوٹ پر\n2 دن",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-09.png",
+                        "text": "مریض کے ساتھ کھانے پینے سے اور اس کے برتن استعمال کرنے سے۔",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-10.png",
+                        "text": "سکوں پر \n 4 دن",
+                        "borderColor": "#7DC899"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-11.png",
+                        "text": "سٹیل یا لو ہے پر\n 4 دن",
+                        "borderColor": "#EF6EA9"
+                      },
+                      {
+                        "imagePath": "assets/scripts/Script 52/Script 52-12.png",
+                        "text": "پلاسٹک پر\n 4 دن",
+                        "borderColor": "#7DC899"
                       }
                     ]
                   }
+
                 }
               ]
             },
@@ -3079,7 +2904,7 @@
                   "featureType": "presentation",
                   "duration": "5 mins",
                   "submoduleId": 2,
-                  "title": "Introduction to Variables",
+                  "title": "کورونا سے بچاؤ اور وائرس کی منتقلی روکنے کے لئے ہاتھ دھونے کے اہم مواقع۔ ",
                   "data": {
                     "assetImages": [
                       "assets/scripts/Script 54/Script 54-01.png",

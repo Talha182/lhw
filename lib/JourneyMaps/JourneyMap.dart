@@ -345,7 +345,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
               maxWidth: MediaQuery.of(context).size.width - 50,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(right: 20, top: 20, bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
@@ -354,8 +354,8 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                     submodule.title,
                     style: const TextStyle(
                         fontFamily: "UrduType",
-                        color: Color(0xff000000),
-                        fontSize: 20,
+                        color: Color(0xffFE8BD1),
+                        fontSize: 24,
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
@@ -364,7 +364,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                     children: [
                       SvgPicture.asset(
                         "assets/images/person_card.svg",
-                        color: const Color(0xff685F78),
+                        color: const Color(0xff7DC899),
                       ),
                       const SizedBox(
                         width: 3,
@@ -387,10 +387,11 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                       const Icon(
                         Icons.watch_later_outlined,
                         size: 16,
+                        color: Color(0xff7DC899),
                       ),
                       const Text(
                         "01 گھنٹہ 30 منٹ",
-                        textDirection: TextDirection.ltr,
+                        textDirection: TextDirection.rtl,
                         style: TextStyle(
                             fontSize: 15,
                             fontFamily: "UrduType",
@@ -414,7 +415,7 @@ class _JourneyMapScreenState extends State<JourneyMapScreen>
                     submodule.description,
                     style: const TextStyle(
                         fontFamily: "UrduType",
-                        fontSize: 14,
+                        fontSize: 18,
                         color: Color(0xff7A7D84)),
                     textAlign: TextAlign.end,
                   ),

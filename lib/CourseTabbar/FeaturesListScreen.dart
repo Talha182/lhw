@@ -7,7 +7,7 @@ import 'package:lhw/BranchingScenarios/TextBranchingScenario.dart';
 import 'package:lhw/ComicStrip/comic_strip.dart';
 import 'package:lhw/ImageHotspot/horizontal_image_hotspot.dart';
 import 'package:lhw/Infographics/infographics.dart';
-import 'package:lhw/Test/Features/InteractiveImage.dart';
+import 'package:lhw/InteractiveImage/InteractiveImage.dart';
 import 'package:lhw/models/interactive_images_model.dart';
 import 'package:lhw/services/global_user.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';

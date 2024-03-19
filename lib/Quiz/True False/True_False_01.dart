@@ -69,7 +69,7 @@ class _TrueFalse1State extends State<TrueFalse1> {
       }
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (questionIndex < questions.length - 1) {
         setState(() {
           questionIndex++;
@@ -92,7 +92,7 @@ class _TrueFalse1State extends State<TrueFalse1> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -102,15 +102,15 @@ class _TrueFalse1State extends State<TrueFalse1> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            end: Alignment(0, -0.2),
+            end: const Alignment(0, -0.2),
             colors: [
-              Color(0xff80B8FB).withOpacity(0.3),
+              const Color(0xff80B8FB).withOpacity(0.3),
               Colors.transparent,
             ],
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -118,12 +118,12 @@ class _TrueFalse1State extends State<TrueFalse1> {
                 children: [
                   InkWell(
                     onTap: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                       size: 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -156,48 +156,48 @@ class _TrueFalse1State extends State<TrueFalse1> {
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 15,),
-              Text(
+              const SizedBox(height: 15,),
+              const Text(
                 "مدت",
                 style: TextStyle(fontFamily: "UrduType"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo. Mattis enim odio at odio eget adipiscing. Ultrices adipiscing tristique pharetra magna cras nullam vulputate. Mi morbi eleifend placerat urna feugiat ullamcorper velit sed. ",
                 style: TextStyle(
                     fontFamily: "UrduType",
                     fontSize: 15,
                     color: Color(0xff232323)),
               ),
-              Divider(),
-              SizedBox(
+              const Divider(),
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 "تعریف",
                 style: TextStyle(fontFamily: "UrduType"),
               ),
-              Text(
+              const Text(
                 "Lorem ipsum dolor sit amet consectetur. Facilisis amet leo ut eleifend odio sollicitudin leo. Mattis enim odio at odio eget adipiscing. ",
                 style: TextStyle(fontFamily: "UrduType"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 "جواب کا انتخاب کریں۔",
                 style: TextStyle(fontFamily: "UrduType"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Column(
                 children: List.generate(
                   questions[questionIndex].options.length,
                       (index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: QuizCard(
                       text: questions[questionIndex].options[index],
                       ontap: () => updateQuestion(
@@ -212,33 +212,33 @@ class _TrueFalse1State extends State<TrueFalse1> {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Divider(
                 height: 1,
                 thickness: 1,
                 color: Colors.black87.withOpacity(0.1),
               ),
               Padding(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'آپ کا اسکور: 10 پوائنٹس',
                       style: TextStyle(
                           fontFamily: "UrduType", color: Color(0xff8E79FB)),
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xffFE8BD1),
+                        backgroundColor: const Color(0xffFE8BD1),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        minimumSize: Size(150, 37),
+                        minimumSize: const Size(150, 37),
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'جاری رہے',
                         style: TextStyle(
                           fontFamily: 'UrduType',
@@ -291,7 +291,7 @@ class QuizCard extends StatelessWidget {
           color: color,
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
             children: [
               Container(
@@ -300,17 +300,17 @@ class QuizCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black87.withOpacity(0.2)),
                   shape: BoxShape.circle,
-                  color: isOptionSelected // Use the parameter here
+                  color: isOptionSelected
                       ? (isCorrect ? Colors.green : Colors.red)
                       : Colors.transparent,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   text,
                   textAlign: TextAlign.justify,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Color(0xff7A7D84),
                     fontFamily: 'UrduType',
@@ -329,8 +329,8 @@ class Question {
   final String question;
   final List<String> options;
   final String correctAnswer;
-  final String correctExplanation; // Correct explanation
-  final String incorrectExplanation; // Incorrect explanation
+  final String correctExplanation;
+  final String incorrectExplanation;
 
   Question({
     required this.question,

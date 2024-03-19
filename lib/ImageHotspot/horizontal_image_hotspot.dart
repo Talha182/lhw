@@ -69,10 +69,10 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
               Container(
                 padding: const EdgeInsets.all(20),
                 margin: const EdgeInsets.only(
-                    top: 20, right: 60, bottom: 60, left: 60),
+                    top: 20, right: 30, bottom: 20, left: 30),
                 child: ConstrainedBox(
                   constraints:
-                  const BoxConstraints(maxHeight: 120, maxWidth: 150),
+                  const BoxConstraints(minHeight: 120, minWidth: 120, maxWidth: 350),
                   child: Text(dialogText,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -102,12 +102,14 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
               ),
               Positioned(
                 bottom: 20,
-                left: 110,
+                left: 0,
+                right: 0,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(dialogContext).pop(); // Close the dialog
                   },
                   child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 160),
                     width: 90,
                     height: 40,
                     decoration: BoxDecoration(
@@ -219,9 +221,12 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  'Hello! Need any help?',
+                                  'گلابی رنگ کے دائروں پر کلک کریں۔\n جن دائروں کوآپ پڑھ چکی ہیں ان کا\n رنگ سبز ہو جاۓ گا۔',
                                   textAlign: TextAlign.center,
-                                  textStyle: const TextStyle(fontSize: 16, color: Colors.black),
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "UrduType"),
                                   speed: const Duration(milliseconds: 50),
                                 ),
                               ],
@@ -233,7 +238,9 @@ class _HorizontalImageHotspotState extends State<HorizontalImageHotspot> {
                           ),
                         ),
                       ),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     GestureDetector(
                       onTap: _showMessageAgain,
                       child: CircleAvatar(

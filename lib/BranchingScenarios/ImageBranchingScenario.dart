@@ -40,6 +40,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
   bool showMessage = true;
   double _fabYPosition = 600.0;
   bool isBookmarked = false;
+  int _current = 0;
 
   void updateQuestion(String selectedAnswer, int index) {
     if (isAnswered)
@@ -359,7 +360,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                       width: double.infinity,
                                       margin: const EdgeInsets.only(
                                           left: 15, right: 15, top: 15),
-                                      height: 260,
+                                      height: 290,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
@@ -369,10 +370,15 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                           enlargeCenterPage: true,
                                           scrollDirection: Axis.horizontal,
                                           autoPlay: false,
-                                          viewportFraction: 1,
+                                          viewportFraction: 1.1,
+                                          onPageChanged: (index, reason) {
+                                            setState(() {
+                                              _current =
+                                                  index; // Update the _current index here
+                                            });
+                                          },
                                         ),
-                                        carouselController:
-                                            _carouselController, // Ensure you've connected the CarouselController
+                                        carouselController: _carouselController,
                                         items: widget
                                             .imageBranchingScenarioModel
                                             .questions[questionIndex]
@@ -385,8 +391,7 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                               builder: (BuildContext context) {
                                                 return ClipRRect(
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          10), // Apply rounded corners to the ClipRRect
+                                                      BorderRadius.circular(10),
                                                   child: Container(
                                                     width:
                                                         MediaQuery.of(context)
@@ -408,33 +413,34 @@ class _ImageBranchingScenarioState extends State<ImageBranchingScenario>
                                         }).toList(),
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 8.0),
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                              const Color(0xffFE8BD1),
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                          ),
-                                          minimumSize: const Size(150, 37),
-                                        ),
-                                        onPressed: () {
-                                          _carouselController.nextPage(
-                                              duration: const Duration(
-                                                  milliseconds: 300),
-                                              curve: Curves.linear);
-                                        },
-                                        child: const Text(
-                                          'اگلے',
-                                          style: TextStyle(
-                                            fontFamily: 'UrduType',
-                                            fontSize: 15,
-                                            color: Colors.white,
-                                          ),
+                                    Directionality(
+                                      textDirection: TextDirection.ltr,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: List.generate(
+                                          widget
+                                              .imageBranchingScenarioModel
+                                              .questions[questionIndex]
+                                              .imagePaths
+                                              .length,
+                                          (index) {
+                                            return Container(
+                                              width: 8.0,
+                                              height: 8.0,
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 10.0,
+                                                horizontal: 2.0,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: _current == index
+                                                    ? const Color(0xffFE8BD1)
+                                                    : const Color(0xffeaedee),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
                                     ),
